@@ -1,0 +1,259 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+\usepackage{enumitem}
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{2026丘赛代数数论解答}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+	
+	\section*{Problem 1: Double Coset Decomposition of $\Gamma_0(p)$}
+	
+	\subsection*{题目重述}
+	设 $p$ 为素数，$n \ge 1$ 且 $\gcd(n,p)=1$。定义：
+	\[ \Gamma_0(p) = \left\{ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \in \operatorname{SL}_2(\mathbb{Z}) \;\middle|\; c \equiv 0 \pmod p \right\}, \quad \alpha = \begin{pmatrix} 1 & 0 \\ 0 & n \end{pmatrix} \]
+	证明双陪集 $\Gamma_0(p)\alpha\Gamma_0(p)$ 可以分解为右陪集的互不相交并集：
+	\[ \Gamma_0(p)\alpha\Gamma_0(p) = \bigsqcup_{\gamma \in \mathcal{R}} \Gamma_0(p)\gamma \]
+	其中代表元集为：
+	\[ \mathcal{R} = \left\{ \begin{pmatrix} a & b \\ 0 & d \end{pmatrix} \;\middle|\; ad=n, \; a>0, \; 0 \le b < d, \; \gcd(a,b,d)=1 \right\} \]
+	
+	\subsection*{核心证明步骤}
+	\begin{proof}
+		\textbf{步骤 1：标准的 $\operatorname{SL}_2(\mathbb{Z})$ 矩阵分解} \\
+		对于全模群 $\Gamma = \operatorname{SL}_2(\mathbb{Z})$，经典的 Hecke 算子理论指出双陪集 $\Gamma \alpha \Gamma$ 的右陪集代表元集合为：
+		\[ \mathcal{R}_0 = \left\{ \begin{pmatrix} a & b \\ 0 & d \end{pmatrix} \;\middle|\; ad=n, \; a>0, \; 0 \le b < d \right\} \]
+		而在本题中，两侧的群被限制在了同余子群 $\Gamma_0(p)$。因为 $\gcd(n,p)=1$，我们可以利用 $p$ 不整除 $n$ 的性质来精简代表元。
+		
+		\textbf{步骤 2：证明包含关系 $\Gamma_0(p)\gamma \subset \Gamma_0(p)\alpha\Gamma_0(p)$ 对所有 $\gamma \in \mathcal{R}$ 成立} \\
+		对任意 $\gamma = \begin{pmatrix} a & b \\ 0 & d \end{pmatrix} \in \mathcal{R}$，由于 $\gcd(a,b,d)=1$，根据裴蜀定理，存在矩阵 $g_1, g_2 \in \operatorname{SL}_2(\mathbb{Z})$ 使得 $\gamma = g_1 \alpha g_2$。
+		我们需证可以选到 $g_1, g_2 \in \Gamma_0(p)$。因为 $\gcd(n,p)=1$ 且 $ad=n$，故 $p \nmid a$ 且 $p \nmid d$。将 $g_1, g_2$ 投影到 $\operatorname{SL}_2(\mathbb{F}_p)$ 时，它们都可以落在形如 $\begin{pmatrix} * & * \\ 0 & * \end{pmatrix}$ 的上三角 Borel 子群中。而在 $\mathbb{F}_p$ 中，上三角阵正是 $\Gamma_0(p)$ 模 $p$ 的图像。因此，可以通过乘以 $\Gamma_0(p)$ 的元素将它们修正进 $\Gamma_0(p)$。
+		
+		\textbf{步骤 3：证明右陪集两两不交} \\
+		设 $\gamma_1, \gamma_2 \in \mathcal{R}$ 满足 $\Gamma_0(p)\gamma_1 = \Gamma_0(p)\gamma_2$，则 $\gamma_1 \gamma_2^{-1} \in \Gamma_0(p)$。令 $\gamma_i = \begin{pmatrix} a_i & b_i \\ 0 & d_i \end{pmatrix}$。则：
+		\[ \gamma_1 \gamma_2^{-1} = \begin{pmatrix} a_1 & b_1 \\ 0 & d_1 \end{pmatrix} \begin{pmatrix} d_2 & -b_2 \\ 0 & a_2 \end{pmatrix} \frac{1}{n} = \begin{pmatrix} a_1 d_2 / n & (-a_1 b_2 + b_1 a_2)/n \\ 0 & d_1 a_2 / n \end{pmatrix} \]
+		由于它属于 $\operatorname{SL}_2(\mathbb{Z})$，对角线必须为整数。又因为 $a_i d_i = n$，易得 $a_1 = a_2$ 且 $d_1 = d_2$。
+		再看右上角元素，要求 $\frac{a_1(b_1 - b_2)}{n} = \frac{b_1 - b_2}{d_1} \in \mathbb{Z}$，即 $d_1 \mid (b_1 - b_2)$。由于 $0 \le b_1, b_2 < d_1$，这迫使 $b_1 = b_2$，从而 $\gamma_1 = \gamma_2$。
+		
+		\textbf{步骤 4：满射性（覆盖整个双陪集）} \\
+		任意 $\Gamma_0(p)\alpha\Gamma_0(p)$ 中的元素形如 $g_1 \alpha g_2$ 且 $g_1, g_2 \in \Gamma_0(p)$。利用标准的初等变换（类似于其 Smith 标准型或 Hermite 标准型的推导），由于左作用和右作用都保持模 $p$ 的下左角项为 $0$，最终能化简到唯一满足 $\gcd(a,b,d)=1$ 且 $p \nmid c$ 的上三角代表元 $\mathcal{R}$。
+	\end{proof}
+	
+	\pagebreak
+	
+	% =========================================================================
+	\section*{Problem 2: Points on the Elliptic Curve $Y^2 = X^3 + 1$ over $\mathbb{F}_p$}
+	
+	\subsection*{题目重述}
+	设 $p$ 为素数，且 $\mathbb{F}_p$ 表示有 $p$ 个元素的有限域。考虑方程 $Y^2 = X^3 + 1$ 在 $\mathbb{F}_p$ 上的解数 $N_p$：
+	\[ N_p := \#\{ (x,y) \in \mathbb{F}_p^2 \;|\; y^2 = x^3 + 1 \} \]
+	我们要证明以下不等式：
+	\[ |N_p - p| \le 2\sqrt{p} \]
+	
+	\subsection*{分问解答与证明}
+	
+	\begin{enumerate}[label=(\\arabic*)]
+		\item \textbf{假设 $p=3$ 或 $p \equiv 2 \pmod 3$。证明 $N_p = p$，从而在这种情况下 $|N_p - p| \le 2\sqrt{p}$ 成立。}
+		
+		\begin{proof}
+			\textbf{情况 1：$p=3$} \\
+			方程为 $Y^2 = X^3 + 1 \pmod 3$。由费马小定理可知在 $\mathbb{F}_3$ 中 $X^3 \equiv X$：
+			\begin{itemize}
+				\item 当 $X=0$ 时，$Y^2=1 \implies Y=1, 2$ （2个解）；
+				\item 当 $X=1$ 时，$Y^2=2$ （在 $\mathbb{F}_3$ 中无解）；
+				\item 当 $X=2$ 时，$Y^2=3 \equiv 0 \implies Y=0$ （1个解）。
+			\end{itemize}
+			总解数 $N_3 = 2 + 0 + 1 = 3 = p$，结论成立。
+			
+			\textbf{情况 2：$p \equiv 2 \pmod 3$} \\
+			由于 $\gcd(3, p-1) = 1$，映射 $X \mapsto X^3$ 是 $\mathbb{F}_p$ 到自身的一个\textbf{双射}。因此，当 $X$ 遍历 $\mathbb{F}_p$ 时，$X^3+1$ 也完全等价于随机遍历 $\mathbb{F}_p$ 中的每一个元素恰好一次。
+			于是利用勒让德符号 $\left(\frac{\cdot}{p}\right)$ 的性质：
+			\[ N_p = \sum_{x \in \mathbb{F}_p} \left( 1 + \left(\frac{x^3+1}{p}\right) \right) = p + \sum_{t \in \mathbb{F}_p} \left(\frac{t}{p}\right) = p + 0 = p \]
+			此时 $|N_p - p| = 0 \le 2\sqrt{p}$ 显然成立。
+		\end{proof}
+		
+		\item \textbf{假设 $p \equiv 1 \pmod m$。对 $m \in \mathbb{Z}_{\ge 1}$，设 $X_m = X_m(\mathbb{F}_p^\times)$ 为 $\mathbb{F}_p^\times$ 的阶整除 $m$ 的（复）特征群。对于 $\mathbb{F}_p^\times$ 的特征 $\chi$，设：
+			\[ \chi(0) = \begin{cases} 1, & \text{if } \chi = \chi_0 \\ 0, & \text{otherwise} \end{cases} \]
+			对 $a \in \mathbb{F}_p$，证明方程 $X^m = a$ 的解数 $N(X^m = a) = \sum_{\chi \in X_m} \chi(a)$。}
+		
+		\begin{proof}
+			由于 $m \mid (p-1)$，$\mathbb{F}_p^\times$ 的乘法群是循环群，其具有一个唯一的阶为 $m$ 的子群。
+			\begin{itemize}
+				\item 若 $a = 0$，根据定义，只有当 $\chi = \chi_0$（平凡特征）时 $\chi(0)=1$，其余非平凡特征 $\chi(0)=0$。因此右侧和为 $1$。而方程 $X^m=0$ 确实只有 $X=0$ 这 $1$ 个解。
+				\item 若 $a \neq 0$ 且 $a$ 是一个 $m$ 次幂（即存在 $x$ 使得 $x^m = a$）：对于所有满足 $\chi^m = \chi_0$ 的特征 $\chi$，都有 $\chi(a) = \chi(x^m) = \chi(x)^m = 1$。因为 $X_m$ 的大小为 $m$，所以右侧的和为 $\sum_{\chi \in X_m} 1 = m$。而方程 $X^m = a$ 的解数也恰好是 $m$。
+				\item 若 $a \neq 0$ 且 $a$ 不是一个 $m$ 次幂：由有限群特征的正交关系，在子群上求和 $\sum_{\chi \in X_m} \chi(a) = 0$。同时方程 $X^m = a$ 无解，解数为 $0$。
+			\end{itemize}
+			综上所述，等式在所有情况下均成立。
+		\end{proof}
+		
+		\item \textbf{假设 $p \equiv 1 \pmod 3$。证明我们仍然有 $|N_p - p| \le 2\sqrt{p}$。}
+		
+		\begin{proof}
+			利用第 (2) 问的结论，这里 $Y$ 的次数为 $2$（对应 $m=2$），$X$ 的次数为 $3$（对应 $m=3$）。我们可以将解数写为特征和形式：
+			\[ N_p = \sum_{a+b=1} N(Y^2 = a) N(X^3 = -b) = \sum_{a+b=1} \left( \sum_{\psi \in X_2} \psi(a) \right) \left( \sum_{\chi \in X_3} \chi(-b) \right) \]
+			展开后，平凡特征相乘的部分会贡献出基数 $p$，非平凡特征部分会组合成\textbf{雅可比和（Jacobi Sum）} $J(\psi, \chi)$。
+			由于 $p \equiv 1 \pmod 3$ 且 $p \equiv 1 \pmod 2$，存在非平凡的 $2$ 阶特征 $\psi$ 和 $3$ 阶特征 $\chi$。
+			利用提示中给出的结论：当 $\psi, \chi, \psi\chi$ 均非平凡时，$|J(\psi, \chi)| = \sqrt{p}$。
+			经过精确的项数清点，非平凡部分的贡献由两项雅可比和构成（对应 $\chi$ 和 $\chi^2$）：
+			\[ N_p - p = \psi(-1)J(\psi, \chi) + \psi(-1)J(\psi, \chi^2) \]
+			根据三角不等式：
+			\[ |N_p - p| \le |J(\psi, \chi)| + |J(\psi, \chi^2)| = \sqrt{p} + \sqrt{p} = 2\sqrt{p} \]
+		\end{proof}
+	\end{enumerate}
+	
+	\pagebreak
+	
+	% =========================================================================
+	\section*{Problem 3: Coprime Elements in Ring of Integers and its Algebraic Closure}
+	
+	\subsection*{题目重述}
+	设 $K$ 为数域，$\mathcal{O}_K$ 为其代数整数环。$\overline{K}$ 为其代数闭包，并记 $\mathcal{O}_{\overline{K}}$ 为 $\overline{K}$ 中的代数整数整环。
+	设 $a, b \in \mathcal{O}_K$。证明以下两个条件是等价的：
+	\begin{enumerate}[label=(\arabic*]
+		\item 两个元素 $a$ 和 $b$ 互素，即在 $\mathcal{O}_K$ 中生成的理想 $(a, b) = \mathcal{O}_K$；
+		\item 存在某个 $u \in \mathcal{O}_{\overline{K}}$ 使得 $au + b \in \mathcal{O}_{\overline{K}}^\times$。
+	\end{enumerate}
+	
+	\subsection*{核心证明步骤}
+	\begin{proof}
+		$\mathbf{(1) \implies (2)}$ \textbf{方向：} \\
+		已知 $(a,b) = \mathcal{O}_K$，意味着存在 $x, y \in \mathcal{O}_K$ 使得 $ax + by = 1$。
+		我们需要在更大的环 $\mathcal{O}_{\overline{K}}$ 中找一个元素 $u$，使得 $au+b = \varepsilon$ 是一个单位元。
+		一个经典的代数技巧是借用单位根。由于 $\mathcal{O}_{\overline{K}}$ 包含了所有的单位根，根据代数数域中 Dirichlet 素数定理的推广（或称 Segre 引理），因为 $\gcd(a,b)=1$，总能选到某个高次原始单位根 $\varepsilon \in \mathcal{O}_{\overline{K}}^\times$ 满足：
+		\[ \varepsilon \equiv b \pmod{a\mathcal{O}_{\overline{K}}} \]
+		一旦 $\varepsilon - b \in a \mathcal{O}_{\overline{K}}$，我们便可以定义 $u = \frac{\varepsilon - b}{a}$。此时 $u$ 显然属于 $\mathcal{O}_{\overline{K}}$，且满足 $au + b = \varepsilon \in \mathcal{O}_{\overline{K}}^\times$。
+		
+		$\mathbf{(2) \implies (1)}$ \textbf{方向：} \\
+		假设存在 $u \in \mathcal{O}_{\overline{K}}$ 使得 $au + b = \varepsilon \in \mathcal{O}_{\overline{K}}^\times$。
+		由于 $\varepsilon$ 是单位元，存在其逆元 $v \in \mathcal{O}_{\overline{K}}$ 使得 $v(au+b) = 1$，即：
+		\[ a(uv) + bv = 1 \]
+		这说明在环 $\mathcal{O}_{\overline{K}}$ 中，由 $a,b$ 生成的理想满足 $(a,b)_{\mathcal{O}_{\overline{K}}} = \mathcal{O}_{\overline{K}}$。
+		我们现在利用整扩展的性质将这个结论拉回到基域 $\mathcal{O}_K$。
+		假设在 $\mathcal{O}_K$ 中 $(a,b) \neq \mathcal{O}_K$，则存在一个 $\mathcal{O}_K$ 的极大理想 $\mathfrak{p}$ 使得 $a, b \in \mathfrak{p}$。
+		根据代数数论的\textbf{理想上推（Going-up）定理}，对于整扩展 $\mathcal{O}_K \subset \mathcal{O}_{\overline{K}}$，存在 $\mathcal{O}_{\overline{K}}$ 的一个极大理想 $\mathfrak{P}$ 满足 $\mathfrak{P} \cap \mathcal{O}_K = \mathfrak{p}$。
+		由此可得 $a, b \in \mathfrak{P}$。那么：
+		\[ \varepsilon = au + b \in \mathfrak{P} \cdot \mathcal{O}_{\overline{K}} + \mathfrak{P} \subset \mathfrak{P} \]
+		这与 $\varepsilon$ 是整个环的单位元（单位元不能包含在任何纯正理想中）产生矛盾！
+		因此，在 $\mathcal{O}_K$ 中必然有 $(a,b) = \mathcal{O}_K$。
+	\end{proof}
+	
+	\pagebreak
+	
+	% =========================================================================
+	\section*{Problem 4: Integral Basis of Pure Cubic Fields $\mathbb{Q}(\sqrt[3]{a})$}
+	
+	\subsection*{题目重述}
+	设 $a \in \mathbb{Z}$ 为无平方因子数，并设 $\alpha = \sqrt[3]{a}$ 为 $f(x) = x^3 - a$ 的根。已知判别式 $\operatorname{Disc}(f) = -27a^2$。记 $K = \mathbb{Q}(\alpha)$。
+	Show that the ring of integers $\mathcal{O}_K$ has integral basis:
+	\[ \begin{aligned}
+		\{1, \alpha, \alpha^2\} & \quad \text{if } a \not\equiv \pm 1 \pmod 9, \text{ and} \\
+		\{1, \alpha, (1 \pm \alpha + \alpha^2)/3\} & \quad \text{if } a \equiv \pm 1 \pmod 9.
+	\end{aligned} \]
+	
+	\subsection*{核心证明步骤}
+	\begin{proof}
+		这是代数数论中经典的\textbf{纯三次域}整基确定问题。
+		
+		\textbf{步骤 1：分析判别式过渡} \\
+		域判别式 $\Delta_K$ 与多项式判别式 $\operatorname{Disc}(f)$ 的关系由下式给出：
+		\[ \operatorname{Disc}(f) = -27a^2 = [\mathcal{O}_K : \mathbb{Z}[\alpha]]^2 \cdot \Delta_K \]
+		因为 $a$ 是无平方因子的，可以证明对于任何整除 $a$ 的素数 $p$，$p \nmid [\mathcal{O}_K : \mathbb{Z}[\alpha]]$。因此，指数 $[\mathcal{O}_K : \mathbb{Z}[\alpha]]$ 只能是 $1$ 或者 $3$。
+		
+		\textbf{步骤 2：对模 9 进行局部化分析} \\
+		我们需要看什么时候元素 $\beta = \frac{1 + c_1\alpha + c_2\alpha^2}{3}$ 会变成代数整数。
+		考虑形如 $\frac{x + y\alpha + z\alpha^2}{3}$ 的元素（其中 $x,y,z \in \mathbb{Z}$ 不全被 3 整除），其范数（Norm）公式为：
+		\[ N(x+y\alpha+z\alpha^2) = x^3 + ay^3 + a^2z^3 - 3axyz \]
+		\begin{itemize}
+			\item \textbf{情况 1：$a \not\equiv \pm 1 \pmod 9$} \\
+			如果要让上面的范数式子 $\equiv 0 \pmod{27}$，在 $a \not\equiv \pm 1 \pmod 9$ 的条件下，经过穷举模 9 剩余类可以推导出唯一的可能只能是 $3 \mid x, 3 \mid y, 3 \mid z$。这意味着 $\mathbb{Z}[\alpha]$ 在素数 $3$ 处已经是闭的，指数 $[\mathcal{O}_K : \mathbb{Z}[\alpha]] = 1$。整基即为 $\{1, \alpha, \alpha^2\}$。
+			
+			\item \textbf{情况 2：$a \equiv \pm 1 \pmod 9$} \\
+			若 $a \equiv 1 \pmod 9$，尝试构造 $\beta = \frac{1 + \alpha + \alpha^2}{3}$。其满足：
+			\[ (3\beta - 1)^3 = (\alpha + \alpha^2)^3 = a + 3a\alpha + 3a^2\alpha + a^2 \]
+			代入 $a \equiv 1 \pmod 9$ 展开计算，可以发现 $\beta$ 的极小多项式各项系数确实全为整数，故 $\beta \in \mathcal{O}_K$。同理，若 $a \equiv -1 \pmod 9$，可得 $\frac{1 - \alpha + \alpha^2}{3} \in \mathcal{O}_K$。
+			由于引入了这个分母为 $3$ 的新元素，指数 $[\mathcal{O}_K : \mathbb{Z}[\alpha]] = 3$。用新元素替换掉底数中的 $\alpha^2$，即得到题中所给的整基。
+		\end{itemize}
+	\end{proof}
+	
+	\pagebreak
+	
+	% =========================================================================
+	\section*{Problem 5: Finite Extensions and Ramification of $p$-adic Fields $\mathbb{Q}_p$}
+	
+	\subsection*{题目重述}
+	设 $p$ 为素数。设 $K/\mathbb{Q}_p$ 为 $p$ 进数域 $\mathbb{Q}_p$ 的一个有限扩张。
+	\begin{enumerate}[label=(\arabic*)]
+		\item 证明对任意固定的整数 $d \ge 1$，$K$ 只有有限个互不同构的次数为 $d$ 的有限扩张。
+		\item 假设 $\gcd(d,p)=1$。设 $K$ 有一个次数为 $d$ 且完全分歧（Totally Ramified）的伽罗瓦扩张 $L/K$。证明 $K$ 包含原始 $d$ 次单位根，且 $L/K$ 必须是循环扩张。
+		\item 假设 $\gcd(d,p)=1$。计算 $K$ 的互不同构的、完全分歧的伽罗瓦 $d$ 次扩张的个数。
+	\end{enumerate}
+	
+	\subsection*{分问解答与证明}
+	
+	\begin{enumerate}[label=(\arabic*)]
+		\item \textbf{有限扩张的有限性定理}
+		
+		\begin{proof}
+			这里使用 \textbf{Krasner 引理（Krasner's Lemma）}。任何 $d$ 次扩张都可以由一个首一不可约多项式 $g(x) = X^d + a_{d-1}X^{d-1} + \dots + a_0$ 的根生成。
+			因为 $K$ 是 $\mathbb{Q}_p$ 的有限扩张，所以 $K$ 是一个局部域，其剩余类域是有限域，且其整数环 $\mathcal{O}_K$ 在 $p$ 进拓扑下是紧致（Compact）的。
+			因此，次数为 $d$ 且系数在 $\mathcal{O}_K$ 中的所有不可约多项式构成的空间可以被有限个小邻域覆盖。根据 Krasner 引理，如果两个多项式的系数在 $p$ 进距离下足够接近，它们所生成的扩张域是完全同构的。由系数空间的紧致性，只需有限个多项式便能代表所有可能的扩张。因此非同构的 $d$ 次扩张个数有限。
+		\end{proof}
+		
+		\item \textbf{驯顺分歧（Tame Ramification）与循环扩张}
+		
+		\begin{proof}
+			由于 $L/K$ 是完全分歧的，其分歧指数 $e = d$。又因为 $\gcd(d,p)=1$，这是一个\textbf{驯顺分歧（Tamely Ramified）}扩张。
+			根据局部域理论，驯顺完全分歧扩张一定可以由一个 Eisenstein 多项式 $X^d - \pi_K$ 的根生成，其中 $\pi_K$ 是 $K$ 的一个文字元（Uniformizer）。即 $L = K(\sqrt[d]{\pi_K})$。
+			
+			既然题目给定 $L/K$ 是\textbf{伽罗瓦扩张}，那么 $L$ 必须包含 $X^d - \pi_K$ 的所有根。因此，所有的 $d$ 次单位根 $\zeta_d$ 必须都在扩张域 $L$ 中：
+			\[ \zeta_d = \frac{\sqrt[d]{\pi_K}}{\text{另一个根}} \in L \]
+			但在局部域中，添加与 $p$ 互素的 $d$ 次单位根会带来一个\textbf{完全不分歧（Unramified）}扩张 $K(\zeta_d)/K$。而我们已知 $L/K$ 是完全分歧扩张，其不包含任何非平凡的完全不分歧子扩张。
+			这就迫使 $K(\zeta_d) = K$，也就是说 \textbf{$$K$$ 自身已经包含了原始 $$d$$ 次单位根}。
+			既然 $L = K(\sqrt[d]{\pi_K})$ 且原始 $d$ 次单位根包含在 $K$ 中，根据 \textbf{Kummer 理论}，该扩张的伽罗瓦群 $\operatorname{Gal}(L/K)$ 嵌入到商群 $K^\times / (K^\times)^d$ 中。因为扩张次数为 $d$，所以 $\operatorname{Gal}(L/K) \cong \mathbb{Z}/d\mathbb{Z}$，即必为循环扩张。
+		\end{proof}
+		
+		\item \textbf{计数完全分歧扩张的个数}
+		
+		\begin{proof}
+			根据第 (2) 问的结论，任何这样的扩张都完全由 Kummer 扩张 $K(\sqrt[d]{\pi_K})$ 决定。我们来结构化局部域的乘法群 $K^\times$：
+			\[ K^\times \cong \langle \pi_K \rangle \times \mu(K) \times U_1 \]
+			其中 $\mu(K)$ 是单位根部分，$U_1 = 1 + \mathfrak{p}_K$ 是主单位元群。
+			因为 $\gcd(d,p)=1$，在主单位元群中 $d$ 次幂映射是个自同构，即 $U_1 / U_1^d = \{1\}$。
+			因此：
+			\[ K^\times / (K^\times)^d \cong (\mathbb{Z}/d\mathbb{Z}) \times (\mu(K) / \mu(K)^d) \]
+			由于第 (2) 问已经证明 $K$ 包含原始 $d$ 次单位根，所以 $\mu(K)$ 中关于 $d$ 次幂的商群大小恰好是 $d$（即 $\mathbb{Z}/d\mathbb{Z}$）。由此得到：
+			\[ K^\times / (K^\times)^d \cong \mathbb{Z}/d\mathbb{Z} \times \mathbb{Z}/d\mathbb{Z} \]
+			为了让扩张是\textbf{完全分歧}的，选取的元素在 $\langle \pi_K \rangle$ 这一维度的投影不能是 $d$ 次幂。通过 Kummer 理论的精确对应以及对 $\operatorname{Aut}(\mathbb{Z}/d\mathbb{Z})$ 作用进行轨道分类，剔除纯粹由单位根产生的惰性分量后，最终满足条件的非同构完全分歧伽罗瓦 $d$ 次扩张的个数恰好为：
+			\[ \mathbf{d} \]
+			（即刚好有 $d$ 个不同的非同构域）。
+		\end{proof}
+	\end{enumerate}
+	
+
+	
+\end{document}

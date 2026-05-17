@@ -1,0 +1,491 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{范畴}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+
+\section{集合论简述}
+
+我们将采用习见的集合论符号, 例如 $X \subsetneq Y$ 代表 $X \subset Y$ 且 $X \neq Y$ , 以 $X \sqcup Y$ 代表 $X$ 和 $Y$ 的无交并, $X^Y$ 代表所有函数 $f: Y \to X$ 构成的集合, 特别地 $2^X = P(X)$ , 这里 2 代表恰有两个元素的集合. 我们将用 $\{\mathrm{pt}\}$ 表示仅有一个元素的集合. 进一步, 对于以某集合 $I$ 为指标的一族集合 $(X_i)_{i \in I}$ 可以定义 $$
+\text {并} \bigcup_ {i \in I} X _ {i}, \qquad \text {交} \bigcap_ {i \in I} X _ {i}, (I \neq \varnothing),
+$$
+
+$$
+\text { 无交并 } \bigsqcup_ {i \in I} X _ {i}, \text { 积 } \prod_ {i \in I} X _ {i}.
+$$
+
+定义1.2.1 偏序集意指资料 $(P, \leq)$ , 其中 $P$ 是集合而 $\leq$ 是 $P$ 上的二元关系 (偏序), 满足于 
+
+▷ 反身性 $\forall x \in P, x \leq x;$ 
+
+▷ 传递性 $(x \leq y) \land (y \leq z) \implies x \leq z;$ 
+
+$\triangleright$ 反称性 $(x\leq y)\land (y\leq x)\implies x = y.$ 
+
+仅满足反身性与传递性的结构称为预序集. 预序集间满足 $x \leq y \implies f(x) \leq f(y)$ 的映射称为保序映射. 
+
+定义 1.2.2 设 $P' \subset P$ ，而 P 是预序集， 
+
+◇ 称 $x \in P$ 是 P 的极大元, 如果不存在满足 x < y 的元素 $y \in P$ ; 
+
+◇ 称 $x \in P$ 是 $P'$ 的上界, 如果对每个 $x' \in P'$ 都有 $x' \leq x$ ; 
+
+◇ 称 $x \in P$ 是 $P'$ 的上确界, 如果 x 是其上界, 而且对每个上界 y 皆有 $x \leq y$ . 
+
+定义 1.2.3 若偏序集 P 非空, 而且对任何 $x, y \in P$ 子集 $\{x, y\}$ 皆有上界, 则称 P 是滤过序集. 
+
+定义 1.2.4 若偏序集 P 中的任一对元素 x, y 皆可比大小 (即: 或者 $x \leq y$ , 或者 $y \leq x$ ), 则称 P 为全序集. 全序集又称作线序集或链. 
+
+定义 1.2.5 (G. Cantor) 全序集 P 如满足下述性质则称作良序集: 每个 P 的非空子集都有极小元. 
+
+例 1.2.6 取任一集合 X, 则幂集 $P(X)$ 相对于包含关系 $\subset$ 成为滤过偏序集, 但一般不是全序. 后面要构作的非负整数集 $Z_{\geq0}$ 和实数集 R 都具有标准的全序结构; 其中 $Z_{\geq0}$ 
+
+引理 1.2.7 设 P 为良序集, 映射 $\phi: P \to P$ 严格增, 则对每个 $x \in P$ 皆有 $\phi(x) \geq x$ . 特别地: (i) P 没有非平凡的自同构, (ii) 对任意 $x \in P$ , 不存在从 P 到 $P_{<x} := \{y \in P : y < x\}$ 的同构. 
+
+形如 $P_{<x}$ 的子集继承 P 的良序, 称作 P 的一个前段. 
+
+定义 1.2.8 如果一个集合 $\alpha$ 的每个元素都是 $\alpha$ 的子集 (换言之, $\alpha \subset P(\alpha)$ ), 则称 $\alpha$ 为传递的. 若传递集 $\alpha$ 对于 $\in$ 构成良序集, 则称 $\alpha$ 为序数. 
+
+引理 1.2.9 序数满足下述性质. 
+
+(i) 若 $\alpha$ 是序数, $\beta \in \alpha$ , 则 $\beta$ 也是序数. 
+
+(ii) 对任两个序数 $\alpha, \beta$ , 若 $\alpha \subsetneq \beta$ 则 $\alpha \in \beta$ . 
+
+(iii) 对任两个序数 $\alpha, \beta,$ 必有 $\alpha \subset \beta$ 或 $\beta \subset \alpha$ . 
+
+定理 1.2.10 定义 On 为序数构成的类. 
+
+◇ 对序数定义 $\beta < \alpha$ 当且仅当 $\beta \in \alpha$ ，则这定义了 On 上的一个全序，而且对任意序数 $\alpha$ 都有 $\alpha = \{\beta : \beta < \alpha\}$ . 
+
+◇ 若 C 是一个由序数构成的类, $C \neq \varnothing$ , 则 $\inf C := \bigcap C$ 也是序数, 而且 $\inf C \in C$ ;
+我们有 $\alpha \sqcup \{\alpha\} = \inf\{\beta : \beta > \alpha\}$ . 
+
+◇ 若 S 是一个由序数构成的集合, $S \neq \varnothing$ , 则 $\sup S := \bigcup S$ 也是序数. 
+
+由此可知 $\beta < \alpha$ 蕴涵 $\beta$ 是 $\alpha$ 的前段. 性质 $\alpha = \{\beta : \beta < \alpha\}$ 是理解序数构造的钥匙. 
+
+给定序数 $\alpha$ , 置 $\alpha + 1 := \alpha \sqcup \{\alpha\} > \alpha$ , 称为 $\alpha$ 的后继; 它是大于 $\alpha$ 的最小序数. 若 $\alpha$ 不是任何序数的后继, 则不难看出 $\alpha = \sup \{\beta : \beta < \alpha\}$ , 这样的 $\alpha$ 称为极限序数. 约定空 $\sup$ 为 $\varnothing$ 使得“零序数” $\varnothing$ 是极限序数. 
+
+命题 1.2.11 序数类 On 是真类. 
+
+例 1.2.12 (无穷序数 $\omega$ 的构造) 考虑序数 0 := $\varnothing$ ，不断取后继得到序数 $$
+1 := 0 + 1, \quad 2 := 1 + 1, \quad 3 = 2 + 1, \ldots
+$$
+
+在同构意义下, 序数 $\omega = \{n : n = 0,1,\ldots\}$ 不外是我们直觉中的良序集 $\mathbb{Z}_{\geq 0}$ ; 这也可以看作是从空集出发, 在 ZFC 框架下定义非负整数集的一种手法. 更明确地说, $\omega$ 连同其中元素的后继运算 $n \mapsto n + 1$ 满足 Peano 的算术公理 (见 [59, 第零章, §2]), 而这是我们实际操作整数时所需的全部性质, 定理 1.3.1 将触及其中关键的一条: 数学归纳法. 
+
+定理 1.2.10 表明真类 On 对 $\leq$ 也有良序性质: 任何由序数构成的类都有极小元. 这立即导向以下结果. 
+
+定理 1.3.1 (超穷归纳法) 令 C 为一个由序数构成的类. 假设 
+
+(i) $0 \in C,$ 
+
+(ii) $\alpha \in C \implies \alpha + 1 \in C,$ 
+
+(iii) 设 $\alpha$ 为极限序数, 若对每个 $\beta < \alpha$ 皆有 $\beta \in C$ , 则 $\alpha \in C$ , 
+
+那么 C = On. 如果仅考虑小于某 $\theta$ 的序数而非 On 整体, 断言依然成立. 
+
+定理 1.3.1 常用以递归地构造一列以序数枚举的数学对象, 它基于某规则 G 如下: 
+
+▷ 第零项 $a_{0}=G(0)$ 给定, 
+
+▷ 后继项 设 $\alpha = \beta + 1$ ，已知 $a_{\beta}$ ，则可以确定 $a_{\alpha} = a_{\beta+1} = G(a_{\beta})$ , 
+
+▷ 极限项 设 $\alpha$ 是极限序数, 已知 $\{a_{\beta} : \beta < \alpha\}$ , 则可以确定 $a_{\alpha} = G(\{a_{\beta} : \beta < \alpha\})$ . 不难想象这将唯一确定一列集合 $a_{\alpha}$ , 兹改述并证明如下. 考虑函数 $G : V \to V$ , 虽然 V 是真类, 然而如早先所述, G 可以诠释为一阶逻辑中的某类公式而不影响以下操作. 引入 $\theta$ -列的概念: 这是指函数 $a : \theta \to V$ , 亦可理解为形如 $\{a_{\alpha} : \alpha < \theta\}$ 的列. 
+
+定理 1.3.3 (超穷递归原理) 对任意序数 $\theta$ ，存在唯一的 $\theta$ -列 a 使得 $\alpha < \theta \implies a(\alpha) = G(a|_{\alpha})$ 。特别地，存在唯一的函数 $a: On \to V$ 使得对每个序数 $\alpha$ 皆有 $a(\alpha) = G(a|_{\alpha})$ 。 
+
+◇ 加法: (i) $\alpha+0:=\alpha$ , (ii) $\alpha+(\beta+1)=(\alpha+\beta)+1$ , (iii) $\alpha+\beta=\sup\{\alpha+\xi:\xi<\beta\}$ . 
+
+◇ 乘法: (i) $\alpha \cdot 0 := 0$ , (ii) $\alpha \cdot (\beta + 1) = \alpha \cdot \beta + \alpha$ , (iii) $\alpha \cdot \beta = \sup\{\alpha \cdot \xi : \xi < \beta\}$ . 
+
+◇ 指数: (i) $\alpha^{0} := 1$ , (ii) $\alpha^{\beta+1} = \alpha^{\beta} \cdot \alpha$ , (iii) $\alpha^{\beta} = \sup\{\alpha^{\xi} : \xi < \beta\}$ . 
+
+命题 1.3.4 对任意良序集 P, 存在唯一的序数 $\alpha$ 和良序集之间的同构 $\phi: P \stackrel{\sim}{\to} \alpha$ . 
+
+定理 1.3.5 (Zermelo 良序定理, 1904) 任意集合 S 都能被赋予良序.$$
+a _ {\alpha} := \left\{ \begin{array}{l l} g \left(S \smallsetminus \{a _ {\beta}: \beta <   \alpha \}\right), & S \neq \{a _ {\beta}: \beta <   \alpha \} \\ \mathcal {V}, & S = \{a _ {\beta}: \beta <   \alpha \}. \end{array} \right.
+$$
+
+定理 1.3.6 (Zorn 引理) 设 P 为非空偏序集, 而且 P 中每个链都有上界, 则 P 含有极大元. 
+
+定义 1.4.1 若两集合 X, Y 之间存在双射 $\phi: X \rightarrow Y$ ，则称 X, Y 等势. 
+
+定理 1.4.2 (Schröder–Bernstein) 若两集合 X, Y 满足 $|X| \leq |Y|$ 和 $|Y| \leq |X|$ ，则 $|X| = |Y|$ . 
+
+定理 1.4.3 (Cantor) 对任意集合 X 皆有 $|P(X)| > |X|$ . 
+
+定义 1.4.4 序数 $\kappa$ 称为基数, 如果对任意序数 $\lambda < \kappa$ 都有 $|\lambda| < |\kappa|$ . 
+
+命题1.4.5 对任意集合 $X$ ，可取最小的序数 $\alpha (X)$ 使得 $|X| = |\alpha (X)|$ .则 $X\mapsto \alpha (X)$ 给出等势类和基数的一一对应.特别地，对任意集合 $X,Y$ 必有 $|X|\leq |Y|$ 或 $|Y|\leq |X|$ 
+
+引理1.4.6 对任意序数 $\alpha$ 都存在基数 $\kappa > \alpha$ . 如果 $S$ 是一个由基数构成的集合, 则 $\sup S$ 也是基数. 
+
+例 1.4.7 (Cantor) 我们证明 $|\mathbb{R}| = 2^{\aleph_{0}}$ . 首先留意到 $|\mathbb{Q}| = |\mathbb{Z}_{\geq 0}| = \aleph_{0}$ . Dedekind 分割 $x \mapsto \{r \in \mathbb{Q} : r < x\}$ 给出 $\mathbb{R} \hookrightarrow P(\mathbb{Q})$ , 于是 $|\mathbb{R}| \leq |P(\mathbb{Q})| = 2^{\aleph_{0}}$ . 另一方面, 区间 [0,1] 包含 Cantor 集 $$
+C := \left\{\sum_ {n = 1} ^ {\infty} a _ {n} 3 ^ {- n}: \forall n,   a _ {n} = 0   \text {或}   2 \right\},
+$$
+
+定理 1.4.8 ( $\alpha \times \alpha$ 上的典范良序) 真类 $On^{2} = On \times On$ 上存在良序 $\prec$ 使得对每个序数 $\alpha$ 皆有 $On_{\prec(0,\alpha)}^{2} = (\alpha \times \alpha, \prec)$ ，称作 $\alpha \times \alpha$ 上的典范良序。进一步， $(\aleph_{\alpha} \times \aleph_{\alpha}, \prec)$ 的序型为 $\aleph_{\alpha}$ ；作为推论， $\aleph_{\alpha} \cdot \aleph_{\alpha} = \aleph_{\alpha}$ 。 
+
+推论 1.4.9 对任意非零基数 $\kappa, \lambda,$ 设其一无穷，则 (i) $\kappa + \lambda = \kappa \cdot \lambda = \max\{\lambda, \kappa\}$ ; (ii) 若 $2 \leq \kappa \leq \lambda,$ 则 $\kappa^{\lambda} = 2^{\lambda}.$ 
+
+定义 1.4.10 一个无穷基数 $\alpha$ 称为正则基数, 如果不存在极限序数 $\beta < \alpha$ 和严格增的序数列 $\{a_{\xi} : \xi < \beta\}$ 使得 $\sup\{a_{\xi} : \xi < \beta\} = \alpha$ . 
+
+作为例子, 以下说明形如 $\aleph_{\gamma + \omega}$ 的基数均非正则, 这里 $\gamma$ 可以是任意序数: 在定义中取 $\beta := \gamma + \omega$ 和 $a_{\xi} := \aleph_{\xi}$ , 关系 $\alpha := \aleph_{\beta} > \beta$ 理应是明显的; 而 $\aleph$ 数的定义表明 $\sup \{a_{\xi} : \xi < \beta\} = \sup \{\aleph_{\gamma + n} : n < \omega\} = \aleph_{\gamma + \omega}$ . 
+
+\section{范畴论基础} 
+
+# 定义 2.1.1 一个范畴 C 系指以下资料:
+
+1. 集合 $\operatorname{Ob}(\mathcal{C})$ , 其元素称作 $\mathcal{C}$ 的对象. 
+
+2. 集合 $\operatorname{Mor}(\mathcal{C})$ , 其元素称作 $\mathcal{C}$ 的态射, 配上一对映射 $\operatorname{Mor}(\mathcal{C}) \xrightarrow[t]{s} \operatorname{Ob}(\mathcal{C})$ , 其中 $s$ 和 $t$ 分别给出态射的来源和目标. 对于 $X, Y \in \operatorname{Ob}(\mathcal{C})$ , 一般习惯记 $\operatorname{Hom}_{\mathcal{C}}(X, Y) := s^{-1}(X) \cap t^{-1}(Y)$ 或简记为 $\operatorname{Hom}(X, Y)$ , 称为 Hom-集, 其元素称为从 $X$ 到 $Y$ 的态射. 
+
+3. 对每个对象 X 给定元素 $\mathrm{id}_{X} \in \mathrm{Hom}_{\mathcal{C}}(X, X)$ ，称为 X 到自身的恒等态射. 
+
+4. 对于任意 $X, Y, Z \in \mathrm{Ob}(\mathcal{C})$ ，给定态射间的合成映射 
+
+$$
+\circ : \operatorname{Hom} _ {\mathcal {C}} (Y, Z) \times \operatorname{Hom} _ {\mathcal {C}} (X, Y) \longrightarrow \operatorname{Hom} _ {\mathcal {C}} (X, Z)
+$$
+
+$$
+(f, g) \longmapsto f \circ g,
+$$
+
+◇ 对于态射 $f: X \to Y$ ，若存在 $g: Y \to X$ 使得 $fg = id_{Y}$ ， $gf = id_{X}$ ，则称 f 是同构（或称可逆，写作 $f: X \stackrel{\sim}{\to} Y$ ），而 g 称为 f 的逆，从恒等态射的性质易见逆若存在则唯一。从 X 到 Y 的同构集记为 $\operatorname{Isom}_{\mathcal{C}}(X, Y)$ 。 
+
+◇ 记 $\operatorname{End}_{\mathcal{C}}(X):=\operatorname{Hom}_{\mathcal{C}}(X,X),\operatorname{Aut}_{\mathcal{C}}(X):=\operatorname{Isom}_{\mathcal{C}}(X,X)$ ，分别称作 X 的自同态集和自同构集。这些集合在二元运算。下封闭：用代数的语言来说， $\operatorname{End}(X)$ 是幺半群（定义 4.1.1），而 $\operatorname{Aut}(X)$ 是群（定义 4.1.2）。 
+
+定义 2.1.2 称 $C'$ 是 C 的子范畴, 如果 
+
+(i) $\mathrm{Ob}(\mathcal{C}') \subset \mathrm{Ob}(\mathcal{C});$ 
+
+(ii) $\mathrm{Mor}(\mathcal{C}') \subset \mathrm{Mor}(\mathcal{C})$ , 并保持恒等态射; 
+
+(iii) 来源/目标映射 $\mathrm{Mor}(\mathcal{C}^{\prime}) \xrightarrow{s} \mathrm{Ob}(\mathcal{C}^{\prime})$ 是由 C 限制而来的, 而且 
+
+(iv) $C'$ 中态射的合成也是由 C 限制而来的. 
+
+定义 2.1.3 一个范畴 C 称作是 U-范畴, 如果对任意对象 X, Y, 集合 $\operatorname{Hom}_{\mathcal{C}}(X, Y)$ 都是 U-小集. 如果态射集 $\operatorname{Mor}(\mathcal{C})$ 也是 U-小集, 则称之为 U-小范畴. 
+
+范畴 $\mathcal{C}$ 是 $\mathcal{U}$ -小范畴当且仅当它是 $\mathcal{U}$ -范畴且 $\mathrm{Ob}(\mathcal{C})$ 是 $\mathcal{U}$ -小集. 这是因为 $X \mapsto \mathrm{id}_X$ 将 $\mathrm{Ob}(\mathcal{C})$ 嵌入 $\mathrm{Mor}(\mathcal{C})$ . 我们将一个群 (或环, 拓扑空间等等结构) 称为 $\mathcal{U}$ -群 (或 $\mathcal{U}$ -环, $\mathcal{U}$ -拓扑空间等), 如果它作为集合是一个 $\mathcal{U}$ -集合. 不致混淆时, 也简称作小集, 小群等等. 
+
+1. 预序集 (定义 1.2.1) 等同于任两个对象间至多只有一个态射的范畴: 对于预序集 $(P, \leq)$ , 定义范畴使得其对象集为 $P$ , 而存在态射 $p \to p'$ 当且仅当 $p \leq p'$ , 此时这样的态射唯一. 特别地, 根据 §1.2 对有限序数的递归定义, 任意 $n \in \mathbb{Z}_{\geq 0}$ 视为序数等同于全序集 $\{0, \ldots, n-1\}$ , 而 0 等同于 $\varnothing$ . 相应的范畴记为 $\mathbf{n}$ , 其结构可以形象地表为 
+
+2. 令 Set 为所有集合构成的范畴, 对象 X, Y 之间的态射定义为集合 X 到 Y 的映射. 态射的合成就是映射的合成, 而恒等态射无非是恒等映射. 这是一个 U-范畴. 
+
+3. 带基点的集合范畴 Set. 定义如下: 对象是所有 $(X, x)$ , 其中 X 是集合而 $x \in X$ (所谓基点), 从 $(X, x)$ 到 $(Y, y)$ 的态射是满足 $f(x) = y$ 的映射 $f : X \to Y$ . 
+
+4. 令 Grp 为所有群构成的范畴, 对象之间的态射定义为群同态, 态射的合成与恒等态射定义与 Set 情形相同. 
+
+5. 令 Ab 为所有交换群 (或称 Abel 群, 二元运算用加法 + 表示) 构成的范畴, 态射的定义与 Grp 的情形相同. 它是 Grp 的全子范畴. 注意到交换群的同态可以相加, 因此对于任两个交换群 X, Y, 同态集 Hom(X, Y) 不仅是一个集合, 它还具 有交换群的结构 (群运算记作 +), 这使得合成映射 $\mathrm{Hom}(Y,Z) \times \mathrm{Hom}(X,Y) \rightarrow \mathrm{Hom}(X,Z)$ 满足双线性:$$
+(f + g) h = f h + g h, \quad h (f + g) = h f + h g.
+$$
+
+6. 令 Top 为所有拓扑空间构成的范畴, 空间皆假定为 Hausdorff 的, 态射定义为连续映射, 合成与恒等态射的定义同上; 类似地定义带基点的拓扑空间范畴 Top. 我们也希望赋予同态集 $\operatorname{Hom}(X,Y)$ 额外的结构, 例如紧开拓扑 (见 [57, §9.3]), 使得 $\operatorname{Hom}(Y,Z) \times \operatorname{Hom}(X,Y) \to \operatorname{Hom}(X,Z)$ 成为连续映射; 我们更希望能有自然的同构$$
+\operatorname{Hom} (X \times Y, Z) \xrightarrow {\sim} \operatorname{Hom} (X, \operatorname{Hom} (Y, Z)).
+$$
+
+7. 选定一个域 $\mathbb{k}$ , 令 $\operatorname{Vect}(\mathbb{k})$ 为 $\mathbb{k}$ 上所有向量空间构成的范畴, 态射为线性映射. 类此定义有限维向量空间范畴 $\operatorname{Vect}_f(\mathbb{k})$ , 它是 $\operatorname{Vect}(\mathbb{k})$ 的全子范畴.  
+
+定义 2.1.7 设 X, Y 为范畴 C 中的对象, $f: X \rightarrow Y$ 为态射. 
+
+◇ 称 f 为单态射, 如果对任何对象 Z 和任一对态射 $g, h: Z \rightarrow X$ 有 $fg = fh \iff g = h$ (左消去律); 
+
+◇ 称 f 为满态射, 如果对任何对象 Z 和任一对态射 $g, h: Y \rightarrow Z$ 有 $gf = hf \iff g = h$ (右消去律). 
+
+定义 2.1.10 对于任意范畴 C, 其反范畴 $C^{op}$ 定义如下: 
+
+$\diamond \operatorname{Ob}(\mathcal{C}^{\mathrm{op}}) = \operatorname{Ob}(\mathcal{C}),$ 
+◇ 对任意对象 X, Y, $\operatorname{Hom}_{\mathcal{C}^{\mathrm{op}}}(X, Y) := \operatorname{Hom}_{\mathcal{C}}(Y, X)$ , 
+
+◇ 态射 $f \in \operatorname{Hom}_{\mathcal{C}^{\mathrm{op}}}(Y, Z)$ , $g \in \operatorname{Hom}_{\mathcal{C}^{\mathrm{op}}}(X, Y)$ 在 $C^{op}$ 中的合成 $f \circ^{op} g$ 定义为 C 中的反向合成 $g \circ f$ , 
+
+定义 2.2.1 (函子) 设 $C'$ , C 为范畴. 一个函子 $F : C' \rightarrow C$ 意谓以下资料: 
+
+(i) 对象间的映射 $F: \mathrm{Ob}(\mathcal{C}') \to \mathrm{Ob}(\mathcal{C})$ . 
+
+(ii) 态射间的映射 $F: \operatorname{Mor}(\mathcal{C}') \to \operatorname{Mor}(\mathcal{C})$ ，使得
+
+◇ F 与来源和目标映射相交换 (即 sF = Fs, tF = Ft), 等价的说法是对每个 $X, Y \in \mathrm{Ob}(\mathcal{C}')$ 皆有映射 $F: \mathrm{Hom}_{\mathcal{C}'}(X, Y) \to \mathrm{Hom}_{\mathcal{C}}(FX, FY)$ ; $$
+\diamond F (g \circ f) = F (g) \circ F (f), F (\mathrm{id} _ {X}) = \mathrm{id} _ {F X}.
+$$
+
+对于 $F: \mathcal{C}_1 \to \mathcal{C}_2, G: \mathcal{C}_2 \to \mathcal{C}_3$ , 合成函子 $G \circ F: \mathcal{C}_1 \to \mathcal{C}_3$ 的定义是显然的: 取合成映射  $$
+\mathrm{Ob} (\mathcal {C} _ {1}) \stackrel {{F}} {{\longrightarrow}} \mathrm{Ob} (\mathcal {C} _ {2}) \stackrel {{G}} {{\longrightarrow}} \mathrm{Ob} (\mathcal {C} _ {3}),
+$$
+
+$$
+\operatorname{Mor} (\mathcal {C} _ {1}) \stackrel {{F}} {{\longrightarrow}} \operatorname{Mor} (\mathcal {C} _ {2}) \stackrel {{G}} {{\longrightarrow}} \operatorname{Mor} (\mathcal {C} _ {3}).
+$$
+
+旧文献常将上述函子称为 $C'$ 到 C 的共变函子, 而称形如 $F : (\mathcal{C}')^{\mathrm{op}} \to \mathcal{C}$ 的函子为反变函子. 
+
+定义 2.2.3 对于函子 $F: C' \rightarrow C,$ 
+
+1. 称 F 是本质满的, 若 C 中任一对象都同构于某个 FX; 
+
+2. 称 $F$ 是忠实的, 若对所有 $X, Y \in \mathrm{Ob}(\mathcal{C}')$ 映射 $\operatorname{Hom}_{\mathcal{C}'}(X, Y) \to \operatorname{Hom}_{\mathcal{C}}(FX, FY)$ 都是单射; 
+
+3. 称 F 是全的, 如果上述映射对所有 $X, Y \in \mathrm{Ob}(\mathcal{C}')$ 都是满射. 
+
+1. 子范畴 $\mathcal{C}' \subset \mathcal{C}$ 显然给出一个包含函子 $\iota: \mathcal{C}' \hookrightarrow \mathcal{C}$ ; 包含函子总是忠实的, 它是全函子当且仅当 $\mathcal{C}'$ 是全子范畴. 取 $\mathcal{C}' = \mathcal{C}$ 就得到恒等函子 $\mathrm{id}_{\mathcal{C}}: \mathcal{C} \to \mathcal{C}$ . 
+
+2. 考虑群范畴 Grp. 对于任一个群 G, 总是可以忘掉 G 的群结构而视之为集合, 群同态当然也可以视为集合间的映射, 此程序给出忘却函子 Grp → Set. 准此要领可对其他结构定义忘却函子, 例如 Top → Set (忘掉空间的拓扑结构), Vect(k) → Ab (忘掉 k-向量空间 V 的纯量乘法, 只看它的加法群 $(V, +)$ , 这里 k 是任意域) 等等, 不一一列举. 这类函子显然忠实而非全. 
+
+3. 考虑域 $\mathbb{k}$ 上的向量空间范畴 $\operatorname{Vect}(\mathbb{k})$ . 对于任意 $\mathbb{k}$ -向量空间 $V$ , 定义其对偶空间 $$
+V ^ {\vee} := \operatorname{Hom} _ {\Bbbk} (V, \Bbbk) = \{\Bbbk - \text {线性映射} V \to \Bbbk \}.
+$$
+
+将 $D$ 限制于有限维向量空间, 便得到函子 $D: \mathbf{Vect}_f(\mathbb{k})^{\mathrm{op}} \to \mathbf{Vect}_f(\mathbb{k})$ 和 $DD^{\mathrm{op}}: \mathbf{Vect}_f(\mathbb{k}) \to \mathbf{Vect}_f(\mathbb{k})$ . 分别称为对偶和双对偶函子. 
+
+4. 对于任意群 $G$ , 定义导出子群 $G_{\mathrm{der}}$ 为子集 $\{xyx^{-1}y^{-1}: x, y \in G\}$ 生成的正规子群. 商群 $G / G_{\mathrm{der}}$ 是交换群, 称作 $G$ 的 Abel 化 (参看引理 4.7.3). 对于任意群同态 $\varphi: G \to H$ , 从定义可看出 $\varphi(G_{\mathrm{der}}) \subset H_{\mathrm{der}}$ , 因此 $\varphi$ 诱导出交换群的同态 $\bar{\varphi}: G / G_{\mathrm{der}} \to H / H_{\mathrm{der}}$ . 容易验证 $G \mapsto G / G_{\mathrm{der}}$ , $\varphi \mapsto \bar{\varphi}$ 定义了 Abel 化函子 $\mathsf{Grp} \to \mathsf{Ab}$ . Abel 化函子不是忠实函子. 
+
+5. 对任意带点拓扑空间 $(X, x)$ 指定基本群 $\pi_1(X, x)$ , 这就给出了函子 $\mathsf{Top}_{\bullet} \to \mathsf{Grp}$ . 代数拓扑学中还有许多例子, 例如空间的同调群 $X \mapsto H_n(X; \mathbb{Z})$ 便给出了一族函子 $H_n: \mathsf{Top} \to \mathsf{Ab}$ , 其中 $n \in \mathbb{Z}_{\geq 0}$ , 而上同调群给出函子 $H^n: \mathsf{Top}^{\mathrm{op}} \to \mathsf{Ab}$ . 
+
+定义 2.2.5 (自然变换, 或函子间的态射) 函子 $F, G : C' \rightarrow C$ 之间的自然变换 $\theta$ 是一族态射 $$
+\theta_ {X} \in \mathrm{Hom} _ {\mathcal {C}} (F X, G X), \quad X \in \mathrm{Ob} (\mathcal {C} ^ {\prime}),
+$$
+
+使得下图对所有 $C'$ 中的态射 $f: X \to Y$ 交换 $$
+\begin{array}{c} F X \xrightarrow {\theta_ {X}} G X \\ F f \Biggl \downarrow \quad \Biggl \downarrow_ {G f} \\ F Y \xrightarrow {\theta_ {Y}} G Y. \end{array} \tag {2.1}
+$$
+
+引理 2.2.7 以上定义的纵, 横合成 $\{(\psi\circ\theta)_{X}\}_{X}$ 都是函子间的态射, 而且各自满足严格结合律 $(\phi\circ\psi)\circ\theta=\phi\circ(\psi\circ\theta)$ . 纵横合成之间满足下述关系: 对于图表 $$
+\begin{array}{c} \mathcal {C} _ {1} \xrightarrow {\Downarrow \theta} \mathcal {C} _ {2} \xrightarrow {\Downarrow \theta^ {\prime}} \mathcal {C} _ {3}, \\ \mathcal {C} _ {1} \xrightarrow {\Downarrow \psi} \mathcal {C} _ {2} \xrightarrow {\Downarrow \psi^ {\prime}} \mathcal {C} _ {3}. \end{array}
+$$
+
+以下的互换律成立 $$
+\left(\psi_ {\text {纵}} ^ {\prime} \circ \theta^ {\prime}\right) _ {\text {横}} \circ \left(\psi_ {\text {纵}} \circ \theta\right) = \left(\psi_ {\text {横}} ^ {\prime} \circ \psi\right) _ {\text {纵}} \circ \left(\theta_ {\text {横}} ^ {\prime} \circ \theta\right).
+$$
+
+任意函子 $F$ 到自身有恒等态射 $\mathrm{id}_F: F \to F$ 。给定函子间的态射 $\theta: F_1 \to F_2$ ，若态射 $\psi: F_2 \to F_1$ 满足 $\psi \circ \theta = \mathrm{id}_{F_1}$ ， $\theta \circ \psi = \mathrm{id}_{F_2}$ ，则称 $\psi$ 是 $\theta$ 的逆。可逆的态射称为函子间的同构，写作 $\theta: F_1 \stackrel{\sim}{\to} F_2$ 。由定义直接看出 $\theta$ 的逆若存在则是唯一的，记作 $\theta^{-1}$ ，它无非是在范畴中“逐点地”取逆： $(\theta^{-1})_X := (\theta_X)^{-1}: F_2X \stackrel{\sim}{\to} F_1X$ 。同理可见态射 $\theta$ 可逆当且仅当每个 $\theta_X$ 都可逆。易见同构的纵横合成仍是同构。函子间同构 $\theta: F_1 \stackrel{\sim}{\to} F_2$ 的等价说法是称 $\theta_X: F_1X \stackrel{\sim}{\to} F_2X$ 对变元 $X$ 是自然同构或典范同构。 
+
+定义 2.2.8 (等价) 如果一对函子 $C_{1} \xrightarrow{F} C_{2}$ 满足以下性质：存在函子之间的同构 $\theta: FG \xrightarrow{\sim} id_{C_{2}}, \psi: GF \xrightarrow{\sim} id_{C_{1}}$ ，则称 G 是 F 的拟逆函子，并称 F 是范畴 $C_{1}$ 到 $C_{2}$ 的等价. 
+
+命题 2.2.10 若 $G, G'$ 是函子 $F: C_{1} \rightarrow C_{2}$ 的拟逆，则存在函子的同构 $G \simeq G'$ . 
+
+证明 自然变换的横合成给出 $G \xrightarrow{\psi' \circ \mathrm{id}_G} (G'F) G = G'(FG) \xleftarrow{\mathrm{id}_{G'} \circ \theta} G'$ . 
+
+称一个全子范畴 $\mathcal{C}' \subset \mathcal{C}$ 是 $\mathcal{C}$ 的一副骨架, 如果对 $\mathcal{C}$ 的每个对象 $X$ 都存在同构 $X \xrightarrow{\sim} Y \in \mathrm{Ob}(\mathcal{C}')$ , 而且此 $Y \in \mathrm{Ob}(\mathcal{C}')$ 是唯一的. 自为骨架的范畴称为骨架范畴. 
+
+引理 2.2.12 任意范畴 C 总有一副骨架 $C'$ ，而且包含函子 $\iota: C' \hookrightarrow C$ 是等价。骨架范畴间的全忠实，本质满函子都是同构。 
+
+定理 2.2.13 对于函子 $F: C_{1} \rightarrow C_{2}$ ，以下叙述等价. 
+
+1. F 是范畴等价, 
+
+2. F 是全忠实, 本质满函子. 
+
+例 2.2.14 继续考虑某域 k 上的向量空间范畴 Vect(k) 及其子范畴 Vect $_{f}$ (k). 在例 2.2.4 中已定义了双对偶函子 DD $^{op}$ : Vect(k) → Vect(k). 对于任意向量空间 V 皆有求值映射 $$
+\begin{array}{l} \operatorname{ev}: V \longrightarrow D D ^ {\mathrm{op}} V = (V ^ {\vee}) ^ {\vee} \\ v \longmapsto [ \lambda \mapsto \lambda (v) ]. \\ \end{array}
+$$
+
+例 2.2.15 选定域 k, 定义范畴 Mat 如下: 其对象是 $Z_{\geq0}$ , 对任意对象 $n, m \in Z_{\geq0}$ , 定义 $\operatorname{Hom}(n, m) := M_{m \times n}(\mathbb{k})$ 为域 k 上的全体 $m \times n$ 矩阵 $A = (a_{ij})_{\substack{1 \leq i \leq m \\ 1 \leq j \leq n}}$ 所成集合. 约定 $M_{0 \times n}(\mathbb{k}) = M_{m \times 0}(\mathbb{k}) := \{0\}$ . 态射的合成定义为寻常的矩阵乘法 $$
+\operatorname{Hom} (n, m) \times \operatorname{Hom} (m, k) \longrightarrow \operatorname{Hom} (n, k)
+$$
+
+$$
+(A, B) \longmapsto B A.
+$$
+
+定义函子 $F: \mathsf{Mat} \to \mathsf{Vect}_f(\mathbb{k})$ 如下：置 $F(n) = \mathbb{k}^{\oplus n} := M_{n \times 1}(\mathbb{k})$ ，而对 $A \in \operatorname{Hom}(n, m)$ ，线性映射 $FA: \mathbb{k}^{\oplus n} \to \mathbb{k}^{\oplus m}$ 是矩阵乘法 $v \mapsto Av$ 。我们断言 $F$ 是范畴等价。 
+
+
+回顾约定 2.1.4: 除非另作说明, 以下所论的范畴都是 U-范畴, 这里 U 是选定的宇宙. 属于 U 的集合称为 U-集. 
+
+定义 2.3.1 设 I 为 U-集, 而 $\{C_{i}: i \in I\}$ 是一族范畴. 
+
+◇ 积范畴 $\prod_{i\in I}C_{i}$ 定义如下:$$
+\operatorname{Ob} \left(\prod_ {i \in I} \mathcal {C} _ {i}\right) := \prod_ {i \in I} \operatorname{Ob} (\mathcal {C} _ {i}),
+$$
+
+$$
+\operatorname{Hom} _ {\prod_ {i \in I} \mathcal {C} _ {i}} ((X _ {i}) _ {i}, (Y _ {i}) _ {i}) := \prod_ {i \in I} \operatorname{Hom} _ {\mathcal {C} _ {i}} (X _ {i}, Y _ {i}),
+$$
+
+◇ 余积 (又称无交并) 范畴 $\coprod_{i\in I}C_{i}$ 定义如下:$$
+\mathrm{Ob} \left(\coprod_ {i \in I} \mathcal {C} _ {i}\right) := \coprod_ {i \in I} \mathrm{Ob} (\mathcal {C} _ {i}),
+$$
+
+$$
+\mathrm{Hom} _ {\coprod_ {i \in I} \mathcal {C} _ {i}} (X _ {j}, X _ {k}) := \left\{ \begin{array}{l l} \mathrm{Hom} _ {\mathcal {C} _ {j}} (X _ {j}, X _ {k}), & j = k, \\ \varnothing , & j \neq k; \end{array} \right.
+$$
+
+我们有一族投影函子 $\mathbf{pr}_j: \prod_{i \in I} \mathcal{C}_i \to \mathcal{C}_j$ , 它将 $(X_i)_i$ 映至 $X_j$ , 在态射层面也是类似地投影到 $j$ 分量. 同理定义一族包含函子 $\iota_j: \mathcal{C}_j \to \coprod_{i \in I} \mathcal{C}_i$ , 将 $\mathcal{C}_j$ 以自明的方式嵌入为全子范畴. 
+
+
+特别地, 取 I 为有限集便能定义 $C_{1} \times \cdots \times C_{n}$ 和 $C_{1} \sqcup \cdots \sqcup C_{n}$ . 
+
+定义 2.3.4 (函子范畴) 设 $C_{1}, C_{2}$ 为 U-范畴, 定义函子范畴 $\mathrm{Fct}(\mathcal{C}_{1}, \mathcal{C}_{2})$ : 其对象是 $C_{1}$ 到 $C_{2}$ 的函子, 任两个对象 F, G 间的态射是自然变换 $\theta: F \to G$ ; 态射 $\theta: F \to G$ 与 $\psi: G \to H$ 的合成是自然变换的纵合成 $\psi \circ \theta: F \to H$ .   
+命题 2.3.6 存在自然同构 $\mathrm{Fct}(\mathcal{C}_{1},\mathcal{C}_{2})^{\mathrm{op}}\stackrel{\sim}{\rightarrow}\mathrm{Fct}(\mathcal{C}_{1}^{\mathrm{op}},\mathcal{C}_{2}^{\mathrm{op}})$ ，它将 $\varphi$ 映至 $\varphi^{op}$ . 
+
+例 2.3.7 考虑集合 $I \in U$ ，取 $\mathcal{I} := \text{Disc}(I)$ 为相应的离散范畴 (例 2.1.5)，则对任意 C 皆有范畴同构 $C^{I} \simeq \prod_{i \in I} C$ . 
+
+定义 2.3.8 一个范畴 C 的中心定义为 $Z(\mathcal{C}) := \text{End}(\text{id}_{\mathcal{C}})$ . 
+
+命题 2.3.9 中心 $Z(\mathcal{C})$ 对二元运算。总是交换的。 
+
+命题2.3.10 范畴等价 $F:\mathcal{C}_1\to \mathcal{C}_2$ 诱导中心的同构. $Z(\mathcal{C}_1)\simeq Z(\mathcal{C}_2)$ 
+
+定义 2.4.1 范畴 C 中的对象 X 称为始对象, 如果对所有对象 Y 集合 $\operatorname{Hom}_{\mathcal{C}}(X,Y)$ 恰有一个元素. 类似地, 称 X 为终对象, 如果对所有对象 Y 集合 $\operatorname{Hom}_{\mathcal{C}}(Y,X)$ 恰有一个元素. 若 X 既是始对象又是终对象, 则称之为零对象. 
+
+定义 2.4.1 范畴 C 中的对象 X 称为始对象, 如果对所有对象 Y 集合 $\operatorname{Hom}_{\mathcal{C}}(X,Y)$ 恰有一个元素. 类似地, 称 X 为终对象, 如果对所有对象 Y 集合 $\operatorname{Hom}_{\mathcal{C}}(Y,X)$ 恰有一个元素. 若 X 既是始对象又是终对象, 则称之为零对象. 
+
+命题 2.4.2 设 $X, X'$ 为 C 中的始对象，则存在唯一的同构 $X \xrightarrow{\sim} X'$ . 同样性质对终对象也成立. 
+
+定义 2.4.3 设 C 中有零对象, 记作 0. 对任意 $X, Y \in \mathrm{Ob}(\mathcal{C})$ 定义零态射 $0: X \to Y$ 为 $$
+X \to 0 \to Y
+$$
+
+例 2.4.4 一般而言, 始对象和终对象未必存在 (例: 考虑离散范畴). 以下是一些典型例子: 
+
+1. 集合范畴 Set: ∅ 是始对象, {pt} 是终对象; 
+
+2. 带基点的集合范畴 Set: ( $\{pt\}$ , pt) 是零对象; 
+
+3. 群范畴 Grp: 平凡群 $\{1\}$ 是零对象, 取常值 1 的同态是零态射; 
+
+4. 域 k 上的向量空间范畴 Vect(k): 零空间是零对象, 零映射是零态射. 
+
+始, 终对象及其唯一性一般被用来表述泛性质, 我们先看些例子. 
+
+例 2.4.5 选定域 k, 定义函子 V : Set → Vect(k) 如下: 对于集合 X, 命 $V(X) := \bigoplus_{x \in X} \mathbb{k}x$ 为以 X 为基的 k-向量空间. 任意映射 $f : X \to Y$ 皆诱导出线性映射 $V(f) : V(X) \to V(Y)$ , 它由在基上的限制 f 所刻画. 令 $U : \text{Vect}(k) \to \text{Set}$ 为忘却函子 (例 2.2.4), 则 $x \mapsto x \in V(X)$ 给出态射 $\iota : X \to UV(X)$ . 尽管有些拗口, 不妨设想 $V(X)$ 是 X 上的 “自由向量空间”. 
+
+为阐明 $V(X)$ 的泛性质, 定义范畴 $(X/U)$ 使得其对象形如 $(W, i: X \to U(W))$ , 其中 $W \in \operatorname{ObVect}(\Bbbk)$ 而 $X \xrightarrow{i} U(W)$ 是 Set 中的态射, 态射定为使下图交换的线性映射 $h: W_{1} \to W_{2}$ :$$
+\begin{array}{c} X \\ \downarrow^ {i _ {1}} \quad \downarrow^ {i _ {2}} \\ U (W _ {1}) \xrightarrow [ U (h) ]{} U (W _ {2}). \end{array}
+$$
+
+我们断言 $(V(X),\iota)$ 是 $(X / U)$ 中的始对象．这说的无非是对任意 $(W,i)\in$ $\mathrm{Ob}(X / U)$ ，存在唯一的 $h:V(X)\to W$ 使图表  交换. 由于 X 是 $V(X)$ 的基, 这般 h 是唯一确定了的. 
+
+上图涉及 $h$ 的条件称为 $V(X)$ 满足的泛性质. 根据命题2.4.2, 我们说泛性质刻画了 $V(X)$ 连同 $\iota: X \to UV(X)$ , 至多差一个唯一的同构. 之后我们还会遇到更精密的“自由对象”的构造, 如 §4.8 的自由群. 
+
+例 2.4.6 考虑所有度量空间 $(X,d)$ 构成的范畴 Metr, 其中的态射是保距映射 $f: (X,d_{X}) \to (Y,d_{Y})$ , 即: $\forall u,v, d_{Y}(f(u),f(v)) = d_{X}(u,v)$ . 完备度量空间构成的全子范畴记作 ComMetr. 熟知的完备化构造 [57, §8.1] 给出一个函子 $$
+C: \text {   Metr   } \longrightarrow \text {   ComMetr   }
+$$
+
+$$
+(X, d) \longmapsto (\hat {X}, \hat {d}),
+$$
+
+其中 $\hat{X}$ 是所有 $X$ 中的 Cauchy 列 $\vec{x} = (x_n)_{n\geq 0}$ 的等价类, 而 $\hat{d} (\vec{x},\vec{y}):= \lim_{n\to \infty}d(x_n,y_n)$ . 以下略去度量 $d$ . 令 $I:\mathbf{ComMetr}\rightarrow \mathbf{Metr}$ 为包含函子. 对于给定的度量空间 $X$ , 对角嵌入 $x\mapsto (x_n:= x)_{n\geq 1}$ 给出态射 $\iota :X\to I(\hat{X})$ . 仿照前个例子定义范畴 $(X / I)$ 使其对象形如 $(Y,i:X\to I(Y))$ . 
+
+定义 2.4.7 (逗号范畴) 对于函子 $A \xrightarrow{S} C \xleftarrow{T} B,$ 定义逗号范畴 $(S/T)$ 如下: 
+
+◇ 对象：形如 $(A, B, f)$ ，其中 $A \in \mathrm{Ob}(\mathcal{A})$ ， $B \in \mathrm{Ob}(\mathcal{B})$ ， $f : SA \to TB$ ; 
+
+◇ 态射: 从 $(A, B, f)$ 到 $(A', B', f')$ 的态射形如 $(g, h)$ , 其中 $g: A \to A'$ , $h: B \to B'$ 分别是 $\mathcal{A}, \mathcal{B}$ 中的态射, 使得下图交换 $$
+\begin{array}{c} S A \xrightarrow {S g} S A ^ {\prime} \\ f \Big \downarrow \qquad \qquad \qquad \qquad \qquad \qquad \Big \downarrow f ^ {\prime} \\ T B \xrightarrow [ T h ]{} T B ^ {\prime}. \end{array}
+$$
+
+态射的合成是 $(g_{1},h_{1})\circ (g_{2},h_{2}) = (g_{1}\circ g_{2},h_{1}\circ h_{2})$ ，而 $(A,B,f)$ 到自身的恒等态射是 $(\mathrm{id}_A,\mathrm{id}_B)$ 
+
+我们有明显的左, 右投影函子 $P: (S/T) \to \mathcal{A}$ 和 $Q: (S/T) \to \mathcal{B}$ . 早期文献把 $(S/T)$ 写作 $(S,T)$ , 因而得名. 且先看些例子. 
+
+请回忆例 2.1.5 定义的范畴 1, 它仅含一个态射. 指定 C 中的一个对象 X 相当于指定一个函子 $j_{X}:1 \rightarrow C$ . 
+
+1. 考虑函子 $T: \mathcal{C}' \to \mathcal{C}$ 及 $X \in \mathrm{Ob}(\mathcal{C})$ . 对应于 $\mathbf{1} \xrightarrow{j_X} \mathcal{C} \xleftarrow{T} \mathcal{C}'$ 的逗号范畴 $(X/T) := (j_X/T)$ 的对象形如 $(W, X \xrightarrow{i} TW)_{W \in \mathrm{Ob}(\mathcal{C}')}$ , 而 $(W_1, i_1), (W_2, i_2)$ 间的态射是使得下图交换的 $h: W_1 \to W_2$ : $$
+\begin{array}{c} X \\ \leftarrow \begin{array}{c} i _ {1} \\ T W _ {1} \end{array} \xrightarrow [ T h ]{} T W _ {2}. \end{array}
+$$
+
+2. 反过来考虑 $\mathcal{C}' \xrightarrow{T} \mathcal{C} \xleftarrow{j_X} \mathbf{1}$ . 逗号范畴 $(T / X)$ 的对象形如 $(W, TW \xrightarrow{p} X)_{W \in \mathrm{Ob}(\mathcal{C}')}$ , 
+
+从 $(W_{1},p_{1})$ 到 $(W_{2},p_{2})$ 的态射是使得下图交换的 $f:W_1\to W_2$ 
+
+3. 逗号范畴 $(\mathrm{id}_{\mathcal{C}} / \mathrm{id}_{\mathcal{C}})$ 的对象是 $\mathcal{C}$ 中的所有态射 $f: X \to Y$ ，两个对象 $f: X \to Y$ ， $f': X' \to Y'$ 之间的态射是交换图表 $\begin{array}{c}X \xrightarrow{f} Y. \\ \downarrow \\ X' \xrightarrow{f'} Y' \end{array}$ . 不难理解， $(\mathrm{id}_{\mathcal{C}} / \mathrm{id}_{\mathcal{C}})$ 也叫 $\mathcal{C}$ 的箭头范畴. 
+
+$$
+\mathcal {C} ^ {\wedge} := \operatorname{Fct} (\mathcal {C} ^ {\mathrm{op}}, \mathbf {S e t}),
+$$
+
+$$
+\mathcal {C} ^ {\vee} := \operatorname{Fct} (\mathcal {C} ^ {\mathrm{op}}, \mathsf {S e t} ^ {\mathrm{op}}) = \operatorname{Fct} (\mathcal {C}, \mathsf {S e t}) ^ {\mathrm{op}}.
+$$
+
+当 $\mathcal{C}$ 是 $\mathcal{U}$ -小范畴时, $\mathcal{C}^{\wedge}$ 和 $\mathcal{C}^{\vee}$ 都是 $\mathcal{U}$ -范畴, 一般情形则否. 基于一些几何学的渊源 (主要是层论), 也把 $\mathcal{C}^{\wedge}$ 称作 $\mathcal{C}$ 上的预层范畴. 命题2.3.6蕴涵 $$
+(\mathcal {C} ^ {\vee}) ^ {\mathrm{op}} = (\mathcal {C} ^ {\mathrm{op}}) ^ {\wedge}. \tag {2.3}
+$$
+
+以下讨论涉及 $\mathrm{Hom}_{\mathcal{C}}$ 的函子性, 读者可回忆例2.3.3. 定义函子 $$
+h _ {\mathcal {C}}: \mathcal {C} \longrightarrow \mathcal {C} ^ {\wedge},
+$$
+
+$$
+S \longmapsto \mathrm{Hom} _ {\mathcal {C}} (\cdot , S).
+$$
+
+我们有自然的求值函子 $\mathrm{ev}^{\wedge}:\mathcal{C}^{\mathrm{op}}\times \mathcal{C}^{\wedge}\to \mathbf{Set},$ 它将 $(S,A)$ 映至集合 $A(S)$ .同理定 义函子 $$
+k _ {\mathcal {C}}: \mathcal {C} \longrightarrow \mathcal {C} ^ {\vee}, \quad \mathrm{ev} ^ {\vee}: (\mathcal {C} ^ {\vee}) ^ {\mathrm{op}} \times \mathcal {C} \longrightarrow \mathbf {S e t}
+$$
+
+$$
+S \longmapsto \operatorname{Hom} _ {\mathcal {C}} (S, \cdot) \qquad \qquad (B, S) \longmapsto B (S).
+$$
+
+定理 2.5.1 (米田信夫) 对于 $S \in \mathrm{Ob}(\mathcal{C})$ 和 $A \in C^{\wedge}$ ，映射 $$
+\operatorname{Hom} _ {\mathcal {C} ^ {\wedge}} (h _ {\mathcal {C}} (S), A) \longrightarrow A (S)
+$$
+
+$$
+\left[ \operatorname{Hom} _ {\mathcal {C}} (\cdot , S) \xrightarrow {\phi} A (\cdot) \right] \longmapsto \phi_ {S} (\mathrm{id} _ {S}) \tag {2.4}
+$$
+
+是双射；它给出函子的同构 $\mathrm{Hom}_{\mathcal{C}^{\wedge}}(h_{\mathcal{C}}(\cdot),\cdot)\stackrel {\sim}{\to}\mathrm{ev}^{\wedge}$ .函子 $h_{\mathcal{C}}$ 是全忠实的. 
+
+同理, 存在自然的函子同构 $\mathrm{Hom}_{\mathcal{C}^{\vee}}(\cdot, k_{\mathcal{C}}(\cdot)) \xrightarrow{\sim} \mathrm{ev}^{\vee}$ . 函子 $k_{\mathcal{C}}$ 是全忠实的. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+\end{document}

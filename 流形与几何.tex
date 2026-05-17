@@ -1,0 +1,1688 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+\usepackage{mathrsfs}
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{杂记}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+
+\section{微分几何}
+
+\subsection{微分流形}
+
+回忆一下, 所谓拓扑空间是指一个配对 $(X, \tau)$ , 其中 $X$ 为一个集合, $\tau$ 也是一个集合, 其元素都是 $X$ 中的子集, 并且满足以下条件: (i) $\varnothing, X \in \tau$ ; (ii) $\tau$ 中有限个元素之交仍属于 $\tau$ ; (iii) $\tau$ 中任意多个元素之并仍属于 $\tau$ . 
+
+定义 1.1.1 ( $C^r$ 流形) 设 $M$ 是具有 $A_2, T_2$ 性质的拓扑空间. 如果存在 $M$ 的开覆盖 $\{U_\alpha\}_{\alpha \in \Gamma}$ 以及相应的连续映射族 $\varphi_\alpha: U_\alpha \to \mathbb{R}^n$ , 使得 (i) $\varphi_{\alpha}: U_{\alpha} \to \varphi_{\alpha}(U_{\alpha}) \subset \mathbb{R}^{n}$ 为从 $U_{\alpha}$ 到欧氏空间开集 $\varphi_{\alpha}(U_{\alpha})$ 上的同胚; 
+
+(ii) 当 $U_{\alpha} \cap U_{\beta} \neq \varnothing$ 时, 如下的转换映射 $$
+\varphi_ {\beta} \circ \varphi_ {\alpha} ^ {- 1}: \varphi_ {\alpha} (U _ {\alpha} \cap U _ {\beta}) \rightarrow \varphi_ {\beta} (U _ {\alpha} \cap U _ {\beta})
+$$为 $C^r (r\geqslant 1)$ 映射, 则称 $M$ 为 $C^r$ 流形. 
+
+我们称 $\{U_{\alpha}\}$ 或 $\{(U_{\alpha},\varphi_{\alpha})\}$ 为 M 的局部坐标覆盖， $(U_{\alpha},\varphi_{\alpha})$ 为一个局部坐标系， $U_{\alpha}$ 为局部坐标邻域， $\varphi_{\alpha}$ 为局部坐标映射。设 $p\in U_{\alpha}$ ，记 $x^{i}(p)$ 为 $\varphi_{\alpha}(p)$ 的第 i 个欧氏坐标。 $x^{i}:U_{\alpha}\to R$ 称为第 i 个（局部）坐标函数，有时也称 $\{x^{i}\}=\{x^{1},x^{2},\cdots,x^{n}\}$ 为 p 附近的局部坐标。上述定义中的 n 称为流形 M 的维数，记为 $n=\dim M$ 。为了强调流形的维数，有时也把 M 记作 $M^{n}$ 。 
+
+例 1.1.1 欧氏空间及其开集. 在 $\mathbb{R}^n$ 上取恒同映射 $id: \mathbb{R}^n \to \mathbb{R}^n$ , 则 $\mathbb{R}^n$ 成为微分流形, 恒同映射是其 (整体) 坐标. 显然, $\mathbb{R}^n$ 中的开集也都是 $n$ 维微分流形; 一般地, 微分流形的开子集也继承了微分结构成为微分流形. 
+
+例 1.1.2 单位圆周 $S^{1}$ . 
+
+定义 1.1.2 ( $C^k$ 映射) 设 $f: M \to N$ 为两个 $C^r$ 微分流形之间的连续映射. 如果任给 $p \in M$ 和 $q = f(p) \in N$ 附近的局部坐标系 $(V, \psi)$ , 均存在 $p$ 附近的局部坐标系 $(U, \varphi)$ , 使得 $f(U) \subset V$ , 且 $f$ 在这两个局部坐标系下的局部表示 $$
+\psi \circ f \circ \varphi^ {- 1}: \varphi (U) \rightarrow \psi (V)
+$$
+
+为 $C^k (k\leqslant r)$ 映射, 则称 $f$ 为流形 $M,N$ 之间的 $C^k$ 映射. $C^k$ 映射的全体记为 $C^k (M,N)$ . 
+
+定义 1.1.3 (微分同胚) 设 M, N 为 $C^{r}$ 微分流形, $f: M \to N$ 为同胚映射. 如果 f 及其逆映射 $f^{-1}$ 均为 $C^{r}$ 映射, 则称 f 为 $C^{r}$ 微分同胚, 或简称微分同胚. 
+
+定义1.1.4(可定向流形) 设 $M$ 为微分流形, 如果存在 $M$ 的局部坐标覆盖 $\{(U_{\alpha}, \varphi_{\alpha})\}_{\alpha \in \Gamma}$ , 使得当 $U_{\alpha} \cap U_{\beta} \neq \emptyset$ 时, $\det J(\varphi_{\beta} \circ \varphi_{\alpha}^{-1}) > 0$ , 则称流形 $M$ 是可定向的, $\{(U_{\alpha}, \varphi_{\alpha})\}$ 为一个定向坐标覆盖. 如果不存在定向坐标覆盖, 则称流
+
+例1.1.3 $n$ 维环面 $T^n$ . 
+
+两个微分流形的乘积仍为微分流形, 因此 $T^{n} = S^{1} \times S^{1} \times \cdots \times S^{1}$ (n 个 $S^{1}$ 之积) 为 n 维微分流形, 并且是可定向流形, 称为 n 维环面. 
+
+
+例1.1.4 $n$ 维球面 $S^n$ .$$
+S ^ {n} = \left\{\left(x ^ {1}, x ^ {2}, \dots , x ^ {n + 1}\right) \mid \sum_ {i = 1} ^ {n + 1} \left(x ^ {i}\right) ^ {2} = 1 \right\}.
+$$
+
+ 例1.1.5 $n$ 维实投影空间 $\mathbb{R}P^n$ . 
+
+例 1.1.6 流形的连通和. 
+
+引理 1.1.1 连通的拓扑流形必为道路连通的. 
+
+定义 1.1.5 (定向) 设 M 为可定向微分流形, D 为一个定向坐标覆盖. 如果每一个与 D 中局部坐标系都同向的局部坐标系均包含于 D 内, 则称 D 为 M 的一个定向. 
+
+考虑 $\mathbb{R}^n$ 上如下坐标映射 $\rho : \mathbb{R}^n \to \mathbb{R}^n$ :$$
+\rho (x) = \left(x ^ {1}, x ^ {2}, \dots , x ^ {n - 1}, - x ^ {n}\right),
+$$ 
+
+$(\mathbb{R}^n, \rho)$ 是 $\mathbb{R}^n$ 的一个定向坐标覆盖, 它决定的定向和由恒同映射决定的定向不同. 一般地, 如果 $\{(U_\alpha, \varphi_\alpha)\}$ 是流形 $M$ 的一个定向坐标覆盖, 则 $\{(U_\alpha, \rho \circ \varphi_\alpha)\}$ 也是定向坐标覆盖, 它们决定了两个不同的定向. 
+
+引理1.1.2 连通的可定向微分流形恰好有两个定向. 
+
+定义 1.2.1 (映射的秩) 设 $f: M \to N$ 为两个微分流形之间的 $C^k (k \geqslant 1)$ 映射, $p \in M$ , $q = f(p) \in N$ . 分别取 $p$ 附近的局部坐标系 $(U, \varphi)$ 以及 $q$ 附近的局部坐标系 $(V, \psi)$ , 令 $$
+\operatorname{rank} _ {p} f = \operatorname{rank} J (\psi \circ f \circ \varphi^ {- 1}) (\varphi (p)),
+$$称为 $f$ 在 $\pmb{p}$ 处的秩. 
+
+定理 1.2.1 (逆映射定理) 设 $f: M^{n} \rightarrow N^{n}$ 为微分流形之间的 $C^{k} (k \geqslant 1)$ 映射, 且 $\operatorname{rank}_{p} f = n$ , 则存在 p 的开邻域 U 和 $q = f(p)$ 的开邻域 V, 使得 $f|_{U}: U \rightarrow V$ 为 $C^{k}$ 的微分同胚. 
+
+定义 1.2.2 (浸入、嵌入和淹没) 设 $f: M^m \to N^n$ 为微分流形之间的 $C^k (k \geqslant 1)$ 映射. 如果 $\operatorname{rank}_p f \equiv m, \forall p \in M$ , 则称 $f$ 为 $C^k$ 浸入(immersion); 如果 $f$ 为 $C^k$ 浸入, 且 $f$ 是从 $M$ 到其像 $f(M)$ 上的同胚, 则称 $f$ 为 $C^k$ 嵌入(embedding); 如果 $\operatorname{rank}_p f \equiv n, \forall p \in M$ , 则称 $f$ 为 $C^k$ 淹没(submersion). 
+
+例 1.2.2 单位圆周. 考虑单位圆周 $S^1$ 到平面 $\mathbb{R}^2$ 的包含映射 $i: S^1 \to \mathbb{R}^2$ , 这是一个嵌入. 包含映射 $i$ 的秩恒为 1. 
+
+例1.2.3 不是单射的浸入.考虑映射 $f:\mathbb{R}\to \mathbb{R}^2$  
+$$
+f (t) = (\cos t, \sin t), \quad t \in \mathbb {R}.
+$$
+易验证 $\operatorname{rank} f \equiv 1$ , 因此 $f$ 为光滑浸入. 显然, $f(\mathbb{R}) = S^1$ . $f$ 不是单射, 因此它不是嵌入. 
+
+例 1.2.4 单浸入, 但不是嵌入的例子. 
+考虑映射 $f:\mathbb{R}\to \mathbb{R}^2$ $$
+f (t) = \left(\frac {t ^ {3} + t}{t ^ {4} + 1}, \frac {t ^ {3} - t}{t ^ {4} + 1}\right), \quad t \in \mathbb {R}.
+$$
+$f$ 为单射, 且 $\operatorname{rank} f \equiv 1$ . 因此 $f$ 为一个单浸入, 但它也不是嵌入, 因为 $f(\mathbb{R})$ 为 $\mathbb{R}^2$ 中的双纽线 $(x^2 + y^2)^2 = x^2 - y^2$ , 双纽线为紧致子集. 
+
+例1.2.5 环面的嵌入. $$
+f (e ^ {i \theta}, e ^ {i \phi}) = ((a + b \cos \phi) \cos \theta , (a + b \cos \phi) \sin \theta , b \sin \phi), \theta , \phi \in [ 0, 2 \pi ].
+$$
+
+例1.2.6 标准嵌入. $$
+f (x ^ {1}, x ^ {2}, \dots , x ^ {m}) = (x ^ {1}, x ^ {2}, \dots , x ^ {m}, 0, 0, \dots , 0).
+$$
+
+例 1.2.7 标准淹没. 设 $m \geqslant n$ , 考虑映射 $f: \mathbb{R}^m \to \mathbb{R}^n$ , $$
+f (x ^ {1}, x ^ {2}, \dots , x ^ {m}) = (x ^ {1}, x ^ {2}, \dots , x ^ {n}).
+$$
+
+定理 1.2.2 (浸入的局部标准形) 设 $f: M^{m} \to N^{n}$ 为微分流形之间的浸入. 对任意 $p \in M$ , 存在 $p$ 附近的局部坐标系 $(U, \varphi)$ 以及 $q = f(p)$ 附近的局部坐标系 $(V, \psi)$ , 使得 $f$ 的局部表示 $\psi \circ f \circ \varphi^{-1}: \varphi(U) \to \psi(V)$ 为标准嵌入, 即 $$
+\psi \circ f \circ \varphi^ {- 1} (x ^ {1}, x ^ {2}, \dots , x ^ {m}) = (x ^ {1}, x ^ {2}, \dots , x ^ {m}, 0, 0, \dots , 0).
+$$
+
+推论 1.2.3 微分流形之间的浸入映射在局部上必为嵌入. 
+
+定理1.2.4(淹没的局部标准形) 设 $f: M^{m} \to N^{n}$ 为微分流形之间的淹没, 则对任意 $p \in M$ , 存在 $p$ 附近的局部坐标系 $(U, \varphi)$ 以及 $q = f(p)$ 附近的局部坐标系 $(V, \psi)$ , 使得 $f$ 的局部表示 $\psi \circ f \circ \varphi^{-1}: \varphi(U) \to \psi(V)$ 是标准的淹没, 即 $$
+\psi \circ f \circ \varphi^ {- 1} (x ^ {1}, x ^ {2}, \dots , x ^ {m}) = (x ^ {1}, x ^ {2}, \dots , x ^ {n}).
+$$
+
+推论1.2.5 微分流形之间的淹没映射必为开映射，即将开集映为开集 
+
+定义 1.2.3 (子流形) 设 M, N 为微分流形, 作为集合, $M \subset N$ . 如果包含映射 $i: M \rightarrow N$ 为浸入, 则称 M 为 N 的浸入子流形或子流形; 如果包含映射 $i: M \rightarrow N$ 为嵌入, 则称 M 为 N 的正则子流形. N 称为母流形. 
+
+引理1.2.6 设 $M, N$ 为微分流形, $f: M \to N$ 为单的浸入映射. 在 $f(M)$ 上通过 $f$ 定义一个微分结构, 使得 $f: M \to f(M)$ 为微分同胚, 则 $f(M)$ 为 $N$ 的浸入子流形. 如果进一步, $f$ 为嵌入, 则 $f(M)$ 为 $N$ 的正则子流形. 
+
+定理 1.2.7 (正则子流形的结构) 微分流形 $M^{m}$ 为 $N^{n}$ 的正则子流形 $\Longleftrightarrow M$ 为 N 的子拓扑空间，且对任意 $p \in M$ ，存在 N 中含有 p 的局部坐标邻域 U 和坐标函数 $\{x^{1}, x^{2}, \cdots, x^{n}\}$ ，使得 $$
+M \cap U = \{q \in U \mid x ^ {i} (q) = 0, m + 1 \leqslant i \leqslant n \}.
+$$
+
+例 1.2.8 二次型决定的超曲面. 
+
+例 1.2.9 特殊线性群 $SL(n,\mathbb{R})$ . 
+
+定理 1.3.3 (单位分解的存在性) 对于微分流形 M 的任何开覆盖 $\{U_{\alpha}\}_{\alpha\in\Gamma}$ ，均存在从属于它的单位分解. 
+
+定理 1.3.4 (Whitney) 每一个紧致微分流形 $M^{n}$ 均可嵌入到某个欧氏空间 $R^{N}$ 中. 
+
+命题1.3.5(光滑延拓) (1) 设 $A$ 为微分流形 $M$ 上的闭集, 如果 $U$ 为 $A$ 的开邻域, 则存在光滑函数 $\phi: M \to \mathbb{R}$ , 使得 $\phi|_{A} \equiv 1$ , $\operatorname{supp}\phi \subset U$ ; 
+
+(2) 设 $B$ 为 $M$ 的子集, $f: B \to \mathbb{R}$ 为实函数. 如果对任意 $x \in B$ , 均存在开邻域 $U_x$ , 以及光滑函数 $f_x: U_x \to \mathbb{R}$ , 使得 $f_x|_{B \cap U_x} = f|_{B \cap U_x}$ , 则存在 $B$ 的开邻域 $V$ 以及光滑函数 $\tilde{f}: V \to \mathbb{R}$ , 使得 $\tilde{f}|_B = f$ . 
+
+命题1.3.5(光滑延拓) (1) 设 $A$ 为微分流形 $M$ 上的闭集, 如果 $U$ 为 $A$ 的开邻域, 则存在光滑函数 $\phi: M \to \mathbb{R}$ , 使得 $\phi|_{A} \equiv 1$ , $\operatorname{supp}\phi \subset U$ ; 
+
+(2) 设 $B$ 为 $M$ 的子集, $f: B \to \mathbb{R}$ 为实函数. 如果对任意 $x \in B$ , 均存在开邻域 $U_x$ , 以及光滑函数 $f_x: U_x \to \mathbb{R}$ , 使得 $f_x|_{B \cap U_x} = f|_{B \cap U_x}$ , 则存在 $B$ 的开邻域 $V$ 以及光滑函数 $\tilde{f}: V \to \mathbb{R}$ , 使得 $\tilde{f}|_B = f$ . 
+
+命题 1.3.6 设 M 为 N 的闭正则子流形, $f: M \rightarrow S$ 为光滑映射, 则存在 N 上的光滑映射 $\tilde{f}: N \rightarrow S$ , 使得 $\tilde{f}|_{M} = f$ . 
+
+命题 1.3.7 (同伦的光滑化) 设 $f_{0}, f_{1}: M \rightarrow N$ 是微分流形之间同伦的光滑映射，则存在光滑映射 $F: R \times M \rightarrow N$ ，使得 命题 1.3.7 (同伦的光滑化) 设 $f_{0}, f_{1}: M \rightarrow N$ 是微分流形之间同伦的光滑映射，则存在光滑映射 $F: R \times M \rightarrow N$ ，使得 
+
+命题1.3.8(光滑逼近）设 $f:M\to \mathbb{R}^k$ 为微分流形 $M$ 上的连续映射, 则任给 $M$ 上的正连续函数 $\varepsilon :M\to \mathbb{R}$ , 存在光滑映射 $g:M\to \mathbb{R}^k$ , 使得 $$
+\| g (x) - f (x) \| \leqslant \varepsilon (x), \forall x \in M.
+$$
+
+命题1.3.9 设 $f: M \to N$ 为微分流形之间的连续映射, 则存在光滑映射 $g: M \to N$ , 使得 $g$ 和 $f$ 同伦. 
+
+命题 1.3.10 (逆紧函数的存在性) 微分流形上总存在光滑的逆紧函数. 
+
+定义 1.4.1 (切向量) 记 $C^{\infty}(M)$ 为微分流形 M 上光滑函数的全体组成的向量空间. 设 $p \in M$ , 如果线性映射 $X_{p}: C^{\infty}(M) \to \mathbb{R}$ 满足以下条件 $$
+X _ {p} (f g) = f (p) X _ {p} g + g (p) X _ {p} f, \forall f, g \in C ^ {\infty} (M),
+$$
+
+则称 $X_{p}$ 为 $M$ 在 $\pmb{p}$ 处的切向量. 切向量的全体组成的向量空间称为 $\pmb{p}$ 处的切空间, 记为 $T_{p}M$ . 
+
+引理1.4.1 设 $f, g$ 为光滑函数, 且在 $p$ 的一个开邻域中 $f = g$ , 则对任意的切向量 $X_{p}$ , 均有 $$
+X _ {p} f = X _ {p} g.
+$$
+
+命题1.4.2 $\left\{\frac{\partial}{\partial x^i}\right|_p\}_{i = 1}^n$ 为 $T_{p}M$ 的一组基, 特别地, $T_{p}M$ 是维数为 $\dim M$ 的有限维向量空间. 
+
+定义 1.4.2 (切映射) 设 $f: M \to N$ 为微分流形之间的光滑映射, $p \in M$ . 任给 p 处的切向量 $X_{p}$ , 定义 $f(p)$ 处的切向量 $f_{*p}(X_{p})$ 如下: $$
+f _ {* p} (X _ {p}) g = X _ {p} (g \circ f), \forall g \in C ^ {\infty} (N).
+$$
+
+例1.4.1 欧氏空间 $\mathbb{R}^n$ 的切空间. $$
+\sum_ {i = 1} ^ {n} a _ {i} \frac {\partial}{\partial x ^ {i}} \big | _ {p} \longleftrightarrow (a ^ {1}, a ^ {2}, \dots , a ^ {n}) \in \mathbb {R} ^ {n}.
+$$
+
+例1.4.2 $n$ 维球面 $S^n$ 的切空间. 
+
+例 1.4.3 行列式映射的秩. 考虑映射 $f: GL(n, \mathbb{R}) \to \mathbb{R}$ , $f(A) = \det A$ . $GL(n, \mathbb{R}) = \det^{-1}(\mathbb{R} - \{0\})$ 为 $\mathbb{R}^{n^2}$ 中的开集, $f$ 为光滑映射. 当 $A \in GL(n, \mathbb{R})$ 时, 对 $h \in M_{n \times n}$ , 有 $$
+\det (A + t h) = \det A \det (I _ {n} + t A ^ {- 1} h) = \det A (1 + t \cdot \operatorname{tr} A ^ {- 1} h + o (t)), t \in \mathbb {R},
+$$
+$$
+f _ {* A} h = \frac {d}{d t} \big | _ {t = 0} \det (A + t h) = \det A \operatorname{tr} (A ^ {- 1} h),
+$$
+
+例 1.4.4 正则子流形的切空间. 例 1.4.4 正则子流形的切空间. 设 $f: M^m \to N^n$ 为光滑映射, 其秩恒为 $l$ . 取 $q \in N$ , 设 $S = f^{-1}(q) \neq \emptyset$ , 我们已经知道此时 $S$ 为 $M$ 的正则子流形. 设 $p \in S$ , 下面来求 $S$ 在 $p$ 处的切空间 $T_pS$ . 
+
+注意到 $f(S) \equiv q$ , 因此, 如果 $\sigma$ 是 $S$ 中经过 $p$ 的光滑曲线, 则 $$
+f _ {* p} (\sigma^ {\prime} (0)) = (f \circ \sigma) ^ {\prime} (0) = 0,
+$$
+
+
+
+例 1.4.6 线性空间的横截相交. 
+
+设 $U, V$ 为向量空间 $W$ 的子向量空间, 则 $U, V$ 横截相交当且仅当 $U + V = W$ , 此时 
+
+$$
+\dim (U \cap V) = \dim U + \dim V - \dim W,
+$$或改写为
+ $$
+\operatorname{codim} U \bigcap V = \operatorname{codim} U + \operatorname{codim} V.
+$$
+
+定理1.4.5(横截相交的稳定性) 设 $M, P, S, N$ 为微分流形, 其中 $M$ 为紧致流形, $S$ 为 $N$ 的闭正则子流形. 设 $f: M \times P \to N$ 为光滑映射, 取 $p \in P$ , 定义 $f_p: M \to N$ , $f_p(x) = f(x, p)$ , $\forall x \in M$ , 则集合 $$
+\varOmega = \{p \in P   |   f _ {p}   \text {和}   S   \text {横截相交} \}
+$$为开集. 
+
+定理 1.5.3 (Sard) 设 $f: M \rightarrow N$ 为微分流形之间的光滑映射, 则 f 的临界值之集为 N 的零测集. 
+
+定理 1.5.6 n 维紧致微分流形均可浸入到 $R^{2n}$ 中，并且可以嵌入到 $R^{2n+1}$ 中. 
+
+引理 1.5.7 (Morse) 如果 p 为光滑函数 $f: M \rightarrow R$ 的非退化临界点, 则存在 p 附近的局部坐标系 $(U, \varphi)$ , 使得 f 的局部表示形如 $$
+f \circ \varphi^ {- 1} (y) = f (p) - (y ^ {1}) ^ {2} - \dots - (y ^ {r}) ^ {2} + (y ^ {r + 1}) ^ {2} + \dots + (y ^ {n}) ^ {2},
+$$其中 $0 \leqslant r \leqslant n, r$ 称为 $f$ 在 $p$ 处的(Morse)指标. 
+
+引理1.5.8 (Hirsch) 设 $Q(x)$ 是定义在 $0 \in \mathbb{R}^n$ 附近的光滑的实对称 $n$ 阶方阵, 如果 $Q(0)$ 非退化, 则存在 0 附近的 $n$ 阶非退化光滑矩阵 $P(x)$ , 使得 $$
+P (x) Q (x) P (x) ^ {\mathrm{T}} = \left( \begin{array}{c c} - I _ {r} & 0 \\ 0 & I _ {n - r} \end{array} \right),
+$$其中 r 为 $Q(0)$ 的负特征值的个数. 
+
+推论1.5.9 光滑函数的非退化临界点集是离散的. 特别地, 紧致流形上光滑函数的非退化临界点只有有限个. 
+
+定理 1.5.10 (Morse 函数的存在性) 设 $(U,\varphi)$ 为微分流形 M 上的局部坐标系，紧集 $K\subset U$ . 
+
+(1) 如果光滑函数 $f: U \to \mathbb{R}$ 在 $K$ 上的临界点都是非退化的, 则存在 $\delta > 0$ , 使得满足条件 $$
+\| J (f \circ \varphi^ {- 1}) - J (g \circ \varphi^ {- 1}) \| <   \delta , \| \mathrm{Hess} (f \circ \varphi^ {- 1}) - \mathrm{Hess} (g \circ \varphi^ {- 1}) \| <   \delta
+$$的光滑函数 $g: U \to \mathbb{R}$ 在 $K$ 上的临界点也都是非退化的. 
+
+(2) 设 $f: U \to \mathbb{R}$ 为光滑函数, 则对任意 $\varepsilon > 0$ , 存在光滑函数 $l: U \to \mathbb{R}$ , 使得 $$
+\operatorname{suppl} \subset U, \| J (l \circ \varphi^ {- 1}) \| <   \varepsilon , \| \operatorname{Hess} (l \circ \varphi^ {- 1}) \| <   \varepsilon ,
+$$且 $f + l$ 在 $K$ 上的临界点都是非退化的. 
+
+(3) 设 $M$ 为紧致微分流形, $f: M \to \mathbb{R}$ 为光滑函数, 则对任意 $\varepsilon > 0$ , 存在光滑 Morse 函数 $g: M \to \mathbb{R}$ , 使得 $$
+| g (x) - f (x) | <   \varepsilon , \forall x \in M.
+$$
+
+\subsection{切丛，向量丛，李群}
+
+此部分略去，因为大多简单，且笔者觉得没意思且不重要
+
+\subsection{流行的几何}
+
+我们回忆一下, 微分流形上的一个黎曼度量指的是一个二阶正定对称协变张量场, 它在流形的每一点的切空间上都指定了一个内积. 在局部坐标系 $\{x^{1}, \cdots, x^{n}\}$ 中, 黎曼度量 $g$ 可以表示为 $$
+g = \sum_ {i, j = 1} ^ {n} g _ {i j} (x) d x ^ {i} \otimes d x ^ {j},
+$$其中$$
+g _ {i j} (x) = g \left(\frac {\partial}{\partial x ^ {i}}, \frac {\partial}{\partial x ^ {j}}\right).
+$$
+
+例 3.1.1 黎曼度量的存在性. 
+
+设 $M$ 为微分流形, 取 $M$ 的局部有限坐标覆盖 $\{U_{\alpha}\}$ , 从属于这个覆盖的单位分解记为 $\{\rho_{\alpha}\}$ . 如果 $U_{\alpha}$ 中的坐标函数为 $\{x_{\alpha}^{1}, \cdots, x_{\alpha}^{n}\}$ , 令 $$
+g = \sum_ {\alpha} \rho_ {\alpha} g _ {i j} ^ {\alpha} d x _ {\alpha} ^ {i} \otimes d x _ {\alpha} ^ {j},
+$$其中 $(g_{ij}^{\alpha})$ 是 $U_{\alpha}$ 上的正定对称函数矩阵. 显然, $g$ 为 $M$ 上的二阶对称协变张量场. 根据单位分解函数的性质也容易看出 $g$ 是正定的, 即 $g$ 是 $M$ 上的黎曼度量. 
+
+例3.1.2 拉回度量.设 $f: M \to N$ 为浸入, $h$ 是 $N$ 上的黎曼度量, 则拉回协变张量场 $f^{*}h$ 是 $M$ 上的二阶协变对称张量场. 因为 $f$ 是浸入, 其切映射是非退化的, 从而 $h$ 也是正定的, 即 $h$ 是 $M$ 上的黎曼度量, 称为拉回度量. 
+
+例3.1.3 球面 $S^n$ 上的度量. $$
+g _ {0} = \sum_ {i = 1} ^ {n + 1} d x ^ {i} \otimes d x ^ {i}.
+$$
+$S^n$ 上的拉回度量记为 $g_1 = i^* g_0, g_1$ 也就是将 $g_0$ 限制在 $S^n$ 上每一点的切空间上得到的限制度量. 现在我们在局部坐标下写出 $g_{1}$ 的局部表示. 令 $U = S^{n} - \{(0, \cdots, 0, -1)\}$ , U 上的局部坐标映射为 $$
+\varphi : U \to \mathbb {R} ^ {n}, \quad \varphi (x) = \left(\frac {x ^ {1}}{1 + x ^ {n + 1}}, \dots , \frac {x ^ {n}}{1 + x ^ {n + 1}}\right),
+$$
+
+其中 $x = (x^{1},\dots ,x^{n + 1})\in U$ 如果记 $\varphi$ 的第 $i$ 个分量为 $u_{i}$ ，则$$
+x ^ {i} = \frac {2 u ^ {i}}{1 + \sum_ {i = 1} ^ {n} (u ^ {i}) ^ {2}} (1 \leqslant i \leqslant n); x ^ {n + 1} = \frac {1 - \sum_ {i = 1} ^ {n} (u ^ {i}) ^ {2}}{1 + \sum_ {i = 1} ^ {n} (u ^ {i}) ^ {2}}.
+$$
+
+ 因此, 直接的计算表明, 在 $U$ 中 $g_{1}$ 可以表示为 $$
+ g _ {1} = i ^ {*} g _ {0} = \frac {4}{\left[ 1 + \sum_ {i = 1} ^ {n} (u ^ {i}) ^ {2} \right] ^ {2}} \sum_ {i = 1} ^ {n} d u ^ {i} \otimes d u ^ {i}.
+ $$
+ 
+定义 3.1.1 (等距同构) 设 $f:(M,g)\to(N,h)$ 是黎曼流形之间的微分同胚, 如果 $g=f^{*}h$ , 则称 f 为黎曼流形 $(M,g)$ 和 $(N,h)$ 之间的等距同构. 我们不区分等距同构的黎曼流形. 
+
+例 3.1.5 复迭空间上的度量. 
+
+例3.1.6 商空间上的度量. $$
+M / G = \{G \cdot x \mid x \in M \}
+$$
+
+例 3.1.7 双曲模型的等价性. 考虑 Poincaré 圆盘 $\mathbb{D} = \{z \in \mathbb{C} \mid |z| < 1\}$ , 其中 $z = x + iy$ 为复坐标, $\mathbb{D}$ 上的黎曼度量为 $$
+g _ {- 1} = \frac {4}{(1 - | z | ^ {2}) ^ {2}} (d x \otimes d x + d y \otimes d y).
+$$
+
+我们还有上半平面 $\mathbb{H} = \{z\in \mathbb{C}\mid \mathrm{Im}z > 0\}$ ， $\mathbb{H}$ 上的黎曼度量为$$
+h _ {- 1} = \frac {1}{(\operatorname{Im} z) ^ {2}} (d x \otimes d x + d y \otimes d y).
+$$ 
+
+$$
+\varphi^ {*} g _ {- 1} = \frac {4}{[ 1 - | \varphi (z) | ] ^ {2}} | \varphi^ {\prime} (z) | ^ {2} (d x \otimes d x + d y \otimes d y) = \frac {1}{(\operatorname{Im} z) ^ {2}} (d x \otimes d x + d y \otimes d y),
+$$
+
+定义 3.1.3 (曲线的长度) 设 $\sigma:[a,b]\to M$ 为黎曼流形 $(M,g)$ 上的 $C^{1}$ 曲线, 定义其长度 $L(\sigma)$ 为 $$
+L (\sigma) = \int_ {a} ^ {b} \| \dot {\sigma} (t) \| d t,
+$$
+其中 $\| \dot{\sigma}(t)\| = (g(\dot{\sigma}(t),\dot{\sigma}(t)))^{1 / 2}$ 是切向量 $\dot{\sigma} (t)$ 的长度. 
+
+定义 3.2.1 (联络) 满足以下条件的算子 $\nabla: \Gamma(TM) \times \Gamma(E) \to \Gamma(E)$ 称为向量丛 E 上的一个联络: 
+
+(i) $\nabla_{fX + gY}s = f\nabla_Xs + g\nabla_Ys, \forall X,Y \in \Gamma(TM), f,g \in C^\infty(M), s \in \Gamma(E);$ 
+
+(ii) $\nabla_X(s_1 + s_2) = \nabla_Xs_1 + \nabla_Xs_2, \forall X \in \Gamma(TM), s_1, s_2 \in \Gamma(E);$ 
+
+(iii) $\nabla_X(fs) = (Xf)s + f\nabla_Xs, \forall X \in \Gamma(TM), f \in C^\infty(M), s \in \Gamma(E)$ . 
+
+例3.2.1 平凡丛 $E = M \times \mathbb{R}^k$ 上的联络. $$
+\nabla_ {X} s = (X f _ {1}, \dots , X f _ {k}),
+$$
+
+设 $\sigma: [a, b] \to M$ 为 $M$ 上的光滑曲线, $\sigma(a) = p$ , $\sigma(b) = q$ . 给定 $E$ 上的联络 $\nabla$ , 我们可以定义沿曲线 $\sigma$ 的一个平移算子. 
+
+命题 3.2.1 给定向量 $v \in E_{p}$ ，存在唯一的沿 $\sigma$ 的截面 s，使得 $s(a) = v$ ，且 $\nabla_{\dot{\sigma}} s \equiv 0$ . 
+
+命题3.2.2 设 $\nabla$ 为 $M$ 上的仿射联络, $f$ 为光滑函数, 则 $\nabla^2 f$ 为 $M$ 上的二阶协变张量场. 
+
+命题3.2.3 设 $\nabla$ 为 $M$ 上的仿射联络, 则 $T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y]$ 定义了 $M$ 上的一个张量场, 称为 $\nabla$ 的挠率张量. 
+
+定理3.2.4 设 $(M,g)$ 为黎曼流形, 则满足下面条件的仿射联络 $\nabla$ 是存在且唯一的: 
+
+(i) $Z\langle X,Y\rangle = \langle \nabla_{Z}X,Y\rangle +\langle X,\nabla_{Z}Y\rangle ,\forall X,Y,Z\in \Gamma (TM);$ 
+
+(ii) $\nabla_X Y - \nabla_Y X = [X, Y], \forall X, Y \in \Gamma(TM)$ .
+
+\section{表示论}
+
+\subsection{群表示}
+
+定义 1 设 G 是一个群, $V \neq \{0\}$ 是域 K 上的一个线性空间. G 到 $\mathrm{GL}(V)$ 的一个群同态 $\varphi$ 称为 G 在域 K 上的一个线性表示 (简称为 K-表示或者表示). V 称为表示空间. 若 V 是有限维的, 则 V 的维数 $\dim_{K} V$ 称为表示的次数 (或维数), 记作 $\deg \varphi$ ; 若 V 是无限维的, 则称 $\varphi$ 是 G 的无限维表示. 
+
+从定义 1 看出, 群 G 的一个线性表示是由表示空间 V 和群同态 $\varphi$ 组成的二元组 $(\varphi, V)$ , 它使得 $$
+\begin{array}{l} \varphi (g) \in \operatorname{GL} (V), \quad \forall g \in G; \\ \varphi (g h) = \varphi (g) \varphi (h), \quad \forall g, h \in G; \\ \varphi (e) = 1 _ {V}, \\ \end{array}
+$$
+
+定义2 群 $G$ 到 $\mathrm{GL}_n(K)$ 的一个群同态 $\Phi$ 称为 $G$ 在域 $K$ 上的一个 $n$ 次矩阵表示. $$
+\varPhi : G \to \operatorname{GL} _ {n} (K)
+$$
+
+定义 3 群 G 在域 K 上的两个线性表示 $(\varphi, V)$ 和 $(\psi, W)$ 称为是等价的 (或同构), 如果存在线性空间的一个同构 $\sigma: V \to W$ , 使得对任意 $g \in G$ , 下图可交换: $$
+\begin{array}{c c c} V & \xrightarrow {\sigma} & W \\ \varphi (g) \Big \downarrow & & \Big \downarrow^ {\psi (g)} \\ V & \xrightarrow {\sigma} & W \end{array}
+$$
+
+定义4 群 $G$ 在域 $K$ 上的两个矩阵表示 $\varPhi$ 和 $\varPsi$ 称为是等价的 (记作 $\varPhi \approx \varPsi$ ), 如果它们有相同的次数并且存在域 $K$ 上一个可逆矩阵 $S$ , 使得 $$
+\Psi (g) = S \Phi (g) S ^ {- 1}, \quad \forall g \in G. 
+$$
+
+命题 1 群 G 的两个有限维线性表示 $(\varphi, V)$ 和 $(\psi, W)$ 等价当且仅当它们提供的矩阵表示 $\Phi$ 和 $\Psi$ 等价. 
+
+例 1 找出实数域的加法群 (R, +) 的 1 次实表示. $$
+f (t) = \mathrm{e} ^ {a t}, \quad \forall t \in \mathbb {R}.
+$$
+
+例 2 找出 $(\mathbb{R}, +)$ 的 1 次复表示. $$
+f _ {a} (x) = \mathrm{e} ^ {\mathrm{i} a x}, \quad \forall x \in \mathbb {R}.
+$$
+
+例 3 求 $(\mathbb{R}, +)$ 的一个 2 次实矩阵表示.$$
+\begin{array}{l} \varPhi (t) \varPhi (u) = \left( \begin{array}{c c} \cos t & - \sin t \\ \sin t & \cos t \end{array} \right) \left( \begin{array}{c c} \cos u & - \sin u \\ \sin u & \cos u \end{array} \right) \\ = \left( \begin{array}{c c} \cos (t + u) & - \sin (t + u) \\ \sin (t + u) & \cos (t + u) \end{array} \right) \\ = \Phi (t + u). \\ \end{array}
+$$
+
+例 4 求 $(\mathbb{R}, +)$ 的一个 n 次实表示.  
+
+定义 5 设 G 是一个群, G 的单位元记作 e; $\Omega$ 是一个非空集合. 如果 $G \times \Omega$ 到 $\Omega$ 有一个映射: $(a, x) \mapsto a \circ x$ , 满足 $$
+(a b) \circ x = a \circ (b \circ x), \quad \forall a, b \in G, \quad \forall x \in \Omega ;
+$$
+
+$$
+e \circ x = x, \quad \forall x \in \Omega ,
+$$
+
+$$
+e \circ x = x, \quad \forall x \in \Omega ,
+$$
+那么称群 G 在集合 $\Omega$ 上有一个作用 (action). 
+
+利用群 G 在 n 元集合 $\Omega$ 上的一个作用, 用上述方法构造的 G 的一个 n 次 K-表示 $\varphi$ 称为 G 在域 K 上的一个 n 次置换表示. 对于 V 的上述基 $x_{1}, x_{2}, \cdots, x_{n}, \varphi$ 提供的矩阵表示 $\Phi$ 使得对于每个 $g \in G$ 都有 $\Phi(g)$ 是 n 阶置换矩阵, 即每行每列恰有一个元素是 1, 其余元素全为 0 的矩阵. 
+
+例 5 求 3 元对称群 $S_{3}$ 在数域 K 上的 3 次置换矩阵表示. 
+
+例 6 求 n 元对称群 $S_{n}$ 在数域 K 上的 n 次置换矩阵表示. 
+
+命题 3 设群 G 中元素 a, b 的阶分别为 n, m, 如果 ab = ba, 且 $(n, m) = 1$ , 那么 ab 的阶等于 nm. 
+
+命题 4 设 G 为有限 Abel 群, 则 G 中有一个元素的阶是其他所有元素的阶的倍数. 
+
+命题 5 设 G 为有限 Abel 群, 如果对于任意正整数 m, 方程 $x^{m} = e$ 在 G 中的解的个数不超过 m, 那么 G 是循环群. 
+
+命题 6 有限域 F 的所有非零元组成的乘法群 $F^{*}$ 必为循环群. 
+
+例 7 求 3 阶循环群 $G = \langle a \rangle$ 的正则表示 $\rho$ 提供的矩阵表示. 
+
+定义 1 设 $(\varphi, V)$ 是群 G 的一个 K-表示. V 的一个子空间 U 如果是线性变换 $\varphi(g)$ 的不变子空间, $\forall g \in G$ , 那么称 U 是表示 $\varphi$ 的不变子空间或 G 不变子空间. 
+
+如果 $U \neq \{0\}$ 是 $G$ 不变子空间, 那么 $\forall g \in G, \varphi(g)|U$ 是 $U$ 上的线性变换, 且仍是可逆的. 于是令 
+$$
+\varphi_ {U} (g) := \varphi (g) | U, \quad \forall g \in G,
+$$
+$$
+\varphi_ {U} (g) := \varphi (g) | U, \quad \forall g \in G,
+$$
+
+$$
+\Phi (g) = \left( \begin{array}{c c} \Phi_ {U} (g) & C (g) \\ 0 & B (g) \end{array} \right), \quad \forall g \in G, 
+$$其中 $\Phi_{U}$ 是子表示 $\Phi_{U}$ 对于 U 的上述基提供的矩阵表示. 
+
+命题 1 设 $(\varphi, V)$ 是群 G 的一个 K-表示. 如果 U 和 W 都是 V 的 G 不变子空间, 且 $V = U \oplus W$ , 那么 $$
+\varphi = \varphi_ {U} \oplus \varphi_ {W}. 
+$$
+
+定义3 设 $(\varphi, V)$ 是群 $G$ 的一个 $K$ -表示. 如果 $V$ 的 $G$ 不变子空间只有 $\{0\}$ 和 $V$ (即没有非平凡的 $G$ 不变子空间), 那么称 $(\varphi, V)$ 是不可约的; 否则称 $(\varphi, V)$ 是可约的. 
+
+定义 4 设 $(\varphi, V)$ 是群 G 的一个 K-表示. 如果对于 V 的每一个 G 不变子空间, 都有它在 V 中的 G 不变补空间, 那么称 $(\varphi, V)$ 是完全可约的. 
+
+命题 2 群 G 的完全可约表示的任意一个子表示也是完全可约的. 
+
+定理 2 (Maschke) 有限群 G 在特征不能整除 $|G|$ 的域 K 上的任一线性表示都是完全可约的. □ 
+
+设 $(\varphi, V)$ 是 Abel 群 $G$ 的有限维不可约复表示, 由于 $V$ 是复数域上的有限维线性空间, 因此对于任给 $g \in G$ , 线性变换 $\varphi(g)$ 有特征值 $\lambda_g$ . 由于对于任意 $h \in G$ , 有 $hg = gh$ , 因此 $\varphi(h)\varphi(g) = \varphi(g)\varphi(h)$ . 从而 $\varphi(g)$ 的属于 $\lambda_g$ 的特征子空间 $V_{\lambda_g}$ 是 $\varphi(h)$ 的不变子空间. 于是 $V_{\lambda_g}$ 是 $G$ 不变子空间. 由于 $(\varphi, V)$ 不可约, 因此 $V_{\lambda_g} = V$ . 从而 $\varphi(g)$ 是 $V$ 上的数乘变换 $\lambda_g1_V$ . 假如 $\dim V > 1$ , 则 $\varphi(g)$ 在 $V$ 的一个基下的矩阵为 $$
+\varPhi (g) = \left( \begin{array}{c c c c} \lambda_ {g} & & & 0 \\ & \lambda_ {g} & & \\ & & \ddots & \\ 0 & & & \lambda_ {g} \end{array} \right), \quad \forall g \in G.
+$$这表明 $\varphi$ 可约, 矛盾. 因此 $\dim V = 1$ . 于是我们证明了下述定理. 
+
+定理 1 Abel 群的有限维不可约复表示都是 1 次的. 
+
+定理 2 对于含有本原 m 次单位根的域 K 也成立, 其中 m 是群 G 的指数. 
+
+命题 1 设 $(\varphi, V)$ 是群 G 的一个 K-表示, 群 H 到群 G 有一个同态 T, 则 $\varphi T$ 是 H 的一个 K-表示. 
+
+(1) 若 $\varphi T$ 不可约, 则 $\varphi$ 不可约; 
+
+(2) 若 $\varphi$ 不可约, 且 $T$ 是满射, 则 $\varphi T$ 不可约. 
+
+命题 2 设 N 是群 G 的正规子群, 则 $\Omega_{G/N}$ 到 $\Omega_{G}$ 有一个双射 $\sigma: \overline{\varphi} \mapsto \varphi$ , 其中 $\varphi$ 是 $\overline{\varphi}$ 的提升; 并且 $\varphi$ 不可约当且仅当 $\overline{\varphi}$ 不可约. ☐ 
+
+命题3 群 $G$ 的所有1次 $K$ -表示组成的集合与商群 $G / G'$ 的所有1次 $K$ -表示组成的集合之间存在一个一一对应; 使得 $G / N$ 的所有1次 $K$ -表示经过提升便得 到 G 的所有 1 次 K-表示. 
+
+命题4 设 $(\varphi, V)$ 是群 $G$ 的一个 $K$ -表示, $\sigma$ 是 $G$ 的一个自同构, 则 $\varphi^{\sigma} = \varphi \sigma$ 是 $G$ 的一个 $K$ -表示, 并且 $\varphi^{\sigma}$ 不可约当且仅当 $\varphi$ 不可约. 
+
+\subsection{有限群的不可约表示}
+
+设 $G$ 是有限群, $K$ 是一个域. 群 $G$ 在域 $K$ 上的一个线性表示 $(\varphi, V)$ 是由表示空间 $V$ 和 $G$ 到 $\operatorname{GL}(V)$ 的群同态 $\varphi$ 组成的. 为了研究 $G$ 的所有不可约 $K$ -表示储藏在哪里, 应当寻找含有群 $G$ 的信息最多的表示空间. 这个表示空间自然是 $G$ 的正则表示 $\rho$ 的表示空间 $K[G]$ : $$
+K [ G ] = \left\{\sum_ {g \in G} a _ {g} g \mid a _ {g} \in K \right\}.
+$$$K[G]$ 作为域 $K$ 上线性空间的一个基是 $G$ 的全部元素, 从而 $\dim_K K[G] = |G|$ . 还可以在 $K[G]$ 中规定乘法运算:$$
+\left(\sum_ {g \in G} a _ {g} g\right) \left(\sum_ {h \in G} b _ {h} h\right) := \sum_ {g \in G} \sum_ {h \in G} \left(a _ {g} b _ {h}\right) (g h) = \sum_ {t \in G} \left(\sum_ {g \in G} a _ {g} b _ {g ^ {- 1} t}\right) t.
+$$
+
+$K[x]$ , $M_{n}(K)$ , $\operatorname{Hom}_{K}(V, V)$ 也都是域 $K$ 上的代数. 称 $K[x]$ 是域 $K$ 上的一元多项式代数. 称 $M_{n}(K)$ 是域 $K$ 上的 $n$ 阶全矩阵代数; 称 $\operatorname{Hom}_{K}(V, V)$ 是域 $K$ 上线性空间 $V$ 上的线性变换代数. 
+
+定义 3 设 A 是域 K 上的一个代数, V 是域 K 上的一个线性空间. A 到 V 上的所有线性变换组成的代数 $\mathrm{Hom}_{K}(V,V)$ 的一个代数同态 T 称为代数 A 在域 K 上的一个线性表示, V 称为表示空间. 当 V 是有限维时, 把 V 的维数称为表示 T 的次数 (或维数), 记作 $\deg T$ . 
+
+定义 4 域 K 上的代数 A 的两个 K-表示 $(T, V)$ 与 $(T', V')$ 称为是等价的, 如果存在线性空间 V 到 $V'$ 的一个同构 $\sigma$ , 使得$$
+T ^ {\prime} (a) \sigma = \sigma T (a), \quad \forall a \in A. 
+$$
+
+命题 1 域 K 上代数 A 的完全可约左模 V 的子模也是完全可约的. 
+
+命题 2 设 A 是域 K 上的一个代数, 则有限维完全可约左 A-模一定可以分解成有限多个不可约子模的直和. 
+
+命题3 群 $G$ 的 $K$ -表示 $(\varphi, V)$ 与 $(\psi, W)$ 等价当且仅当左 $K[G]$ -模 $V$ 与 $W$ 模同构. 
+
+推论1 设 $e$ 是环 $A$ 的幂等元且 $e \neq 1$ , 则 $A$ 的左理想 $Ae$ 是不可分解的当且仅当 $e$ 是本原的. 
+
+命题 2 如果环 A 能分解成有限多个非零双边理想 $I_{1}, I_{2}, \cdots, I_{n}$ 的直和, 即$$
+A = I _ {1} \oplus I _ {2} \oplus \dots \oplus I _ {n}, 
+$$
+
+推论 2 设 e 是环 A 的中心幂等元且 $e \neq 1$ ，则非零双边理想 Ae 是不可分解的当且仅当 e 是本原的. 
+
+命题 3 环 A 的两个本原的中心幂等元或者相等, 或者正交. 
+
+推论 3 如果环 A 的单位元 1 能够表示成两两不等的本原中心幂等元 $e_{1}, e_{2}, \cdots, e_{n}$ 的和, 那么 $e_{1}, e_{2}, \cdots, e_{n}$ 是 A 的全部本原中心幂等元. 
+
+定理 1 设 A 是域 K 上有限维代数, 如果 A 是半单的, 那么左正则 A-模 A 可以分解成有限多个不可约子模的直和:$$
+A = L _ {1} \oplus L _ {2} \oplus \dots \oplus L _ {n}; 
+$$ 从而 A 的单位元 1 可以分解成 A 的一组两两正交的本原幂等元之和: $$
+1 = e _ {1} + e _ {2} + \dots + e _ {n}, \quad e _ {i} \in L _ {i}, \quad i = 1, 2, \dots , n, 
+$$   
+
+定理2 若域 $K$ 的特征不能整除有限群 $G$ 的阶, 则 $G$ 的每一个不可约 $K$ -表示等价于 $G$ 的正则表示 $\rho$ 的直和分解式中的某一个不可约子表示, 从而有限群 $G$ 的每一个不可约 $K$ -表示都是有限维的. 
+
+
+定理3 设 $A$ 是域 $K$ 上有限维代数, 则 $A$ 是半单的充分必要条件为左正则 $A$ -模 $A$ 是完全可约的. 
+
+定理 1 (Jordan-Hölder) 如果环 R 上的左模 M 有合成列, 那么 M 的任意两个合成列是等价的. 
+
+定理 2 如果 A 是有限维半单代数, 那么左正则 A-模 A 到不可约子模的任意两种直和分解式中不可约子模的个数相同, 并且这两种直和分解式中的不可约子模能用某种方式配对, 使得对应的不可约子模是同构的. □ 
+
+引理 1 设 A 是域 K 上有限维半单代数, 则环 A 的每一个非零左理想由一个幂等元生成. 
+
+引理 2 设 A 是域 K 上有限维半单代数, L 和 $L'$ 是 A 的两个极小左理想. 
+
+(1) 若 $L \cong L'$ , 则 $LL' = L'$ ; 
+
+(2) 若 $L \not\cong L'$ , 则 $LL' = \{0\}$ . 
+
+推论 1 定理 3 中的 $A_{i}$ 是单环, 它的单位元是 A 的本原中心幂等元 $e_{i}, i = 1, 2, \cdots, s$ . 
+
+引理 1 (Schur) 设 V, W 是环 R 上的不可约左模, 则 
+
+(1) 当 $V \not\cong W$ 时, $\operatorname{Hom}_R(V, W) = \{0\}$ ; 
+
+(2) $\operatorname{Hom}_R(V, V)$ 是除环. 
+
+定理 1 (Wedderburn) 设 B 是域 K 上有限维单代数, I 是 B 的极小左理想, 令 $D = \operatorname{Hom}_{B}(I, I)$ , 则 
+
+(1) $D$ 是除环, $I$ 是除环 $D$ 上的有限维右线性空间, $D$ 是域 $K$ 上有限维线性空间, 它们的维数之间有如下关系: $$
+\dim_ {K} I = (\dim_ {K} D) (\dim_ {D} I); 
+$$
+
+(2) 有域 K 上的代数同构: $$
+B \cong \operatorname{Hom} _ {D} (I, I) \cong M _ {n} (D), 
+$$其中 $n = \dim_{D} I$ . 
+
+定理 2 设 D 是除环, 则单环 $M_{n}(D)$ 有到它的彼此同构的极小左理想的直和分解: $$
+M _ {n} (D) = M _ {n} (D) E _ {1 1} \oplus M _ {n} (D) E _ {2 2} \oplus \dots \oplus M _ {n} (D) E _ {n n}, 
+$$其中极小左理想的个数等于矩阵的阶数 n. 
+
+推论 1 设 B 是域 K 上的有限维单代数, I 是 B 的一个极小左理想, 令 $D = \operatorname{Hom}_{B}(I, I)$ , 则 B 有到它的彼此同构的极小左理想的直和分解, 其中极小左理想的个数等于 $\dim_{D} I$ . 
+
+推论 2 设 A 是域 K 上的有限维半单代数, A 到它的极小左理想的一个直和 
+分解式为$$
+A = L _ {1 1} \oplus \dots \oplus L _ {1 m _ {1}} \oplus \dots \oplus L _ {s 1} \oplus \dots \oplus L _ {s m _ {s}}, 
+$$ 
+
+引理 2 (Schnr) 设 A 是代数闭域 K 上的代数, V 是有限维不可约左 A-模. 令 $D = \operatorname{Hom}_{A}(V, V)$ , 则 $$
+D = K 1 _ {V} \cong K. 
+$$
+于是 $D = \operatorname{Hom}_{A}(V, V)$ 是一个域. 
+
+定理1 有限群 $G$ 在特征不能整除 $|G|$ 的域 $K$ 上所有不等价的不可约表示的个数 $s$ 不超过 $G$ 的共轭类个数 $r$ . 
+
+定理2 有限群 $G$ 在特征不能整除 $|G|$ 的代数闭域 $K$ 上的所有不等价的不可约表示的个数等于 $G$ 的共轭类的个数, 并且 $K[G]$ 的全部两两不等的本原中心幂等元是 $\mathrm{Z}(K[G])$ 的一个基. 
+
+定理 3 设 $\varphi_{1}, \varphi_{2}, \cdots, \varphi_{s}$ 是有限群 G 在特征不能整除 $|G|$ 的代数闭域 K 上的所有不等价的不可约表示，则 
+
+$$
+| G | = \sum_ {i = 1} ^ {s} (\deg \varphi_ {i}) ^ {2}. 
+$$
+
+\subsection{特征标}
+
+定义 1 设 $(\varphi, V)$ 是群 G 在域 K 上的一个线性表示, 在 G 上定义一个函数 $\chi_{\varphi}$ 如下: $$
+\chi_ {\varphi} (g) := \operatorname{tr} (\varphi (g)), \quad \forall g \in G, 
+$$称 $\chi_{\varphi}$ 是 G 的表示 $\varphi$ 提供的特征标 (character). 
+
+命题 1 设 $\varphi$ 是群 G 的 K-表示, 则 $\chi_{\varphi}(1)=(\deg\varphi)1$ . 
+
+命题 2 设 $\chi$ 是群 G 的 K-表示 $\varphi$ 提供的特征标, 则对于任给 $a \in G$ , 有$$
+\chi (g a g ^ {- 1}) = \chi (a), \quad \forall g \in G, 
+$$
+
+定义 2 群 G 上的 K-值函数 f 如果对于任给 $a \in G$ ，有$$
+f (g a g ^ {- 1}) = f (a), \quad \forall g \in G,
+$$那么称 $f$ 是 $G$ 上的一个类函数. 
+
+命题 3 设 $(\varphi, V)$ 和 $(\psi, W)$ 都是群 G 的 K-表示, 如果 $\varphi \approx \psi$ , 那么 $\chi_{\varphi} = \chi_{\psi}$ . 
+
+命题 4 设 $(\varphi, V)$ 是群 G 的 K-表示, 若 $\varphi = \varphi_{U} \oplus \varphi_{W}$ , 则 $\chi_{\varphi} = \chi_{\varphi_{U}} + \chi_{\varphi_{W}}$ . 
+
+命题 5 设 $(\varphi_{1}, V_{1})$ 和 $(\varphi_{2}, V_{2})$ 是群 G 的两个 K-表示, 则   $$
+\chi_ {\varphi_ {1} \dot {+} \varphi_ {2}} = \chi_ {\varphi_ {1}} + \chi_ {\varphi_ {2}}.
+$$
+
+命题6 设有限群 $G$ 的指数为 $m, G$ 的任一复表示 $\varphi$ 提供的特征标记作 $\chi$ , 则 $\chi(g)$ 等于 $m$ 次单位根的和, $\forall g \in G$ . 
+
+命题 7 设 $\chi$ 是有限群 G 的复表示 $\varphi$ 提供的特征标, 则$$
+\chi (g ^ {- 1}) = \overline {{{{\chi (g)}}}}, \quad \forall g \in G.
+$$
+
+命题8 设有限群 $G$ 的指数为 $m, \chi$ 是 $G$ 的 $n$ 次复表示 $(\varphi, V)$ 提供的特征标，则对于任意 $g \in G$ ，有 $|\chi(g)| \leqslant \chi(1)$ ，并且等号成立当且仅当 $\varphi(g) = c1_V$ ，其中 $c$ 是 $m$ 次单位根. 
+
+命题9 设 $\chi$ 是有限群 $G$ 的复表示 $(\varphi, V)$ 提供的特征标, 则 $\chi(g) = \chi(1)$ 当且仅当 $\varphi(g) = 1_V$ .
+
+命题 10 设 G 是群, 如果左 K[G]-模 V 与 W 模同构, 那么它们提供的特征标相等. □ 类似于命题 4 及其推广, 容易证明有下述命题.  
+
+命题 11 设 G 是群, 如果左 $K[G]$ -模 M 是它的子模 $M_{1}, M_{2}, \cdots, M_{s}$ 的直和, 那么 M 提供的特征标等于 $M_{i} (1 \leqslant i \leqslant s)$ 提供的特征标之和.  
+
+引理 1 设 G 是有限群, 域 K 的特征不能整除 $|G|$ , $e_{1}$ , $e_{2}$ , $\cdots$ , $e_{s}$ 是 K[G] 的全部本原中心幂等元, $\varphi_{1}$ , $\varphi_{2}$ , $\cdots$ , $\varphi_{s}$ 是 G 的全部不等价的不可约 K-表示, $\varphi_{i}$ 提供的特征标为 $\chi_{i}, \varphi_{i}$ 在 G 的正则表示 $\rho$ 到不可约子表示的直和分解式中的重数为 $n_{i}, i = 1, 2, \cdots, s; \rho$ 提供的特征标为 $\chi. \chi_{i} (i = 1, 2, \cdots, s), \chi$ “线性地” 扩充成群代数 K[G] 的特征标分别为 $\chi_{i}^{*} (i = 1, 2, \cdots, s), \chi^{*}$ , 则 $$
+\chi_ {j} ^ {*} (g e _ {i}) = \delta_ {i j} \chi_ {i} (g), \quad \forall g \in G, 
+$$
+
+$$
+e _ {i} = \frac {n _ {i}}{\chi (1)} \sum_ {g \in G} \chi_ {i} (g ^ {- 1}) g. 
+$$
+
+定理 1 (第一正交关系) 设 G 是有限群, $\varphi_{1}, \varphi_{2}, \cdots, \varphi_{s}$ 是 G 的全部不等价的不可约复表示, $\varphi_{i}$ 提供的特征称为 $\chi_{i}, i = 1, 2, \cdots, s$ , 则 $$
+\frac {1}{| G |} \sum_ {g \in G} \chi_ {i} (g) \overline {{\chi_ {j} (g)}} = \delta_ {i j}. 
+$$
+
+定理 2 把有限群 G 上的复值类函数空间 $Cf_{\mathbb{C}}(G)$ 的结构完全搞清楚了. 这使有关 G 的复特征标的问题可以利用 $\chi_{1}, \chi_{2}, \cdots, \chi_{s}$ 是 $Cf_{\mathbb{C}}(G)$ 的一个标准正交基获得统一的解决方法. 
+
+命题 1 设 $\varphi_{1},\varphi_{2},\cdots,\varphi_{s}$ 是有限群 G 的所有不等价的不可约复表示, 它们提供的特征标分别为 $\chi_{1},\chi_{2},\cdots,\chi_{s}$ , 则对于 G 的任一复表示 $\varphi$ , 不可约表示 $\varphi_{i}$ 在 $\varphi$ 中的重数 (即 $\varphi$ 到不可约子表示的直和分解式中与 $\varphi_{i}$ 等价的子表示的个数) 等于 $(\chi_{\varphi},\chi_{i})$ . 
+
+推论 1 设 $\varphi$ 和 $\psi$ 是有限群 G 的两个复表示, 则 $\varphi$ 与 $\psi$ 等价当且仅当 $\chi_{\varphi} = \chi_{\psi}$ . 
+
+定理 3 设 $\varphi$ 是有限群 G 的复表示, 则 $\varphi$ 不可约当且仅当 $(\chi_{\varphi}, \chi_{\varphi}) = 1$ . ☐ 
+
+定理 4 (第二正交关系) 设 $\chi_{1}, \chi_{2}, \cdots, \chi_{s}$ 是有限群 G 的所有不相等的不可约复特征标, 其中 $\chi_{1}$ 是主特征标; $g_{i}$ 是 G 的共轭类 $C_{i}$ 的代表元素, $i = 1, 2, \cdots, s$ , 其中 $g_{1}$ 是 G 的单位元, 则$$
+\frac {1}{| G |} \sum_ {l = 1} ^ {s} | C _ {j} | \chi_ {l} (g _ {j}) \overline {{\chi_ {l} (g _ {i})}} = \delta_ {i j}. 
+$$ 
+
+定理5（反演公式）设 $G$ 是有限群， $G$ 的单位元记作1. 设 $A = \sum_{g \in G} a_g g \in \mathbb{C}[G]$ ，则 $$
+a _ {g} = \frac {1}{| G |} \sum_ {\chi \in \operatorname{Irr} (G)} \chi (A g ^ {- 1}) \chi (1), \quad \forall g \in G. 
+$$
+
+推论 2 (Abel 群的反演公式) 设 G 是有限 Abel 群, $A = \sum_{g \in G} a_g g \in C[G]$ , 则 $$
+a _ {g} = \frac {1}{| G |} \sum_ {\chi \in \widehat {G}} \chi (A) \overline {{\chi (g)}}, \quad \forall g \in G. 
+$$
+
+从而如果 $A, B \in \mathbb{C}[G]$ 使得对一切 $\chi \in \widehat{G}$ 有 $\chi(A) = \chi(B)$ , 那么 $A = B$ . 
+
+命题 3 设群 G 在集合 $\Omega = \{x_{1}, x_{2}, \cdots, x_{n}\}$ 上有一个作用, 由此作用得到的 G 在域 K 上的 n 次置换表示记作 $\varphi$ , 则 $$
+\chi_ {\varphi} (g) = | F (g) | \cdot 1, \quad \forall g \in G, 
+$$
+
+推论 4 设有限群 G 在有限集合 $\Omega$ 上有一个作用, 由此得到的在复数域上的置换表示记作 $\varphi$ , 则 $\Omega$ 被划分成的轨道条数 r 等于 $(\chi_{\varphi}, \chi_{0})$ , 其中 $\chi_{0}$ 是 G 的主特征标, 从而 r 等于 G 的主表示 $\varphi_{0}$ 在 $\varphi$ 中的重数. 
+
+定理7 如果有限群 $G$ 在复数域上有一个 $n$ 次双传递置换表示 $\varphi$ , 那么 $\varphi$ 等价于 $G$ 的主表示 $\varphi_0$ 与 $G$ 的一个 $n - 1$ 次不可约表示 $\psi$ 的直和, 并且 $$
+\chi_ {\psi} (g) = | F (g) | - 1, \quad \forall g \in G. 
+$$
+
+推论 5 当 n > 3 时, 交错群 $A_{n}$ 有一个 n - 1 次不可约复表示 $\psi$ , 并且 $$
+\chi_ {\psi} (g) = | F (g) | - 1, \quad \forall g \in A _ {n}. 
+$$
+
+命题1 复数 $\alpha$ 是一个代数整数当且仅当 $\mathbb{Z}[\alpha]$ 是一个有限生成的 $\mathbb{Z}$ -模. 
+
+命题 2 所有代数整数组成的集合 $\Omega$ 是 C 的一个子环. 
+
+命题 3 如果 $\alpha$ 既是代数整数, 又是有理数, 那么 $\alpha$ 是有理整数. 
+
+命题 4 设 G 是有限群, 对于 $\chi_{i} \in \operatorname{Irr}(G)$ , 令$$
+\omega_ {i} (A) := \frac {\chi_ {i} (A)}{\chi_ {i} (1)}, \quad \forall A \in \mathbb {C} [ G ],
+$$
+则 $$
+A = \sum_ {j = 1} ^ {s} \omega_ {j} (A) e _ {j}, \quad \forall A \in \mathrm{Z} (\mathbb {C} [ G ]), 
+$$其中 $e_{1}, e_{2}, \cdots, e_{s}$ 是 C[G] 的全部本原中心幂等元; 并且$$
+\omega_ {i} (A B) = \omega_ {i} (A) \omega_ {i} (B), \quad \forall A \in \mathrm{Z} (\mathbb {C} [ G ]), \quad B \in \mathbb {C} [ G ]. 
+$$ 
+
+命题 5 设 G 是有限群, 对于 $\chi_{i} \in \operatorname{Irr}(G)$ , 令$$
+\omega_ {i} (A) = \frac {\chi_ {i} (A)}{\chi_ {i} (1)}, \quad \forall A \in \mathbb {C} [ G ],
+$$ 则对于 G 的任一共轭类 $C_{l}$ 的类和 $c_{l}, \omega_{i}(c_{l})$ 是一个代数整数. 
+
+定理 1 有限群 G 的任一不可约复表示的次数都能整除 G 的阶. 
+
+定理 1 设 M 是一个自由左 R-模, $\alpha_{1}, \alpha_{2}, \cdots, \alpha_{n}$ 是 M 的一个基. 设 $M'$ 是任一左 R-模, 任取 $M'$ 的 n 个元素 $\beta_{1}, \beta_{2}, \cdots, \beta_{n}$ , 令 $$
+\begin{array}{c}\sigma : M \rightarrow M ^ {\prime}\\x = \sum_ {i = 1} ^ {n} a _ {i} \alpha_ {i} \mapsto \sum_ {i = 1} ^ {n} a _ {i} \beta_ {i},\end{array}
+$$则 $\sigma$ 是 M 到 $M'$ 的一个模同态. 
+
+命题 1 设 M 是一个以 $\alpha_{1}, \alpha_{2}, \cdots, \alpha_{n}$ 为基的自由左 R-模, 则 $M \cong R^{n}$ . 
+
+定理 2 设 R 为一个有单位元 $1(\neq0)$ 的交换环, 则 R 至少有一个极大理想. 
+
+命题 2 设 R 是一个有单位元 $1(\neq0)$ 的环, I 是 R 的一个理想; M 是一个自由左 R-模, $\alpha_{1}, \alpha_{2}, \cdots, \alpha_{n}$ 是 M 的一个基. 令 $$
+N = \left\{a _ {1} \alpha_ {1} + a _ {2} \alpha_ {2} + \dots + a _ {n} \alpha_ {n} \mid a _ {i} \in I, i = 1, 2, \dots , n \right\}, 
+$$则 $N$ 是 $M$ 的一个子模. 令 $$
+(r + I) (x + N) := r x + N, 
+$$
+
+定理3 设 $R$ 为一个有单位元 $1(\neq 0)$ 的交换环, $M$ 是有有限基的自由 $R$ -模, 则 $M$ 的任意两个基所含元素的个数相等. 
+
+定理 4 设 R 为一个主理想整环, M 是一个秩为 n 的自由 R-模, 则 M 的任一子模 N 也是自由 R-模, 且 N 的秩不超过 n. 
+
+命题 1 设有限群 G 有一个 p 次不可约复表示, 其中 p 是素数, 则 G 有 p 阶元. 
+
+命题 2 设 G 是有限群, $\varphi_{1}, \varphi_{2}, \cdots, \varphi_{s}$ 是 G 的所有不等价的不可约复表示. 若 N 是 G 的正规子群, 则 N 等于若干个 $\operatorname{Ker}\varphi_{i}$ 的交. 
+
+命题 3 设 G 是有限群, $\varphi_{1}, \varphi_{2}, \cdots, \varphi_{s}$ 是 G 的所有不等价的不可约复表示, 其中 $\varphi_{1}$ 是 G 的主表示, 则 G 是单群当且仅当 $\operatorname{Ker} \varphi_{i} = \{1\}, i = 2, 3, \cdots, s.$ 
+
+\subsection{无限维线性表示}
+
+定义 9 拓扑空间 X 称为紧致的 (或紧的), 如果 X 的每个开覆盖有一个有限的子覆盖. 
+
+显然, 拓扑空间 X 的子集 C 是紧致的当且仅当子空间 C 是紧致的. 
+
+命题 3 如果 C 是拓扑空间 X 的一个紧致子集, 那么 C 的每个闭子集也是紧致的. 
+
+命题 4 如果 X 是一个 Hausdorff 空间, 那么 X 的每一个紧致子集是闭集. 
+
+命题5 设 $X$ 和 $Y$ 都是拓扑空间, 且 $X$ 是紧致的. 如果 $f: X \to Y$ 是连续映射, 那么 $f(X)$ 是紧致的. 
+
+推论 5 设 X 是紧致空间, 如果 $f: X \to R$ 是连续函数, 那么 f 在 X 上取到最大值和最小值. 
+
+推论 6 设 X 是紧致拓扑空间, Y 是 Hausdorff 空间, 如果 $f: X \rightarrow Y$ 是一一对应的连续映射, 那么 $f^{-1}$ 是连续映射, 从而 f 是一个同胚映射. 
+
+推论 6 设 X 是紧致拓扑空间, Y 是 Hausdorff 空间, 如果 $f: X \rightarrow Y$ 是一一对应的连续映射, 那么 $f^{-1}$ 是连续映射, 从而 f 是一个同胚映射. 
+
+定义 1 如果群 G 配备了一个拓扑, 使得 G 的乘法运算 $\mu: G \times G \to G$ 和求逆运算 $\nu: G \to G$ 都是连续映射, 那么称 G 是一个拓扑群. 
+
+命题 1 设 H 是拓扑群 G 的某一子集, 且 H 是群 G 的子群, 在 H 上配备 G 的拓扑的诱导拓扑, 则 H 成为拓扑群. 特别地, 拓扑群 G 的子群 H 也是拓扑群. 
+
+命题 2 设 $G_{1}$ 和 $G_{2}$ 都是拓扑群, 群 $G_{1}$ 与 $G_{2}$ 的直积 $G_{1} \times G_{2}$ 配备乘积拓扑, 则 $G_{1} \times G_{2}$ 成为一个拓扑群, 称它是拓扑群 $G_{1}$ 与 $G_{2}$ 的直积. 
+
+例 8 (C,+ ) 配备 $R^{2}$ 的距离拓扑, 成为一个拓扑群. ( $C^{*},\cdot$ ), 运算为复数的乘法, 配备 $R^{2}$ 的距离拓扑成为一个拓扑群. 
+
+例 10 设 V 是复数域上的 n 维线性空间, 则 GL(V) 是拓扑群. 
+
+例 11 环面可看成是两个单位圆 (1 维球面) 的乘积空间, 取乘积拓扑与群的直积结构, 从而环面成为一个拓扑群. 
+
+例 12 3 维球面 $S^{3}$ 可看成是四元数空间 H 内的单位球面 (H 作为拓扑空间是 $R^{4}$ ，且具有四元数的代数结构)，群运算是四元数的乘法。可以证明乘法运算和求逆运算都是连续映射，从而 $S^{3}$ 是拓扑群。 
+
+定义 3 设 G 和 $\widetilde{G}$ 都是拓扑群, 群同态 $f: G \to \widetilde{G}$ 如果是拓扑空间 G 到 $\widetilde{G}$ 的连续映射, 那么称 f 是拓扑群 G 到拓扑群 $\widetilde{G}$ 的同态. 拓扑群 G 到 $\widetilde{G}$ 的同态 f 如果还是开映射, 那么称 f 是开同态. 如果群同构 $f: G \to \widetilde{G}$ 是拓扑空间 G 到 $\widetilde{G}$ 的同胚映射, 那么称 f 是拓扑群 G 到 $\widetilde{G}$ 的同构映射, 此时称拓扑群 G 与拓扑群 $\widetilde{G}$ 同构. 
+
+例如, 设 $V$ 是实数域上的 $n$ 维线性空间, 则拓扑群 $\operatorname{GL}(V)$ 与 $\operatorname{GL}_n(\mathbb{R})$ 同构. 
+
+定理 1 设 G 和 $\tilde{G}$ 都是拓扑群, f 是群 G 到群 $\tilde{G}$ 的一个同态. 
+
+(1) 如果对于 $\widetilde{G}$ 中单位元 $\widetilde{e}$ 的每一个开邻域 $\widetilde{U}$ , 存在有 $G$ 的单位元 $e$ 的一个开邻域 $U$ , 使得 $f(U) \subseteq \widetilde{U}$ , 那么 $f$ 是 $G$ 到 $\widetilde{G}$ 的连续映射, 从而 $f$ 是拓扑群 $G$ 到拓扑群 $\widetilde{G}$ 的一个同态; 
+
+(2) 如果对于 $G$ 的单位元 $e$ 的每一个开邻域 $V$ , 存在有 $\widetilde{G}$ 的单位元 $\widetilde{e}$ 的开邻域 $\widetilde{V}$ , 使得 $f(V) \supseteq \widetilde{V}$ , 那么 $f$ 是 $G$ 到 $\widetilde{G}$ 的开映射. 
+
+命题 3 设 X 和 Z 都是拓扑空间, P 是 X 的黏合空间, f 是 P 到 Z 的映射, 即 $X \xrightarrow{\pi} P \xrightarrow{f} Z$ . 
+
+(1) 若 $f$ 是连续映射, 则 $f\pi$ 是 $X$ 到 $Z$ 的连续映射; 
+
+(2) 若 $f\pi$ 是连续映射, 且 $f$ 是满射, 则 $f$ 是连续映射. 
+
+定理 2 设 G 为拓扑群, H 为拓扑群 G 的子群, 对于 H 在 G 中的右商集 G/H 配备黏合拓扑, 则 G/H 成为一个拓扑空间, 自然映射 $\pi: x \mapsto Hx$ 是拓扑空间 G 到拓扑空间 G/H 的连续开映射. 
+
+定理 3 设 G 为拓扑群, N 为拓扑群 G 的正规子群, 在商群 G/N 中配备黏合拓扑, 则 G/N 为拓扑群. 
+
+定理4 设 $G$ 与 $\widetilde{G}$ 都是拓扑群, $f$ 是拓扑群 $G$ 到拓扑群 $\widetilde{G}$ 的满的开同态, 同态 $f$ 的核为 $N$ , 则 $N$ 为拓扑群 $G$ 的正规子群, 且拓扑群 $\widetilde{G}$ 与拓扑群 $G / N$ 同构. 
+
+定义 4 拓扑群 G 称为紧群, 如果拓扑空间 G 是紧致的. 
+
+例 13 配备离散拓扑的任意有限群是紧群. 理由如下: 由于有限群 G 配备的是离散拓扑, 因此 G 的每个子集都是开集. 由于 G 的元素只有有限多个, 因此 G 的任一开覆盖必定有一个有限子覆盖. 从而拓扑空间 G 是紧致的. 
+
+例 14 紧群 G 的任一子群是紧群. 理由如下: 根据定义 2, 拓扑群 G 的子群是闭子集. 根据本章 §2 的命题 3 得, 紧群 G 的任一闭子集是紧致的, 因此紧群 G 的任一子群是紧群. 
+
+例 15 正交群 $O(n)$ 是紧群. 理由如下: 把 $M_{n}(\mathbb{R})$ 等同于 $R^{n^{2}}$ , 由于 $R^{n^{2}}$ 的子集是紧致的当且仅当它是有界闭集, 因此只要证 $O(n)$ 等同于 $R^{n^{2}}$ 的一个有界闭集. 设 $A = (a_{ij}) \in O(n)$ . 由于 $AA' = I$ , 因此 
+
+定义 1 设 V 是域 K 上的有限维线性空间, 拓扑群 G 到拓扑群 $\mathrm{GL}(V)$ 的任一同态 $\varphi$ 称为拓扑群 G 的一个线性表示 (简称为 G 的一个 K-表示), V 称为表示空间或者 G-空间, V 的维数称为表示 $\varphi$ 的次数. 
+
+定义 2 设 V 是域 K 上的无限维线性空间, 如果 V 上定义了一个拓扑成为拓扑空间, 并且 V 的加法运算和数量乘法运算都是连续映射, 那么称 V 是一个拓扑线性空间. 设 G 是一个拓扑群, 如果 $(\varphi, V)$ 是群 G 的一个线性表示, 并且 $G \times V$ 到 V 的一个映射: $(g, v) \longmapsto \varphi(g)v$ 是连续映射, 那么称 $(\varphi, V)$ 是拓扑群 G 的一个无限维线性表示. 
+
+定义3 拓扑群 $G$ 到拓扑群 $\mathrm{GL}_n(K)$ 的一个同态 $\Phi$ 称为拓扑群 $G$ 的一个 $n$ 次矩阵表示. 
+
+1. 抽象群 G 的每一个 K-表示是离散拓扑群 G 的 K-表示. 
+
+2. 设 $G = \mathrm{GL}_n(K), V = M_n(K), \varphi$ 定义如下: $$
+\varphi (A) X = (A ^ {- 1}) ^ {\prime} X A ^ {- 1}, \quad A \in \operatorname{GL} _ {n} (K), X \in M _ {n} (K).
+$$
+
+Schur 引理 设 $(\varphi, V)$ 和 $(\psi, W)$ 是群 G 的两个不可约 K-表示, 其中 K 是代数闭域. 设 $\sigma$ 是域 K 上有限维线性空间 V 到 W 的一个线性映射使得 $$
+\psi (g) \sigma = \sigma \varphi (g), \quad \forall g \in G,
+$$
+(i) 如果 $\varphi$ 和 $\psi$ 不等价, 则 $\sigma = 0$ ; 
+
+(ii) 如果 V = W 并且 $\varphi = \psi$ ，则 $\sigma = \lambda 1_{V}$ ，其中 $\lambda$ 是 K 中某个元素. 
+
+1. 有限群 G 上的不变积分由下面的公式定义 $$
+\int_ {G} f (x) \mathrm{d} x = \frac {1}{| G |} \sum_ {x \in G} f (x).
+$$
+
+2.1 维球面 $S^{1}$ 上的不变积分由下面的公式定义 $$
+\int_ {S ^ {1}} f (x) \mathrm{d} x = \frac {1}{2 \pi} \int_ {0} ^ {2 \pi} f (\mathrm{e} ^ {\mathrm{i} \theta}) \mathrm{d} \theta .
+$$
+
+3. 因为紧群 SU(2) 同构于 $S^{3}$ ，所在 SU(2) 上的不变积分可以定义成在 3 维球面上对于通常测度的积分乘以 $(2\pi^{2})^{-1}$ . 
+
+4. 设 $G$ 是紧群, $N$ 是 $G$ 的正规子群. 根据本章 §3 的第三部分的例 8 得, 商群 $G / N$ 也是紧群. $G / N$ 上的不变积分能够通过 $G$ 上的不变积分来定义 $$
+\int_ {G / N} f (y) \mathrm{d} y = \int_ {G} \widetilde {f} (x) \mathrm{d} x,
+$$
+
+定理 1 在每一个紧群 G 上可以建立不变积分, 而且只有一种方法建立不变积分. 
+
+引理 1 设 G 为紧群, f 是定义在 G 上的非常数的连续实值函数, 则在 G 中存在有限的元素组 A, 使得$$
+S (M (A, f)) <   S (f). 
+$$
+
+设 $G$ 为拓扑群, $M$ 为 $G$ 的某一子集. 定义在空间 $M$ 上的实值函数 $f$ 在点 $a \in M$ 处连续的充分必要条件是: 对于任给的正数 $\varepsilon$ , 存在 $G$ 的单位元的邻域 $V$ , 使得当 $x \in M, xa^{-1} \in V$ 时, 恒有 $|f(x) - f(a)| < \varepsilon$ . 
+
+命题 1 设 G 为拓扑群, M 为它的紧致子集, 那么定义在 M 上的连续函数 f 自动地是在上述两种意义下的一致连续函数. 
+
+定义3 设 $M$ 为拓扑群 $G$ 的某一子集. 设 $\Delta$ 为定义在 $M$ 上的实值函数的某一集合. 如果对于任一正数 $\varepsilon$ 存在有 $G$ 的单位元的邻域 $V$ , 使得当 $xy^{-1} \in V$ 并且 $x, y \in M$ 时, 对于 $\Delta$ 中每一函数 $f$ 恒有 $|f(x) - f(y)| < \varepsilon$ , 那么称 $\Delta$ 为一致连续的函数组. 显然在一致连续的函数组中的每一函数都是一致连续的. 如果对函数组 $\Delta$ 存在数 $m$ , 使得当 $x \in M, f \in \Delta$ 时, 恒有 $|f(x)| < m$ , 则称 $\Delta$ 为一致有界. 
+
+定义 4 设 $f_{n}(n=1,2,\cdots)$ 为定义在集合 M 上的实值函数序列, f 为定义在集合 M 上的实值函数. 如果对于每一正数 $\varepsilon$ 存在自然数 m, 使得当 n > m 时, $|f(x)-f_{n}(x)|<\varepsilon$ 对于任何 $x\in M$ 都成立, 那么称函数序列 $f_{n}$ 一致收敛于函数 f. 
+
+命题 2 设 M 为拓扑群 G 的紧致子集. 定义在 M 上的一致收敛的连续实值函数序列 $f_{1}, f_{2}, \cdots$ 一定是一致连续的, 而且是一致有界的. 
+
+命题3 设 $G$ 为拓扑群, $M$ 为 $G$ 的紧致子集. 设 $\Delta$ 为定义在集合 $M$ 上的一致有界与一致连续的函数组, 则在 $\Delta$ 的每一函数序列中总可以取出一致收敛的子序列. 
+
+定义 5 设 f 是定义在紧群 G 上的连续实值函数. 如果实数 p 具有下列性质: 对每一正数 $\varepsilon$ 存在 G 的有限元素组 A, 使得对任一 $x \in G$ , 有$$
+\left| M (A, f; x) - p \right| <   \varepsilon 
+$$  那么称这种数 p 为函数 f 的右平均数. 
+
+引理 2 每一个定义在紧群 G 上的连续实值函数都至少有一个右平均数. 
+
+引理3 对于定义在紧群 $G$ 上的连续实值函数 $f$ , 只存在一个右平均数, 并且也只存在一个左平均数, 而且这两个平均数相等. 这样所得的一个唯一的平均数称为函数 $f$ 的平均数, 记作 $M(f)$ . 
+
+引理 5 设 f 为定义在紧群 G 上的连续实值函数, a 为 G 中任一元素. 令 $f'(x) = f(xa)$ , $f''(x) = f(ax)$ , 那么$$
+M (f ^ {\prime}) = M (f), \quad M (f ^ {\prime \prime}) = M (f).
+$$
+
+引理6 设 $f$ 是定义在紧群 $G$ 上的连续实值函数, 而且是非负的与不恒等于零的, 则 $M(f) > 0$ . 
+
+推论 1 紧群 G 上的不变积分还满足$$
+\int_ {G} f (x ^ {- 1}) \mathrm{d} x = \int_ {G} f (x) \mathrm{d} x. 
+$$
+
+推论 2 紧群 G 上的不变积分还满足$$
+\left| \int_ {G} f (x) \mathrm{d} x \right| \leqslant \int_ {G} | f (x) | \mathrm{d} x. 
+$$
+
+引理7 设 $G$ 与 $H$ 是两个紧群, $f$ 为两个变量 $x \in G$ 与 $y \in H$ 的连续实值函数. 当 $y$ 固定时, $f$ 就是 $x$ 的连续函数, 于是有积分 $\int_{G} f(x, y) \mathrm{d}x = g(y)$ , 则 $g$ 是定义在 $H$ 上的一致连续函数. 
+
+定理 2 设 G 与 H 为两个紧群, P 为它们的直积, f 为两个变量 $x \in G$ 与$y \in H$ 的连续实值函数, $f(x, y) = f(z), z = (x, y) \in P$ , 则我们有 $$
+\int_ {H} \left[ \int_ {G} f (x, y) \mathrm{d} x \right] \mathrm{d} y = \int_ {G} \left[ \int_ {H} f (x, y) \mathrm{d} y \right] \mathrm{d} x = \int_ {P} f (z) \mathrm{d} z,
+$$
+
+定理 1 紧群 G 的每一个有限维实线性表示 $(\varphi, V)$ ，都存在 V 上的一个 G 不变内积，对于这个内积， $\varphi(g)$ 成为正交变换， $\forall g \in G$ ；从而 $(\varphi, V)$ 成为 G 的正交表示，于是 $(\varphi, V)$ 是完全可约的。 
+
+定理 2 紧群 G 的每一个有限维复线性表示 $(\varphi, V)$ ，都存在 V 上的一个 G 不变内积，对于这个内积， $\varphi(g)$ 成为酉变换， $\forall g \in G$ ；此时 $(\varphi, V)$ 称为 G 的酉表示，于是 $(\varphi, V)$ 是完全可约的。☐ 
+
+Schur 引理 设 $\Phi$ 和 $\Psi$ 分别是群 $G$ 的 $n$ 次和 $m$ 次不可约复矩阵表示. 设 $C = (c_{ij})$ 是复数域上 $m \times n$ 矩阵, 使得 
+$$
+\varPsi (g) C = C \varPhi (g), \quad \forall g \in G. 
+$$
+
+(i) 如果 $\Phi$ 与 $\Psi$ 不等价, 则 $C = 0$ ;     
+
+(ii) 如果 $\Phi = \Psi$ , 则 $C = \lambda I$ , 其中 $\lambda$ 是某个复数. 
+
+定理3 设 $\Phi$ 和 $\Psi$ 是紧群 $G$ 的 $n$ 次和 $m$ 次不可约复矩阵表示, 设 $\Phi(g) = (a_{ij}(g))$ , $\Psi(g) = (b_{ij}(g))$ , $\forall g \in G$ . 
+
+(i) 若 $\Phi$ 与 $\Psi$ 不等价, 则$$
+\int_ {G} b _ {i j} (g) a _ {l k} \left(g ^ {- 1}\right) \mathrm{d} g = 0, \quad 1 \leqslant i, j \leqslant m, 1 \leqslant k, l \leqslant n. 
+$$
+
+(ii) 若 $\Phi = \Psi$ ，则 $$
+\int_ {G} a _ {i j} (g) a _ {j i} \left(g ^ {- 1}\right) \mathrm{d} g = \frac {1}{n}, \quad 1 \leqslant i, j \leqslant n; 
+$$
+
+$$
+\int_ {G} a _ {i j} (g) a _ {l k} \left(g ^ {- 1}\right) \mathrm{d} g = 0, \quad i \neq k \text {或者} j \neq l. 
+$$
+
+推论 2 设 $\varphi$ 与 $\psi$ 是紧群 G 的不等价的有限维不可约实表示, 则
+
+$$
+\int_ {G} \chi_ {\psi} (g) \chi_ {\varphi} (g) \mathrm{d} g = 0.
+$$
+
+定理 3' 设 $\varphi$ 与 $\psi$ 分别是紧群 G 的 n 次和 m 次不可约复表示, 它们提供的酉矩阵表示分别记作 $\Phi$ 与 $\Psi$ . 设 $\Phi(g) = (a_{ij}(g))$ , $\Psi(g) = (b_{ij}(g))$ . 
+
+(i) 若 $\varphi$ 与 $\psi$ 不等价, 则$$
+\left(b _ {i j}, a _ {k l}\right) = 0, \quad 1 \leqslant i, j \leqslant m, 1 \leqslant k, l \leqslant n;
+$$   
+$$
+(\chi_ {\psi}, \chi_ {\varphi}) = 0.
+$$
+
+(ii) 若 $\varphi = \psi$ , 则$$
+(a _ {i j}, a _ {k l}) = \frac {1}{n} \delta_ {j l} \delta_ {i k}, \quad 1 \leqslant i, j, k, l \leqslant n;
+$$ 
+
+$$
+(\chi_ {\varphi}, \chi_ {\varphi}) = 1.
+$$
+
+命题 1 设 G 是紧群, $\varphi$ 是 G 的任一有限维复表示, $\varphi_{i}$ 是 G 的任一有限维不可约复表示, 则 $\varphi_{i}$ 在 $\varphi$ 中的重数等于 $(\chi_{\varphi}, \chi_{i})$ , 其中 $\chi_{i}$ 是 $\varphi_{i}$ 提供的特征标. 
+
+定理5 紧群 $G$ 的两个有限维复表示等价的充分必要条件是它们提供的特征标相同. 
+
+定理 6 紧群 G 的有限维复表示 $\varphi$ 不可约的充分必要条件是 $(\chi_{\varphi}, \chi_{\varphi}) = 1$ . 
+
+定理7 紧群 $G$ 的两个有限维实表示等价的充分必要条件是它们提供的特征标相同. 
+
+定义 1 设 G 是紧群, 复内积空间 $C(G, \mathbb{C})$ 的一个可数或有限的正交集 $f_{1}, f_{2}, \cdots$ 称为是完备的, 如果它们生成的线性子空间依照由内积所定义的拓扑 (因为有了内积, 就可定义距离, 从而 $C(G, \mathbb{C})$ 成为度量空间) 在 $C(G, \mathbb{C})$ 中是稠密的, 即 $C(G, \mathbb{C})$ 中的每个元素 f 可以表示成 Fourier 级数: 
+
+例 1 最简单的无限紧群的例子是 1 维球面 $S^{1}=\{z\in\mathbb{C}\mid|z|=1\}$ . 因为它是 Abel 群, 所以它的不可约复表示都是 1 次的. 显然, $\varphi_{n}:z\mapsto z^{n}$ 是 $S^{1}$ 的 1 次复表示, 其中 $n\in Z$ . 因此 $S^{1}$ 有无限多个不可约复表示. 函数 $\varphi_{n}(n=0,\pm1,\pm2,\cdots)$ 生成的线性子空间与由所有可以表示成 z 和 $\overline{z}$ 的多项式的函数组成的集合 W 一致 (注意利用 $\overline{z}=z^{-1}$ ). 由于 $S^{1}$ 是 $R^{2}$ 的一个紧致子集, 从而 $S^{1}$ 是 $R^{2}$ 的有界闭子集, 因此根据本节阅读材料的推论 2 得, W 在复内积空间 $C(S^{1},\mathbb{C})$ 中稠密. 这证明了 $\varphi_{n}(n=0,\pm1,\pm2,\cdots)$ 是 $C(S^{1},\mathbb{C})$ 的完备集. 又根据上一小节知, 它们是正交集. 于是利用 (12) 式可知, $\varphi_{n}(n=0,\pm1,\pm2,\cdots)$ 是 $S^{1}$ 的全部不可约复表示. 在本章 §7 的命题 4 也证明了 $\varphi_{n}(n=0,\pm1,\pm2,\cdots)$ 是 $S^{1}$ 的全部不可约复表示. 
+
+定理8 设 $G$ 是紧群, 则 $G$ 的所有彼此不等价的有限维不可约复表示的酉矩阵元素组成的集合 $\Delta$ 是复内积空间 $C(G, \mathbb{C})$ 的完备正交集. 而且任意一个这样的矩阵元素跟自己的内积等于 $\frac{1}{n}$ , 其中 $n$ 是对应的不可约表示的次数. 
+
+定理9 设 $G$ 是紧群, 则 $G$ 的所有彼此不等价的有限维不可约复表示特征标组成的集合 $\operatorname{Irr}(G, \mathbb{C})$ 是 $G$ 的连续类函数空间 (作为复内积空间 $C(G, \mathbb{C})$ 的子空间) 的完备正交规范集. 
+
+推论3 对于紧群 $G$ 的每一个非单位元 $a$ , 存在 $G$ 的一个有限维不可约复矩阵表示 $\Phi$ , 使得 $\Phi(a)$ 不是单位矩阵. 
+
+
+定理 10 设 G 为无限的紧群, 则 G 的所有彼此不等价的有限维不可约复表示组成的集合的基数等于拓扑空间 G 的权. 
+
+\section{代数数论}
+
+\subsection{数域论}
+
+交换环 R 的子集 S 称作乘性子集, 如果 S 中任两个元的积都在 S 中, 且 $1 \in S _ { \mathrm { : } }$ , 0 /∈ S. 利用乘性子集我们可以将商域的构造方法推广. 首先在集合 $R \times S$ 中定义一个 关系 ∼:$$
+(a, r) \sim (b, s) \Leftrightarrow \exists t \in S \text {使得} t (a s - b r) = 0.
+$$
+
+例 (1) 设 P 是 R 的素理想, 则 $S = R - P$ 是乘性子集. 记 $R _ { P } = S ^ { - 1 } R$ , 称它为 R 在 P 的局部化 (localization of R at P ). 
+
+(2) 设 R 为整环 (integral domain), 取 $S = R \backslash \{ 0 \}$ . 记 $S ^ { - 1 } R$ 为 Frac(R), 称它为 整环 R 的分式域 (field of fractions). 
+
+具有唯一极大理想的环称作局部环 (local ring). 易见 $R _ { P }$ 是局部环, 极大理想是 $P R _ { P }$ . 
+
+p 是素数, 整数环 Z 在素理想 $p \mathbb { Z }$ 的局部化记为 $\mathbb { Z } _ { ( p ) } . \ \mathbb { Z } _ { p }$ 是 p 进整数环. $\mathbb { Z } [ \textstyle { \frac { 1 } { p } } ] =$ $\begin{array} { r } { \{ \frac { a } { p ^ { n } } : a , n \in \mathbb { Z } \} . \ \mathbb { Z } / p \mathbb { Z } = \{ n + p \mathbb { Z } : n \in \mathbb { Z } \} } \end{array}$ . 
+
+设有域扩张 $E / F$ . 称 $\alpha \in E$ 为 F 上的代数元素, 如果存在 $0 \not = f ( X ) \in F [ X ]$ 使得 $f ( \alpha ) = 0$ . 以 $\Im ( \alpha )$ 记 $\{ f \in F [ X ] : f ( \alpha ) = 0 \}$ . 则有不可约首一多项式 $m _ { \alpha } ( X ) \in F [ X ]$ 使得理想 I(α) 是由 $m _ { \alpha } ( X )$ 生成的. 称 $m _ { \alpha } ( X )$ 为代数元素 α 在 F 上的最小多项式 (minimal polynomial).称域扩张 $E / F$ 为代数扩张 (algebraic extension), 如果 E 的每一个元素均是 F 上 的代数元素. 
+
+命题 0.1 有限扩张必为代数扩张. 
+
+引理 0.2 设 $E / F$ 为代数扩张, $\sigma : E  E$ 为 F-单态射. 则 σ 为 E 的自同构. 
+
+定理 0.3 (Dedekind) 从域 E 到域 K 各不相同的单态射 $\varphi _ { 1 } , \varphi _ { 2 } , \ldots , \varphi _ { n }$ 为 K 线性 无关, 即若有 $y _ { i } \in K$ 使得 $\textstyle \sum _ { i } y _ { i } \varphi _ { i } = 0$ , 则 $y _ { i } = 0 , \forall i$ . 
+
+引理 0.5 (态射扩张引理) 设有域 F, 代数闭域 L 和单态射 $\sigma : F  L$ . 考虑代数扩张 $F ( \alpha ) / F$ . 则   
+
+(1) σ 可扩张为单态射 $\tau : F ( \alpha )  L$ . 
+
+(2) 以 $S ( \sigma )$ 记集合 $\{ \tau : F ( \alpha ) \to L$ 为单态射 $: \tau | _ { F } = \sigma \}$ . 则 α 的最小多项式有 $| S ( \sigma ) |$ 个各不相同的根 (不计重数). 
+
+命题 0.6 设 $E / F$ 为代数扩张, L 为代数闭域, $\sigma : F  L$ 为单态射. 则 
+
+(1) σ 可扩张为单态射 $\tau : E  L$ . 
+
+(2) 若 E 为代数闭域, $L / \sigma F$ 为代数扩张, 单态射 $\tau : E  L$ 为 $\sigma$ 的扩张. 则 τ 为 同构. 
+
+推论 0.7 若 $E / F , E ^ { \prime } / F$ 为代数扩张, $E , E ^ { \prime }$ 为代数闭, 则 E 与 $E ^ { \prime }$ 在 F 上同构. 
+
+于是得知: 任一域 F 必有代数闭代数扩张 $F ^ { \mathrm { a l g } } / F .$ , 并且除同构外 $F ^ { \mathrm { a l g } }$ 是由 F 唯 一决定的. 称 $F ^ { \mathrm { a l g } }$ 为 F 的 代数闭包 (algebraic closure). 
+
+设 F 是域. 取代数闭包 $F ^ { \mathrm { a l g } }$ . 设有代数扩张 $E / F , E \subseteq F ^ { \mathrm { a l g } }$ . 如果所有的 F-单态 射 $\sigma : E \to F ^ { \mathrm { a l g } }$ 都是 E 的 F-自同构 (即 $\sigma ( E ) = E )$ , 则说 $E / F$ 是 正规扩张 (normal extension). 
+
+命题 0.9 设 $F \subseteq E \subseteq F ^ { \mathrm { a l g } }$ . 以下三个关于域扩张 $E / F$ 的条件是等价的. 
+
+(1) $E / F$ 是正规扩张. 
+
+(2) E 是一组 $F [ X ]$ 内的多项式的分裂域. 
+
+(3) 若 $f ( X ) \in F [ X ]$ 是 n 次不可约多项式, 并且有 $\alpha \in E$ 使得 $f ( \alpha ) = 0$ , 则 E 内有 $\alpha _ { 1 } , \ldots , \alpha _ { n }$ 使得 $f ( x ) = a ( x - \alpha _ { 1 } ) \dots ( x - \alpha _ { n } ) , \ a \in F$ . 
+
+命题 0.10 设有域扩张 $E \supseteq K \supseteq F$ . 则 
+
+(1) $\langle E : F \rangle _ { s } = \langle E : K \rangle _ { s } \langle K : F \rangle _ { s }$ . 
+
+(2) 若 $[ E : F ] < \infty$ , 则 $\langle E : F \rangle _ { s } < [ E : F ]$ . 
+
+(3) 若 $[ E : F ] < \infty$ , 则 $\langle E : F \rangle _ { s } = [ E : F ] \Leftrightarrow \langle E : K \rangle _ { s } = [ E : K ]$ 和 $\langle K : F \rangle _ { s } = [ K : F ]$ 
+
+命题 0.11 设有域扩张 $E / F , \alpha \in E$ 是 F 上的代数元. 则 
+
+(1) α 在 F 上的最小多项式没有重根 ⇔ 
+
+(2) $\langle F ( \alpha ) : F \rangle _ { s } = [ F ( \alpha ) : F ] \mathrm { . }$ . 
+
+称满足以上条件的元素 α 为 F 上的可分元素. 
+
+定理 0.12 设 $E / F$ 为有限扩张. 则 
+
+(1) $\langle F ( \alpha ) : F \rangle _ { s } = [ F ( \alpha ) : F ] \Leftrightarrow$ 
+
+(2) 任意 $\alpha \in E$ 为 F 上的可分元素. 
+
+称满足以上条件的有限扩张 $E / F$ 为可分扩张. 称代数扩张 $L / F$ 为可分扩张 (separable extension), 若 $L / F$ 的任意有限生成子扩张 $E / F$ 为可分扩张. 若 $K / E$ 和 $E / F$ 是可分 扩张, 则 $K / F$ 是可分扩张. 以 $F ^ { \mathrm { s e p } }$ 记代数闭包 $F ^ { \mathrm { a l g } }$ 内 $F$ 的最大可分扩张, 称 $F ^ { \mathrm { s e p } }$ 为 $F$ 的可分闭包 (separable closure). 本书 F 常是数域, 即有理数域 $\mathbb { Q }$ 的有限扩张. 这时 F 的特征是 0. 特征 0 的域的扩张都是可分扩张. 
+
+设 $K / F$ 为代数扩张. 由 K 内 F 上的可分元素所组成的集合记为 S. 则 (1) S 为 K 的子域, $( 2 ) \ S / F$ 为可分扩张, (3) $K / S$ 为不可分扩张. 称 S 为 $K / F$ 内的最大可分 子域. 若 $[ K : F ] < \infty$ , 则称 $\left[ S : F \right]$ 为 $K / F$ 的可分次数 (separable degree), 并记它为 $[ K : F ] _ { s }$ , 又称 $[ K : S ]$ 为 $K / F$ 的不可分次数 (inseparable degree), 并记它为 $[ K : F ] _ { i }$ . 
+
+命题 0.13 设 $E / F$ 为有限扩张. 
+
+(1) $[ E : F ] _ { s } = \langle E : F \rangle _ { s }$ . 
+
+(2) 若 $E \supseteq K \supseteq F$ , 则 $[ E : F ] _ { s } = [ E : K ] _ { s } [ K : F ] _ { s } , [ E : F ] _ { i } = [ E : K ] _ { i } [ K : F ] _ { i }$ . 
+
+命题 0.14 设 α 是特征 $p \neq 0$ 的域 F 上代数元. 
+
+(1) 若 α 是 F 上的不可分元素, 则 α 的最小多项式是 $X ^ { p ^ { r } } - a , a \in F$ 
+
+(2) 若 α 是多项式 $X ^ { p ^ { r } } - a , a \in F$ 的根, 则 α 是 F 上的不可分元素. 
+
+命题 0.15 设 $E / F$ 为有限可分扩张. 则存在 $\theta \in E$ 使得 $E = F ( { \boldsymbol { \theta } } )$ . 称这样的 θ 为扩 张 $E / F$ 的本原元素 (primitive element). 
+
+命题 0.16 设 $E / F$ 为有限可分扩张. 则 (1) 存在正规扩张 $K / F$ 使得 $K \supseteq E$ , (2) 全 部共有 $[ E : F ]$ 个从 E 到 K 的 F-单态射. 
+
+如果域 F 的所有扩张均是可分扩张, 则称 F 为完全域 (perfect field). 
+
+命题 0.17 (1) 特征为零的域是完全域. (2) 有限域是完全域. 
+
+设 K 是域. 由 K 的全部自同构所组成的集合记作 $\operatorname { A u t } ( K )$ . 以映射的合成为乘积 使 $\operatorname { A u t } ( K )$ 是群. 
+
+若 G 是 Aut(K) 的子群. 则设$$
+I (G) = \{a \in K: \varphi (a) = a, \forall \varphi \in G \}.
+$$
+
+容易验证 I(G) 是 K 的子域. 若 E 是 K 的子域. 则设$$
+A (E) = \{\varphi \in \operatorname{Aut} (K): \varphi (a) = a, \forall a \in E \}.
+$$
+
+命题 0.19 设 K 是域. I, A 有以下的性质: 
+
+(1) 若 $G _ { 1 } \supseteq G _ { 2 }$ 是 $\operatorname { A u t } ( K )$ 的子群, 则 $I ( G _ { 1 } ) \subseteq I ( G _ { 2 } )$ . 
+
+(2) 若 $F _ { 1 } \supseteq F _ { 2 }$ 是 K 的子域, 则 $A ( F _ { 1 } ) \subseteq A ( F _ { 2 } )$ . 
+
+(3) 若 F 是 K 的子域, 则 $I ( A ( F ) ) \supseteq F$ 和 $A F A ( F ) = A ( F )$ . 
+
+(4) 若 G 是 $\operatorname { A u t } ( K )$ 的子群, 则 $A I ( G ) \supseteq G$ 和 $I A I ( G ) = I ( G )$ . 
+
+设 $E / F$ 是域扩张. 记 $\{ \varphi \in \operatorname { A u t } ( E ) : \varphi ( a ) = a , \forall a \in F \}$ 为 $\operatorname { A u t } _ { F } ( E )$ . 称 $\operatorname { A u t } _ { F } ( E )$ 的元素为固定 F 的域同构. 以 $\mathcal { F } ( E / F )$ 记集合 {域 $K : E \supset K \supset F \}$ , 以 $\mathcal { G } ( E / F )$ 记 $\operatorname { A u t } _ { F } ( E )$ 的所有子群所组成的集合. 则如上可定义映射$$
+	\mathcal {F} (E / F) \to \mathcal {G} (E / F): K \mapsto \operatorname{Aut} _ {K} (E), \mathcal {G} (E / F) \to \mathcal {F} (E / F): H \mapsto E ^ {H},
+	$$
+	
+其中 $E ^ { H } = \{ x \in E : \sigma x = x , \forall \sigma \in H \}$ . 
+ 
+	
+	
+定义 0.20 称可分正规代数扩张 $E / F$ 为 Galois 扩张. 以 $\operatorname { G a l } ( E / F )$ 记 $\operatorname { A u t } _ { F } ( E )$ , 并 称它为 $E / F$ 的 Galois 群. 
+
+定理 0.21 设 E/F 是 Galois 扩张. 记 Galois 群 $\operatorname { G a l } ( E / F )$ 为 G. 
+
+(1) $E ^ { G } = F$ 
+ 
+(2) $K \in \mathcal { F } ( E / F ) \Rightarrow E / K$ 是 Galois 扩张, $E ^ { \mathrm { G a l } ( E / K ) } = K$ 
+
+(3) ${ \mathcal { F } } ( E / F ) \to { \mathcal { G } } ( E / F ) : K \mapsto \operatorname { A u t } _ { K } ( E )$ 是单射. 
+
+引理 0.22 设 $E / F$ 是可分代数扩张. 若有整数 n 使得 $\alpha \in E \Rightarrow [ F ( \alpha ) : F ] \leqslant n$ , 则 $[ E : F ] \leqslant n$ . 
+
+命题 0.23 设有域 K 和 $\operatorname { A u t } ( K )$ 的有限子群 $G , n = | G |$ . 以 F 记 $K ^ { G }$ . 则 
+
+(1) $K / F$ 是有限 Galois 扩张. 
+
+(2) $\operatorname { G a l } ( K / F ) = G .$ 
+
+(3) $[ K : F ] = n$ 
+
+命题 0.24 设 $E / F$ 是有限 Galois 扩张. 则 $\mathcal { F } ( E / F )  \mathcal { G } ( E / F )$ 是满射. 
+
+这样当 $E / F$ 是有限 Galois 扩张时便有双射 $$
+\mathscr {F} (E / F) \leftrightarrow \mathscr {G} (E / F).
+$$
+
+称这个双射为 Galois 扩张 $E / F$ 的 Galois 对应. 设在扩张 $E / F$ 的 Galois 对应下 $K  H$ . 取 $\varphi \in G$ . 则 $\varphi K  \varphi ^ { - 1 } H \varphi$ . 
+定理 0.25 设 $E / F$ 是 Galois 扩张. 取域扩张 $E \supseteq K \supseteq F$ . 则 
+
+(1) $K / F$ 是正规扩张 $\Leftrightarrow \operatorname { G a l } ( E / K )$ 是 $\operatorname { G a l } ( E / F )$ 的正规子群. 
+
+(2) 若 K/F 是正规扩张, 则限制同态 $\operatorname { G a l } ( E / F ) \to \operatorname { G a l } ( K / F )$ 是满同态, 它的核是 $\operatorname { G a l } ( E / K )$ . 所以 $\operatorname { G a l } ( K / F ) \cong \operatorname { G a l } ( E / F ) / \operatorname { G a l } ( E / K )$ . 
+
+若有域 $F \subset E _ { i } \subset K$ , 设 E 是 K 的最小子域使得对每一 j 有 $E \supseteq E _ { j }$ , 则称 E 为 $E _ { 1 } , \ldots , E _ { r }$ 的合成域 (compositum), 并记 E 为 $E _ { 1 } E _ { 2 } \ldots E _ { r }$ . 
+
+同样设群 G 有子群 $H _ { 1 } , H _ { 2 } , \ldots , H _ { r }$ . 定义 $H = H _ { 1 } H _ { 2 } \dots H _ { r }$ 为 G 内的包括所有 $H _ { j }$ 的最小子群. 
+
+命题 0.26 设 $K / F$ 是有限 Galois 扩张, K 有子域 $E _ { j }$ 包含域 $F , H _ { j }$ 是 $G = \operatorname { G a l } ( E / F )$ （2 的子群. 则在 Galois 对应下有: $$
+\begin{array}{l} \bigcap_ {j = 1} ^ {r} E _ {j} \leftrightarrow H _ {1} \dots H _ {r}, \\ E _ {1} \dots E _ {r} \leftrightarrow \bigcap_ {j = 1} ^ {r} H _ {j}. \\ \end{array}
+$$
+
+命题 0.27 假设 $G = \operatorname { G a l } ( K / F )$ 是 Abel 群, 且按 Abel 群基本结构定理有以下分解:$$
+G \approx Z _ {1} \times \dots \times Z _ {s},
+$$
+
+其中 $Z _ { j }$ 是 ${ p _ { j } } ^ { n _ { j } }$ 阶循环群, $p _ { j }$ 是素数. 设 $$
+G _ {i} = Z _ {1} \times \dots \times Z _ {i - 1} \times Z _ {i + 1} \times \dots \times Z _ {s}.
+$$
+
+按 Galois 对应取 $E _ { i } = I ( Z _ { i } ) , N _ { i } = I ( G _ { i } )$ . 则 
+
+(1) 在 Galois 对应下有:$$
+\begin{array}{l} N _ {1} N _ {2} \dots N _ {s} \leftrightarrow G _ {1} \cap \dots \cap G _ {s} = 1, \\ E _ {i} \cap N _ {i} \leftrightarrow Z _ {i} G _ {i} = G. \\ \end{array}
+$$  
+
+(2) $K = N _ { 1 } N _ { 2 } \dots N _ { s }$ 
+
+(3) $E _ { i } = N _ { 1 } N _ { 2 } \dots N _ { i - 1 } N _ { i + 1 } \dots N _ { s } .$ 
+
+(4) $E _ { i } \cap N _ { i } = F .$ . 
+
+命题 0.28 设 L 是域 F 的代数闭包, L 的子域 K 是 F 的有限 Galois 扩张, 在 L 内 取 F 的任意扩张 $\tilde { F } .$ , 设 $\tilde { K } = K \tilde { F } , E = K \cap \tilde { F }$ . 则 (1) $\tilde { K } / \tilde { F }$ 是 Galois 扩张, (2) 有同构 $\operatorname { G a l } ( { \tilde { K } } / { \tilde { F } } ) \cong \operatorname { G a l } ( K / E )$ . 
+
+设有域 $F \subset E _ { i } \subset K$ , 若对所有 i $$
+E _ {i} \cap E _ {1} \dots E _ {i - 1} E _ {i + 1} \dots E _ {s} = F,
+$$则称域扩张 $E _ { i } / F$ 为无关. 
+
+命题 0.29 设域扩张 $K / F$ 内有无关 Galois 扩张 $E _ { i } / F$ . 取合成域 $E = E _ { 1 } \dots E _ { s }$ . 则 $E / F$ 为 Galois 扩张, 并且$$
+\operatorname{Gal} (E / F) \cong \operatorname{Gal} (E / E _ {1}) \times \dots \times \operatorname{Gal} (E / E _ {s}).
+$$
+
+设 $K / F$ 是有限扩张. 则存在有限 Galois 扩张 $L / F$ 使得 $L \supseteq K$ . 取 K 的代数 闭包 $K ^ { \mathrm { a l g } }$ . 设 $\sigma _ { 1 } , \ldots , \sigma _ { r }$ 是所有各不相同的固定 F 的域单态射 $K  K ^ { \mathrm { a l g } }$ . 则合成域 $\sigma _ { 1 } ( K ) \ldots \sigma _ { r } ( K )$ 为所求的 L.
+
+设有环 $( D , + , \times )$ . 若 $( D \setminus \{ 0 \} , \times )$ 是群, 则称 D 为可除环 (division ring). 
+
+命题 0.34 有限可除环是域. 
+
+命题 0.35 设 K 是特征 $p > 1$ 的代数闭域. 对任意 $f \geqslant 1 , K$ 包含唯一的 $p ^ { f }$ 个元素 的有限域 F. F 是方程 $X ^ { p ^ { f } } = X$ 在 K 内的根集. $F ^ { \times }$ 是方程 $X ^ { p ^ { f } - 1 } = 1$ 在 K 内的根 集, $F ^ { \times }$ 是 $p ^ { f } - 1$ 个元素的循环群. 
+
+推论 0.36 除同构外 $q = p ^ { f }$ 个元素的有限域是唯一的. 
+
+推论 0.37 设 $f \geqslant 1 , f ^ { \prime } \geqslant 1 , q = p ^ { f } , q ^ { \prime } = p ^ { f ^ { \prime } }$ . 则 $\mathbb { F } _ { q ^ { \prime } } \supseteq \mathbb { F } _ { q } \Leftrightarrow f | f ^ { \prime }$ . 如果 $\mathbb { F } _ { q ^ { \prime } } \supseteq \mathbb { F } _ { q } ,$ , 则 $\mathbb { F } _ { q ^ { \prime } } / \mathbb { F } _ { q }$ 是次数为 $f ^ { \prime } / f$ 的循环扩张, 并且 $\operatorname { G a l } ( \mathbb { F } _ { q ^ { \prime } } / \mathbb { F } _ { q } )$ 是由同构 $x \mapsto x ^ { q }$ 生成. 设 $f ^ { \prime } = f d .$ 对 $n \geqslant 1$ , 则 $\{ x \in \mathbb { F } _ { q ^ { \prime } } : x = x ^ { q ^ { n } } \}$ 是有 $q ^ { r }$ 个元素的子域, 其中 $r = ( d , n )$ . 
+
+设 V 为域 F 上的向量空间. V 的递减过滤 (filtration) 是指一组 V 的子空 间 $\{ \mathrm { F i l } ^ { i } ( V ) : i \in \mathbb { Z } \}$ 使得对所有 $i \in \mathbb Z$ 有 ${ \mathrm { F i l } } ^ { i + 1 } ( V ) ~ \subseteq ~ { \mathrm { F i l } } ^ { i } ( V )$ . 称此为穷举过 滤 (exhaustive filtration), 若 $\cup _ { i } \mathrm { F i l } ^ { i } ( V ) = V ;$ ; 称为分离过滤 (separated filtration), 若 $\cap _ { i } { \mathrm { F i l } } ^ { i } ( V ) = 0$ . 这个过滤的关联分级空间 (associated graded space) 是指$$
+\operatorname{gr} (V) := \oplus \operatorname{Fil} ^ {i} (V) / \operatorname{Fil} ^ {i + 1} (V).
+$$
+
+设 F-向量空间带过滤 ${ \mathrm { F i l } } ^ { \bullet } ( V )$ , W 是 V 的子空间. 则可以在 W 上定义子过滤为$$
+\operatorname{Fil} ^ {i} (W) = \operatorname{Fil} ^ {i} (V) \cap W,
+$$
+
+在 $V / W$ 上定义商过滤为$$
+\operatorname{Fil} ^ {i} (V / W) = (\operatorname{Fil} ^ {i} (V) + W) / W.
+$$
+
+两个带递减过滤的有限维 F-向量空间的同态是指线性映射 $T : V ^ { \prime } \to V$ 使得 $T ( \mathrm { F i l } ^ { i } ( V ^ { \prime } ) ) \subseteq \mathrm { F i l } ^ { i } ( V )$ . 这时设 $$
+\operatorname{Fil} ^ {i} (\operatorname{Ker} T) = \operatorname{Ker} T \cap \operatorname{Fil} ^ {i} (V ^ {\prime}), \quad \operatorname{Fil} ^ {i} (\operatorname{Cok} T) = \operatorname{Fil} ^ {i} (V) + T V ^ {\prime} / T V ^ {\prime}.
+$$
+
+以 Vec 记有限维 F-向量空间范畴. ${ \mathrm { V e c } } _ { F }$ 是 Abel 范畴. 带递减过滤的有限维 F-向量空间范畴记为 $\operatorname { F i l } _ { F }$ . 这不是 Abel 范畴! 事实是: 在 $\operatorname { F i l } _ { F }$ 内从 $\mathrm { K e r } T = 0 = \mathrm { C o k } T$ 并不推出 T 是同构. 原因为即使 T 是 ${ \mathrm { V e c } } _ { F }$ 内的同构, 过滤线性映射 $T : V ^ { \prime } \to V$ 只是 $T ( \mathrm { F i l } ^ { i } ( V ^ { \prime } ) ) \subseteq \mathrm { F i l } ^ { i } ( V )$ , 而不是 $T ( \mathrm { F i l } ^ { i } ( V ^ { \prime } ) ) = \mathrm { F i l } ^ { i } ( V )$ , 于是 $T ^ { - 1 }$ 不能保留过滤. 按范畴 定义$$
+\operatorname{Img} (T) = \operatorname{Ker} (V \to \operatorname{Cok} (T)) ^ {\prime}, \quad \operatorname{Coim} (T) = \operatorname{Cok} (\operatorname{Ker} (T) \to V ^ {\prime}).
+$$
+
+如果在范畴 $\operatorname { F i l } _ { F }$ 内典范态射 $\mathrm { C o i m } ( T )  \mathrm { I m g } ( T )$ 为同构, 则称 T 为严格同态 (strict $\mathrm { \ m o r p h i s m ) }$ . 
+
+在范畴 $\operatorname { F i l } _ { F }$ 内 $V ^ { \prime }  V  V ^ { \prime \prime }$ 是正合, 是指 $\operatorname { F i l } ^ { i } ( V ^ { \prime } ) \to \operatorname { F i l } ^ { i } ( V ) \to \operatorname { F i l } ^ { i } ( V ^ { \prime \prime } )$ 是 正合. 
+
+范畴 $\operatorname { F i l } _ { F }$ 有平移运算: $n \in \mathbb { Z } , V [ n ]$ 作为 F-向量空间是 V . $\mathrm { F i l } ^ { i } ( V [ n ] ) = \mathrm { F i l } ^ { i = n } ( V )$ . 
+
+若 $V \in \operatorname { F i l } _ { F }$ . 作为 F-向量空间取 $V ^ { \vee }$ 为 ${ \mathrm { H o m } } _ { F } ( V , F )$ . 定义  $$
+\operatorname{Fil} ^ {i} (V ^ {\vee}) = \{f \in V ^ {\vee}: \operatorname{Fil} ^ {1 - i} (V) \subset \operatorname{Ker} (f) \}.
+$$   
+
+则 $V [ n ] ^ { \vee } \cong V ^ { \vee } [ - n ]$ . 
+
+若 $V , V ^ { \prime } \in \operatorname { F i l } _ { F }$ , 则定义 $$
+\operatorname{Fil} ^ {n} (V \otimes_ {F} V ^ {\prime}) = \sum_ {p + q = n} \operatorname{Fil} ^ {p} (V) \otimes_ {F} \operatorname{Fil} ^ {q} (V ^ {\prime}).
+$$
+
+拓扑群逆系统 $\{ G _ { i } , \mu _ { j i } \}$ 的逆极限 $\mathrm { ( i n v e r s e ~ l i m i t ) } \ \{ G , \mu _ { i } \}$ 包括拓扑群 G 和对每个 $i \in I$ 要求给定连续群同态 $\mu _ { i } : G  G _ { i }$ 使得对所有的 $i \leqslant j$ 有 $\mu _ { j i } \circ \mu _ { j } = \mu _ { i }$ , 并且要求 以下的泛性质成立: 若有拓扑群 H 及连续群同态 $\psi _ { i } : H  G _ { i } , i \in I$ 使得每当 $i \leqslant j$ , 便有 $\mu _ { j i } \circ \psi _ { j } = \psi _ { i }$ . 则存在唯一的连续群同态 $\Psi : H  G ,$ 使得对所有的 $i \in I$ 必有 $\mu _ { i } \circ \Psi = \psi _ { i }$ . 这就是说, 存在唯一的同态 Ψ 对于所有的 $i \leqslant j$ 下图是交换的 
+
+$\left\{ G _ { i } \right\}$ 的逆极限常常记为 $\varprojlim _ { i } G _ { i }$ , 逆极限亦称为反极限、反向极限、射影极限 (projective limit). 
+
+以 $\textstyle \pi _ { i } : \prod _ { k } G _ { k } \to G _ { i }$ 记拓扑群直积的第 i 个投射. 在直积的子集$$
+G = \{x \in \prod_ {k \in I} G _ {k}: \mu_ {j i} (\pi_ {j} (x)) = \pi_ {i} (x), \quad {\text {当}} i \leqslant j \}
+$$
+
+上取诱导拓扑. 把 $\pi _ { i }$ 限制至 G 时便记它为 $\mu _ { i }$ . 不难验证 $\{ G , \mu _ { i } \}$ 是拓扑群反系统 $\{ G _ { i } , \mu _ { j i } \}$ 的反极限. 
+
+为了方便叙述, 我们引入一个符号 $\Pi _ { p } p ^ { n _ { p } }$ , 这是个形式无穷积, 其中 p 遍历所有素 数, $n _ { p }$ 是非负整数或符号 $\infty .$ . 这样, 设 A 是交换挠群, 定义 A 的阶 $| A |$ 为 $\{ | B | \}$ 的最 小公倍, 其中 B 遍历 A 的所有有限子群. 如果 G 是射影有限群, H 是 G 的闭子群, 我 们便定义 H 在 G 的指数 $[ G : H ]$ 为 $\{ [ G / U : H / H \cap U ] \}$ 的最小公倍, 其中 U 遍历 G 的所有开正规子群. 同样我们定义 G 的阶 (order) |G| 为 $| G / U |$ 的最小公倍. 如此便可 说 $\ell ^ { \infty } | | G |$ 了. 我们又可以写  $$
+\frac {1}{| G |} \mathbb {Z} / \mathbb {Z} = \varinjlim_ {U} \frac {1}{| G / U |} \mathbb {Z} / \mathbb {Z} \subseteq \mathbb {Q} / \mathbb {Z}.
+$$
+
+若以非负整数 N 为有向集, 可以简化一点以 N 为指标的逆系统的描述. 设 有 Abel 范畴 $\mathcal { A }$ (参见 [19] §14.7). 以 为指标 $\mathcal { A }$ 内的逆系统是指 $\mathcal { A }$ 内的一 组态射 $\{ \delta _ { n } ^ { A } : A _ { n + 1 } \  \ A _ { n } : n \ \geqslant \ 0 \}$ . 两个逆系统之间的态射是指 $\mathcal { A }$ 内的一组 态射 $f = \{ f _ { n } : A _ { n } \to B _ { n } \}$ 使得 $f _ { n } \delta _ { n } ^ { A } = \delta _ { n } ^ { B } f _ { n + 1 }$ . 显然可以定义 $\operatorname { K e r } f = \{ \operatorname { K e r } f _ { n } \}$ , $\operatorname { C o k } f = \{ \operatorname { C o k } f _ { n } \}$ . 于是以 N 为指标 $\mathcal { A }$ 内的逆系统组成 Abel 范畴, 记为 $\mathcal { A } ^ { \mathbb { N } } . ~ ( A _ { n } , \delta _ { n } )$ 为 $\mathcal { A } ^ { \mathbb { N } }$ 的内射对象当且仅当 $\delta _ { n }$ 为分裂满射 [Jannsen, Math. Ann. 280 (1988) 207-245, Prop 1.1]. 
+
+当 $i < j$ 时, 记 $\delta _ { i } \circ \cdots \circ \delta _ { j - 1 }$ 为 $\mu _ { j i } : A _ { j }  A _ { i }$ . 称逆系统 $( A _ { n } , \delta _ { n } )$ 有 ML 性质 (Mittag-Leffler property), 如果对充分大的 $m , m ^ { \prime }$ 有 $\mathrm { I m g } \mu _ { m + n , n } = \mathrm { I m g } \mu _ { m ^ { \prime } + n , n }$ . 称 $( A _ { n } , \delta _ { n } )$ 是 ML 零, 如果对任意 n 存在 $m ( n )$ 使得 $\mu _ { m ( n ) + n , n } = 0$ . 
+
+命题 0.38 设 Abel 范畴 $\mathcal { A } , \mathcal { B }$ 有足够内射对象, $F : \mathcal { A }  \mathcal { B }$ 为左正合函子. F 诱导 函子 $F ^ { \mathbb { N } } : \mathcal { A } ^ { \mathbb { N } } \to \mathcal { B } ^ { \mathbb { N } }$ . 以 lim F 记合成 $\varprojlim _ { n } \circ F ^ { \mathbb { N } }$ . 若 $( A _ { n } , \delta _ { n } )$ 是 ML 零, 则 $$
+R ^ {p} (\varprojlim F) (A _ {n}, \delta_ {n}) = 0, p \geqslant 0.
+$$
+
+逆极限 lim 当然是个函子, 我们可以考虑它的右导出函子 ——常以 $\varprojlim ^ { p }$ 记 $R ^ { p } ( \varprojlim )$ (参见 [19] §14.9.6). 以下命题证明参见 $\mathrm { \small { [ N S W ~ 0 0 ] ~ I I ~ \ S 7 ~ ( 2 . 7 . 4 ) } }$ . 
+
+命题 0.39 设有环 $R , \mathrm { M o d } _ { R }$ 为 R 模范畴. 则有正合序列 $$
+0 \to \varprojlim_ {n} M _ {n} \to \prod_ {n} M _ {n} \stackrel {{i d - \delta_ {n}}} {{\longrightarrow}} \prod_ {n} M _ {n} \to \varprojlim_ {n} ^ {1} M _ {n} \to 0.
+$$
+
+并且若 $p \geqslant 2 , \varprojlim ^ { p } M _ { n } = 0$ . 若 $M _ { n }$ 有 ML 性质, 则 $\varprojlim ^ { 1 } M _ { n } = 0$ . 
+
+设 $E / F$ 是域 F 的代数扩张, $[ E : F ]$ 可以不是有限的. 以 $\operatorname { A u t } _ { F } E$ 记所有域自同 构 $\phi : E \to E$ , 满足条件 $\phi ( a ) = a , \forall a \in F$ . 若 $$
+\{x \in E: \phi (x) = x, \forall \phi \in \operatorname{Aut} _ {F} E \} = F,
+$$
+
+则称 $E / F$ 为 Galois 扩张, AutF E 为 Galois 群, 并记它为 $\operatorname { G a l } ( E / F )$ 或 $G _ { E / F }$ . 
+
+在 E 内 $F$ 的所有有限 Galois 扩张所组成的集合 $\{ K _ { i } , i \in I \}$ 是有向集. 原 因是 $K _ { i }$ 和 $K _ { j }$ 在 F 上的合成域亦是 F 的有限 Galois 扩张, 即等于某 $K _ { \ell }$ . 所以 $E = \cup _ { i } K _ { i } = \varinjlim _ { i } K _ { i }$ . (正系统的正极限 lim 参见 [19] §11.4.) 
+
+命题 0.40 $$
+G _ {E / F} = \varprojlim_ {i} G _ {K _ {i} / F}.
+$$
+
+定理 0.41 设 $E / F$ 是 Galois 扩张. 以 F 记 {域 $L : F \subseteq L \subseteq E \}$ . Galois 群 $G _ { E / F }$ 的 闭子群所组成的集合记为 G. 对 $L \in \mathcal { F }$ , 设 $A ( L ) = G _ { E / L }$ . 则 $A ( L ) \in { \mathcal { G } }$ . 对 $H \in { \mathcal { G } }$ , 取 $I ( H ) = \{ x \in E : \forall \varphi \in H , \varphi ( x ) = x \}$ . 则互反映射 A, I 决定双射 $\mathcal { F }  \mathcal { G }$ . 
+
+设有域 F, 选定 F 的代数闭包 $F ^ { \mathrm { a l g } }$ . 在 $F ^ { \mathrm { a l g } }$ 内取所有有限可分扩张 $E / F$ 的并集, 记为 $F ^ { \mathrm { s e p } }$ . 则 $F ^ { \mathrm { s e p } } / F$ 是 $F ^ { \mathrm { a l g } }$ 内 F 的最大可分扩张. 称它为 F 的可分闭包 (separable closure). $F ^ { \mathrm { s e p } } / F$ 是 Galois 扩张. 作为拓扑群 Galois 群 $\operatorname { G a l } ( F ^ { \mathrm { s e p } } / F )$ 的单位元 1 的一 组邻域基是 $\{ \mathrm { G a l } ( F ^ { \mathrm { s e p } } / E ) : E / F$ 是有限可分扩张}. 因为 $F ^ { \mathrm { a l g } } / F ^ { \mathrm { s e p } }$ 是不可分扩张, 所 以 $F ^ { \mathrm { s e p } }$ 的任一自同构可以唯一地扩展为 $F ^ { \mathrm { a l g } }$ 的自同构, 于是可把 $\operatorname { G a l } ( F ^ { \mathrm { s e p } } / F )$ 看作 $\mathrm { A u t } _ { F } ( F ^ { \mathrm { a l g } } )$ 的子群. 
+
+设有域扩张 $E / F$ , 取 E 的代数闭包 $E ^ { \mathrm { a l g } }$ . 则可取 F 在 $E ^ { \mathrm { a l g } }$ 的代数封闭为 $F ^ { \mathrm { a l g } }$ . 这 样 $F ^ { \mathrm { s e p } }$ 便是 $E ^ { \mathrm { s e p } }$ 的子域. 把同态限制便得连续同态 $r : \operatorname { G a l } ( E ^ { \mathrm { s e p } } / E ) \to \operatorname { G a l } ( F ^ { \mathrm { s e p } } / F )$ , 并且 $r ( \mathrm { G a l } ( E ^ { \mathrm { s e p } } / E ) )$ 是闭子群. 如果 $E / F$ 是代数扩张, 则 $E ^ { \mathrm { a l g } } = F ^ { \mathrm { a l g } }$ , 于是 r 是 单射. 此时把 $\operatorname { G a l } ( E ^ { \mathrm { s e p } } / E )$ 看作 $\operatorname { G a l } ( F ^ { \mathrm { s e p } } / F )$ 的闭子群. 如果 $E / F$ 是有限扩张, 则 $\operatorname { G a l } ( E ^ { \mathrm { s e p } } / E )$ 是 $\operatorname { G a l } ( F ^ { \mathrm { s e p } } / F )$ 的开子群. 
+
+定理 0.42 给出递减过滤 ${ \cal M } = { \cal M } _ { 0 } \supset { \cal M } _ { 1 } \supset { \cal M } _ { 2 } \supset . .$ . 使得 $\cap _ { i = 0 } ^ { \infty } M _ { i } = 0$ . 对 $i \geqslant j$ , 有 同态 $M / M _ { i } \to M / M _ { j }$ . 用这些同态得 $\widehat { M } : = \varprojlim _ { i } M / M _ { i }$ . 则 (1) $\widehat { M }$ 是完备拓扑群, (2) 自然映射 $\phi : M \to { \widehat { M } }$ 是单同态, (3) ϕ(M) 的拓扑闭包是 $\widehat { M }$ . 
+
+命题 0.44 设有限交换群 G 的阶有素因子分解 $n = p _ { 1 } ^ { e _ { 1 } } \ldots p _ { r } ^ { e _ { r } }$ . 以 $S ( p )$ 记 G 的 $\scriptstyle p - \mathrm { S y l o w }$ 子群. 则 
+
+(1) $G = S ( p _ { 1 } ) \times \cdots \times S ( p _ { r } )$ 
+
+(2) $S ( p _ { i } ) \cong Z _ { p _ { i } ^ { e _ { i 1 } } } \times \cdot \cdot \cdot \times Z _ { p _ { i } ^ { e _ { i s } } }$ , 其中 $e _ { i 1 } + \cdot \cdot \cdot + e _ { i s } = e _ { i }$ . 
+
+绝对值等于 1 的复数组成的交换群记为 $S ^ { 1 }$ . 设 G 为有限交换群. 称群同态 $\chi : G \to S ^ { 1 }$ 为 G 的酉特征标 (unitary character). 在有限群的情形时我们常简称酉特 征标为特征标 (character). 
+
+引理 0.45 (1) 设有限交换群 G 的元素 $g \neq 1$ , 则存在 $1 \neq \chi \in G ^ { * }$ 使得 $\chi ( g ) \neq 1$ . (2) 设 A, B 为有限交换群. 则 $( A \times B ) ^ { * } \cong A ^ { * } \times B ^ { * }$ . 
+
+命题 0.46 设 G 为有限交换群, 则 
+
+(1) $G \cong G ^ { * }$ 
+
+(2) Pontryagin 对偶是指同构 $G \stackrel { \approx } { \longrightarrow } G ^ { * * } : g \mapsto e _ { g }$ 
+
+设 $\chi , \lambda$ 为 $\mathbb { F } _ { p } ^ { \times }$ 的特征标, $\begin{array} { r } { J ( \chi , \lambda ) = \sum _ { a + b = 1 } \chi ( a ) \lambda ( b ) } \end{array}$ . 称 $J ( \chi , \lambda )$ 为 Jacobi 和. 易 证: 若 $\chi \lambda \neq 1$ , 则 $$
+J (\chi , \lambda) = \frac {g (\chi) g (\lambda)}{g (\chi \lambda)}, \quad J (\chi , \chi^ {- 1}) = - \chi (- 1).
+$$
+ 
+
+\subsection{数域论2} 
+
+从整数环 Z 出发, 先得有理数域 $\mathbb { Q } = \operatorname { F r a c } ( \mathbb { Z } )$ . 取有限扩张 $F / \mathbb { Q }$ . 自然会想有一个 环 $\mathbb { Z } \subseteq R \subseteq F$ , 使得 $F = \operatorname { F r a c } ( R )$ . 
+
+引理 1.2 设 $A \subset B$ 为一个环扩张, 则对 B 内元素 $b _ { 1 } , \ldots , b _ { n } .$ , 如下等价: 
+
+(1) $b _ { 1 } , \ldots , b _ { n }$ 是 A 上的整元素. 
+
+(2) $A [ b _ { 1 } , \ldots , b _ { n } ]$ 是有限生成 A 模. 
+
+推论 1.3 如果 $A \subset B$ 和 $B \subset C$ 为整环扩张, 则 $A \subset C$ 亦为整环扩张. 
+
+设有环扩张 $B / A$ . 则按前面引理 $A ^ { c }$ 是环. 称它为 A 在 B 内的整闭包 (integral closure). 现在我们可以回答本节开始的问题. 
+
+称有理系数多项式 $f ( X ) \in \mathbb { Q } [ x ]$ 的根为代数数 (algebraic number). 设有数域 F , 即 $F / \mathbb { Q }$ 是有限扩张. 取 R 为整数环 Z 在 F 内的整闭包. 则 $F = \operatorname { F r a c } ( R )$ . 称 R 的元 素 (为数域 F 内的) 代数整数 (algebraic integers). 称 R 为 F 的代数整数环, 或简称为 整数环; 常记 R 为 ${ \mathcal { O } } _ { F }$ . 
+
+如果环 R 内的元素 x, y 满足条件: $x \neq 0 , y \neq 0 , x y = 0$ , 则称 x 或 y 是零因子 (zero divisor). 说环 R 是整环 (integral ring), 如果 R 没有零因子和 $1 \neq 0 .$ . 易证: R 是 整环当且仅当 {0} 是素理想. 
+
+若 R 是整环, 则可构造 R 的分式域 Frac(R). 如果 R 在 Frac(R) 内的整闭包等于 R, 则称 R 为整闭环 (integrally closed). 
+
+说环 R 的理想 ${ \mathfrak { p } } \neq R$ 是素理想, 若 $a , b \in R , a b \in { \mathfrak { p } } \Rightarrow a \in { \mathfrak { p } }$ 或 $b \in { \mathfrak { p } }$ . 易证: 不等 于 R 的理想 p 是素理想当且仅当商环 $R / { \mathfrak { p } }$ 是整环. 
+
+说环 R 的理想 m 是极大理想, 如果 ${ \mathfrak { m } } \neq R ,$ 并且若有理想 a 使得 ${ \mathfrak { a } } \supseteq { \mathfrak { m } }$ , 则 ${ \mathfrak { a } } = R$ . 易证: m 是极大理想当且仅当商环 $R / { \mathfrak { m } }$ 是域. 于是得知极大理想一定是素理想. 
+
+如果环 R 的所有理想 I 都是有限生成 R 模, 则说 R 是 Noether 环. 
+
+定义 1.4 说环 R 是 Dedekind 环, 如果 
+
+(1) R 是整环, 
+
+(2) R 是整闭环, 
+
+(3) R 是 Noether 环, 
+
+(4) 所有非零素理想是极大理想. 
+
+数域的代数整数环是 Dedekind 环. 我们将证明 Dedekind 环的理想, 除排序外, 可 唯一分解为素理想的乘积. 
+
+设 O 的非零理想 ${ \mathfrak { a } } \neq { \mathcal { O } }$ . 取 $$
+\mathfrak {a} ^ {- 1} := \{x \in F: x \mathfrak {a} \subseteq \mathcal {O} \},
+$$
+
+则 $\mathfrak { a } ^ { - 1 }$ 是有限生成 O 模. 原因如下: 取 $a _ { 0 } \in { \mathfrak { a } } , a _ { 0 } \not = 0$ . 若 $x \in { \mathfrak { a } } ^ { - 1 }$ , 则 $x a _ { 0 } \in { \mathcal { O } }$ , 所以 ${ \mathfrak { a } } ^ { - 1 } \subset { \mathcal { O } } a _ { 0 } ^ { - 1 }$ . 从 $\mathcal { O } a _ { 0 } ^ { - 1 }$ 是有限生成 O 模便知 $\mathfrak { a } ^ { - 1 }$ 亦是. 
+
+引理 1.5 设 O 为 Dedekind 环. 
+
+(1) 设 a 是 O 的非零理想. 则 O 有非零素理想 $\mathfrak { p } _ { 1 } , \mathfrak { p } _ { 2 } , \dotsc , \mathfrak { p } _ { r } ,$ , 使得 $\mathfrak { a } \supseteq \mathfrak { p } _ { 1 } \mathfrak { p } _ { 2 } \dots \mathfrak { p } _ { r }$ 
+
+(2) 设 O 的非零理想 ${ \mathfrak { a } } \neq { \mathcal { O } }$ . 则 ${ \mathfrak { a } } ^ { - 1 } \supset { \mathcal { O } }$ . 
+
+(3) 设 a 是 O 的非零理想. 则 ${ \mathfrak { a } } ^ { - 1 } { \mathfrak { a } } = { \mathcal { O } }$ . 
+
+(4) 设 ${ \mathfrak { p } } _ { 1 } \ldots { \mathfrak { p } } _ { n } \subseteq { \mathfrak { q } } _ { 1 } \ldots { \mathfrak { q } } _ { m } ,$ 其中 ${ \mathfrak { p } } _ { i } , { \mathfrak { q } } _ { j }$ 均为素理想. 则 $m \leqslant n$ , 并且集合 $\{ \mathfrak { q } _ { 1 } , \dots , \mathfrak { q } _ { m } \}$ 为集合 $\{ { \mathfrak { p } } _ { 1 } , \dotsc , { \mathfrak { p } } _ { n } \}$ 的子集. 
+
+推论 1.7 设 a,b 是 O 的理想. 
+
+(1) ${ \mathfrak { a } } \subseteq { \mathfrak { b } }$ 当且仅当 O 有理想 c 使得 ${ \mathfrak { a } } = { \mathfrak { b } } { \mathfrak { c } }$ 
+
+(2) 设 $$
+\mathfrak {a} = \mathfrak {p} _ {1} ^ {a _ {1}} \dots \mathfrak {p} _ {n} ^ {a _ {n}}, \quad \mathfrak {b} = \mathfrak {p} _ {1} ^ {b _ {1}} \dots \mathfrak {p} _ {n} ^ {b _ {n}}, \quad a _ {i}, b _ {i} \in \mathbb {Z}, a _ {i}, b _ {i} \geqslant 0,
+$$
+
+其中 ${ \mathfrak { p } } _ { i }$ 为各不相同素理想, 并取 ${ \mathfrak { p } } _ { 0 }$ 为 0̧. 则$$
+\mathfrak {a} + \mathfrak {b} = \prod_ {i = 1} ^ {n} \mathfrak {p} _ {i} ^ {\min \{a _ {i}, b _ {i} \}}, \quad \mathfrak {a} \cap \mathfrak {b} = \prod_ {i = 1} ^ {n} \mathfrak {p} _ {i} ^ {\max \{a _ {i}, b _ {i} \}}, \quad \mathfrak {a b} = (\mathfrak {a} + \mathfrak {b}) (\mathfrak {a} \cap \mathfrak {b}).
+$$
+
+命题 1.8 设 a, b 是 Dedekind 环 O 的理想.  
+
+(1) 存在 $a \in { \mathfrak { a } }$ 和 O 的理想 c 使得 ${ \mathfrak { b } } + { \mathfrak { c } } = { \mathcal { O } }$ 和 ${ \mathfrak { a c } } = a { \mathcal { O } }$ 
+
+(2) 加法群 $\mathcal { O } / 6$ 同构于 ${ \mathfrak { a } } / { \mathfrak { a } } { \mathfrak { b } }$ . 
+
+定理 1.10 数域 F 的整数环 ${ \mathcal { O } } _ { F }$ 是 Dedekind 环. 
+
+命题 1.11 数域 F 的整数环 ${ \mathcal { O } } _ { F }$ 内的理想 a 是 $[ F : \mathbb { Q } ]$ 秩自由交换群. 
+
+称数域 F 的整数环 ${ \mathcal { O } } _ { F }$ 的子集 $\{ x _ { 1 } , \ldots , x _ { n } \}$ 为 ${ \mathcal { O } } _ { F }$ 或 F 的整基 (integral basis), 若 $\mathcal { O } _ { F } = \mathbb { Z } x _ { 1 } \oplus \cdot \cdot \cdot \oplus \mathbb { Z } x _ { n }$ . 
+
+设 F 为 Dedekind 环 O 的分式域. 则可以把 F 看作 O 模. 称 F 内非零有限生成 O-子模 f 为 F 的分式理想 (fractional ideal). 设 $$
+\mathfrak {f} ^ {- 1} = \{x \in F: x \mathfrak {f} \subseteq \mathcal {O} \},
+$$
+
+定义分式理想 f,g 的乘积为 $$
+\mathfrak {f g} = \left\{\sum_ {i} x _ {i} y _ {i}, x _ {i} \in \mathfrak {f}, y _ {i} \in \mathfrak {g} \right\}.
+$$
+
+命题 1.12 设 F 为 Dedekind 环 O 的分式域. 
+
+(1) 按分式理想的乘积, 全部 F 的分式理想组成交换群, 记为 $\mathcal { T } _ { F }$ , 称为分式理想群. 
+
+(2) 若 f 为 F 的分式理想, 则 $\mathsf { f } ^ { - 1 }$ 为 F 的分式理想. 
+
+(3) 若 f, g 为 F 的分式理想, 则 fg 为 F 的分式理想. 
+
+(4) 若 f 为 F 的分式理想, 则 O 内有各不相同的素理想 ${ \mathfrak { p } } _ { 1 } , \ldots , { \mathfrak { p } } _ { n }$ , 使得有唯一分解 $$
+\mathfrak {f} = \mathfrak {p} _ {1} ^ {\nu_ {1}} \dots \mathfrak {p} _ {n} ^ {\nu_ {n}}, \quad \nu_ {j} \in \mathbb {Z}.
+$$
+
+命题 1.13 设 $E / F$ 为有限可分域扩张, 则 $( x , y ) \mapsto \mathrm { T r } _ { E / F } ( x y )$ 是 $E / F$ 的非退化双线 性映射 (见 [19] 第五章). 若 $\{ e _ { 1 } , \ldots , e _ { n } \}$ 是 $E / F$ 的基, 则 $\operatorname* { d e t } ( \mathrm { T r } _ { E / F } ( e _ { i } e _ { j } ) ) \neq 0$ . 
+
+命题 1.14 设 O 为整闭整环, F 为 O 的分式域, $E / F$ 为有限可分域扩张. 以 $\mathcal { O } _ { E }$ 记 O 在 E 内的整闭包. 则 
+
+(1) 若 $e _ { i } \in { \mathcal { O } } _ { E }$ 使得 $\{ e _ { 1 } , \ldots , e _ { n } \}$ 是 $E / F$ 的基, 则 $\begin{array} { r } { \operatorname* { d e t } \bigl ( \mathrm { T r } _ { E / F } \bigl ( e _ { i } e _ { j } \bigr ) \bigr ) \mathcal { O } _ { E } \subseteq \sum _ { i } \mathcal { O } e _ { i } } \end{array}$ 
+
+(2) 存在 $E / F$ 的基 $\{ x _ { 1 } , \ldots , x _ { n } \}$ 使得 $\begin{array} { r } { \mathcal { O } _ { E } \subseteq \sum _ { i } \mathcal { O } x _ { i } } \end{array}$ 
+
+(3) 若 O 是 Noether 整闭整环, 则 $\mathcal { O } _ { E }$ 是有限生成 O 模. 
+
+(4) 如果假设 O 是主理想整环, 则 E 内非零有限生成 $\mathcal { O } _ { E }$ 模 M 是秩为 $[ E : F ]$ 的 自 由 O 模, 即 $\mathcal { O } _ { E } / \mathcal { O }$ 有整基. 
+
+引理 1.15 (1) 设 A 为整闭整环, B 为是整环, $B / A$ 是整环扩张, P 为 B 的非零素理 想. 则 ${ \mathfrak { p } } = { \mathfrak { P } } \cap A$ 为 A 的非零素理想. 
+
+(2) 设 A 为域, B 为是整环, $B / A$ 是整环扩张, 则 B 为域. 
+
+定理 1.17 设 $E / F$ 为可分域扩张. 设 ${ \mathcal { O } } _ { F }$ 的素理想 p 在 $\mathcal { O } _ { E }$ 内有素理想乘积分解 $$
+\mathfrak {p} = \mathfrak {P} _ {1} ^ {e _ {1}} \dots \mathfrak {P} _ {r} ^ {e _ {r}},
+$$
+
+则 $$
+\sum_ {i} e _ {i} f _ {i} = n,
+$$
+
+其中 $n = [ E : F ]$ , fi 为 ${ \mathfrak { P } } _ { i }$ 在 p 的惯性次数. 
+
+设 A 是 Dedekind 环, F 是 A 的分式域, $E / F$ 是可分扩张, B 是 A 在 E 的整闭 包. 则用域扩张 $E / F$ 的迹 $\mathrm { T r } _ { E / F }$ 来定义的 E 上的双线性型 $( x , y ) \mapsto \mathrm { T r } _ { E / F } ( x y )$ 是非 退化的. 
+
+设 $M \subset E$ 是 A 模, 定义$$
+M ^ {\prime} = \{x \in E: \operatorname{Tr} _ {E / F} (x M) \subseteq A \}.
+$$
+
+称分式理想 $B ^ { \prime }$ 为 $B / A$ 的余差别式 (codifferent), 并记它为 $\mathcal { C } _ { B / A }$ . 称 $ { \mathcal { C } } _ { B / A } ^ { - 1 }$ 为 $B / A$ 的 差别式 (different), 并记它为 $\mathcal { D } _ { B / A }$ . 因为 $\mathcal { C } _ { B / A } \supset B$ , 所以 $\mathcal { D } _ { B / A } \subset B$ , 即 $B / A$ 的差别 式是 B 内的理想.${ \mathrm { T r } } ( { \mathfrak { b } } ) \subset { \mathfrak { a } }$ $\mathfrak { b } \subset \mathfrak { a } \mathcal { D } _ { B / A } ^ { - 1 }$ 
+
+命题 1.21 条件如上.  
+
+(1) 传递性: $E / F , K / E$ 是可分扩张, C 是 A 在 K 的整闭包, 则 $\mathcal { D } _ { C / A } = \mathcal { D } _ { C / B } \mathcal { D } _ { B / A }$ 
+
+(2) 局部化: 取 A 的乘性子集 S, 则 $S ^ { - 1 } \mathcal { D } _ { B / A } = \mathcal { D } _ { S ^ { - 1 } B / S ^ { - 1 } A }$ . 
+
+定理 1.22 $\mathfrak { d } _ { B / A } = \mathrm { N } _ { E / F } ( \mathcal { D } _ { B / A } )$ . 
+
+命题 1.23 $E / F , K / E$ 是可分扩张, 则有 
+
+(1) 传递性: $$
+\mathfrak {d} _ {K / F} = \mathrm{N} _ {E / F} \mathfrak {d} _ {K / E} (\mathfrak {d} _ {E / F}) ^ {[ K: E ]}.
+$$
+
+(2) 局部化: 取 A 的乘性子集 S, 则 $S ^ { - 1 } \mathfrak { d } _ { B / A } = \mathfrak { d } _ { S ^ { - 1 } B / S ^ { - 1 } A }$ . 
+
+设 B 的子环 C 包含 A, 则称理想$$
+\mathfrak {r} = \{t \in C: t B \subseteq C \}
+$$ 为 B 在 C 内的导子 (conductor). 
+
+命题 1.24 设 $n = [ E : F ]$ , B 的子环 C 包含 A, $\{ 1 , x , \ldots , x ^ { n - 1 } \}$ 是 C 的 A 基, f 是 x 的特征多项式, f′ 是 f 的导数. 则  
+
+(1) f 的系数属于 A. 
+
+(2) $\{ x ^ { i } / f ^ { \prime } ( x ) : 0 \leqslant i \leqslant n - 1 \}$ 是余差别式 $C ^ { \prime }$ 的基. 
+
+(3) B 在 C 内的导子 ${ \mathfrak { r } } = f ^ { \prime } ( x ) { \mathcal { D } } _ { E / F } ^ { - 1 }$ 
+
+(4) 若 $B = A [ x ]$ , 则 $\mathcal { D } _ { E / F }$ 是由 $f ^ { \prime } ( x )$ 所生成的主理想. 
+
+引理 1.25 (Euler) $\operatorname { T r } x ^ { n - 1 } / f ^ { \prime } ( x ) = 1$ , 若 $1 \leqslant i \leqslant n - 2$ , 则 $\operatorname { T r } x ^ { i } / f ^ { \prime } ( x ) = 0$ 
+
+定理 1.26 (Dedekind 判别式定理) 素数 p 在数域 F 中分歧的充要条件是 $p | \mathfrak { d } _ { F }$ . 
+
+定义 1.27 $E / F$ 是有限 Galois 扩张, P 是 $\mathcal { O } _ { E }$ 的素理想. 称 Galois 群 $G = \operatorname { G a l } ( E / F )$ 的子群 $$
+D _ {\mathfrak {P}} = \{\sigma \in G: \sigma \mathfrak {P} = \mathfrak {P} \}
+$$为 P 在 $\operatorname { G a l } ( E / F )$ 内的分解群 (decomposition group), 又记它为 $D _ { \mathfrak { P } | { \mathfrak { p } } }$ . 
+
+这个群所决定的固定域 $$
+Z _ {\mathfrak {P}} = \{x \in E: \sigma x = x, \text {对所有} \sigma \in G _ {\mathfrak {P}} \},
+$$我们称它为 P 在 $E / F$ 的分解域 (decomposition field). 
+
+命题 1.28 $E / F$ 是有限 Galois 扩张, P 是 $\mathcal { O } _ { E }$ 的素理想, p 是 P $\cap { \mathcal { O } } _ { F } , e _ { \mathfrak { P } | { \mathfrak { p } } }$ 为 P 在 p 的分歧指标, $f _ { \mathfrak { P } | { \mathfrak { p } } }$ 为 P 在 p 的剩余次数. 
+
+(1) 存在 $\mathcal { O } _ { E }$ 的素理想 Q 使得 $\Omega \mid { \mathfrak { p } } { \mathcal { O } } _ { E }$ 当且仅当存在 $\sigma \in \operatorname { G a l } ( E / F )$ 使得 $\mathfrak { Q } = \sigma \mathfrak { P }$ . 
+
+(2) 取 $\sigma \in \operatorname { G a l } ( E / F )$ , 则 $\sigma ( \mathcal { O } _ { E } ) \subseteq \mathcal { O } _ { E }$ , 并且由此诱导出同构 $$
+\mathcal {O} _ {E} / \mathfrak {P} \to \mathcal {O} _ {E} / \sigma \mathfrak {P}: a \mod \mathfrak {P} \mapsto \sigma a \mod \sigma \mathfrak {P},
+$$于是剩余次数 fP|p = fσP|p. $f _ { \mathfrak { P } | \mathfrak { p } } = f _ { \sigma \mathfrak { P } | \mathfrak { p } }$ 
+
+(3) 取 $\sigma \in \operatorname { G a l } ( E / F )$ , 则 $\sigma ( \mathfrak { p } \mathcal { O } _ { E } ) = \mathfrak { p } \mathcal { O } _ { E }$ , 并且由此得知 $\mathfrak { P } ^ { \nu } \mid \mathfrak { p } \mathcal { O } _ { E }$ 当且仅当 $( \sigma \mathfrak { P } ) ^ { \nu } \mid$ ${ \mathfrak { p } } { \mathcal { O } } _ { E }$ , 于是分歧指标 $e _ { \mathfrak { P } | { \mathfrak { p } } } = e _ { \sigma \mathfrak { P } | { \mathfrak { p } } } .$ . 
+
+$E / F$ 是有限 Galois 数域扩张, P 是 $\mathcal { O } _ { E }$ 的素理想, $D _ { \mathfrak { P } }$ 为 P 在 $E / F$ 的分解群. 取 $\sigma \in D _ { \mathfrak { P } }$ , 则诱导出同构 $$
+\bar {\sigma}: \mathcal {O} _ {E} / \mathfrak {P} \to \mathcal {O} _ {E} / \mathfrak {P}: a \mod \mathfrak {P} \mapsto \sigma a \mod \mathfrak {P}.
+$$
+
+引入剩余域符号 $\kappa \mathfrak { p } = \mathcal { O } _ { E } / \mathfrak { P } , \kappa _ { \mathfrak { p } } = \mathcal { O } _ { F } / \mathfrak { p }$ . 
+
+命题 1.29 $\kappa _ { \mathfrak { P } } / \kappa _ { \mathfrak { p } }$ 为 Galois 扩张. 以上映射 $$
+D _ {\mathfrak {P}} \to \operatorname{Gal} (\kappa_ {\mathfrak {P}} / \kappa_ {\mathfrak {p}}): \sigma \mapsto \bar {\sigma}
+$$为满同态. 
+
+定义 1.30 称 $$
+I _ {\mathfrak {P}} = \{\sigma \in D _ {\mathfrak {P}}: \bar {\sigma} = 1 \}
+$$为 P 在 $\operatorname { G a l } ( E / F )$ 内的惯性群 (inertia group), 又记它为 $I _ { \mathfrak { P } | { \mathfrak { p } } }$ 
+
+为 P 在 $\operatorname { G a l } ( E / F )$ 内的惯性群 (inertia group), 又记它为 $I _ { \mathfrak { P } | { \mathfrak { p } } }$ $$
+T _ {\mathfrak {P}} = \{x \in E: \sigma x = x, \text {对所有} \sigma \in I _ {\mathfrak {P}} \},
+$$我们称它为 P 在 $E / F$ 的惯性域 (inertia field). 
+
+命题 1.31 $E / F$ 是有限 Galois 数域扩张, P 是 $\mathcal { O } _ { E }$ 的素理想, p 是 P $\cap { \mathcal { O } } _ { F }$ . 
+
+(1) 有正合序列 $$
+1 \to I _ {\mathfrak {P}} \to D _ {\mathfrak {P}} \to \operatorname{Gal} (\kappa_ {\mathfrak {P}} / \kappa_ {\mathfrak {p}}) \to 1.
+$$
+
+(2) $| I _ { \mathfrak { P } } | = e _ { \mathfrak { P } | \mathfrak { p } } , [ D _ { \mathfrak { P } } : I _ { \mathfrak { P } } ] = f _ { \mathfrak { P } | \mathfrak { p } }$ . 
+
+(3) 记 $\mathfrak { P } _ { T } = \mathfrak { P } \cap T _ { \mathfrak { P } }$ , 则 $e _ { \mathfrak { P } | \mathfrak { P } _ { T } } = e _ { \mathfrak { P } | \mathfrak { p } } , f _ { \mathfrak { P } | \mathfrak { P } _ { T } } = 1$ 
+
+(4) 记 $\mathfrak { P } _ { Z } = \mathfrak { P } \cap Z _ { \mathfrak { P } }$ , 则 $e _ { \mathfrak { P } _ { T } | \mathfrak { P } _ { Z } } = 1 , f _ { \mathfrak { P } _ { T } | \mathfrak { P } _ { Z } } = e _ { \mathfrak { P } | { \mathfrak { p } } }$ 
+
+设 F 为数域. 常称整数环 ${ \mathcal { O } } _ { F }$ 内的理想为整理想 (integral ideal). 称 F 内非零 有限生成 O-子模 f 为 F 的分式理想 (fractional ideal). 设 $\mathfrak { f } ^ { - 1 } = \{ x \in F : x \mathfrak { f } \subseteq \mathcal { O } \}$ . 定义分式理想 f, g 的乘积为 $\begin{array} { r } { \mathfrak { f g } = \{ \sum _ { i } x _ { i } y _ { i } , \ x _ { i } \in \mathfrak { f } , y _ { i } \in \mathfrak { g } \} } \end{array}$ . 记 $\mathcal { T } _ { F }$ 为 F 的分式理想 群 (fractional ideal group), 则 $\mathcal { P } _ { F } : = \{ a \mathcal { O } _ { F } : a \in F ^ { \times } \}$ 为 $\mathcal { T } _ { F }$ 的子群, 称 $\mathcal { P } _ { F }$ 的元素为 主理想 (principal ideal). 以 $C l _ { F }$ 记商群 $\mathcal { T } _ { F } / \mathcal { P } _ { F }$ , 并称它为 F 的理想类群 (ideal class group). 称 $h _ { F } : = | C l _ { F } |$ 为 F 的类数 (class number), 这是数论中一个非常重要的不变 量. 显然 $h _ { F } = 1$ 当且仅当 ${ \mathcal { O } } _ { F }$ 的元素有唯一因子分解 (见 [7] 102 页). 在冯克勤的《代 数数论》里还有很多关于类数的定理和公式, 请读者留意. 
+
+设 F 为数域, a 是环 O 的理想. 若 $a \in { \mathfrak { a } } .$ , 则以 $[ a ]$ 记 $a + { \mathfrak { a } }$ . 这样若 $a , b \in { \mathcal { O } }$ , 则 $[ a ] = [ b ]$ 当且仅当 $a - b \in { \mathfrak { a } }$ . 记此为 
+
+设 R 是环, 以 ⟨P⟩ 记 R 模 P 的同构类, 以有限生成的投射 R 模的同构类为生成元 的自由交换群记为F. 在F 内取由以下的生成元所生的子群R: $\langle P ^ { \prime } \rangle + \langle P ^ { \prime \prime } \rangle - \langle P ^ { \prime } \oplus P ^ { \prime \prime } \rangle$ , 其中 $P ^ { \prime } , P ^ { \prime \prime }$ 遍历所有有限生成的投射 R 模. 称商群 $\mathcal { F } / \mathcal { R }$ 为环 R 的 Grothendieck 群, 并记为 $K _ { 0 } ( R ) . \ \langle P \rangle$ 在 $K _ { 0 } ( R )$ 的像记为 [P], 于是 $$
+[ \oplus_ {i = 1} ^ {n} P _ {i} ] = \sum_ {i = 1} ^ {n} [ P _ {i} ].
+$$
+
+$K _ { 0 } ( R )$ 的元可表达为 $\begin{array} { r } { \sum _ { i } [ P _ { i } ] - \sum _ { j } [ Q _ { j } ] = [ \oplus _ { i } P _ { i } ] - [ \bigoplus _ { j } Q _ { j } ] } \end{array}$ , 于是可以说: $K _ { 0 } ( R )$ 的 任 一元素可表达为 $[ P ] - [ Q ]$ . 
+
+在自由交换群 F 中$$
+\left\langle P _ {1} \right\rangle + \dots + \left\langle P _ {k} \right\rangle = \left\langle Q _ {1} \right\rangle + \dots + \left\langle Q _ {k} \right\rangle
+$$
+
+当且仅当存在置换 π 使 $P _ { 1 } \cong Q _ { \pi ( 1 ) } , . . . , P _ { k } \cong Q _ { \pi ( k ) }$ . 于是有 $$
+P _ {1} \oplus \dots \oplus P _ {k} \cong Q _ {1} \oplus \dots \oplus Q _ {k}.
+$$ 
+
+现设 $[ P ] = [ Q ]$ , 即在 F 中有 $$
+\langle P \rangle - \langle Q \rangle = \sum_ {i} (\langle P _ {i} \rangle + \langle Q _ {i} \rangle - \langle P _ {i} \oplus Q _ {i} \rangle) - \sum_ {j} (\langle P _ {j} ^ {\prime} \rangle + \langle Q _ {j} ^ {\prime} \rangle - \langle P _ {j} ^ {\prime} \oplus Q _ {j} ^ {\prime} \rangle),
+$$
+
+命题 1.37 设 P, Q 是有限生成的投射 R 模. 则在 $K _ { 0 } ( R )$ 内 $[ P ] = [ Q ]$ 当且仅当存在 整数 $n \geqslant 0$ 使得 $P \oplus R ^ { n } \cong Q \oplus R ^ { n }$ . 
+
+设 R 是交换环. 取乘法 $$
+[ P ] [ Q ] = [ P \otimes_ {R} Q ],
+$$
+
+则 $K _ { 0 } ( R )$ 是交换环. 若有环同态 R → S, 则用 $[ M ] \mapsto [ S \otimes _ { R } M ]$ 得环同态 $K _ { 0 } ( R ) $ $K _ { 0 } ( S )$ . 
+
+在 Z 上取离散拓扑, 以 $C ( { \mathrm { S p e c } } R , \mathbb { Z } )$ 记由所有从 SpecR 到 Z 的连续函数所组 成的环. 设 $f \in C ( { \mathrm { S p e c } } R , \mathbb { Z } )$ . 因为 Spec R 是紧拓扑空间, 所以 $f ( { \mathrm { S p e c } } R )$ 是离散 拓扑空间 Z 的紧集, 于是是有限集, 即有 $n _ { i } \in \mathbb { Z }$ 使得 $f ( \operatorname { S p e c } R ) = \{ n _ { 1 } , \dots , n _ { r } \}$ . 因 为 $\{ n _ { i } \}$ 是 Z 的开和闭集, 所以 $f ^ { - 1 } ( n _ { i } )$ 是 SpecR 的开和闭集, 因此有 R 的幂等 元 $e _ { i }$ 使得 $f ^ { - 1 } ( n _ { i } ) = D ( R e _ { i } )$ . 对 $i \neq j$ , 从 $f ^ { - 1 } ( n _ { i } ) \cap f ^ { - 1 } ( n _ { j } ) = \emptyset$ 得 $e _ { i } e _ { j } = 0$ . 从 $\cup _ { i } f ^ { - 1 } ( n _ { i } ) = \operatorname { S p e c } R$ 得 $R = R e _ { 1 } + \cdot \cdot \cdot + R e _ { r }$ . 
+
+设 $\begin{array} { r } { \theta ( f ) = \sum _ { i } n _ { i } [ R e _ { i } ] \in K _ { 0 } ( R ) } \end{array}$ . 虽然集合 $\left\{ \boldsymbol { e } _ { i } \right\}$ 并不是由 f 唯一决定, 但是可以取 更细的分割使得 $\begin{array} { r } { e _ { i } = \sum _ { j } e _ { i j } } \end{array}$ , 这样便有 $D ( R e _ { i } ) = \sqcup _ { j } D ( R e _ { i j } )$ 和 $R e _ { i } = \oplus _ { j } R e _ { i j }$ , 于 是 在 $K _ { 0 } ( R )$ 有 $\begin{array} { r } { \sum _ { i } n _ { i } \sum _ { j } [ R e _ { i j } ] = \sum _ { i } n _ { i } [ R e _ { i } ] } \end{array}$ . 这样便知 $\theta ( f )$ 是确切定义的. 
+
+M 为有限生成投射 R 模, 则 $M _ { \mathfrak { p } }$ 是局部环 $R _ { \mathfrak { p } }$ 的有限生成自由模, 于是可取它的 秩 $\operatorname { r a n k } ( M _ { \mathfrak { p } } )$ , 并记为 $\rho _ { M } ( \mathfrak { p } )$ . 
+
+命题 1.38 设 R 是交换环. 
+
+(1) M 为有限生成投射 R 模, 则 $\rho _ { M } : \operatorname { S p e c } R \to \mathbb { Z } : { \mathfrak { p } } \mapsto \rho _ { M } ( { \mathfrak { p } } )$ 是连续函数. 
+
+(2) $\rho : K _ { 0 } ( R ) \to C ( \operatorname { S p e c } R , \mathbb { Z } ) : [ M ] \mapsto \rho _ { M }$ 是环同态. 
+
+(3) $\theta : C ( \operatorname { S p e c } R , \mathbb { Z } ) \to K _ { 0 } ( R )$ 是环同态. 
+
+(4) $\rho \circ \theta = 1$ 
+
+(5) 以 $j : \mathrm { K e r } \rho \hookrightarrow K _ { 0 } ( R )$ 记包含映射, 以 $p ( [ M ] ) = [ M ] - \theta ( \rho _ { M } )$ 定义 $p : K _ { 0 } ( R ) \to$ $\mathrm { K e r } \rho ,$ 则 $p \circ j = 1$ . 
+
+(6) $K _ { 0 } ( R ) \cong C ( \operatorname { S p e c } R , \mathbb { Z } ) \oplus \operatorname { K e r } \rho .$ . 
+
+引理 1.40 设 O 是 Dedekind 环. 则非零有限生成的投射 O 模同构于可逆 O 模的 直和. 
+
+定理 1.41 设 O 是 Dedekind 环, F 为 O 的分式域. 
+
+(1) $\iota : P i c \mathcal { O } \to \mathrm { K e r } \rho : \langle M \rangle \mapsto [ M ] - [ \mathcal { O } ]$ 是群同构. 
+
+(2) $K _ { 0 } ( \mathcal { O } ) \cong \mathbb { Z } \oplus \operatorname { P i c } \mathcal { O } \cong \mathbb { Z } \oplus C l _ { F }$ . 
+
+定义 2.1 设 V 为有限维 -向量空间, Γ 为 V 的加法子群. 
+
+(1) 如果对任一 $\gamma \in \Gamma$ 存在 γ 在 V 内的邻域 $U _ { \gamma }$ 使得 $U _ { \gamma } \cap \Gamma = \{ \gamma \}$ , 称 Γ 为 V 的离 散子群 (discrete subgroup). 在陪集空间 $V / \Gamma$ 上取商拓扑并称它为 Γ 的轨迹空间. 
+
+(2) 如果 V 内存在线性无关向量 $v _ { 1 } , \ldots , v _ { m }$ 使得 $$
+\Gamma = \mathbb {Z} v _ {1} + \dots + \mathbb {Z} v _ {m},
+$$
+
+则称 Γ 为 V 的格 (lattice). 当 $m = \dim _ { \mathbb { R } } V$ 时, 称 Γ 为全格 (full lattice). 
+
+回顾 $\mathbb { R } ^ { n }$ 的拓扑. 在 $\mathbb { R } ^ { n }$ 取标准度量 $$
+\left\| \left(x _ {1}, \dots , x _ {n}\right) \right\| = \sqrt {x _ {1} ^ {2} + \cdots + x _ {n} ^ {2}},
+$$
+
+$\mathbb { R } ^ { n }$ 的子集 C 为紧集当且仅当 C 为有界闭集. 若 D 为 Rn 的离散子集, 则 D 为 Rn 的 闭集, 所以 $C \cap D$ 为紧集, 但是紧离散集 S 必是有限集, 原因如下: 每点 $s \in S$ 取开集 $U _ { s }$ 使得 $U _ { s } \cap S = \{ s \}$ , 于是 $\cup _ { s \in S } U _ { s }$ 为 S 的开覆盖, S 是紧集, 故有有限个 $U _ { s _ { 1 } } , \ldots , U _ { s _ { \tau } }$ n 使得 $S = U _ { s _ { 1 } } \cup \dots \cup U _ { s _ { n } }$ . 
+
+引理 2.2 V 的格 Γ 为全格当且仅当 V 内存在有界子集 D 使得 $$
+V = \bigcup_ {\gamma \in \Gamma} \mathcal {D} + \gamma .
+$$
+
+命题 2.3 设 Γ 为有限维 -向量空间 V 的子群. 
+
+(1) Γ 为 V 的离散子群当且仅当 Γ 为 V 的格. 
+
+(2) 轨迹空间 $V / \Gamma$ 为紧拓扑空间当且仅当 Γ 为全格. 
+
+定理 2.4 设 Γ 为向量空间 V 的全格. 设 V 的子集 X 满足条件: 如果 $x , y \in X$ , 则 $( x - y ) / 2 \in X$ . 若 $\mu ( X ) > 2 ^ { \dim V } v ( \Gamma )$ , 则 X ∩Γ 有非零点. 
+
+命题 2.5 (1) 映射 $$
+F \otimes_ {\mathbb {Q}} \mathbb {R} \to F _ {\infty}: a \otimes x \mapsto \tau (a) x
+$$
+
+决定 n 维 R-向量空间的同构. 
+
+(2) $F _ { \infty }$ 同构于 R-向量空间 $F _ { \mathbb { R } }$ . 按以上次序映射 $$
+\iota : F \to F _ {\mathbb {R}}: a \mapsto (\iota_ {1} (a), \dots , \iota_ {r _ {1}} (a), \iota_ {r _ {1} + 1} (a), \dots , \iota_ {r _ {1} + r _ {2}} (a))
+$$是加法群单态射. 
+
+
+定理 2.6 设 a 为环 ${ \mathcal { O } } _ { F }$ 内理想. 则 ι(a) 是 R-向量空间 $F _ { \mathbb { R } }$ 的全格. 全格 ι(a) 的基本 区的体积是 $$
+v (\iota (\mathfrak {a})) = (2) ^ {- r _ {2}} \mathfrak {N} (\mathfrak {a}) \sqrt {d (\mathcal {O} _ {F})}.
+$$
+
+命题 2.7 (1) 设 a 为环 ${ \mathcal { O } } _ { F }$ 内非零理想. 则 a 有非零元 a 使得 $$
+\left| N _ {F / \mathbb {Q}} (a) \right| \leqslant \frac {n !}{n ^ {n}} \left(\frac {4}{\pi}\right) ^ {r _ {2}} \mathfrak {N} (\mathfrak {a}) \left| d \left(\mathcal {O} _ {F}\right) \right| ^ {\frac {1}{2}}.
+$$
+
+(2) 设 $\mathfrak { A } \in C l _ { F }$ . 则整理想 ${ \mathfrak { a } } \in { \mathfrak { A } }$ 使得 $$
+| \mathfrak {N} (\mathfrak {a}) | \leqslant {\frac {n !}{n ^ {n}}} \left({\frac {4}{\pi}}\right) ^ {r _ {2}} | d ({\mathcal {O}} _ {F}) | ^ {\frac {1}{2}} \quad ({\mathrm{Minkowsk}}   \text {上界}).
+$$
+
+定理 2.8 理想类群 $C l _ { F }$ 是有限群.
+
+设 $F / \mathbb { Q }$ 为有限扩张, F 的全部非零元 $F ^ { \times }$ 为乘法群, 我们用对数函数把它变为加 法群. 以 R× 记 R \ {0}, $\mathbb { C } ^ { \times }$ 记 C \ {0}. 设  $$
+F _ {\mathbb {R}} ^ {\times} := \left(\mathbb {R} ^ {\times}\right) ^ {r _ {1}} \times \left(\mathbb {C} ^ {\times}\right) ^ {r _ {2}}.
+$$
+
+定义 $\ell : F _ { \mathbb { R } } ^ { \times } \to \mathbb { R } ^ { r _ { 1 } + r _ { 2 } }$ 为 $$
+\left(x _ {1}, \dots , x _ {r _ {1}}, z _ {r _ {1} + 1}, \dots , z _ {r _ {1} + r _ {2}}\right) \mapsto (\log | x _ {1} |, \dots , \log | x _ {r _ {1}} |, 2 \log | z _ {r _ {1} + 1} |, \dots , 2 \log | z _ {r _ {1} + r _ {2}} |).
+$$
+
+从 F 到 C 的单态射按上节排 $\boldsymbol { l } _ { 1 } , \ldots , \boldsymbol { l } _ { r _ { 1 } + r _ { 2 } }$ . 取 $a \in F ^ { \times }$ , 设$$
+\iota (a) = (\iota_ {1} (a), \dots , \iota_ {r _ {1} + r _ {2}} (a)) \in F _ {\mathbb {R}} ^ {\times}.
+$$
+
+定义 $\lambda ( a ) = \ell ( \iota ( a ) )$ . 
+
+定理 2.9 记 $U _ { F }$ 为环 ${ \mathcal { O } } _ { F }$ 的全部可逆元. 则 $\lambda ( U _ { F } )$ 为 $r _ { 1 } + r _ { 2 } - 1$ 维 R-向量空间的 全格.  
+
+亦称环 ${ \mathcal { O } } _ { F }$ 的可逆元为单位元, 以 $\mu _ { F }$ 记 F 内全部单位根. 
+
+定理 2.10 (Dirichlet 单位元定理) $U _ { F }$ 为有限循环群 $\mu _ { F }$ 及一个秩 $r _ { 1 } + r _ { 2 } - 1$ 自由 交换群的直积. 
+
+设 ${ \mathfrak { m } } = { \mathfrak { m } } _ { \infty } { \mathfrak { m } } _ { 0 }$ 为 F 的模, 以 $\mu _ { F } ^ { \mathfrak { m } }$ 记 $F _ { \mathfrak { m } , 1 }$ 内全部单位根. 
+
+定理 2.11 $U _ { F } \cap F _ { \mathfrak { m } , 1 }$ 为有限循环群 $\mu _ { F } ^ { \mathfrak { m } }$ 及一个秩 $r _ { 1 } + r _ { 2 } - 1$ 自由交换群的直积. 
+
+设 ${ \mathfrak { m } } = { \mathfrak { m } } _ { \infty } { \mathfrak { m } } _ { 0 }$ 为 F 的模, 其中 $$
+\mathfrak {m} _ {\infty} = \left(\mathfrak {p} _ {\infty_ {1}}\right) ^ {\nu_ {1}} \dots \left(\mathfrak {p} _ {\infty_ {r}}\right) ^ {\nu_ {r _ {1}}},
+$$
+
+并且假设 $\nu _ { 1 } = \cdot \cdot \cdot = \nu _ { s _ { \mathrm { m } } } = 1$ , 其他的 $\nu _ { j } = 0$ . 定义绝对范数$$
+\mathfrak {N} (\mathfrak {m}) = 2 ^ {s _ {\mathfrak {m}}} \mathfrak {N} (\mathfrak {m} _ {0}).
+$$
+
+引理 2.12 设 $\mathscr { R } \in \mathcal { T } _ { F } ^ { \mathfrak { m } } / S _ { F } ^ { \mathfrak { m } }$ . 则类 K 内有整理想. 
+
+以 $P _ { n }$ 记集合$$
+\{\mathfrak {n} \in \mathcal {I} _ {F} \cap \mathfrak {K}: \mathfrak {N} (\mathfrak {n}) \leqslant n \}
+$$
+
+的元素个数. 
+
+引理 2.13 记主理想 $\nu \mathcal { T } _ { F }$ 为 (ν), 取整理想 ${ \mathfrak { a } } \in { \mathfrak { K } } ^ { - 1 }$ . 则 $P _ { n }$ 为以下集合的元素个数: $$
+\big \{(\nu): (\nu) \in S _ {F} ^ {\mathfrak {m}}, \nu \in \mathfrak {a}, 0 <   \mathfrak {N} ((\nu)) \leqslant n \mathfrak {N} (\mathfrak {a}) \big \}.
+$$
+
+引理 2.14 设 $\nu _ { 0 }$ 满足条件$$
+\nu_ {0} \equiv 1 \mod^ {+} \mathfrak {m} _ {0}, \quad \nu_ {0} \equiv 1 \mod^ {+} \mathfrak {a}.
+$$ 则 $P _ { n }$ 为满足以下条件的主理想 (ν) 的个数: 
+
+(a) $\nu \equiv \nu _ { 0 } { \mathrm { m o d } } ^ { + } { \mathfrak { m } } _ { 0 } { \mathfrak { a } }$ 
+
+(b) $\nu ^ { ( 1 ) } , \ldots , \nu ^ { ( s _ { \mathfrak { m } } ) } > 0 .$ 
+
+(c) $0 < \mathfrak { N } ( ( \nu ) ) \leqslant n \mathfrak { N } ( \mathfrak { a } )$ 
+
+引理 2.15 $W , W _ { 1 } , \dots , W _ { r _ { 1 } + r _ { 2 } - 1 }$ 如上定义, $W _ { 1 } , \dots , W _ { r _ { 1 } + r _ { 2 } - 1 }$ 为格 $\lambda ( U _ { F } \cap F _ { \mathfrak { m } , 1 } )$ 的基. 设 $\alpha _ { 1 } , \ldots , \alpha _ { r _ { 1 } + 2 r _ { 2 } }$ 为自由交换群 $\mathfrak { m } _ { 0 } { \mathfrak { a } }$ 的基. 满足以下条件的点 $( x _ { 1 } , \ldots , x _ { n } ) \in \mathbb { R } ^ { r _ { 1 } + 2 r _ { 2 } }$ 所组成的集合记为 ${ \mathcal { S } } \backslash$ : 
+
+(1) $\begin{array} { r } { \ell ( \sum _ { i } x _ { i } \iota \alpha _ { i } ) = c W + \sum _ { i } c _ { i } W _ { i } } \end{array}$ , 其中 $c \in \mathbb { R } , 0 \leqslant c _ { i } < 1$ ; 
+
+(2) $\sum _ { i } x _ { i } \alpha _ { i }$ 的前面 $s _ { \mathfrak { m } }$ 个坐标 $> 0$ 
+
+(3) $0 < \mathfrak { N } ( \sum _ { i } x _ { i } \iota \alpha _ { i } ) \leqslant 1$   
+
+则 $$
+\lim _ {n \to \infty} \frac {P _ {n}}{n} = \frac {\mu (\mathcal {S}) \mathfrak {N a}}{w _ {\mathfrak {m}}}.
+$$
+
+我们称以 s 为复变元的级数 $$
+\mathcal {D} (s) = \sum_ {n = 1} ^ {\infty} \frac {a _ {n}}{n ^ {s}}, \quad a _ {n} \in \mathbb {C}
+$$
+
+定理 2.18 (1) 定义部分和 $$
+S _ {m} (s) = \sum_ {n = 1} ^ {m} \frac {a _ {n}}{n ^ {s}}.
+$$
+
+如果无穷数列 $\{ S _ { n } ( s _ { 0 } ) : n \geqslant 0 \}$ 有界, 则对任意 $\delta > 0$ 和 $C > 0$ , Dirichlet 级数在$$
+\{s: | s - s _ {0} | \leqslant C, \operatorname{Re} (s) \geqslant \operatorname{Re} (s _ {0}) + \delta \}
+$$ 
+
+上一致绝对收敛. Dirichlet 级数 ${ \mathcal { D } } ( s )$ 收敛为一个在 $\operatorname { R e } ( s ) > \operatorname { R e } ( s _ { 0 } )$ 上的解析 函数. 
+
+(2) 存在 $\sigma _ { 0 } , - \infty \leqslant \sigma _ { 0 } \leqslant \infty$ , 使得 Dirichlet 级数 ${ \mathcal { D } } ( s )$ 在开右半平面 $\mathrm { R e } ( s ) > \sigma _ { 0 }$ 上收 敛为解析函数, 并且当 $\mathrm { R e } ( s ) < \sigma _ { 0 }$ 时级数 $\mathcal { D } ( s )$ 发散. 称 $\sigma _ { 0 }$ 为级数 $\mathcal { D } ( s )$ 的收敛 横坐标. 
+
+(3) 若系数部分和 $$
+P _ {n} = \sum_ {k = 1} ^ {n} a _ {k}
+$$
+
+满足估值 $$
+| P _ {n} | \leqslant P n ^ {\sigma_ {1}}, \quad \sigma_ {1} > 0,   P   \text {为常数},
+$$
+
+则级数 D(s) 的收敛横坐标 $\sigma _ { 0 } \leqslant \sigma _ { 1 }$ . 
+
+(4) 如果$$
+\lim _ {n \to \infty} \frac {P _ {n}}{n} = g,
+$$ 
+$$
+\lim_{\substack{s\to 1\\ \text{Re} s > 1}}(s - 1)\mathcal{D}(s) = g.
+$$
+
+所以 s = 1 是级数 D(s) 留数为 g 的单极点. 
+
+记 $S ^ { 1 } : = \{ z \in \mathbb { C } : | z | = 1 \}$ , 称定义在有限交换群 A 上的群同态 $\chi : A  S ^ { 1 }$ 为 A 的酉特征标 (unitary character). 常以 $1 : A \to S ^ { 1 } , 1 ( a ) = 1$ 记单位特征标, 详情见 [7] 四章 §2, 2.2. 
+
+命题 2.19 设 $\chi _ { 1 } , \chi _ { 2 }$ 为有限交换群 A 的酉特征标. 则 $$
+\sum_ {a \in A} \chi_ {1} (a) \chi_ {2} (a) = {\left\{ \begin{array}{l l} {0,} & {{\text {若}} \chi_ {1} \neq \chi_ {2} ^ {- 1},} \\ {| A |,} & {{\text {若}} \chi_ {1} = \chi_ {2} ^ {- 1}.} \end{array} \right.}
+$$若 $\chi \neq 1$ , 则 $\textstyle \sum _ { a \in A } \chi ( a ) = 0$ . 
+
+称 ${ \cal T } _ { F } ^ { \mathfrak { m } } / S _ { F } ^ { \mathfrak { m } }$ 的酉特征标 χ 为 modm 理想特征标. 定义的 L-函数为$$
+L (s, \chi) = \sum_ {(\mathfrak {n}, \mathfrak {m}) = 1} \frac {\chi (\mathfrak {n})}{\mathfrak {N} (\mathfrak {n}) ^ {s}},
+$$ 其中 s 为复数变元, ∑ 是对所有与 m 互素的整理想 n 求和. 
+
+命题 2.20 (1) 以上定义 L-函数的无穷级数在 $\mathrm { R e } s > 1$ 内的紧集上一致绝对收敛, 故 此 $L ( s , \chi )$ 是 $\operatorname { R e } s > 1$ 上的解析函数. 
+
+(2) 在 Re s > 1 上 $L ( s , \chi )$ 可以表达为一致绝对收敛无穷乘积 $$
+L (s, \chi) = \prod_ {\mathfrak {p} \nmid \mathfrak {m}} \left(1 - \frac {\chi (\mathfrak {p})}{\mathfrak {N} (\mathfrak {p}) ^ {s}}\right) ^ {- 1},
+$$其中 ∏ 是对所有不除 m 的素理想 p 取乘积. 称此为 L-函数的 Euler 积. 
+
+(3) $$
+\lim _ {s \to 1} (s - 1) L (s, \chi) = {\left\{ \begin{array}{l l} {0,} & {{\text {若}} \chi \neq 1,} \\ {g _ {\mathfrak {m}} h _ {\mathfrak {m}},} & {{\text {若}} \chi = 1,} \end{array} \right.}
+$$
+
+其中 $$
+h _ {\mathfrak {m}} = | \mathcal {I} _ {F} ^ {\mathfrak {m}} / S _ {F} ^ {\mathfrak {m}} |, \quad g _ {\mathfrak {m}} = \frac {2 ^ {r _ {1}} (2 \pi) ^ {r _ {2}} R _ {\mathfrak {m}}}{\sqrt {| \delta_ {F} |} w _ {\mathfrak {m}} \mathfrak {N} (\mathfrak {m})}.
+$$
+
+数域 F 的 Dedekind ζ-函数是指对 F 的所有整理想 a 求和得出如下的复变函数 $$
+\zeta_ {F} (s) = \sum_ {\mathfrak {a}} \frac {1}{\mathfrak {N} (\mathfrak {a}) ^ {s}}, \quad \text { Re } s > 1.
+$$
+
+Dedekind ζ-函数的 Euler 积是 $$
+\zeta_ {F} (s) = \prod_ {\mathfrak {p}} \left(1 - \frac {1}{\mathfrak {N} (\mathfrak {p}) ^ {s}}\right) ^ {- 1}, \quad \text { Re } s > 1.
+$$
+
+当取 F 的模 m = 1 时, ${ \cal T } _ { F } ^ { \mathfrak { m } } / S _ { F } ^ { \mathfrak { m } }$ 便是 F 的理想类群 $C l _ { F } = \mathcal { I } _ { F } / \mathcal { P } _ { F }$ . 另一方面有 $\begin{array} { r } { \zeta _ { F } ( s ) = \sum _ { \mathfrak { s } } \zeta ( s , { \mathfrak { R } } ) } \end{array}$ , 于是知$$
+\lim _ {s \to 1} (s - 1) \zeta_ {F} (s) = \frac {2 ^ {r _ {1}} (2 \pi) ^ {r _ {2}} R _ {F} h _ {F}}{\sqrt {d (\mathcal {O} _ {F})} w _ {F}},
+$$
+
+其中 $w _ { F }$ 是 F 的单位根个数, $R _ { F }$ 为 F 的调控子, $h _ { F }$ 是 F 的类数. 见 [7] 第四章 $\ S 3$ . 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

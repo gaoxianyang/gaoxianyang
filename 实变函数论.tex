@@ -1,0 +1,410 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+
+\section{集合论简述}
+
+推论 任何闭区间 $[a, b]$ 中的有理数的全体是一可数集. 
+
+定理9 添加一个有限集或可数集 $A$ 的所有元素于一个无穷集 $M$ , 得到一个新集 $M + A$ , 则 $M$ 与 $M + A$ 之势相同, 即 
+
+定理10 若 $S$ 是一个不可数的无穷集, $A$ 是 $S$ 的一个有限子集或可数子集, 则 $$
+S - A \sim S.
+$$
+
+推论 凡无穷集必定含有一个和它自身对等的真子集. 
+
+定义2 凡集包含一个与它自身对等的真子集的称为无穷集. 
+
+定理11 若 $A$ 中每元素由 $n$ 个互相独立的记号所决定, 而每一记号各自独立地跑遍一个可数集: $$
+A = \left\{a _ {x _ {1}, x _ {2}, \dots , x _ {n}} \right\} \quad (x _ {k} = x _ {k} ^ {(1)}, x _ {k} ^ {(2)}, \dots ; k = 1, 2, \dots , n),
+$$那么 $A$ 是可数的. 
+
+定理12 代数数的全体成一可数集. 
+
+定理1 线段 $U = [0,1]$ 是不可数的. 
+
+定理2 闭区间 $[a, b]$ , 开区间 $(a, b)$ 以及半闭区间 $(a, b]$ 及 $[a, b)$ 的势都是 $c$ . 
+
+定理3 两两不相交的有限个势为 $c$ 的集的和集, 其势是 $c$ . 
+
+定理4 两两不相交的可数个势为 $c$ 的集的和集, 其势是 $c$ . 
+
+推论1 实数全体所成之集 $\mathbb{R}$ , 其势是 $c$ . 
+
+推论2 无理数的全体是一个势为 $c$ 的集. 
+
+推论3 超越数 (非代数数) 是存在的. 
+
+定理5 正整数列的全体成一集 $Q, Q$ 的势是 $c$ . 
+
+定理6 若集 $A$ 中每一个元素由 $n$ 个互相独立的记号所决定, 而每一个记号各自取 $c$ 个值① $$
+A = \left\{a _ {x _ {1}, x _ {2}, \dots , x _ {n}} \right\},
+$$则 $A$ 的势是 $c$ . 
+
+定义1 将所有的集分类, 凡二集对等时且只有对等时称为属于同一类. 对于每一类与以一个记号. 称此记号为该类中任一集的势. 若 $A$ 的势是 $\alpha$ , 则记以 $$
+\overline {{\overline {{A}}}} = \alpha .
+$$
+
+定义2 设二集 $A$ 和 $B$ 的势分别是 $\alpha$ 和 $\beta$ : $$
+\overline {{\overline {{A}}}} = \alpha , \quad \overline {{\overline {{B}}}} = \beta .
+$$
+
+定理1 设 $F$ 是在 $[0,1]$ 上定义的一切实函数所成的集, 则 $F$ 的势大于 $c$ . 
+
+定义3 闭区间 $[0,1]$ 上所定义的一切实函数所成之集, 记其势为 $f$ . 
+
+定理2 设 $M$ 是任一集, $T$ 是 $M$ 的一切子集所成之集, 那么 $$
+\overline {{\overline {{T}}}} > \overline {{\overline {{M}}}}.
+$$
+
+定义4 若 $M$ 的势是 $\mu$ , 而以它的一切子集所组成的集为 $T, T$ 的势是 $\tau$ , 则定义 $$
+\tau = 2 ^ {\mu}.
+$$
+
+定理3 公式 $c = 2^{a}$ 为真. 
+
+定理4 设 $A \supset A_1 \supset A_2$ . 若 $A_2 \sim A$ , 则 $A_1 \sim A$ . 
+
+定理 5 (E. 施罗德 (E. Schröder)-F. 伯恩斯坦 (F. Bernstein)) 设 A, B 为二集, 如果 A, B 中任何一个都与另一集的某子集对等, 则 A 与 B 对等. 
+
+定理6 闭区间 $[0,1]$ 上所定义的连续函数的全体组成一集 $\Phi, \Phi$ 的势是 $c$ . 
+
+\section{点集}
+
+定义 若包含点 $x_0$ 的每一个区间 $(a, b)$ 包含 $E$ 中不可数的无穷个点, 则 $x_0$ 称为 $E$ 的凝聚点. 
+
+定理2 (E. 林得勒夫 (E. Lindelöf)) 如果 $E$ 的点都不是 $E$ 的凝聚点, 则 $E$ 至多是一可数集. 
+
+定义1 区间 $(a, b)$ 的测度, 就是它的长 $b - a$ . 记以 $$
+m (a, b) = b - a,
+$$
+
+引理 1 如果区间 $\Delta$ 中含有有限个不相重叠的区间 $\delta_{1}, \delta_{2}, \cdots, \delta_{n}$ ，则 $$
+\sum_ {k = 1} ^ {n} m \delta_ {k} \leqslant m \Delta .
+$$
+
+推论 如果区间 $\Delta$ 中含有可数个不相重叠的区间 $\delta_{k}(k=1,2,\cdots)$ ，则$$
+\sum_ {k = 1} ^ {\infty} m \delta_ {k} \leqslant m \Delta .
+$$
+
+定义2 设 $G$ 是不空的有界开集, 则其一切构成区间之长的和称为 $G$ 的测度. 即 $$
+m G = \sum_ {k} m \delta_ {k}.
+$$
+
+定理1 设 $G_{1}, G_{2}$ 是两个有界开集. 若 $G_{1} \subset G_{2}$ , 则 $$
+m G _ {1} \leqslant m G _ {2}.
+$$
+
+推论 有界开集 $G$ 的测度是一切可能包含 $G$ 的有界开集的测度的下确界. 
+
+定理2 若有界开集 $G$ 是有限个或可数个不相重叠的开集 $G_{k}$ 的和集：$$
+G = \sum_ {k} G _ {k} \quad (G _ {k} G _ {k ^ {\prime}} = \varnothing , k \neq k ^ {\prime}),
+$$  
+
+则 $$
+m G = \sum_ {k} m G _ {k}.
+$$
+
+引理2 假如 $[P, Q]$ 被有限个区间所成之集 $H = \{(\lambda, \mu)\}$ 所覆盖，则 $$
+Q - P <   \sum_ {H} m (\lambda , \mu).
+$$
+
+引理3 设区间 $\Delta$ 是有限个或可数个开集 $G_{k}$ 的和集：$$
+\Delta = \sum_ {k} G _ {k},
+$$
+
+则$$
+m \Delta \leqslant \sum_ {k} m G _ {k}.
+$$
+
+定理3 如果有界开集 $G$ 是有限个或可数个开集 $G_{k}$ 的和集$$
+G = \sum_ {k} G _ {k},
+$$则 $$
+m G \leqslant \sum_ {k} m G _ {k}.
+$$
+
+定义1 设 $F$ 是一不空的有界闭集, $S = [A, B]$ 是包含 $F$ 的最小闭区间, 则定义 $F$ 的测度 $$
+m F = B - A - m [ \mathbb {C} _ {s} F ].
+$$
+
+定理 1 有界闭集 F 的测度决不是负数. 
+
+引理1 设 $F$ 是含在区间 $\Delta$ 中的有界闭集, 则  $$
+m F = m \Delta - m [ \mathbb {C} _ {\Delta} F ].
+$$
+
+定理2 设 $F_{1}, F_{2}$ 是两个有界闭集. 如果 $F_{1} \subset F_{2}$ , 则 $$
+m F _ {1} \leqslant m F _ {2}.
+$$
+
+推论 有界闭集 $F$ 的测度是 $F$ 一切可能含在 $F$ 中的闭集的测度的上确界. 
+
+定理3 设 $F$ 是一闭集, $G$ 是含有 $F$ 的有界开集, 则$$
+m F \leqslant m G.
+$$
+
+定理4 有界开集 $G$ 的测度是一切可能含在 $G$ 中的闭集的测度的上确界. 
+
+定理5 有界闭集 $F$ 的测度是一切可能包含 $F$ 的有界开集的测度的下确界. 
+
+定理6 设有界闭集 $F$ 是有限个不相交的闭集的和集：$$
+F = \sum_ {k = 1} ^ {n} F _ {k} \quad (F _ {k} F _ {k ^ {\prime}} = \varnothing , k \neq k ^ {\prime}),
+$$ 则  $$
+m F = \sum_ {k = 1} ^ {n} m F _ {k}.
+$$
+
+定义1 有界集 $E$ 的外测度 $m^{*}E$ 是一切可能包含 $E$ 的有界开集的测度的下确界, 即 $$
+m ^ {*} E = \inf _ {G \supset E} \{m G \}.
+$$
+
+定义2 有界集 $E$ 的内测度 $m_{*}E$ 是一切可能含在 $E$ 中的闭集的测度的上确界, 即 $$
+m _ {*} E = \sup _ {F \subset E} \{m F \}.
+$$
+
+定理1 假如 $G$ 是一有界开集, 则$$
+m ^ {*} F = m _ {*} F = m F.
+$$
+
+定理2 假如 $F$ 是一有界闭集, 则$$
+m ^ {*} F = m _ {*} F = m F.
+$$
+
+定理3 对于所有的有界集 $E$ , $$
+m _ {*} E \leqslant m ^ {*} E.
+$$
+
+定理4 假如有界集 $B$ 含有 $A$ , 则   $$
+m _ {*} A \leqslant m _ {*} B, \quad m ^ {*} A \leqslant m ^ {*} B.
+$$
+
+定理5 假如有界集 $E$ 是有限个或可数个集 $E_{k}$ 的和集 $$
+E = \sum_ {k} E _ {k},
+$$那么$$
+m ^ {*} E \leqslant \sum_ {k} m ^ {*} E _ {k}.
+$$
+
+定理6 假如有界集 $E$ 是有限个或可数个不相重叠的集 $E_{k}$ 的和集：$$
+E = \sum_ {k} E _ {k} \quad (E _ {k} E _ {k ^ {\prime}} = \varnothing , k \neq k ^ {\prime}),
+$$ 那么 $$
+m _ {*} E \geqslant \sum_ {k} m _ {*} E _ {k}.
+$$
+
+定理7 设 $E$ 是一有界集, $\Delta$ 是包含 $E$ 的区间, 则  $$
+m ^ {*} E + m _ {*} [ \mathbb {C} _ {\Delta} E ] = m \Delta .
+$$
+
+定义 如果有界集 $E$ 的内测度和外测度相等, 则称 $E$ 是一个可测集. 这时 $E$ 的内测度或外测度的数值就称作 $E$ 的测度, 记为 $mE$ : 
+
+定理3 如果 $E$ 是含在区间 $\Delta$ 中的有界集, 则 $E$ 和 $\mathbb{C}_{\Delta}E$ 同时为可测或同时为不可测. 
+
+定理4 假如有界集 $E$ 是有限个或可数个两两不相交的可测集的和集：$$
+E = \sum_ {k} E _ {k} \quad (E _ {k} E _ {k ^ {\prime}} = \varnothing , k \neq k ^ {\prime}),
+$$ 则 $E$ 是一可测集，且$$
+m E = \sum_ {k} m E _ {k}.
+$$
+
+定理5 有限个可测集的和集是一可测集. 
+
+定理6 有限个可测集的交集是可测的. 
+
+定理 7 两个可测集的差是一可测集. 
+
+定理8 假设除了定理7中诸条件外，再加上条件 $E_{1} \supset E_{2}$ ，则 $$
+m E = m E _ {1} - m E _ {2}.
+$$
+
+定理9 假如有界集 $E$ 是可数个可测集的和集, 则 $E$ 是一可测集. 
+
+定理10 可数个可测集的交集是可测的. 
+
+定理 11 设 $E_{1}, E_{2}, E_{3}, \cdots$ 都是可测集. 如果 $$
+E _ {1} \subset E _ {2} \subset E _ {3} \subset \dots
+$$ 且 $E = \sum_{k=1}^{\infty} E_k$ 为有界, 则$$
+m E = \lim _ {n \rightarrow \infty} [ m E _ {n} ].
+$$
+
+定理1 设 $\varphi(x)$ 是一运动, 那么当 $x \neq y$ 时 $\varphi(x) \neq \varphi(y)$ . ‘
+
+定理 2 a) 若 $A \subset B$ ，则 $\varphi(A) \subset \varphi(B)$ .    
+
+b) $\varphi\left(\sum_{\xi}E_{\xi}\right)=\sum_{\xi}\varphi(E_{\xi}).$ 
+
+c) $\varphi\left(\prod_{\xi}E_{\xi}\right)=\prod_{\xi}\varphi(E_{\xi}).$ 
+
+d) $\varphi (\varnothing) = \varnothing$ 
+
+定理 6 有界开集之测度对于运动不变. 
+
+定理 7 有界集的内测度和外测度对于运动都不变. 
+
+定理 1 有界可数集是可测的, 其测度等于 0. 
+
+定义 1 假如集 E 是可数个闭集 $F_{k}$ 的和集: $$
+E = \sum_ {k = 1} ^ {\infty} F _ {k},
+$$则称 E 是一 $F_{\sigma}$ 型集. 
+
+定义2 假如集 $E$ 是可数个开集 $G_{k}$ 的交集：$$
+E = \prod_ {k = 1} ^ {\infty} G _ {k},
+$$ 则称 E 是一 $G_{\delta}$ 型集. 
+
+定理 2 $F_{\sigma}$ 型或是 $G_{\delta}$ 型的有界集都是可测集. 
+
+定义3 如果 $E$ 是从开集和闭集经过有限次或可数次“和”与“交”的手续所生成的集, 则称 $E$ 是博雷尔集. 又称有界的博雷尔集是 $(B)$ 可测的. 
+
+定理4 设 $M$ 是所有可测集所成的集, 则 $M$ 的势等于所有点集所成之集的势, 即 $\overline{M} = 2^c$ . 
+定理 5 不可测的有界集是存在的. 
+
+定义 设 $E$ 是一点集, $M$ 是闭区间所组成的集 (但其中每一个闭区间不退缩为一点). 对于 $E$ 中任一点 $x$ , 及任一正数 $\varepsilon$ , $M$ 中有如下的闭区间 $d$ : $$
+x \in d, \quad m d <   \varepsilon ,
+$$此时称点集 E 依照维塔利的意义被 M 所覆盖. 
+
+定理1(G.维塔利) 如果有界集 $E$ 依照维塔利的意义被一闭区间集 $M$ 所覆盖, 则从 $M$ 可以选出有限个或可数个闭区间 $\{d_k\}$ , 使 $$
+d _ {k} d _ {i} = \varnothing (k \neq i), \quad m ^ {*} \left[ E - \sum_ {k} d _ {k} \right] = 0.
+$$
+
+定理 2 (G. 维塔利) 在定理 1 的条件下, 对于任一正数 $\varepsilon$ , M 中存在着有限个两两不相重叠的闭区间 $d_{1}, d_{2}, \cdots, d_{n}$ 适合 $$
+m ^ {*} \left(E - \sum_ {k = 1} ^ {n} d _ {k}\right) <   \varepsilon .
+$$
+
+定理 1 (H. 勒贝格) 设 $f_{1}(x), f_{2}(x), f_{3}(x), \cdots$ 是在可测集 E 上所定义的几乎处处有限的可测函数列, 若对于 E 中几乎所有的点 $x, f_{n}(x)$ 收敛于几乎处处为有限的函数 $f(x)$ , 那么对于任何正数 $\sigma$ , 有$$
+\lim _ {n \rightarrow \infty} [ m E (| f _ {n} - f | \geqslant \sigma) ] = 0.
+$$
+
+定义 设 $$
+f _ {1} (x), f _ {2} (x), f _ {3} (x), \dots \tag {*}
+$$ 是在可测集 $E$ 上几乎处处有限的可测函数列, 又 $f(x)$ 是在 $E$ 上定义的几乎处处有限的可测函数. 如果对于任一正数 $\sigma$ , 关系 $$
+\lim _ {n \rightarrow \infty} [ m E (| f _ {n} - f | \geqslant \sigma) ] = 0
+$$成立, 则称函数列 (*) 依测度收敛于函数 $f(x)$ . 
+
+定理 1* 几乎处处收敛的函数列也一定依测度收敛于其极限函数. 
+
+定理2 假如函数列 $f_{n}(x)$ 依测度收敛于 $f(x)$ , 那么 $f_{n}(x)$ 也依测度收敛于等价于 $f(x)$ 的任一函数 $g(x)$ . 
+
+定理3 假如函数列 $f_{n}(x)$ 依测度收敛于两个函数 $f(x)$ 与 $g(x)$ , 那么 $f(x)$ 等价于 $g(x)$ . 
+
+定理4(F.里斯) 若函数列 $\{f_n(x)\}$ 依测度收敛于 $f(x)$ , 则必有子函数列 $$
+f _ {n _ {1}} (x), f _ {n _ {2}} (x), f _ {n _ {3}} (x), \dots \quad (n _ {1} <   n _ {2} <   n _ {3} <   \dots)
+$$几乎处处收敛于 $f(x)$ .② 
+
+定理 5 (Ⅱ. Φ. 叶戈洛夫) 设在可测集 E 上已给一列几乎处处有限的可测函数: $f_{1}(x), f_{2}(x), f_{3}(x), \cdots$ ，且它们几乎处处收敛于几乎处处有限的函数 $f(x)$ $$
+\lim _ {n \to \infty} f _ {n} (x) = f (x). \tag {*}
+$$在此假设下, 对于任一正数 $\delta$ , 存在如下的可测集 $E_{\delta} \subset E$ :
+
+1) $mE_{\delta} > mE - \delta$ . 
+
+2) 在 $E_{\delta}$ 上, $f_{n}(x)$ 一致收敛于 $f(x)$ .
+
+定理1 设 $f(x)$ 是在 $E$ 上所定义的几乎处处有限的可测函数, 那么对于任意的正数 $\varepsilon$ , 存在一个如下的有界可测函数 $g(x)$ :$$
+m E (f \neq g) <   \varepsilon .
+$$
+
+引理 1 设 $F_{1}, F_{2}, \cdots, F_{n}$ 是两两不相交的 n 个闭集，在它们的和集 $$
+F = \sum_ {k = 1} ^ {n} F _ {k}
+$$
+
+上定义函数 $\varphi(x)$ . 假如 $\varphi(x)$ 在每一 $F_{k}$ 上取常数值, 那么 $\varphi(x)$ 在 $F$ 上是连续的. 
+
+引理2 设 $F$ 是含在 $[a, b]$ 中的闭集. 设 $\varphi(x)$ 是在 $F$ 上所定义的连续函数. 那么在 $[a, b]$ 上可以定义如下的函数 $\psi(x)$ :   
+
+1) $\psi(x)$ 是连续的， 
+
+2) $x \in F$ 时, $\psi(x) = \varphi(x)$ . 
+
+3) $\max |\psi (x)| = \max |\varphi (x)|.$ 
+
+定理2(E.博雷尔）设 $f(x)$ 是在 $E = [a,b]$ 上定义的几乎处处有限的可测函数.对于任何二正数 $\sigma$ 与 $\varepsilon ,[a,b]$ 上有连续函数 $\psi (x)$ 适合 $$
+m E (| f - \psi | \geqslant \sigma) <   \varepsilon .
+$$
+
+如果 $|f(x)| \leqslant K$ , 那么可以选取上面的 $\psi(x)$ 使它满足$$
+| \psi (x) | \leqslant K.
+$$
+
+定理3(M.弗雷歇(M.Fréchet)) 对于在 $[a,b]$ 上定义的几乎处处有限的可测函数 $f(x)$ , 存在几乎处处收敛于 $f(x)$ 的连续函数列. 
+
+定理 4 (H. H. 卢津 (H. H. Лузин)) 设 $f(x)$ 是在 E = [a, b] 上所定义的几乎处处有限的可测函数. 对于任一正数 $\delta$ , 有连续函数 $\varphi(x)$ 适合  $$
+m E (f \neq \varphi) <   \delta .
+$$
+
+特别, 当 $|f(x)| \leqslant K$ 时, 则可取上面的 $\varphi(x)$ 使它满足$$
+| \varphi (x) | \leqslant K.
+$$
+
+引理2 对于所有的实数 $x$ ，成立不等式 $$
+\sum_ {k = 0} ^ {n} C _ {n} ^ {k} (k - n x) ^ {2} x ^ {k} (1 - x) ^ {n - k} \leqslant \frac {n}{4}. 
+$$
+
+定义1 设 $f(x)$ 是在 $[0,1]$ 上定义的有限函数. 称多项式 $$
+B _ {n} (x) = \sum_ {k = 0} ^ {n} f \left(\frac {k}{n}\right) C _ {n} ^ {k} x ^ {k} (1 - x) ^ {n - k} 
+$$
+
+定理2 (K. 魏尔斯特拉斯) 设 $f(x)$ 是在 $[a, b]$ 上定义的连续函数. 那么对于任意的正数 $\varepsilon$ , 存在多项式 $P(x)$ , 使不等式 $$
+| f (x) - P (x) | <   \varepsilon
+$$
+
+对所有 $x \in [a, b]$ 一致地成立. 
+
+定理3(M.弗雷歇) 设 $f(x)$ 是在 $[a,b]$ 上定义的几乎处处有限的可测函数, 那么存在一列多项式几乎处处收敛于 $f(x)$ . 
+
+定理4(K.魏尔斯特拉斯）设 $f(x)$ 是一个周期为 $2\pi$ 的连续的周期函数，那么对于任一正数 $\varepsilon$ ，必有三角多项式 $T(x)$ 使不等式 $$
+| f (x) - T (x) | <   \varepsilon
+$$ 对所有 x 成立. 
+引理 对于 $[A, B]$ 的某种分法, 其对应的勒贝格和设为 $s_0$ 与 $S_0$ . 再加上一个新的分点 $\overline{y}$ , 从而得到新的勒贝格和是 $s$ 与 $S$ , 那么$$
+s _ {0} \leqslant s, \quad S \leqslant S _ {0}.
+$$
+
+定理1 当 $\lambda \to 0$ 时, 勒贝格的小和 $s$ 与大和 $S$ 都趋于 $\int_{E} f(x) dx$ . 
+
+定理 (H. 勒贝格) 设在可测集 $E$ 上, 有一有界可测函数列 $f_{1}(x), f_{2}(x), f_{3}(x), \cdots$ 依测度收敛于有界可测函数 $F(x)$ : $$
+f _ {n} (x) \Longrightarrow F (x).
+$$ 如果存在常数 $K$ , 对于所有的 $n$ 与所有的 $x$ , 使$$
+\left| f _ {n} (x) \right| <   K
+$$ 成立，则$$
+\lim _ {n \rightarrow \infty} \int_ {E} f _ {n} (x) d x = \int_ {E} F (x) d x.
+$$
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+	
+\end{document}

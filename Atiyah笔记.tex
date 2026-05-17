@@ -1,0 +1,98 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{交换代数}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+	
+
+\maketitle
+
+\section{Abstract}
+这里笔者假定读者已经熟悉基本定义
+
+\section{环与理想}
+
+Proposition 1.2. Let $A$ be a ring $\neq 0$ . Then the following are equivalent: 
+
+i) $A$ is a field; 
+
+ii) the only ideals in $A$ are 0 and (1); 
+
+iii) every homomorphism of $A$ into a non-zero ring $B$ is injective. 
+
+p is prime $\Leftrightarrow A / \mathfrak{p}$ is an integral domain; 
+
+m is maximal $\Leftrightarrow A / \mathfrak{m}$ is a field (by (1.1) and (1.2)). 
+
+Theorem 1.3. Every ring $A \neq 0$ has at least one maximal ideal. (Remember that "ring" means commutative ring with 1.) 
+
+Corollary 1.4. If $\mathfrak{a} \neq (1)$ is an ideal of $A$ , there exists a maximal ideal of $A$ containing $\mathfrak{a}$ . 
+
+Corollary 1.5. Every non-unit of $A$ is contained in a maximal ideal. 
+
+Proposition 1.6. i) Let $A$ be a ring and $\mathfrak{m} \neq (1)$ an ideal of $A$ such that every $x \in A - \mathfrak{m}$ is a unit in $A$ . Then $A$ is a local ring and $\mathfrak{m}$ its maximal ideal.
+
+ii) Let $A$ be a ring and $\mathfrak{m}$ a maximal ideal of $A$ , such that every element of  $1 + m$ (i.e., every $1 + x$ , where $x \in m$ ) is a unit in $A$ . Then $A$ is a local ring. Proof. i) Every ideal $\neq (1)$ consists of non-units, hence is contained in $m$ . Hence $m$ is the only maximal ideal of $A$ . 
+
+Proposition 1.7. The set $\mathfrak{N}$ of all nilpotent elements in a ring $A$ is an ideal, and $A / \mathfrak{N}$ has no nilpotent element $\neq 0$ . 
+
+Proposition 1.8. The nilradical of $A$ is the intersection of all the prime ideals of $A$ . 
+
+Proposition 1.9. $x \in \Re \Leftrightarrow 1 - xy$ is a unit in $A$ for all $y \in A$ . 
+
+Again, in $\mathbf{Z}$ , we have $(a + b)(a \cap b) = ab$ ; but in general we have only $(a + b)(a \cap b) \subseteq ab$ (since $(a + b)(a \cap b) = a(a \cap b) + b(a \cap b) \subseteq ab$ ). Clearly $ab \subseteq a \cap b$ , hence $$
+a \cap b = a b \text {   provided   } a + b = (1).
+$$
+
+Two ideals $a, b$ are said to be coprime (or comaximal) if $a + b = (1)$ . Thus for coprime ideals we have $a \cap b = ab$ . Clearly two ideals $a, b$ are coprime if and only if there exist $x \in a$ and $y \in b$ such that $x + y = 1$ . 
+
+Proposition 1.10. i) If $a_{i}, a,$ are coprime whenever $i \neq j$ , then $\Pi a_{i} = \bigcap a_{i}$ . 
+
+ii) $\phi$ is surjective $\Leftrightarrow \mathfrak{a}_i, \mathfrak{a}_j$ are coprime whenever $i \neq j$ . 
+
+iii) $\phi$ is injective $\Leftrightarrow \bigcap a_{i} = (0)$ . 
+
+Proposition 1.11. i) Let $\mathfrak{p}_1, \ldots, \mathfrak{p}_n$ be prime ideals and let $\mathfrak{a}$ be an ideal contained in $\bigcup_{i=1}^n \mathfrak{p}_i$ . Then $\mathfrak{a} \subseteq \mathfrak{p}_i$ for some $i$ . 
+
+ii) Let $\mathfrak{a}_1, \ldots, \mathfrak{a}_n$ be ideals and let $\mathfrak{p}$ be a prime ideal containing $\bigcap_{i=1}^{n} \mathfrak{a}_i$ . 
+
+Then $\mathfrak{p} \supseteq a_i$ for some $i$ . If $\mathfrak{p} = \bigcap a_i$ , then $\mathfrak{p} = a_i$ for some $i$ . 
+
+If a, b are ideals in a ring A, their ideal quotient is $$
+(a: b) = \{x \in A: x b \subseteq a \}
+$$
+
+Example. If $A = \mathbf{Z}$ , $a = (m)$ , $b = (n)$ , where say $m = \prod_{p} p^{\mu_p}$ , $n = \prod_{p} p^{\nu_p}$ , then $(a:b) = (q)$ where $q = \prod_{p} p^{\nu_p}$ and $$
+\gamma_ {p} = \max (\mu_ {p} - \nu_ {p}, 0) = \mu_ {p} - \min (\mu_ {p}, \nu_ {p}).
+$$
+
+Hence $q = m / (m, n)$ , where $(m, n)$ is the h.c.f. of $m$ and $n$ . 
+
+\end{document}

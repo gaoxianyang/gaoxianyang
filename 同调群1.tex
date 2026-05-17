@@ -1,0 +1,371 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{同调论}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+
+\section{简单同调群}
+
+定义 2.3 设 C, D 是链复形. 一个链映射 $f: C \rightarrow D$ 是一串同态 $f = \{f_q : C_q \rightarrow D_q\}$ ，满足条件：对每个维数 q 都有 $$
+\partial_ {q} \circ f _ {q} = f _ {q - 1} \circ \partial_ {q},
+$$即下面的图表交换 
+$$
+\begin{array}{l} \dots \longrightarrow C _ {q + 1} \xrightarrow {\partial_ {q + 1}} C _ {q} \xrightarrow {\partial_ {q}} C _ {q - 1} \xrightarrow {\partial_ {q - 1}} C _ {q - 2} \longrightarrow \dots \\ \quad \left. \begin{array}{c} f _ {q + 1} \Bigg | _ {\downarrow} \\ \quad f _ {q} \Bigg | _ {\downarrow} \\ \dots \longrightarrow D _ {q + 1} \xrightarrow {\partial_ {q + 1}} D _ {q} \xrightarrow {\partial_ {q}} D _ {q - 1} \xrightarrow {\partial_ {q - 1}} D _ {q - 2} \longrightarrow \dots \end{array} \right. \end{array}
+$$
+
+命题 2.1 链映射 $f: C \rightarrow D$ 诱导同调群的同态 $f_{*}: H_{*}(C) \rightarrow H_{*}(D)$ ,$$
+f _ {*} ([ z _ {q} ]) := [ f _ {q} (z _ {q}) ], \qquad {\text {对于}} z _ {q} \in Z _ {q} (C).
+$$
+
+一个 Abel 群序列 $G_{*} = \{G_{q} \mid q \in \mathbb{Z}\}$ 称为一个分次群. 分次群的同态 $\phi_{*}: G_{*} \to G_{*}^{\prime}$ 是指一个同态序列 $\{\phi_{q}: G_{q} \to G_{q}^{\prime}\}$ . 以 $\{\text{分次群, 同态}\}$ 表示由分次群及其同态组成的范畴. 那么我们已经构作出了协变的同调函子 $H_{*}: \{\text{链复形, 链映射}\} \to \{\text{分次群, 同态}\}$ . 
+
+定义 2.4 两个链映射 $f, g: C \to D$ 称为是链同伦的, 如果存在一串同态 $T = \{T_q : C_q \to D_{q+1}\}$ , 如下面图表 使得对每个维数 q, 都有 
+$$
+\partial_ {q + 1} \circ T _ {q} + T _ {q - 1} \circ \partial_ {q} = g _ {q} - f _ {q}.
+$$T 称为联结 f, g 的一个链同伦, 记号是 $$
+f \simeq g: C \to D \quad {\text {或}} \quad T: f \simeq g: C \to D.
+$$
+
+定理 2.3 设 $f \simeq g: C \to D$ . 则 $f_{*} = g_{*}: H_{*}(C) \to H_{*}(D)$ . 即, 链同伦的链映射诱导出相同的同调同态. 
+
+命题 2.4 链映射之间的链同伦关系是一个等价关系. 
+
+定义 2.5 两个链复形 C, D 称为是链同伦等价的, 如果存在链映射 $f: C \rightarrow D$ 和 $g: D \rightarrow C$ , 使得 $$
+g \circ f \simeq \operatorname{id} _ {C}: C \to C, \qquad f \circ g \simeq \operatorname{id} _ {D}: D \to D.
+$$
+
+命题 2.5 链同伦等价诱导同调群的同构，因而链同伦等价的链复形有同构的同调群. □ 
+
+定义 3.1 q 维标准单形, 就是 $R^{q+1}$ 中以 $e_{0}, e_{1}, \cdots, e_{q}$ 为顶点的单形 $$
+\Delta_ {q} := \left\{(x _ {0}, x _ {1}, \dots , x _ {q}) \in \boldsymbol {R} ^ {q + 1} \mid 0 \leq x _ {i} \leq 1, \sum_ {i} x _ {i} = 1 \right\}.
+$$
+
+定义 3.2 拓扑空间 X 中的一个 q 维奇异单形, 就是从 q 维标准单形到 X 的一个映射 $\sigma: \Delta_{q} \rightarrow X$ . 
+
+定义 3.3 以 X 中全体 q 维奇异单形为基, 生成一个自由 Abel 群, 记作 $S_{q}(X)$ , 称为 X 的 q 维奇异链群, 其中的元素称为 X 的 q 维奇异链. 于是, 奇异链是奇异单形的整数系数线性组合: $$
+c _ {q} = k _ {1} \sigma_ {q} ^ {(1)} + \dots + k _ {r} \sigma_ {q} ^ {(r)}, \qquad k _ {i} \in \mathbf {Z}, \sigma_ {q} ^ {(i)}: \Delta_ {q} \to X.
+$$负维数的奇异链群规定为 0. 
+
+定义 3.4 X 中 q 维奇异单形 $\sigma: \Delta_{q} \rightarrow X$ 的边缘, 定义为 X 中的如下的 q-1 维奇异链 $$
+\partial \sigma = \partial (\sigma \circ (e _ {0} \dots e _ {q})) := \sum_ {i = 0} ^ {q} (- 1) ^ {i} \sigma \circ (e _ {0} \dots \widehat {e} _ {i} \dots e _ {q}),
+$$
+
+命题3.1 两次边缘为零，即 $S_{*}(X) = \{S_{q}(X),\partial_{q}\}$ 是链复形. 	
+
+
+定义 3.5 链复形 $S_{*}(X)=\{S_{q}(X),\partial_{q}\}$ 称为 X 的奇异链复形. 链复形 $S_{*}(X)$ 的同调群称为 X 的奇异同调群, 记作 $$
+H _ {*} (X) := H _ {*} (S _ {*} (X)).
+$$空间 X 的奇异闭链、奇异边缘链、奇异同调类等等，就是指链复形 $S_{*}(X)$ 的闭链、边缘链、同调类等等. 
+
+定义 3.6 设 $f: X \rightarrow Y$ 是映射。它把 X 的每个奇异单形 $\sigma: \Delta_{q} \rightarrow X$ 映成 Y 的一个奇异单形$$
+f _ {\#} (\sigma) := f \circ \sigma .
+$$ 通过线性扩张，我们得到同态 $f_{\#}: S_q(X) \to S_q(Y)$ . 
+
+命题 3.2 $f_{\#}$ 与边缘算子可交换，即 $\{f_{\#}:S_{q}(X)\to S_{q}(Y)\}$ 是链映射 $f_{\#}:S_{*}(X)\to S_{*}(Y)$ . □ 
+
+定义 3.7 映射 $f: X \to Y$ 所诱导的同调同态 $f_{*}: H_{*}(X) \to H_{*}(Y)$ ，就是指链映射 $f_{\#}: S_{*}(X) \to S_{*}(Y)$ 所诱导的同调同态 $(f_{\#})_{*}: H_{*}(S_{*}(X)) \to H_{*}(S_{*}(Y))$ . 
+
+命题 3.3 (奇异同调群的拓扑不变性) 同胚的拓扑空间有同构的奇异同调群. □ 
+
+命题 3.4 (单点空间的同调) 以 pt 记单点空间. 则 
+$$
+H _ {q} (\mathrm{pt}) = \left\{ \begin{array}{l l} {{Z,}} & {{\text {当} q = 0,}} \\ {{0,}} & {{\text {当} q \neq 0.}} \end{array} \right.
+$$
+
+定义 3.8 设有一族链复形 $\{C_{\lambda} \mid \lambda \in \Lambda\}$ ， $\Lambda$ 是某个指标集， $C_{\lambda} = \{C_{\lambda q}, \partial_{\lambda q}\}$ 。这族链复形的直和定义为链复形 
+定义 3.8 设有一族链复形 $\{C_{\lambda} \mid \lambda \in \Lambda\}$ ， $\Lambda$ 是某个指标集， $C_{\lambda} = \{C_{\lambda q}, \partial_{\lambda q}\}$ 。这族链复形的直和定义为链复形 
+
+式子右面的两个直和记号分别表示交换群的直和与同态的直和。显然我们有 
+$$
+H _ {*} \left(\bigoplus_ {\lambda \in \Lambda} C _ {\lambda}\right) = \bigoplus_ {\lambda \in \Lambda} H _ {*} (C _ {\lambda}).
+$$
+
+定理3.6 设 $X = \bigcup_{\lambda \in \Lambda} X_{\lambda}$ 是 $X$ 的道路连通支分解。则有直和分解 $$
+H _ {*} (X) = \bigoplus_ {\lambda \in \Lambda} H _ {*} (X _ {\lambda}),
+$$
+即对每个维数 $q$ 有 $H_{q}(X) = \bigoplus_{\lambda \in \Lambda}H_{q}(X_{\lambda})$ 
+
+定理 3.8 (同伦不变性) 设 $f \simeq g : X \to Y$ 是同伦的映射．则 $f_{\#} \simeq g_{\#}: S_{*}(X) \to S_{*}(Y)$ 是链同伦的链映射，因而诱导相同的同调同态 $f_{*} = g_{*}: H_{*}(X) \to H_{*}(Y)$ . 
+
+定理 3.12 设 X 是道路连通的拓扑空间．则 Hurewicz 同态是满同态，而且其核 $\ker h_{*}$ 是 $\pi_{1}(X,x_{0})$ 的换位子群 $[\pi_{1},\pi_{1}]$ ．换句话说， $H_{1}(X)$ 是 $\pi_{1}(X,x_{0})$ 的交换化．☐ 
+
+定理3.13 设 $\mathcal{U}$ 是 $X$ 的子集族，并且其内部 $$
+\operatorname{Int} \mathcal {U} := \left\{\operatorname{Int} U \mid U \in \mathcal {U} \right\}
+$$是 $X$ 的开覆盖．则链映射 $i: S_{*}^{\mathcal{U}}(X) \to S_{*}(X)$ 是链同伦等价．事实上，存在链映射 $k: S_{*}(X) \to S_{*}^{\mathcal{U}}(X)$ 使 $k \circ i = \mathrm{id}, i \circ k \simeq \mathrm{id}$ . 因此 $i_{*}: H_{*}(S_{*}^{\mathcal{U}}(X)) \cong H_{*}(S_{*}(X))$ . 
+
+定理 4.1 (正合同调序列) 设有链复形和链映射的短正合列 $$
+0 \longrightarrow C \xrightarrow {f} D \xrightarrow {g} E \longrightarrow 0.
+$$则有长的正合同调序列 $$
+\dots \rightarrow H _ {q + 1} (E) \xrightarrow {\partial_ {*}} H _ {q} (C) \xrightarrow {f _ {*}} H _ {q} (D) \xrightarrow {g _ {*}} H _ {q} (E) \xrightarrow {\partial_ {*}} H _ {q - 1} (C) \longrightarrow \dots .
+$$
+
+定理 4.2 (同调序列的自然性) 设有链复形和链映射的交换图表 $$
+\begin{array}{c} 0 \longrightarrow C \xrightarrow {f} D \xrightarrow {g} E \longrightarrow 0 \\ \alpha \Big \downarrow \quad \beta \Big \downarrow \quad \gamma \Big \downarrow \\ 0 \longrightarrow C ^ {\prime} \xrightarrow {f ^ {\prime}} D ^ {\prime} \xrightarrow {g ^ {\prime}} E ^ {\prime} \longrightarrow 0 \end{array}
+$$其中两个横行都是链复形的短正合列．则它们的正合同调序列之间有交换图表 $$
+\begin{array}{l} \dots \longrightarrow H _ {q} (C) \xrightarrow {f _ {*}} H _ {q} (D) \xrightarrow {g _ {*}} H _ {q} (E) \xrightarrow {\partial_ {*}} H _ {q - 1} (C) \longrightarrow \dots \\ \quad \alpha_ {*} \Biggl \downarrow \quad \beta_ {*} \Biggl \downarrow \quad \gamma_ {*} \Biggl \downarrow \quad \alpha_ {*} \Biggl \downarrow \\ \dots \longrightarrow H _ {q} (C ^ {\prime}) \xrightarrow {f _ {*} ^ {\prime}} H _ {q} (D ^ {\prime}) \xrightarrow {g _ {*} ^ {\prime}} H _ {q} (E ^ {\prime}) \xrightarrow {\partial_ {*} ^ {\prime}} H _ {q - 1} (C ^ {\prime}) \longrightarrow \dots \end{array}
+$$
+
+定义 4.4 设 $X_{1}, X_{2}$ 同是某个空间 X 的子空间 (在本定义中不要求 $X = X_{1} \cup X_{2}$ ). 如果含入链映射 $i: S_{*}(X_{1}) + S_{*}(X_{2}) \to S_{*}(X_{1} \cup X_{2})$ 
+诱导的同调群同态 $H_{*}(S_{*}(X_{1}) + S_{*}(X_{2}))\to H_{*}(X_{1}\cup X_{2})$ 是同构，我们就说这两个子空间构成一个Mayer-Vietoris耦 $\{X_1,X_2\}$ 
+
+例 4.2 若 $\operatorname{Int} X_{1} \cup \operatorname{Int} X_{2} = X$ ，则根据定理 3.13, $\{X_{1}, X_{2}\}$ 是 Mayer-Vietoris 耦. 
+
+定理 4.8 (Mayer-Vietoris 序列) 设 $\{X_{1}, X_{2}\}$ 是 Mayer-Vietoris 耦．则有下面的 Mayer-Vietoris 正合同调序列：$$
+\rightarrow H _ {q} (X _ {1} \cap X _ {2}) {\overset {\mathrm{差}} {\longrightarrow}} H _ {q} (X _ {1}) \oplus H _ {q} (X _ {2}) {\overset {\mathrm{和}} {\longrightarrow}} H _ {q} (X _ {1} \cup X _ {2}) {\overset {\partial_ {*}} {\longrightarrow}} H _ {q - 1} (X _ {1} \cap X _ {2}) \rightarrow
+$$ 
+
+注记4.9 对于增广链复形我们同样有短正合列 $$
+0 \longrightarrow \widetilde {S} _ {*} (X _ {1} \cap X _ {2}) \stackrel {h _ {\#}} {\longrightarrow} \widetilde {S} _ {*} (X _ {1}) \oplus \widetilde {S} _ {*} (X _ {2}) \stackrel {k _ {\#}} {\longrightarrow} \widetilde {S} _ {*} (X _ {1}) + \widetilde {S} _ {*} (X _ {2}) \longrightarrow 0,
+$$所以对于简约同调群，Mayer-Vietoris序列 $$
+\rightarrow \widetilde {H} _ {q} (X _ {1} \cap X _ {2}) {\xrightarrow {\text {差}}} \widetilde {H} _ {q} (X _ {1}) \oplus \widetilde {H} _ {q} (X _ {2}) {\xrightarrow {\text {和}}} \widetilde {H} _ {q} (X _ {1} \cup X _ {2}) {\xrightarrow {\partial_ {*}}} \widetilde {H} _ {q - 1} (X _ {1} \cap X _ {2}) \rightarrow
+$$
+
+推论 4.12 设拓扑空间 X 是两个闭子集 $X_{1}, X_{2}$ 的并，交集 $X_{1} \cap X_{2}$ 是其某个开邻域 V 的形变收缩核。则 $\{X_{1}, X_{2}\}$ 是 Mayer-Vietoris 耦。 
+
+例 4.3 设多面体 X 是其子多面体 $X_{1}, X_{2}, \cdots, X_{k}$ 的并，而且任意两个的交 $X_{i} \cap X_{j} (i \neq j)$ 都是同一个点 $x_{0} \in X$ 。这时 X 称为 $X_{1}, X_{2}, \cdots, X_{k}$ 的蒂联或单点并，记作 $X_{1} \vee X_{2} \vee \cdots \vee X_{k}$ 或 $\bigvee_{i=1}^{k} X_{i}$ 。根据推论 4.12，用简约 Mayer-Vietoris 序列得到 
+$$
+\widetilde {H} _ {*} \left(\bigvee_ {i = 1} ^ {k} X _ {i}\right) \cong \bigoplus_ {i = 1} ^ {k} \widetilde {H} _ {*} (X _ {i}).
+$$
+
+定理5.1 球面 $S^n$ 的简约同调群是 $$
+\widetilde {H} _ {q} (S ^ {n}) = \left\{ \begin{array}{l l} {{Z,}} & {{\text {当} q = n,}} \\ {{0,}} & {{\text {当} q \neq n.}} \end{array} \right.
+$$
+
+推论 5.2 $S^{n-1}$ 不是 $D^{n}$ 的收缩核. 
+
+
+推论 5.3 (Brouwer 不动点定理) 任意映射 $f: D^n \to D^n$ 一定有不动点，即至少存在一点 $x \in D^n$ ，使得 $f(x) = x$ . 
+
+
+\section{相对同调群}
+
+一个拓扑空间 X 与它的一个子空间 A 放在一起，称为一个拓扑空间偶 $(X, A)$ . 拓扑空间偶之间的映射 $f: (X, A) \to (Y, B)$ ，意思是映射 $f: X \to Y$ 满足 $f(A) \subset B$ . 空间偶映射的同伦 $f \simeq g: (X, A) \to (Y, B)$ ，则是指存在联结 f, g 的同伦 $F: (X \times I, A \times I) \to (Y, B)$ . 
+
+拓扑空间偶，以及它们之间的连续映射，在通常的复合规则之下，组成一个范畴，简称为“拓扑空间偶的范畴”，以后写成{空间偶，映射}. 
+
+定义 1.1 设 $(X, A)$ 是空间偶. $S_{q}(X)$ 自然地包含 $S_{q}(A)$ 为子群，空间偶 $(X, A)$ 的 q 维奇异链群定义为商群 $$
+S _ {q} (X, A) := S _ {q} (X) / S _ {q} (A).
+$$
+
+边缘算子 $\partial_q: S_q(X) \to S_{q-1}(X)$ 把子群 $S_q(A)$ 映入 $S_{q-1}(A)$ , 它在 商群上诱导的同态 $S_{q}(X) / S_{q}(A)\to S_{q - 1}(X) / S_{q - 1}(A)$ 称为空间偶 $(X,A)$ 的边缘算子 $\partial_q:S_q(X,A)\to S_{q - 1}(X,A)$ .显然两次边缘仍为零．空间偶 $(X,A)$ 的相对奇异链复形定义为 $$
+S _ {*} (X, A) := \{S _ {q} (X, A), \partial_ {q} \}.
+$$
+
+$$
+H _ {*} (X, A) := H _ {*} (S _ {*} (X, A)).
+$$
+
+定义 1.2 设 $f: (X, A) \to (Y, B)$ 是空间偶的映射。链映射 $f_{\#}: S_{*}(X) \to S_{*}(Y)$ 把子链复形 $S_{*}(A)$ 映入 $S_{*}(B)$ ，在商群上诱导的同态 $\{f_{\#}: S_{q}(X, A) \to S_{q}(Y, B)\}$ 仍与边缘算子可交换，称为 $f: (X, A) \to (Y, B)$ 所诱导的相对链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ 。映射 $f: (X, A) \to (Y, B)$ 所诱导的相对同调的同态 $f_{*}: H_{*}(X, A) \to H_{*}(Y, B)$ ，就是指链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ 所诱导的同调同态 $(f_{\#})_{*}: H_{*}(S_{*}(X, A)) \to H_{*}(S_{*}(Y, B))$ 。 
+
+定义 1.2 设 $f: (X, A) \to (Y, B)$ 是空间偶的映射。链映射 $f_{\#}: S_{*}(X) \to S_{*}(Y)$ 把子链复形 $S_{*}(A)$ 映入 $S_{*}(B)$ ，在商群上诱导的同态 $\{f_{\#}: S_{q}(X, A) \to S_{q}(Y, B)\}$ 仍与边缘算子可交换，称为 $f: (X, A) \to (Y, B)$ 所诱导的相对链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ 。映射 $f: (X, A) \to (Y, B)$ 所诱导的相对同调的同态 $f_{*}: H_{*}(X, A) \to H_{*}(Y, B)$ ，就是指链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ 所诱导的同调同态 $(f_{\#})_{*}: H_{*}(S_{*}(X, A)) \to H_{*}(S_{*}(Y, B))$ 。 映射 $f: (X, A) \to (Y, B)$ 诱导的链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ , 是把链 $\bar{c}_q \in S_q(X, A)$ 先看成 $X$ 上的链映到 $Y$ 上的链 $f_{\#}^{X}(\bar{c}_q)$ , 然后把其在 $B$ 中奇异单形上的部分略去. 
+
+习题 1.1 设 $(X, A)$ 是空间偶. 设 $X = \bigcup_{\lambda \in \Lambda} X_{\lambda}$ 是 X 的道路连通支分解, $A_{\lambda} = A \cap X_{\lambda}$ . 证明: 有直和分解 $$
+H _ {*} (X, A) = \bigoplus_ {\lambda \in \Lambda} H _ {*} (X _ {\lambda}, A _ {\lambda}).
+$$
+
+推论 1.3 (空间偶的简约同调序列) 设 $(X, A)$ 是空间偶．则有下面的正合同调序列 $$
+\dots \xrightarrow {\partial_ {*}} \widetilde {H} _ {q} (A) \xrightarrow {i _ {*}} \widetilde {H} _ {q} (X) \xrightarrow {j _ {*}} H _ {q} (X, A) \xrightarrow {\partial_ {*}} \widetilde {H} _ {q - 1} (A) \xrightarrow {i _ {*}} \dots .
+$$
+
+注记 1.4 空间偶同调序列中的边缘同态 $$
+\partial_ {*}: H _ {q} (X, A) \to H _ {q - 1} (A)
+$$
+
+例 1.1 设 $x_{0}$ 是空间 X 的一个点．则 $H_{*}(X, x_{0}) \cong \widetilde{H}_{*}(X)$ . 
+
+例1.2 相对同调群 $$
+H _ {q} (D ^ {n}, S ^ {n - 1}) \cong \widetilde {H} _ {q - 1} (S ^ {n - 1}) \cong \left\{ \begin{array}{l l} {{Z,}} & {{\text {当} q = n,}} \\ {{0,}} & {{\text {当} q \neq n.}} \end{array} \right.
+$$
+
+定理 1.5 (空间偶同调序列的自然性) 设 $f: (X, A) \to (Y, B)$ 是空间偶的映射。则有下面的交换图表： $$
+\begin{array}{l} \dots \xrightarrow {\partial_ {*}} H _ {q} (A) \xrightarrow {i _ {*}} H _ {q} (X) \xrightarrow {j _ {*}} H _ {q} (X, A) \xrightarrow {\partial_ {*}} H _ {q - 1} (A) \xrightarrow {i _ {*}} \dots \\ \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad \dots \\ \dots \xrightarrow {\partial_ {*}} H _ {q} (B) \xrightarrow {i _ {*}} H _ {q} (Y) \xrightarrow {j _ {*}} H _ {q} (Y, B) \xrightarrow {\partial_ {*}} H _ {q - 1} (B) \xrightarrow {i _ {*}} \dots \square \end{array}
+$$
+
+定理 1.6 (同伦不变性) 同伦的映射 $f \simeq g : (X, A) \to (Y, B)$ 诱导相同的同调同态 $f_{*} = g_{*} : H_{*}(X, A) \to H_{*}(Y, B)$ .
+
+推论 1.7 (同伦型不变性) 设拓扑空间偶 $(X, A)$ 与 $(Y, B)$ 有相同的同伦型， $(X, A) \simeq (Y, B)$ . 则它们的相对同调群同构， $H_{*}(X, A) \cong H_{*}(Y, B)$ . □ 
+
+定理 1.8 (切除定理) 设 $(X, A)$ 是空间偶，子集 $W \subset A$ 使 $\overline{W} \subset \operatorname{Int} A$ . 则含入映射 $i: (X - W, A - W) \to (X, A)$ 诱导相对同调群的同构定理 1.8 (切除定理) 设 $(X, A)$ 是空间偶，子集 $W \subset A$ 使 $\overline{W} \subset \operatorname{Int} A$ . 则含入映射 $i: (X - W, A - W) \to (X, A)$ 诱导相对同调群的同构   
+
+定理 1.9 设 $X_{1}, X_{2}$ 是 X 的子空间. 那么, $\{X_{1}, X_{2}\}$ 是 Mayer-Vietoris 耦的充分必要条件是, 含入映射 $i: (X_{1}, X_{1} \cap X_{2}) \to (X_{1} \cup X_{2}, X_{2})$ 诱导相对同调群的同构 $$
+i _ {*}: H _ {*} (X _ {1}, X _ {1} \cap X _ {2}) \stackrel {\cong} {\longrightarrow} H _ {*} (X _ {1} \cup X _ {2}, X _ {2}).
+$$
+
+思考题 1.3 设 $(X, A)$ 是空间偶， $\{A_{1}, A_{2}\}$ 是 Mayer-Vietoris 耦．试建立相对 Mayer-Vietoris 序列 $$
+\begin{array}{l} \dots \xrightarrow {\partial_ {*}} H _ {q} (X, A _ {1} \cap A _ {2}) \xrightarrow {\text {差}} H _ {q} (X, A _ {1}) \oplus H _ {q} (X, A _ {2}) \xrightarrow {\text {和}} \\ H _ {q} (X, A _ {1} \cup A _ {2}) {\xrightarrow {\partial_ {*}}} H _ {q - 1} (X, A _ {1} \cap A _ {2}) {\xrightarrow {\mathrm{差}}} \dots . \\ \end{array}
+$$
+
+定理 1.10 设 $(X, A)$ 是空间偶，A 非空，CA 表示子空间 A 上的锥形．则 $$
+H _ {*} (X, A) \cong \widetilde {H} _ {*} (X \cup C A).
+$$
+
+定理 1.11 (三元组的同调序列) 设 $(X, A, B)$ 是空间三元组.
+则同调序列 $$
+\xrightarrow {\partial_ {*}} H _ {q} (A, B) \xrightarrow {i _ {*}} H _ {q} (X, B) \xrightarrow {j _ {*}} H _ {q} (X, A) \xrightarrow {\partial_ {*}} H _ {q - 1} (A, B) \xrightarrow {i _ {*}}
+$$是正合的. 
+
+定理 1.12 (同调序列的自然性) 设 $f:(X,A,B)\to(X',A',B')$ 是空间三元组的映射．则有下面的交换图表： $$
+\begin{array}{l} \xrightarrow {\partial_ {*}} H _ {q} (A, B) \xrightarrow {i _ {*}} H _ {q} (X, B) \xrightarrow {j _ {*}} H _ {q} (X, A) \xrightarrow {\partial_ {*}} H _ {q - 1} (A, B) \xrightarrow {i _ {*}} \\ f _ {*} \Bigg \downarrow \quad f _ {*} \Bigg \downarrow \quad f _ {*} \Bigg \downarrow \quad f _ {*} \Bigg \downarrow \\ \xrightarrow {\partial_ {*}} H _ {q} (A ^ {\prime}, B ^ {\prime}) \xrightarrow {i _ {*}} H _ {q} (X ^ {\prime}, B ^ {\prime}) \xrightarrow {j _ {*}} H _ {q} (X ^ {\prime}, A ^ {\prime}) \xrightarrow {\partial_ {*}} H _ {q - 1} (A ^ {\prime}, B ^ {\prime}) \xrightarrow {i _ {*}} \quad \square \\ \end{array}
+$$
+
+命题 1.13 设 $(X, A, B)$ 是空间三元组， $C \subset B$ 。则 $(X, A, B)$ 的同调序列中的边缘同态 $H_{q}(X, A) \xrightarrow{\partial_{*}} H_{q-1}(A, B)$ 有下面的分解： $$
+H _ {q} (X, A) \xrightarrow {\partial_ {*}} H _ {q - 1} (A, C) \xrightarrow {j _ {*}} H _ {q - 1} (A, B),
+$$
+
+定义 2.1 设 X 是 Hausdorff 空间 (因而每一点是个闭集), $x \in X$ 是其中一点. 空间 X 在点 x 处的局部同调群规定为 $H_{*}(X, X - x)$ . 注意, 若 U 是 x 的任意开邻域, 则切除定理告诉我们, 通过含入映射可以把 $H_{*}(U, U - x)$ 与 $H_{*}(X, X - x)$ 等同起来. 
+
+命题2.1 设 $X, Y$ 是Hausdorff空间， $x, y$ 分别是其中的点。设有 $x, y$ 的邻域 $U, V$ 以及同胚 $\phi: (U, x) \to (V, y)$ 。则 $\phi_{*}: H_{*}(U, U - x) \to H_{*}(V, V - y)$ 是同构。 $\square$ 
+
+命题2.2 $n$ 维欧几里得空间 $R^n$ 在原点0处的局部同调群是 $$
+H _ {q} (\pmb {R} ^ {n}, \pmb {R} ^ {n} - 0) = {\left\{ \begin{array}{l l} {0,} & {{\text {当}} q \neq n,} \\ {Z,} & {{\text {当}} q = n.} \end{array} \right.}
+$$
+
+定义 2.2 一个 Hausdorff 空间 X 称为 n 维流形, 如果每一点 $x \in X$ 有一个邻域 U 同胚于 $R^{n}$ . 这样的邻域称为 x 的欧几里得邻域, 每个同胚 $\phi: U \cong R^{n}$ 给出 U 上的一个局部坐标系. 
+
+推论2.3 设 $X$ 是 $n$ 维流形， $x \in X$ . 则 $$
+H _ {q} (X, X - x) = \left\{ \begin{array}{l l} 0, & \text {当} q \neq n, \\ Z, & \text {当} q = n. \end{array} \right.
+$$
+
+定义 2.4 球体 (又称胞腔) $D^{n}=\left\{(x_{1},x_{2},\cdots,x_{n})\mid\sum_{i=1}^{n}x_{i}^{2}\leq1\right\}$ 的一个定向, 是指 $H_{n}(D^{n},S^{n-1})\cong Z$ 的一个生成元. 所以胞腔有两个定向. 取定了定向的胞腔称为有向胞腔. 
+
+定义 2.5 球面 $S^{n-1}$ 的一个定向, 是指 $\widetilde{H}_{n-1}(S^{n-1}) \cong Z$ 的一个生成元. 所以球面有两个定向. 取定了定向的球面 $S^{n-1}$ 称为有向球面, 其定向通常记作 $[S^{n-1}]$ . 
+
+定义 2.6 以后我们约定，欧几里得空间中的标准球面$$
+S ^ {n - 1} = \left\{(x _ {1}, \dots , x _ {n}) \Big | \sum_ {i = 1} ^ {n} x _ {i} ^ {2} = 1 \right\}
+$$ 的标准定向, 是指在同构 $$
+H _ {n} (D ^ {n}, S ^ {n - 1}) \xrightarrow {\partial_ {*}} \widetilde {H} _ {n - 1} (S ^ {n - 1})
+$$
+
+命题 2.5 用局部坐标系来决定球面的标准定向的规则是: 球面的外法线方向 (在前) 和球面的标准定向 (在后) 合成欧几里得空间的标准定向. 
+
+定义 2.7 设 $S^{n}, S^{\prime n}$ 是两个有向球面，它们的定向分别是 $[S^{n}]$ 和 $[S^{\prime n}]$ . 设 $f: S^{n} \to S^{\prime n}$ 是映射. f 的度 $\deg f$ 是在同态 $f_{*}: \widetilde{H}_{n}(S^{n}) \to \widetilde{H}_{n}(S^{\prime n})$ 下由等式 $f_{*}([S^{n}]) = (\deg f) \cdot [S^{\prime n}]$ 规定的整数. 
+
+定理 2.6 设两个球面 $S^{n}, S^{\prime n}$ 都已取好了定向，而且都已选好与所取定向相协合的局部坐标系， $n \geq 1$ 。设 $f: S^{n} \to S^{\prime n}$ 是映射。设 $a' \in S^{\prime n}$ 使得在每一点 $a \in f^{-1}(a')$ 处 f 都光滑而且其 Jacobi 矩阵 $F_{a}$ 都非退化。则映射度 $$
+\deg f = \sum_ {a \in f ^ {- 1} (a ^ {\prime})} \operatorname{sgn} \det F _ {a}.
+$$
+
+例 2.2 设 $r: S^{n} \rightarrow S^{n}$ 是标准球面关于其赤道超平面的反射，取赤道上一点 x。在该点处适当的局部坐标系中，r 使第一个坐标改变正负号而保持其余坐标不变，因此 r 的 Jacobi 行列式是负的。由此可见 $\deg r = -1$ 。 
+
+定理 4.1 设 A, $A'$ 等都是 Abel 群. 
+
+(1) 裂正合性 $\operatorname{Hom}(A_1 \oplus A_2, G) = \operatorname{Hom}(A_1, G) \oplus \operatorname{Hom}(A_2, G)$ . 换一个说法，如果 $0 \longrightarrow A \xrightarrow{f} A' \xrightarrow{f'} A'' \longrightarrow 0$ 是裂正合的，则下面的序列是裂正合的： $$
+0 \longleftarrow \operatorname{Hom} (A, G) \xleftarrow {f ^ {\bullet}} \operatorname{Hom} (A ^ {\prime}, G) \xleftarrow {f ^ {\prime \bullet}} \operatorname{Hom} (A ^ {\prime \prime}, G) \longleftarrow 0.
+$$
+
+(2) 半正合性 设 $A \xrightarrow{f} A' \xrightarrow{f'} A'' \longrightarrow 0$ 是正合序列。则下面的序列是正合的： $$
+\operatorname{Hom} (A, G) \xleftarrow {f ^ {\bullet}} \operatorname{Hom} (A ^ {\prime}, G) \xleftarrow {f ^ {\prime \bullet}} \operatorname{Hom} (A ^ {\prime \prime}, G) \xleftarrow {} 0.
+$$
+
+(3) 直和性质 $$
+\operatorname{Hom} \left(\bigoplus_ {i} A _ {i}, G\right) = \prod_ {i} \operatorname{Hom} \left(A _ {i}, G\right).
+$$
+
+例4.2 $\operatorname{Hom}(Z_m, G) = {}_m G := \{g \in G \mid mg = 0\}$ . 
+
+定义 4.3 一个上链复形 $C^{\bullet}=\{C^{q},\delta^{q}\}$ 是一串 Abel 群 $C^{q}$ (称为 q 维上链群) 和一串同态 $\delta^{q}:C^{q}\to C^{q+1}$ (称为 q 维上边缘算子), 排成一个序列 $$
+\dots \leftarrow C ^ {q + 2} \xleftarrow {\delta^ {q + 1}} C ^ {q + 1} \xleftarrow {\delta^ {q}} C ^ {q} \xleftarrow {\delta^ {q - 1}} C ^ {q - 1} \leftarrow \dots ,
+$$满足条件：对每个维数 $q$ 都有 $\delta^q\circ \delta^{q - 1} = 0,$ 即“两次上边缘为零”. 
+
+$C^{\bullet}$ 的 $q$ 维上闭链群 $$
+Z ^ {q} (C ^ {\bullet}) := \ker \delta^ {q},
+$$
+
+其元素称为 $q$ 维上闭链； $q$ 维上边缘链群 $$
+B ^ {q} (C ^ {\bullet}) := \mathrm{im} \delta^ {q - 1},
+$$
+
+其元素称为 $q$ 维上边缘链. 商群 $$
+H ^ {q} (C ^ {\bullet}) := Z ^ {q} (C ^ {\bullet}) / B ^ {q} (C ^ {\bullet})
+$$称为 $C^{\bullet}$ 的 q 维上同调群. 
+
+定义 4.4 设 $C^{\bullet}, D^{\bullet}$ 是上链复形。一个上链映射 $f^{\bullet}: C^{\bullet} \to D^{\bullet}$ 是一串同态 $f^{\bullet} = \{f^{q}: C^{q} \to D^{q}\}$ ，满足条件：对每个维数 q 都有 $\delta^{q} \circ f^{q} = f^{q+1} \circ \delta^{q}$ 。它诱导上同调群的同态 $f^{*}: H^{*}(C^{\bullet}) \to H^{*}(D^{\bullet})$ 。 
+
+定义 4.5 两个上链映射 $f^{\bullet}, g^{\bullet}: C^{\bullet} \rightarrow D^{\bullet}$ 称为是上链同伦的, 如果存在一串同态 $T^{\bullet} = \{T^{q}: C^{q} \rightarrow D^{q-1}\}$ 使得对每个维数 q, 都有 $$
+\delta^ {q - 1} \circ T ^ {q} + T ^ {q + 1} \circ \delta^ {q} = g ^ {q} - f ^ {q}.
+$$$T^{\bullet}$ 称为联结 $f^{\bullet}, g^{\bullet}$ 的一个上链同伦, 记号是 $f^{\bullet} \simeq g^{\bullet}: C^{\bullet} \to D^{\bullet}$ 或 $T^{\bullet}: f^{\bullet} \simeq g^{\bullet}: C^{\bullet} \to D^{\bullet}$ . 上链同伦的上链映射诱导出相同的上同调同态
+
+定义 4.6 对于链复形 $C = \{C_{q}, \partial_{q}\}$ ，定义上链复形 $\operatorname{Hom}(C, G)$ 为$$
+\operatorname{Hom} \left(C, G\right) := \left\{\operatorname{Hom} \left(C _ {q}, G\right), \delta^ {q} := \partial_ {q + 1} ^ {\bullet} \right\}.
+$$ 对于链复形之间的链映射 $f = \{f_q\} : C \to D$ ，定义上链映射 $f^\bullet : \operatorname{Hom}(D, G) \to \operatorname{Hom}(C, G)$ 为 $$
+f ^ {\bullet} = \{f ^ {q} := f _ {q} ^ {\bullet}: \mathrm{Hom} (D _ {q}, G) \to \mathrm{Hom} (C _ {q}, G) \}.
+$$对于链映射之间的链同伦 $T = \{T_q\} : f \simeq g : C \to D,$ 定义上链同伦 $T^{\bullet}:f^{\bullet}\simeq g^{\bullet}:\operatorname {Hom}(D,G)\to \operatorname {Hom}(C,G)$ 为$$
+T ^ {\bullet} = \{T ^ {q} := T _ {q - 1} ^ {\bullet}: \mathrm{Hom} (D _ {q}, G) \to \mathrm{Hom} (C _ {q - 1}, G) \}.
+$$ 上链复形 $\operatorname{Hom}(C, G)$ 与链复形 $C$ 之间的 Kronecker 积 $$
+\langle -, - \rangle : \operatorname{Hom} (C, G) \times C \to G
+$$规定为 $$
+\langle c ^ {p}, c _ {q} \rangle := \left\{ \begin{array}{l l} {\langle c ^ {q}, c _ {q} \rangle ,} & {\text {当} p = q,} \\ {0,} & {\text {当} p \neq q.} \end{array} \right.
+$$
+
+定义4.7 拓扑空间 $X$ 的 $G$ 系数的奇异上链复形是 $$
+S ^ {*} (X; G) := \operatorname{Hom} \left(S _ {*} (X), G\right)
+$$
+$$:= \{S ^ {q} (X; G) = \mathrm{Hom} (S _ {q} (X), G), \delta^ {q} = \partial_ {q + 1} ^ {\bullet} \}$$.
+由于 $S_{q}(X)$ 是以 $X$ 中 $q$ 维奇异单形为基的自由Abel群，所以 $X$ 上每个 $G$ 系数上链 $c^q\in S^q (X;G) = \mathrm{Hom}(S_q(X),G)$ 可以等同于一个函数 {$X$ 中 $q$ 维奇异单形}  $\rightarrow G$ 
+
+上链复形 $S^{*}(X;G)$ 的上同调群称为 $X$ 的 $G$ 系数的奇异上同调群, 记作 $$
+H ^ {*} (X; G) := H ^ {*} \left(S ^ {*} (X; G)\right).
+$$
+
+定义 4.8 设 $f: X \to Y$ 是映射。f 所诱导的上链映射 $f^{\#}: S^{*}(Y; G) \to S^{*}(X; G)$ 就是 $\{f_{\#}^{\bullet}: S^{q}(Y; G) \to S^{q}(X; G)\}$ 。它所诱导的上同调同态 $f^{*}: H^{*}(Y; G) \to H^{*}(X; G)$ 称为 f 所诱导的上同调同态。 
+
+定义4.9 拓扑空间 $X$ 的 $G$ 系数的增广奇异上链复形是 $$
+\begin{array}{l} \widetilde {S} ^ {*} (X; G) := \operatorname{Hom} \left(\widetilde {S} _ {*} (X), G\right) \\ := \{\widetilde {S} ^ {q} (X; G) = \mathrm{Hom} (\widetilde {S} _ {q} (X), G), \widetilde {\delta} ^ {q} = \widetilde {\partial} _ {q + 1} ^ {\bullet} \}. \\ \end{array}
+$$注意 $\widetilde{S}^{-1}(X;G) = \operatorname{Hom}(Z,G) = G,$ 而 $\widetilde{\delta}^{-1} := \epsilon^{\bullet}: G \to S^{0}(X;G)$ 把每个 $g \in G$ 映成在 $X$ 上所有的点取常数值 $g$ 的函数. 
+
+定义4.10 空间偶 $(X,A)$ 的 $G$ 系数的相对奇异上链复形定义为 $$
+S ^ {*} (X, A; G) := \operatorname{Hom} \left(S _ {*} (X, A), G\right).
+$$
+
+它的上同调群称为空间偶 $(X, A)$ 的 $G$ 系数的相对奇异上同调群, 记作 $$
+H ^ {*} (X, A; G) := H ^ {*} (S ^ {*} (X, A; G)).
+$$
+
+空间偶的映射 $f: (X, A) \to (Y, B)$ 所诱导的相对上链映射 $f^{\#}: S_{*}(Y, B; G) \to S^{*}(X, A; G)$ 是链映射 $f_{\#}: S_{*}(X, A) \to S_{*}(Y, B)$ 的对偶。它所诱导的上同调同态称为映射 $f: (X, A) \to (Y, B)$ 所诱导的相对上同调的同态 $f^{*}: H^{*}(Y, B; G) \to H^{*}(X, A; G)$ 。 
+
+这样，我们得到从拓扑空间偶的范畴到分次 Abel 群范畴的 G 系数的相对上同调函子 $H^{*}(-;G):\{\text{空间偶，映射}\}\rightarrow\{\text{分次群，同态}\}$ . 它是一个反变函子. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
