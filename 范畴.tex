@@ -165,7 +165,7 @@ $$
 
 \section{范畴论基础} 
 
-# 定义 2.1.1 一个范畴 C 系指以下资料:
+ 定义 2.1.1 一个范畴 C 系指以下资料:
 
 1. 集合 $\operatorname{Ob}(\mathcal{C})$ , 其元素称作 $\mathcal{C}$ 的对象. 
 
@@ -279,7 +279,7 @@ $$
 $$
 
 使得下图对所有 $C'$ 中的态射 $f: X \to Y$ 交换 $$
-\begin{array}{c} F X \xrightarrow {\theta_ {X}} G X \\ F f \Biggl \downarrow \quad \Biggl \downarrow_ {G f} \\ F Y \xrightarrow {\theta_ {Y}} G Y. \end{array} \tag {2.1}
+\begin{array}{c} F X \xrightarrow {\theta_ {X}} G X \\ F f \Biggl \downarrow \quad \Biggl \downarrow_ {G f} \\ F Y \xrightarrow {\theta_ {Y}} G Y. \end{array} 】
 $$
 
 引理 2.2.7 以上定义的纵, 横合成 $\{(\psi\circ\theta)_{X}\}_{X}$ 都是函子间的态射, 而且各自满足严格结合律 $(\phi\circ\psi)\circ\theta=\phi\circ(\psi\circ\theta)$ . 纵横合成之间满足下述关系: 对于图表 $$
@@ -434,7 +434,7 @@ $$
 $$
 
 当 $\mathcal{C}$ 是 $\mathcal{U}$ -小范畴时, $\mathcal{C}^{\wedge}$ 和 $\mathcal{C}^{\vee}$ 都是 $\mathcal{U}$ -范畴, 一般情形则否. 基于一些几何学的渊源 (主要是层论), 也把 $\mathcal{C}^{\wedge}$ 称作 $\mathcal{C}$ 上的预层范畴. 命题2.3.6蕴涵 $$
-(\mathcal {C} ^ {\vee}) ^ {\mathrm{op}} = (\mathcal {C} ^ {\mathrm{op}}) ^ {\wedge}. \tag {2.3}
+(\mathcal {C} ^ {\vee}) ^ {\mathrm{op}} = (\mathcal {C} ^ {\mathrm{op}}) ^ {\wedge}.  
 $$
 
 以下讨论涉及 $\mathrm{Hom}_{\mathcal{C}}$ 的函子性, 读者可回忆例2.3.3. 定义函子 $$
@@ -458,24 +458,272 @@ $$
 $$
 
 $$
-\left[ \operatorname{Hom} _ {\mathcal {C}} (\cdot , S) \xrightarrow {\phi} A (\cdot) \right] \longmapsto \phi_ {S} (\mathrm{id} _ {S}) \tag {2.4}
+\left[ \operatorname{Hom} _ {\mathcal {C}} (\cdot , S) \xrightarrow {\phi} A (\cdot) \right] \longmapsto \phi_ {S} (\mathrm{id} _ {S})  {2.4}
 $$
 
 是双射；它给出函子的同构 $\mathrm{Hom}_{\mathcal{C}^{\wedge}}(h_{\mathcal{C}}(\cdot),\cdot)\stackrel {\sim}{\to}\mathrm{ev}^{\wedge}$ .函子 $h_{\mathcal{C}}$ 是全忠实的. 
 
 同理, 存在自然的函子同构 $\mathrm{Hom}_{\mathcal{C}^{\vee}}(\cdot, k_{\mathcal{C}}(\cdot)) \xrightarrow{\sim} \mathrm{ev}^{\vee}$ . 函子 $k_{\mathcal{C}}$ 是全忠实的. 
 
+此结果一般称为米田引理, 函子 $h_{C}, k_{C}$ 相应地称为米田嵌入. 
 
+定义 2.5.2 称 $A: C^{op} \rightarrow Set$ 是可表函子, 如果存在 $X \in \mathrm{Ob}(\mathcal{C})$ 及同构 $\phi: h_{\mathcal{C}}(X) \stackrel{\sim}{\to} A$ , 并称 $(X, \phi)$ 是其代表元. 类似地, 可以用 $k_{C}$ 定义函子 $B: C \rightarrow Set$ 的可表性和代表元. 
 
+注记 2.5.3 从定理 2.5.1 的证明可知: 给定资料 $(X, \phi : h_{\mathcal{C}}(X) \to A)$ 相当于给定 $(X, u)$ ，这里的 $u \in A(X)$ 是 $\mathrm{id}_{X} : X \to X$ 在 $\phi_{X}$ 下的像；对 C 中态射 $f : T \to X$ ，我们有 $\phi_{T}(f) = A(f)(u)$ . 
 
+引理 2.5.4 若函子 $A: C^{op} \rightarrow Set$ 可表, 则其代表元 $(X, \phi: h_{\mathcal{C}}(X) \stackrel{\sim}{\to} A)$ 在至多差一个唯一同构的意义下是唯一的. 对函子 $B: C \rightarrow Set$ 也有类似性质. 
 
+例 2.5.5 回顾例 2.4.5 的函子 V : Set → Vect(k). 其泛性质给出了 
 
+$$
+\operatorname{Hom} _ {\mathsf {S e t}} (X, U (\cdot)) \xrightarrow {\sim} \operatorname{Hom} _ {\mathsf {V e c t} (\Bbbk)} (V (X), \cdot).
+$$
 
+例 2.5.6 考虑函子 $P: \mathsf{Set}^{\mathrm{op}} \to \mathsf{Set}$ , 它将 Set 的对象 $S$ 映至其幂集 $P(S)$ , 将态射 $f: S \to T$ 映至 $T \supset A \mapsto f^{-1}(A) \subset S$ . 置 $\Omega := \{0,1\}$ , $u := \{1\} \in P(\Omega)$ . 利用注记 2.5.3, 我们断言 $(\Omega, u)$ 给出同构 $\phi: \operatorname{Hom}_{\mathcal{C}}(\cdot, \Omega) \stackrel{\sim}{\to} P$ , 从而 $P$ 可表. 
 
+对任意 Set 的对象 S, 相应的映射是 
 
+$$
+\begin{array}{l} \phi_ {S}: \operatorname{Hom} _ {\mathbf {S e t}} (S, \Omega) \longrightarrow P (S) \\ f \longmapsto f ^ {- 1} (\{1 \}). \\ \end{array}
+$$
 
+定义 2.6.1 伴随对意指下述资料 $(F,G,\varphi)$ ，其中 $C_{1}\xrightarrow[F]{G}C_{2}$ 是一对函子，而 $\varphi$ 是函子的同构  $$
+\varphi : \mathrm{Hom} _ {\mathcal {C} _ {2}} (F (\cdot), \cdot) \xrightarrow {\sim} \mathrm{Hom} _ {\mathcal {C} _ {1}} (\cdot , G (\cdot)).
+$$
 
+一般称 G 是 F 的右伴随, F 是 G 的左伴随, 或说 $(F,G,\varphi)$ 是伴随对; 资料中的 $\varphi$ 经常省略不记. 
 
+例 2.6.2 选定域 k. 在例 2.2.4 中, 我们业已定义了对偶函子 $D: \mathbf{Vect}(\mathbb{k})^{\mathrm{op}} \to \mathbf{Vect}(\mathbb{k})$ , $DV := V^{\vee}$ . 存在自然的同构 $$
+\varphi_ {V, W}: \operatorname{Hom} _ {\Bbbk} (V, W ^ {\vee}) \longrightarrow \operatorname{Hom} _ {\Bbbk} (W, V ^ {\vee})
+$$
+
+$$
+f \longmapsto [ w \mapsto [ v \mapsto f (v) (w) ] ]
+$$
+
+其中 $V, W$ 是 $\mathbb{k}$ -向量空间. 实际上, 两边都自然地同构于双线性型 $B: V \times W \to \mathbb{k}$ 构成的空间: 仅需将 $f \in \operatorname{Hom}_{\mathbb{k}}(V, W^{\vee})$ 映到 $B: (v, w) \mapsto f(v)(w)$ ; 交换 $V, W$ 的角色就得到 $\operatorname{Hom}_{\mathbb{k}}(W, V^{\vee})$ 情形. 这些同构重写为 $$
+\varphi_ {V W}: \operatorname{Hom} _ {\mathsf {V e c t} (\Bbbk)} (V, D W) \xrightarrow {\sim} \operatorname{Hom} _ {\mathsf {V e c t} (\Bbbk) ^ {\mathrm{op}}} (D ^ {\mathrm{op}} V, W)
+$$
+
+注意到 D 限制在 $\mathsf{Vect}_{f}(\Bbbk)$ 上给出范畴等价 $\mathsf{Vect}(\Bbbk)_{f}^{\mathrm{op}} \to \mathsf{Vect}_{f}(\Bbbk)$ ，见例 2.2.14。其证明关键是考虑态射 $\mathrm{id}_{\mathsf{Vect}(\Bbbk)} \to DD^{\mathrm{op}}$ ，它仅当限制在 $\mathsf{Vect}_{f}(\Bbbk)$ 上才是同构。对于一般的伴随对 $(F, G, \varphi)$ ，类似的态射仍扮演关键角色。 
+
+定义 2.6.3 设 $(F, G, \varphi)$ 为伴随对, 定义态射 $$
+\eta = (\eta_ {X}) _ {X \in \mathrm{Ob} (\mathcal {C} _ {1})}: \mathrm{id} _ {\mathcal {C} _ {1}} \longrightarrow G F
+$$
+
+$$
+\operatorname{Hom} _ {\mathcal {C} _ {2}} (F X, F X) \xrightarrow {\varphi} \operatorname{Hom} _ {\mathcal {C} _ {1}} (X, G F X)
+$$
+
+$$
+\mathrm{id} _ {F X} \longmapsto \eta_ {X}.
+$$
+
+引理 2.6.4 对于伴随对 $(F,G,\varphi)$ 和相应的 $\eta:\mathrm{id}\rightarrow GF,\varepsilon:FG\rightarrow\mathrm{id}$ ，我们有自然变换之间的等式. $$
+\begin{array}{l} \left[ G \xrightarrow {\eta G} (G F) G = G (F G) \xrightarrow {G \varepsilon} G \right] = \mathrm{id} _ {G},  \\ \left[ F \stackrel {F \eta} {\longrightarrow} F (G F) = (F G) F \stackrel {\varepsilon F} {\longrightarrow} F \right] = \mathrm{id} _ {F}. \\ \end{array}
+$$
+
+例 2.6.7 忘却函子 Top → Set 兼有左右伴随函子: 左伴随函子 L : Set → Top 赋予一个集合离散拓扑 (所有子集皆开), 而右伴随函子 R : Set → Top 赋予一个集合 S 平凡拓扑 (仅 ∅, S 开). 
+
+例 2.6.8 数学中还有许多构造是忘却函子或包含函子的左伴随. 以下举少量例子. 
+
+1. 忘却函子 $\mathsf{Grp} \to \mathsf{Set}$ 的左伴随是自由群函子: $F: X \mapsto \mathbf{F}(X)$ (定义 4.8.2), 其单位是集合 $X$ 到其自由群的嵌入 $X \hookrightarrow \mathbf{F}(X)$ . 以后我们还会考察自由模和多项式环等类似的自由构造, 无论对哪一种结构, 准则不外乎 
+
+命题 2.6.10 将阐明伴随函子的唯一性, 故上句应当视作自由构造的一般刻画. 
+
+2. 包含函子 $\mathsf{Ab} \to \mathsf{Grp}$ 的左伴随是 Abel 化函子 $G \mapsto G / G_{\mathrm{der}}$ , 其单位是商同态 $G \to G / G_{\mathrm{der}}$ . 
+
+3. 沿用例 2.4.6 的记号. 包含函子 ComMetr → Metr 的左伴随是完备化 $(X, d) \mapsto (\hat{X}, \hat{d})$ , 其单位是标准 (对角) 的等距嵌入 $X \hookrightarrow \hat{X}$ . 
+
+4. 令 CHaus 为紧 Hausdorff 拓扑空间构成的范畴, 包含函子 CHaus → Top 的左伴随是 Stone-Čech 紧化 $X \mapsto \beta X$ , 其单位是紧化带有的连续映射 $X \to \beta X$ . 
+
+命题 2.6.9 函子 $F: C_{1} \rightarrow C_{2}$ 有右伴随的充分必要条件是 $A_{Y}$ 对每个 Y 皆可表；类似地， $G: C_{2} \rightarrow C_{1}$ 有左伴随的充分必要条件是 $\operatorname{Hom}_{\mathcal{C}_{1}}(X, G(\cdot))$ 对每个 X 皆可表. 
+
+命题 2.6.10 函子 $F: C_{1} \rightarrow C_{2}$ 若有右伴随，则在下述意义下唯一：若 $(F, G, \varphi)$ 和 $(F, G', \varphi')$ 是伴随对，则存在唯一的同构 $\psi: G \stackrel{\sim}{\rightarrow} G'$ 使得对每个 $Y \in \mathrm{Ob}(\mathcal{C}_{1})$ 下图交换 $$
+h _ {\mathcal {C} _ {1}} (G Y) \xrightarrow {h _ {\mathcal {C} _ {1}} (\psi_ {Y})} h _ {\mathcal {C} _ {1}} (G ^ {\prime} Y)
+$$
+
+左伴随也满足类似的唯一性. 
+
+命题 2.6.11 考虑函子 $C_{1} \xrightarrow{F} C_{2} \xrightarrow{F'} C_{3}$ 若 $(F, G, \eta, \varepsilon)$ , $(F', G, ' \eta', \varepsilon')$ 是伴随对，则 $(F' F, GG', G \eta' F \circ \eta, \varepsilon' \circ F' \varepsilon G')$ 亦然. 其中 $\circ$ 代表纵合成. 
+
+定理 2.6.12 (伴随等价) 考虑互为拟逆的函子 $C_{1} \xrightarrow{F} C_{2}$ ，并给定同构 $\eta: id \xrightarrow{\sim} GF$ 和 $\varepsilon: FG \xrightarrow{\sim} id$ ，那么存在唯一的 $\varepsilon': FG \xrightarrow{\sim} id$ 使得 $(F, G, \eta, \varepsilon')$ ， $(G, F, \varepsilon'^{-1}, \eta^{-1})$ 皆成伴随对. 
+
+定义 2.7.1 令 I, C 为范畴．定义对角函子 $\Delta: C \rightarrow C^{I} := \operatorname{Fct}(I, C)$ 如下：它将任一 $X \in \operatorname{Ob}(C)$ 映至常值函子 $$
+\Delta (X): I \longrightarrow \mathcal {C} \left\{ \begin{array}{l l} \forall i \in \mathrm{Ob} (I), & i \longmapsto X \\ \forall [ i \to j ] \in \mathrm{Mor} (I), & [ i \to j ] \longmapsto [ \mathrm{id} _ {X}: X \to X ]. \end{array} \right.
+$$
+
+给定态射 $f: X \to Y$ , 范畴 $\mathcal{C}^I$ 中 $\Delta(f): \Delta(X) \to \Delta(Y)$ 的定义是显然的: 它对每个 $i \in \mathrm{Ob}(I)$ 指定 $f: X \to Y$ . 
+
+以 $I^{op}$ 代 I, 同样可定义对角函子 $\Delta: C \rightarrow C^{I^{op}} := \operatorname{Fct}(I^{\operatorname{op}}, \mathcal{C})$ . 回忆定义 2.4.7 及 其后的讨论: 对于函子 $I \xrightarrow{\alpha} C \xleftarrow{\beta} I^{op}$ ，可以构造两种逗号范畴 
+
+$$
+\begin{array}{l} \left[ \mathbf {1} \xrightarrow {j _ {\alpha}} \mathcal {C} ^ {I} \xleftarrow {\Delta} \mathcal {C} \right]\rightsquigarrow (j _ {\alpha} / \Delta) =: (\alpha / \Delta), \\ \left[ \mathcal {C} \xrightarrow {\Delta} \mathcal {C} ^ {I ^ {\mathrm{op}}} \stackrel {j _ {\beta}} {\longleftarrow} \mathbf {1} \right]\rightsquigarrow (\Delta / j _ {\beta}) =: (\Delta / \beta). \\ \end{array}
+$$
+
+定义 2.7.2 (极限) 令 I, C 为范畴. 考虑函子 $\alpha: I \rightarrow C$ 和 $\beta: I^{op} \rightarrow C$ . 
+
+1. 逗号范畴 $(\alpha / \Delta)$ 中若存在始对象则记作 $\lim_{\alpha} \alpha$ ，称为 $\alpha$ 的归纳极限； 
+
+2. 逗号范畴 $(\Delta / \beta)$ 中若存在终对象则记作 $\varprojlim \beta$ ，称为 $\beta$ 的投射极限。我们也说它们是以 $I$ 为指标的极限。 
+
+引理2.7.4 设 $\psi : \alpha \to \alpha'$ 是函子范畴 $\mathcal{C}^I$ 中的态射, 假定相应的 $\varinjlim$ 皆存在, 则存在唯一的态射 $\varinjlim \psi$ 使得 $\begin{array}{c}\alpha (i)\longrightarrow \varinjlim \alpha \\ \psi (i)\downarrow \end{array}$ 对每个 $i$ 皆交换. 若 $\alpha \xrightarrow{\psi_1}\alpha' \xrightarrow{\psi_2}\alpha''$ , 则 $\varinjlim (\psi_2\psi_1) = \varinjlim \psi_2\varinjlim \psi_1$ . 对 $\varprojlim$ 也有类似的结果: $\psi : \beta \to \beta'$ 自然地诱导出 $\varprojlim \beta \to \varprojlim \beta'$ 等等. 
+
+例 2.7.5 取 C := Set 并设 I 是小范畴. 我们先构造 $\varprojlim \beta$ . 定义 $$
+\begin{array}{l} \varprojlim \beta := \left\{(x _ {i}) _ {i \in \operatorname{Ob} (I)} \in \prod_ {i} \beta (i): \forall \sigma \in \operatorname{Hom} _ {I} (i, j), \beta (\sigma) (x _ {j}) = x _ {i} \right\} \\ = \ker \left[ \prod_ {i} \beta (i) \Rightarrow \prod_ {\sigma} \beta (s (\sigma)) \right] \quad (\text {等化子}), \\ \end{array}
+$$
+
+$\ker [\dots ]$ 的双箭头分别以映射 $(x_{i})_{i}\mapsto x_{s(\sigma)}$ 和 $(x_{i})_{i}\mapsto \beta (\sigma)\left(x_{t(\sigma)}\right)$ 为其“ $\sigma$ -坐标”，其中 $\sigma$ 取遍 $I$ 中态射．上式是Set的一个对象，它带有一族投影映射 $p_j:\varprojlim \beta \to \beta (j),$ $p_j((x_i)_i) = x_j,$ 其中 $j$ 取遍Ob(I).不难验证 $(\varprojlim \beta ,(p_j)_j)$ 是 $\beta$ 的投射极限. 
+
+接着考虑 $\alpha: I \rightarrow Set.$ 定义$$
+\varinjlim \alpha := \left(\bigsqcup_ {i \in \operatorname{Ob} (I)} \alpha (i)\right) / \sim
+$$
+
+其中 $\bigsqcup_{i}\alpha (i)$ 代表无交并， $\sim$ 是下述关系生成的等价关系  $$
+x \sim \alpha (\sigma) (x), \quad \sigma : i \to j, \quad x \in \alpha (i).
+$$
+
+由商集的性质得到一族映射 $\iota_{j}:\alpha (j)\to \varinjlim \alpha$ ，其中 $j$ 取遍 $\operatorname {Ob}(I)$ ；它映 $x\in \alpha (j)$ 至含 $x$ 的等价类.不难验证 $(\varinjlim \alpha ,(\iota_j)_j)$ 是 $\alpha$ 的归纳极限. 
+
+定义 2.7.6 非空范畴 I 若满足以下条件, 则称为滤过的: 
+
+◇ 对任意 $i, j \in \mathrm{Ob}(I)$ 存在 $k \in \mathrm{Ob}(I)$ 及态射 $i \to k, j \to k;$ 
+
+◇ 对任意箭头 $f, g: i \rightarrow j$ ，存在 $k \in \mathrm{Ob}(I)$ 和 $h: j \rightarrow k$ ，使得 hf = hg. 
+
+例 2.7.7 同样方法可构造范畴 C := Top 中的极限. 对于小范畴 I, 极限 $(\varinjlim \alpha, \iota_j)$ 和 $(\varprojlim \beta, p_j)$ 的构造与 Set 完全相同, 只消赋予这些集合商拓扑或子空间拓扑 [57, §3.1, §3.4]. 
+
+给定范畴 $\mathcal{C}$ . 尽管所论的极限在 $\mathcal{C}$ 中未必存在, 一旦将 $\mathcal{C}$ 嵌入函子范畴 $\mathcal{C}^{\wedge}$ 或 $\mathcal{C}^{\vee}$ (参考 §2.5), 则能确保所有 (小) 极限的存在性. 
+
+命题 2.7.8 设 I 为小范畴, 函子 $\alpha: I \to C^{\wedge}$ 的极限由如下定义的对象 “ $\varinjlim$ ” $\alpha \in \mathrm{Ob}(\mathcal{C}^{\wedge})$ 
+
+$$
+[ T \stackrel {f} {\longrightarrow} S ] \leadsto \varinjlim \alpha (S) \stackrel {\varinjlim \alpha (f)} {\longrightarrow} \varinjlim \alpha (T),
+$$
+
+连同自然态射族 $\alpha(j)(\cdot) \to \varinjlim \alpha(\cdot)$ 给出, 其中 $j \in \mathrm{Ob}(I)$ 而 $\varinjlim \alpha(f)$ 的构造见引理 2.7.4; 这里不带引号的 $\varinjlim$ 是 Set 中的极限. 类似地, 函子 $\beta: I^{\mathrm{op}} \to \mathcal{C}^{\wedge}$ 的极限由 $$
+\text { `` } \varprojlim \text { '' } \beta : S \longmapsto \varprojlim (\beta (S))
+$$
+
+等资料给出. 类似性质对取值在 $\mathcal{C}^{\vee}$ 的情形同样成立, 我们在符号上将这些极限不予区分地记作  
+
+$$
+\stackrel {“} {\varinjlim} ” \alpha : S \longmapsto \varprojlim (\alpha (S)), \quad \alpha : I \to \mathcal {C} ^ {\wedge} \text {或} \mathcal {C} ^ {\vee},
+$$
+
+$$
+" \varprojlim " \beta : S \longmapsto \varinjlim (\beta (S)), \quad \beta : I ^ {\mathrm{op}} \to \mathcal {C} ^ {\wedge} \text {或} \mathcal {C} ^ {\vee}.
+$$
+
+命题2.7.9 设 $I$ 为小范畴. 以下我们利用函子 $k_{\mathcal{C}}$ 和 $h_{\mathcal{C}}$ , 分别将 $\mathcal{C}$ 看作 $\mathcal{C}^{\vee}$ 和 $\mathcal{C}^{\wedge}$ 的子范畴. 
+
+1. 函子 $\alpha: I \to \mathcal{C}$ 的归纳极限存在当且仅当 “ $\varinjlim$ ” $\alpha \in \mathcal{C}^{\vee}$ 可表；给定 $\alpha$ 的极限相当于给定对象 $\varinjlim \alpha \in \mathrm{Ob}(\mathcal{C})$ 连同一个同构 $k_{\mathcal{C}}(\varinjlim \alpha) \xrightarrow{\sim} “\varinjlim$ ” $\alpha$ . 
+
+2. 函子 $\beta: I^{\mathrm{op}} \to \mathcal{C}$ 的投射极限存在当且仅当“ $\varprojlim$ ” $\beta \in \mathcal{C}^{\wedge}$ 可表；给定 $\beta$ 的极限相当于给定对象 $\varprojlim \beta \in \mathrm{Ob}(\mathcal{C})$ 连同一个同构 $h_{\mathcal{C}}(\varprojlim \beta) \xrightarrow{\sim} “\varprojlim$ ” $\beta$ . 
+
+极限的性质遂可简洁地刻画为 
+
+$$
+\operatorname{Hom} _ {\mathcal {C}} (\varinjlim \alpha , \cdot) \xrightarrow {\sim} \varprojlim_ {i} \operatorname{Hom} _ {\mathcal {C}} (\alpha (i), \cdot) = “ \varinjlim ” \alpha ,
+$$
+
+$$
+\mathrm{Hom} _ {\mathcal {C}} (\cdot , \varprojlim \beta) \xrightarrow {\sim} \varprojlim_ {i} \mathrm{Hom} _ {\mathcal {C}} (\cdot , \beta (i)) = “ \varprojlim ” \beta .
+$$
+
+注意到这里的 $C^{\vee}$ 与 $C^{\wedge}$ 不能互换: 在 $Hom_{C}$ 外头的极限必须是 $\varprojlim!$ 
+
+命题 2.7.9 可将极限的许多性质化约到集合情形, 实质地简化论证. 我们且看一个例子. 
+
+引理 2.7.10 设 I, J 为小范畴, 假设 C 中具有以 I, J 为指标的 $\lim_{\rightarrow}$ . 考虑函子 $\alpha: I \times J \to C$ , 存在典范同构 $$
+\varinjlim_ {j} \left(\varinjlim \alpha (\cdot , j)\right) \simeq \varinjlim \alpha \simeq \varinjlim_ {i} \left(\varinjlim \alpha (i, \cdot)\right)
+$$
+
+其中左项极限先对 I 再对 J 取, 右项反之. 投射极限 $\varprojlim\beta$ 的情形类似. 
+
+1. 取 $I$ 为离散范畴, 不妨把 $I$ 等同于 $\operatorname{Ob}(I)$ . 此时 $\varinjlim \alpha(i)$ 称作对象 $X_{i} := \alpha(i)$ 的余积, 写作 $\coprod_{i \in I} X_{i}$ ; 相应地, $\prod_{i \in I} Y_{i} := \varprojlim \beta(i)$ 称作对象 $Y_{i} := \beta(i)$ 的积. 泛性质 (2.10) 化作 $$
+\begin{array}{l} \operatorname{Hom} _ {\mathcal {C}} \left(\coprod_ {i \in I} X _ {i}, \cdot\right) \xrightarrow {\sim} \prod_ {i \in I} \operatorname{Hom} _ {\mathcal {C}} (X _ {i}, \cdot) \\ \operatorname{Hom} _ {\mathcal {C}} \left(\cdot , \prod_ {i \in I} Y _ {i}\right) \xrightarrow {\sim} \prod_ {i \in I} \operatorname{Hom} _ {\mathcal {C}} (\cdot , Y _ {i}) \\ \phi \longmapsto (\phi \iota_ {i}) _ {i \in I} \\ \phi \longmapsto (p _ {i} \phi) _ {i \in I} \\ \end{array}
+$$
+
+此处用到态射 $\iota_{j}: X_{j} \to \coprod_{i} X_{i}$ 和 $p_{j}: \prod_{i} Y_{i} \to Y_{j}$ , 后者称为到 $Y_{j}$ 的投影. 
+
+2. 取空范畴 $I = \mathbf{0}$ , 此时 (2.10) 表明 $\varinjlim$ 是始对象而 $\varprojlim$ 是终对象. 它们也可以分别被理解为空余积和空积. 
+
+3. 取 $I$ 为图表 $\bullet \longrightarrow \bullet$ 给出的范畴 (两个对象, 两个非 id 的态射), 显然 $I^{\mathrm{op}} \simeq I$ . 函子 $\alpha: I \to \mathcal{C}$ 或 $\beta: I^{\mathrm{op}} \to \mathcal{C}$ 可以理解为 $\mathcal{C}$ 中两个平行箭头 $X \xrightarrow[f]{f} Y$ ; 相应的极限记为 $\operatorname{coker}(f, g) := \varinjlim \alpha$ (称为余等化子), $\ker(f, g) := \varprojlim \beta$ (称为等化子或差核). 等化子 $\ker(f, g)$ 的泛性质表作 $$
+\ker (f, g) \xrightarrow {\exists !} X \xrightarrow [ g ]{f} Y 
+$$
+
+意谓：两合成态射 $\ker (f,g)\to X\xrightarrow{f}Y$ 和 $\ker (f,g)\to X\xrightarrow{g}Y$ 相等，而且对任意 $\phi :L\to X,$ 若 $f\phi = g\phi$ 则存在唯一的态射 $L\dashrightarrow \ker (f,g)$ 使左三角交换.同理，余等化子的泛性质表作 $$
+X \xrightarrow [ g ]{\underset {f} {\longrightarrow}} Y \xrightarrow {} \operatorname{coker} (f, g), 
+$$
+
+意谓: $X \xrightarrow{f} Y \to \operatorname{coker}(f, g)$ 等于 $X \xrightarrow{g} Y \to \operatorname{coker}(f, g)$ , 而且对任意 $\psi : Y \to L$ , 若 $\psi f = \psi g$ 则存在唯一的 $\operatorname{coker}(f, g) \dashrightarrow L$ 使右三角交换. 
+
+当 $\mathcal{C} = \mathsf{Set}$ 时, $f, g: X \rightrightarrows Y$ 的等化子是子集 $\{x: f(x) = g(x)\} \hookrightarrow X$ , 余等化子是商集 $Y \to Y / \sim$ , 其中 $\sim$ 是由 $f(x) \sim g(x)$ 生成的等价关系; $\mathcal{C} = \mathsf{Top}$ 的情况类似. 
+
+引理2.7.11(积和余积的结合约束）设有小集合的无交并分解 $I = \bigsqcup_{j\in J}I_j$ .若范畴 $\mathcal{C}$ 具有以 $J$ 和每个 $I_{j}$ 为指标的积, 则以 $I$ 为指标的积也存在. 而且有唯一的同构 $a$ 及交换图表如下$$
+\prod_ {i \in I} X _ {i} \xrightarrow [ \sim ]{a} \prod_ {j \in J} \left(\prod_ {i \in I _ {j}} X _ {i}\right) \qquad j \in J,   k \in I _ {j}.
+$$
+
+同样断言对余积和态射 $\iota_{k}:X_{k}\to \coprod_{i\in I}X_{i}$ 等也成立. 
+
+引理 2.7.12 (积和余积的交换约束) 设 $\sigma: I \rightarrow I$ 为小集合的双射. 设范畴 C 具有以 I 为指标的积, $\{X_{i}\}_{i \in I}$ 为一族对象, 则有唯一的同构 c 及交换图表如下 $$
+\prod_ {i \in I} X _ {i} \xrightarrow [ \sim ]{c} \prod_ {i \in I} X _ {\sigma (i)} \qquad j \in I.
+$$
+
+同样断言对余积和态射 $\iota_{j}: X_{j} \to \coprod_{i \in I} X_{i}$ 等也成立. 
+
+引理2.7.13 设 $f, g: X \to Y$ 。若 $\ker(f, g)$ 存在则 $\ker(f, g) \to X$ 是单态射。若 $\operatorname{coker}(f, g)$ 存在则 $Y \to \operatorname{coker}(f, g)$ 是满态射。 
+
+定义 2.8.1 对于范畴 C, 若对有所有小范畴 I, 所有以 I 为指标的 $\varprojlim$ 都存在, 则称之为完备的; 若所有以 I 为指标的 $\varinjlim$ 都存在, 则称之为余完备的. 
+
+举例明之, Set 既是完备也是余完备的, 见例 2.7.5. 定义中如不要求 C 比 I 来得 “大”, 应用范围将大大地受限. 请看以下结果. 
+
+命题 2.8.2 (P. Freyd) 小范畴 C 完备当且仅当 C 来自一个预序集 $(P, \leq)$ (例 2.1.5), 其中每个子集都有上确界. 
+
+定理 2.8.3 设 I 为小范畴, C 为范畴. 
+
+1. 若对所有子集 $J \subset \mathrm{Ob}(I)$ 和 $\mathcal{C}$ 中的对象族 $(X_{j})_{j \in J}$ 都存在 $\prod_{j \in J} X_{j}$ , 而且对所有 $f, g: X \to Y$ 都存在 $\ker(f, g)$ , 则 $\mathcal{C}$ 有所有以 $I$ 为指标的 $\varprojlim$ . 
+
+2. 若对所有子集 $J \subset \mathrm{Ob}(I)$ 和 $(X_{j})_{j \in J}$ 都存在 $\coprod_{j \in J} X_{j}$ , 而且对所有 $f, g: X \to Y$ 都存在 $\operatorname{coker}(f, g)$ , 则 $\mathcal{C}$ 有所有以 $I$ 为指标的 $\varinjlim$ . 
+
+考虑函子 $\beta : I^{\mathrm{op}} \to \mathcal{C}$ . 对于 $I$ 中的态射 $\sigma : i \to j$ , 请回忆早先定义的来源 $s(\sigma) = i$ 与目标 $t(\sigma) = j$ . 构造积 $\prod_{i \in \mathrm{Ob}(I)} \beta(i)$ 与 $\prod_{\sigma \in \mathrm{Mor}(I)} \beta(s(\sigma))$ . 对每个 $\sigma \in \mathrm{Mor}(I)$ 定义一对态射  $$
+\prod_ {i \in \mathrm{Ob} (I)} \begin{array}{c} \beta (i) \\ \xrightarrow {p _ {t (\sigma)}} \end{array} \begin{array}{c} p _ {s (\sigma)} \\ \beta (t (\sigma)) \end{array} \begin{array}{c} \beta (s (\sigma)) \\ \xrightarrow {\beta (\sigma)} \end{array}
+$$
+
+故从积的泛性质导出相应的态射 $\prod_{i\in \mathrm{Ob}(I)}\beta (i)\xrightarrow[f]{g}\prod_{\sigma \in \mathrm{Mor}(I)}\beta (s(\sigma))$ .今断言下述资料构成了所欲的 $\varprojlim \beta$ 
+
+$$
+\ker (f, g), \quad \left(q _ {j}: \ker (f, g) \rightarrow \prod_ {i \in \mathrm{Ob} (I)} \beta (i) \xrightarrow {p _ {j}} \beta (j)\right) _ {j \in \mathrm{Ob} (I)}.  {2.14}
+$$
+
+根据例 2.7.5 中的极限构造和命题 2.7.8 在 $C^{\wedge}$ 中操作, 知函子 “ $\varprojlim$ ” $\beta$ 等于 $$
+\begin{array}{l} \varprojlim_ {i} \operatorname{Hom} _ {\mathcal {C}} (\cdot , \beta (i)) = \ker \left[ \prod_ {i} \operatorname{Hom} _ {\mathcal {C}} (\cdot , \beta (i)) \Rightarrow \prod_ {\sigma} \operatorname{Hom} _ {\mathcal {C}} (\cdot , \beta (s (\sigma))) \right] \\ = \operatorname{Hom} _ {\mathcal {C}} (\cdot , \ker (f, g)). \\ \end{array}
+$$
+
+这就说明函子“ $\varprojlim$ ” $\beta$ 可表, 细观 $q_j$ 可知在上式左侧取投影 $\varprojlim_i \mathrm{Hom}(\cdot, \beta(i)) \to \mathrm{Hom}(\cdot, \beta(j))$ 相当于在右侧取 $q_{j*}: \mathrm{Hom}(\cdot, \ker(f, g)) \to \mathrm{Hom}(\cdot, \beta(j))$ . 应用命题 2.7.9 便得到断言 (2.14). 
+
+推论 2.8.4 范畴 C 完备当且仅当它有所有等化子和小积, 余完备当且仅当它有所有等化子和小余积. 
+
+范畴 $\mathcal{C}$ 具有所有的有限 $\varprojlim$ 当且仅当它有终对象, 所有 $\ker (f,g)$ 和所有 $X\times Y$ ; 它具有所有的有限 $\varinjlim$ 当且仅当它有始对象, 所有 $\operatorname {coker}(f,g)$ 和所有 $X\sqcup Y$ . 
+
+谨介绍两种最常见的极限构造: 纤维积及其对偶版本纤维余积. 以下假设所论极限存在. 
+
+定义 2.8.5 设 I 为图表 $\bullet \leftarrow \bullet \rightarrow \bullet$ 给出的范畴 (略去恒等态射). 
+
+1. 函子 $\beta: I^{\mathrm{op}} \to \mathcal{C}$ 对应到 $\mathcal{C}$ 中箭头 $X \to Z \leftarrow Y$ . 置 $X \times Y := \varprojlim \beta$ , 称为 $X \to Z$ 和 $Y \to Z$ 的纤维积或拉回. 
+
+2. 函子 $\alpha: I \to \mathcal{C}$ 对应到 $\mathcal{C}$ 中箭头 $X \leftarrow Z \rightarrow Y$ . 置 $X \sqcup_{Z} Y := \varinjlim \alpha$ , 称为 $X \leftarrow Z$ 和 $Y \leftarrow Z$ 的纤维余积或推出. 
+
+例 2.8.10 忘却函子 Top → Set 保所有小极限: 参看例 2.7.7. 相对地, Ab → Grp 保小 $\varprojlim$ 但不保小 $\varinjlim$ : 举例明之, Ab 中的余积是交换群的直积, 而在 Grp 中是自由积, 两者判若云泥. 
+
+命题 2.8.11 设 I 为小范畴, $X \in \mathrm{Ob}(\mathcal{C})$ . 
+
+◇ 函子 $\mathrm{Hom}_{\mathcal{C}}(X,\cdot):\mathcal{C}\to\mathbf{Set}$ 保以 I 为指标的 $\varprojlim$ (假设存在); 
+
+◇ 函子 $\mathrm{Hom}_{\mathcal{C}}(\cdot,X):\mathcal{C}^{\mathrm{op}}\to\mathbf{Set}$ 保以 I 为指标的 $\varprojlim$ (假设存在). 
+
+定理2.8.12 考虑伴随对 $(F,G,\varphi)$ ，其中 $\mathcal{C}_1\xrightarrow[G]{F}\mathcal{C}_2$ .则 $\left\{ \begin{array}{ll}F\text{保}\varinjlim \\ G\text{保}\varprojlim \end{array} \right.$ ；这里假设所论的极限存在，并且是小极限. 
 
 
 
