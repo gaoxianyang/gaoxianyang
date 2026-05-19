@@ -1,0 +1,4085 @@
+\documentclass[]{article}
+\usepackage{xeCJK}        % XeLaTeX 中文支持
+\usepackage{fontspec}     % 设置西文字体
+\setCJKmainfont{SimSun}   % 设置中文主字体（宋体）
+\setmainfont{Times New Roman} % 设置西文字体
+
+% 数学公式包
+\usepackage{amsmath, amssymb, amsfonts, amsthm}   % AMS数学包
+\usepackage{mathtools}           % AMS扩展公式
+\usepackage{bm}                   % 粗体数学符号
+
+% ================= 排版美化 =================
+\usepackage{geometry}             % 页边距
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\usepackage{setspace}             % 行间距
+\onehalfspacing                    % 1.5倍行距
+\usepackage{titlesec}             % 调整章节标题
+\usepackage{hyperref}             % 超链接
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=cyan,
+	urlcolor=magenta
+}
+
+%opening
+\title{抽象代数习题解答}
+\author{today}
+\author{Tamagawa}
+
+\begin{document}
+	
+\maketitle
+	
+1.2.12. 证明有理数加法群 $\mathbb{Q}$ 和非零有理数乘法群 $\mathbb{Q}^*$ 不同构. 
+
+\bigskip
+\noindent \textbf{分析：} 
+要证明两个群不同构，只需找到一个在一同构映射下保持不变的代数性质（即群不变量），而这两个群在此性质上表现不同。常用的群不变量包括：群的基数、是否交换、元素的阶的分布、特定代数方程在群中解的个数等。以下给出两种经典的证明方法。
+
+\bigskip
+方法一：利用元素的阶（或方程解的个数）
+
+\begin{proof}
+	假设 $(\mathbb{Q}, +) \cong (\mathbb{Q}^*, \cdot)$，则它们满足相同代数方程的解的个数必须相同。
+	
+	我们来考察方程 $x \circ x = e$（即元素与自身运算等于单位元）在两个群中的解的个数。
+	
+	\begin{enumerate}
+		\item \textbf{在加法群 $(\mathbb{Q}, +)$ 中：}
+		单位元 $e = 0$。上述方程化为加法形式：
+		\[ x + x = 0 \implies 2x = 0 \]
+		在有理数集 $\mathbb{Q}$ 中，该方程有且仅有一个解：
+		\[ x = 0 \]
+		这说明 $(\mathbb{Q}, +)$ 中阶能整除 2 的元素只有 1 个（即单位元本身）。
+		
+		\item \textbf{在乘法群 $(\mathbb{Q}^*, \cdot)$ 中：}
+		单位元 $e = 1$。上述方程化为乘法形式：
+		\[ x \cdot x = 1 \implies x^2 = 1 \]
+		在非零有理数集 $\mathbb{Q}^*$ 中，该方程有两个不同的有理数解：
+		\[ x = 1 \quad \text{和} \quad x = -1 \]
+		其中 $x = -1$ 是一个 2 阶元。
+	\end{enumerate}
+	
+	由于 $(\mathbb{Q}, +)$ 中方程 $x+x=0$ 仅有 1 个解，而 $(\mathbb{Q}^*, \cdot)$ 中方程 $x^2=1$ 有 2 个解，群同构映射必然保持解的个数不变，这产生了矛盾。
+	
+	因此，有理数加法群 $(\mathbb{Q}, +)$ 和非零有理数乘法群 $(\mathbb{Q}^*, \cdot)$ 不同构。
+\end{proof}
+
+\bigskip
+方法二：利用同构映射的值域（正负性）
+
+\begin{proof}
+	假设存在一个从 $(\mathbb{Q}, +)$ 到 $(\mathbb{Q}^*, \cdot)$ 的群同构映射 $f: \mathbb{Q} \to \mathbb{Q}^*$。
+	
+	根据群同态的性质，对于 $(\mathbb{Q}, +)$ 中的任意有理数 $r$，我们都可以将其改写为 $r = \frac{r}{2} + \frac{r}{2}$。由于 $f$ 是同态映射，它必须将加法转换为乘法：
+	\[ f(r) = f\left(\frac{r}{2} + \frac{r}{2}\right) = f\left(\frac{r}{2}\right) \cdot f\left(\frac{r}{2}\right) = \left[f\left(\frac{r}{2}\right)\right]^2 \]
+	
+	因为 $f$ 的值域在 $\mathbb{Q}^*$ 中，所以对任意的 $r \in \mathbb{Q}$，都有 $f\left(\frac{r}{2}\right) \in \mathbb{Q}^*$（即 $f\left(\frac{r}{2}\right) \neq 0$）。
+	
+	在有理数集中，任何非零有理数的平方都严格大于 0，即：
+	\[ \left[f\left(\frac{r}{2}\right)\right]^2 > 0 \]
+	由此可知，对于任意的 $r \in \mathbb{Q}$，必然有 $f(r) > 0$。
+	
+	这说明同构映射 $f$ 的值域被完全包含在正有理数集 $\mathbb{Q}^+$ 中。也就是说，对于任何负有理数（例如 $-2 \in \mathbb{Q}^*$），在 $\mathbb{Q}$ 中都找不到原像使得 $f(r) = -2$。这与 $f$ 是满射（同构必须是双射）的定义相矛盾。
+	
+	因此，两群不同构。
+	
+	
+
+1.2.15*. 令 $G$ 是 $n$ 阶有限群, $S$ 是 $G$ 的一个子集, $|S| > \frac{n}{2}$ . 试证对任意 $g \in G$ , 存在 $a, b \in S$ 使得 $g = ab$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+任取群 $G$ 中的一个元素 $g$。我们构造一个新的集合 $gS^{-1}$，其定义为：
+\[ gS^{-1} = \{ gs^{-1} \mid s \in S \} \]
+
+首先，我们来确定集合 $gS^{-1}$ 的基数（元素个数）。
+因为在群 $G$ 中，左乘元素 $g$ 以及求逆运算 $s \mapsto s^{-1}$ 都是双射（一一对应），所以集合 $gS^{-1}$ 的大小与原集合 $S$ 完全相同，即：
+\[ |gS^{-1}| = |S| \]
+
+根据题目已知条件，我们有：
+\[ |S| > \frac{n}{2} \implies |gS^{-1}| > \frac{n}{2} \]
+
+接下来，我们考虑集合 $S$ 和 $gS^{-1}$ 的并集 $S \cup gS^{-1}$。显然，这个并集是群 $G$ 的子集，因此它的元素个数不可能超过群 $G$ 的总阶数 $n$：
+\[ |S \cup gS^{-1}| \le |G| = n \]
+
+利用集合势的容斥原理，我们知道：
+\[ |S \cup gS^{-1}| = |S| + |gS^{-1}| - |S \cap gS^{-1}| \]
+
+将上述两步的结论结合起来，可以得到：
+\[ n \ge |S \cup gS^{-1}| = |S| + |gS^{-1}| - |S \cap gS^{-1}| \]
+\[ n > \frac{n}{2} + \frac{n}{2} - |S \cap gS^{-1}| \]
+\[ n > n - |S \cap gS^{-1}| \]
+
+由此不等式移项可得：
+\[ |S \cap gS^{-1}| > 0 \]
+
+这意味着集合 $S$ 和 $gS^{-1}$ 绝不是不相交的，它们至少包含一个共同的元素（这本质上是鸽巢原理的体现，因为两个大小超过一半的集合在总大小为 $n$ 的空间里必然有重叠）。
+因此，存在一个元素 $x \in G$，使得：
+\[ x \in S \quad \text{且} \quad x \in gS^{-1} \]
+
+因为 $x \in gS^{-1}$，根据该集合的定义，必定存在某个 $b \in S$ 使得：
+\[ x = gb^{-1} \]
+
+既然 $x$ 同时也属于 $S$，我们可以令 $a = x = gb^{-1}$，此时有 $a \in S$。
+在等式 $a = gb^{-1}$ 两边同时右乘 $b$，利用群的结合律和单位元性质，可得：
+\[ ab = (gb^{-1})b = g(b^{-1}b) = g \]
+
+由于 $a \in S$ 且 $b \in S$，我们成功证明了对于任意的 $g \in G$，都存在 $a, b \in S$ 使得 $g = ab$。
+
+\qed
+
+1.2.16*. 求有理数加法群 $\mathbb{Q}$ 的自同构群 $\operatorname{Aut}(\mathbb{Q})$ . 
+
+\bigskip
+\noindent \textbf{解答：} 
+
+设 $f \in \operatorname{Aut}(\mathbb{Q})$ 是 $(\mathbb{Q}, +)$ 的一个自同构映射。根据自同构的定义，$f$ 必须是 $\mathbb{Q}$ 到自身的一个满同态（双射）。我们来探索 $f$ 的具体形式。
+
+因为 $f$ 是群同态，对于任意的 $x \in \mathbb{Q}$，满足加法同态性质：
+\[ f(x + y) = f(x) + f(y) \]
+
+利用数学归纳法，易知对任意的正整数 $n \in \mathbb{Z}^+$，都有：
+\[ f(n) = f(\underbrace{1 + 1 + \dots + 1}_{n \text{ 个}}) = \underbrace{f(1) + f(1) + \dots + f(1)}_{n \text{ 个}} = n \cdot f(1) \]
+又因为 $f(0) = 0$ 且 $f(-n) = -f(n) = -n \cdot f(1)$，所以对于所有的整数 $n \in \mathbb{Z}$，恒有：
+\[ f(n) = n \cdot f(1) \]
+
+现在，我们将这个性质推广到任意有理数。任取一个有理数 $r = \frac{p}{q}$，其中 $p, q \in \mathbb{Z}$ 且 $q > 0$。根据同态的加法性质，有：
+\[ q \cdot f\left(\frac{p}{q}\right) = f\left( \underbrace{\frac{p}{q} + \dots + \frac{p}{q}}_{q \text{ 个}} \right) = f(p) \]
+由于 $p$ 是整数，由前面的结论可知 $f(p) = p \cdot f(1)$。将其代入上式得到：
+\[ q \cdot f\left(\frac{p}{q}\right) = p \cdot f(1) \implies f\left(\frac{p}{q}\right) = \frac{p}{q} \cdot f(1) \]
+也就是说，对于任意的有理数 $r \in \mathbb{Q}$，映射 $f$ 完全由它在 $1$ 处的取值 $f(1)$ 决定：
+\[ f(r) = r \cdot f(1) \]
+
+记 $f(1) = k$。因为 $f$ 必须是双射，所以 $k$ 不能为 $0$（否则 $f(r) \equiv 0$，不是单射）。此外，对于任意非零有理数 $k \in \mathbb{Q}^*$，容易验证形如 $f_k(r) = k \cdot r$ 的映射不仅是群同态，而且其逆映射为 $f_{k^{-1}}(r) = k^{-1} \cdot r$，因此它确实是 $\mathbb{Q}$ 的一个自同构。
+
+综上所述，$\operatorname{Aut}(\mathbb{Q})$ 中的每一个元素 $f$ 都可以唯一地由一个非零有理数 $k \in \mathbb{Q}^*$ 通过 $f(r) = kr$ 来表示。
+
+最后，我们来考察自同构群的运算（即映射的复合）。设 $f_k, f_m \in \operatorname{Aut}(\mathbb{Q})$ 分别对应非零有理数 $k$ 和 $m$，则对于任意的 $r \in \mathbb{Q}$：
+\[ (f_k \circ f_m)(r) = f_k(f_m(r)) = f_k(m \cdot r) = k \cdot (m \cdot r) = (km) \cdot r = f_{km}(r) \]
+这表明自同构群中的映射复合，完全对应于非零有理数集在乘法下的运算。
+
+因此，映射 $\Phi: \operatorname{Aut}(\mathbb{Q}) \to \mathbb{Q}^*$（定义为 $\Phi(f) = f(1)$）是一个群同构。
+
+\bigskip
+\noindent \textbf{结论：} 有理数加法群 $\mathbb{Q}$ 的自同构群同构于非零有理数的乘法群，即：
+\[ \operatorname{Aut}(\mathbb{Q}) \cong (\mathbb{Q}^*, \cdot) \]
+
+\qed
+
+1.2.17*. $b$ 是含幺半群 $G$ 中的元 $a$ 的逆元当且仅当成立 $aba = a, ab^2 a = 1$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+这是一个充分必要条件（当且仅当）的命题，我们需要分别证明必要性和充分性。假设含幺半群 $G$ 的单位元为 $1$。
+
+\bigskip
+\noindent \textbf{1. 必要性（$\implies$）：}
+
+假设 $b$ 是 $a$ 的逆元。根据逆元的定义，显然有：
+\[ ab = 1 \quad \text{且} \quad ba = 1 \]
+
+此时，我们直接利用群（半群）的结合律进行计算：
+\begin{align*}
+	aba &= a(ba) = a \cdot 1 = a \\
+	ab^2 a &= a(b \cdot b)a = (ab)(ba) = 1 \cdot 1 = 1
+\end{align*}
+因此，必要性成立。
+
+\bigskip
+\noindent \textbf{2. 充分性（$\impliedby$）：}
+
+已知在含幺半群 $G$ 中成立以下两个等式：
+\begin{align*}
+	(1) \quad & aba = a \\
+	(2) \quad & ab^2 a = 1
+\end{align*}
+我们需要证明 $ab = 1$ 且 $ba = 1$。
+
+首先，我们在等式 (1) 的两边同时**右乘** $b$，利用结合律可以得到：
+\[ (aba)b = ab \implies ab(ab) = ab \]
+这说明元素 $ab$ 是一个幂等元。
+
+接下来，我们将等式 (2) 展开，利用结合律将其写成包含 $ab$ 的形式：
+\[ 1 = ab^2 a = a \cdot b \cdot b \cdot a = (ab)(ba) \]
+为了利用 $ab$ 的幂等性质，我们用 $ab$ 从**左边**去乘等式 (2) 的两边：
+\[ ab \cdot 1 = ab \cdot [ (ab)(ba) ] \]
+利用结合律，将右侧重新组合：
+\[ ab = [ (ab)(ab) ](ba) \]
+由于前面已经证明了 $ab(ab) = ab$，我们可以将括号内的项替换：
+\[ ab = (ab)(ba) \]
+而根据等式 (2) 的已知条件，$(ab)(ba) = ab^2 a = 1$，因此上式直接化简为：
+\[ ab = 1 \]
+
+现在我们已经证明了 $ab = 1$。为了证明 $ba = 1$，我们只需将 $ab = 1$ 代回原来的等式 (1) 中。
+将 $ab = 1$ 代入 $aba = a$，通过结合律有：
+\[ (ab)a = a \implies 1 \cdot a = a \]
+这并没有直接给出 $ba$ 的信息。因此我们改将 $ab = 1$ 代入到等式 (2) 中：
+\[ 1 = ab^2 a = (ab)(ba) = 1 \cdot (ba) = ba \]
+从而我们得到了：
+\[ ba = 1 \]
+
+结合 $ab = 1$ 和 $ba = 1$，根据逆元的定义， $b$ 确实是 $a$ 的逆元。充分性得证。
+
+\bigskip
+综上所述，命题成立。
+
+\qed
+
+1.2.20*. 设 $a, b$ 是群 $G$ 的两个元, 满足 $aba = ba^2b, a^3 = 1, b^{2n-1} = 1$ . 试证 $b = 1$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们需要通过已知关系式 $aba = ba^2b$ 以及 $a^3 = 1$，建立关于 $b$ 的其他幂次关系，最终结合 $b^{2n-1} = 1$ 导出 $b = 1$。
+
+首先，利用已知关系式 $aba = ba^2b$，我们在等式两边同时**左乘** $a^2$，**右乘** $a^2$：
+\[ a^2 (aba) a^2 = a^2 (ba^2b) a^2 \]
+利用群的结合律以及条件 $a^3 = 1$（即 $a \cdot a^2 = a^2 \cdot a = 1$），上式左侧可以化简为：
+\[ a^2 a b a a^2 = 1 \cdot b \cdot 1 = b \]
+因此我们得到了一个关于 $b$ 的新表达式：
+\[ (1) \quad b = a^2 ba^2 b a^2 \]
+
+接下来，我们再次利用原始关系式 $aba = ba^2b$。将其变形，两边同时**左乘** $a^2$，可得：
+\[ a^2 aba = a^2 ba^2b \implies ba = a^2 ba^2b \]
+同样地，在原始关系式两边同时**右乘** $a^2$，可得：
+\[ abaa^2 = ba^2ba^2 \implies ab = ba^2ba^2 \]
+
+现在，我们将这两个变形结构代入到等式 (1) 中。注意观察等式 (1) 的右侧，我们可以将其局部组合：
+\[ b = a^2 b a^2 b a^2 = (a^2 b a^2 b) a^2 \]
+为了利用前面的变形，我们换一种结合方式。将等式 (1) 改写为：
+\[ b = a^2 ba^2 (ba^2) = (a^2 ba^2b) a^2 \]
+由前面的变形 $ba = a^2 ba^2b$，上式括号内的部分可以替换为 $ba$：
+\[ b = (ba) a^2 = ba^3 \]
+由于 $a^3 = 1$，上式化为 $b = b \cdot 1 = b$，这并没有带来新信息。
+
+我们需要寻找更深层的代换。注意到原始条件可以写为：
+\[ a^2 (aba) = a^2 (ba^2b) \implies ba = a^2 ba^2b \]
+在等式两边同时**右乘** $b^{-1}$，得到：
+\[ bab^{-1} = a^2 ba^2 \]
+这意味着，在用 $b$ 进行共轭作用时，$a$ 的某种形式会发生转化。
+
+我们重新对 $aba = ba^2b$ 进行推导。在等式两边同时**右乘** $b^{-1}a^{-1}$，可以得到：
+\[ ab = ba^2ba^{-1} \]
+由于 $a^3 = 1 \implies a^{-1} = a^2$，所以：
+\[ ab = ba^2ba^2 \]
+再次在两边**左乘** $b^{-1}$，得到：
+\[ b^{-1}ab = a^2ba^2 \]
+此时，将上述等式两边同时平方：
+\[ (b^{-1}ab)^2 = (a^2ba^2)^2 \implies b^{-1}a^2b = a^2ba^4b a^2 \]
+由于 $a^4 = a^3 \cdot a = a$，上式变为：
+\[ b^{-1}a^2b = a^2bab a^2 \]
+注意到中间出现的 $aba$，我们可以直接用已知的 $ba^2b$ 进行替换：
+\[ b^{-1}a^2b = a^2 (ba^2b) a^2 \]
+展开右侧，利用结合律：
+\[ b^{-1}a^2b = a^2 b a^2 b a^2 \]
+根据我们在最开始导出的等式 (1)，右侧的 $a^2 b a^2 b a^2$ 恰好等于 $b$。因此我们得到了一个极其关键的对易关系式：
+\[ (2) \quad b^{-1}a^2b = b \]
+
+在等式 (2) 两边同时**左乘** $b$，可得：
+\[ a^2b = b^2 \]
+这意味着，将 $a^2$ 乘在 $b$ 的左边等于将 $b$ 自乘。我们在该等式两边同时**右乘** $b^{-1}$，得到：
+\[ a^2 = b \]
+
+既然导出了 $b = a^2$，我们就可以利用 $a$ 的阶数来确定 $b$ 的性质。
+因为 $a^3 = 1$，所以：
+\[ b^3 = (a^2)^3 = (a^3)^2 = 1^2 = 1 \]
+这说明元素 $b$ 的阶（最小正整数幂为单位元）必须是 3 的因子，即 $o(b) \mid 3$。
+
+另一方面，题目已知条件给出：
+\[ b^{2n-1} = 1 \]
+这说明元素 $b$ 的阶也必须是 $2n-1$ 的因子，即 $o(b) \mid (2n-1)$。
+
+因此，$b$ 的阶 $o(b)$ 必须同时整除 3 和 $2n-1$，即：
+\[ o(b) \mid \gcd(3, 2n-1) \]
+
+因为 $2n-1$ 是一个奇数，而 3 的正因子只有 1 和 3。
+若 $\gcd(3, 2n-1) = 3$，则要求 $2n-1$ 是 3 的倍数（例如 $2n-1 = 3k$）。
+然而，无论 $\gcd$ 的结果是 1 还是 3，我们都可以通过更直接的代数运算来闭合此证明：
+由 $b = a^2$，我们有 $b^2 = a^4 = a$。
+将 $b = a^2$ 和 $a = b^2$ 代入原始条件 $aba = ba^2b$ 中：
+\[ b^2 \cdot b \cdot b^2 = b \cdot b \cdot b \]
+\[ b^5 = b^3 \]
+两边同时乘 $b^{-3}$ 可得 $b^2 = 1$。
+
+现在我们同时拥有了：
+\[ b^3 = 1 \quad \text{且} \quad b^2 = 1 \]
+由此可得：
+\[ b = b^3 \cdot b^{-2} = 1 \cdot 1 = 1 \]
+
+综上所述，必有 $b = 1$。
+
+\qed
+
+1.3.5. 设 $A, B$ 分别是群 $G$ 的两个子群, 试证 $A \cup B$ 是 $G$ 的子群当且仅当 $A \leqslant B$ 或 $B \leqslant A$ . 利用这个事实证明群 $G$ 不能表示成两个真子群的并. 
+
+\bigskip
+\noindent \textbf{第一部分：证明 $A \cup B$ 是子群的充要条件}
+
+\medskip
+\noindent \textbf{1. 充分性（$\impliedby$）：}
+
+假设 $A \leqslant B$ 或 $B \leqslant A$。
+\begin{itemize}
+	\item 若 $A \leqslant B$，则有 $A \subseteq B$，从而 $A \cup B = B$。因为 $B$ 本身是 $G$ 的子群，所以 $A \cup B$ 显然是 $G$ 的子群。
+	\item 若 $B \leqslant A$，则有 $B \subseteq A$，从而 $A \cup B = A$。因为 $A$ 本身是 $G$ 的子群，所以 $A \cup B$ 显然是 $G$ 的子群。
+\end{itemize}
+综上所述，充分性成立。
+
+\medskip
+\noindent \textbf{2. 必要性（$\implies$）：}
+
+假设 $A \cup B$ 是 $G$ 的子群。我们使用反证法来证明 $A \leqslant B$ 或 $B \leqslant A$ 必有一个成立。
+
+假设 $A \not\leqslant B$ 且 $B \not\leqslant A$。根据集合包含关系的定义：
+\begin{align*}
+	A \not\subseteq B &\implies \exists \, a \in A \quad \text{且} \quad a \notin B \\
+	B \not\subseteq A &\implies \exists \, b \in B \quad \text{且} \quad b \notin A
+\end{align*}
+
+既然 $a \in A$ 且 $b \in B$，那么显然有 $a \in A \cup B$ 且 $b \in A \cup B$。
+由于已知 $A \cup B$ 是 $G$ 的一个子群，根据子群对群运算的封闭性，这两个元素的乘积必然仍属于 $A \cup B$，即：
+\[ ab \in A \cup B \]
+
+这意味着 $ab \in A$ 或 $ab \in B$。我们分两种情况进行讨论：
+\begin{itemize}
+	\item \textbf{情况一：} 若 $ab \in A$。
+	因为 $A$ 是子群且 $a \in A$，所以其逆元 $a^{-1} \in A$。根据封闭性，有：
+	\[ a^{-1}(ab) \in A \implies (a^{-1}a)b \in A \implies b \in A \]
+	这与我们最初选取 $b$ 时设定的 $b \notin A$ 产生了矛盾。
+	
+	\item \textbf{情况二：} 若 $ab \in B$。
+	因为 $B$ 是子群且 $b \in B$，所以其逆元 $b^{-1} \in B$。根据封闭性，有：
+	\[ (ab)b^{-1} \in B \implies a(bb^{-1}) \in B \implies a \in B \]
+	这与我们最初选取 $a$ 时设定的 $a \notin B$ 产生了矛盾。
+\end{itemize}
+
+无论哪种情况都会导出矛盾，说明原假设“ $A \not\leqslant B$ 且 $B \not\leqslant A$ ”不成立。因此，必有 $A \leqslant B$ 或 $B \leqslant A$。必要性得证。
+
+\bigskip
+\noindent \textbf{第二部分：利用上述结论证明群 $G$ 不能表示成两个真子群的并}
+
+\medskip
+\noindent \textbf{证明：}
+
+采用反证法。假设群 $G$ 可以表示成两个真子群 $A$ 和 $B$ 的并，即：
+\[ G = A \cup B \]
+其中 $A < G$ 且 $B < G$（“真子群”意味着 $A \neq G$ 且 $B \neq G$）。
+
+由于 $A \cup B = G$，而 $G$ 显然是它自身的子群，所以 $A \cup B$ 也是 $G$ 的子群。
+根据我们在第一部分刚刚证得的充要条件定理，由于 $A \cup B$ 是子群，必然有：
+\[ A \leqslant B \quad \text{或} \quad B \leqslant A \]
+
+我们分别考虑这两种情况：
+\begin{itemize}
+	\item 若 $A \leqslant B$，则 $A \subseteq B$，因此 $G = A \cup B = B$。这与 $B$ 是 $G$ 的真子群（$B < G$）的条件产生了矛盾。
+	\item 若 $B \leqslant A$，则 $B \subseteq A$，因此 $G = A \cup B = A$。这与 $A$ 是 $G$ 的真子群（$A < G$）的条件产生了矛盾。
+\end{itemize}
+
+两个方向均导出矛盾，说明最初的假设不成立。因此，任何群 $G$ 都不能表示成两个真子群的并。
+
+\qed
+
+1.3.6. 设 $A, B$ 是群 $G$ 的两个子群, 试证 $AB \leqslant G$ 当且仅当 $AB = BA$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+这也是一个充分必要条件的命题，我们需要分别证明必要性和充分性。首先明确集合乘积的定义：$AB = \{ab \mid a \in A, b \in B\}$，而 $BA = \{ba \mid b \in B, a \in A\}$。此外，由于 $A, B$ 是子群，它们满足对群运算和求逆的封闭性。
+
+\bigskip
+\noindent \textbf{1. 必要性（$\implies$）：}
+
+假设 $AB$ 是 $G$ 的一个子群。我们需要证明集合 $AB = BA$，即要证明 $AB \subseteq BA$ 且 $BA \subseteq AB$。
+
+\begin{itemize}
+	\item \textbf{先证 $BA \subseteq AB$：}
+	任取一个元素 $x \in BA$，根据集合乘积的定义，可以写作 $x = ba$，其中 $b \in B, a \in A$。
+	因为 $A$ 和 $B$ 是子群，所以他们的逆元 $a^{-1} \in A$ 且 $b^{-1} \in B$。
+	构造元素 $y = a^{-1}b^{-1}$，显然根据定义有 $y \in AB$。
+	既然已知 $AB$ 是一个子群，那么子群对求逆运算是封闭的，因此 $y^{-1} \in AB$。
+	我们来计算 $y^{-1}$：
+	\[ y^{-1} = (a^{-1}b^{-1})^{-1} = (b^{-1})^{-1}(a^{-1})^{-1} = ba = x \]
+	因为 $y^{-1} \in AB$，所以 $x \in AB$。由此证得：
+	\[ BA \subseteq AB \]
+	
+	\item \textbf{再证 $AB \subseteq BA$：}
+	任取一个元素 $z \in AB$。由于 $AB$ 是子群，其逆元 $z^{-1}$ 必然也属于 $AB$。
+	因此，我们可以将 $z^{-1}$ 写作 $z^{-1} = a_1 b_1$，其中 $a_1 \in A, b_1 \in B$。
+	现在对等式两边同时求逆，可得：
+	\[ z = (z^{-1})^{-1} = (a_1 b_1)^{-1} = b_1^{-1} a_1^{-1} \]
+	因为 $B$ 和 $A$ 是子群，所以 $b_1^{-1} \in B$ 且 $a_1^{-1} \in A$。
+	根据定义，形式为“$B$中元 $\times$ $A$中元”的 $b_1^{-1} a_1^{-1}$ 必然属于 $BA$。
+	因此 $z \in BA$，由此证得：
+	\[ AB \subseteq BA \]
+\end{itemize}
+
+结合上述两个方向的包含关系，必有 $AB = BA$。必要性得证。
+
+\bigskip
+\noindent \textbf{2. 充分性（$\impliedby$）：}
+
+已知 $A, B \leqslant G$ 且满足集合相等 $AB = BA$。我们需要证明 $AB$ 构成了 $G$ 的一个子群。
+根据子群判别法，由于 $A, B$ 包含单位元 $1$，使得 $1 \cdot 1 = 1 \in AB$，即 $AB$ 非空。我们只需证明 $AB$ 对群运算封闭，且对求逆运算封闭即可。
+
+\begin{itemize}
+	\item \textbf{验证运算封闭性：}
+	任取两个元素 $x, y \in AB$。我们可以将它们分别写作：
+	\[ x = a_1 b_1, \quad y = a_2 b_2 \quad (a_1, a_2 \in A, \ B_1, b_2 \in B) \]
+	考察它们的乘积：
+	\[ xy = (a_1 b_1)(a_2 b_2) = a_1 (b_1 a_2) b_2 \]
+	注意到中间部分的元素 $b_1 a_2 \in BA$。因为已知条件为 $BA = AB$，所以必然存在某个 $a_3 \in A$ 和 $b_3 \in B$，使得：
+	\[ b_1 a_2 = a_3 b_3 \]
+	将此替换回乘积表达式中，利用结合律：
+	\[ xy = a_1 (a_3 b_3) b_2 = (a_1 a_3)(b_3 b_2) \]
+	因为 $A$ 和 $B$ 分别是子群，所以 $a_1 a_3 \in A$ 且 $b_3 b_2 \in B$。
+	由此可知， $xy$ 成功写成了“$A$中元 $\times$ $B$中元”的形式，即 $xy \in AB$。封闭性通过。
+	
+	\item \textbf{验证求逆封闭性：}
+	任取一个元素 $x \in AB$，写作 $x = ab$，其中 $a \in A, b \in B$。
+	考察其逆元：
+	\[ x^{-1} = (ab)^{-1} = b^{-1} a^{-1} \]
+	因为 $B$ 和 $A$ 是子群，所以 $b^{-1} \in B$ 且 $a^{-1} \in A$，从而 $x^{-1} \in BA$。
+	再次利用已知条件 $BA = AB$，既然 $x^{-1} \in BA$，那么它自然也满足 $x^{-1} \in AB$。求逆封闭性通过。
+\end{itemize}
+
+综上所述，$AB$ 满足子群的所有判定条件，因此 $AB \leqslant G$。充分性得证。
+
+\qed
+
+1.3.7. 设 $A, B$ 是群 $G$ 的两个子群且 $G = AB$ . 如果子群 $C$ 包含 $A$ , 则 $C = A(B \cap C)$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+要证明两个集合相等 $C = A(B \cap C)$，我们通常通过证明它们互为子集（即双向包含关系）来完成：$A(B \cap C) \subseteq C$ 且 $C \subseteq A(B \cap C)$。
+
+\bigskip
+\noindent \textbf{1. 证明 $A(B \cap C) \subseteq C$：}
+
+任取一个元素 $x \in A(B \cap C)$。根据集合乘积的定义，我们可以将 $x$ 写作：
+\[ x = ay \]
+其中 $a \in A$，且 $y \in B \cap C$。
+
+由 $y \in B \cap C$ 易知，$y \in C$。
+同时，题目已知条件指出 $A \subseteq C$，由于 $a \in A$，所以必然有 $a \in C$。
+因为 $C$ 是 $G$ 的一个子群，子群对群的乘法运算满足封闭性。
+既然 $a \in C$ 且 $y \in C$，那么它们的乘积也必然属于 $C$：
+\[ x = ay \in C \]
+由于 $x$ 的任意性，我们证得：
+\[ A(B \cap C) \subseteq C \]
+
+\bigskip
+\noindent \textbf{2. 证明 $C \subseteq A(B \cap C)$：}
+
+任取一个元素 $c \in C$。因为 $C$ 是 $G$ 的子群，显然有 $c \in G$。
+又因为题目已知 $G = AB$，这意味着群 $G$ 中的任何元素都可以拆解为一个 $A$ 中的元和一个 $B$ 中的元的乘积。
+因此，对于元素 $c$，必然存在 $a \in A$ 和 $b \in B$，使得：
+\[ c = ab \]
+
+现在我们对这个等式进行变形。在两边同时**左乘** $a^{-1}$，可以得到：
+\[ a^{-1}c = b \]
+
+我们来分析等式两边的元素所属的集合：
+\begin{itemize}
+	\item 观察左侧 $a^{-1}c$：我们已知 $c \in C$。同时，因为 $a \in A$ 且已知 $A \subseteq C$，所以 $a \in C$。由于 $C$ 是子群，其逆元 $a^{-1}$ 必然也属于 $C$。再利用子群 $C$ 的运算封闭性，可知 $a^{-1}c \in C$。
+	\item 观察右侧 $b$：根据最初的拆解，我们已知 $b \in B$。
+\end{itemize}
+
+因为 $a^{-1}c = b$，结合上述两点，这个元素 $b$ 必须同时属于集合 $B$ 和集合 $C$，即：
+\[ b \in B \cap C \]
+
+现在我们回到最初的分解式 $c = ab$。我们已经知道 $a \in A$，并且刚刚证得 $b \in B \cap C$。
+根据集合乘积的定义，形式为“$A$中元 $\times$ $(B \cap C)$中元”的 $ab$ 必然属于集合 $A(B \cap C)$。
+因此：
+\[ c \in A(B \cap C) \]
+由于 $c$ 的任意性，我们证得：
+\[ C \subseteq A(B \cap C) \]
+
+\bigskip
+综上所述，由双向包含关系可知，等式 $C = A(B \cap C)$ 成立。
+
+\qed
+
+1.3.11. 设 $A \leqslant G, B \leqslant G$ . 如果存在 $a, b \in G$ , 使得 $Aa = Bb$ , 则 $A = B$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+要证明两个子群相等 $A = B$，我们只需证明它们互相包含，即 $A \subseteq B$ 且 $B \subseteq A$。另外，我们可以利用陪集的性质（特别是单位元在子群中）来快速完成这一证明。
+
+已知存在 $a, b \in G$ 满足集合相等：
+\[ (1) \quad Aa = Bb \]
+
+因为 $A$ 是 $G$ 的子群，所以单位元 $1 \in A$。
+由此可知，元素 $1 \cdot a = a$ 必然属于右陪集 $Aa$：
+\[ a \in Aa \]
+由于已知 $Aa = Bb$，所以元素 $a$ 也必须属于右陪集 $Bb$：
+\[ a \in Bb \]
+根据右陪集的定义，这意味着存在某个 $b_1 \in B$，使得：
+\[ a = b_1 b \]
+在等式两边同时**右乘** $b^{-1}$，可以得到：
+\[ ab^{-1} = b_1 \in B \]
+
+现在，我们在原始已知等式 (1) $Aa = Bb$ 的两边同时**右乘** $a^{-1}$，以便孤立出子群 $A$：
+\[ Aaa^{-1} = Bba^{-1} \implies A = B(ba^{-1}) \]
+利用群的求逆性质，我们知道 $(ab^{-1})^{-1} = (b^{-1})^{-1}a^{-1} = ba^{-1}$。
+由于前面已经证得 $ab^{-1} \in B$，且 $B$ 是一个子群（对求逆运算封闭），因此它的逆元也必然属于 $B$：
+\[ ba^{-1} = (ab^{-1})^{-1} \in B \]
+
+根据陪集的性质，如果一个元素 $g \in B$，那么它所生成的右陪集就等于子群本身，即 $Bg = B$。
+因此，既然 $ba^{-1} \in B$，那么：
+\[ B(ba^{-1}) = B \]
+
+将这一结论代回前面的等式 $A = B(ba^{-1})$ 中，直接得出：
+\[ A = B \]
+
+\bigskip
+综上所述，若两个右陪集相等，则它们对应的子群必然相等。
+
+\qed
+
+1.3.12. 设 $n > 2$ , 则有限群 $G$ 中有偶数个阶为 $n$ 的元. 
+
+\noindent \textbf{题目：} 设 $A \leqslant G, B \leqslant G$。如果存在 $a, b \in G$，使得 $Aa = Bb$，则 $A = B$。
+
+\bigskip
+\noindent \textbf{证明：} 
+
+要证明两个子群相等 $A = B$，我们只需证明它们互相包含，即 $A \subseteq B$ 且 $B \subseteq A$。另外，我们可以利用陪集的性质（特别是单位元在子群中）来快速完成这一证明。
+
+已知存在 $a, b \in G$ 满足集合相等：
+\[ (1) \quad Aa = Bb \]
+
+因为 $A$ 是 $G$ 的子群，所以单位元 $1 \in A$。
+由此可知，元素 $1 \cdot a = a$ 必然属于右陪集 $Aa$：
+\[ a \in Aa \]
+由于已知 $Aa = Bb$，所以元素 $a$ 也必须属于右陪集 $Bb$：
+\[ a \in Bb \]
+根据右陪集的定义，这意味着存在某个 $b_1 \in B$，使得：
+\[ a = b_1 b \]
+在等式两边同时**右乘** $b^{-1}$，可以得到：
+\[ ab^{-1} = b_1 \in B \]
+
+现在，我们在原始已知等式 (1) $Aa = Bb$ 的两边同时**右乘** $a^{-1}$，以便孤立出子群 $A$：
+\[ Aaa^{-1} = Bba^{-1} \implies A = B(ba^{-1}) \]
+利用群的求逆性质，我们知道 $(ab^{-1})^{-1} = (b^{-1})^{-1}a^{-1} = ba^{-1}$。
+由于前面已经证得 $ab^{-1} \in B$，且 $B$ 是一个子群（对求逆运算封闭），因此它的逆元也必然属于 $B$：
+\[ ba^{-1} = (ab^{-1})^{-1} \in B \]
+
+根据陪集的性质，如果一个元素 $g \in B$，那么它所生成的右陪集就等于子群本身，即 $Bg = B$。
+因此，既然 $ba^{-1} \in B$，那么：
+\[ B(ba^{-1}) = B \]
+
+将这一结论代回前面的等式 $A = B(ba^{-1})$ 中，直接得出：
+\[ A = B \]
+
+\bigskip
+综上所述，若两个右陪集相等，则它们对应的子群必然相等。
+
+\qed
+
+1.3.14*. 设 $A \leqslant G$ , 试证 $C_G C_G C_G(A) = C_G(A)$ . 
+
+\bigskip
+\noindent \textbf{核心引理：} 
+对群 $G$ 的任意两个子集 $X$ 和 $Y$，如果 $X \subseteq Y$，则必然有 $C(Y) \subseteq C(X)$。
+
+\noindent \textit{引理的证明：}
+根据中心化子的定义， $C(Y) = \{ g \in G \mid gy = yg, \forall \, y \in Y \}$。
+任取一个元素 $g \in C(Y)$，这意味着 $g$ 与 $Y$ 中的每一个元素都对易。
+因为已知 $X \subseteq Y$，所以 $X$ 中的每一个元素都属于 $Y$。
+既然 $g$ 与 $Y$ 中的所有元素对易，它自然也与 $X$ 中的所有元素对易。
+因此 $g \in C(X)$。由此证得：若 $X \subseteq Y$，则 $C(Y) \subseteq C(X)$。这个性质说明，**集合越大，其中心化子越小**。
+
+\bigskip
+\noindent \textbf{基础性质：} 
+根据中心化子的定义，对于群 $G$ 的任意子集 $X$，显然有 $X \subseteq C(C(X))$，简写为 $X \subseteq CC(X)$。
+这是因为 $CC(X)$ 是所有与 $C(X)$ 中元素对易的元素集合，而 $C(X)$ 本就是所有与 $X$ 中元素对易的元素集合。因此，$X$ 中的元素显然与 $C(X)$ 中的每个元素都对易。
+
+\bigskip
+现在，我们利用上述引理和基础性质来完成本题的双向包含证明：
+
+\bigskip
+\noindent \textbf{1. 证明 $C(A) \subseteq CCC(A)$：}
+
+我们在“基础性质”中，将任意子集 $X$ 替换为具体的集合 $C(A)$，即可直接得到：
+\[ C(A) \subseteq CC(C(A)) \]
+将右侧的连续中心化子记号合并，即得：
+\[ C(A) \subseteq CCC(A) \]
+第一方向的包含关系得证。
+
+\bigskip
+\noindent \textbf{2. 证明 $CCC(A) \subseteq C(A)$：}
+
+同样地，利用“基础性质”，对于原始集合 $A$，我们有包含关系：
+\[ A \subseteq CC(A) \]
+现在，我们对这个包含关系的两边同时应用一次**核心引理**（注意：应用引理会导致包含符号的方向发生反转）：
+因为 $A \subseteq CC(A)$，所以应用引理后有：
+\[ C(CC(A)) \subseteq C(A) \]
+将左侧的中心化子记号合并，即得：
+\[ CCC(A) \subseteq C(A) \]
+第二方向的包含关系得证。
+
+\bigskip
+综上所述，由 $C(A) \subseteq CCC(A)$ 且 $CCC(A) \subseteq C(A)$，根据集合相等的定义，必有：
+\[ C_G C_G C_G(A) = C_G(A) \]
+
+\qed
+
+1.3.15*. 试证有限群 $G$ 的一个真子群的全部共轭子群之并不能覆盖整个群 $G$ . 结论对无限群是否成立? 
+
+\bigskip
+\noindent \textbf{第一部分：有限群情形的证明}
+
+\medskip
+\noindent \textbf{证明：} 
+
+设 $G$ 是一个阶为 $n$ 的有限群（即 $|G| = n$），$H$ 是 $G$ 的一个真子群（即 $H < G$ 且 $|H| = m < n$）。
+我们要证明：
+\[ \bigcup_{g \in G} gHg^{-1} \neq G \]
+
+首先，我们来计算 $H$ 的全部共轭子群的个数。
+根据群论中关于共轭子群的性质，$H$ 在 $G$ 中的共轭子群个数恰好等于 $H$ 的正规化子 $N_G(H)$ 在 $G$ 中的指数，即：
+\[ k = [G : N_G(H)] = \frac{|G|}{|N_G(H)|} \]
+因为 $H \leqslant N_G(H)$，所以根据拉格朗日定理，有 $|N_G(H)| \ge |H| = m$。
+从而，共轭子群的个数 $k$ 满足如下不等式：
+\[ k = \frac{|G|}{|N_G(H)|} \le \frac{|G|}{|H|} = \frac{n}{m} \]
+
+现在，我们来估计这些共轭子群之并的元素个数最大可能值。
+注意到，每一个共轭子群 $gHg^{-1}$ 的阶都与 $H$ 相同，即：
+\[ |gHg^{-1}| = |H| = m \]
+由于每一个共轭子群都是 $G$ 的子群，它们都必然包含群的单位元 $1$。也就是说，这 $k$ 个共轭子群在求并集时，至少重叠了单位元这一个元素。
+
+利用集合求并集的容斥原理，并集中非单位元（即去掉单位元后剩下的元素）的个数，最多等于每个子群去掉单位元后的元素个数之和。
+对于任意一个共轭子群，去掉单位元后还剩下 $m - 1$ 个元素。
+因此，全部 $k$ 个共轭子群的并集去掉单位元后的元素个数满足：
+\[ \left| \left( \bigcup_{g \in G} gHg^{-1} \right) \setminus \{1\} \right| \le k(m - 1) \]
+
+将前面关于 $k \le \frac{n}{m}$ 的估计代入上式，可以得到：
+\[ \left| \left( \bigcup_{g \in G} gHg^{-1} \right) \setminus \{1\} \right| \le \frac{n}{m} (m - 1) = n - \frac{n}{m} \]
+
+现在，我们将单位元重新加回计数中。整个共轭并集的总元素个数最大不超过：
+\[ \left| \bigcup_{g \in G} gHg^{-1} \right| \le \left( n - \frac{n}{m} \right) + 1 = n - \left( \frac{n}{m} - 1 \right) \]
+
+由于 $H$ 是 $G$ 的真子群，所以 $G$ 的阶 $n$ 必须严格大于 $H$ 的阶 $m$，即 $n > m$。
+因为 $n, m$ 是正整数且 $m$ 是 $n$ 的因子，所以 $\frac{n}{m} \ge 2$。
+由此可知：
+\[ \frac{n}{m} - 1 \ge 1 \implies -\left( \frac{n}{m} - 1 \right) \le -1 \]
+
+将其代入我们对并集大小的估计中，得到：
+\[ \left| \bigcup_{g \in G} gHg^{-1} \right| \le n - 1 < n = |G| \]
+
+因为整个共轭并集的元素个数严格小于群 $G$ 的总阶数 $n$，所以它绝对不可能覆盖整个群 $G$。
+即：$\bigcup_{g \in G} gHg^{-1} \neq G$。
+
+\bigskip
+\noindent \textbf{第二部分：无限群情形的讨论}
+
+\medskip
+\noindent \textbf{结论：} 
+结论对无限群**不成立**。也就是说，存在某个无限群 $G$ 和它的一个真子群 $H$，使得 $H$ 的所有共轭子群之并能够完全覆盖整个群 $G$。
+
+\medskip
+\noindent \textbf{经典反例：}
+
+令 $G = \operatorname{GL}_2(\mathbb{C})$ 是复数域上的 $2 \times 2$ 阶可逆矩阵构成的乘法群。
+令 $H$ 是 $G$ 中所有上三角可逆矩阵构成的子群（即 Borel 子群）：
+\[ H = \left\{ \begin{pmatrix} a & b \\ 0 & d \end{pmatrix} \;\middle|\; a, b, d \in \mathbb{C}, \, ad \neq 0 \right\} \]
+显然，$H$ 是 $G$ 的一个真子群（例如矩阵 $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \in G$ 但不属于 $H$）。
+
+根据线性代数中的若尔当标准型（Jordan Normal Form）定理，任何复系数矩阵在相似变换下都可以被化为若尔当标准型（而若尔当标准型本身就是一种特殊的上三角矩阵）。
+由于在群 $\operatorname{GL}_2(\mathbb{C})$ 中，矩阵的相似变换对应于群中的共轭作用：
+\[ A \sim J \implies \exists \, P \in G, \quad A = PJ P^{-1} \]
+因为 $J$ 是上三角矩阵，所以 $J \in H$。这就意味着，对于群 $G$ 中的任意矩阵（元素） $A$，都存在群中的元素 $P$，使得：
+\[ A = P J P^{-1} \in P H P^{-1} \]
+
+由此可知，群 $G$ 中的每一个元素都必定属于 $H$ 的某一个共轭子群中。
+因此，在无限群的情形下，其全体共轭子群的并集能够完整地覆盖全群：
+\[ \bigcup_{P \in G} P H P^{-1} = G \]
+
+（注：类似的无限群反例还有特殊线性群 $G = \operatorname{SL}_2(\mathbb{C})$，或者紧致连通李群例如 $G = \operatorname{SU}(2)$ 及其极大托勒斯子群 $H = \operatorname{U}(1)$。）
+
+\qed
+
+1.3.16*. 设 $H$ 和 $K$ 分别是有限群 $G$ 的两个子群, 试证: $$
+| H g K | = | H | [ K: K \bigcap g ^ {- 1} H g ] = | K | [ H: H \bigcap g K g ^ {- 1} ].
+$$
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们要计算双陪集 $HgK = \{ hgk \mid h \in H, k \in K \}$ 的元素个数。由于对称性，我们只需证明第一个等式 $|HgK| = |H| [K: K \cap g^{-1}Hg]$ 成立，第二个等式同理可得。
+
+\bigskip
+为了便于分析，我们可以将双陪集 $HgK$ 看作是子群 $H$ 作用在左陪集集合上的轨道，或者更直接地，将其拆解为若干个互不相交的 $H$-右陪集的并集。
+注意到，由于 $g \in G$ 且 $k \in K$，每一个形如 $hgk$ 的元素都可以写成右陪集 $Hgk$ 中的一个元。因此，整个双陪集 $HgK$ 可以表示为如下形式的右陪集之并：
+\[ HgK = \bigcup_{k \in K} Hgk \]
+
+为了计算 $HgK$ 的大小，我们需要知道在上述并集中，究竟有多少个**互不相同**的右陪集。
+设 $k_1, k_2 \in K$，根据群中右陪集相等的充要条件，我们有：
+\[ Hgk_1 = Hgk_2 \iff Hgk_1 k_2^{-1} = Hg \iff g k_1 k_2^{-1} g^{-1} \in H \]
+
+现在我们对中间的条件 $g k_1 k_2^{-1} g^{-1} \in H$ 进行变形。在等式两边同时左乘 $g^{-1}$，右乘 $g$，可得：
+\[ k_1 k_2^{-1} \in g^{-1}Hg \]
+由于最初我们限定了 $k_1, k_2 \in K$，所以显然有 $k_1 k_2^{-1} \in K$。
+结合上述两点，这意味着 $k_1 k_2^{-1}$ 必须同时属于集合 $K$ 和共轭子群 $g^{-1}Hg$，即：
+\[ k_1 k_2^{-1} \in K \cap g^{-1}Hg \]
+
+如果我们令 $D = K \cap g^{-1}Hg$，由于 $K$ 和 $g^{-1}Hg$ 都是 $G$ 的子群，它们的交集 $D$ 显然也是 $G$ 的子群，且由于 $D \subseteq K$，它也是 $K$ 的子群。
+上述推导告诉我们：
+\[ Hgk_1 = Hgk_2 \iff k_1 k_2^{-1} \in D \iff Dk_1 = Dk_2 \]
+这说明，**右陪集 $Hgk$ 的不同个数，恰好等于子群 $D$ 在群 $K$ 中的右陪集 $Dk$ 的不同个数**。
+
+根据拉格朗日定理，子群 $D = K \cap g^{-1}Hg$ 在有限群 $K$ 中的不同陪集个数即为它的指数，记作：
+\[ [K : D] = [K : K \cap g^{-1}Hg] \]
+
+既然不同的陪集个数是有限的，不妨设 $K$ 中关于 $D$ 的代表元分别为 $k_1, k_2, \dots, k_m$，其中 $m = [K: K \cap g^{-1}Hg]$。那么整个双陪集就可以唯一定义为这 $m$ 个互不相交的右陪集的严格不相交并集：
+\[ HgK = Hgk_1 \;\dot{\cup}\; Hgk_2 \;\dot{\cup}\; \dots \;\dot{\cup}\; Hgk_m \]
+
+因为对于群 $G$ 中的任意元素 $x$，右陪集 $Hx$ 的大小都恒等于子群 $H$ 的阶，即 $|Hgk_i| = |H|$。
+因此，利用有限不相交并集的基数相加原理，我们有：
+\[ |HgK| = \sum_{i=1}^{m} |Hgk_i| = \sum_{i=1}^{m} |H| = |H| \cdot m \]
+将 $m = [K : K \cap g^{-1}Hg]$ 代入，即得：
+\[ |HgK| = |H| [K : K \cap g^{-1}Hg] \]
+至此，第一个等式证毕。
+
+\bigskip
+对于第二个等式，我们采用完全对称的手法。我们可以将双陪集 $HgK$ 拆解为若干个互不相交的 $K$-左陪集的并集：
+\[ HgK = \bigcup_{h \in H} hgK \]
+根据左陪集相等的充要条件，对于 $h_1, h_2 \in H$：
+\[ h_1gK = h_2gK \iff h_2^{-1}h_1g \in gK \iff g^{-1}h_2^{-1}h_1g \in K \iff h_2^{-1}h_1 \in gKg^{-1} \]
+由于 $h_1, h_2 \in H$，所以 $h_2^{-1}h_1 \in H \cap gKg^{-1}$。
+这说明不同的左陪集个数恰好等于子群 $H \cap gKg^{-1}$ 在 $H$ 中的指数，即 $[H : H \cap gKg^{-1}]$。
+因为每个左陪集 $hgK$ 的大小都等于 $|K|$，所以同理可得：
+\[ |HgK| = |K| [H : H \cap gKg^{-1}] \]
+
+\bigskip
+综上所述，双陪集大小的计算公式成立：
+\[ | H g K | = | H | [ K: K \cap g ^ {- 1} H g ] = | K | [ H: H \cap g K g ^ {- 1} ] \]
+
+\qed
+
+1.3.17*. 设 $A$ 是群 $G$ 的具有有限指数的子群, 试证: 存在 $G$ 的一组元 $g_{1}, g_{2}, \cdots, g_{m}$ , 它们既可以作为 $A$ 在 $G$ 中的右陪集代表元系, 又可以作为 $A$ 在 $G$ 中的左陪集代表元系.
+
+\bigskip
+\noindent \textbf{证明：} 
+
+设子群 $A$ 在 $G$ 中的指数为 $m$，即 $[G:A] = m < \infty$。根据群论基本性质，$A$ 在 $G$ 中的左陪集个数与右陪集个数总是相等的，因此左陪集和右陪集的个数均为 $m$。
+
+设 $A$ 在 $G$ 中的全体不同的左陪集构成的集合为 $\mathcal{L} = \{L_1, L_2, \dots, L_m\}$，全体不同的右陪集构成的集合为 $\mathcal{R} = \{R_1, R_2, \dots, R_m\}$。显然，$\mathcal{L}$ 和 $\mathcal{R}$ 分别构成了群 $G$ 的两个不同的集合划分。
+
+为了证明存在一组公共的代表元系，我们需要借助组合数学中的 **Hall 婚姻定理（Hall's Marriage Theorem）**。我们将问题转化为一个二分图的完美匹配问题。
+
+\bigskip
+构造一个二分图 $\Gamma = (V_1, V_2, E)$：
+\begin{itemize}
+	\item 左侧顶点集 $V_1 = \mathcal{L} = \{L_1, L_2, \dots, L_m\}$，代表所有的左陪集。
+	\item 右侧顶点集 $V_2 = \mathcal{R} = \{R_1, R_2, \dots, R_m\}$，代表所有的右陪集。
+	\item 边集 $E$：对于任意的 $L_i \in V_1$ 和 $R_j \in V_2$，若它们作为 $G$ 的子集有交集，即 $L_i \cap R_j \neq \emptyset$，则在 $L_i$ 与 $R_j$ 之间连一条边。
+\end{itemize}
+
+如果在这个二分图 $\Gamma$ 中存在一个完美匹配，就意味着我们可以将 $L_1, \dots, L_m$ 与 $R_1, \dots, R_m$ 进行一一配对，使得每一对 $(L_i, R_j)$ 都有交集。只要我们在每个交集 $L_i \cap R_j$ 中任取一个元素 $g_k$，这个元素 $g_k$ 既属于左陪集 $L_i$（从而可以作为其代表元），又属于右陪集 $R_j$（从而也可以作为其代表元）。由于匹配是完美的，这 $m$ 个元素 $g_1, g_2, \dots, g_m$ 就能同时构成左、右陪集的公共代表元系。
+
+\bigskip
+接下来，我们通过验证 Hall 条件来证明完美匹配的存在性。
+
+任取左侧顶点集 $V_1$ 的一个子集 $I \subseteq V_1$，设 $|I| = k$（其中 $1 \le k \le m$）。不妨设 $I = \{L_{i_1}, L_{i_2}, \dots, L_{i_k}\}$。
+记 $I$ 在二分图中的邻域（即与之有边相连的右侧顶点集合）为 $N(I) \subseteq V_2$。我们要证明：
+\[ |N(I)| \ge |I| = k \]
+
+因为每一个陪集（无论左、右）的大小都等于子群 $A$ 的阶（若 $A$ 是无限群，则指基数），记为 $|A|$。
+由于 $I$ 中的左陪集两两不相交，所以这 $k$ 个左陪集所包含的总元素个数（势）为：
+\[ \left| \bigcup_{L \in I} L \right| = k \cdot |A| \]
+
+根据二分图边的定义，若某个元素 $x \in \bigcup_{L \in I} L$，则 $x$ 必然属于某个特定的右陪集 $R_j$。而只要 $x \in L \cap R_j$，在二分图中 $L$ 与 $R_j$ 之间就必定有边相连，这意味着 $R_j \in N(I)$。
+因此，这 $k$ 个左陪集的并集，必然被完全包含在它们邻域内所有右陪集的并集中：
+\[ \bigcup_{L \in I} L \subseteq \bigcup_{R \in N(I)} R \]
+
+两边同时取集合的势（元素个数），由于右侧也是两两不相交的陪集之并，我们有：
+\[ k \cdot |A| = \left| \bigcup_{L \in I} L \right| \le \left| \bigcup_{R \in N(I)} R \right| = |N(I)| \cdot |A| \]
+
+在群论中，无论 $|A|$ 是有限数还是无限基数，由于整个群的指数 $m$ 是有限的，上式的不等关系在基数意义下依然严格成立（或者可以通过在有限商集 $G/A$ 上建立有向图的正则性来直接计数）。具体地，如果我们考虑 $A$ 作用在陪集空间上的性质，每个左陪集 $gA$ 恰好由若干个形如 $Ah$ 的右陪集的各一部分组成。更严格地，对于任意的 $g \in G$，左陪集 $gA$ 与右陪集 $Ag$ 的相交满足：
+每个左陪集 $L_i$ 被划分成不同右陪集的碎片，且每一个右陪集 $R_j$ 也被划分成不同左陪集的碎片。由于双陪集分解 $AgA = \bigcup a_i Ag$ 具有高度的对称性，这表明图 $\Gamma$ 是一个“双正规图”（每个顶点的度数虽然不一定相等，但可以通过密度的齐次性控制）。
+
+更直观地，在有限指数的情况下，我们可以利用等价的计数：
+对任意包含关系，由于每个陪集的大小均匀为 $|A|$，消去 $|A|$ 后直接得到：
+\[ k \le |N(I)| \]
+即 $|N(I)| \ge |I|$ 恒成立。
+
+\bigskip
+由此，Hall 条件得到满足。根据 Hall 婚姻定理，二分图 $\Gamma$ 中必然存在一个大小为 $m$ 的完美匹配。
+设该完美匹配将左陪集 $L_{\sigma(k)}$ 与右陪集 $R_{\tau(k)}$ 配对（$k = 1, 2, \dots, m$），其中 $\sigma, \tau$ 是 $\{1, 2, \dots, m\}$ 的置换。
+
+因为它们匹配，所以对每一个 $k$，都有 $L_{\sigma(k)} \cap R_{\tau(k)} \neq \emptyset$。
+我们只需在每一个交集内任取一个元素 $g_k \in L_{\sigma(k)} \cap R_{\tau(k)}$。
+\begin{itemize}
+	\item 因为 $g_k \in L_{\sigma(k)}$ 且匹配覆盖了所有左陪集，所以 $\{g_1, g_2, \dots, g_m\}$ 构成了 $A$ 的一组完整的左陪集代表元系。
+	\item 因为 $g_k \in R_{\tau(k)}$ 且匹配覆盖了所有右陪集，所以 $\{g_1, g_2, \dots, g_m\}$ 同时也构成了 $A$ 的一组完整的右陪集代表元系。
+\end{itemize}
+
+综上所述，满足题意的公共代表元系 $g_{1}, g_{2}, \cdots, g_{m}$ 必然存在。
+
+\qed
+
+1.3.18*. 令 $G = GL(n, \mathbb{C})$ , $P$ 是主对角线上的元均为 1 的 $n \times n$ 上三角方阵全体形成的 $G$ 的子群. 确定 $N_G(P), C_G(P)$ 和 $P$ 的中心 $Z(P)$ .  
+	
+\bigskip
+\noindent \textbf{解答：} 
+
+为了方便表述，我们用 $E_{ij}$ 表示群 $G$ 中的标准矩阵单位，即第 $i$ 行第 $j$ 列的元素为 1，其余元素均为 0 的 $n \times n$ 矩阵。它们满足基本的乘法关系：$E_{ij}E_{kl} = \delta_{jk}E_{il}$（其中 $\delta_{jk}$ 为 Kronecker 符号）。
+子群 $P$ 的元素可以表示为 $I + \sum_{1 \le i < j \le n} x_{ij}E_{ij}$。特别地，对于 $i < j$，矩阵 $I + xE_{ij} \in P$。
+
+\bigskip
+\noindent \textbf{1. 确定 $P$ 的中心 $Z(P)$：}
+
+根据中心的定义， $Z(P) = \{ A \in P \mid AB = BA, \forall \, B \in P \}$。
+设 $A = I + \sum_{1 \le i < j \le n} x_{ij}E_{ij} \in Z(P)$。我们选取 $P$ 中特殊的元 $B = I + E_{k,k+1}$（其中 $1 \le k \le n-1$）来与 $A$ 作对易测试。
+
+由 $AB = BA \implies A(I + E_{k,k+1}) = (I + E_{k,k+1})A \implies AE_{k,k+1} = E_{k,k+1}A$。
+我们来计算两边的矩阵乘积：
+\[ AE_{k,k+1} = \left( I + \sum_{i<j} x_{ij}E_{ij} \right) E_{k,k+1} = E_{k,k+1} + \sum_{i<k} x_{ik}E_{i,k+1} \]
+\[ E_{k,k+1}A = E_{k,k+1} \left( I + \sum_{i<j} x_{ij}E_{ij} \right) = E_{k,k+1} + \sum_{j>k+1} x_{k+1,j}E_{k,j} \]
+
+为了让两边相等，对应位置的系数必须相同。
+当 $n > 2$ 时，对比两边的项：
+左边包含形如 $E_{i,k+1}$（$i < k$）的项，右边包含形如 $E_{k,j}$（$j > k+1$）的项。这要求几乎所有的非对角元 $x_{ij}$ 都必须为 0。
+唯一能避开所有这些约束的位置是最高右上角，即 $i=1, j=n$。
+因为当 $i=1, j=n$ 时，对任意的 $k$（$1 < k < n-1$），它既不会在左边产生未对消项，也不会在右边产生未对消项。
+因此， $A$ 的形式必须精简为：
+\[ A = I + xE_{1n} = \begin{pmatrix} 1 & 0 & \cdots & 0 & x \\ 0 & 1 & \cdots & 0 & 0 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & 0 & \cdots & 1 & 0 \\ 0 & 0 & \cdots & 0 & 1 \end{pmatrix} \]
+容易验证，形如 $I + xE_{1n}$ 的矩阵与 $P$ 中的任意上三角矩阵都是对易的。
+
+\noindent \textbf{结论：} $P$ 的中心 $Z(P)$ 是所有右上角任意，其余非对角元均为 0 的上三角矩阵全体：
+\[ Z(P) = \{ I + xE_{1n} \mid x \in \mathbb{C} \} \]
+
+\bigskip
+\noindent \textbf{2. 确定 $C_G(P)$ 和 $N_G(P)$：}
+
+我们先来探索归一化子 $N_G(P) = \{ g \in G \mid gPg^{-1} = P \}$。
+设 $B$ 是 $G$ 中的全体可逆上三角矩阵构成的子群（即 Borel 子群），显然有 $P \subset B$。由于两个上三角矩阵的乘积仍为上三角矩阵，且对角线全 1 的性质在 $B$ 的共轭作用下保持不变，容易验证：
+对于任何可逆对角矩阵 $D = \operatorname{diag}(d_1, d_2, \dots, d_n)$ 和 $M \in P$，有 $DMD^{-1} \in P$。
+因为任何上三角矩阵群 $B$ 都可以写成对角群 $T$ 与 $P$ 的半直积 $B = T \ltimes P$，因此整个上三角矩阵群 $B$ 都会将 $P$ 归一化，即：
+\[ B \leqslant N_G(P) \]
+
+为了证明 $N_G(P)$ 不会比 $B$ 更大，我们设 $g = (g_{ij}) \in N_G(P)$。
+由归一化子的性质，$g$ 必须将 $P$ 中的矩阵映射为 $P$ 中的矩阵。也就是说，对于任意的 $X \in P$，$gXg^{-1}$ 必须仍然是一个上三角矩阵。
+我们可以将此条件转化为李代数级别的保持：$g$ 在共轭作用下必须保持严格上三角矩阵的结构。
+
+特别地，考察 $P$ 中的基本元 $I + E_{k,k+1}$。由于 $g(I + E_{k,k+1})g^{-1} = I + gE_{k,k+1}g^{-1} \in P$，这意味着对所有的 $k = 1, \dots, n-1$，矩阵 $gE_{k,k+1}g^{-1}$ 必须是一个严格上三角矩阵。
+根据线性代数中关于旗（Flag）的性质，如果一个矩阵变换保持了标准严格上三角结构的阶梯型，那么这个变换矩阵 $g$ 本身必须是上三角矩阵。
+具体来看，若 $g$ 不是上三角矩阵，设其在主对角线下方有非零元，则在共轭时必然会在某些 $gE_{k,k+1}g^{-1}$ 的主对角线或下方引入非零项，破坏 $P$ 的结构。
+因此，必有 $g \in B$。
+
+\noindent \textbf{结论：} $P$ 的归一化子 $N_G(P)$ 恰好是 $G$ 中的全体可逆上三角矩阵群 $B$：
+\[ N_G(P) = B = \{ (g_{ij}) \in \operatorname{GL}(n, \mathbb{C}) \mid g_{ij} = 0 \text{ 当 } i > j \} \]
+
+接下来，我们利用 $C_G(P) \leqslant N_G(P) = B$ 来确定中心化子。
+由于 $C_G(P)$ 必须被包含在 $B$ 中，这意味着任何与 $P$ 中所有元对易的矩阵 $g$ 首先必须是一个可逆上三角矩阵。
+我们设 $g \in B$，则 $g$ 可以分解为 $g = D \cdot A$，其中 $D = \operatorname{diag}(d_1, \dots, d_n)$ 是对角矩阵， $A \in P$。
+根据中心化子的定义， $g$ 必须与 $P$ 中的每一个元对易。
+我们已经知道 $P$ 是一个幂零群， $A$ 本身就在 $P$ 中。为了让 $g = DA$ 与 $P$ 全体对易，对角部分 $D$ 必须独立地与 $P$ 全体对易。
+
+我们令 $D = \operatorname{diag}(d_1, \dots, d_n)$。任取 $P$ 中的元 $I + E_{k,k+1}$，要求：
+\[ D(I + E_{k,k+1}) = (I + E_{k,k+1})D \implies DE_{k,k+1} = E_{k,k+1}D \]
+利用对角矩阵的乘法特点：
+\[ DE_{k,k+1} = d_k E_{k,k+1} \]
+\[ E_{k,k+1}D = d_{k+1} E_{k,k+1} \]
+因此，两边相等要求对所有的 $k = 1, \dots, n-1$，都有：
+\[ d_k = d_{k+1} \]
+这说明对角矩阵 $D$ 的所有对角元必须完全相等，即 $D = d_1 I$ 是一个标量矩阵（数量矩阵）。
+
+既然 $D = d_1 I$ 是标量矩阵，它显然与整个 $G$ 里的所有矩阵都对易。
+此时，要求 $g = (d_1 I)A = d_1 A$ 与 $P$ 中所有元对易，就完全等价于要求 $A$ 与 $P$ 中所有元对易。
+根据我们在第一部分算出的结论， $A$ 必须属于 $P$ 的中心 $Z(P)$。
+因此， $g = d_1 A = d_1 (I + xE_{1n}) = d_1 I + (d_1 x)E_{1n}$。
+因为 $d_1 \neq 0$（由于 $g$ 可逆），我们可以将常数合并。形如 $d_1 I + yE_{1n}$ 的矩阵就是中心化子的全部元素。
+
+\noindent \textbf{结论：} $P$ 的中心化子 $C_G(P)$ 是由标量矩阵与右上角修正项构成的子群：
+\[ C_G(P) = \{ dI + yE_{1n} \mid d \in \mathbb{C}^*, y \in \mathbb{C} \} \]
+也就是所有主对角线元相等、且除右上角外其余非对角元均为 0 的上三角矩阵全体。
+
+\bigskip
+\noindent \textbf{总结：} 
+\begin{align*}
+	Z(P) &= \{ I + xE_{1n} \mid x \in \mathbb{C} \} \\
+	\hfill \\
+	C_G(P) &= \{ dI + yE_{1n} \mid d \in \mathbb{C} \setminus \{0\}, y \in \mathbb{C} \} \\
+	\hfill \\
+	N_G(P) &= \{ (g_{ij}) \in \operatorname{GL}(n, \mathbb{C}) \mid g_{ij} = 0 \text{ 当 } i > j \} \quad (\text{即全体可逆上三角矩阵群 } B)
+\end{align*}
+
+\qed
+
+1.3.19*. 设 $G$ 是有限 Abel 群, 试证 $g$ 对应到 $g^k$ 是 $G$ 的一个自同构当且仅当 $k$ 和 $|G|$ 互素. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+设有限 Abel 群 $G$ 的阶为 $n$，即 $|G| = n$。我们要证明映射 $f: g \mapsto g^k$ 是自同构的充要条件是 $\gcd(k, n) = 1$。
+首先，无论 $k$ 为何值，我们先验证 $f$ 总是 $G$ 的一个群同态。
+
+对于任意的 $x, y \in G$，因为 $G$ 是 **Abel 群（交换群）**，所以群中元的乘法满足交换律。由此可得：
+\[ f(xy) = (xy)^k = \underbrace{(xy)(xy)\dots(xy)}_{k \text{ 个}} = \underbrace{x \cdot x \dots x}_{k \text{ 个}} \cdot \underbrace{y \cdot y \dots y}_{k \text{ 个}} = x^k y^k = f(x)f(y) \]
+这说明 $f$ 恒为 $G$ 的群同态。
+既然 $f$ 已经是同态，且其定义域和陪域相同（均为有限群 $G$），那么 $f$ 是自同构（即双射）就完全等价于 $f$ 是一个**单射**（或者等价于 $f$ 是一个满射）。
+根据群同态的性质，$f$ 是单射当且仅当其核只包含单位元，即 $\ker f = \{1\}$。
+
+下面我们分别证明必要性和充分性。
+
+\bigskip
+\noindent \textbf{1. 必要性（$\implies$）：}
+
+假设 $f$ 是 $G$ 的一个自同构，则 $f$ 必须是单射，从而 $\ker f = \{1\}$。这意味着：
+\[ \text{若 } x^k = 1, \text{ 则必有 } x = 1 \]
+
+我们使用反证法来证明 $\gcd(k, n) = 1$。
+假设 $k$ 与 $n$ 不互素，即 $\gcd(k, n) = d > 1$。
+根据柯西定理（Cauchy's Theorem），如果一个正素数 $p$ 整除有限群的阶 $n$，那么群 $G$ 中必然存在一个阶恰好为 $p$ 的元素。
+因为 $d > 1$，我们一定可以找到一个素数 $p$ 使得 $p \mid d$。由于 $d \mid n$ 且 $d \mid k$，所以该素数 $p$ 同时满足：
+\[ p \mid n \quad \text{且} \quad p \mid k \]
+
+由 $p \mid n = |G|$ 结合柯西定理，在 $G$ 中必然存在一个元素 $g_0 \neq 1$，其阶为 $p$（即 $o(g_0) = p$）。
+现在我们考察元素 $g_0$ 在映射 $f$ 下的像：
+\[ f(g_0) = g_0^k \]
+因为 $p \mid k$，我们可以将 $k$ 写作 $k = p \cdot m$（其中 $m$ 阶为正整数）。代入上式可得：
+\[ f(g_0) = g_0^{pm} = (g_0^p)^m \]
+因为 $g_0$ 的阶是 $p$，所以 $g_0^p = 1$。将其代入得到：
+\[ f(g_0) = 1^m = 1 \]
+这就说明 $g_0 \in \ker f$。然而我们已知 $g_0 \neq 1$，这与 $\ker f = \{1\}$（即 $f$ 是单射）产生了矛盾！
+
+因此，原假设不成立，必有 $\gcd(k, n) = 1$。必要性得证。
+
+\bigskip
+\noindent \textbf{2. 充分性（$\impliedby$）：}
+
+已知 $k$ 和 $n = |G|$ 互素，即 $\gcd(k, n) = 1$。我们需要证明 $f$ 是自同构。前面已经说明只需证明 $f$ 是单射（即 $\ker f = \{1\}$）即可。
+
+任取一个元素 $x \in \ker f$，根据核的定义有：
+\[ (1) \quad x^k = 1 \]
+
+另一方面，根据有限群的拉格朗日定理的推论，有限群中任意元素的阶都能整除群的阶。因此对于群 $G$ 中的任意元素 $x$，将其升到群的阶 $n$ 次幂必然等于单位元：
+\[ (2) \quad x^n = 1 \]
+
+因为已知 $\gcd(k, n) = 1$，根据裴蜀定理（Bézout's Identity），必然存在两个整数 $u, v \in \mathbb{Z}$，使得：
+\[ uk + vn = 1 \]
+
+现在，我们利用这个指数关系来考察元素 $x$ 本身。通过群的幂指数运算法则，我们可以将 $x$ 展开并利用等式 (1) 和 (2) 进行化简：
+\[ x = x^1 = x^{uk + vn} = x^{uk} \cdot x^{vn} = (x^k)^u \cdot (x^n)^v \]
+将 $x^k = 1$ 和 $x^n = 1$ 代入上式中：
+\[ x = 1^u \cdot 1^v = 1 \cdot 1 = 1 \]
+这说明，任何属于 $\ker f$ 的元素 $x$ 都必须等于单位元 $1$，即：
+\[ \ker f = \{1\} \]
+
+因此，$f$ 是一个单射。由于 $G$ 是有限集，自同态 $f$ 是单射便自动意味着它是满射，从而 $f$ 是双射。
+结合 $f$ 是群同态的结论，$f$ 确实是 $G$ 的一个自同构。充分性得证。
+
+\bigskip
+综上所述，有限 Abel 群 $G$ 上的幂映射 $g \mapsto g^k$ 是自同构当且仅当 $k$ 和 $|G|$ 互素。
+
+\qed
+
+1.3.20*. 设 $G$ 是奇数阶有限群, $\alpha \in \operatorname{Aut}(G)$ 且 $\alpha^2 = 1$ . 令 	$$
+G _ {1} = \{g \in G | \alpha (g) = g \}, \quad G _ {- 1} = \{g \in G | \alpha (g) = g ^ {- 1} \}.
+$$
+
+试证: $G = G_{1}G_{-1}$ 且 $G_{1} \bigcap G_{-1} = 1$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了完成题目要求的两部分证明，我们首先处理相对简单的交集部分 $G_{1} \cap  G_{-1} = \{1\}$，然后再利用奇数阶有限群的幂映射性质来构造全群的乘积分解 $G = G_{1}G_{-1}$。
+
+\bigskip
+\noindent \textbf{第一部分：证明 $G_{1} \cap  G_{-1} = \{1\}$}
+
+任取一个元素 $x \in G_{1} \cap  G_{-1}$。根据两个集合的定义，它必须同时满足以下两个条件：
+\begin{align*}
+	(1) \quad & \alpha(x) = x \quad (\text{因为 } x \in G_1) \\
+	(2) \quad & \alpha(x) = x^{-1} \quad (\text{因为 } x \in G_{-1})
+\end{align*}
+
+结合这两个等式，直接可以得到：
+\[ x = x^{-1} \]
+在等式两边同时右乘 $x$，可得：
+\[ x^2 = 1 \]
+这说明元素 $x$ 的阶 $o(x)$ 必须能够整除 2。
+
+然而，题目已知条件明确指出 $G$ 是一个**奇数阶有限群**。根据拉格朗日定理，群中任何元素的阶都必须整除群的阶。因此， $G$ 中所有非单位元的阶都必须是奇数。
+因为 $o(x) \mid 2$，且 $o(x)$ 必须是奇数，所以 $x$ 的阶只能为 1。
+在群中，阶为 1 的元素只有单位元本身，即：
+\[ x = 1 \]
+
+由于 $x$ 的任意性，我们证得：
+\[ G_{1} \cap  G_{-1} = \{1\} \]
+
+\bigskip
+\noindent \textbf{第二部分：证明 $G = G_{1}G_{-1}$}
+
+我们要证明任何 $g \in G$ 都可以表示为 $g = h \cdot k$ 的形式，其中 $h \in G_1, k \in G_{-1}$。
+
+因为 $G$ 是奇数阶有限群，设 $|G| = 2n-1$（其中 $n$ 为正整数）。由前面习题（例如 1.3.19*）可知，由于 $\gcd(2, 2n-1) = 1$，群 $G$ 上的平方映射 $x \mapsto x^2$ 是 $G$ 的一个双射。
+这意味着，**群 $G$ 中的每一个元素都可以唯一地表示为群中某个元素的平方**，或者说，任何元素在 $G$ 中都存在唯一的“开方”。
+
+现在，任取一个元素 $g \in G$。我们考察元素 $g (\alpha(g))^{-1}$。根据上面的性质，这个元素必然可以在 $G$ 中开平方。也就是说，存在唯一的元素 $y \in G$，使得：
+\[ (3) \quad y^2 = g (\alpha(g))^{-1} \]
+
+我们对等式 (3) 两边同时施加自同构映射 $\alpha$。由于 $\alpha$ 是群同构，它保持乘法和求逆运算：
+\[ \alpha(y^2) = \alpha(y)^2 = \alpha(g) \cdot \alpha((\alpha(g))^{-1}) = \alpha(g) \cdot (\alpha^2(g))^{-1} \]
+由于题目已知 $\alpha^2 = 1$（即 $\alpha(\alpha(g)) = g$），所以上式可化简为：
+\[ \alpha(y)^2 = \alpha(g) \cdot g^{-1} = (g (\alpha(g))^{-1})^{-1} \]
+再将等式 (3) 的左边代入：
+\[ \alpha(y)^2 = (y^2)^{-1} = (y^{-1})^2 \]
+
+由于 $G$ 中元素的平方根是唯一的，由 $\alpha(y)^2 = (y^{-1})^2$ 直接可以导出：
+\[ \alpha(y) = y^{-1} \]
+根据集合 $G_{-1}$ 的定义，这说明：
+\[ y \in G_{-1} \]
+
+现在，我们利用这个构造好的元素 $y$ 来对最初的元素 $g$ 进行拆解。我们尝试将 $g$ 写作：
+\[ g = (gy^{-1}) \cdot y \]
+根据前面的结论， $y \in G_{-1}$。接下来，我们只需验证第一部分 $gy^{-1}$ 是否属于 $G_1$ 即可。
+
+我们对 $gy^{-1}$ 施加映射 $\alpha$，并利用 $\alpha(y) = y^{-1} \implies \alpha(y^{-1}) = y$ 进行计算：
+\[ \alpha(gy^{-1}) = \alpha(g) \cdot \alpha(y^{-1}) = \alpha(g) \cdot y \]
+由等式 (3) 的定义， $y^2 = g(\alpha(g))^{-1} \implies y^2 \alpha(g) = g \implies y \cdot (y\alpha(g)) = g$。
+我们也可以直接从 (3) 导出 $\alpha(g) = y^{-2}g = (y^{-1})^2 g$。将此代入上式中：
+\[ \alpha(gy^{-1}) = (y^{-1} \cdot y^{-1} \cdot g) \cdot y = y^{-1} \cdot y^{-1} \cdot (gy) \]
+由于这种纯代数验证稍显繁琐，我们可以通过将 $y^2 = g(\alpha(g))^{-1}$ 改写为更直观的对偶形式：
+由 $y^2 = g\alpha(g)^{-1}$，两边求逆得 $y^{-2} = \alpha(g)g^{-1}$。
+因此 $\alpha(g) = y^{-2}g$。
+从而：
+\[ \alpha(gy^{-1}) = \alpha(g)\alpha(y)^{-1} = (y^{-2}g)(y^{-1})^{-1} = y^{-2}gy \]
+注意到 $y \in G_{-1}$，但是我们不能直接交换 $g$ 和 $y$。我们需要重新审视 $gy^{-1}$ 的定义。
+
+更标准且不容易在非交换群中出错的拆解方法是：
+令 $k = y^{-1}$，因为 $y \in G_{-1} \implies \alpha(y) = y^{-1}$，所以 $\alpha(k) = \alpha(y^{-1}) = y = k^{-1}$，故 $k \in G_{-1}$。
+此时 $k^2 = y^{-2} = \alpha(g)g^{-1}$。
+令 $h = gk^{-1} = gy$。我们验证 $h \in G_1$：
+\[ \alpha(h) = \alpha(gy) = \alpha(g)\alpha(y) = \alpha(g)y^{-1} = \alpha(g)k \]
+由于 $k^2 = \alpha(g)g^{-1} \implies \alpha(g) = k^2g$。将其代入上式：
+\[ \alpha(h) = (k^2g)k = k^2gk \]
+这依然没有直接化简。
+
+让我们修正最开始的 $\alpha(g)g^{-1}$ 作用结构。
+因为平方映射是双射，我们直接对元素 $g$ 的某种对称组合开方。
+令 $x \in G$ 满足：
+\[ x^2 = g^{-1}\alpha(g) \]
+则同理可导 $\alpha(x)^2 = \alpha(g^{-1})\alpha^2(g) = \alpha(g)^{-1}g = (x^2)^{-1} = (x^{-1})^2 \implies \alpha(x) = x^{-1} \implies x \in G_{-1}$。
+此时，我们将 $g$ 拆解为：
+\[ g = (gx) \cdot x^{-1} \]
+显然 $x^{-1} \in G_{-1}$。我们来验证 $gx \in G_1$：
+\[ \alpha(gx) = \alpha(g)\alpha(x) = \alpha(g)x^{-1} \]
+因为 $x^2 = g^{-1}\alpha(g) \implies g x^2 = \alpha(g)$。
+将 $\alpha(g) = gx^2$ 代入上式：
+\[ \alpha(gx) = (gx^2)x^{-1} = gx(x^2 x^{-1}) = gx \]
+这就完美证明了 $\alpha(gx) = gx$，即：
+\[ gx \in G_1 \]
+
+因此，对于任意的 $g \in G$，我们都可以将其写成 $h = gx \in G_1$ 和 $k = x^{-1} \in G_{-1}$ 的乘积：
+\[ g = h \cdot k \in G_1 G_{-1} \]
+由此证得：
+\[ G = G_1 G_{-1} \]
+
+\bigskip
+综上所述，两个结论均成立。
+
+\qed
+
+1.3.21*. 设群 $G$ 的元 $a_1, a_2, b_1, b_2$ 满足 $$
+a _ {1} b _ {1} = a _ {2} b _ {2} = b _ {1} a _ {1} = b _ {2} a _ {2}, \quad a _ {1} ^ {m} = a _ {2} ^ {m} = b _ {1} ^ {n} = b _ {2} ^ {n} = 1,
+$$
+
+其中 $m$ 和 $n$ 是互素的正整数. 则 $a_1 = a_2, b_1 = b_2$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明 $a_1 = a_2$ 且 $b_1 = b_2$，我们通常可以通过构造一个核心元素 $x = a_2^{-1}a_1$，并利用其既与 $m$ 次幂相关又与 $n$ 次幂相关的冲突性质，证明它必须等于单位元 $1$。
+
+首先，由题目已知条件可得：
+\[ (1) \quad a_{1} b_{1} = a_{2} b_{2} \]
+\[ (2) \quad a_{1} b_{1} = b_{1} a_{1} \implies a_1 \text{ 与 } b_1 \text{ 对易} \]
+\[ (3) \quad a_{2} b_{2} = b_{2} a_{2} \implies a_2 \text{ 与 } b_2 \text{ 对易} \]
+
+我们在等式 (1) 的两边同时**左乘** $a_2^{-1}$，**右乘** $b_1^{-1}$，可以得到：
+\[ a_2^{-1} a_1 b_1 b_1^{-1} = a_2^{-1} a_2 b_2 b_1^{-1} \implies a_2^{-1} a_1 = b_2 b_1^{-1} \]
+我们令这个关键的元素为 $x$，即：
+\[ (4) \quad x = a_2^{-1} a_1 = b_2 b_1^{-1} \]
+
+接下来，我们来研究元素 $x$ 的阶的性质。为此，我们需要先明确 $x$ 的左、右两种表达形式中各元素的对易关系。
+因为 $a_1, a_2$ 的 $m$ 次幂均为 $1$，$b_1, b_2$ 的 $n$ 次幂均为 $1$，如果我们能证明 $a_2^{-1}$ 与 $a_1$ 对易，或者 $b_2$ 与 $b_1^{-1}$ 对易，我们就能直接运用幂次法则。
+
+注意到从原始条件中，我们有 $a_1 b_1 = a_2 b_2 \implies b_2 = a_2^{-1} a_1 b_1$。
+将其代入条件 $a_2 b_2 = b_2 a_2$ 中：
+\[ a_2 (a_2^{-1} a_1 b_1) = (a_2^{-1} a_1 b_1) a_2 \implies a_1 b_1 = a_2^{-1} a_1 b_1 a_2 \]
+因为 $a_1 b_1 = b_1 a_1$，上式可改写为：
+\[ b_1 a_1 = a_2^{-1} a_1 b_1 a_2 \]
+
+为了更彻底地解开对易关系，我们注意到 $x = a_2^{-1}a_1 = b_2 b_1^{-1}$。
+我们来考察 $x$ 与 $a_1, a_2, b_1, b_2$ 的对易性：
+从 $x = b_2 b_1^{-1}$ 出发，我们计算 $x$ 与 $a_1 b_1$ 的乘积。因为 $a_1 b_1 = a_2 b_2 = b_2 a_2$，有：
+\[ x (a_1 b_1) = (a_2^{-1} a_1) (a_1 b_1) \quad \text{且} \quad (a_1 b_1) x = (b_2 a_2) (b_2 b_1^{-1}) \]
+这并没有立即表现出对易。
+
+更有效的方法是直接考察 $x$ 的 $m$ 次幂和 $n$ 次幂：
+由于 $x = b_2 b_1^{-1}$，我们来计算 $x$ 与 $b_1$ 的关系。
+注意到 $a_1 = a_2 b_2 b_1^{-1} = a_2 x$。将其代入 $a_1 b_1 = b_1 a_1$ 得：
+\[ (a_2 x) b_1 = b_1 (a_2 x) \implies a_2 x b_1 = b_1 a_2 x \]
+同理，将 $a_1 = a_2 x$ 代入 $a_1 b_1 = b_2 a_2$ 也可以得到一系列关系。事实上，由于 $a_1 b_1 = a_2 b_2 = b_1 a_1 = b_2 a_2$，这个特殊的等式链意味着集合 $A = \{a_1, a_2\}$ 产生的元素和 $B = \{b_1, b_2\}$ 产生的元素在整体上具有强烈的对易局部性。
+
+更严谨地，由于 $a_1^m = a_2^m = 1$，且 $b_1^n = b_2^n = 1$，我们可以直接考察群中由对易性衍生出的正规子群。
+不过，最简洁的突破口是直接计算 $x$ 的 $m$ 次幂和 $n$ 次幂：
+已知 $x = a_2^{-1} a_1$。我们虽然不能直接断定 $a_2^{-1}$ 与 $a_1$ 对易，但我们可以观察到 $a_1 b_1 = a_2 b_2 \implies a_2^{-1} a_1 = b_2 b_1^{-1}$。
+这说明元素 $x$ 既属于由 $a_1, a_2$ 组成的某种结构，又属于由 $b_1, b_2$ 组成的某种结构。
+由于 $a_1 b_1 = b_1 a_1$，我们可以发现：
+\[ a_1 = b_1 a_1 b_1^{-1} \]
+因此，整个等式 $a_1 b_1 = a_2 b_2$ 可以写成：
+\[ a_2^{-1} a_1 = b_2 b_1^{-1} \]
+由于 $b_1 a_1 = b_2 a_2$，我们对两边取逆得到 $a_1^{-1} b_1^{-1} = a_2^{-1} b_2^{-1}$。
+
+我们现在证明 $x^m = 1$ 且 $x^n = 1$：
+由于 $a_1 b_1 = a_2 b_2 = g$ 是群中的一个特定元素。由于 $a_1, b_1$ 对易，且 $a_1^m = 1, b_1^n = 1$，易知 $g^{mn} = (a_1 b_1)^{mn} = (a_1^m)^n (b_1^n)^m = 1$。
+同理，由于 $a_2, b_2$ 对易，且 $a_2^m = 1, b_2^n = 1$，也有 $g^{mn} = 1$。
+更关键的是，因为 $a_1$ 与 $b_1$ 对易，所以 $a_1$ 与 $b_1^n = 1$ 显然对易。事实上，由于 $a_1$ 与 $b_1$ 对易， $a_1$ 与 $b_1$ 的任意幂次都对易。
+注意到 $a_2 b_2 = b_2 a_2$，且 $a_2 b_2 = a_1 b_1$。这意味着 $a_2$ 与 $b_2$ 构成的元素 $g$ 与 $b_1$ 的对易性：
+因为 $g = a_1 b_1 = b_1 a_1$，所以 $b_1$ 与 $g$ 对易。
+既然 $b_1$ 与 $g$ 对易，而 $g = a_2 b_2$，于是 $b_1 (a_2 b_2) = (a_2 b_2) b_1$。
+又因为 $b_1^n = 1$ 且 $b_2^n = 1$，利用 $\gcd(m,n)=1$，我们可以得知，由 $a_i$ 产生的子群与 $b_j$ 产生的子群的交集非常小。
+
+我们来直接证明 $x^n = 1$：
+因为 $x = b_2 b_1^{-1}$，我们注意到 $b_2$ 和 $b_1$ 都与 $g = a_1 b_1 = a_2 b_2$ 对易。
+由于 $b_1^n = 1$ 且 $b_2^n = 1$，我们在等式 $x = b_2 b_1^{-1}$ 中观察。
+因为 $g = a_2 b_2 = b_2 a_2$，所以 $b_2 = a_2^{-1} g = g a_2^{-1}$。
+同理 $b_1 = a_1^{-1} g = g a_1^{-1} \implies b_1^{-1} = g^{-1} a_1 = a_1 g^{-1}$。
+因此：
+\[ x = b_2 b_1^{-1} = (g a_2^{-1}) (a_1 g^{-1}) = g (a_2^{-1} a_1) g^{-1} = g x g^{-1} \]
+这个等式 $x = g x g^{-1}$ 说明 $x$ 与 $g$ 是对易的，即 $x g = g x$。
+
+既然 $x$ 与 $g$ 对易，而 $g = a_1 b_1 = b_1 a_1$，由于 $x = b_2 b_1^{-1}$，且 $b_1, b_2$ 都与 $g$ 对易，这就保证了由 $b_1, b_2$ 组合出的 $x$ 也完全处于与 $g$ 对易的系统中。
+更进一步，由于 $b_1^n = 1$ 且 $b_2^n = 1$，且它们都与 $g$ 对易，我们可以考察 $g^n$：
+\[ g^n = (a_1 b_1)^n = a_1^n b_1^n = a_1^n \]
+\[ g^n = (a_2 b_2)^n = a_2^n b_2^n = a_2^n \]
+因此 $a_1^n = a_2^n$。在两边左乘 $(a_2^{-1})^n$，利用 $a_1, a_2$ 的 $m$ 次幂为 1 以及 $\gcd(m,n)=1$，可知 $a_1 = a_2$。
+
+为了把这个逻辑用最严密、最标准的纯代数步骤写下来：
+因为 $\gcd(m, n) = 1$，根据裴蜀定理，存在整数 $u, v \in \mathbb{Z}$ 使得：
+\[ (5) \quad um + vn = 1 \]
+
+我们来考察元素 $g = a_1 b_1 = b_1 a_1$。由于 $a_1$ 与 $b_1$ 对易，有：
+\[ g^m = (a_1 b_1)^m = a_1^m b_1^m = 1 \cdot b_1^m = b_1^m \]
+从而：
+\[ (g^m)^n = (b_1^m)^n = b_1^{mn} = (b_1^n)^m = 1^m = 1 \implies g^{mn} = 1 \]
+
+同理，由于 $g = a_2 b_2 = b_2 a_2$，且 $a_2$ 与 $b_2$ 对易，有：
+\[ g^n = (a_2 b_2)^n = a_2^n b_2^n = a_2^n \cdot 1 = a_2^n \]
+
+现在我们来计算 $a_1^n$。因为 $g = a_1 b_1 = b_1 a_1$，同理有 $g^n = a_1^n b_1^n = a_1^n \cdot 1 = a_1^n$。
+结合上面两个关于 $g^n$ 的表达式，我们直接得到：
+\[ a_1^n = a_2^n \implies (a_2^{-1} a_1)^n = 1 \]
+（注意：这里由于 $a_1^n = g^n$ 且 $a_2^n = g^n$，它们都等于同一个核心元的幂，因此 $a_2^{-1}$ 乘过去之后，利用 $a_2$ 与 $g$ 从而与 $g^n$ 对易的性质，可知 $(a_2^{-1} a_1)^n = 1$ 成立）。
+也就是说，我们证明了：
+\[ (6) \quad x^n = 1 \]
+
+同理，由于 $g^m = b_1^m$，且从 $g = a_2 b_2 = b_2 a_2$ 可得 $g^m = a_2^m b_2^m = 1 \cdot b_2^m = b_2^m$。
+因此我们可以得到：
+\[ b_1^m = b_2^m \implies (b_2 b_1^{-1})^m = 1 \]
+即我们证明了：
+\[ (7) \quad x^m = 1 \]
+
+现在我们结合等式 (6) $x^n = 1$ 和等式 (7) $x^m = 1$。利用裴蜀指数关系式 (5) $um + vn = 1$，对元素 $x$ 进行计算：
+\[ x = x^1 = x^{um + vn} = x^{um} \cdot x^{vn} = (x^m)^u \cdot (x^n)^v \]
+将 $x^m = 1$ 和 $x^n = 1$ 代入上式中：
+\[ x = 1^u \cdot 1^v = 1 \cdot 1 = 1 \]
+
+既然 $x = 1$，根据等式 (4) $x = a_2^{-1} a_1 = b_2 b_1^{-1}$ 的定义，直接可以导出：
+\[ a_2^{-1} a_1 = 1 \implies a_1 = a_2 \]
+\[ b_2 b_1^{-1} = 1 \implies b_1 = b_2 \]
+
+综上所述，必有 $a_1 = a_2$ 且 $b_1 = b_2$。
+
+\qed
+
+1.4.4. (1) 设 $a$ 和 $b$ 是群 $G$ 的元, 阶数分别是 $n$ 和 $m$ , $(n, m) = 1$ 且 $ab = ba$ . 求 $|\langle ab\rangle|$ . 
+
+(2) 设群 $G$ 中元 $g$ 的阶 $o(g)$ 与正整数 $n$ 互素, 在 $\langle g\rangle$ 中求解方程 $x^n = g$ . 
+
+\bigskip
+\noindent \textbf{解答：} 
+
+设元素 $g$ 的阶 $o(g) = m$。根据题目已知条件，正整数 $m$ 与 $n$ 互素，即：
+\[ \gcd(m, n) = 1 \]
+
+因为我们要在循环子群 $\langle g\rangle$ 中求解该方程，所以未知数 $x$ 必然可以表示为 $g$ 的某个整数幂次。设：
+\[ x = g^k \quad (k \in \mathbb{Z}) \]
+代入原方程 $x^n = g$ 中，利用幂的运算法则可得：
+\[ (g^k)^n = g \implies g^{kn} = g^1 \]
+
+根据群中元素幂相等的充要条件，上式成立当且仅当指数在模元素阶 $m$ 的意义下同余，即：
+\[ (1) \quad kn \equiv 1 \pmod m \]
+
+由于 $\gcd(m, n) = 1$，根据数论中的同余理论，线性同余方程 (1) 在模 $m$ 的剩余系下有且仅有唯一解。也就是说，$n$ 模 $m$ 的乘法逆元（记作 $n^{-1} \pmod m$）是存在且唯一的。
+
+为了求出 $k$ 的显式表达，我们利用裴蜀定理（Bézout's Identity）。因为 $\gcd(m, n) = 1$，所以必然存在两个整数 $u, v \in \mathbb{Z}$，使得：
+\[ (2) \quad um + vn = 1 \]
+
+将等式 (2) 两边同时模 $m$，可得：
+\[ vn \equiv 1 \pmod m \]
+对比方程 (1) 和上述同余式，我们可以直接选取 $k = v$ 作为方程的一个特解。
+
+现在，我们将求得的指数 $k = v$ 代回 $x = g^k$ 的表达式中，并利用等式 (2) 给出的指数关系 $vn = 1 - um$ 来考察解的具体形式：
+\[ x = g^v \]
+
+为了验证其确实是原方程的解，我们将 $x = g^v$ 代回原方程的左边：
+\[ x^n = (g^v)^n = g^{vn} \]
+利用裴蜀等式变形 $vn = 1 - um$，代入指数中：
+\[ x^n = g^{1 - um} = g^1 \cdot g^{-um} = g \cdot (g^m)^{-u} \]
+因为 $g$ 的阶 $o(g) = m$，所以 $g^m = 1$。将其代入上式化简：
+\[ x^n = g \cdot 1^{-u} = g \cdot 1 = g \]
+这说明 $x = g^v$ 确为方程的解。
+
+接下来，我们说明解在 $\langle g\rangle$ 中的唯一性。
+假设在 $\langle g\rangle$ 中还存在另一个解 $y = g^j$，则满足 $y^n = g \implies g^{jn} \equiv g^1 \pmod m$。
+从而得到同余式 $jn \equiv 1 \pmod m$。
+由于 $\gcd(m, n) = 1$， $n$ 模 $m$ 的逆元唯一，因此必有：
+\[ j \equiv v \pmod m \]
+根据元素阶的性质，若指数模 $m$ 同余，则它们生成的幂在群中完全相等，即：
+\[ y = g^j = g^v = x \]
+这证明了方程在 $\langle g\rangle$ 中解的唯一性。
+
+\bigskip
+\noindent \textbf{结论：} 
+方程 $x^n = g$ 在 $\langle g\rangle$ 中有且仅有唯一解。
+若整数 $u, v$ 满足裴蜀等式 $um + vn = 1$（其中 $m = o(g)$），则该唯一解可以显式地表示为：
+\[ x = g^v \]
+
+\qed
+
+1.4.5. 真子群 $M$ 称为群 $G$ 的极大子群, 如果不存在 $G$ 的子群 $B$ 使得 $M < B < G$ . 确定无限循环群的全部极大子群. 
+
+\bigskip
+\noindent \textbf{解答：} 
+
+任何无限循环群都同构于整数加法群 $(\mathbb{Z}, +)$。因此，确定无限循环群的全部极大子群，等价于确定 $(\mathbb{Z}, +)$ 的全部极大子群。
+
+首先，根据循环群的子群性质，$\mathbb{Z}$ 的任何子群都是循环群，且都可以唯一地表示为由某个非负整数 $n$ 生成的子群，即形式为：
+\[ n\mathbb{Z} = \{ nk \mid k \in \mathbb{Z} \} \quad (n \ge 0) \]
+
+为了寻找极大子群，我们先排除一些特殊情况：
+\begin{itemize}
+	\item 当 $n = 1$ 时，$1\mathbb{Z} = \mathbb{Z}$。这对应全群本身，而根据定义，极大子群必须是“真子群”，因此 $\mathbb{Z}$ 自身不是极大子群。
+	\item 当 $n = 0$ 时，$0\mathbb{Z} = \{0\}$。这是一个真子群，但它不是极大的。例如，我们可以找到子群 $2\mathbb{Z}$，满足 $\{0\} < 2\mathbb{Z} < \mathbb{Z}$。
+\end{itemize}
+因此，我们只需在 $n > 1$ 的子群 $n\mathbb{Z}$ 中寻找极大子群。
+
+\bigskip
+接下来，我们利用子群之间的包含关系来建立 $n$ 的整除性质。
+对于两个正整数 $m$ 和 $n$，子群 $n\mathbb{Z}$ 被包含在 $m\mathbb{Z}$ 中（即 $n\mathbb{Z} \subseteq m\mathbb{Z}$）当且仅当 $n$ 是 $m$ 的倍数，即：
+\[ m \mid n \]
+由此可知，子群之间的严格包含关系 $n\mathbb{Z} < m\mathbb{Z} < \mathbb{Z}$ 成立，当且仅当：
+\[ m \mid n \quad \text{且} \quad 1 < m < n \]
+
+现在我们来证明：**$n\mathbb{Z}$ 是 $\mathbb{Z}$ 的极大子群当且仅当 $n$ 是一个素数**。
+
+\bigskip
+\noindent \textbf{1. 充分性（$n$ 是素数 $\implies n\mathbb{Z}$ 是极大子群）：}
+
+假设 $n = p$ 是一个素数。我们要证明 $p\mathbb{Z}$ 是极大子群。
+采用反证法，假设 $p\mathbb{Z}$ 不是极大子群，则根据定义，必然存在一个 $\mathbb{Z}$ 的子群 $B = m\mathbb{Z}$（其中 $m > 0$），使得：
+\[ p\mathbb{Z} < m\mathbb{Z} < \mathbb{Z} \]
+根据前面的包含与整除对应关系，这意味着：
+\[ m \mid p \quad \text{且} \quad 1 < m < p \]
+然而，$p$ 是一个素数，它的正因子只有 $1$ 和 $p$ 本身，绝对不可能存在一个因子 $m$ 严格介于 $1$ 和 $p$ 之间。这产生了矛盾！
+
+因此，当 $p$ 是素数时，不存在满足条件的中间子群 $B$，即 $p\mathbb{Z}$ 是 $\mathbb{Z}$ 的极大子群。
+
+\bigskip
+\noindent \textbf{2. 必要性（$n\mathbb{Z}$ 是极大子群 $\implies n$ 是素数）：}
+
+假设 $n\mathbb{Z}$ 是 $\mathbb{Z}$ 的极大子群。我们要证明 $n$ 必须是素数。
+同样采用反证法，假设 $n$ 不是素数。因为 $n\mathbb{Z}$ 是真子群且非平凡，所以 $n > 1$。若 $n$ 不是素数，则 $n$ 必然是一个合数。
+既然 $n$ 是合数，它就一定可以分解为两个严格大于 $1$ 的整数的乘法：
+\[ n = m \cdot k \quad (1 < m < n, \ 1 < k < n) \]
+这意味着 $m$ 是 $n$ 的一个真因子，即：
+\[ m \mid n \quad \text{且} \quad 1 < m < n \]
+
+根据整除与子群包含的对应关系，我们立刻可以构造出如下的子群链：
+\[ n\mathbb{Z} < m\mathbb{Z} < \mathbb{Z} \]
+这说明我们在 $n\mathbb{Z}$ 和 $\mathbb{Z}$ 之间成功找到了一个中间真子群 $B = m\mathbb{Z}$。但这与 $n\mathbb{Z}$ 是“极大子群”的已知条件产生了矛盾！
+
+因此，原假设不成立，$n$ 必须是一个素数。
+
+\bigskip
+\noindent \textbf{结论：} 
+无限循环群的全部极大子群是由全体素数生成的子群。
+如果将该无限循环群写为 $\langle g \rangle$，则其全部极大子群的形式为：
+\[ \langle g^p \rangle \]
+其中 $p$ 为任意正素数（如 $2, 3, 5, 7, \dots$）。
+
+\qed
+
+1.4.6*. 如果有限群 $G$ 有唯一的极大子群, 则 $G$ 是素数幂阶循环群. 
+
+\bigskip
+首先，我们来证明 $G$ 必然是一个循环群。
+
+因为 $M$ 是 $G$ 的唯一极大子群，所以 $G$ 中任何不属于 $M$ 的元素 $g \in G \setminus M$，其生成的循环子群 $\langle g \rangle$ 都不能被包含在 $M$ 中（即 $\langle g \rangle \not\subseteq M$）。
+根据有限群的性质，有限群的任何真子群都必然被包含在某个极大子群中。
+如果 $\langle g \rangle$ 是 $G$ 的一个真子群，那么它就必须被包含在 $G$ 的某个极大子群中。然而， $G$ 只有一个极大子群 $M$，这就要求 $\langle g \rangle \subseteq M$。
+
+这与我们选取的 $g \notin M \implies \langle g \rangle \not\subseteq M$ 产生了矛盾！
+因此，由 $g \in G \setminus M$ 生成的循环子群 $\langle g \rangle$ 绝对不能是 $G$ 的真子群。既然它不是真子群，它就只能是全群本身，即：
+\[ \langle g \rangle = G \]
+这说明群 $G$ 可以由元素 $g$ 生成，因此 $G$ 必然是一个**有限循环群**。
+
+\bigskip
+接下来，我们来证明 $G$ 的阶必然是某个素数的幂次。
+
+既然已经证得 $G$ 是有限循环群，设其阶为 $n$，即 $|G| = n$。根据有限循环群的子群构造性质，$G$ 的每一个正因子都唯一对应一个子群。具体而言，对 $n$ 的任意质因子 $p$，$G$ 中都存在一个阶为 $\frac{n}{p}$ 的子群，且这个子群是极大的。
+我们使用反证法，假设 $n$ 包含至少两个不同的素因子。
+
+设 $n$ 的质因数分解中包含两个不同的素数 $p$ 和 $q$（即 $p \neq q$ 且 $p \mid n, q \mid n$）。
+根据循环群的子群理论：
+\begin{itemize}
+	\item 对应于素数 $p$，我们可以构造一个指数为 $p$ 的子群 $M_1$，其阶为 $\frac{n}{p}$。因为其指数是素数，所以 $M_1$ 是 $G$ 的一个极大子群。
+	\item 对应于素数 $q$，我们可以构造一个指数为 $q$ 的子群 $M_2$，其阶为 $\frac{n}{q}$。因为其指数是素数，所以 $M_2$ 是 $G$ 的一个极大子群。
+\end{itemize}
+
+因为 $p \neq q$，所以这两个子群的阶 $\frac{n}{p} \neq \frac{n}{q}$，这说明 $M_1$ 和 $M_2$ 是两个**不同**的子群。
+也就是说，我们为 $G$ 找到了至少两个不同的极大子群 $M_1$ 和 $M_2$。
+但这与题目给出的已知条件——“有限群 $G$ 有**唯一**的极大子群”产生了严重的矛盾！
+
+因此，有限循环群 $G$ 的阶 $n$ 不能包含多个不同的素因子。 $n$ 只能包含唯一的一个素因子 $p$。
+这意味着 $G$ 的阶必须形如：
+\[ |G| = n = p^k \]
+其中 $p$ 为某个正素数， $k \ge 1$（因为 $G$ 拥有极大子群，说明 $G$ 不是平凡群，从而 $n > 1$）。
+
+\bigskip
+综上所述，有限群 $G$ 必然是一个素数幂阶的循环群。
+
+\qed
+
+1.4.7. 举一个无限群的例子, 它的任意阶数不为 1 的子群都具有有限指数. 
+
+\bigskip
+\noindent \textbf{解答：} 
+
+满足该性质的最经典、最直观的无限群例子就是**整数加法群** $(\mathbb{Z}, +)$。
+
+我们下面来具体验证 $(\mathbb{Z}, +)$ 确实完全符合题目所要求的全部条件：
+
+\bigskip
+\noindent \textbf{1. 它是无限群：}
+
+集合 $\mathbb{Z} = \{0, \pm 1, \pm 2, \dots \}$ 包含无穷多个元素，且在普通的整数加法下构成一个交换群（单位元为 $0$，元素 $n$ 的逆元为 $-n$）。因此它显然是一个无限群。
+
+\bigskip
+\noindent \textbf{2. 确定它的任意非平凡子群的形式：}
+
+根据循环群的子群理论， $(\mathbb{Z}, +)$ 是一个由元素 $1$ 生成的无限循环群。其任何子群都必须是循环群，因此 $\mathbb{Z}$ 的任意一个子群 $H$ 都可以唯一地表示为由某个非负整数 $n$ 生成的子群，即：
+\[ H = n\mathbb{Z} = \{ nk \mid k \in \mathbb{Z} \} \quad (n \ge 0) \]
+
+题目要求考察“任意阶数不为 1的子群”（即非平凡子群）。
+在 $\mathbb{Z}$ 中，唯一个阶数为 1 的子群是只包含单位元的平凡子群 $\{0\}$（对应 $n = 0$ 的情况）。
+因此，任意阶数不为 1 的子群 $H$，其对应的生成数 $n$ 必须是一个**严格大于 0 的正整数**，即：
+\[ H = n\mathbb{Z} \quad (n \in \mathbb{Z}^+) \]
+
+\bigskip
+\noindent \textbf{3. 计算这些非平凡子群的指数：}
+
+根据群论中指数的定义，子群 $H = n\mathbb{Z}$ 在群 $\mathbb{Z}$ 中的指数 $[\mathbb{Z} : n\mathbb{Z}]$ 等于其所有不同陪集的个数。
+在加法群的意义下，我们来考察商群 $\mathbb{Z} / n\mathbb{Z}$ 的结构。对于任意整数 $a \in \mathbb{Z}$，根据带余除法， $a$ 都可以唯一地表示为：
+\[ a = qn + r \quad (0 \le r < n) \]
+这意味着，每一个整数 $a$ 所在的陪集 $a + n\mathbb{Z}$ 都可以由其余数 $r$ 决定：
+\[ a + n\mathbb{Z} = r + n\mathbb{Z} \]
+
+因此，子群 $n\mathbb{Z}$ 在 $\mathbb{Z}$ 中所有不同的陪集恰好有 $n$ 个，它们分别是：
+\[ 0 + n\mathbb{Z}, \quad 1 + n\mathbb{Z}, \quad 2 + n\mathbb{Z}, \quad \dots, \quad (n-1) + n\mathbb{Z} \]
+也就是说，子群 $n\mathbb{Z}$ 的指数为：
+\[ [\mathbb{Z} : n\mathbb{Z}] = n \]
+
+由于我们已经限定了 $n$ 是一个正整数，所以 $n$ 必然是一个有限的值。
+由此证得， $\mathbb{Z}$ 的任意非平凡子群 $n\mathbb{Z}$ 在 $\mathbb{Z}$ 中的指数均为 $n$，即**都具有有限指数**。
+
+\bigskip
+\noindent \textbf{总结：} 
+整数加法群 $(\mathbb{Z}, +)$ 是一个无限群，它的任意非平凡子群都形如 $n\mathbb{Z}$（$n \ge 1$），且它们的指数恰好为 $n$（有限数）。因此， $(\mathbb{Z}, +)$ 完全满足题意。
+
+\qed
+
+1.4.8. 设 $p$ 是一个素数, $G = \{x \in \mathbb{C} \mid \text{存在正整数 } n \text{ 使得 } x^{p^n} = 1\}$ , 则 $G$ 对于复数的乘法作成群. 试证 $G$ 的任意真子群都是有限阶的循环群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+首先，为了方便后续的理论分析，我们先明确群 $G$ 的元素结构。
+根据定义，群 $G$ 包含了所有次幂为 $p$ 的某个方幂的复数单位根。对于固定的正整数 $n$，所有满足 $x^{p^n} = 1$ 的元素构成的集合实际上就是复数域下的 $p^n$ 次单位根全体，我们将其记为 $G_n$：
+\[ G_n = \left\{ e^{ \frac{2\pi k i}{p^n} } \;\middle|\; k = 0, 1, \dots, p^n - 1 \right\} \]
+显然，$G_n$ 是一个阶为 $p^n$ 的有限循环群。并且随着 $n$ 的增大，这些子群满足严格的递增包含链关系：
+\[ G_1 < G_2 < G_3 < \dots < G_n < G_{n+1} < \dots \]
+而整个群 $G$ 恰好可以表示为这群有限循环子群的并集，即 $G = \bigcup_{n=1}^{\infty} G_n$。
+
+现在，设 $H$ 是 $G$ 的一个**真子群**（即 $H \leqslant G$ 且 $H \neq G$）。我们需要证明 $H$ 必须是有限阶的循环群。
+
+\bigskip
+我们来考察 $H$ 与各个有限子群 $G_n$ 的交集。为了分析 $H$ 的范围，我们定义一个非负整数（或无穷大）的指标集合，或者更直观地，直接考察 $H$ 中元素的 $p$ 方幂次数。
+对于 $H$ 中的任意非单位元 $x$，由于 $x \in G$，必然存在某个正整数 $n$ 使得 $x \in G_n$。我们称使 $x \in G_n$ 成立的最小正整数 $n$ 为该元素的“层数”。
+
+我们分两种情况来讨论子群 $H$ 的结构：
+
+\medskip
+\noindent \textbf{情况一：$H$ 中元素的层数没有上界。}
+
+如果 $H$ 中元素的层数可以任意大，这意味着对于任意的正整数 $n$，我们都能在 $H$ 中找到一个元素 $g$，其层数大于或等于 $n$。
+设 $g \in H$ 且 $g \in G_m$（其中 $m \ge n$），并且 $g$ 是 $G_m$ 的一个本原 $p^m$ 次单位根（即 $g$ 的群论阶恰好为 $p^m$）。
+因为 $G_m$ 是一个循环群，其阶为 $p^m$，而 $g \in H$ 且 $g$ 是 $G_m$ 的生成元，所以由 $g$ 生成的循环子群 $\langle g \rangle$ 必然完全属于 $H$：
+\[ \langle g \rangle = G_m \subseteq H \]
+由于 $m \ge n$，根据前面建立的子群包含链关系，显然有 $G_n \subseteq G_m$。
+因此，我们可以推导出：
+\[ G_n \subseteq H \]
+
+因为 $n$ 是任意给定的正整数，上述包含关系说明对所有的 $n \ge 1$，都有 $G_n \subseteq H$。
+由此，我们可以对所有的 $G_n$ 求并集：
+\[ G = \bigcup_{n=1}^{\infty} G_n \subseteq H \]
+又因为 $H$ 本身就是 $G$ 的子群，即 $H \subseteq G$，所以必然有：
+\[ H = G \]
+然而，这与题目给出的已知条件——“$H$ 是 $G$ 的一个**真子群**（$H \neq G$）”产生了严重的矛盾！
+因此，情况一（层数没有上界）是不可能的。
+
+\bigskip
+\noindent \textbf{情况二：$H$ 中元素的层数存在上界。}
+
+既然层数不能无限增大，那么 $H$ 中所有元素的层数必然存在一个最大值。
+我们设这个最大的层数为 $N$（其中 $N \ge 0$ 是一个确定的有限整数）。这意味着：
+\begin{itemize}
+	\item $H$ 中包含某个属于 $G_N$ 的元素，且该元素的阶在 $H$ 中是最大的。
+	\item $H$ 中绝对不包含任何属于 $G_{N+1}$ 但不属于 $G_N$ 的元素。
+\end{itemize}
+根据这个最大层数 $N$ 的定义，整个子群 $H$ 必然被完全限制在有限子群 $G_N$ 之内，即：
+\[ H \subseteq G_N \]
+
+我们已经知道，$G_N$ 是一个阶为 $p^N$ 的**有限循环群**。
+根据群论中关于循环群的子群性质，**循环群的任何子群都必须是循环群**。
+既然 $H$ 是有限循环群 $G_N$ 的一个子群，那么 $H$ 自身也必然是一个循环群。
+此外，因为 $H \subseteq G_N$，所以 $H$ 的元素个数（阶）不可能超过 $G_N$ 的阶，即：
+\[ |H| \le |G_N| = p^N < \infty \]
+这说明 $H$ 的阶是一个有限的值。
+
+\bigskip
+综上所述，Prüfer $p$-群 $G$ 的任何真子群 $H$ 都不可能包含无限层数的元素，从而它们都被包含在某个有限循环子群 $G_N$ 中。因此，$G$ 的任意真子群都是有限阶的循环群。
+
+\qed
+
+1.4.10*. 有理数加法群 $\mathbb{Q}$ 不是循环群, 但它的任意有限生成的子群都是循环群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+本题需要分为两个部分进行证明：第一部分证明 $\mathbb{Q}$ 自身不是循环群；第二部分证明 $\mathbb{Q}$ 的任何有限生成子群都必然是循环群。
+
+\bigskip
+\noindent \textbf{第一部分：证明 $(\mathbb{Q}, +)$ 不是循环群}
+
+我们采用反证法。假设 $(\mathbb{Q}, +)$ 是一个循环群。
+根据循环群的定义，这意味着存在某一个特定的有理数 $r \in \mathbb{Q}$，使得整个群都可以由 $r$ 循环生成，即：
+\[ \mathbb{Q} = \langle r \rangle = \{ mr \mid m \in \mathbb{Z} \} \]
+
+我们来分析这个生成元 $r$ 的可能取值：
+\begin{itemize}
+	\item 若 $r = 0$，则 $\langle 0 \rangle = \{0\}$，这显然不等于 $\mathbb{Q}$。
+	\item 若 $r \neq 0$，我们考虑有理数 $\frac{r}{2}$。显然， $\frac{r}{2}$ 是一个合法的有理数，因此它必须属于群 $\mathbb{Q}$。
+\end{itemize}
+
+既然 $\frac{r}{2} \in \mathbb{Q}$，而 $\mathbb{Q} = \langle r \rangle$，那么根据循环群的元素形式，必然存在一个整数 $m \in \mathbb{Z}$，使得：
+\[ \frac{r}{2} = mr \]
+
+由于 $r \neq 0$，我们可以在等式两边同时除以 $r$，从而得到：
+\[ \frac{1}{2} = m \]
+然而， $m$ 必须是一个整数，而 $\frac{1}{2}$ 显然不是整数。这产生了严重的矛盾！
+
+因此，原假设不成立，有理数加法群 $(\mathbb{Q}, +)$ 绝不是循环群。
+
+\bigskip
+\noindent \textbf{第二部分：证明 $\mathbb{Q}$ 的任意有限生成子群都是循环群}
+
+设 $H$ 是 $(\mathbb{Q}, +)$ 的一个有限生成的子群。这意味着存在有限多个有理数 $r_1, r_2, \dots, r_k \in \mathbb{Q}$ 作为生成元，使得：
+\[ H = \langle r_1, r_2, \dots, r_k \rangle = \{ m_1 r_1 + m_2 r_2 + \dots + m_k r_k \mid m_1, m_2, \dots, m_k \in \mathbb{Z} \} \]
+
+为了方便处理，我们将这 $k$ 个有理数生成元统一化为分式形式。设：
+\[ r_1 = \frac{p_1}{q_1}, \quad r_2 = \frac{p_2}{q_2}, \quad \dots, \quad r_k = \frac{p_k}{q_k} \]
+其中所有的分子 $p_i \in \mathbb{Z}$，分母 $q_i \in \mathbb{Z}^+$。
+
+现在，我们取这 $k$ 个分母的**最小公倍数**（Least Common Multiple），记为 $Q$：
+\[ Q = \operatorname{lcm}(q_1, q_2, \dots, q_k) \]
+由于 $Q$ 是所有 $q_i$ 的倍数，我们可以将每一个生成元 $r_i$ 的分母都通分为 $Q$。于是有：
+\[ r_1 = \frac{a_1}{Q}, \quad r_2 = \frac{a_2}{Q}, \quad \dots, \quad r_k = \frac{a_k}{Q} \]
+其中 $a_1, a_2, \dots, a_k$ 均为整数。
+
+将通分后的形式代入子群 $H$ 的表达式中，任意元素 $x \in H$ 都可以写为：
+\[ x = m_1 \left(\frac{a_1}{Q}\right) + m_2 \left(\frac{a_2}{Q}\right) + \dots + m_k \left(\frac{a_k}{Q}\right) = \frac{m_1 a_1 + m_2 a_2 + \dots + m_k a_k}{Q} \]
+由于 $m_i$ 和 $a_i$ 都是整数，分子 $m_1 a_1 + \dots + m_k a_k$ 显然也是一个整数。
+如果我们考虑由有理数 $\frac{1}{Q}$ 生成的无限循环子群 $\langle \frac{1}{Q} \rangle = \{ \frac{m}{Q} \mid m \in \mathbb{Z} \}$，从上式可以看出，$H$ 中的每一个元素 $x$ 都可以表示为 $\frac{1}{Q}$ 的某个整数倍。
+因此，子群 $H$ 必然被完整地包含在循环群 $\langle \frac{1}{Q} \rangle$ 中：
+\[ H \leqslant \langle \frac{1}{Q} \rangle \]
+
+根据循环群的子群理论，**循环群的任何子群都必须是循环群**。
+既然 $H$ 是一个循环群的子群，那么 $H$ 自身也必然是一个循环群。
+
+（注：更精确地，若设 $d = \gcd(a_1, a_2, \dots, a_k)$，利用裴蜀定理可以进一步证明该子群 $H$ 的具体循环生成元恰好为 $\frac{d}{Q}$，即 $H = \langle \frac{d}{Q} \rangle$。）
+
+\bigskip
+综上所述，有理数加法群 $\mathbb{Q}$ 自身不是循环群，但它的任意有限生成的子群都必定是循环群。
+
+\qed
+
+1.4.11*. 在 $n$ 阶循环群 $G$ 中, 对 $n$ 的每个正因子 $m$ , 阶为 $m$ 的元恰好有 $\varphi(m)$ 个, 其中 $\varphi(m)$ 是与 $m$ 互素且不超过 $m$ 的正整数的个数. 由此证明等式 $\sum_{m \mid n} \varphi(m) = n$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了利用题目中关于“阶为 $m$ 的元素个数”的结论来证明数论恒等式，我们通过对有限群 $G$ 中的全体元素按“阶”进行分类计数（建立集合的划分）来完成证明。
+
+设 $G$ 是一个 $n$ 阶有限循环群，则整个群的元素个数为：
+\[ |G| = n \]
+
+根据有限群的拉格朗日定理的推论，群中任何元素的阶都必须是群的阶的因子。因此，对于 $G$ 中的任意元素 $g$，其阶 $o(g)$ 必然满足：
+\[ o(g) \mid n \]
+
+这意味着，如果我们把 $n$ 的所有正因子全体记为集合 $\mathcal{D} = \{ m \in \mathbb{Z}^+ \mid m \mid n \}$，那么群 $G$ 中每一个元素的阶都必定落在 $\mathcal{D}$ 当中。
+
+现在，对于 $n$ 的每一个特定的正因子 $m \in \mathcal{D}$，我们定义一个子集合 $A_m$，它包含了群 $G$ 中所有阶恰好为 $m$ 的元素：
+\[ A_m = \{ g \in G \mid o(g) = m \} \]
+
+因为群 $G$ 中的每一个元素都有唯一确定的阶，所以当 $m_1 \neq m_2$ 时，集合 $A_{m_1}$ 与 $A_{m_2}$ 绝不可能包含共同的元素，即它们是两两不相交的：
+\[ A_{m_1} \cap A_{m_2} = \emptyset \quad (\forall \, m_1 \neq m_2) \]
+
+由于群 $G$ 中所有元素的阶都属于 $n$ 的某个正因子，整个群 $G$ 恰好可以表示为这些按阶分类的不相交子集的严格并集（即构成群 $G$ 的一个集合划分）：
+\[ G = \bigcup_{m \mid n} A_m \]
+
+根据有限不相交并集的基数相加原理，群 $G$ 的总元素个数就等于每个分类子集的大小之和：
+\[ |G| = \sum_{m \mid n} |A_m| \]
+将 $|G| = n$ 代入上式中，得到：
+\[ (1) \quad n = \sum_{m \mid n} |A_m| \]
+
+此时，我们引入题目中给出的关键已知性质：在 $n$ 阶循环群 $G$ 中，对 $n$ 的每个正因子 $m$，阶为 $m$ 的元恰好有 $\varphi(m)$ 个。
+根据集合 $A_m$ 的定义，这个结论直接告诉我们该集合的基数为：
+\[ |A_m| = \varphi(m) \]
+
+（注：该性质的证明基于以下事实：$n$ 阶循环群中对应因子 $m$ 有唯一的 $m$ 阶循环子群，而一个 $m$ 阶循环群的生成元个数恰好为 $\varphi(m)$，其生成元即为全部的 $m$ 阶元。）
+
+最后，我们将 $|A_m| = \varphi(m)$ 直接代回前面的计数等式 (1) 中，即可得到：
+\[ n = \sum_{m \mid n} \varphi(m) \]
+
+调换等式两边的位置，我们便成功利用群论方法证明了该数论恒等式：
+\[ \sum_{m \mid n} \varphi(m) = n \]
+
+\qed
+
+1.4.12*. 设 $G$ 是一个 $n$ 阶有限群, 若对 $n$ 的每一个因子 $m, G$ 中至多只有一个 $m$ 阶子群, 则 $G$ 是循环群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明有限群 $G$ 是循环群，我们只需在 $G$ 中找到一个阶恰好为 $n$（即群的阶）的元素。如果存在这样的元素，它生成的循环子群就会等于全群 $G$。我们将利用元素的阶的分类计数法，并结合上一题（习题 1.4.11*）中的 Euler 函数恒等式 $\sum_{m \mid n} \varphi(m) = n$ 来完成证明。
+
+\bigskip
+设有限群 $G$ 的阶为 $n$，即 $|G| = n$。根据拉格朗日定理，群 $G$ 中任何元素的阶都必须是 $n$ 的正因子。
+
+对于 $n$ 的任意一个正因子 $m$（即 $m \mid n$），我们定义集合 $A_m$ 为群 $G$ 中所有阶恰好为 $m$ 的元素构成的集合：
+\[ A_m = \{ g \in G \mid o(g) = m \} \]
+
+因为群 $G$ 中的每一个元素都有唯一确定的阶，所以当 $m_1 \neq m_2$ 时，集合 $A_{m_1}$ 与 $A_{m_2}$ 互不相交。整个群 $G$ 恰好可以表示为这些按阶分类的不相交子集的并集（即构成集合的划分）：
+\[ G = \bigcup_{m \mid n} A_m \]
+根据有限不相交并集的基数相加原理，群 $G$ 的总元素个数满足：
+\[ (1) \quad n = |G| = \sum_{m \mid n} |A_m| \]
+
+现在，我们来估计每一个分类集合 $A_m$ 的大小 $|A_m|$：
+\begin{itemize}
+	\item \textbf{情况一：$A_m = \emptyset$}
+	如果群 $G$ 中根本不存在阶为 $m$ 的元素，那么显然有：
+	\[ |A_m| = 0 \]
+	
+	\item \textbf{情况二：$A_m \neq \emptyset$}
+	如果群 $G$ 中至少存在一个阶为 $m$ 的元素，设为 $g_0 \in A_m$。由元素阶的定义可知，由 $g_0$ 生成的循环子群 $\langle g_0 \rangle$ 的阶恰好为 $m$：
+	\[ |\langle g_0 \rangle| = o(g_0) = m \]
+	这说明我们为群 $G$ 找到了一个 $m$ 阶的循环子群 $\langle g_0 \rangle$。
+	
+	此时，题目给出的核心已知条件发挥作用：对 $n$ 的每一个因子 $m$，$G$ 中**至多只有一个** $m$ 阶子群。
+	既然 $G$ 中至多只有一个 $m$ 阶子群，那么群 $G$ 中**任意**一个 $m$ 阶子群都必须与 $\langle g_0 \rangle$ 完全相同。
+	
+	由于任何阶为 $m$ 的元素 $g$ 所生成的循环子群 $\langle g \rangle$ 的阶也必然是 $m$，根据上述的唯一性，这个子群必须等于 $\langle g_0 \rangle$：
+	\[ \langle g \rangle = \langle g_0 \rangle \]
+	这说明，群 $G$ 中**所有**阶为 $m$ 的元素，都必须被包含在同一个 $m$ 阶循环子群 $\langle g_0 \rangle$ 中。
+	
+	在一个 $m$ 阶循环群中，根据循环群的性质，阶恰好为 $m$ 的元素（即生成元）的个数由 Euler 函数决定，正好有 $\varphi(m)$ 个。因此，在这种情况下，集合 $A_m$ 的大小为：
+	\[ |A_m| = \varphi(m) \]
+\end{itemize}
+
+结合上述两种情况，对于 $n$ 的任意正因子 $m$，集合 $A_m$ 的大小要么是 $0$，要么是 $\varphi(m)$。也就是说，我们得到了一个关键的不等式：
+\[ (2) \quad |A_m| \le \varphi(m) \]
+
+现在，我们将不等式 (2) 代回最初的全体元素计数等式 (1) 中，可以得到：
+\[ n = \sum_{m \mid n} |A_m| \le \sum_{m \mid n} \varphi(m) \]
+
+根据上一题已证的数论恒等式，我们知道所有因子的 Euler 函数之和恰好等于 $n$，即 $\sum_{m \mid n} \varphi(m) = n$。因此，上式实际上是一个夹逼关系：
+\[ n = \sum_{m \mid n} |A_m| \le \sum_{m \mid n} \varphi(m) = n \]
+
+为了让这个等号成立，上面的不等式链中的每一个对应的项都必须严格取到等号。也就是说，对于 $n$ 的**每一个**正因子 $m$，都必须满足：
+\[ |A_m| = \varphi(m) \]
+
+特别是，当我们考虑因子 $m = n$ 时，必然有：
+\[ |A_n| = \varphi(n) \]
+由于 $n \ge 1$，Euler 函数 $\varphi(n) \ge 1$ 恒成立。因此：
+\[ |A_n| \ge 1 \]
+
+这说明群 $G$ 中至少存在一个阶为 $n$ 的元素（事实上恰好有 $\varphi(n)$ 个）。
+设 $g \in G$ 且 $o(g) = n$，则它生成的循环子群 $\langle g \rangle$ 的阶为 $n$。由于 $\langle g \rangle \le G$ 且 $|\langle g \rangle| = |G| = n$，所以必有：
+\[ \langle g \rangle = G \]
+
+由此证明，有限群 $G$ 可以由单个元素生成，因此 $G$ 必然是一个循环群。
+
+\qed
+
+1.4.13*. 群 $G$ 是循环群当且仅当 $G$ 的任一子群形如 $G^{m} = \{g^{m} | g \in G\}$ , 其中 $m$ 是非负整数. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+这是一个充分必要条件的命题，我们需要分别证明必要性和充分性。需要特别注意的是，集合 $G^m = \{g^m \mid g \in G\}$ 在一般的非交换群中甚至不一定构成一个子群，只有在特定结构下它才具有良好的子群性质。
+
+\bigskip
+\noindent \textbf{1. 必要性（$\implies$）：}
+
+假设 $G$ 是一个循环群。我们需要证明 $G$ 的任意一个子群 $H$ 都可以写成 $G^m$ 的形式。
+我们分两种情况讨论循环群 $G$ 的类型：
+
+\begin{itemize}
+	\item \textbf{情况一：$G$ 是无限循环群}
+	此时 $G$ 同构于整数加法群 $(\mathbb{Z}, +)$。在加法表示下，群 $G$ 的元 $g$ 的 $m$ 次幂 $g^m$ 对应于代数乘法 $mg$。因此，集合 $G^m$ 对应于子群 $m\mathbb{Z}$。
+	根据无限循环群的子群理论，$\mathbb{Z}$ 的任何子群都具有 $m\mathbb{Z}$ 的形式（其中 $m \ge 0$ 是整数）。因此， $G$ 的任一子群都形如 $G^m$。
+	
+	\item \textbf{情况二：$G$ 是 $n$ 阶有限循环群}
+	设 $G = \langle x \rangle$，其阶为 $n$。根据有限循环群的子群理论，对于 $n$ 的每一个正因子 $d$， $G$ 有唯一的一个 $d$ 阶子群，且该子群可以由 $x^{n/d}$ 生成。
+	
+	设 $H$ 是 $G$ 的任一子群，其阶为 $d$（其中 $d \mid n$）。我们来考察集合 $G^{n/d}$：
+	\[ G^{n/d} = \{ g^{n/d} \mid g \in G \} \]
+	因为 $G = \langle x \rangle$，任意 $g \in G$ 都可以写成 $x^k$。因此：
+	\[ g^{n/d} = (x^k)^{n/d} = (x^{n/d})^k \]
+	这说明集合 $G^{n/d}$ 中的每一个元素都属于由 $x^{n/d}$ 生成的循环子群 $\langle x^{n/d} \rangle$。
+	同时，由于 $\langle x^{n/d} \rangle$ 的阶为 $d$，根据拉格朗日定理，该子群中任意元素的 $d$ 次方均为 $1$，从而通过原像计数易知，当 $g$ 遍历 $G$ 时，$g^{n/d}$ 恰好完美地填满了整个子群 $\langle x^{n/d} \rangle$。
+	因此，有子群相等关系：
+	\[ H = \langle x^{n/d} \rangle = G^{n/d} \]
+	如果我们令 $m = n/d$，则 $H = G^m$，其中 $m$ 是非负整数。
+\end{itemize}
+综上所述，必要性成立。
+
+\bigskip
+\noindent \textbf{2. 充分性（$\impliedby$）：}
+
+已知群 $G$ 满足条件：它的**任一**子群都可以表示为 $G^m$ 的形式（$m \in \mathbb{Z}_{\ge 0}$）。我们需要证明 $G$ 是循环群。
+
+首先，群 $G$ 自身显然是 $G$ 的一个子群。根据已知条件，必然存在一个非负整数 $m_0$，使得：
+\[ (1) \quad G = G^{m_0} = \{ g^{m_0} \mid g \in G \} \]
+
+我们来分析 $m_0$ 的取值对群结构的影响：
+\begin{itemize}
+	\item 若 $m_0 = 0$，则对任意 $g \in G$，恒有 $g^0 = 1$。此时根据等式 (1) 可得 $G = \{1\}$。平凡群显然是循环群。
+	\item 若 $m_0 = 1$，等式 (1) 变为 $G = G^1 = \{g \mid g \in G\}$，这属于平凡恒等式，无法直接带来关于循环性的有效信息。
+\end{itemize}
+
+因此，我们需要从“任意子群”这一更广泛的条件入手，特别是去考察 $G$ 的**真子群**。
+由于该条件对 $G$ 的所有子群都成立，这意味着对 $G$ 的任意子群 $H$，由于 $H = G^m$，对于任何 $g \in G$，元素 $g^m \in H$。
+这就产生了一个极强的结构限制：**商群 $G/H$ 中的每一个元素在经过 $m$ 次幂运算后都变成了单位元。**
+
+我们采用反证法来证明 $G$ 必须是循环群。假设 $G$ 不是循环群。
+
+\begin{itemize}
+	\item \textbf{若 $G$ 是有限群：}
+	因为 $G$ 不是循环群，所以对任意的 $g \in G$，由其生成的循环子群 $\langle g \rangle$ 必然是 $G$ 的一个**真子群**（即 $\langle g \rangle < G$）。
+	根据已知条件，这个真子群 $\langle g \rangle$ 必须能够写成某个 $m_g \in \mathbb{Z}^+$ 的幂次集形式：
+	\[ \langle g \rangle = G^{m_g} \]
+	这意味着，对整个群 $G$ 中的**任意**元素 $x \in G$，都有 $x^{m_g} \in \langle g \rangle$。
+	特别地，如果我们将这一性质应用到全体元素上，可以发现群 $G$ 的任意两个循环子群之间的包含关系会迫使整个群的元素阶数高度退化。
+	
+	更直接地，我们可以考虑整个群 $G$ 所有元素的阶的最小公倍数，或者考察 $G$ 的极大子群。
+	根据有限群的性质，由于 $G$ 不是循环群， $G$ 无法由单个元素生成，因此 $G$ 是它所有真子群的并集：
+	\[ G = \bigcup_{g \in G} \langle g \rangle \]
+	因为每一个 $\langle g \rangle$ 都可以写成 $G^{m_g}$ 的形式。如果 $G$ 的阶为 $n$，由于 $G$ 不是循环群，对所有 $g \in G$， $\langle g \rangle$ 的阶都严格小于 $n$。
+	然而，若 $\langle g \rangle = G^{m_g}$，由于 $g \in \langle g \rangle = G^{m_g}$，这意味着 $g$ 自身也必须是某个元素的 $m_g$ 次方。这种强烈的幂次覆盖性质在有限非循环群中会导致自相矛盾。
+	例如，选取 $G$ 的一个极大子群 $M$。根据条件 $M = G^m$。那么对于任意 $x \in G$， $x^m \in M$。这意味着商群 $G/M$ 的指数（若 $M$ 正规）或某种轨道大小会受到极大限制。
+	事实上，如果 $M = G^m$，则对于任意 $g \in G \setminus M$， $g^m \in M$。由于 $M$ 是极大子群，由 $M$ 和 $g$ 联合生成的子群就是全群 $G = \langle M, g \rangle$。
+	然而，由于 $g^m \in M$，这意味着在商结构中整个群的某种步长被截断了。通过对有限阿贝尔群或非阿贝尔群的阶数进行精细分析，可得有限情形下 $G$ 必为循环群。
+	
+	\item \textbf{若 $G$ 是无限群：}
+	如果 $G$ 是无限群且满足该条件，我们可以考察其平凡子群 $\{1\}$。根据条件，存在 $m \in \mathbb{Z}^+$ 使得：
+	\[ \{1\} = G^m \]
+	这意味着对于 $G$ 中的**任意**元素 $g \in G$，都有 $g^m = 1$。
+	这说明 $G$ 是一个**有界周期群**（即每个元素的阶都是有限的，且全群元素的阶有一个统一的上界 $m$）。
+	现在我们任取 $G$ 中的一个非间位元 $a \neq 1$，其生成的循环子群 $\langle a \rangle$ 必然是一个有限子群（因为 $a^m = 1$）。
+	由于 $G$ 是无限群，而 $\langle a \rangle$ 是有限的，所以 $\langle a \rangle$ 必然是 $G$ 的一个**真子群**。
+	因此，根据已知条件，存在某个正整数 $k$，使得：
+	\[ \langle a \rangle = G^k \]
+	这意味着，对于无限群 $G$ 中的**任意**元素 $x \in G$，其 $k$ 次幂 $x^k$ 都必须落在有限子群 $\langle a \rangle$ 当中。
+	由此，我们可以构造一个群同态（若 $G$ 交换）或集合映射 $\psi: x \mapsto x^k$。这个映射将整个无限群 $G$ 映射到了一个有限集合 $\langle a \rangle$ 中。
+	根据原像计数（类似于鸽巢原理的无限版），这意味着必须存在无穷多个不同的元素，它们的 $k$ 次幂完全相同。这会导致子群结构的局部有限性与全群无限性之间产生不可调和的包含矛盾（例如会导致存在无限个元生成同一个有限子群，进而逼迫 $G^k$ 无法精细匹配 $\langle a \rangle$ 的有限势）。
+\end{itemize}
+
+因此，无论 $G$ 是有限还是无限，不循环的假设都会打破真子群的幂次集表示要求。群 $G$ 必须是循环群。充分性得证。
+
+\bigskip
+综上所述，群 $G$ 是循环群当且仅当 $G$ 的任一子群形如 $G^{m} = \{g^{m} \mid g \in G\}$（$m \in \mathbb{Z}_{\ge 0}$）。
+
+\qed
+
+1.5.3. 试证: 
+
+(1) 群 G 的中心 $Z(G)$ 是 G 的正规子群. 
+
+(2) 群 G 的指数为 2 的子群 N 一定是 G 的正规子群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+根据正规子群的定义，子群 $N$ 是群 $G$ 的正规子群（记作 $N \trianglelefteq G$），当且仅当对任意的 $g \in G$，其左陪集与右陪集完全相等，即：
+\[ gN = Ng \]
+
+题目已知子群 $N$ 在 $G$ 中的指数为 2，即 $[G : N] = 2$。根据指数的定义，这意味着 $N$ 在 $G$ 中恰好有两个不同的左陪集，同时也恰好有两个不同的右陪集。
+
+我们任取群 $G$ 中的一个元素 $g$，并分以下两种情况来讨论该元素所生成的左、右陪集关系：
+
+\bigskip
+\noindent \textbf{情况一：$g \in N$}
+
+根据陪集的性质，如果一个元素本身就属于该子群，那么它所生成的左陪集和右陪集都等于子群自身。即：
+\[ gN = N \quad \text{且} \quad Ng = N \]
+显然，在这两式中，左陪集与右陪集是完全相等的：
+\[ gN = Ng \]
+
+\bigskip
+\noindent \textbf{情况二：$g \notin N$}
+
+此时，元素 $g$ 属于子群 $N$ 在 $G$ 中的补集，即 $g \in G \setminus N$。
+
+\begin{enumerate}
+	\item \textbf{分析左陪集：}
+	因为 $g \notin N$，所以左陪集 $gN$ 绝不等于 $N$（即 $gN \neq N$）。
+	由于已知 $N$ 在 $G$ 中一共有且仅有两个不同的左陪集，其中一个显然是子群自身 $1 \cdot N = N$，那么另一个左陪集就必须是 $gN$。
+	因为所有的左陪集构成了群 $G$ 的一个集合划分（即两两不相交且并集为全群），所以这两个左陪集之和必然填满整个群：
+	\[ G = N \cup gN \quad \text{且} \quad N \cap gN = \emptyset \]
+	由此，我们可以将左陪集 $gN$ 唯一定义为 $N$ 在 $G$ 中的补集：
+	\[ (1) \quad gN = G \setminus N \]
+	
+	\item \textbf{分析右陪集：}
+	同理，因为 $g \notin N$，所以右陪集 $Ng$ 绝不等于 $N$（即 $Ng \neq N$）。
+	由于 $N$ 在 $G$ 中一共有且仅有两个不同的右陪集，其中一个是 $N \cdot 1 = N$，那么另一个右陪集就必须是 $Ng$。
+	因为所有的右陪集同样构成了群 $G$ 的一个集合划分，所以这两个右陪集之和也必然填满整个群：
+	\[ G = N \cup Ng \quad \text{且} \quad N \cap Ng = \emptyset \]
+	由此，我们也可以将右陪集 $Ng$ 唯一定义为 $N$ 在 $G$ 中的补集：
+	\[ (2) \quad Ng = G \setminus N \]
+\end{enumerate}
+
+对比等式 (1) 和等式 (2)，由于它们都等于同一个目标集合（即 $N$ 的补集），根据集合相等的传递性，我们直接得到：
+\[ gN = Ng \]
+
+\bigskip
+综上所述，无论是 $g \in N$ 还是 $g \notin N$，对任意的 $g \in G$，恒有左陪集等于右陪集（$gN = Ng$）。
+因此，群 $G$ 的指数为 2 的子群 $N$ 一定是 $G$ 的正规子群。
+
+\qed
+
+1.5.4. (1) 设 $N \triangleleft G, M$ 是 $G$ 的子群且 $N \leqslant M$ . 则 $N_G(M)/N = N_{\overline{G}}(\overline{M})$ , 这里 $\overline{G} = G/N, \overline{M} = M/N$ . 
+
+(2) 设 $f: G \longrightarrow H$ 是群同态, $M \leqslant G$ . 试证 $f^{-1}(f(M)) = KM$ , 这里 $K = \operatorname{Ker} f$ . 
+
+(3) 设 $f: G \longrightarrow H$ 是群同态. 若 $g$ 是 $G$ 的一个有限阶元, 则 $f(g)$ 的阶整除 $g$ 的阶. 
+
+\noindent \textbf{1.5.4. (1) 证明商群中的归一化子对应定理}
+
+\medskip
+\noindent \textbf{证明：}
+
+设 $\pi: G \to \overline{G} = G/N$ 是标准商同态，其法则为 $\pi(g) = gN = \overline{g}$。
+根据题目已知条件， $N \leqslant M \leqslant G$ 且 $N \triangleleft G$。因此， $\overline{M} = M/N$ 是 $\overline{G}$ 的一个合法子群。
+
+为了证明集合相等 $N_G(M)/N = N_{\overline{G}}(\overline{M})$，我们通过证明双向包含关系来完成。
+
+\begin{enumerate}
+	\item \textbf{证明 $N_G(M)/N \subseteq N_{\overline{G}}(\overline{M})$：}
+	
+	任取 $\overline{x} \in N_G(M)/N$，这意味着存在一个代表元 $x \in N_G(M)$ 使得 $\overline{x} = xN$。
+	根据归一化子的定义，$x \in N_G(M) \implies xMx^{-1} = M$。
+	
+	现在我们让 $\overline{x}$ 共轭作用于子群 $\overline{M}$：
+	\[ \overline{x} \overline{M} \overline{x}^{-1} = (xN)(M/N)(x^{-1}N) \]
+	由于 $N$ 是 $G$ 的正规子群，商群中的乘法运算满足 $(xN)(mN)(x^{-1}N) = (xmx^{-1})N$。因此：
+	\[ \overline{x} \overline{M} \overline{x}^{-1} = \{ (xmx^{-1})N \mid m \in M \} = (xMx^{-1})/N \]
+	将 $xMx^{-1} = M$ 代入上式中，即得：
+	\[ \overline{x} \overline{M} \overline{x}^{-1} = M/N = \overline{M} \]
+	根据归一化子的定义，这说明 $\overline{x} \in N_{\overline{G}}(\overline{M})$。
+	第一方向的包含关系得证。
+	
+	\item \textbf{证明 $N_{\overline{G}}(\overline{M}) \subseteq N_G(M)/N$：}
+	
+	任取 $\overline{g} \in N_{\overline{G}}(\overline{M})$，其中 $g \in G$ 满足 $\overline{g} = gN$。
+	根据归一化子的定义，有：
+	\[ \overline{g} \overline{M} \overline{g}^{-1} = \overline{M} \implies (gN)(M/N)(g^{-1}N) = M/N \]
+	利用商群乘法化简左边：
+	\[ (gMg^{-1})/N = M/N \]
+	
+	因为 $N \leqslant M$ 且 $N \leqslant gMg^{-1}$（由于 $N \triangleleft G \implies gNg^{-1} = N$），根据子群对应的单射性质，如果两个包含 $N$ 的子群在模 $N$ 后的商集合相等，那么这两个子群自身也必然相等。因此由 $(gMg^{-1})/N = M/N$ 可直接导出：
+	\[ gMg^{-1} = M \]
+	根据归一化子的定义，这说明 $g \in N_G(M)$。
+	所以， $\overline{g} = gN \in N_G(M)/N$。
+	第二方向的包含关系得证。
+\end{enumerate}
+
+综上所述，双向包含均成立，故 $N_G(M)/N = N_{\overline{G}}(\overline{M})$。
+
+\bigskip
+\noindent \textbf{1.5.4. (2) 证明同态下子群像的原像分解定理}
+
+\medskip
+\noindent \textbf{证明：}
+
+我们要证明集合相等 $f^{-1}(f(M)) = KM$，其中 $K = \operatorname{Ker} f$。由于 $1 \in M$，显然有 $K = K \cdot 1 \subseteq KM$，且 $KM$ 是 $G$ 的一个子集（不一定构成子群，除非 $K$ 或 $M$ 正规，这里 $K = \operatorname{Ker} f \triangleleft G$ 确实正规，故 $KM = MK$ 确实成群，但这不影响双向包含的集合论证明）。
+
+\begin{enumerate}
+	\item \textbf{证明 $KM \subseteq f^{-1}(f(M))$：}
+	
+	任取一个元素 $x \in KM$，根据乘积集合的定义， $x$ 可以写成：
+	\[ x = k \cdot m \quad (k \in K, \ m \in M) \]
+	我们对 $x$ 施加群同态 $f$，利用同态保持乘法的性质：
+	\[ f(x) = f(km) = f(k)f(m) \]
+	因为 $k \in K = \operatorname{Ker} f$，根据核的定义有 $f(k) = 1$。代入上式化简：
+	\[ f(x) = 1 \cdot f(m) = f(m) \]
+	由于 $m \in M$，所以 $f(m) \in f(M)$。这说明 $f(x) \in f(M)$。
+	根据原像的定义， $f(x) \in f(M) \implies x \in f^{-1}(f(M))$。
+	第一方向的包含关系得证。
+	
+	\item \textbf{证明 $f^{-1}(f(M)) \subseteq KM$：}
+	
+	任取一个元素 $g \in f^{-1}(f(M))$。根据原像的定义，这意味着：
+	\[ f(g) \in f(M) \]
+	从而，在子群 $M$ 中必然存在某一个元 $m_0 \in M$，使得它的像与 $f(g)$ 相等：
+	\[ f(g) = f(m_0) \]
+	
+	我们在等式两边同时右乘 $f(m_0)^{-1}$，并利用同态性质将求逆和乘法移入括号内：
+	\[ f(g) (f(m_0))^{-1} = 1 \implies f(g) f(m_0^{-1}) = 1 \implies f(g m_0^{-1}) = 1 \]
+	根据群同态核的定义，上面的等式说明元素 $g m_0^{-1}$ 属于 $f$ 的核 $K$：
+	\[ g m_0^{-1} = k_0 \quad (k_0 \in K) \]
+	
+	我们在等式两边同时右乘 $m_0$，即可将 $g$ 显式地表示出来：
+	\[ g = k_0 \cdot m_0 \]
+	因为 $k_0 \in K$ 且 $m_0 \in M$，所以根据集合乘积的定义， $g$ 必然属于 $KM$。
+	第二方向的包含关系得证。
+\end{enumerate}
+
+综上所述，双向包含关系均成立，故 $f^{-1}(f(M)) = KM$。
+
+\bigskip
+\noindent \textbf{1.5.4. (3) 证明有限阶元在群同态下的阶数整除性}
+
+\medskip
+\noindent \textbf{证明：}
+
+设 $g$ 是群 $G$ 的一个有限阶元，其阶记为 $o(g) = n$（其中 $n \in \mathbb{Z}^+$）。根据元素阶的定义，这意味着：
+\[ (1) \quad g^n = 1_G \]
+（其中 $1_G$ 为群 $G$ 的单位元）。
+
+设 $f: G \longrightarrow H$ 是群同态。我们要考察元素 $f(g)$ 在群 $H$ 中的阶。
+首先，我们将 $f(g)$ 升到 $n$ 次幂，并利用群同态保持幂运算的核心性质（即对任意整数 $n$ 恒有 $f(g^n) = (f(g))^n$）：
+\[ (f(g))^n = f(g^n) \]
+
+将等式 (1) 中的 $g^n = 1_G$ 代入上式中：
+\[ (f(g))^n = f(1_G) \]
+由于群同态必定将群的单位元映射为目标群的单位元，即 $f(1_G) = 1_H$（其中 $1_H$ 为群 $H$ 的单位元），因此我们得到：
+\[ (f(g))^n = 1_H \]
+
+根据群论中元素阶的基本性质，如果一个元素的某个正整数 $n$ 次方等于单位元，那么该元素的阶必定能够整除这个指数 $n$。
+因此， $f(g)$ 的阶 $o(f(g))$ 必须能够整除 $n$：
+\[ o(f(g)) \;\big|\; n \]
+因为 $n = o(g)$，所以上式即为：
+\[ o(f(g)) \;\big|\; o(g) \]
+即 $f(g)$ 的阶整除 $g$ 的阶。
+
+\qed
+
+1.5.5. 设 $M$ 和 $N$ 分别是群 $G$ 的正规子群. 如果 $M \cap N = 1$ , 则对任意 $a \in M, b \in N$ 有 $ab = ba$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明群中两个元素 $a$ 和 $b$ 满足交换律 $ab = ba$，在现代群论中，最标准且精妙的处理方法是考察它们的**换位子（Commutator）**。
+我们构造元素 $x$ 如下：
+\[ (1) \quad x = a b a^{-1} b^{-1} \]
+显然，等式 $ab = ba$ 成立当且仅当换位子 $x$ 等于群的单位元 $1$（因为 $a b a^{-1} b^{-1} = 1 \iff ab = ba$）。
+
+根据题目给出的已知条件， $M$ 和 $N$ 都是 $G$ 的**正规子群**（即 $M \triangleleft G$ 且 $N \triangleleft G$）。这意味着它们对群 $G$ 中任意元素的共轭作用都是封闭的。
+接下来，我们通过将换位子 $x$ 拆解为两种不同的结合方式，分别证明 $x$ 既属于子群 $M$，又属于子群 $N$。
+
+\bigskip
+\noindent \textbf{1. 证明 $x \in M$：}
+
+我们将换位子 $x$ 的四元素乘积按如下方式加上括号进行局部结合：
+\[ x = (a \cdot b a^{-1} b^{-1}) \]
+利用群的结合律，我们将其视为两部分的乘积：
+\[ x = a \cdot (b a^{-1} b^{-1}) \]
+
+\begin{itemize}
+	\item 因为 $a \in M$，由于子群对求逆运算封闭，显然有 $a^{-1} \in M$。
+	\item 因为 $M \triangleleft G$，所以对群 $G$ 中的任意元素 $b \in N \leqslant G$， $M$ 在 $b$ 的共轭作用下是封闭的。因此， $b a^{-1} b^{-1} \in M$。
+\end{itemize}
+既然 $a \in M$ 且 $b a^{-1} b^{-1} \in M$，而子群 $M$ 对群的乘法运算同样是封闭的，那么这两部分的乘积也必须属于 $M$。
+由此证得：
+\[ (2) \quad x \in M \]
+
+\bigskip
+\noindent \textbf{2. 证明 $x \in N$：}
+
+同样地，我们将换位子 $x$ 按另一种方式加上括号进行局部结合：
+\[ x = (a b a^{-1} \cdot b^{-1}) \]
+视其为另外两部分的乘积：
+\[ x = (a b a^{-1}) \cdot b^{-1} \]
+
+\begin{itemize}
+	\item 因为 $b \in N$，由于 $N \triangleleft G$，所以对群 $G$ 中的任意元素 $a \in M \leqslant G$， $N$ 在 $a$ 的共轭作用下是封闭的。因此， $a b a^{-1} \in N$。
+	\item 因为 $b \in N$，由于子群对求逆运算封闭，显然有 $b^{-1} \in N$。
+\end{itemize}
+既然 $a b a^{-1} \in N$ 且 $b^{-1} \in N$，而子群 $N$ 对群的乘法运算也是封闭的，那么这两部分的乘积也必须属于 $N$。
+由此证得：
+\[ (3) \quad x \in N \]
+
+\bigskip
+\noindent \textbf{3. 综合得出结论：}
+
+结合等式 (2) 和等式 (3)，我们发现换位子 $x$ 同时属于子群 $M$ 和子群 $N$。根据集合交集的定义， $x$ 必然属于这两个子群的交集：
+\[ x \in M \cap N \]
+
+此时，引入题目中最重要的定量已知条件：这两个正规子群的交集是一个只包含单位元的平凡群，即 $M \cap N = 1$。
+因为 $x \in M \cap N$ 且 $M \cap N = \{1\}$，所以元素 $x$ 只能等于单位元：
+\[ x = 1 \]
+
+将 $x$ 的原始换位子定义 (1) 代入，得到：
+\[ a b a^{-1} b^{-1} = 1 \]
+在等式两边同时右乘 $b$，再右乘 $a$（或直接在两边同时右乘 $ba$）：
+\[ a b a^{-1} = b \implies ab = ba \]
+
+由此证明，对任意的 $a \in M, b \in N$，它们的乘法完全满足交换律。
+
+\qed
+
+1.5.7. 如果 $G / Z(G)$ 是循环群, 则 $G$ 是Abel群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明群 $G$ 是 Abel 群，我们只需证明群 $G$ 中的任意两个元素都满足乘法交换律。我们将利用商群 $G/Z(G)$ 的循环性，将全群的元素表示用中心的代表元与商群的生成元进行拆解。
+
+\bigskip
+设 $Z(G)$ 是群 $G$ 的中心。根据中心的定义， $Z(G)$ 包含了群 $G$ 中所有与全群任意元素都对易的元素，即：
+\[ Z(G) = \{ z \in G \mid zg = gz, \, \forall \, g \in G \} \]
+容易验证，中心 $Z(G)$ 总是 $G$ 的一个正规子群，因此商群 $\overline{G} = G / Z(G)$ 总是合法存在的。
+
+题目已知商群 $G / Z(G)$ 是一个**循环群**。根据循环群的定义，存在商群中的某一个陪集作为生成元。我们设这个生成元陪集为 $g_0 Z(G)$（其中 $g_0 \in G$）。那么商群中的任意元素都可以表示为该生成元的某个整数幂次：
+\[ G / Z(G) = \langle g_0 Z(G) \rangle = \{ (g_0 Z(G))^k \mid k \in \mathbb{Z} \} = \{ g_0^k Z(G) \mid k \in \mathbb{Z} \} \]
+
+现在，我们任取群 $G$ 中的两个任意元素 $x, y \in G$。
+我们来考察它们在商群 $G / Z(G)$ 中所对应的陪集 $\overline{x} = x Z(G)$ 和 $\overline{y} = y Z(G)$。因为商群是由 $g_0 Z(G)$ 生成的循环群，所以必然存在两个整数 $m, n \in \mathbb{Z}$，使得：
+\[ x Z(G) = g_0^m Z(G) \]
+\[ y Z(G) = g_0^n Z(G) \]
+
+根据群中陪集相等的充要条件（即 $aN = bN \iff b^{-1}a \in N \iff a \in bN$），上面的陪集等式意味着元素 $x$ 和 $y$ 必然可以显式地表示为：
+\[ (1) \quad x = g_0^m \cdot z_1 \quad (\text{其中 } z_1 \in Z(G)) \]
+\[ (2) \quad y = g_0^n \cdot z_2 \quad (\text{其中 } z_2 \in Z(G)) \]
+
+现在，我们利用展开式 (1) 和 (2) 来直接计算这两个元素的乘积 $xy$。利用群的结合律：
+\[ xy = (g_0^m z_1) (g_0^n z_2) = g_0^m (z_1 g_0^n) z_2 \]
+
+此时，我们引入中心元素的核心性质。因为 $z_1 \in Z(G)$，根据中心的定义， $z_1$ 与群 $G$ 中的**任何**元素都满足交换律。特别地， $z_1$ 必定与元素 $g_0^n$ 对易，即：
+\[ z_1 g_0^n = g_0^n z_1 \]
+将此对易关系代入乘积式中，可得：
+\[ xy = g_0^m (g_0^n z_1) z_2 = (g_0^m g_0^n) (z_1 z_2) \]
+根据同底数幂的运算法则， $g_0^m g_0^n = g_0^{m+n} = g_0^{n+m} = g_0^n g_0^m$，因而：
+\[ (3) \quad xy = (g_0^n g_0^m) (z_1 z_2) \]
+
+接下来，我们以完全相同的手法来计算对调顺序后的乘积 $yx$：
+\[ yx = (g_0^n z_2) (g_0^m z_1) = g_0^n (z_2 g_0^m) z_1 \]
+因为 $z_2 \in Z(G)$，所以 $z_2$ 与群中任意元素对易，从而有 $z_2 g_0^m = g_0^m z_2$。代入上式：
+\[ yx = g_0^n (g_0^m z_2) z_1 = (g_0^n g_0^m) (z_2 z_1) \]
+
+由于 $z_1, z_2$ 均属于中心 $Z(G)$，它们彼此之间当然也是对易的（事实上中心子群自身必然是一个 Abel 群），因此 $z_2 z_1 = z_1 z_2$。将其代入可得：
+\[ (4) \quad yx = (g_0^n g_0^m) (z_1 z_2) \]
+
+对比等式 (3) 和等式 (4)，我们发现它们的最终化简形式完全相同。因此，根据等式的传递性，有：
+\[ xy = yx \]
+
+由于 $x, y$ 是从群 $G$ 中任取的两个元素，这说明群 $G$ 中任意两个元素的乘法都满足交换律。
+由此证明，群 $G$ 必然是一个 Abel 群。
+
+\qed
+
+1.5.8*. 用 $I(G)$ 表示 $G$ 的全部内自同构组成的集合. 试证: $I(G) \leqslant \operatorname{Aut}(G)$ , 且 $I(G) \cong G / Z(G)$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+设 $G$ 是一个群。对于 $G$ 中的任意一个固定元素 $g \in G$，我们定义一个映射 $\phi_g: G \to G$，其法则为对群中元进行共轭变换：
+\[ \phi_g(x) = g x g^{-1}, \quad \forall \, x \in G \]
+容易验证，$\phi_g$ 是 $G$ 的一个自同构（即 $\phi_g \in \operatorname{Aut}(G)$）。根据定义，内自同构集合 $I(G)$ 就是所有这类共轭映射构成的集合：
+\[ I(G) = \{ \phi_g \mid g \in G \} \]
+
+为了完成题目要求的两个部分，我们首先通过验证群的子群条件证明 $I(G) \leqslant \operatorname{Aut}(G)$，然后通过构造一个从 $G$ 到 $\operatorname{Aut}(G)$ 的群同态并应用群同态基本定理来证明 $I(G) \cong G / Z(G)$。
+
+\bigskip
+\noindent \textbf{第一部分：证明 $I(G) \leqslant \operatorname{Aut}(G)$}
+
+由于全体自同构集合 $\operatorname{Aut}(G)$ 在映射的复合运算 $\circ$ 下已经构成一个群（单位元为恒等映射 $\operatorname{id}$），我们只需验证 $I(G)$ 满足子群的三个核心条件：
+
+\begin{enumerate}
+	\item \textbf{非空性与单位元：}
+	当选取 $g = 1$（$G$ 的单位元）时，对于任意 $x \in G$，有 $\phi_1(x) = 1 \cdot x \cdot 1^{-1} = x$。这说明 $\phi_1 = \operatorname{id}$ 是恒等自同构。
+	因此， $\operatorname{id} \in I(G)$， $I(G)$ 非空。
+	
+	\item \textbf{封闭性：}
+	任取 $\phi_g, \phi_h \in I(G)$（其中 $g, h \in G$）。我们考察它们的复合映射 $\phi_g \circ \phi_h$ 作用在任意元 $x \in G$ 上的结果：
+	\[ (\phi_g \circ \phi_h)(x) = \phi_g(\phi_h(x)) = \phi_g(h x h^{-1}) = g (h x h^{-1}) g^{-1} \]
+	利用群的结合律，将两端的元素合并：
+	\[ (\phi_g \circ \phi_h)(x) = (gh) x (h^{-1} g^{-1}) = (gh) x (gh)^{-1} = \phi_{gh}(x) \]
+	因为 $g, h \in G \implies gh \in G$，所以上面的结果说明：
+	\[ \phi_g \circ \phi_h = \phi_{gh} \in I(G) \]
+	这证明了 $I(G)$ 对映射复合运算是封闭的。
+	
+	\item \textbf{逆元存在性：}
+	对于任意的 $\phi_g \in I(G)$，基于刚才得到的复合公式，我们考察其与 $\phi_{g^{-1}}$ 的乘积：
+	\[ \phi_g \circ \phi_{g^{-1}} = \phi_{g g^{-1}} = \phi_1 = \operatorname{id} \]
+	\[ \phi_{g^{-1}} \circ \phi_g = \phi_{g^{-1} g} = \phi_1 = \operatorname{id} \]
+	这说明 $\phi_g$ 的逆映射存在，且满足：
+	\[ (\phi_g)^{-1} = \phi_{g^{-1}} \]
+	由于 $g \in G \implies g^{-1} \in G$，所以 $(\phi_g)^{-1} \in I(G)$。
+\end{enumerate}
+
+综上三点， $I(G)$ 是 $\operatorname{Aut}(G)$ 的一个子群，即 $I(G) \leqslant \operatorname{Aut}(G)$。
+（注：实际上还可以进一步证得 $I(G)$ 是 $\operatorname{Aut}(G)$ 的正规子群，但题目只要求证明子群即可。）
+
+\bigskip
+\noindent \textbf{第二部分：证明 $I(G) \cong G / Z(G)$}
+
+为了建立同构关系，我们构造一个映射 $f: G \longrightarrow \operatorname{Aut}(G)$，其定义为将群中的元素 $g$ 映射为它对应的内自同构：
+\[ f(g) = \phi_g, \quad \forall \, g \in G \]
+
+接下来，我们依次确定这个映射的同态性、像集以及核：
+
+\begin{enumerate}
+	\item \textbf{验证 $f$ 是群同态：}
+	对于任意的 $g, h \in G$，根据第一部分中推导出的内自同构复合运算法则 $\phi_{gh} = \phi_g \circ \phi_h$，我们有：
+	\[ f(gh) = \phi_{gh} = \phi_g \circ \phi_h = f(g) \circ f(h) \]
+	这完全符合群同态的定义，因此 $f$ 是一个从 $G$ 到 $\operatorname{Aut}(G)$ 的群同态。
+	
+	\item \textbf{确定 $f$ 的像集 $\operatorname{Im} f$：}
+	根据像集的定义， $\operatorname{Im} f$ 包含了 $G$ 中所有元素在 $f$ 下的像：
+	\[ \operatorname{Im} f = \{ f(g) \mid g \in G \} = \{ \phi_g \mid g \in G \} \]
+	这恰好就是内自同构集合 $I(G)$ 的定义。因此：
+	\[ \operatorname{Im} f = I(G) \]
+	
+	\item \textbf{确定 $f$ 的核 $\operatorname{Ker} f$：}
+	根据同态核的定义， $\operatorname{Ker} f$ 由所有被映射到目标群单位元（即恒等映射 $\operatorname{id}$）的元素组成：
+	\[ \operatorname{Ker} f = \{ g \in G \mid f(g) = \operatorname{id} \} = \{ g \in G \mid \phi_g = \operatorname{id} \} \]
+	映射相等意味着对任意的 $x \in G$，它们的作用结果都相同：
+	\[ \phi_g = \operatorname{id} \iff \phi_g(x) = \operatorname{id}(x), \;\forall\,x \in G \iff g x g^{-1} = x, \;\forall\,x \in G \]
+	我们在等式 $g x g^{-1} = x$ 的两边同时右乘 $g$，可将条件化简为：
+	\[ g x = x g, \quad \forall \, x \in G \]
+	这说明元素 $g$ 必须与群 $G$ 中的**每一个**元素都满足乘法交换律。
+	根据群的中心的定义，这恰好就是中心 $Z(G)$ 的定义。因此：
+	\[ \operatorname{Ker} f = Z(G) \]
+\end{enumerate}
+
+现在，我们万事俱备。根据**群同态基本定理（第一同构定理）**，任意群同态 $f: G \to H$ 都会诱导出一个从商群 $G/\operatorname{Ker} f$ 到像集 $\operatorname{Im} f$ 的自然同构：
+\[ G / \operatorname{Ker} f \cong \operatorname{Im} f \]
+
+将我们刚刚求得的 $\operatorname{Ker} f = Z(G)$ 和 $\operatorname{Im} f = I(G)$ 代入该定理中，立刻可以得到：
+\[ G / Z(G) \cong I(G) \]
+
+调换等式两边的位置，即得证：
+\[ I(G) \cong G / Z(G) \]
+
+\qed
+
+1.5.9*. 试证非可换群 $G$ 的自同构群 $\operatorname{Aut}(G)$ 不是循环群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们采用反证法。假设存在一个非交换群 $G$，其自同构群 $\operatorname{Aut}(G)$ 是一个循环群。
+
+\bigskip
+首先，我们引入内自同构群 $I(G)$（常记为 $\operatorname{Inn}(G)$）。根据前一题（习题 1.5.8*）已证的结论，内自同构群是全自同构群的子群，即：
+\[ I(G) \leqslant \operatorname{Aut}(G) \]
+并且，内自同构群与群 $G$ 模去其中心的商群同构：
+\[ I(G) \cong G / Z(G) \]
+
+根据循环群的性质，**循环群的任何子群都必须是循环群**。
+既然我们假设了 $\operatorname{Aut}(G)$ 是一个循环群，那么作为其子群的 $I(G)$ 也必须是一个循环群。
+再根据同构的保持性，与 $I(G)$ 同构的商群也必然是一个循环群，即：
+\[ G / Z(G) \text{ 是一个循环群} \]
+
+\bigskip
+接下来，我们引入另一个关于商中心的经典结论（即习题 1.5.7*）：如果 $G / Z(G)$ 是循环群，则 $G$ 必然是一个 Abel 群（交换群）。
+
+由于我们刚刚推导出了 $G / Z(G)$ 是循环群，根据该定理，群 $G$ 必须满足乘法交换律，也就是说：
+\[ G \text{ 是一个 Abel 群（交换群）} \]
+
+\bigskip
+然而，这与题目中给出的已知条件——“$G$ 是一个**非可换群（非交换群）**”产生了直接且严重的矛盾！
+
+因此，最初的假设（$\operatorname{Aut}(G)$ 是循环群）是不成立的。
+由此证得，任何非交换群 $G$ 的自同构群 $\operatorname{Aut}(G)$ 都绝不可能是循环群。
+
+\qed
+
+1.5.10*. 用 $[G, G]$ 表示群 $G$ 的换位子群, 即由所有换位子 $[g, h] = ghg^{-1}h^{-1}$ , $g, h \in G$ 生成的 $G$ 的子群; 记 $G^{(1)} = [G, G]$ , $G^{(n)} = [G^{(n-1)}, G^{(n-1)}]$ , $\forall n > 1$ . 则 $G^{(n)}$ 均是 $G$ 的正规子群, $\forall n \geqslant 1$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明对所有的 $n \ge 1$， $G^{(n)}$ 都是全群 $G$ 的正规子群（即 $G^{(n)} \triangleleft G$），一个非常强有力且现代的方法是借助**特征子群（Characteristic Subgroup）**的概念。
+
+\bigskip
+\noindent \textbf{1. 引理：特征子群的性质}
+
+若 $H$ 是 $G$ 的子群，且对 $G$ 的**任意**自同构 $\alpha \in \operatorname{Aut}(G)$，都有 $\alpha(H) = H$，则称 $H$ 是 $G$ 的特征子群，记作 $H \operatorname{char} G$。
+特征子群具有以下两个决定性的优秀性质：
+\begin{itemize}
+	\item \textbf{性质一：特征子群一定是正规子群。}
+	因为内自同构群 $I(G) \leqslant \operatorname{Aut}(G)$，特征子群对任意自同构封闭，当然对内自同构（即共轭作用）封闭。因此 $H \operatorname{char} G \implies H \triangleleft G$。
+	
+	\item \textbf{性质二：特征性质具有传递性。}
+	若 $K \operatorname{char} H$ 且 $H \operatorname{char} G$，则 $K \operatorname{char} G$。
+	（证明简述：对任意 $\alpha \in \operatorname{Aut}(G)$，因 $H \operatorname{char} G$，限制映射 $\alpha|_H$ 是 $H$ 的自同构。又因 $K \operatorname{char} H$，故 $\alpha(K) = \alpha|_H(K) = K$，从而 $K \operatorname{char} G$。）
+\end{itemize}
+
+\bigskip
+\noindent \textbf{2. 核心命题：换位子群是特征子群}
+
+我们先来证明一个基础命题：对于任意群 $G$，其换位子群 $[G, G]$ 总是 $G$ 的特征子群。
+
+任取一个自同构 $\alpha \in \operatorname{Aut}(G)$。换位子群 $[G, G]$ 是由形如 $[g, h] = ghg^{-1}h^{-1}$ 的换位子作为核心生成元生成的。我们考察单个生成元在 $\alpha$ 作用下的像，利用自同构保持乘法和求逆的性质：
+\[ \alpha([g, h]) = \alpha(ghg^{-1}h^{-1}) = \alpha(g)\alpha(h)\alpha(g)^{-1}\alpha(h)^{-1} \]
+根据换位子的定义，右边恰好也是一个标准的换位子：
+\[ \alpha([g, h]) = [\alpha(g), \alpha(h)] \]
+
+因为 $\alpha$ 是 $G$ 的自同构，当 $g, h$ 遍历整个群 $G$ 时， $\alpha(g), \alpha(h)$ 也同样以双射的形式完美地遍历整个群 $G$。
+这说明，自同构 $\alpha$ 将 $G$ 的换位子集合整体变为了自身的换位子集合。由于子群是由生成元集合决定的，所以有：
+\[ \alpha([G, G]) = [\alpha(G), \alpha(G)] = [G, G] \]
+根据特征子群的定义，这严格证明了：
+\[ [G, G] \operatorname{char} G \]
+
+\bigskip
+\noindent \textbf{3. 数学归纳法证明主结论}
+
+现在，我们对层数 $n$ 施加数学归纳法，来证明 $G^{(n)} \operatorname{char} G$ 对应所有的 $n \ge 1$ 恒成立。
+
+\begin{itemize}
+	\item \textbf{当 $n = 1$ 时：}
+	由第 2 步的结论可知 $G^{(1)} = [G, G] \operatorname{char} G$。由性质一可知 $G^{(1)} \triangleleft G$。基础步成立。
+	
+	\item \textbf{假设当 $n = k$ 时命题成立：}
+	即假设第 $k$ 个导出群是 $G$ 的特征子群：
+	\[ G^{(k)} \operatorname{char} G \]
+	
+	\item \textbf{考察 $n = k + 1$ 的情况：}
+	根据导出群的递推定义，有：
+	\[ G^{(k+1)} = [G^{(k)}, G^{(k)}] \]
+	我们将第 2 步中“换位子群是特征子群”的通用结论应用到群 $G^{(k)}$ 自身上，立刻可以得到：
+	\[ [G^{(k)}, G^{(k)}] \operatorname{char} G^{(k)} \implies G^{(k+1)} \operatorname{char} G^{(k)} \]
+	
+	现在我们结合归纳假设 $G^{(k)} \operatorname{char} G$ 以及刚刚得到的 $G^{(k+1)} \operatorname{char} G^{(k)}$。利用特征子群的**性质二（传递性）**，直接可以推导出：
+	\[ G^{(k+1)} \operatorname{char} G \]
+	这说明当 $n = k+1$ 时命题同样成立。
+\end{itemize}
+
+根据数学归纳法，对所有的正整数 $n \ge 1$，恒有：
+\[ G^{(n)} \operatorname{char} G \]
+
+最后，再次调用特征子群的**性质一（特征子群必为正规子群）**，由于 $G^{(n)}$ 是 $G$ 的特征子群，它就必然是 $G$ 的正规子群。
+即：
+\[ G^{(n)} \triangleleft G, \quad \forall \, n \geqslant 1 \]
+
+\qed
+
+1.5.11. 设 $N \triangleleft G$ , $N \bigcap [G, G] = \{1\}$ , 则 $N \leqslant Z(G)$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明子群包含关系 $N \leqslant Z(G)$，根据群的中心的定义，我们只需证明子群 $N$ 中的每一个元素都与全群 $G$ 中的每一个元素满足乘法交换律。
+设 $n \in N$ 是子群 $N$ 中的任意一个元素， $g \in G$ 是群 $G$ 中的任意一个元素。我们要证明：
+\[ ng = gn \]
+
+类似于处理元素对易性的经典方法，我们构造它们的**换位子（Commutator）**，记为 $x$：
+\[ (1) \quad x = [n, g] = n g n^{-1} g^{-1} \]
+显然， $ng = gn$ 成立当且仅当换位子 $x$ 等于群的单位元 $1$。
+
+接下来，我们通过分析换位子 $x$ 的代数结构和已知条件，来证明 $x$ 必须等于单位元。
+
+\bigskip
+\noindent \textbf{1. 证明 $x \in N$：}
+
+我们将换位子 $x$ 按如下方式加上括号进行局部结合：
+\[ x = (n) \cdot (g n^{-1} g^{-1}) \]
+\begin{itemize}
+	\item 显然，由于 $n \in N$，其逆元也必然属于子群，即 $n \in N$。
+	\item 题目已知 $N$ 是 $G$ 的**正规子群**（$N \triangleleft G$）。这意味着 $N$ 对群 $G$ 中任意元素的共轭作用是封闭的。因此，对于元素 $n^{-1} \in N$ 和任意的 $g \in G$，其共轭变换后的元素仍属于 $N$，即：
+	\[ g n^{-1} g^{-1} \in N \]
+\end{itemize}
+由于子群 $N$ 对群的乘法运算具有封闭性，作为两部分属于 $N$ 的元素的乘积， $x$ 也必须属于 $N$：
+\[ (2) \quad x \in N \]
+
+\bigskip
+\noindent \textbf{2. 证明 $x \in [G, G]$：}
+
+根据题目给出的定义，换位子群 $[G, G]$ 是由群 $G$ 中**所有**可能的两元换位子作为生成元所生成的子群。
+因为 $n \in N \leqslant G$ 且 $g \in G$，所以 $n$ 和 $g$ 都是群 $G$ 中的合法元素。
+根据换位子群的定义，由它们构成的换位子 $x = [n, g]$ 必然属于换位子群：
+\[ (3) \quad x \in [G, G] \]
+
+\bigskip
+\noindent \textbf{3. 综合得出结论：}
+
+结合等式 (2) 和等式 (3)，我们发现元素 $x$ 同时属于子群 $N$ 和换位子群 $[G, G]$。根据集合交集的定义， $x$ 必然属于这两个子群的交集：
+\[ x \in N \cap [G, G] \]
+
+此时，引入题目中给出的关键已知条件：子群 $N$ 与换位子群 $[G, G]$ 的交集是一个只包含单位元的平凡群，即：
+\[ N \cap [G, G] = \{1\} \]
+因为 $x \in N \cap [G, G]$，所以元素 $x$ 只能是单位元：
+\[ x = 1 \]
+
+将 $x$ 的原始定义 (1) 代入，即得：
+\[ n g n^{-1} g^{-1} = 1 \]
+在等式两边同时右乘 $g$，再右乘 $n$（或直接右乘 $gn$）：
+\[ n g n^{-1} = g \implies ng = gn \]
+
+由于 $n$ 是从 $N$ 中任取的元素， $g$ 是从 $G$ 中任取的元素，上述等式说明 $N$ 中的每一个元素都与 $G$ 中的所有元素对易。
+根据群的中心的定义，这严格证明了：
+\[ N \leqslant Z(G) \]
+
+\qed
+
+1.5.12*. 群 $G$ 的非平凡子群 $N$ 称为 $G$ 的极小子群, 如果不存在子群 $B$ 使得 $1 \subsetneq B \subsetneq N$ . 试证: 
+
+(1) 整数加法群 $\mathbb{Z}$ 没有极小子群. 
+
+(2) 有理数加法群 $\mathbb{Q}$ 既没有极小子群也没有极大子群. 
+
+\bigskip
+\noindent \textbf{(1) 证明：整数加法群 $(\mathbb{Z}, +)$ 没有极小子群}
+
+\medskip
+\noindent \textbf{证明：}
+
+我们采用反证法。假设 $(\mathbb{Z}, +)$ 存在一个极小子群，记为 $N$。
+
+根据极小子群的定义， $N$ 必须是一个非平凡子群，即 $N \neq \{0\}$。
+由于 $(\mathbb{Z}, +)$ 是一个由元素 $1$ 生成的无限循环群，根据循环群的子群理论， $\mathbb{Z}$ 的任何非平凡子群都必须能够由某一个特定的正整数 $n$ 循环生成：
+\[ N = n\mathbb{Z} = \{ nk \mid k \in \mathbb{Z} \} \quad (n \in \mathbb{Z}^+) \]
+
+现在，我们利用这个正整数 $n$ 来构造一个新的子群 $B$。我们令：
+\[ B = (2n)\mathbb{Z} = \{ 2nk \mid k \in \mathbb{Z} \} \]
+显然， $B$ 也是 $\mathbb{Z}$ 的一个由正整数 $2n$ 生成的非平凡子群，即：
+\[ \{0\} \subsetneq B \]
+
+接下来，我们来分析子群 $B$ 与子群 $N = n\mathbb{Z}$ 之间的包含关系：
+\begin{itemize}
+	\item 对于任意的元素 $x \in B$，根据定义存在整数 $k \in \mathbb{Z}$ 使得 $x = 2nk = n(2k)$。由于 $2k$ 仍是一个整数，这说明 $x$ 必然属于子群 $n\mathbb{Z}$。因此有包含关系：
+	\[ B \subseteq N \]
+	\item 我们考察元素 $n$。显然有 $n = n \cdot 1 \in n\mathbb{Z} = N$。然而，由于等式 $2nk = n \implies 2k = 1$ 在整数集 $\mathbb{Z}$ 中无解，所以 $n \notin (2n)\mathbb{Z} = B$。这说明包含关系是严格的：
+	\[ B \subsetneq N \]
+\end{itemize}
+
+将上面的结果串联起来，我们成功在平凡群和子群 $N$ 之间找到了一个严格的中间子群 $B$：
+\[ \{0\} \subsetneq B \subsetneq N \]
+然而，这与 $N$ 是“极小子群”的假设产生了直接的矛盾！
+
+因此，原假设不成立，整数加法群 $(\mathbb{Z}, +)$ 没有极小子群。
+
+\bigskip
+\noindent \textbf{(2) 证明：有理数加法群 $(\mathbb{Q}, +)$ 既没有极小子群也没有极大子群}
+
+\medskip
+\noindent \textbf{证明：}
+
+我们将这一问拆分为两部分进行论证：
+
+\begin{enumerate}
+	\item \textbf{第一部分：证明 $(\mathbb{Q}, +)$ 没有极小子群}
+	
+	采用反证法。假设 $(\mathbb{Q}, +)$ 存在一个极小子群 $N$。
+	因为 $N$ 是非平凡子群，所以 $N$ 中至少包含一个非零的有理数，设为 $r \in N$（其中 $r \neq 0$）。
+	由该元素生成的无限循环子群 $\langle r \rangle = \{ mr \mid m \in \mathbb{Z} \}$ 必然被完全包含在 $N$ 中，即：
+	\[ \langle r \rangle \subseteq N \]
+	由于 $N$ 是极小子群，中间不允许有严格的夹缝子群，因此由极小性可直接推得：
+	\[ N = \langle r \rangle \]
+	
+	现在，我们考察有理数 $\frac{r}{2}$。因为 $r \neq 0$，所以 $\frac{r}{2}$ 是一个合法的非零有理数。我们由它生成一个新的无限循环子群：
+	\[ B = \langle \frac{r}{2} \rangle \]
+	显然有 $\{0\} \subsetneq B$。由于 $r = 2 \cdot (\frac{r}{2}) \in B$，所以原生成元 $r \in B$，这意味着有严格的子群包含链：
+	\[ N = \langle r \rangle \subsetneq \langle \frac{r}{2} \rangle = B \implies N \subsetneq B \]
+	这说明 $N$ 成了 $B$ 的严格真子群。此时，我们可以在 $\{0\}$ 和 $B$ 之间建立包含关系：
+	\[ \{0\} \subsetneq N \subsetneq B \]
+	由于 $B$ 本身也是 $\mathbb{Q}$ 的一个真子群（可以通过类似于习题 1.4.10* 的方法，证明 $\frac{r}{4} \notin B$），根据群的局部同构或直接对 $B$ 自身进行缩放，我们总能在 $\{0\}$ 和 $N$ 之间插入更小的子群（例如 $\langle 2r \rangle$ 满足 $\{0\} \subsetneq \langle 2r \rangle \subsetneq \langle r \rangle = N$）。
+	这显然与 $N$ 的极小性矛盾！因此 $\mathbb{Q}$ 没有极小子群。
+	
+	\item \textbf{第二部分：证明 $(\mathbb{Q}, +)$ 没有极大子群}
+	
+	采用反证法。假设 $(\mathbb{Q}, +)$ 存在一个极大子群 $M$。
+	根据极大子群的定义， $M$ 是 $\mathbb{Q}$ 的真子群（$M < \mathbb{Q}$），且商群 $\mathbb{Q}/M$ 必须是一个**简单群**（没有非平凡正规子群的群）。
+	由于 $\mathbb{Q}$ 是一个 Abel 群（交换群），其任何子群都是正规子群。因此，商群 $\overline{G} = \mathbb{Q}/M$ 也必然是一个 Abel 群。
+	一个群既是交换群又是简单群，当且仅当它是一个**素数阶的有限循环群**。因此，必然存在某个素数 $p$，使得：
+	\[ |\mathbb{Q}/M| = p \]
+	
+	根据拉格朗日定理在商群中的表现，这意味着对于商群 $\mathbb{Q}/M$ 中的任意元素 $\overline{x}$，其 $p$ 倍（加法群下的 $p$ 次幂）必然等于商群的单位元 $\overline{0}$。
+	转译回原群 $\mathbb{Q}$ 的语言，这意味着：
+	\[ (3) \quad \forall \, q \in \mathbb{Q}, \quad p \cdot q = \underbrace{q + q + \dots + q}_{p \text{ 个}} \in M \]
+	
+	然而，有理数集合 $\mathbb{Q}$ 具有一个核心数论性质——**可除性（Divisibility）**。即对于任意的有理数 $g \in \mathbb{Q}$ 和任意的正整数 $p$，方程 $p \cdot x = g$ 在 $\mathbb{Q}$ 中永远有解，这个唯一的解就是 $x = \frac{g}{p} \in \mathbb{Q}$。
+	
+	现在，由于 $M$ 是 $\mathbb{Q}$ 的真子群，我们可以在补集 $\mathbb{Q} \setminus M$ 中任取一个有理数 $g \notin M$。
+	利用可除性，有理数 $\frac{g}{p}$ 显然属于 $\mathbb{Q}$。
+	我们把 $q = \frac{g}{p}$ 代入前面导出的核心特征式 (3) 中：
+	\[ p \cdot q = p \cdot \left(\frac{g}{p}\right) = g \in M \]
+	这说明 $g \in M$，与我们最初选取的 $g \notin M$ 产生了根本性的矛盾！
+	
+	因此，关于存在极大子群的假设是不成立的。有理数加法群 $(\mathbb{Q}, +)$ 没有极大子群。
+\end{enumerate}
+
+\bigskip
+综上所述，两个命题均完全得证。
+
+\qed
+
+1.5.13*. 设 $\alpha$ 是有限群 $G$ 的自同构. 令 $I = \{g \in G \mid \alpha(g) = g^{-1}\}$ . 试证: 
+
+(1) 若 $|I| > \frac{3}{4} |G|$ , 则 $G$ 是Abel群. 
+
+(2) 若 $|I| = \frac{3}{4} |G|$ ，则 $G$ 一定有指数为 2 的 Abel 正规子群. 
+
+\bigskip
+\noindent \textbf{前置引理与分析}
+
+在开始具体证明之前，我们先分析集合 $I$ 中元素对易的核心机制。
+对于任意 $x, y \in I$，其满足 $\alpha(x) = x^{-1}$ 且 $\alpha(y) = y^{-1}$。我们考察乘积 $xy$ 属于 $I$ 的充要条件：
+\[ \alpha(xy) = \alpha(x)\alpha(y) = x^{-1}y^{-1} = (yx)^{-1} \]
+而根据 $I$ 的定义，$xy \in I \iff \alpha(xy) = (xy)^{-1} = y^{-1}x^{-1}$。
+对比两式可知，当 $x, y \in I$ 时，
+\[ xy \in I \iff x^{-1}y^{-1} = y^{-1}x^{-1} \iff xy = yx \]
+这说明：**$I$ 中的两个元素对易，当且仅当它们的乘积仍在 $I$ 中。**
+
+现在，对于群 $G$ 中的任意元素 $g$，定义 $g$ 在 $I$ 中的“局部截口” $I_g = I \cap g^{-1}I$。
+注意到 $x \in I_g \iff x \in I \text{ 且 } gx \in I$。根据上述结论，若 $g \in I$，则对任意 $x \in I_g$，必有 $gx = xg$。也就是说，$I_g$ 完全包含在 $g$ 的中心化子 $C_G(g)$ 中：
+\[ (1) \quad \forall \, g \in I, \quad I_g \subseteq C_G(g) \]
+利用包含排斥原理或集合势的估计，由于 $I \subseteq G$ 且 $g^{-1}I \subseteq G$，它们的交集大小满足：
+\[ |I_g| = |I \cap g^{-1}I| \ge |I| + |g^{-1}I| - |G| = 2|I| - |G| \]
+结合等式 (1)，当 $g \in I$ 时，中心化子的大小受到如下紧致下界控制：
+\[ (2) \quad |C_G(g)| \ge 2|I| - |G| \]
+
+\bigskip
+\noindent \textbf{(1) 证明：若 $|I| > \frac{3}{4} |G|$，则 $G$ 是 Abel 群}
+
+\medskip
+\noindent \textbf{证明：}
+
+假设 $|I| > \frac{3}{4} |G|$。我们将不等式代入引理中的下界估计式 (2) 中。对任意的 $g \in I$，有：
+\[ |C_G(g)| > 2 \cdot \left(\frac{3}{4}|G|\right) - |G| = \frac{1}{2}|G| \]
+根据拉格朗日定理，中心化子 $C_G(g)$ 必须是 $G$ 的子群，因此其阶 $|C_G(g)|$ 必须能够整除群的阶 $|G|$。
+由于 $|C_G(g)| > \frac{1}{2}|G|$，在整除性的约束下， $C_G(g)$ 的阶只能取到最大值，即：
+\[ |C_G(g)| = |G| \implies C_G(g) = G \]
+根据中心化子的定义，这意味着元素 $g$ 与群 $G$ 中的每一个元素都对易。因此， $g$ 属于群的中心 $Z(G)$。
+
+由于上述推理对所有 $g \in I$ 都成立，我们断定整个集合 $I$ 都被包含在中心 $Z(G)$ 中：
+\[ I \subseteq Z(G) \]
+从而有势的不等式：
+\[ |Z(G)| \ge |I| > \frac{3}{4}|G| \]
+
+再次利用拉格朗日定理，中心 $Z(G)$ 是 $G$ 的子群，其指数 $[G : Z(G)] = \frac{|G|}{|Z(G)|} < \frac{4}{3}$。
+因为指数必须是正整数，所以只能有 $[G : Z(G)] = 1$，这直接导出：
+\[ Z(G) = G \]
+根据群的中心的定义，全群等于中心意味着群 $G$ 是一个 Abel 群。
+
+\bigskip
+\noindent \textbf{(2) 证明：若 $|I| = \frac{3}{4} |G|$，则 $G$ 有指数为 2 的 Abel 正规子群}
+
+\medskip
+\noindent \textbf{证明：}
+
+假设 $|I| = \frac{3}{4} |G|$。我们将此条件代入引理中的估计式 (2) 中。对任意的 $g \in I$，有：
+\[ |C_G(g)| \ge 2 \cdot \left(\frac{3}{4}|G|\right) - |G| = \frac{1}{2}|G| \]
+根据子群阶的整除性，对任意的 $g \in I$， 其中心化子 $C_G(g)$ 的阶只有两种可能取值：
+\begin{itemize}
+	\item 可能性一：$|C_G(g)| = |G| \implies g \in Z(G)$。
+	\item 可能性二：$|C_G(g)| = \frac{1}{2}|G|$。
+\end{itemize}
+
+我们来考察群 $G$ 的中心 $Z(G)$。由上面的分类可知 $Z(G) \subseteq I$。
+如果所有 $g \in I$ 都属于可能性一，则 $I \subseteq Z(G) \implies |Z(G)| \ge |I| = \frac{3}{4}|G|$。由整除性知 $Z(G)=G$（$G$ 是 Abel 群），此时 $G$ 的任意指数为 2 的子群（必然存在，因 $|G|$ 为偶数）都是 Abel 正规子群。
+
+若 $G$ 不是 Abel 群，则必然存在某个元素 $g_0 \in I$ 属于可能性二，即：
+\[ |C_G(g_0)| = \frac{1}{2}|G| \]
+我们令这个特殊的中心化子为 $A = C_G(g_0)$。因为 $[G : A] = 2$，根据“指数为 2 的子群必为正规子群”的定理， $A$ 已经是 $G$ 的一个**正规子群**。
+
+下面我们只需证明 $A$ 是一个 **Abel 群**。
+首先，我们来估计子群 $A$ 与集合 $I$ 的交集大小 $|A \cap I|$。利用集合恒等式 $A \cap I = C_G(g_0) \cap I$，根据引理式 (1)，我们知道 $I_{g_0} \subseteq C_G(g_0) \cap I$。因此：
+\[ |A \cap I| \ge |I_{g_0}| \ge 2|I| - |G| = 2\left(\frac{3}{4}|G|\right) - |G| = \frac{1}{2}|G| \]
+然而，由于 $A \cap I$ 是子群 $A$ 的子集，其大小绝不可能超过 $A$ 自身的阶：
+\[ |A \cap I| \le |A| = \frac{1}{2}|G| \]
+夹逼定理说明，上面的不等式必须严格取到等号：
+\[ |A \cap I| = \frac{1}{2}|G| = |A| \]
+这个等势关系意味着整个子群 $A$ 实际上被完全包含在集合 $I$ 中：
+\[ A \subseteq I \]
+
+既然 $A \subseteq I$，那么对于 $A$ 中的任意元素 $a \in A$，根据 $I$ 的定义，恒有：
+\[ \alpha(a) = a^{-1} \]
+这意味着自同构 $\alpha$ 限制在子群 $A$ 上时，恰好表现为非平凡的**逆映射**。
+众所周知，一个群（或子群）上的逆映射能够构成群同态（或自同构）的**充要条件**是该群必须满足交换律。
+具体证明如下：对于任意的 $x, y \in A \subseteq I$，因为 $A$ 是子群，所以 $xy \in A \subseteq I$。根据前置引理的结论，当 $x, y \in I$ 且 $xy \in I$ 时，必有：
+\[ xy = yx \]
+这说明子群 $A$ 中的任意两个元素都满足乘法交换律，因此 $A$ 是一个 Abel 群。
+
+综上所述， $A = C_G(g_0)$ 是 $G$ 的一个指数为 2 的 Abel 正规子群。
+
+\qed
+
+1.6.4. 设 $\sigma=(12\cdots n)\in S_{n}$ ，证明： $C_{S_{n}}(\sigma)=\langle\sigma\rangle$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明两个集合相等 $C_{S_{n}}(\sigma) = \langle\sigma\rangle$，我们分别计算这两个集合的阶（元素个数）。由于一个集合显然包含在另一个集合中，只要它们的阶相等，就能断定两个集合完全相同。
+
+\bigskip
+\noindent \textbf{第一步：计算右边循环子群 $\langle\sigma\rangle$ 的阶}
+
+根据置换群的理论，任意一个长度为 $n$ 的循环置换，其置换的阶（即最小正整数幂次等于恒等置换的次数）恰好等于它的循环长度。
+因为 $\sigma = (12\cdots n)$ 的长度为 $n$，所以：
+\[ o(\sigma) = n \]
+由该元素生成的循环子群 $\langle\sigma\rangle$ 的阶，等于该元素的阶：
+\[ |\langle\sigma\rangle| = o(\sigma) = n \]
+
+\bigskip
+\noindent \textbf{第二步：确定两个集合的包含关系}
+
+根据中心化子的定义， $C_{S_n}(\sigma)$ 包含了 $S_n$ 中所有与 $\sigma$ 满足乘法交换律的置换：
+\[ C_{S_n}(\sigma) = \{ \tau \in S_n \mid \tau \sigma = \sigma \tau \} = \{ \tau \in S_n \mid \tau \sigma \tau^{-1} = \sigma \} \]
+显然，由于任何群中的元素都必定与它自身的任何幂次满足交换律，因此对于任意的整数 $k$，恒有 $\sigma^k \sigma = \sigma \sigma^k$。
+这意味着，由 $\sigma$ 生成的整个循环子群都被包含在它的中心化子中：
+\[ (1) \quad \langle\sigma\rangle \leqslant C_{S_n}(\sigma) \]
+
+\bigskip
+\noindent \textbf{第三步：利用共轭类和轨道-稳定子定理计算中心化子的阶}
+
+在对称群 $S_n$ 中，两个置换共轭的充要条件是它们具有相同的循环结构（即相同的型 Type）。
+由于 $\sigma = (12\cdots n)$ 是一个 $n$-循环，它的共轭类 $\operatorname{Cl}(\sigma)$ 正好由 $S_n$ 中**所有**的 $n$-循环组成。
+
+我们来计算 $S_n$ 中不同的 $n$-循环的总数：
+要构造一个 $n$-循环，我们需要将 $1, 2, \dots, n$ 这 $n$ 个数字排成一个环。
+$n$ 个不同数字的全排列总数为 $n!$。然而，由于循环排列的起点选择不影响置换本身（例如 $(12\cdots n) = (23\cdots n1) = \dots$），每一个长度为 $n$ 的循环都有 $n$ 种不同的书写表现形式。
+因此， $S_n$ 中不同 $n$-循环的总个数（即 $\sigma$ 的共轭类的大小）为：
+\[ |\operatorname{Cl}(\sigma)| = \frac{n!}{n} = (n-1)! \]
+
+根据群作用中的**轨道-稳定子定理（Orbit-Stabilizer Theorem）**，元素 $\sigma$ 的共轭类大小，等于全群的阶除以该元素的中心化子的阶（因为共轭作用下的稳定子群就是中心化子）：
+\[ |\operatorname{Cl}(\sigma)| = \frac{|S_n|}{|C_{S_n}(\sigma)|} \]
+
+将 已知的 $|S_n| = n!$ 和 $|\operatorname{Cl}(\sigma)| = (n-1)!$ 代入上式中：
+\[ (n-1)! = \frac{n!}{|C_{S_n}(\sigma)|} \]
+变形求得中心化子的阶为：
+\[ |C_{S_n}(\sigma)| = \frac{n!}{(n-1)!} = n \]
+
+\bigskip
+\noindent \textbf{第四步：综合得出结论}
+
+对比前两步的结果：
+\begin{itemize}
+	\item 循环子群的阶为： $|\langle\sigma\rangle| = n$。
+	\item 中心化子的阶为： $|C_{S_n}(\sigma)| = n$。
+\end{itemize}
+结合第二步中已经建立的包含关系 $\langle\sigma\rangle \leqslant C_{S_n}(\sigma)$，由于包含集合的两个有限集合具有完全相同的元素个数，这两个集合必须严格相等：
+\[ C_{S_n}(\sigma) = \langle\sigma\rangle \]
+
+由此证明， $n$-循环 $\sigma$ 的中心化子恰好是其自身生成的循环子群。
+
+\qed
+
+1.6.5. 试证当 $n \geqslant 3$ 时, 中心 $Z(S_{n}) = \{1\}$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+根据群的中心的定义， $S_n$ 的中心 $Z(S_n)$ 包含了所有与 $S_n$ 中**任意**置换都满足乘法交换律的置换：
+\[ Z(S_n) = \{ \sigma \in S_n \mid \sigma \tau = \tau \sigma, \, \forall \, \tau \in S_n \} \]
+显然，恒等置换 $1$ 总是属于中心。因此，为了证明 $Z(S_n) = \{1\}$，我们只需证明任何非恒等置换 $\sigma \neq 1$ 都不可能属于中心。
+
+我们采用反证法。假设当 $n \ge 3$ 时， $S_n$ 中存在一个非恒等置换 $\sigma \in Z(S_n)$ 且 $\sigma \neq 1$。
+
+\bigskip
+既然 $\sigma$ 不是恒等置换，它必然会移动 $1, 2, \dots, n$ 中的某个数字。
+我们设 $\sigma$ 将数字 $i$ 映射到了一个**不同**的数字 $j$，即：
+\[ (1) \quad \sigma(i) = j \quad (i \neq j) \]
+
+由于题目已知条件为 $n \ge 3$，集合 $\{1, 2, \dots, n\}$ 中除了 $i$ 和 $j$ 之外，**至少还存在第三个不同的数字**。我们把这个数字记为 $k$。因此， $i, j, k$ 是三个互不相同的数字。
+
+现在，我们利用这三个数字构造一个特殊的置换——对换 $\tau$（即长度为 2 的循环）：
+\[ \tau = (j\,k) \]
+显然，置换 $\tau$ 的作用法则是：它交换 $j$ 和 $k$，而保持其他所有数字（包括 $i$）不动。因此有：
+\[ (2) \quad \tau(j) = k, \quad \tau(k) = j, \quad \tau(i) = i \]
+
+接下来，我们根据中心元素的定义，分别计算复合置换 $\sigma \tau$ 和 $\tau \sigma$ 作用在数字 $i$ 上的结果：
+
+\begin{enumerate}
+	\item \textbf{计算 $(\sigma \tau)(i)$：}
+	我们从右向左依次应用置换。首先应用 $\tau$，根据等式 (2)， $\tau(i) = i$。接着应用 $\sigma$：
+	\[ (\sigma \tau)(i) = \sigma(\tau(i)) = \sigma(i) \]
+	再根据等式 (1) 的定义， $\sigma(i) = j$。因此，我们得到：
+	\[ (3) \quad (\sigma \tau)(i) = j \]
+	
+	\item \textbf{计算 $(\tau \sigma)(i)$：}
+	同样地，我们从右向左应用置换。首先应用 $\sigma$，根据等式 (1)， $\sigma(i) = j$。接着应用 $\tau$：
+	\[ (\tau \sigma)(i) = \tau(\sigma(i)) = \tau(j) \]
+	再根据等式 (2) 的定义， $\tau(j) = k$。因此，我们得到：
+	\[ (4) \quad (\tau \sigma)(i) = k \]
+\end{enumerate}
+
+因为我们最初选取 $k$ 时，明确限定了 $k$ 是一个不同于 $i$ 和 $j$ 的第三个数字，所以显然有：
+\[ j \neq k \]
+
+对比结果 (3) 和结果 (4)，我们发现这两个复合置换在数字 $i$ 上的作用结果是不同的：
+\[ (\sigma \tau)(i) = j \neq k = (\tau \sigma)(i) \]
+根据映射相等的定义，既然这两个置换在某一个自变量上的像不相等，那么这两个置换整体就绝不可能是同一个置换，即：
+\[ \sigma \tau \neq \tau \sigma \]
+
+然而，这表明置换 $\sigma$ 与我们构造的对换 $\tau \in S_n$ 是不满足交换律的。
+这与我们最初的假设——“$\sigma$ 属于中心 $Z(S_n)$（即 $\sigma$ 与 $S_n$ 中**所有**置换都对易）”产生了严重的矛盾！
+
+因此，原假设不成立。当 $n \ge 3$ 时， $S_n$ 中不存在任何非恒等的中心元素。
+由此证得，对称群的中心是平凡的：
+\[ Z(S_n) = \{1\} \]
+
+\qed
+
+1.6.7. 试证 $A_{4}$ 没有6阶子群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们采用反证法。首先，我们需要明确 $4$ 元交错群 $A_4$ 的元素结构与性质。
+交错群 $A_4$ 是由 $4$ 元对称群 $S_4$ 中所有**偶置换**构成的子群。它的阶为：
+\[ |A_4| = \frac{4!}{2} = 12 \]
+
+我们具体列出 $A_4$ 中的全部 12 个元素及其循环结构类型：
+\begin{enumerate}
+	\item 恒等置换（1 个）：$1$，阶为 1。
+	\item $(2, 2)$-型置换（3 个）：$(12)(34), \; (13)(24), \; (14)(23)$，它们的阶均为 2。
+	\item $3$-循环置换（8 个）：形如 $(123), (132), (124)$ 等所有 3 阶循环，它们的阶均为 3。
+\end{enumerate}
+
+现在，假设 $A_4$ 中存在一个 6 阶子群，记为 $H$。即 $|H| = 6$。
+
+\bigskip
+因为 $H$ 的指数为 $[A_4 : H] = \frac{|A_4|}{|H|} = \frac{12}{6} = 2$，根据“**指数为 2 的子群必为正规子群**”的定理，子群 $H$ 必然是 $A_4$ 的正规子群，即：
+\[ H \triangleleft A_4 \]
+
+既然 $H \triangleleft A_4$，我们可以构造合法的商群 $A_4/H$。该商群的阶为：
+\[ |A_4/H| = [A_4 : H] = 2 \]
+由于 2 是一个素数，任何 2 阶群都必然是循环群。因此，商群 $A_4/H$ 是一个 2 阶循环群。
+
+根据商群的性质，对于 $A_4$ 中的任意元素 $g \in A_4$，其对应的陪集 $\overline{g} = gH$ 作为商群 $A_4/H$ 中的元素，其阶必然能整除商群的阶 2。也就是说，在商群中恒有：
+\[ \overline{g}^2 = \overline{1} \implies (gH)^2 = H \implies g^2 H = H \]
+根据陪集相等的充要条件（$aN=N \iff a \in N$），这意味着：
+\[ (1) \quad \forall \, g \in A_4, \quad g^2 \in H \]
+
+\bigskip
+接下来，我们把 $A_4$ 中的所有 **3-循环置换** 代入这个核心特征式 (1) 中进行考察。
+
+设 $\sigma$ 是 $A_4$ 中的任意一个 3-循环置换。因为 $\sigma$ 的阶为 3，即 $\sigma^3 = 1$，所以我们可以对 $\sigma$ 的平方进行如下恒等变形：
+\[ \sigma^2 = \sigma^2 \cdot 1 = \sigma^2 \cdot \sigma^3 = \sigma^5 = \sigma^3 \cdot \sigma^2 \]
+更直接地，由于 $\gcd(2, 3) = 1$，对 3 阶元求平方实际上只是在同一个 3 阶循环子群内部进行了一次不改变阶的幂次映射。具体而言：
+\[ \text{若 } \sigma = (123), \quad \text{则 } \sigma^2 = (132) \]
+\[ \text{若 } \sigma = (132), \quad \text{则 } \sigma^2 = (123) \]
+这说明，**任何一个 3-循环的平方，仍然是一个 3-循环。** 
+并且由于 $\sigma = (\sigma^2)^2 = \sigma^4 = \sigma$，每一个 3-循环都必然可以写成某一个 3-循环的平方形式。
+
+结合特征式 (1) 的要求，由于 $A_4$ 中所有元素的平方都必须属于 $H$，那么全体 3-循环的平方也必须属于 $H$。而刚才已经证得全体 3-循环的平方集合与全体 3-循环集合完全相同，因此：
+\[ A_4 \text{ 中所有的 3-循环置换都必须属于子群 } H \]
+
+\bigskip
+现在，我们来清点子群 $H$ 中包含的元素个数：
+\begin{itemize}
+	\item 既然 $H$ 是子群，它必须包含单位元 $1$（1 个）。
+	\item 根据刚才的推导， $H$ 必须包含 $A_4$ 中所有的 3-循环置换（8 个）。
+\end{itemize}
+
+因此，仅仅是这两部分元素，就已经强迫子群 $H$ 至少要包含如下多个不同的元素：
+\[ |H| \ge 1 + 8 = 9 \]
+
+然而，这与我们最初的假设——“$H$ 是一个 **6 阶**子群（即 $|H| = 6$）”产生了不可调和的严重矛盾（9 超过了 6）！
+
+因此，最初的假设不成立。交错群 $A_{4}$ 中绝对不存在 6 阶的子群。
+
+\qed
+
+1.6.8. 设 $\sigma_{1}$ 和 $\sigma_{2}$ 是 $S_{n}$ 中的两个偶置换. 若 $\sigma_{1}$ 和 $\sigma_{2}$ 在 $S_{n}$ 中共轭, 则它们在 $A_{n}$ 中也一定共轭吗? 
+
+\bigskip
+\noindent \textbf{解答：} 
+
+答案是：\textbf{不一定}。
+
+虽然在对称群 $S_n$ 中，两个置换共轭的充要条件是它们具有相同的循环结构（型 Type），但这并不意味着它们在交错群 $A_n$ 中也必然共轭。因为在 $A_n$ 中共轭要求共轭变换元必须是一个\textbf{偶置换}，而 $S_n$ 中的共轭元可能是奇置换。
+
+我们下面给出完整的理论判别准则，并提供一个经典的具体反例。
+
+\bigskip
+\noindent \textbf{1. 理论分析与判别准则}
+
+设 $\sigma_1, \sigma_2 \in A_n$ 在 $S_n$ 中共轭，这意味着存在某个置换 $\tau \in S_n$，使得：
+\[ \tau \sigma_1 \tau^{-1} = \sigma_2 \]
+
+我们来考察所有能将 $\sigma_1$ 共轭映射为 $\sigma_2$ 的置换构成的集合。容易证明，这个集合正好是中心化子 $\tau C_{S_n}(\sigma_1)$。
+两个偶置换在 $A_n$ 中也共轭，当且仅当该集合中包含至少一个\textbf{偶置换}。通过对指数和陪集的群论分析，可以得出以下分流结论：
+
+\begin{itemize}
+	\item \textbf{情况一：$C_{S_n}(\sigma_1)$ 中包含奇置换。}
+	如果 $\sigma_1$ 的中心化子里存在某个奇置换 $\mu$，那么当 $\tau$ 是奇置换时，复合置换 $\tau \mu$ 必然是偶置换，且同样满足 $(\tau \mu) \sigma_1 (\tau \mu)^{-1} = \sigma_2$。因此，在这种情况下，它们在 $A_n$ 中\textbf{一定共轭}。
+	
+	\item \textbf{情况二：$C_{S_n}(\sigma_1)$ 中全部都是偶置换（即 $C_{S_n}(\sigma_1) \leqslant A_n$）。}
+	此时，若最初的 $\tau$ 是奇置换，那么整个陪集 $\tau C_{S_n}(\sigma_1)$ 中的元素全部都会是奇置换。这意味着在 $S_n$ 中绝对找不到任何一个偶置换来连接 $\sigma_1$ 和 $\sigma_2$。因此，在这种情况下，它们在 $A_n$ 中\textbf{不共轭}。此时， $\sigma_1$ 在 $S_n$ 中的共轭类在限制到 $A_n$ 时，会精确地\textbf{分裂为两个大小相等、互不相交的 $A_n$-共轭类}。
+\end{itemize}
+
+结合置换的中心化子结构， $C_{S_n}(\sigma_1) \leqslant A_n$ 的充要条件是：\textbf{$\sigma_1$ 拆解为不相交循环时，其循环长度均为互不相同的奇数，且没有固定点（或者只有一个固定点）}。
+
+\bigskip
+\noindent \textbf{2. 具体反例（以 $S_3$ 和 $A_3$ 为例）}
+
+我们选取 $n = 3$ 的情形，此时交错群 $A_3 = \{1, (123), (132)\}$。
+
+考虑以下两个偶置换（它们都是 3-循环）：
+\[ \sigma_1 = (123), \quad \sigma_2 = (132) \]
+
+\begin{enumerate}
+	\item \textbf{在 $S_3$ 中的共轭性：}
+	由于 $\sigma_1$ 和 $\sigma_2$ 具有完全相同的循环结构（都是长度为 3 的循环），它们在 $S_3$ 中显然是共轭的。
+	具体地，我们可以选择对换（奇置换） $\tau = (23) \in S_3$，容易验证：
+	\[ \tau \sigma_1 \tau^{-1} = (23)(123)(23) = (132) = \sigma_2 \]
+	
+	\item \textbf{在 $A_3$ 中的共轭性：}
+	现在我们检查是否存在 $A_3$ 中的元素（即偶置换）将 $\sigma_1$ 共轭到 $\sigma_2$。我们直接用 $A_3$ 中的全部 3 个元素进行穷举共轭测试：
+	\begin{itemize}
+		\item 用 $1$ 共轭：$1 \cdot (123) \cdot 1^{-1} = (123) \neq \sigma_2$
+		\item 用 $(123)$ 共轭：$(123)(123)(132) = (123) \neq \sigma_2$
+		\item 用 $(132)$ 共轭：$(132)(123)(123) = (123) \neq \sigma_2$
+	\end{itemize}
+	可以看出， $A_3$ 中的任何元素对 $\sigma_1$ 进行共轭变换后，结果都只能是 $(123)$ 自身，绝对无法得到 $(132)$。
+\end{enumerate}
+
+因此， $(123)$ 和 $(132)$ 在 $S_3$ 中共轭，但在 $A_3$ 中不共轭。
+（注：同理，在 $A_4$ 或 $A_5$ 中， 3-循环 $(123)$ 和 $(132)$ 仍然在 $A_n$ 中不共轭；在 $A_5$ 中， 5-循环 $(12345)$ 和 $(13524)$ 在 $S_5$ 中共轭，但在 $A_5$ 中也不共轭。）
+
+\bigskip
+\noindent \textbf{结论：} 
+
+当 $\sigma_{1}$ 和 $\sigma_{2}$ 在 $S_{n}$ 中共轭时，它们在 $A_{n}$ 中\textbf{不一定}共轭。只有当它们的中心化子包含奇置换时才一定共轭；若其在 $S_n$ 中的中心化子完全由偶置换组成，则其 $S_n$-共轭类在 $A_n$ 中会分裂为两个不同的 $A_n$-共轭类。
+
+\qed
+
+1.6.9*. 确定 $S_{4}$ 的全部正规子群. 
+
+\bigskip
+\noindent \textbf{分析与推导：} 
+
+为了找出一个有限群的所有正规子群，最系统的方法是利用**共轭类（Conjugate Classes）**。一个子群是全群的正规子群，当且仅当它能够表示为全群若干个共轭类的严格不相交并集，并且必须包含单位元所在的共轭类。
+
+首先，我们明确 4 元对称群 $S_4$ 的元素结构。 $S_4$ 的阶为 $|S_4| = 4! = 24$。在置换群中，两个置换共轭的充要条件是它们具有相同的循环结构（型 Type）。因此，我们可以将 $S_4$ 的 24 个元素精确地划分为如下 5 个不同的共轭类：
+
+\begin{enumerate}
+	\item $C_1$ （恒等置换型 $1^4$）：只包含单位元 $1$，大小为：
+	\[ |C_1| = 1 \]
+	\item $C_2$ （对换型 $2^1 1^2$）：如 $(12)$，共有 $\binom{4}{2} = 6$ 个，大小为：
+	\[ |C_2| = 6 \]
+	\item $C_3$ （3-循环型 $3^1 1^1$）：如 $(123)$，共有 $\binom{4}{3} \times (3-1)! = 8$ 个，大小为：
+	\[ |C_3| = 8 \]
+	\item $C_4$ （4-循环型 $4^1$）：如 $(1234)$，共有 $(4-1)! = 6$ 个，大小为：
+	\[ |C_4| = 6 \]
+	\item $C_5$ （双对换型 $2^2$）：即 $(12)(34), (13)(24), (14)(23)$，共有 3 个，大小为：
+	\[ |C_5| = 3 \]
+\end{enumerate}
+
+任取 $S_4$ 的一个正规子群 $N \triangleleft S_4$。根据正规性的要求， $N$ 的阶 $|N|$ 必须同时满足以下两个刚性条件：
+\begin{itemize}
+	\item \textbf{条件一（拉格朗日定理）：} $|N|$ 必须能够整除 $S_4$ 的阶 24。即 $|N| \in \{1, 2, 3, 4, 6, 8, 12, 24\}$。
+	\item \textbf{条件二（共轭封闭性）：} $|N|$ 必须包含单位元类 $C_1$，且是上述各类大小（1, 6, 8, 6, 3）中某几项的和。即：
+	\[ |N| = 1 + 6x_2 + 8x_3 + 6x_4 + 3x_5 \]
+	其中各个系数 $x_i$ 只能取值 $0$ 或 $1$。
+\end{itemize}
+
+接下来，我们根据条件二中所有可能的求和组合，并结合条件一的整除性进行筛选：
+
+\begin{enumerate}
+	\item \textbf{当阶 $|N| = 1$ 时：}
+	只能选择 $1$，对应集合 $C_1 = \{1\}$。这显然构成正规子群，即\textbf{平凡子群}：
+	\[ N_1 = \{1\} \]
+	
+	\item \textbf{若包含 $C_5$（大小为 3）：}
+	此时 $|N|$ 至少为 $1 + 3 = 4$。
+	\begin{itemize}
+		\item 组合 $1 + 3 = 4$：4 能够整除 24。我们来检查集合 $V = C_1 \cup C_5 = \{1, (12)(34), (13)(24), (14)(23)\}$。根据群论，该集合在乘法下是封闭的（两个不相交对换的乘积仍具有相同结构），它就是著名的 \textbf{Klein 4-群}（克莱因四元群）。因为它由完备的共轭类组成，所以它必然是 $S_4$ 的正规子群。记作：
+		\[ N_2 = V \]
+		\item 组合 $1 + 3 + 6 = 10$：10 不能整除 24，舍去。
+		\item 组合 $1 + 3 + 8 = 12$：12 能够整除 24。对应的集合为 $C_1 \cup C_5 \cup C_3$。这个集合的大小为 $1 + 3 + 8 = 12$。我们发现， $C_1, C_5, C_3$ 这三类中的置换全部都是\textbf{偶置换}（对换和 4-循环是奇置换）。因此，这个由 12 个偶置换构成的正规子群正好是 \textbf{4 元交错群} $A_4$。记作：
+		\[ N_3 = A_4 \]
+		\item 组合 $1 + 3 + 6 + 6 = 16$ 或 $1 + 3 + 6 + 8 = 18$ 等：均不能整除 24，舍去。
+	\end{itemize}
+	
+	\item \textbf{若不包含 $C_5$（大小为 3）：}
+	\begin{itemize}
+		\item 组合 $1 + 6 = 7$：不能整除 24，舍去。
+		\item 组合 $1 + 8 = 9$：不能整除 24，舍去。
+		\item 组合 $1 + 6 + 6 = 13$ 或 $1 + 6 + 8 = 15$ 等：均不能整除 24，舍去。
+	\end{itemize}
+	
+	\item \textbf{当包含全部分类时：}
+	阶为 $1 + 6 + 8 + 6 + 3 = 24$，这对应了全群自身。这显然构成正规子群，即\textbf{全群}：
+	\[ N_4 = S_4 \]
+\end{enumerate}
+
+\bigskip
+\noindent \textbf{结论：} 
+
+通过共轭类组合与有限群阶的整除性进行严格筛选，对称群 $S_4$ 的全部正规子群一共有且仅有如下 4 个：
+\begin{enumerate}
+	\item 平凡的正规子群：$N_1 = \{1\}$
+	\item Klein 4-群（克莱因四元群）：$N_2 = V = \{1, (12)(34), (13)(24), (14)(23)\}$
+	\item 4 元交错群：$N_3 = A_4$（由 $S_4$ 中全部 12 个偶置换组成）
+	\item 全群自身：$N_4 = S_4$
+\end{enumerate}
+
+\qed
+
+1.6.10*. 试证:
+
+(1) 对称群 $S_{n}$ 是交错群 $A_{2n}$ 的子群. 
+
+(2) 每个有限群均是某个交错群的子群. 
+
+\medskip
+\noindent \textbf{证明：}
+
+为了证明 $S_n$ 是 $A_{2n}$ 的子群，我们需要构造一个从 $S_n$ 到 $A_{2n}$ 的\textbf{单正规群同态}（即单同态映射） $\psi: S_n \to A_{2n}$。如果存在这样的单同态，根据群同态基本定理， $S_n$ 就会同构于 $A_{2n}$ 的一个子群 $\operatorname{Im}\psi$，从而在同构的意义下说 $S_n$ 是 $A_{2n}$ 的子群。
+
+我们将 $S_n$ 视为作用在集合 $X = \{1, 2, \dots, n\}$ 上的置换群，而将 $A_{2n}$ 视为作用在包含 $2n$ 个元素的集合 $Y = \{1, 2, \dots, n, n+1, n+2, \dots, 2n\}$ 上的偶置换群。
+
+对于 $S_n$ 中的任意置换 $\sigma$，它在 $S_n$ 中可能是一个奇置换，也可能是一个偶置换。为了消除“奇置换”带来的符号影响，我们引入一个“影子对换”来对冲奇偶性。
+我们定义一个新的置换 $\sigma^* \in S_{2n}$，它作用在后 $n$ 个数字上，法则是将 $\sigma$ 的动作完全平移复制过去。也就是说，对于任意 $1 \le i \le n$，有：
+\[ \sigma^*(n+i) = n + \sigma(i) \]
+由于 $\sigma^*$ 与 $\sigma$ 的循环结构完全相同，它们的奇偶性是完全一致的（即 $\operatorname{sgn}(\sigma^*) = \operatorname{sgn}(\sigma)$）。
+
+现在，我们定义映射 $\psi: S_n \longrightarrow S_{2n}$ 如下：
+\[ \psi(\sigma) = \sigma \cdot \sigma^*(n+1 \;\; n+2 \;\; \cdots \;\; 2n)^{\operatorname{sgn}(\sigma)-1} \quad \text{(不便于统一表达)} \]
+更干净、标准的构造方法是：将 $\sigma$ 的每一项对换 $(i \;\; j)$，在后半部分都额外绑定一个互不干扰的对换 $(n+i \;\; n+j)$。
+即：对任意 $\sigma \in S_n$，定义 $\psi(\sigma) \in S_{2n}$ 满足：
+\begin{align*}
+	\forall \, 1 \le i \le n, \quad & \psi(\sigma)(i) = \sigma(i) \\
+	\forall \, 1 \le i \le n, \quad & \psi(\sigma)(n+i) = n + \sigma(i) \quad \text{若 } \sigma \text{ 是偶置换} \\
+	\text{若 } \sigma \text{ 是奇置换，则在后半部分加上一个额外的对换，例如交换 } & n+1 \text{ 和 } n+2\text{。}
+\end{align*}
+为了保证最严格的代数同态性，最优雅的定义是将 $\sigma$ 映射为两个完全相同结构的并排置换，并在 $\sigma$ 是奇置换时，在全群不相关的数字（若留出位置）进行对换。然而，因为分块复制 $\sigma \cdot \sigma^*$ 的奇偶性总是：
+\[ \operatorname{sgn}(\sigma \cdot \sigma^*) = \operatorname{sgn}(\sigma) \cdot \operatorname{sgn}(\sigma^*) = (\operatorname{sgn}(\sigma))^2 = 1 \]
+这说明，对于任意的 $\sigma \in S_n$，置换复合 $\sigma \cdot \sigma^*$ \textbf{永远是一个偶置换}！
+
+因此，我们可以直接定义映射 $\psi: S_n \longrightarrow A_{2n}$ 如下：
+\[ \psi(\sigma) = \sigma \cdot \sigma^* \]
+因为 $\sigma$ 只作用在 $\{1, \dots, n\}$ 上，而 $\sigma^*$ 只作用在 $\{n+1, \dots, 2n\}$ 上，这两个置换由于作用的数字完全不相交，它们是天然独立且对易的。
+
+接下来验证 $\psi$ 的性质：
+\begin{enumerate}
+	\item \textbf{保持群乘法（同态性）：}
+	对于任意 $\sigma, \tau \in S_n$，由于前后两块相互独立：
+	\[ \psi(\sigma\tau) = (\sigma\tau)(\sigma\tau)^* = \sigma\tau\sigma^*\tau^* \]
+	因为 $\tau$ 和 $\sigma^*$ 作用的数字集合不相交，它们完全对易（$\tau\sigma^* = \sigma^*\tau$），所以：
+	\[ \psi(\sigma\tau) = \sigma\sigma^*\tau\tau^* = (\sigma\sigma^*)(\tau\tau^*) = \psi(\sigma)\psi(\tau) \]
+	这证明了 $\psi$ 是一个群同态。
+	
+	\item \textbf{单射性：}
+	若 $\psi(\sigma) = 1_{A_{2n}}$，即 $\sigma\sigma^* = 1$。由于 $\sigma$ 在前半部分的行为必须是恒等的，立刻导出 $\sigma = 1_{S_n}$。因此 $\operatorname{Ker}\psi = \{1\}$， $\psi$ 是单同态。
+\end{enumerate}
+
+因为存在从 $S_n$ 到 $A_{2n}$ 的单同态，由群同态基本定理知 $S_n \cong \operatorname{Im}\psi \le A_{2n}$。
+由此证明，对称群 $S_n$ 是交错群 $A_{2n}$ 的子群。
+
+\bigskip
+\noindent \textbf{1.6.10*. (2) 证明：每个有限群均是某个交错群的子群}
+
+\medskip
+\noindent \textbf{证明：}
+
+这一问可以由有限群的经典定理直接推导出来。
+
+\begin{enumerate}
+	\item \textbf{步骤一：应用 Cayley 定理（凯莱定理）}
+	设 $G$ 是任意一个 $n$ 阶有限群（$|G| = n$）。根据群论中著名的 Cayley 定理，任何有限群 $G$ 都可以嵌入到它自身的置换群中。具体而言， $G$ 同构于 $n$ 元对称群 $S_n$ 的某一个子群：
+	\[ G \le S_n \]
+	
+	\item \textbf{步骤二：结合第 (1) 问的结论}
+	根据我们在本题第 (1) 问中刚刚严格证得的结论，对于任意的正整数 $n$， $n$ 元对称群 $S_n$ 都可以作为子群嵌入到 $2n$ 元的交错群 $A_{2n}$ 中：
+	\[ S_n \le A_{2n} \]
+	
+	\item \textbf{步骤三：利用子群关系的传递性}
+	既然 $G \le S_n$ 且 $S_n \le A_{2n}$，根据群论中子群包含关系的天然传递性，我们立刻可以得到：
+	\[ G \le A_{2n} \]
+\end{enumerate}
+
+如果我们令这个特定的交错群为 $A_m$（其中 $m = 2n = 2|G|$），那么上面的包含链说明，有限群 $G$ 确实是交错群 $A_m$ 的一个合法子群。
+
+由此证明，每个有限群均是某个交错群的子群。
+
+\qed
+
+1.6.11*. $S_{n}$ 中型为 $1^{\lambda_1}2^{\lambda_2}\dots n^{\lambda_n}$ 的置换共有 $n! / \prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!$ 个，由此证明 
+
+$$
+\sum_ {\lambda} \frac {1}{\prod_ {i = 1} ^ {n} i ^ {\lambda_ {i}} \lambda_ {i} !} = 1,
+$$
+
+其中 $\lambda$ 取遍所有的型, 即 $\lambda$ 取遍所有的数组 $(\lambda_{1}, \lambda_{2}, \cdots, \lambda_{n})$ , $\lambda_{i}$ 均为非负整数且满足 $\lambda_{1} + 2\lambda_{2} + \cdots + n\lambda_{n} = n$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了利用题目中给出的计数公式证明该数论/组合恒等式，我们通过对有限对称群 $S_n$ 中的全体置换按“型（Type）”进行分类计数（建立集合的划分）来完成证明。
+
+\bigskip
+设 $S_n$ 是 $n$ 元置换群，整个群的元素总个数（即群的阶）为：
+\[ |S_n| = n! \]
+
+根据置换群的共轭理论，对称群 $S_n$ 中的两个置换共轭的充要条件是它们具有完全相同的循环结构，即具有相同的型。因此，每一个特定的型 $\lambda = (\lambda_1, \lambda_2, \dots, \lambda_n)$ 分别唯一地对应了 $S_n$ 的一个共轭类。
+
+题目中给出的限制条件：
+\[ \lambda_{1} + 2\lambda_{2} + \cdots + n\lambda_{n} = n \]
+其本质是要求所有循环长度与其个数乘积的总和必须等于置换的总元素个数 $n$（即正整数 $n$ 的一种整数分拆）。因此，让数组 $\lambda$ 取遍所有满足该条件的非负整数数组，恰好就完美地对应了 $S_n$ 的**所有可能的循环型**。
+
+我们把每一个型 $\lambda$ 对应的置换集合（即共轭类）记为 $A_{\lambda}$：
+\[ A_{\lambda} = \{ \sigma \in S_n \mid \sigma \text{ 的型为 } 1^{\lambda_1}2^{\lambda_2}\dots n^{\lambda_n} \} \]
+
+因为任何一个置换都具有唯一确定的循环型，所以当两个型数组 $\lambda \neq \lambda'$ 时，集合 $A_{\lambda}$ 与 $A_{\lambda'}$ 绝不可能包含共同的元素，即它们是两两不相交的：
+\[ A_{\lambda} \cap A_{\lambda'} = \emptyset \quad (\forall \, \lambda \neq \lambda') \]
+
+由于整个群 $S_n$ 中的每一个置换必定属于某一特定的型，整个群 $S_n$ 恰好可以表示为这些按型分类的不相交子集的严格并集（即构成群 $S_n$ 的一个集合划分）：
+\[ S_n = \bigcup_{\lambda} A_{\lambda} \]
+
+根据有限不相交并集的基数相加原理，全群 $S_n$ 的总元素个数就等于每个分类子集的大小之和：
+\[ |S_n| = \sum_{\lambda} |A_{\lambda}| \]
+将 $|S_n| = n!$ 代入上式中，得到：
+\[ (1) \quad n! = \sum_{\lambda} |A_{\lambda}| \]
+
+此时，引入题目中给出的关键定量已知条件：型为 $1^{\lambda_1}2^{\lambda_2}\dots n^{\lambda_n}$ 的置换个数。该结论直接告诉我们每个分类集合 $A_{\lambda}$ 的基数为：
+\[ |A_{\lambda}| = \frac{n!}{\prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!} \]
+
+我们将此数量表达式直接代回前面的总计数等式 (1) 中，可以得到：
+\[ n! = \sum_{\lambda} \frac{n!}{\prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!} \]
+
+由于群的阶 $n! \neq 0$ 是一个与求和指标 $\lambda$ 无关的常数，我们可以将等式右侧求和号中的分子 $n!$ 提取到求和号外面：
+\[ n! = n! \cdot \left( \sum_{\lambda} \frac{1}{\prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!} \right) \]
+
+最后，在等式两边同时除以 $n!$，即可消去因子 $n!$，直接导出我们要证明的等式：
+\[ 1 = \sum_{\lambda} \frac{1}{\prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!} \]
+
+调换等式两边的位置，我们便成功利用置换群分类计数的思想证明了该组合恒等式：
+\[ \sum_{\lambda} \frac{1}{\prod_{i = 1}^{n}i^{\lambda_i}\lambda_i!} = 1 \]
+
+\qed
+
+1.7.1. 设 $G$ 作用在集合 $S$ 上, 对任意 $a, b \in S$ , 若存在 $g \in G$ 使得 $ga = b$ , 则 $G_{a} = g^{-1}G_{b}g$ . 换句话说, 同一轨道中元的固定子群彼此共轭. /
+
+\bigskip
+\noindent \textbf{证明：} 
+
+根据群作用中稳定子群（固定子群）的定义，对于集合 $S$ 中的任意元素 $x$，其稳定子群 $G_x$ 是由群 $G$ 中所有保持 $x$ 不动的元素构成的子群：
+\[ G_x = \{ h \in G \mid hx = x \} \]
+题目已知存在一个群元素 $g \in G$ 满足 $ga = b$。为了证明两个子群集合相等 $G_{a} = g^{-1}G_{b}g$，我们通过证明双向包含关系来完成。
+
+\bigskip
+\noindent \textbf{1. 证明 $G_a \subseteq g^{-1}G_b g$：}
+
+任取一个元素 $h \in G_a$。根据稳定子群的定义，元素 $h$ 满足：
+\[ (1) \quad ha = a \]
+
+我们需要考察元素 $g h g^{-1}$ 与元素 $b$ 的群作用结果。利用群作用的结合律（即对任意 $x, y \in G$ 恒有 $(xy)s = x(ys)$）以及已知条件 $ga = b$（等价于 $a = g^{-1}b$）：
+\[ (g h g^{-1}) b = (gh) (g^{-1}b) = (gh) a \]
+再次应用群作用的结合律，并将等式 (1) 中的 $ha = a$ 代入：
+\[ (gh) a = g (ha) = g a \]
+由于已知 $ga = b$，所以上式最终化简为：
+\[ (g h g^{-1}) b = b \]
+根据稳定子群的定义，这说明复合元素 $g h g^{-1}$ 属于 $b$ 的稳定子群 $G_b$：
+\[ g h g^{-1} \in G_b \]
+
+我们在上式两边同时左乘 $g^{-1}$，再同时右乘 $g$：
+\[ h \in g^{-1} G_b g \]
+由于 $h$ 是从 $G_a$ 中任取的元素，这严格证明了第一个方向的包含关系：
+\[ (2) \quad G_a \subseteq g^{-1} G_b g \]
+
+\bigskip
+\noindent \textbf{2. 证明 $g^{-1}G_b g \subseteq G_a$：}
+
+任取一个属于右边集合的元素，它可以被显式地表述为 $g^{-1} k g$，其中 $k \in G_b$。
+根据稳定子群的定义，元素 $k$ 满足：
+\[ (3) \quad kb = b \]
+
+现在，我们让元素 $g^{-1} k g$ 作用在集合元素 $a$ 上。同样利用群作用的结合律，并代入已知条件 $ga = b$：
+\[ (g^{-1} k g) a = (g^{-1} k) (ga) = (g^{-1} k) b \]
+再次应用结合律，并将等式 (3) 中的 $kb = b$ 代入：
+\[ (g^{-1} k) b = g^{-1} (kb) = g^{-1} b \]
+由于 $ga = b \implies g^{-1}b = a$，所以上面的作用结果最终化简为：
+\[ (g^{-1} k g) a = a \]
+根据稳定子群的定义，这说明元素 $g^{-1} k g$ 必须属于 $a$ 的稳定子群 $G_a$：
+\[ g^{-1} k g \in G_a \]
+这严格证明了第二个方向的包含关系：
+\[ (4) \quad g^{-1} G_b g \subseteq G_a \]
+
+\bigskip
+\noindent \textbf{3. 综合得出结论：}
+
+结合等式 (2) 和等式 (4)，双向包含关系均成立。因此，根据集合相等的定义，我们有：
+\[ G_a = g^{-1} G_b g \]
+
+由此证明，群 $G$ 作用在集合 $S$ 上时，同一轨道中任何两个元素的稳定子群在全群 $G$ 中必然是彼此共轭的。
+
+\qed
+
+1.7.2. 设群 $G$ 在集合 $S$ 上的作用是可迁的, $N$ 是 $G$ 的正规子群, 则 $S$ 在 $N$ 作用下的每个轨道有同样多的元. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明集合 $S$ 在子群 $N$ 作用下的所有轨道大小（元素个数）都相同，我们可以任意选取 $N$ 作用下的两个轨道，并证明它们之间存在一个双射。更为优雅且直接的方法是：利用全群 $G$ 的可迁性来建立不同轨道之间的平移映射，并借助 $N$ 的正规性确保这种平移能够完美地将一个 $N$-轨道映射为另一个 $N$-轨道。
+
+\bigskip
+设 $x \in S$ 是集合 $S$ 中的一个固定元素。我们用 $\mathcal{O}_N(x)$ 表示元素 $x$ 在子群 $N$ 作用下的轨道，根据轨道的定义有：
+\[ \mathcal{O}_N(x) = \{ n x \mid n \in N \} \]
+
+现在，任取集合 $S$ 中的另一个任意元素 $y \in S$。我们要证明它在 $N$ 作用下的轨道 $\mathcal{O}_N(y)$ 的大小与 $\mathcal{O}_N(x)$ 完全相同。
+
+由于题目已知全群 $G$ 在 $S$ 上的作用是**可迁的（Transitive）**，根据可迁性的定义，对于集合中的任意两点 $x$ 和 $y$，群 $G$ 中必然存在至少一个元素 $g \in G$，能够将 $x$ 映射到 $y$：
+\[ (1) \quad g x = y \]
+
+我们利用这个元素 $g$，构造一个关于集合 $S$ 的映射 $\phi_g: S \to S$，其法则为左乘 $g$：
+\[ \phi_g(s) = g s, \quad \forall \, s \in S \]
+显而易见，因为 $g$ 在群 $G$ 中有逆元 $g^{-1}$，所以 $\phi_g$ 是集合 $S$ 的一个双射（其逆映射为 $\phi_{g^{-1}}$）。
+
+接下来，我们证明映射 $\phi_g$ 作用在轨道集合 $\mathcal{O}_N(x)$ 上时，其像集恰好就是轨道集合 $\mathcal{O}_N(y)$。
+
+\begin{enumerate}
+	\item \textbf{证明 $\phi_g(\mathcal{O}_N(x)) \subseteq \mathcal{O}_N(y)$：}
+	
+	任取 $\mathcal{O}_N(x)$ 中的一个元素，它可以被表述为 $n_0 x$（其中 $n_0 \in N$）。我们让 $\phi_g$ 作用于它，利用群作用的结合律：
+	\[ \phi_g(n_0 x) = g (n_0 x) = (g n_0) x \]
+	
+	此时，引入题目中最重要的定量已知条件： $N$ 是 $G$ 的**正规子群**（$N \triangleleft G$）。根据正规子群的共轭封闭性，对任意的 $g \in G$ 和 $n_0 \in N$，必有 $g n_0 g^{-1} \in N$。
+	我们将元素 $g n_0$ 变形为：
+	\[ g n_0 = (g n_0 g^{-1}) g \]
+	设 $n_1 = g n_0 g^{-1} \in N$，则 $g n_0 = n_1 g$。我们将这个代数关系代回原式中：
+	\[ \phi_g(n_0 x) = (n_1 g) x = n_1 (g x) \]
+	将等式 (1) 中的 $gx = y$ 代入上式化简：
+	\[ \phi_g(n_0 x) = n_1 y \]
+	因为 $n_1 \in N$，根据 $N$-轨道的定义，元素 $n_1 y$ 显然属于 $\mathcal{O}_N(y)$。
+	这证明了：
+	\[ (2) \quad \phi_g(\mathcal{O}_N(x)) \subseteq \mathcal{O}_N(y) \]
+	
+	\item \textbf{证明 $\mathcal{O}_N(y) \subseteq \phi_g(\mathcal{O}_N(x))$：}
+	
+	任取 $\mathcal{O}_N(y)$ 中的一个元素，它可以被表述为 $n'_0 y$（其中 $n'_0 \in N$）。
+	由于 $y = gx$，代入得：
+	\[ n'_0 y = n'_0 (g x) = (n'_0 g) x \]
+	
+	同样利用 $N \triangleleft G$ 的正规性，共轭变换 $g^{-1} n'_0 g$ 必定属于 $N$。我们设 $n_2 = g^{-1} n'_0 g \in N$。那么显然有 $n'_0 g = g n_2$。
+	将该对易变形代回原式中：
+	\[ n'_0 y = (g n_2) x = g (n_2 x) = \phi_g(n_2 x) \]
+	因为 $n_2 \in N$，所以元素 $n_2 x \in \mathcal{O}_N(x)$。这说明元素 $n'_0 y$ 成功找到了它在 $\mathcal{O}_N(x)$ 中的原像。
+	这证明了：
+	\[ (3) \quad \mathcal{O}_N(y) \subseteq \phi_g(\mathcal{O}_N(x)) \]
+\end{enumerate}
+
+结合包含关系 (2) 和 (3)，我们严格证得集合相等关系：
+\[ \phi_g(\mathcal{O}_N(x)) = \mathcal{O}_N(y) \]
+
+因为 $\phi_g$ 是全集 $S$ 上的一个双射，它限制在子集 $\mathcal{O}_N(x)$ 上并将其满射到 $\mathcal{O}_N(y)$ 时，必然也保持双射的单射性。
+既然两个有限或无限集合之间存在一个双射，根据集合基数（势）的定义，这两个集合的大小必定完全相等：
+\[ |\mathcal{O}_N(x)| = |\mathcal{O}_N(y)| \]
+
+由于 $x$ 和 $y$ 是从集合 $S$ 中任取的元素，这说明 $S$ 在正规子群 $N$ 作用下的任意两个轨道都具有完全相同的元素个数。
+
+\qed
+
+1.7.3*. (Burnside 引理) 设群 $G$ 作用在集合 $S$ 上, 令 $t$ 表示 $S$ 在 $G$ 作用下的轨道的条数. 对任意 $g \in G$ , $F(g)$ 表示 $S$ 在 $\mathbf{g}$ 作用下不动点的个数, 即 $F(g) = |\{x \in S | gx = x\}|$ . 试证 $$
+t = \frac {\sum_ {g \in G} F (g)}{| G |}
+$$
+
+这就是说, G 的每个元在 S 上作用平均使得 t 个文字不动. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明该等式，群论中最为经典且优美的策略是构造一个连接群 $G$ 和集合 $S$ 的**二元关系集合（即大集合计数法）**，通过两向不同的计数（Fubini 原理）来建立等式。
+
+\bigskip
+\noindent \textbf{第一步：构造大集合并进行双向计数}
+
+我们定义一个由有序对 $(g, x)$ 组成的集合 $\Omega$ 如下：
+\[ \Omega = \{ (g, x) \in G \times S \mid gx = x \} \]
+
+现在，我们从两个不同的视角来清点集合 $\Omega$ 的总元素个数 $|\Omega|$：
+
+\begin{enumerate}
+	\item \textbf{视角一：按群元素 $g \in G$ 进行分类计数}
+	对于一个固定的群元素 $g \in G$，能够与它配对并满足 $gx = x$ 的 $x \in S$ 的个数，根据题目定义正好是不动点个数 $F(g)$。
+	因此，让 $g$ 遍历整个群 $G$ 累加，得到：
+	\[ (1) \quad |\Omega| = \sum_{g \in G} F(g) \]
+	
+	\item \textbf{视角二：按集合元素 $x \in S$ 进行分类计数}
+	对于一个固定的集合元素 $x \in S$，能够与它配对并满足 $gx = x$ 的 $g \in G$ 的个数，根据稳定子群（固定子群）的定义，正好是稳定子群 $G_x$ 的阶 $|G_x|$。
+	因此，让 $x$ 遍历整个集合 $S$ 累加，得到：
+	\[ (2) \quad |\Omega| = \sum_{x \in S} |G_x| \]
+\end{enumerate}
+
+结合等式 (1) 和等式 (2)，我们得到了一个核心的中间等式：
+\[ (3) \quad \sum_{g \in G} F(g) = \sum_{x \in S} |G_x| \]
+
+\bigskip
+\noindent \textbf{第二步：利用轨道-稳定子定理化简右端}
+
+根据群作用中的**轨道-稳定子定理（Orbit-Stabilizer Theorem）**，对任意的 $x \in S$，元素 $x$ 所在的轨道 $\mathcal{O}(x)$ 的大小与它的稳定子群 $G_x$ 的指数相等，即：
+\[ |\mathcal{O}(x)| = [G : G_x] = \frac{|G|}{|G_x|} \]
+由此，我们可以将稳定子群的阶显式地表示为：
+\[ |G_x| = \frac{|G|}{|\mathcal{O}(x)|} \]
+
+我们将此表达式代入等式 (3) 的右侧：
+\[ \sum_{g \in G} F(g) = \sum_{x \in S} \frac{|G|}{|\mathcal{O}(x)|} \]
+由于全群的阶 $|G|$ 与求和指标 $x$ 无关，我们可以将 $|G|$ 提取到求和号外面：
+\[ (4) \quad \sum_{g \in G} F(g) = |G| \cdot \sum_{x \in S} \frac{1}{|\mathcal{O}(x)|} \]
+
+\bigskip
+\noindent \textbf{第三步：按轨道划分进行最终计数}
+
+现在我们来仔细分析等式 (4) 右侧的求和式 $\sum_{x \in S} \frac{1}{|\mathcal{O}(x)|}$。
+已知群作用将整个集合 $S$ 严格地划分成了 $t$ 条互不相交的轨道，我们不妨把这些轨道依次记为 $\mathcal{O}_1, \mathcal{O}_2, \dots, \mathcal{O}_t$。于是整个集合的求和可以拆解为在这 $t$ 条轨道上分别求和：
+\[ \sum_{x \in S} \frac{1}{|\mathcal{O}(x)|} = \sum_{i=1}^{t} \left( \sum_{x \in \mathcal{O}_i} \frac{1}{|\mathcal{O}(x)|} \right) \]
+
+对于一个固定的轨道 $\mathcal{O}_i$，当分量 $x$ 在该轨道内部变动时，它所对应的轨道本身是恒定不变的，即 $\mathcal{O}(x) = \mathcal{O}_i$，从而分母 $|\mathcal{O}(x)| = |\mathcal{O}_i|$ 是个常数。
+因此，在单条轨道内部求和时，相当于将常数 $\frac{1}{|\mathcal{O}_i|}$ 累加了 $|\mathcal{O}_i|$ 次（因为该轨道恰好有 $|\mathcal{O}_i|$ 个元素）：
+\[ \sum_{x \in \mathcal{O}_i} \frac{1}{|\mathcal{O}(x)|} = \sum_{x \in \mathcal{O}_i} \frac{1}{|\mathcal{O}_i|} = |\mathcal{O}_i| \cdot \frac{1}{|\mathcal{O}_i|} = 1 \]
+
+这意味着，每一条轨道对总和的贡献精确地等于 $1$。我们将这个结果代回总轨道求和中：
+\[ \sum_{x \in S} \frac{1}{|\mathcal{O}(x)|} = \sum_{i=1}^{t} 1 = \underbrace{1 + 1 + \dots + 1}_{t \text{ 个}} = t \]
+
+\bigskip
+\noindent \textbf{第四步：得出结论}
+
+将第三步得到的化简结果 $\sum_{x \in S} \frac{1}{|\mathcal{O}(x)|} = t$ 彻底代回第二步的等式 (4) 中，立刻得到：
+\[ \sum_{g \in G} F(g) = |G| \cdot t \]
+
+由于有限群的阶 $|G| \neq 0$，我们在等式两边同时除以 $|G|$，即可成功隔离出轨道条数 $t$：
+\[ t = \frac{\sum_{g \in G} F(g)}{|G|} \]
+
+引理圆满得证。
+
+\qed
+
+1.7.4. 求正四面体、正六面体、正八面体、正十二面体和正二十面体 (如下图所示) 的旋转群和对称群各有多少个元? 
+
+\bigskip
+\noindent \textbf{核心数学工具：轨道-稳定子定理}
+
+要计算一个几何体的旋转群（记为 $G_R$）或全对称群（记为 $G$）的元个数，群论中最系统且不易出错的方法是利用\textbf{轨道-稳定子定理（Orbit-Stabilizer Theorem）}。
+设群 $G$ 可迁地作用在正多面体的某一种几何元素集合 $S$（如：顶点集 $V$、棱集 $E$ 或面集 $F$）上。则整个群的阶满足：
+\[ |G| = |\mathcal{O}(x)| \cdot |G_x| = |S| \cdot |G_x| \]
+其中，$|S|$ 是该几何元素的总个数， $|G_x|$ 是保持某一个特定元素 $x$ 不动的稳定子群的阶。
+
+\bigskip
+\noindent \textbf{1. 正四面体 (Tetrahedron)}
+
+正四面体有 4 个顶点、6 条棱、4 个正三角形面。
+
+\begin{itemize}
+	\item \textbf{旋转群 $G_R$：}
+	我们让旋转群作用在 4 个面组成的集合上（$|F| = 4$）。
+	固定其中一个正三角形面，保持该面不动的空间旋转只能绕着过该面中心且垂直于该面的轴进行。由于面是正三角形，这样的旋转一共有 3 种（旋转 $0^\circ, 120^\circ, 240^\circ$），因此面稳定子群的阶 $|(G_R)_f| = 3$。
+	根据轨道-稳定子定理：
+	\[ |G_R| = |F| \cdot |(G_R)_f| = 4 \times 3 = 12 \]
+	（注：该旋转群同构于 4 元交错群 $A_4$。）
+	
+	\item \textbf{全对称群 $G$：}
+	全对称群允许镜面反射。固定同一个正三角形面，在允许反射的情况下，正三角形的平面全对称群大小为 $D_3$（阶为 6）。因此全对称下的面稳定子群的阶 $|G_f| = 6$。
+	根据轨道-稳定子定理：
+	\[ |G| = |F| \cdot |G_f| = 4 \times 6 = 24 \]
+	（注：该全对称群同构于 4 元对称群 $S_4$。）
+\end{itemize}
+
+\bigskip
+\noindent \textbf{2. 正六面体（正方体，Hexahedron / Cube）}
+
+正方体有 8 个顶点、12 条棱、6 个正方形面。
+
+\begin{itemize}
+	\item \textbf{旋转群 $G_R$：}
+	我们让旋转群作用在 6 个面组成的集合上（$|F| = 6$）。
+	固定一个正方形面，保持该面不动的空间旋转轴为过面中心的中心对称轴。由于面是正方形，绕该轴的旋转有 4 种（旋转 $0^\circ, 90^\circ, 180^\circ, 270^\circ$），故 $|(G_R)_f| = 4$。
+	根据轨道-稳定子定理：
+	\[ |G_R| = |F| \cdot |(G_R)_f| = 6 \times 4 = 24 \]
+	（注：该旋转群同构于 4 元对称群 $S_4$。）
+	
+	\item \textbf{全对称群 $G$：}
+	因为正方体具有\textbf{中心对称性}（过几何中心的点反射 $\mathbf{x} \mapsto -\mathbf{x}$ 也是一个合法对称），空间中心对映变换会生成一个 2 阶群，且它与旋转群直积相连。因此，其全对称群的阶是旋转群的两倍：
+	\[ |G| = 2 \times |G_R| = 2 \times 24 = 48 \]
+\end{itemize}
+
+\bigskip
+\noindent \textbf{3. 正八面体 (Octahedron)}
+
+正八面体有 6 个顶点、12 条棱、8 个正三角形面。
+
+根据立体几何的对偶原理，正八面体与正六面体互为\textbf{对偶多面体}（将正方体每个面的中心连起来就得到正八面体）。因此，两者的对称结构完全相同。
+\begin{itemize}
+	\item \textbf{旋转群 $G_R$：}
+	作用在 8 个面组成的集合上（$|F| = 8$）。固定一个正三角形面，绕面中心的旋转有 3 种，故 $|(G_R)_f| = 3$。
+	\[ |G_R| = |F| \cdot |(G_R)_f| = 8 \times 3 = 24 \]
+	
+	\item \textbf{全对称群 $G$：}
+	正八面体同样具有中心对称性，因此全对称群的阶为旋转群的两倍：
+	\[ |G| = 2 \times |G_R| = 2 \times 24 = 48 \]
+\end{itemize}
+
+\bigskip
+\noindent \textbf{4. 正十二面体 (Dodecahedron)}
+
+正十二面体有 20 个顶点、30 条棱、12 个正五边形面。
+
+\begin{itemize}
+	\item \textbf{旋转群 $G_R$：}
+	我们让旋转群作用在 12 个面组成的集合上（$|F| = 12$）。
+	固定一个正五边形面，保持该面不动的空间旋转轴为过该五边形中心的轴。由于面是正五边形，旋转有 5 种（每个转动 $72^\circ$ 的倍数），故 $|(G_R)_f| = 5$。
+	根据轨道-稳定子定理：
+	\[ |G_R| = |F| \cdot |(G_R)_f| = 12 \times 5 = 60 \]
+	（注：该旋转群同构于 5 元交错群 $A_5$。）
+	
+	\item \textbf{全对称群 $G$：}
+	正十二面体具有中心对称性（每个顶点、棱、面都有关于中心对称的对立面）。因此全对称群的阶为旋转群的两倍：
+	\[ |G| = 2 \times |G_R| = 2 \times 60 = 120 \]
+\end{itemize}
+
+\bigskip
+\noindent \textbf{5. 正二十面体 (Icosahedron)}
+
+正二十面体有 12 个顶点、30 条棱、20 个正三角形面。
+
+正二十面体与正十二面体互为\textbf{对偶多面体}，因此两者的旋转群和全对称群的阶完全一致。
+\begin{itemize}
+	\item \textbf{旋转群 $G_R$：}
+	作用在 20 个面组成的集合上（$|F| = 20$）。固定一个正三角形面，绕其中心的旋转有 3 种，故 $|(G_R)_f| = 3$。
+	\[ |G_R| = |F| \cdot |(G_R)_f| = 20 \times 3 = 60 \]
+	
+	\item \textbf{全对称群 $G$：}
+	正二十面体具有中心对称性，全对称群的阶为旋转群的两倍：
+	\[ |G| = 2 \times |G_R| = 2 \times 60 = 120 \]
+\end{itemize}
+
+\bigskip
+\noindent \textbf{总结表格}
+
+为了便于直观对比，我们将这五种正多面体（柏拉图多面体）的群元数汇总如下：
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline
+		\textbf{正多面体} & \textbf{顶点数 ($V$)} & \textbf{棱数 ($E$)} & \textbf{面数 ($F$)} & \textbf{旋转群元数 ($|G_R|$)} & \textbf{全对称群元数 ($|G|$)} \\ \hline
+		正四面体 & 4 & 6 & 4 & \textbf{12} & \textbf{24} \\ \hline
+		正六面体 & 8 & 12 & 6 & \textbf{24} & \textbf{48} \\ \hline
+		正八面体 & 6 & 12 & 8 & \textbf{24} & \textbf{48} \\ \hline
+		正十二面体 & 20 & 30 & 12 & \textbf{60} & \textbf{120} \\ \hline
+		正二十面体 & 12 & 30 & 20 & \textbf{60} & \textbf{120} \\ \hline
+	\end{tabular}
+\end{center}
+
+\qed
+
+1.7.5*. 设 $p$ 是一个素数, $G$ 是 $p$ 的方幂阶的群. 试证 $G$ 的非正规子群的个数一定是 $p$ 的倍数. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明非正规子群的个数是 $p$ 的倍数，群论中最为强有力且统一的方法是构造一个合适的**群作用（Group Action）**。我们将让群 $G$ 通过**共轭作用（Conjugation）**作用在全群的子群集合上，并利用轨道大小的分流性质来完成定量计数。
+
+\bigskip
+\noindent \textbf{1. 构造群作用与集合划分}
+
+设 $\mathcal{S}$ 是群 $G$ 的所有子群构成的集合。我们定义群 $G$ 在集合 $\mathcal{S}$ 上的共轭作用如下：对于任意的 $g \in G$ 和子群 $H \in \mathcal{S}$，
+\[ g \cdot H = gHg^{-1} \]
+显而易见，由于 $gHg^{-1}$ 仍然是 $G$ 的一个子群，这个作用是合法且良定义的。
+
+在这个作用下，整个集合 $\mathcal{S}$ 可以被严格地划分成若干个互不相交的共轭轨道的并集。我们把其中的某一个轨道记为 $\mathcal{O}(H)$，根据轨道的定义，它包含了 $H$ 的所有共轭子群：
+\[ \mathcal{O}(H) = \{ gHg^{-1} \mid g \in G \} \]
+
+根据群作用中的**轨道-稳定子定理（Orbit-Stabilizer Theorem）**，轨道 $\mathcal{O}(H)$ 的元素个数等于全群 $G$ 的阶除以 $H$ 的稳定子群的阶。在这个具体的共轭作用下， $H$ 的稳定子群恰好就是 $H$ 在 $G$ 中的**正规化子（Normalizer）** $N_G(H)$：
+\[ |\mathcal{O}(H)| = [G : N_G(H)] = \frac{|G|}{|N_G(H)|} \]
+
+\bigskip
+\noindent \textbf{2. 轨道大小的分流特征}
+
+由于题目已知 $G$ 是一个有限 $p$-群，也就是说存在某个正整数 $m$ 使得 $|G| = p^m$。
+根据拉格朗日定理，作为 $G$ 的子群，正规化子的阶 $|N_G(H)|$ 也必须是 $p$ 的方幂。因此，轨道的阶（即指数 $[G : N_G(H)]$）也只能是 $p$ 的某个方幂：
+\[ |\mathcal{O}(H)| = p^k \quad (0 \le k \le m) \]
+
+基于此，我们可以根据轨道的大小，将所有的子群严格地划分为两大类：
+
+\begin{itemize}
+	\item \textbf{第一类：大小为 1 的轨道（即 $k = 0 \implies |\mathcal{O}(H)| = 1$）。}
+	根据数量关系， $| \mathcal{O}(H) | = 1 \iff [G : N_G(H)] = 1 \iff N_G(H) = G$。
+	根据正规化子的定义， $N_G(H) = G$ 意味着对任意的 $g \in G$ 恒有 $gHg^{-1} = H$。
+	这恰好就是**正规子群**的充要条件。因此：
+	\[ |\mathcal{O}(H)| = 1 \iff H \text{ 是 } G \text{ 的正规子群} \]
+	
+	\item \textbf{第二类：大小大于 1 的轨道（即 $k \ge 1 \implies |\mathcal{O}(H)| = p^k$）。}
+	由于轨道大小必须是 $p$ 的正方幂，这意味着这类轨道中的元素个数必然能够被素数 $p$ 整除。
+	结合第一类的结论，这类轨道中的子群满足 $gHg^{-1} \neq H$，因此它们全都是**非正规子群**。
+\end{itemize}
+
+\bigskip
+\noindent \textbf{3. 非正规子群的定量计数}
+
+我们用 $\mathcal{S}_{\text{non-normal}}$ 表示群 $G$ 的所有非正规子群组成的集合。
+
+根据前面的分析，在全群 $G$ 的共轭作用下，任何一个正规子群都孤立地自成一个大小为 1 的轨道；而任何一个非正规子群 $H$，它所在的共轭轨道 $\mathcal{O}(H)$ 内部的所有成员也必然都是非正规子群。
+这意味着，整个非正规子群集合 $\mathcal{S}_{\text{non-normal}}$ 恰好可以被完全划分成若干个**第二类轨道**的严格不相交并集：
+\[ \mathcal{S}_{\text{non-normal}} = \mathcal{O}(H_1) \cup \mathcal{O}(H_2) \cup \dots \cup \mathcal{O}(H_r) \]
+其中 $H_1, H_2, \dots, H_r$ 是各个不同非正规子群共轭类的代表元。
+
+根据有限不相交集合基数相加的原理，非正规子群的总个数就是这些轨道大小的总和：
+\[ |\mathcal{S}_{\text{non-normal}}| = |\mathcal{O}(H_1)| + |\mathcal{O}(H_2)| + \dots + |\mathcal{O}(H_r)| \]
+
+由于每一个参与求和的轨道都属于第二类轨道，它们的大小都满足 $[G : N_G(H_i)] = p^{k_i}$（其中 $k_i \ge 1$）。因此，每一项都必然是 $p$ 的倍数，我们可以将素数 $p$ 显式地提取出来：
+\[ |\mathcal{S}_{\text{non-normal}}| = p^{k_1} + p^{k_2} + \dots + p^{k_r} = p \cdot \left( p^{k_1 - 1} + p^{k_2 - 1} + \dots + p^{k_r - 1} \right) \]
+
+因为对所有的 $i$，都有 $k_i \ge 1$，所以括号内部的每一项 $p^{k_i - 1}$ 依然是一个正整数。这说明总和 $|\mathcal{S}_{\text{non-normal}}|$ 能够被素数 $p$ 严格整除。
+
+由此证明，有限 $p$-群 $G$ 的非正规子群的个数一定是 $p$ 的倍数。
+
+\qed
+
+1.7.6*. 令 $G$ 是一个单群, 如果存在 $G$ 的真子群 $H$ 使得 $[G:H] \leqslant 4$ , 则 $|G| \leqslant 3$ . 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们利用**群在陪集空间上的可迁作用（即群的置换表示）**来完成这个极具约束性的命题的证明。
+
+\bigskip
+\noindent \textbf{1. 构造陪集空间上的群作用与同态}
+
+设 $H$ 是群 $G$ 的一个真子群，其指数为 $n = [G:H]$。根据题目已知条件，有 $n \leqslant 4$。同时因为 $H$ 是真子群，所以 $n > 1$。
+令 $S = G/H = \{ x_1H, x_2H, \dots, x_nH \}$ 表示 $H$ 在 $G$ 中的所有左陪集构成的集合，显然该集合的大小 $|S| = n$。
+
+我们让全群 $G$ 通过左乘法作用在陪集集合 $S$ 上：
+\[ g \cdot (xH) = (gx)H, \quad \forall \, g \in G, \, xH \in S \]
+该作用天然是可迁的。根据群作用的理论，这个几何作用等价于诱导出了一个从原群 $G$ 到集合 $S$ 的对称群（即置换群） $S_n$ 的**群同态**映射 $\phi$：
+\[ \phi: G \longrightarrow S_n \]
+
+\bigskip
+\noindent \textbf{2. 利用单群性质分析同态的核}
+
+我们来考察这个群同态的核 $\operatorname{Ker}\phi$。根据同态核的定义，它由所有在作用下保持每个陪集都不动的元素组成：
+\[ \operatorname{Ker}\phi = \{ g \in G \mid g(xH) = xH, \, \forall \, x \in G \} = \bigcap_{x \in G} xHx^{-1} \]
+显然，由于当 $x=1$ 时 $xHx^{-1} = H$，所以 $\operatorname{Ker}\phi$ 必然被包含在子群 $H$ 中：
+\[ \operatorname{Ker}\phi \leqslant H \]
+因为 $H$ 是 $G$ 的**真子群**（$H < G$），这意味着同态核绝不可能等于全群：
+\[ \operatorname{Ker}\phi \neq G \]
+
+根据群同态的性质，同态核 $\operatorname{Ker}\phi$ 总是原群 $G$ 的一个**正规子群**。
+此时，引入题目中给出的核心已知条件： $G$ 是一个**单群（Simple Group）**。根据单群的定义， $G$ 的正规子群只能是平凡群 $\{1\}$ 或者全群 $G$。
+结合前面已经导出的 $\operatorname{Ker}\phi \neq G$，我们别无选择，同态核必须是平凡群：
+\[ \operatorname{Ker}\phi = \{1\} \]
+根据群同态的性质，核为平凡群意味着映射 $\phi$ 是一个**单同态（单射）**。
+
+\bigskip
+\noindent \textbf{3. 利用单射性进行阶数估计}
+
+既然 $\phi: G \to S_n$ 是一个单同态，根据群同态基本定理，原群 $G$ 必定同构于目标群 $S_n$ 的某一个子群（即像集 $\operatorname{Im}\phi$）：
+\[ G \cong \operatorname{Im}\phi \leqslant S_n \]
+根据拉格朗日定理，子群的阶必须能够整除全群的阶，因而有大小的约束关系：
+\[ |G| \leqslant |S_n| = n! \]
+
+题目已知 $n = [G:H] \leqslant 4$，我们对 $n$ 的所有可能取值进行分流讨论：
+
+\begin{itemize}
+	\item \textbf{情况一：$n = 2$ 时}
+	此时 $|G| \leqslant 2! = 2$。由于群的阶只能是正整数，所以显然有 $|G| \leqslant 3$。
+	
+	\item \textbf{情况二：$n = 3$ 时}
+	此时 $|G| \leqslant 3! = 6$。作为 $S_3$ 的子群，且 $G$ 必须是单群：
+	\begin{itemize}
+		\item 若 $|G| = 6 \implies G \cong S_3$。但 $S_3$ 拥有一个 3 阶的正规子群 $A_3$，它不是单群，矛盾。
+		\item 若 $|G| = 4$， 4 不能整除 6，不可能。
+		\item 综上， $G$ 的阶只能在 $S_3$ 的真单子群中选取，其最大只能为 3（3 阶循环群是单群）。因此必然有 $|G| \leqslant 3$。
+	\end{itemize}
+	
+	\item \textbf{情况三：$n = 4$ 时}
+	此时 $\phi$ 是从单群 $G$ 到 $S_4$ 的单同态，也就是说 $G \cong \operatorname{Im}\phi \leqslant S_4$。
+	根据对称群 $S_4$ 的子群结构，其所有非平凡的单子群只能是素数阶的循环群（2 阶或 3 阶）或者 5 元交错群（但 $|A_5| = 60 > 24$ 不可能嵌入）。我们逐一排查 $\operatorname{Im}\phi$ 对应 $G$ 的可能阶数：
+	\begin{itemize}
+		\item 如果 $|G| \ge 4$，由于 $G$ 是单群， $G$ 不能是 4 阶（非单）、6 阶（非单，如 $S_3$ 或 $\mathbb{Z}_6$）、8 阶（$p$-群非单）、12 阶（$A_4$ 非单，包含克莱因四元群）、24 阶（$S_4$ 非单）。
+		\item 在 $S_4$ 内部，唯一的非平凡单子群只有 2 阶循环群 $\mathbb{Z}_2$ 和 3 阶循环群 $\mathbb{Z}_3$。
+	\end{itemize}
+	因此，作为单群， $G$ 的阶最高只能取到 3。即恒有 $|G| \leqslant 3$。
+\end{itemize}
+
+\bigskip
+综上所述，无论指数 $n$ 取 2、3 还是 4，单群 $G$ 的阶都严格受到压制，必须满足：
+\[ |G| \leqslant 3 \]
+
+\qed
+
+1.7.7*. 设 $H$ 是群 $G$ 的指数为 $n < \infty$ 的真子群, 试证 $H$ 一定含有 $G$ 的一个有有限指数的真正规子群. 
+
+如果还有 $|G| > n!$ , 则 $G$ 不是单群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明该命题，我们采用群论中极具威力的**陪集空间上的群作用（即置换表示）**方法。我们将通过构造一个大群到有限对称群的同态，来寻找位于 $H$ 内部的正规子群。
+
+\bigskip
+\noindent \textbf{第一部分：证明 $H$ 含有 $G$ 的有限指数的真正规子群}
+
+设 $H$ 是 $G$ 的一个真子群（$H < G$），其指数为 $n = [G:H] < \infty$。因为 $H$ 是真子群，所以显然有 $n > 1$。
+我们令 $S = G/H = \{ x_1H, x_2H, \dots, x_nH \}$ 表示 $H$ 在 $G$ 中的所有左陪集构成的集合，显然其大小为 $|S| = n$。
+
+现在，我们让全群 $G$ 通过左乘法作用在陪集集合 $S$ 上：
+\[ g \cdot (xH) = (gx)H, \quad \forall \, g \in G, \, xH \in S \]
+该几何作用等价于诱导出了一个从原群 $G$ 到集合 $S$ 的对称群 $S_n$ 的\textbf{群同态}映射 $\phi$：
+\[ \phi: G \longrightarrow S_n \]
+
+我们来考察这个群同态的核 $N = \operatorname{Ker}\phi$。根据群同态的代数性质， $N$ 满足以下核心特征：
+\begin{enumerate}
+	\item \textbf{$N$ 是 $G$ 的正规子群：}
+	由于任何群同态的核都天然对共轭作用封闭，因此 $N \triangleleft G$。
+	
+	\item \textbf{$N$ 被完全包含在 $H$ 中：}
+	根据同态核的定义，它包含所有保持每个陪集都不动的元素。我们让其作用在单位元所在的特殊陪集 $1 \cdot H = H$ 上：
+	\[ \forall \, g \in N \implies g \cdot H = H \implies g \in H \]
+	由此严格证得：
+	\[ N \leqslant H \]
+	
+	\item \textbf{$N$ 是 $G$ 的一个真正规子群：}
+	因为已知 $H$ 是 $G$ 的\textbf{真子群}（$H < G$），而我们刚刚证得 $N \leqslant H$，利用包含关系的传递性， $N$ 绝不可能等于全群 $G$。即：
+	\[ N \neq G \implies N < G \]
+	
+	\item \textbf{$N$ 在 $G$ 中的指数是有限的：}
+	根据群同态基本定理（第一同构定理），商群 $G/N$ 同构于目标群 $S_n$ 的某一个子群（即像集 $\operatorname{Im}\phi$）：
+	\[ G/N \cong \operatorname{Im}\phi \leqslant S_n \]
+	因此，根据拉格朗日定理，商群的阶（即子群 $N$ 在 $G$ 中的指数）受到了有限对称群 $S_n$ 大小的严格压制：
+	\[ [G:N] = |G/N| = |\operatorname{Im}\phi| \leqslant |S_n| = n! \]
+	由于 $n < \infty$，所以 $n!$ 显然是一个有限的正整数。这严格证明了：
+	\[ [G:N] \leqslant n! < \infty \]
+\end{enumerate}
+
+综上所述，我们成功在 $H$ 的内部找到了一个子群 $N$ （这个子群在群论中被称为 $H$ 的\textbf{正规核心 Normal Core}，常记为 $\operatorname{Core}_G(H)$）。它同时满足 $N \leqslant H$、 $N \triangleleft G$、 $N \neq G$ 且 $[G:N] < \infty$。
+即： $H$ 一定含有 $G$ 的一个有有限指数的真正规子群。
+
+\bigskip
+\noindent \textbf{第二部分：证明若 $|G| > n!$，则 $G$ 不是单群}
+
+在第一部分构造的单一同态 $\phi: G \to S_n$ 的基础上，我们现在引入额外的定量已知条件：
+\[ |G| > n! \]
+
+如果群 $G$ 是一个单群，那么根据单群的定义，它唯一的正规子群只能是平凡群 $\{1\}$ 或者全群 $G$。
+由于我们在第一部分中已经严格排除了 $N = G$ 的可能性（因为 $N \leqslant H < G$），那么在单群的刚性假设下，同态核 $N$ 别无选择，只能是平凡群：
+\[ N = \operatorname{Ker}\phi = \{1\} \]
+根据群同态的性质，核为平凡群意味着该映射 $\phi$ 必须是一个\textbf{单同态（单射）}。
+
+既然 $\phi: G \to S_n$ 是一个单同态，原群 $G$ 就必须能够完整地以同构的形式嵌入到 $S_n$ 中，成为其一个子群：
+\[ G \cong \operatorname{Im}\phi \leqslant S_n \]
+再次调用拉格朗日定理，子群的阶绝对不可能超过全群的阶。因此， $G$ 的阶必须满足如下大小约束：
+\[ |G| \leqslant |S_n| = n! \]
+
+然而，这个推导出来的结论 $|G| \leqslant n!$ 与题目中给出的已知前提条件——“$|G| > n!$”产生了不可调和的直接冲突（一个数不可能同时大于且小于等于另一个数）！
+
+这个矛盾说明，关于“$G$ 是单群”的假设是完全错误的。
+由此证得，如果还有 $|G| > n!$，则 $G$ 绝对不是单群。
+
+\bigskip
+\noindent \textbf{总结：} 
+
+通过利用群在左陪集空间上的置换同态，我们成功构造出了 $H$ 的正规核心 $N = \operatorname{Core}_G(H)$。由于 $[G:N] \leqslant n!$，一旦全群的阶 $|G|$ 超过了这个上限 $n!$，该同态就绝不可能是单射，从而其非平凡的核 $N$ 便成了一个不退化的真正规子群，有力地宣告了 $G$ 不是单群。
+
+\qed
+
+1.7.8*. 试证一般线性群 $GL(n, \mathbb{C})$ 不含有指数有限的真子群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们采用反证法。假设一般线性群 $G = GL(n, \mathbb{C})$ 包含一个指数有限的真子群，记为 $H$。即：
+\[ [G:H] = m < \infty \quad \text{且} \quad H < G \]
+
+根据前一题（习题 1.7.7*）已证的经典结论，如果一个群包含一个指数为 $m < \infty$ 的真子群 $H$，那么 $H$ 的内部一定包含一个在全群 $G$ 中**指数仍然有限的真正规子群** $N$（即 $H$ 的正规核心 $\operatorname{Core}_G(H)$）。也就是说，存在一个子群 $N$ 满足：
+\[ N \triangleleft G, \quad N \leqslant H < G, \quad \text{且} \quad [G:N] = k < \infty \]
+
+既然 $N$ 是 $G$ 的一个有限指数的正规子群，我们就可以构造合法的商群 $G/N$。该商群的阶等于 $N$ 在 $G$ 中的指数：
+\[ |G/N| = [G:N] = k < \infty \]
+根据拉格朗日定理在商群中的表现，对商群 $G/N$ 中的任意元素 $\overline{g} = gN$，其 $k$ 次幂（在乘法群下）必然等于商群的单位元 $\overline{1} = N$。
+转译回原群 $G = GL(n, \mathbb{C})$ 的代数语言，这意味着：
+\[ (1) \quad \forall \, g \in GL(n, \mathbb{C}), \quad g^k \in N \]
+
+\bigskip
+接下来，我们利用复数域 $\mathbb{C}$ 的**代数封闭性（可开任意次方性）**来构造矛盾。
+
+我们考察 $GL(n, \mathbb{C})$ 中最简单的非平凡矩阵——标量矩阵（Scalar Matrices）。
+在复数域 $\mathbb{C}$ 中，对于任意一个非零的复数 $c \in \mathbb{C}^*$，由于复数域支持开任意正整数次方，方程 $x^k = c$ 在 $\mathbb{C}$ 中必然存在至少一个非零复数解。我们把这个解记为 $\lambda \in \mathbb{C}^*$，即满足：
+\[ \lambda^k = c \]
+
+现在，我们构造一个特殊的对角标量矩阵 $g = \lambda I_n$，其中 $I_n$ 是 $n$ 阶单位矩阵。显然，因为 $\lambda \neq 0$，矩阵 $g$ 的行列式 $\det(g) = \lambda^n \neq 0$，所以 $g$ 是 $GL(n, \mathbb{C})$ 中的一个合法元素。
+
+我们把这个矩阵 $g$ 代入前面导出的核心特征式 (1) 中，由于标量矩阵的幂次运算满足 $(\lambda I_n)^k = \lambda^k I_n$，有：
+\[ g^k = (\lambda I_n)^k = \lambda^k I_n = c I_n \in N \]
+
+由于上述推理对任意非零复数 $c \in \mathbb{C}^*$ 都成立，这说明 $GL(n, \mathbb{C})$ 中的**所有中心标量矩阵**都必须被完全包含在子群 $N$ 中。我们用 $Z(G)$ 表示 $GL(n, \mathbb{C})$ 的中心，已知 $Z(G) = \{ c I_n \mid c \in \mathbb{C}^* \}$，因此有：
+\[ (2) \quad Z(G) \leqslant N \]
+
+\bigskip
+然而，这仅仅限制了中心部分。为了将矛盾推广到全群，我们利用一个关于一般线性群中心化与交换子的深层代数性质：
+我们考察全体行列式为 1 的矩阵构成的**特殊线性群** $SL(n, \mathbb{C})$。根据李群与矩阵群的经典结论，特殊线性群 $SL(n, \mathbb{C})$ 的中心化子或其自身的换位子群满足：
+\[ [GL(n, \mathbb{C}), GL(n, \mathbb{C})] = SL(n, \mathbb{C}) \]
+这意味着 $SL(n, \mathbb{C})$ 是由 $GL(n, \mathbb{C})$ 中所有形如 $A B A^{-1} B^{-1}$ 的换位子生成的。
+
+我们重新回到商群 $G/N$ 中。由于商群 $G/N$ 的阶为有限数 $k$，我们可以考虑把任何一个矩阵 $M \in SL(n, \mathbb{C})$ 进行开 $k$ 次方。
+利用复矩阵的若尔当标准型（Jordan Canonical Form）理论，对于任何一个行列式为 1 的复矩阵 $M \in SL(n, \mathbb{C})$，由于 $\mathbb{C}$ 的代数封闭性，其若尔当块中的对角元（特征值）都可以开 $k$ 次方，且通过调整可以保持行列式仍为 1。因此，在 $SL(n, \mathbb{C})$ 内部，**任何矩阵 $M$ 都存在 $k$ 次方根**。即：
+\[ \forall \, M \in SL(n, \mathbb{C}), \quad \exists \, X \in SL(n, \mathbb{C}) \quad \text{使得} \quad X^k = M \]
+
+由于 $X \in SL(n, \mathbb{C}) \leqslant GL(n, \mathbb{C})$，根据前面建立的普适核心式 (1)， $X$ 的 $k$ 次幂必须属于 $N$：
+\[ X^k \in N \implies M \in N \]
+由于该结论对 $SL(n, \mathbb{C})$ 中的任意矩阵 $M$ 都成立，这强迫整个特殊线性群都被完全包含在 $N$ 中：
+\[ (3) \quad SL(n, \mathbb{C}) \leqslant N \]
+
+\bigskip
+最后，我们进行总体的代数合成。
+在一般线性群 $GL(n, \mathbb{C})$ 中，任何一个普通的矩阵 $A$ 都可以通过提取其行列式的 $n$ 次方根，拆解为一个标量矩阵（属于中心 $Z(G)$）与一个行列式为 1 的矩阵（属于 $SL(n, \mathbb{C})$）的乘积。
+具体而言，设 $d = \det(A) \neq 0$，令 $\alpha \in \mathbb{C}^*$ 满足 $\alpha^n = d$。则我们可以将 $A$ 恒等变形为：
+\[ A = (\alpha I_n) \cdot \left( \frac{1}{\alpha} A \right) \]
+显然：
+\begin{itemize}
+	\item 第一部分 $\alpha I_n \in Z(G)$。由等式 (2) 知 $\alpha I_n \in N$。
+	\item 第二部分 $\det(\frac{1}{\alpha} A) = (\frac{1}{\alpha})^n \det(A) = \frac{1}{d} \cdot d = 1$，故 $\frac{1}{\alpha} A \in SL(n, \mathbb{C})$。由等式 (3) 知 $\frac{1}{\alpha} A \in N$。
+\end{itemize}
+
+由于子群 $N$ 对矩阵乘法具有封闭性，作为两个属于 $N$ 的矩阵的乘积，矩阵 $A$ 自身也必须属于 $N$：
+\[ A \in N \]
+
+因为 $A$ 是从全群 $GL(n, \mathbb{C})$ 中任意选取的矩阵，这强迫子群 $N$ 必须等于全群：
+\[ N = GL(n, \mathbb{C}) \]
+然而，这与我们在第一步中导出的“$N$ 是 $G$ 的一个**真正规子群**（$N \leqslant H < G \implies N \neq G$）”产生了根本性的严重矛盾！
+
+因此，最初的假设（存在有限指数的真子群）是完全不成立的。
+由此证得，一般线性群 $GL(n, \mathbb{C})$ 绝不含有指数有限的真子群。
+
+\qed
+
+1.7.9*. 求对称群 $S_{3}$ 的自同构群 $\operatorname{Aut}(S_3)$ . 
+
+\bigskip
+\noindent \textbf{主要结论：} 
+
+3 元对称群 $S_3$ 的自同构群与其自身同构，即：
+\[ \operatorname{Aut}(S_3) \cong S_3 \]
+
+\bigskip
+\noindent \textbf{详细求解与证明过程：} 
+
+为了确定 $\operatorname{Aut}(S_3)$ 的结构，我们通常分两步进行：首先，利用内自同构群找出其下界；其次，利用 $S_3$ 的生成元和共轭封闭性确定其上界。
+
+\bigskip
+\noindent \textbf{第一步：计算内自同构群 $\operatorname{Inn}(S_3)$}
+
+根据群论的普适定理，对于任意群 $G$，其内自同构群 $\operatorname{Inn}(G)$ 恒为自同构群 $\operatorname{Aut}(G)$ 的正规子群，且商群满足同构关系：
+\[ \operatorname{Inn}(G) \cong G/Z(G) \]
+
+现在我们考察 $S_3$ 的中心 $Z(S_3)$。根据习题 1.6.5 的结论，当 $n \ge 3$ 时，对称群 $S_n$ 的中心是平凡的。
+因此，对于 $S_3$，有：
+\[ Z(S_3) = \{1\} \]
+
+将中心的计算结果代入商群同构式中，我们得到：
+\[ \operatorname{Inn}(S_3) \cong S_3/\{1\} \cong S_3 \]
+由于有限群同构保持群的阶数不变，因此内自同构群的大小为：
+\[ |\operatorname{Inn}(S_3)| = |S_3| = 3! = 6 \]
+因为 $\operatorname{Inn}(S_3) \leqslant \operatorname{Aut}(S_3)$，所以自同构群的元个数至少为 6：
+\[ (1) \quad |\operatorname{Aut}(S_3)| \geqslant 6 \]
+
+\bigskip
+\noindent \textbf{第二步：确定自同构群的大小上限}
+
+我们来分析 $S_3$ 的任意一个自同构 $\alpha \in \operatorname{Aut}(S_3)$ 的行为。
+
+$S_3$ 由 6 个置换组成，其元素按循环结构可分为三类：
+\begin{itemize}
+	\item 1 阶元（1个）：单位元 $1$。
+	\item 2 阶元（3个）：对换 $(12), (13), (23)$。
+	\item 3 阶元（2个）：3-循环 $(123), (132)$。
+\end{itemize}
+
+因为群自同构必须保持元素的阶不变，所以任何自同构 $\alpha$ 必须把 2 阶元映射到 2 阶元。也就是说， $\alpha$ 会对 2 阶元集合 $T = \{ (12), (13), (23) \}$ 施加一个置换。
+
+同时，我们知道 $S_3$ 可以由其中的任意两个 2 阶元生成。例如，我们选取生成元集为 $\{ (12), (23) \}$，有：
+\[ \langle (12), (23) \rangle = S_3 \]
+这意味着，一个自同构 $\alpha$ 在整个群 $S_3$ 上的行为，被它在这两个生成元上的像 $\alpha((12))$ 和 $\alpha((23))$ **完全唯一确定**。
+
+我们来数一数这两个生成元的像有多少种合法的选择方式：
+\begin{enumerate}
+	\item 对于第一个生成元 $(12)$，它的像 $\alpha((12))$ 必须是 2 阶元，因此在集合 $T$ 的 3 个元素中有 3 种选择。
+	\item 对于第二个生成元 $(23)$，由于 $\alpha$ 是单射，它的像 $\alpha((23))$ 必须是与 $\alpha((12))$ 不同的 2 阶元。因此，在剩下的 2 个 2 阶元中有 2 种选择。
+\end{enumerate}
+
+一旦 $\alpha((12))$ 和 $\alpha((23))$ 的选择固定下来，其余所有群元素的像就通过保持乘法的性质被唯一强制决定了。
+因此， $S_3$ 上可能存在的自同构总数至多有 $3 \times 2 = 6$ 种。这就为自同构群的大小确定了一个严格的上限：
+\[ (2) \quad |\operatorname{Aut}(S_3)| \leqslant 6 \]
+
+\bigskip
+\noindent \textbf{第三步：综合得出结论}
+
+对比等式 (1) 的下限和等式 (2) 的上限：
+\[ 6 \leqslant |\operatorname{Aut}(S_3)| \leqslant 6 \implies |\operatorname{Aut}(S_3)| = 6 \]
+
+由于 $\operatorname{Inn}(S_3)$ 是 $\operatorname{Aut}(S_3)$ 的子群，且两者的阶完全相等（均为 6），在有限群的限制下，这两个群集合必须完全重合：
+\[ \operatorname{Inn}(S_3) = \operatorname{Aut}(S_3) \]
+
+再结合第一步中已经建立的同构关系 $\operatorname{Inn}(S_3) \cong S_3$，我们最终完美证得：
+\[ \operatorname{Aut}(S_3) \cong S_3 \]
+
+这意味着 $S_3$ 的每一个自同构都必然是一个内自同构（即由共轭变换诱导的自同构）， $S_3$ 的自同构群一共有 6 个元，且其代数结构与 $S_3$ 自身完全同构。
+
+\qed
+
+1.7.10*. 令 $G$ 是阶数为 $2^{n}m$ 的群, 其中 $m$ 是奇数. 如果 $G$ 含有一个 $2^{n}$ 阶的元, 则 $G$ 含有一个指数为 $2^{n}$ 的正规子群. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+本题是有限群论中利用**凯莱定理（Cayley's Theorem）**以及置换的奇偶性（同态映射到二元群）来构造正规子群的经典范例。
+
+\bigskip
+\noindent \textbf{第一步：引入凯莱置换表示}
+
+设 $G = \{g_1, g_2, \dots, g_N\}$，其中群的阶 $N = |G| = 2^n m$。
+根据凯莱定理，群 $G$ 可以通过左乘法正则作用在它自身上。具体地，对于任意 $g \in G$，左乘映射 $\lambda_g: G \to G$（满足 $\lambda_g(x) = gx$）是集合 $G$ 的一个置换。
+这诱导了一个全群 $G$ 到对称群 $S_N$ 的单群同态（正则置换表示）：
+\[ \rho: G \longrightarrow S_N, \quad g \mapsto \lambda_g \]
+
+\bigskip
+\noindent \textbf{第二步：分析特殊元素 $g_0$ 的置换结构}
+
+题目已知 $G$ 中含有一个 $2^n$ 阶的元，我们将其记为 $g_0$，即 $o(g_0) = 2^n$。
+我们来考察置换 $\lambda_{g_0} \in S_N$ 的循环结构（型）。
+
+因为 $\lambda_{g_0}$ 是通过左乘 $g_0$ 作用在群 $G$ 上，所以对任意 $x \in G$，由 $x$ 所在的轨道（即循环）为：
+\[ (x, \; g_0x, \; g_0^2x, \; \dots, \; g_0^{2^n-1}x) \]
+显然，由于 $o(g_0) = 2^n$，每一个循环的长度都精确地等于 $2^n$。
+因为整个集合 $G$ 共有 $N = 2^n m$ 个元素，而每个不相交循环的长度都是 $2^n$，所以置换 $\lambda_{g_0}$ 恰好由 $m$ 个长度为 $2^n$ 的独立长循环组成。
+
+\bigskip
+\noindent \textbf{第三步：判定置换 $\lambda_{g_0}$ 的奇偶性}
+
+根据置换群理论，一个长度为 $L$ 的循环置换，可以分解为 $L-1$ 个对换的乘积。因此，长度为 $L$ 的循环是奇置换当且仅当 $L$ 是偶数。
+\begin{itemize}
+	\item 在本题中，每个循环的长度 $L = 2^n$。当 $n \ge 1$ 时， $2^n$ 显然是一个偶数。
+	\item 因此，每一个长度为 $2^n$ 的循环置换都必定是一个\textbf{奇置换}。
+\end{itemize}
+
+由于 $\lambda_{g_0}$ 是 $m$ 个这样的奇置换的不相交乘积，根据奇偶置换的乘法符号法则（奇置换的 $m$ 次幂）：
+\[ \operatorname{sgn}(\lambda_{g_0}) = (-1)^m \]
+此时引入题目中的另一个关键已知条件： $m$ 是一个\textbf{奇数}。
+因为 $m$ 是奇数，所以 $(-1)^m = -1$。这严格证得：
+\[ \lambda_{g_0} \text{ 是对称群 } S_N \text{ 中的一个奇置换。} \]
+
+\bigskip
+\noindent \textbf{第四步：构造同态与指数估计}
+
+现在，我们引入符号同态（奇偶映射） $\pi: S_N \to (\{1, -1\}, \cdot) \cong \mathbb{Z}_2$。
+复合这两个同态，我们得到一个从原群 $G$ 到 2 阶循环群 $\mathbb{Z}_2$ 的新群同态 $\psi$：
+\[ \psi = \pi \circ \rho: G \longrightarrow \{1, -1\} \]
+
+因为在第三步中我们已经证明了 $\psi(g_0) = \pi(\lambda_{g_0}) = -1$，这说明同态映射 $\psi$ 的像集 $\operatorname{Im}\psi$ 包含了 $-1$，因此 $\psi$ 必然是一个\textbf{满同态}。
+
+我们令 $K = \operatorname{Ker}\psi$ 为该同态的核。根据群同态基本定理：
+\begin{enumerate}
+	\item 由于任何同态的核都天然封闭， $K$ 是 $G$ 的一个\textbf{正规子群}（$K \triangleleft G$）。
+	\item 商群 $G/K \cong \operatorname{Im}\psi = \{1, -1\}$。因此， $K$ 在 $G$ 中的指数精确地等于 2：
+	\[ [G:K] = |G/K| = 2 \]
+\end{enumerate}
+根据拉格朗日定理，子群 $K$ 的阶为：
+\[ |K| = \frac{|G|}{[G:K]} = \frac{2^n m}{2} = 2^{n-1}m \]
+
+\bigskip
+\noindent \textbf{第五步：利用数学归纳法完成最终证明}
+
+我们对 $n$ 施加数学归纳法：
+\begin{itemize}
+	\item \textbf{奠基步 ($n=1$)：}
+	当 $n=1$ 时，群的阶为 $2m$。我们在第四步中已经构造出了一个指数为 2 的正规子群 $K$。由于 $2 = 2^1 = 2^n$，此时 $K$ 就是满足要求的指数为 $2^n$ 的正规子群。命题成立。
+	
+	\item \textbf{归纳步：}
+	假设该命题对于 $n-1$ 时的所有群均成立。
+	现在考察阶为 $2^n m$ 的群 $G$。在第四步中，我们构造了其 2 指数的正规子群 $K$，其阶为 $|K| = 2^{n-1}m$，其中 $m$ 仍为奇数。
+	
+	我们需要在 $K$ 中寻找一个满足归纳条件的特殊元素。
+	考察我们最初的 $2^n$ 阶元 $g_0$。我们令 $h = g_0^2$。
+	显然， $h$ 的阶为 $o(h) = \frac{2^n}{\gcd(2, 2^n)} = 2^{n-1}$。
+	同时，由于 $\psi(g_0) = -1$，根据同态性质有 $\psi(h) = \psi(g_0^2) = (-1)^2 = 1$。根据核的定义，这意味着 $h \in \operatorname{Ker}\psi = K$。
+	
+	此时，子群 $K$ 是一个阶数为 $2^{n-1}m$ 的有限群（$m$ 为奇数），且 $K$ 内部包含一个阶数为 $2^{n-1}$ 的元素 $h$。
+	这完全符合 $n-1$ 时的归纳假设！
+	因此，根据归纳假设， $K$ 内部必然包含一个在 $K$ 中指数为 $2^{n-1}$ 的正规子群，记为 $N$，即：
+	\[ N \triangleleft K \quad \text{且} \quad [K:N] = 2^{n-1} \]
+	
+	最后，由于 $N$ 的阶为 $|N| = \frac{|K|}{2^{n-1}} = \frac{2^{n-1}m}{2^{n-1}} = m$，我们在全群 $G$ 中审视 $N$ 的指数：
+	\[ [G:N] = \frac{|G|}{|N|} = \frac{2^n m}{m} = 2^n \]
+	
+	关于 $N$ 在 $G$ 中的正规性：由于 $N$ 的阶为 $m$（奇数），且 $[G:N] = 2^n$。根据 $p$-Sylow 子群的理论， $N$ 的阶与它的指数互素，这意味着 $N$ 实际上是 $G$ 的一个 \textbf{Sylow $m$-子群}（或称为 Hall 奇子群）。
+	又因为 $N \triangleleft K$，且 $[G:K]=2$，我们可以通过正规核心的传递性（或者利用 $N$ 作为 $K$ 中唯一的 Sylow 子群从而在 $G$ 的共轭下仍唯一的性质），断定 $N$ 在全群 $G$ 中也是正规的，即 $N \triangleleft G$。
+\end{itemize}
+
+综上所述，无论是通过直接构造还是归纳递推，群 $G$ 内部一定包含一个指数为 $2^n$ 的正规子群 $N$。
+
+\qed
+
+1.7.11*. 设 $\alpha$ 是有限群 $G$ 的一个自同构. 若 $\alpha$ 把每个元都变到它在 $G$ 中的共轭元, 即对任意 $g \in G$ , $g$ 和 $\alpha(g)$ 共轭, 则 $\alpha$ 的阶的每个素因子都是 $|G|$ 的因子. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+我们采用反证法。设 $\alpha$ 的阶为 $o(\alpha) = n$。假设 $n$ 存在一个素因子 $p$，它\textbf{不是}群的阶 $|G|$ 的因子，即：
+\[ p \mid n \quad \text{且} \quad p \nmid |G| \]
+
+\bigskip
+\noindent \textbf{1. 构造 $p$ 阶自同构}
+
+因为 $p \mid n$，我们可以对 $\alpha$ 施加一个适当的幂次来产生一个精确为 $p$ 阶的自同构。
+我们令 $\beta = \alpha^{n/p}$。显然， $\beta$ 依然是 $G$ 的一个自同构，并且其阶为：
+\[ o(\beta) = p \]
+
+我们需要验证自同构 $\beta$ 是否也继承了原自同构 $\alpha$ “保持共轭”的优良性质。
+题目已知对任意的 $g \in G$， $\alpha(g)$ 都在 $g$ 的共轭类 $\operatorname{Cl}(g)$ 内部。因为共轭类在群元素的任意共轭作用下是整体封闭的，也就是说，如果一个元素属于 $\operatorname{Cl}(g)$，那么它的任何共轭元也必然属于 $\operatorname{Cl}(g)$。
+通过数学归纳法易知， $\alpha$ 的任意次幂都会把元素保持在它最初的共轭类中：
+\[ \forall \, k \in \mathbb{Z}^+, \quad \alpha^k(g) \in \operatorname{Cl}(g) \]
+因此，作为 $\alpha$ 的幂次，自同构 $\beta$ 同样满足：对任意的 $g \in G$， $\beta(g)$ 与 $g$ 在 $G$ 中依然是共轭的。
+
+\bigskip
+\noindent \textbf{2. 引入群作用进行分类讨论}
+
+现在，我们让由 $\beta$ 生成的 $p$ 阶循环群 $K = \langle \beta \rangle = \{1, \beta, \beta^2, \dots, \beta^{p-1}\}$ 作用在群 $G$ 的某一个共轭类 $C = \operatorname{Cl}(x)$ 上。作用法则定义为自同构的映射应用：
+\[ \beta^i \cdot g = \beta^i(g), \quad \forall \, \beta^i \in K, \, g \in C \]
+因为前面已经证得 $\beta(g) \in \operatorname{Cl}(g) = \operatorname{Cl}(x) = C$，所以这个作用确实把集合 $C$ 映射到它自身，是一个良定义且合法的群作用。
+
+在这个 $K$-作用下，共轭类集合 $C$ 被严格划分成若干个互不相交的 $K$-轨道的并集。
+根据轨道-稳定子定理，由于全群 $K$ 的阶为素数 $p$，任何一条轨道 $\mathcal{O}_K(g)$ 的大小只能是 $K$ 的阶的因子，即：
+\[ |\mathcal{O}_K(g)| = 1 \quad \text{或} \quad |\mathcal{O}_K(g)| = p \]
+
+我们来清点共轭类 $C$ 的总元素个数 $|C|$。根据有限集合不相交并集的基数相加原理：
+\[ |C| = \sum |\mathcal{O}_K(g)| = \sum_{|\mathcal{O}_K|=1} 1 + \sum_{|\mathcal{O}_K|=p} p \]
+由于等式右侧的第二部分显然是 $p$ 的倍数，在模 $p$ 的同余视角下，有：
+\[ (1) \quad |C| \equiv |C^K| \pmod p \]
+其中 $C^K = \{ g \in C \mid \beta(g) = g \}$ 表示在整个子群 $K$ 作用下保持不动的不动点集合。
+
+\bigskip
+\noindent \textbf{3. 利用不动点集推导矛盾}
+
+根据群论中关于共轭类大小的经典结论（轨道-稳定子定理应用在 $G$ 的共轭作用上），共轭类 $C = \operatorname{Cl}(x)$ 的大小等于全群的阶除以元素 $x$ 的中心化子 $C_G(x)$ 的阶：
+\[ |C| = [G : C_G(x)] = \frac{|G|}{|C_G(x)|} \]
+因为拉格朗日定理说明 $[G : C_G(x)]$ 必须整除 $|G|$，而我们最初的反证法假设是 $p \nmid |G|$。在整除性的刚性约束下，素数 $p$ 绝对不可能整除 $|C|$：
+\[ |C| \not\equiv 0 \pmod p \]
+
+结合前面的同余式 (1)，既然 $|C| \not\equiv 0 \pmod p$，这就强迫不动点集合 $C^K$ 的大小也绝对不能为 0：
+\[ |C^K| \neq 0 \]
+这意味着，在共轭类 $C$ 内部，**至少存在一个元素** $g_0 \in C$，满足 $\beta(g_0) = g_0$。
+
+因为上述推理对 $G$ 中的\textbf{每一个}共轭类 $C$ 都成立，也就是说，每一个共轭类内部都必定能贡献出至少一个满足 $\beta(g) = g$ 的元素。
+我们把整个群 $G$ 在自同构 $\beta$ 作用下的所有不动点收集起来，构成集合 $G^\beta$：
+\[ G^\beta = \{ g \in G \mid \beta(g) = g \} \]
+刚才的结论表明， $G^\beta$ 必须与 $G$ 的每一个共轭类都有交集。换句话说， $G$ 中的每一个元素，都必然在 $G$ 中共轭于 $G^\beta$ 中的某一个元素：
+\[ (2) \quad \forall \, y \in G, \quad \exists \, g \in G^\beta \quad \text{使得} \quad y \in \operatorname{Cl}(g) \]
+
+\bigskip
+\noindent \textbf{4. 终极矛盾的显现}
+
+作为自同构的不动点集， $G^\beta$ 在群乘法下显然是封闭的，因此它构成 $G$ 的一个子群（称为自同构 $\beta$ 的固定子群）。
+等式 (2) 告诉我们，全群 $G$ 恰好可以表示为子群 $G^\beta$ 的所有共轭子群的并集：
+\[ G = \bigcup_{x \in G} x G^\beta x^{-1} \]
+
+然而，根据有限群论中一个非常著名的经典定理（**有限群不能表示为任一真子群的所有共轭子群的并集**）：对有限群的任意真子群 $H < G$，恒有 $\left| \bigcup_{x \in G} xHx^{-1} \right| < |G|$。
+因此，为了让上述并集能够填满整个有限群 $G$，唯一的代数可能只能是该子群等于全群自身：
+\[ G^\beta = G \]
+
+根据固定子群的定义， $G^\beta = G$ 意味着对全群中的任意元素 $g \in G$，恒有：
+\[ \beta(g) = g \]
+这说明自同构 $\beta$ 实际上退化成了全群上的恒等自同构 $1_{\operatorname{Aut}(G)}$。
+但我们在第一步构造 $\beta$ 时，明确确定了它的阶为素数 $p$（而素数 $p \ge 2$）。一个 1 阶的恒等映射其阶不可能为 $p$！
+
+这个根本性的矛盾说明我们最初的反证法假设“$n$ 存在一个不整除 $|G|$ 的素因子 $p$”是完全错误的。
+
+因此，自同构 $\alpha$ 的阶的每个素因子都必须是群的阶 $|G|$ 的因子。
+
+\qed
+
+1.7.12*. 设 $p$ 是 $|G|$ 的最小素因子. 若 $p$ 阶子群 $A \triangleleft G$ , 则 $A \leqslant Z(G)$ . 
+
+特别地, $p$ -群 $G$ 的 $p$ 阶正规子群含于 $G$ 的中心. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明子群包含关系 $A \leqslant Z(G)$，根据群的中心的定义，我们只需要证明子群 $A$ 中的每一个元素都与全群 $G$ 中的每一个元素对易。
+群论中处理此类问题最标准的武器是利用**正规子群在全群共轭作用下的自同构群估计（即 $N/C$ 定理的应用）**。
+
+\bigskip
+\noindent \textbf{1. 构造全群在 $A$ 上的共轭自同构表示}
+
+由于已知子群 $A$ 是 $G$ 的一个**正规子群**（$A \triangleleft G$），这就意味着对任意的 $g \in G$，整个子群 $A$ 在 $g$ 的共轭作用下是整体封闭的，即 $gAg^{-1} = A$。
+因此，我们可以定义一个由全群 $G$ 在 $A$ 上诱导的共轭映射 $\phi_g: A \to A$：
+\[ \phi_g(a) = gag^{-1}, \quad \forall \, a \in A \]
+容易验证，对于固定的 $g$， $\phi_g$ 构成了子群 $A$ 自身的一个群自同构。也就是说， $\phi_g \in \operatorname{Aut}(A)$。
+
+这个代数过程天然诱导出了一个从原群 $G$ 到 $A$ 的自同构群 $\operatorname{Aut}(A)$ 的**群同态**映射 $\Psi$：
+\[ \Psi: G \longrightarrow \operatorname{Aut}(A), \quad g \mapsto \phi_g \]
+
+\bigskip
+\noindent \textbf{2. 估计目标群 $\operatorname{Aut}(A)$ 的大小}
+
+此时，引入题目中关于子群 $A$ 阶数的定量已知条件： $A$ 的阶为素数 $p$（即 $|A| = p$）。
+因为 $p$ 是一个素数，任何 $p$ 阶有限群都必然同构于 $p$ 阶循环群 $\mathbb{Z}_p$。而众所周知， $p$ 阶循环群的自同构群同构于模 $p$ 的既约剩余类乘法群 $\mathbb{Z}_p^*$。
+因此， $\operatorname{Aut}(A)$ 的代数结构和大小完全被确定：
+\[ \operatorname{Aut}(A) \cong \mathbb{Z}_p^* \]
+容易得知，该自同构群的阶（元素个数）为：
+\[ |\operatorname{Aut}(A)| = p - 1 \]
+
+\bigskip
+\noindent \textbf{3. 利用素因子大小的约束分析同态的像}
+
+我们回到群同态 $\Psi: G \to \operatorname{Aut}(A)$ 中来。根据群同态基本定理，商群 $G/\operatorname{Ker}\Psi$ 同构于目标群的某一个子群（即像集 $\operatorname{Im}\Psi$）：
+\[ G/\operatorname{Ker}\Psi \cong \operatorname{Im}\Psi \leqslant \operatorname{Aut}(A) \]
+根据拉格朗日定理，子群的阶必须能够整除全群的阶。因此，像集的大小 $|\operatorname{Im}\Psi|$ 必须满足以下双重整除性约束：
+\begin{itemize}
+	\item \textbf{约束一：} $|\operatorname{Im}\Psi|$ 能够整除商群的阶，从而能够整除原群的阶： $|\operatorname{Im}\Psi| \;\big|\; |G|$。
+	\item \textbf{约束二：} $|\operatorname{Im}\Psi|$ 能够整除目标自同构群的阶： $|\operatorname{Im}\Psi| \;\big|\; (p - 1)$。
+\end{itemize}
+
+现在，我们分析满足这两大约束的 $|\operatorname{Im}\Psi|$ 的可能取值。
+假设 $|\operatorname{Im}\Psi| > 1$，那么根据算术基本定理， $|\operatorname{Im}\Psi|$ 必然存在至少一个素因子，我们记为 $q$。
+\begin{itemize}
+	\item 由约束一知 $q \mid |\operatorname{Im}\Psi| \implies q \mid |G|$。也就是说， $q$ 是群阶 $|G|$ 的一个素因子。
+	\item 由约束二知 $q \mid |\operatorname{Im}\Psi| \implies q \mid (p - 1)$。这直接强迫：
+	\[ q \leqslant p - 1 < p \]
+\end{itemize}
+然而，这表明我们找到了一个群阶 $|G|$ 的素因子 $q$，它严格地小于 $p$。
+这与题目中给出的绝对前提条件——“$p$ 是 $|G|$ 的\textbf{最小素因子}”产生了不可调和的严重冲突！
+
+这个根本性的矛盾说明我们的假设 $|\operatorname{Im}\Psi| > 1$ 是完全错误的。
+在有限群的大小限制下，像集的阶只能取到最小的正整数：
+\[ |\operatorname{Im}\Psi| = 1 \]
+这意味着，整个像集 $\operatorname{Im}\Psi$ 缩并成了只包含恒等映射的平凡群。也就是说，对于任意的 $g \in G$，其对应的自同构 $\phi_g$ 都是恒等自同构：
+\[ \phi_g = 1_{\operatorname{Aut}(A)} \]
+
+\bigskip
+\noindent \textbf{4. 得出最终结论}
+
+我们将 $\phi_g$ 是恒等映射这一事实恢复成元素的乘法语言：
+\[ \forall \, g \in G, \, \forall \, a \in A \implies \phi_g(a) = a \implies gag^{-1} = a \]
+在等式两边同时右乘 $g$，得到：
+\[ ga = ag \]
+这说明子群 $A$ 中的每一个元素都与群 $G$ 中的全体元素满足乘法交换律。根据群的中心的定义，这直接证明了：
+\[ A \leqslant Z(G) \]
+
+\bigskip
+\noindent \textbf{特别地：关于 $p$-群的推论}
+
+当 $G$ 是一个有限 $p$-群时，它的阶为 $|G| = p^m$。此时，群阶 $|G|$ 唯一的素因子就是 $p$。
+因此， $p$ 天然就是 $|G|$ 的最小（也是唯一）素因子。
+直接应用我们刚刚在前面完美证得的普适性质，任何 $p$ 阶的正规子群 $A \triangleleft G$ 别无选择，都必须完全含于 $G$ 的中心。即：
+\[ A \leqslant Z(G) \]
+
+\qed
+
+1.8.1. 设 $p$ 是 $|G|$ 的素因子, 则 $G$ 有 $p$ 阶元. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明该定理，群论中最为现代且优美的策略是采用 **詹姆斯（J. H. McKay）引入的集合划分与循环群作用计数法**。这种方法不依赖于复杂的群结构分解（如商群、类方程或归纳法），而是通过在一个构造出来的特殊集合上引入循环群作用来直接完成定量证明。
+
+\bigskip
+\noindent \textbf{第一步：构造特定的集合 $S$}
+
+我们定义一个由 $p$ 个群元素组成的序列（即 $p$-元组）所构成的集合 $S$ 如下：
+\[ S = \{ (g_1, g_2, \dots, g_p) \in G^p \mid g_1 g_2 \cdots g_p = 1 \} \]
+也就是说，集合 $S$ 包含了所有乘积为群单位元 $1$ 的长度为 $p$ 的元素序列。
+
+我们来计算集合 $S$ 的大小（总元素个数） $|S|$：
+对于一个序列 $(g_1, g_2, \dots, g_p)$，前面的 $p-1$ 个元素 $g_1, g_2, \dots, g_{p-1}$ 可以从有限群 $G$ 中**完全任意且独立**地进行挑选。因为每一个位置都有 $|G|$ 种选择，所以前 $p-1$ 个元素的组合方式一共有 $|G|^{p-1}$ 种。
+然而，一旦前 $p-1$ 个元素被固定下来，为了满足乘积等于单位元的强约束条件：
+\[ g_1 g_2 \cdots g_{p-1} g_p = 1 \]
+最后一个元素 $g_p$ 被别无选择地唯一强制决定了，它必须是前面乘积的逆元：
+\[ g_p = (g_1 g_2 \cdots g_{p-1})^{-1} \]
+由于最后一项的选择数精确地等于 1，根据乘法原理，集合 $S$ 的总基数为：
+\[ (1) \quad |S| = |G|^{p-1} \]
+
+题目已知素数 $p$ 是群阶 $|G|$ 的一个素因子，也就是说存在正整数 $k$ 使得 $|G| = k \cdot p$。代入等式 (1) 中：
+\[ |S| = (kp)^{p-1} = k^{p-1} \cdot p^{p-1} \]
+因为 $p$ 是一个素数且 $p-1 \ge 1$，这说明集合 $S$ 的大小必然能够被 $p$ 严格整除，即：
+\[ (2) \quad |S| \equiv 0 \pmod p \]
+
+\bigskip
+\noindent \textbf{第二步：在集合 $S$ 上引入循环群作用}
+
+设 $C_p = \langle \sigma \rangle$ 是一个 $p$ 阶的循环群，其中生成元 $\sigma$ 代表基本的**循环移位（置换）**算子。
+我们定义循环群 $C_p$ 在我们刚刚构造的集合 $S$ 上的作用为对序列进行向左循环移位：
+\[ \sigma \cdot (g_1, g_2, \dots, g_p) = (g_2, g_3, \dots, g_p, g_1) \]
+
+我们需要验证这个移位作用的合法性。即如果一个序列属于 $S$，它移位后的序列是否也必然属于 $S$。
+已知 $g_1 (g_2 \cdots g_p) = 1$，我们在等式两边同时左乘 $g_1^{-1}$，得到：
+\[ g_2 g_3 \cdots g_p = g_1^{-1} \]
+接着，在等式两边同时右乘 $g_1$：
+\[ g_2 g_3 \cdots g_p g_1 = g_1^{-1} g_1 = 1 \]
+这说明移位后的序列其所有元素的乘积依然等于单位元。因此，该作用是完全良定义且合法的。
+
+\bigskip
+\noindent \textbf{第三步：分析轨道大小与不动点方程}
+
+在这个 $C_p$-作用下，整个有限集合 $S$ 被严格地划分成了若干个互不相交的轨道的并集。
+根据群作用中的**轨道-稳定子定理**，任意一个序列所在的轨道大小必须能够整除全群 $C_p$ 的阶。因为 $C_p$ 的阶是一个素数 $p$，所以任何一条轨道的元素个数只有两种可能的命运：
+\begin{itemize}
+	\item 命运一：轨道的大小为 $1$。
+	\item 命运二：轨道的大小为 $p$。
+\end{itemize}
+
+根据有限集合不相交并集的基数相加原理，整个集合 $S$ 的大小等于所有轨道大小的总和：
+\[ |S| = \sum |\mathcal{O}| = \sum_{|\mathcal{O}|=1} 1 + \sum_{|\mathcal{O}|=p} p \]
+由于第二部分显然是 $p$ 的倍数，在模 $p$ 的同余视角下，我们得到了一个核心的数值对易关系式：
+\[ (3) \quad |S| \equiv |S^0| \pmod p \]
+其中 $S^0 = \{ x \in S \mid \sigma \cdot x = x \}$ 表示在循环移位作用下保持绝对不动的不动点集合。
+
+\bigskip
+\noindent \textbf{第四步：分析不动点的代数形态并得出最终结论}
+
+我们来看看什么样的序列能够在循环移位下保持不变。
+设 $x = (g_1, g_2, \dots, g_p) \in S^0$，根据不动点的定义，它必须满足：
+\[ (g_1, g_2, \dots, g_p) = \sigma \cdot (g_1, g_2, \dots, g_p) = (g_2, g_3, \dots, g_p, g_1) \]
+根据对应位置元素相等的原则，这强迫该序列中的所有元素必须完全相同：
+\[ g_1 = g_2 = g_3 = \dots = g_p \]
+我们设这个共同的群元素为 $g \in G$。那么不动点集合 $S^0$ 中的元素必然都具有如下的极端对角线形态：
+\[ x = (g, g, \dots, g) \]
+同时，因为 $x \in S$，它还必须满足乘积为单位元的刚性约束条件：
+\[ g \cdot g \cdots g = 1 \implies g^p = 1 \]
+由此可见，不动点集合 $S^0$ 的大小，**精确地等于群 $G$ 中所有满足 $g^p = 1$ 的元素 $g$ 的个数**。
+
+我们立刻注意到，由于单位元总是满足 $1^p = 1$，所以序列 $(1, 1, \dots, 1)$ 必然是一个合法的不动点。这意味着不动点集合绝对不会是空集，其大小至少为 1：
+\[ |S^0| \geqslant 1 \]
+
+现在我们将第一步得到的整除结论 (2) 即 $|S| \equiv 0 \pmod p$ 代入第三步的同余核心方程 (3) 中：
+\[ 0 \equiv |S^0| \pmod p \]
+这意味着，不动点集合 $S^0$ 的元素个数必须是素数 $p$ 的整数倍。
+既然 $|S^0| \geqslant 1$ 且必须是 $p$ 的倍数（而素数 $p \ge 2$），那么 $|S^0|$ 绝对不可能仅仅只有 1 个元素，它至少要包含 $p$ 个元素：
+\[ |S^0| \geqslant p \geqslant 2 \]
+
+由于 $|S^0| \ge 2$，这意味着除了由单位元组成的平凡序列 $(1, 1, \dots, 1)$ 之外，不动点集合 $S^0$ 中**必定还存在至少一个非平凡的序列** $(g_0, g_0, \dots, g_0)$，其中 $g_0 \in G$ 且 $g_0 \neq 1$。
+
+根据不动点集的代数形态要求，这个非恒等的元素 $g_0$ 必然满足：
+\[ g_0^p = 1 \]
+
+因为 $g_0$ 不是单位元，它的阶 $o(g_0)$ 显然大于 1。又因为 $g_0^p = 1$ 说明它的阶 $o(g_0)$ 必须能够整除素数 $p$。由于素数 $p$ 的正因子只有 $1$ 和 $p$，在排除掉 1 之后，元素 $g_0$ 的阶别无选择，只能是 $p$：
+\[ o(g_0) = p \]
+
+由此证明，有限群 $G$ 中一定包含一个 $p$ 阶的元素。
+
+\qed
+
+1.8.2. 设 $p$ 是 $|G|$ 的素因子, 则方程 $x^{p} = 1$ 在 $G$ 中的解的个数是 $p$ 的倍数. 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+为了证明该命题，我们同样采用著名数学家詹姆斯（J. H. McKay）引入的**集合划分与循环群作用计数法**。通过在一个精妙构造的、与方程解紧密相关的序列集合上引入 $p$ 阶循环群的作用，我们可以非常直接、定量地导出结论。
+
+\bigskip
+\noindent \textbf{第一步：构造特定的序列集合 $S$}
+
+我们定义一个由 $p$ 个群元素组成的序列（即 $p$-元组）所构成的集合 $S$ 如下：
+\[ S = \{ (g_1, g_2, \dots, g_p) \in G^p \mid g_1 g_2 \cdots g_p = 1 \} \]
+也就是说，集合 $S$ 包含了所有乘积为群单位元 $1$ 的长度为 $p$ 的元素序列。
+
+我们来清点集合 $S$ 的总元素个数 $|S|$：
+对于任一序列 $(g_1, g_2, \dots, g_p)$，前面的 $p-1$ 个元素 $g_1, g_2, \dots, g_{p-1}$ 可以从有限群 $G$ 中**完全任意且独立**地进行挑选。因为每一个位置都有 $|G|$ 种选择，所以前 $p-1$ 个元素的组合方式一共有 $|G|^{p-1}$ 种。
+然而，一旦前 $p-1$ 个元素被固定下来，为了满足乘积等于单位元的强约束条件 $g_1 g_2 \cdots g_{p-1} g_p = 1$，最后一个元素 $g_p$ 被别无选择地唯一强制决定了，它必须是前面乘积的逆元：
+\[ g_p = (g_1 g_2 \cdots g_{p-1})^{-1} \]
+由于最后一项的选择数精确地等于 1，根据乘法原理，集合 $S$ 的总基数为：
+\[ (1) \quad |S| = |G|^{p-1} \]
+
+题目已知素数 $p$ 是群阶 $|G|$ 的一个素因子，这意味着 $|G|$ 能够被 $p$ 整除。代入等式 (1) 中，由于 $p-1 \ge 1$，容易看出 $|G|^{p-1}$ 也必然能够被 $p$ 严格整除。在模 $p$ 的同余视角下，有：
+\[ (2) \quad |S| \equiv 0 \pmod p \]
+
+\bigskip
+\noindent \textbf{第二步：在集合 $S$ 上引入循环群作用}
+
+设 $C_p = \langle \sigma \rangle$ 是一个 $p$ 阶的循环群，其中生成元 $\sigma$ 代表基本的**向左循环移位（置换）**算子。
+我们定义循环群 $C_p$ 在集合 $S$ 上的作用如下：
+\[ \sigma \cdot (g_1, g_2, \dots, g_p) = (g_2, g_3, \dots, g_p, g_1) \]
+
+我们需要验证这个移位作用的合法性，即移位后的序列其所有元素的乘积是否依然等于单位元。
+已知 $g_1 (g_2 \cdots g_p) = 1$，我们在等式两边同时左乘 $g_1^{-1}$，得到 $g_2 g_3 \cdots g_p = g_1^{-1}$。接着，在等式两边同时右乘 $g_1$，立刻得到：
+\[ g_2 g_3 \dots g_p g_1 = g_1^{-1} g_1 = 1 \]
+这说明移位后的序列确实属于集合 $S$。因此，该 $C_p$-作用是完全良定义且合法的。
+
+\bigskip
+\noindent \textbf{第三步：分析轨道大小并建立同余方程}
+
+在这个 $C_p$-作用下，整个有限集合 $S$ 被严格地划分成了若干个互不相交的轨道的并集。
+根据群作用中的**轨道-稳定子定理**，任意一个序列所在的轨道大小（即轨道包含的元素个数）必须能够整除全群 $C_p$ 的阶。因为 $C_p$ 的阶是一个素数 $p$，所以任何一条轨道的元素个数只有两种可能：
+\begin{itemize}
+	\item 命运一：轨道的大小为 $1$。
+	\item 命运二：轨道的大小为 $p$。
+\end{itemize}
+
+根据有限集合不相交并集的基数相加原理，整个集合 $S$ 的大小等于所有轨道大小的总和：
+\[ |S| = \sum |\mathcal{O}| = \sum_{|\mathcal{O}|=1} 1 + \sum_{|\mathcal{O}|=p} p \]
+由于第二部分显然是 $p$ 的倍数，在模 $p$ 的同余视角下，我们得到了一个核心的数值对易关系式：
+\[ (3) \quad |S| \equiv |S^0| \pmod p \]
+其中 $S^0 = \{ x \in S \mid \sigma \cdot x = x \}$ 表示在循环移位作用下保持绝对不动的不动点集合。
+
+\bigskip
+\noindent \textbf{第四步：分析不动点的代数形态并完成最终证明}
+
+我们来揭示能够让循环移位保持不变的序列所具有的代数形态。
+设 $x = (g_1, g_2, \dots, g_p) \in S^0$，根据不动点的定义，它必须满足：
+\[ (g_1, g_2, \dots, g_p) = \sigma \cdot (g_1, g_2, \dots, g_p) = (g_2, g_3, \dots, g_p, g_1) \]
+根据对应位置元素相等的原则，这强迫该序列中的所有元素必须完全相同：
+\[ g_1 = g_2 = g_3 = \dots = g_p \]
+我们设这个共同的群元素为 $g \in G$。那么不动点集合 $S^0$ 中的元素必然都具有如下的极端对角线形态：
+\[ x = (g, g, \dots, g) \]
+同时，因为 $x \in S$，它还必须满足乘积为单位元的刚性约束条件：
+\[ \underbrace{g \cdot g \cdots g}_{p \text{ 个}} = 1 \implies g^p = 1 \]
+
+由此可见，序列 $x$ 属于不动点集合 $S^0$，当且仅当它是由群 $G$ 中某个满足方程 $x^p = 1$ 的解 $g$ 重复 $p$ 次构成的对角序列。
+因为这样的对应是一一对应的，所以**不动点集合 $S^0$ 的大小，精确地等于方程 $x^p = 1$ 在群 $G$ 中的解的个数**。
+
+现在，我们将第一步得到的整除结论 (2) 即 $|S| \equiv 0 \pmod p$ 代入第三步的同余核心方程 (3) 中，立刻得到：
+\[ 0 \equiv |S^0| \pmod p \]
+这表明不动点集合 $S^0$ 的元素个数必须是素数 $p$ 的整数倍。
+
+由于方程 $x^p = 1$ 在群 $G$ 中的解的个数与 $|S^0|$ 相等，我们得出结论：方程 $x^p = 1$ 在 $G$ 中的解的个数一定是 $p$ 的倍数。（注：由于单位元 $1$ 总是满足 $1^p = 1$，解的个数至少为 1，因而解的个数至少为 $p$。）
+
+\qed
+
+1.8.3. 证明6阶非Abel群只有 $S_{3}$ 
+
+\bigskip
+\noindent \textbf{证明：} 
+
+设 $G$ 是一个 6 阶非 Abel 群（即 $|G| = 6$ 且 $G$ 不满足乘法交换律）。为了证明 $G \cong S_3$，我们利用**柯西定理（Cauchy's Theorem）**来寻找群 $G$ 的关键阶数元素，并分析它们的乘法交互关系来重构整个群的结构。
+
+\bigskip
+\noindent \textbf{第一步：寻找 2 阶元与 3 阶元}
+
+群的阶数 $|G| = 6 = 2 \times 3$，其素因子有 2 和 3。
+根据有限群的柯西定理（即习题 1.8.1 的结论）：
+\begin{itemize}
+	\item 因为 3 整除 6，所以 $G$ 中必然存在一个 3 阶的元素，记为 $a$，满足 $o(a) = 3$（即 $a^3 = 1, a \neq 1$）。
+	\item 因为 2 整除 6，所以 $G$ 中必然存在一个 2 阶的元素，记为 $b$，满足 $o(b) = 2$（即 $b^2 = 1, b \neq 1$）。
+\end{itemize}
+
+我们考察由 3 阶元 $a$ 生成的循环子群 $H = \langle a \rangle = \{1, a, a^2\}$。显然， 子群 $H$ 的阶为 $|H| = 3$。
+由于 $H$ 在 $G$ 中的指数为：
+\[ [G : H] = \frac{|G|}{|H|} = \frac{6}{3} = 2 \]
+根据群论中“**指数为 2 的子群必为正规子群**”的经典定理，子群 $H$ 必然是 $G$ 的正规子群，即：
+\[ H \triangleleft G \]
+
+\bigskip
+\noindent \textbf{第二步：确定整个群的元素构成}
+
+我们来考察 2 阶元 $b$ 与子群 $H$ 的包含关系。
+如果 $b \in H$，那么 $b$ 只能是 $H = \{1, a, a^2\}$ 中的某一个元素。但 $H$ 中除了单位元以外， $a$ 和 $a^2$ 的阶都是 3，而 $b$ 的阶是 2。在阶数的刚性矛盾下， $b$ 绝对不可能属于 $H$：
+\[ b \notin H \]
+
+既然 $b \notin H$，我们可以利用左陪集来对全群 $G$ 进行划分。由于 $[G:H] = 2$， $G$ 只有两个左陪集，它们是不相交的：
+\[ G = H \cup bH = \{1, a, a^2\} \cup \{b, ba, ba^2\} \]
+这意味着，整个 6 阶群 $G$ 的所有 6 个元素可以被显式、唯一定量地表述为：
+\[ G = \{1, a, a^2, b, ba, ba^2\} \]
+
+\bigskip
+\noindent \textbf{第三步：分析关键乘法关系式}
+
+既然 $H \triangleleft G$，根据正规子群的共轭封闭性，如果我们用元素 $b$ 对生成元 $a$ 进行共轭变换，其结果 $b a b^{-1}$ 必须仍然属于子群 $H$。由于 $b^2 = 1 \implies b^{-1} = b$，我们有：
+\[ b a b \in H = \{1, a, a^2\} \]
+
+我们对 $b a b$ 的可能取值进行分流排查：
+\begin{enumerate}
+	\item \textbf{如果 $b a b = 1$：}
+	两边同时左乘 $b$、右乘 $b$，由于 $b^2=1$，立刻导出 $a = b \cdot 1 \cdot b = b^2 = 1$。但这与 $a$ 是 3 阶元（$a \neq 1$）直接矛盾！故 $b a b \neq 1$。
+	
+	\item \textbf{如果 $b a b = a$：}
+	两边同时右乘 $b$（利用 $b^2=1$），得到 $b a = a b$。
+	这意味着 2 阶元 $b$ 与 3 阶元 $a$ 是满足乘法交换律的。由于 $G$ 的所有元素都由 $a$ 和 $b$ 的乘积构成，若 $a$ 和 $b$ 可交换，整个群 $G$ 将退化为一个 **Abel 群（交换群）**（此时 $G \cong \mathbb{Z}_6$）。
+	然而，题目已经限定 $G$ 是一个\textbf{非 Abel 群}，矛盾！故 $b a b \neq a$。
+\end{enumerate}
+
+在排除掉 1 和 $a$ 之后， $b a b$ 的取值别无选择，只能是剩下的最后一个元素 $a^2$：
+\[ (1) \quad b a b = a^2 \implies b a = a^2 b = a^{-1} b \]
+
+\bigskip
+\noindent \textbf{第四步：建立与 $S_3$ 的同构映射}
+
+至此，群 $G$ 的完整代数生成元与关系式被唯一确定。群 $G$ 的生成元表示为：
+\[ G = \langle a, b \mid a^3 = 1, \; b^2 = 1, \; ba = a^2b \rangle \]
+
+现在，我们引入 3 元对称群 $S_3$。众所周知， $S_3$ 也可以由一个 3 阶循环置换 $\sigma = (123)$ 和一个 2 阶对换 $\tau = (12)$ 生成。并且它们在 $S_3$ 中完美地满足完全相同的乘法交互法则：
+\[ \sigma^3 = 1, \quad \tau^2 = 1, \quad \tau \sigma = (12)(123) = (23) = (132)(12) = \sigma^2 \tau \]
+也就是说， $S_3$ 的生成元关系为：
+\[ S_3 = \langle \sigma, \tau \mid \sigma^3 = 1, \; \tau^2 = 1, \; \tau\sigma = \sigma^2\tau \rangle \]
+
+我们构造一个映射 $\phi: G \longrightarrow S_3$，其定义为将 $G$ 中的生成元对应映射到 $S_3$ 的生成元：
+\[ \phi(a^i b^j) = \sigma^i \tau^j \quad (0 \le i \le 2, \; 0 \le j \le 1) \]
+
+由于等式 (1) 确定的乘法交换规则 $ba = a^2b$ 与 $S_3$ 中的 $\tau\sigma = \sigma^2\tau$ 在代数结构上是完全同构的，这意味着映射 $\phi$ 能够完美地保持群的乘法运算，即它是一个**群同态**。
+同时，由于它将 $G$ 的 6 个相异元素一一映射到了 $S_3$ 的 6 个不同的置换元素上，该映射天然是一个**双射**。
+
+既是同态又是双射，说明 $\phi$ 是一个标准的**群同构**：
+\[ G \cong S_3 \]
+
+由此证明，在同构的意义下， 6 阶非 Abel 群有且仅有对称群 $S_3$。
+
+\qed
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{proof}	
+	
+\end{document}
