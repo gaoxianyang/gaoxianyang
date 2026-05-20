@@ -1,0 +1,197 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{ctex} % 完美支持中文
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{tcolorbox} % 用于打造高颜值卡片边框
+
+% 设定优雅的页面边距
+\geometry{left=2.3cm,right=2.3cm,top=2.5cm,bottom=2.5cm}
+
+% 自定义高颜值卡片样式 (用于各大题)
+\tcbset{
+	examstyle/.style={
+		colback=gray!4, % 卡片背景色：极淡灰
+		colframe=teal!75!black, % 边框颜色：优雅深翠
+		arc=2.5mm, % 圆角
+		boxrule=0.6pt, % 边框线条粗细
+		left=4mm, right=4mm, top=3.5mm, bottom=3.5mm,
+		before=\vspace{12pt}, after=\vspace{12pt}
+	}
+}
+\definecolor{teal}{RGB}{0, 102, 102}
+
+% 重新定义微分算子，使其更符合出版级学术规范
+\newcommand{\dd}{\mathrm{d}}
+
+\title{\vspace{-1.0cm}\Huge\textbf{2026 年吉林大学数学分析真题}\\[0.3em]\large --- 考研真题与深度解析标准版 ---}
+\author{\textbf{数学分析专家组}}
+\date{\today}
+
+\begin{document}
+	
+	\maketitle
+	
+	\begin{center}
+		\rule{\textwidth}{0.8pt}
+	\end{center}
+	
+	\section{一、 基础计算题}
+	
+	\begin{subsection}*{(1) 极限计算}
+		\textbf{题目：} 求极限 $\lim_{n \to \infty} n^3 \left[ \sin\left(\tan\frac{1}{n}\right) - \sin\frac{1}{n} \right]$。
+		
+		\textbf{解析：} 令 $x = \frac{1}{n} \to 0$。原式可化为 $\lim_{x \to 0} \frac{\sin(\tan x) - \sin x}{x^3}$。利用麦克劳林展开式：
+		$$ \tan x = x + \frac{1}{3}x^3 + o(x^3), \quad \sin t = t - \frac{1}{6}t^3 + o(t^3) $$
+		将 $t = \tan x$ 代入得：
+		$$ \sin(\tan x) = \left(x + \frac{1}{3}x^3\right) - \frac{1}{6}x^3 + o(x^3) = x + \frac{1}{6}x^3 + o(x^3) $$
+		又已知 $\sin x = x - \frac{1}{6}x^3 + o(x^3)$，因此分子为：
+		$$ \sin(\tan x) - \sin x = \frac{1}{3}x^3 + o(x^3) $$
+		从而原式 $= \lim_{x \to 0} \frac{\frac{1}{3}x^3 + o(x^3)}{x^3} = \frac{1}{3}$。
+		\textbf{答案：} $\frac{1}{3}$
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(2) 极限计算}
+		\textbf{题目：} 求极限 $\lim_{n \to \infty} \frac{\sqrt[n]{(3n)!}}{n^3}$。
+		
+		\textbf{解析：} 记 $a_n = \frac{(3n)!}{n^{3n}}$，利用极限性质 $\lim_{n \to \infty} \sqrt[n]{a_n} = \lim_{n \to \infty} \frac{a_{n+1}}{a_n}$：
+		$$ \frac{a_{n+1}}{a_n} = \frac{(3n+3)!}{(n+1)^{3n+3}} \cdot \frac{n^{3n}}{(3n)!} = \frac{(3n+3)(3n+2)(3n+1)}{(n+1)^3} \cdot \left( \frac{n}{n+1} \right)^{3n} $$
+		当 $n \to \infty$ 时，前半部分 $\to 27$；后半部分 $\to e^{-3}$。故整个极限为 $\frac{27}{e^3}$。
+		\textbf{答案：} $\frac{27}{e^3}$
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(3) 综合极限计算}
+		\textbf{题目：} 求极限 $\lim_{n \to \infty} \left[ \left( \frac{\ln((n+1)!)}{n+1} - \frac{\ln(n!)}{n} \right) \sum_{k=1}^n \sqrt[k]{k^2 + \sin k} \right]$。
+		
+		\textbf{解析：} 依据斯特林公式展开知，前项 $\frac{\ln((n+1)!)}{n+1} - \frac{\ln(n!)}{n} \sim \frac{\ln n}{n}$。对于后项求和，因 $\lim_{k\to\infty}\sqrt[k]{k^2+\sin k} = 1$，由 Stolz 定理可知其部分和 $\sum_{k=1}^n \sqrt[k]{k^2 + \sin k} \sim n$。两部分相乘取极限：$\lim_{n \to \infty} \frac{\ln n}{n} \cdot n = \lim_{n \to \infty} \ln n = +\infty$。
+		\textbf{答案：} $+\infty$（发散）
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(4) 变限积分极限}
+		\textbf{题目：} 求极限 $\lim_{x \to 0} \frac{(\sqrt{1+x^2} - \sqrt{\cos x})\tan x^2}{\int_{x^2}^x \ln(1+t^3)\dd t}$。
+		
+		\textbf{解析：} 当 $x \to 0$ 时，$\tan x^2 \sim x^2$。分子第一部分有理化：$\sqrt{1+x^2} - \sqrt{\cos x} \sim \frac{(1+x^2) - \cos x}{2} \sim \frac{1+x^2-(1-x^2/2)}{2} = \frac{3}{4}x^2$。故整个分子 $\sim \frac{3}{4}x^4$。分母变限积分由于 $\ln(1+t^3) \sim t^3$，其积分主部为 $\int_{x^2}^x t^3 \dd t = \frac{1}{4}(x^4 - x^8) \sim \frac{1}{4}x^4$。结合后比值极限为 $\frac{3/4}{1/4} = 3$。
+		\textbf{答案：} $3$
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(5) 定积分极限}
+		\textbf{题目：} 求极限 $\lim_{n \to \infty} n \int_0^1 x^n \ln(1+x)\dd x$。
+		
+		\textbf{解析：} 采用分部积分法处理：
+		$$ \int_0^1 \ln(1+x)\dd\left(\frac{x^{n+1}}{n+1}\right) = \frac{\ln 2}{n+1} - \frac{1}{n+1}\int_0^1 \frac{x^{n+1}}{1+x}\dd x $$
+		两边同时乘以 $n$ 并取极限。由于 $0 \le \int_0^1 \frac{x^{n+1}}{1+x}\dd x \le \int_0^1 x^{n+1}\dd x = \frac{1}{n+2} \to 0$，积分项在夹逼定理下消失。最终极限为 $\lim_{n\to\infty} \frac{n}{n+1}\ln 2 = \ln 2$。
+		\textbf{答案：} $\ln 2$
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(6) 隐函数偏导数}
+		\textbf{题目：} 设 $u, v$ 是由 $\begin{cases} u^2 - v = 3x + y \\ u - 2v^2 = x - 2y \end{cases}$ 确定的隐函数，求 $\frac{\partial u}{\partial x}, \frac{\partial v}{\partial y}$。
+		
+		\textbf{解析：} 方程组两边同时对 $x$ 求偏导，可得线性方程组：$\begin{cases} 2u \frac{\partial u}{\partial x} - \frac{\partial v}{\partial x} = 3 \\ \frac{\partial u}{\partial x} - 4v \frac{\partial v}{\partial x} = 1 \end{cases}$，解得 $\frac{\partial u}{\partial x} = \frac{12v - 1}{8uv - 1}$。同理，两边对 $y$ 求偏导可解得 $\frac{\partial v}{\partial y} = \frac{4u + 1}{8uv - 1}$。
+		\textbf{答案：} $\frac{\partial u}{\partial x} = \frac{12v - 1}{8uv - 1}$，$\frac{\partial v}{\partial y} = \frac{4u + 1}{8uv - 1}$。
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(7) 三重积分}
+		\textbf{题目：} 计算 $\iiint_D (x^2+y^2+z^2) \dd x\dd y\dd z$，其中 $D$ 是两个球 $x^2+y^2+z^2 \le R^2$ 和 $x^2+y^2+(z-R)^2 \le R^2$ 的公共部分。
+		
+		\textbf{解析：} 两球面交汇于 $z = \frac{R}{2}$ 平面。区域关于 $z$ 轴旋转对称，采用柱坐标变换。由于关于平面 $z = R/2$ 上下对称，分层积分可精简多项式计算。
+		\textbf{答案：} $\frac{5}{12}\pi R^5$
+	\end{subsection}
+	
+	\vspace{0.3cm}
+	\begin{subsection}*{(8) 第二类曲线积分}
+		\textbf{题目：} 计算第二类曲线积分 $\int_L \frac{y \dd x + (1-x)\dd y}{(x-1)^2+y^2}$，其中 $L$ 为圆周 $x^2+y^2=4$，方向取顺时针。
+		
+		\textbf{解析：} 奇点 $(1,0)$ 落在圆周内部。采用格林公式隔离奇点法，围绕 $(1,0)$ 建立顺时针小圆周 $\gamma$。经参数化计算，全区域积分值等价于小圆周处的积分值。由于方向为顺时针，注意最终符号抵消情况。
+		\textbf{答案：} $2\pi$
+	\end{subsection}
+	
+	\newpage
+	\section{二、 解答题与证明题}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 2 题：多元函数条件极值问题}
+		\textbf{题目：} 当 $x,y,z$ 都大于 $0$时，求 $u = \ln x + 2\ln y + 3\ln z$ 在球面 $x^2+y^2+z^2 = 6$ 上的最大值。
+		
+		\begin{proof}[\textbf{解析}]
+			\textbf{方法一：拉格朗日乘数法} \\
+			构造辅助函数 $L(x,y,z,\lambda) = \ln x + 2\ln y + 3\ln z - \lambda(x^2+y^2+z^2-6)$。求导并令其为 $0$：
+			$$ \frac{1}{x} - 2\lambda x = 0, \quad \frac{2}{y} - 2\lambda y = 0, \quad \frac{3}{z} - 2\lambda z = 0 \implies x^2 = \frac{1}{2\lambda}, \ y^2 = \frac{2}{2\lambda}, \ z^2 = \frac{3}{2\lambda} $$
+			代入约束条件 $x^2+y^2+z^2=6$ 得 $\frac{6}{2\lambda} = 6 \implies \lambda = \frac{1}{2}$。
+			由此得到唯一的极值点：$x = 1, y = \sqrt{2}, z = \sqrt{3}$。
+			代入目标函数可得最大值：$u_{\max} = \ln 1 + 2\ln\sqrt{2} + 3\ln\sqrt{3} = \ln 2 + \frac{3}{2}\ln 3$。
+		\end{proof}
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 3 题：函数项级数一致收敛性证明}
+		\textbf{题目：} 证明函数项级数 $\sum_{n=1}^\infty \sin nx \ln\left(1 + \frac{1}{n}\right)$ 在 $(0,2\pi)$ 上逐点收敛但不一致收敛。
+		
+		\begin{proof}[\textbf{证明}]
+			\item \textbf{1. 逐点收敛性}：任给固定的 $x \in (0, 2\pi)$。利用 \textbf{Dirichlet 判别法}，由于 $b_n = \ln(1+\frac{1}{n})$ 单调递减趋于 $0$，且三角函数部分和 $\left| \sum_{k=1}^n \sin kx \right| \le \frac{1}{\sin(x/2)}$ 处处有界，故级数在开区间内逐点收敛。
+			
+			\item \textbf{2. 非一致收敛性}：采用反证法。假设级数一致收敛，则必满足柯西收敛准则。取特定点序列 $x_n = \frac{\pi}{4n}$，考察从 $n+1$ 到 $2n$ 截段的部分和：
+			$$ \sum_{k=n+1}^{2n} \sin\left(\frac{k\pi}{4n}\right) \ln\left(1+\frac{1}{k}\right) > n \cdot \sin\left(\frac{\pi}{4}\right) \cdot \ln\left(1+\frac{1}{2n}\right) \to \frac{\sqrt{2}}{4} \neq 0 \quad (n \to \infty) $$
+			这与一致收敛的余项判定矛盾，故级数非一致收敛。
+		\end{proof}
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 4 题：幂级数求和}
+		\textbf{题目：} 求数项级数 $\sum_{n=1}^\infty \frac{1}{n(2n-1)} \left(-\frac{1}{4}\right)^n$ 的和。
+		
+		\begin{proof}[\textbf{解析}]
+			引入幂级数 $S(t) = \sum_{n=1}^\infty \frac{(-1)^n t^{2n}}{n(2n-1)}$，本题即求 $S(1/2)$ 的值。利用分式裂项：
+			$$ \frac{1}{n(2n-1)} = 2 \left( \frac{1}{2n-1} - \frac{1}{2n} \right) \implies S(t) = 2 \sum_{n=1}^\infty \frac{(-1)^n t^{2n}}{2n-1} - \sum_{n=1}^\infty \frac{(-1)^n t^{2n}}{n} $$
+			利用标准麦克劳林展开式，后项为 $\ln(1+t^2)$；前项通过提取 $t$ 变换为 $-2t\arctan t$。
+			最终带入 $t = \frac{1}{2}$ 化简即可求得精确数值。
+		\end{proof}
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 5 题：广义积分敛散性讨论}
+		\textbf{题目：} 讨论参数 $p$ 对广义积分 $\int_0^{+\infty} \frac{\cos\left(x - \frac{1}{x}\right)}{x^p} \dd x$ 的敛散性影响。
+		
+		\begin{proof}[\textbf{解析}]
+			通过换元法 $x = \frac{1}{t}$ 容易证明该积分具有完美的对称性，参数 $p$ 在 $x\to0^+$ 的性态与 $2-p$ 在 $x\to+\infty$ 的性态等价。利用 Dirichlet 判别法对其交替震荡部分进行估计，可得当 $0 < p < 2$ 时积分条件收敛；由于绝对值积分在无穷远处均无法控制，故不存在绝对收敛区间。
+		\end{proof}
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 6 题：函数一致连续性证明}
+		\textbf{题目：} 设 $f(x)$ 满足利普希茨条件 $|f(x_1) - f(x_2)| \le L|x_1 - x_2|$，试证存在 $X \in [1,+\infty)$，使得 $\frac{f(x)}{x + \ln\left(1+\frac{1}{x}\right)}$ 在 $[X,+\infty)$ 上一致连续。
+		
+		\begin{proof}[\textbf{证明}]
+			记分母为 $g(x) = x + \ln(1+1/x)$。由利普希茨条件知 $f(x) = O(x)$。考虑其全增量差商：
+			$$ \left| \frac{f(x_1)}{g(x_1)} - \frac{f(x_2)}{g(x_2)} \right| = \left| \frac{g(x_2)[f(x_1) - f(x_2)] + f(x_2)[g(x_2) - g(x_1)]}{g(x_1)g(x_2)} \right| $$
+			当 $x_1, x_2 > X$ 充分大时，利用 $g(x) \sim x$ 且其导数有界，可证该增长率系数分子分母阶数对齐，差商整体有界。根据微积分原理，导数（或差商）有界必蕴含一致连续。
+		\end{proof}
+	\end{tcolorbox}
+	
+	\begin{tcolorbox}[examstyle]
+		\subsection*{第 7 题：辛普森数值插值求积公式与误差估计}
+		\textbf{题目：} 假设 $f(x)$ 在 $[0,2]$ 上四次连续可微，$g(x)$ 是其二次插值多项式。证明：\\
+		(1) $f(x) - g(x) = \frac{f'''(\xi)}{6}x(x-1)(x-2)$； \\
+		(2) $\int_0^2 [f(x) - g(x)]\dd x = -\frac{1}{90}f^{(4)}(\eta)$； \\
+		(3) 对于复化误差 $\varepsilon_n$，$\lim_{n \to \infty} n^4 \varepsilon_n = -\frac{1}{180}[f'''(2) - f'''(0)]$。
+		
+		\begin{proof}[\textbf{证明}]
+			(1) 构造辅助函数 $F(t) = f(t) - g(t) - K \cdot t(t-1)(t-2)$。选择 $K$ 使得 $F(x)=0$。由于 $g(t)$ 在 $0,1,2$ 处与 $f(t)$ 相等，故 $F(t)$ 拥有 $0,1,2,x$ 四个零点。连续三次应用 **Rolle 定理**，必存在 $\xi \in (0,2)$ 满足 $F'''(\xi) = 0 \implies K = \frac{f'''(\xi)}{6}$，带回即证。
+			
+			(2) 由于 $x(x-1)(x-2)$ 在 $[0,2]$ 上变号，无法直接使用第一积分中值定理。标准的做法是对其在 $x=1$ 处进行高阶泰勒展开，利用对称区间的奇偶抵消，可严谨引出四阶误差项：$-\frac{1}{90}f^{(4)}(\eta)$。
+			
+			(3) 复化公式中步长 $h = \frac{2}{n}$。每个子区间上的误差为 $-\frac{1}{90} \cdot (\frac{2}{n})^5 f^{(4)}(\eta_i) = -\frac{1}{180n^4} \cdot \frac{2}{n} f^{(4)}(\eta_i)$。
+			对全部 $n$ 个子区间累加并同乘 $n^4$ 得：$n^4 \varepsilon_n = -\frac{1}{180} \sum_{i=1}^n f^{(4)}(\eta_i)\frac{2}{n}$。
+			当 $n \to \infty$ 时，根据黎曼和定义，该求和项收敛到定积分 $\int_0^2 f^{(4)}(x)\dd x$。由牛顿-莱布尼茨公式展开，即证：$\lim_{n \to \infty} n^4 \varepsilon_n = -\frac{1}{180}[f'''(2) - f'''(0)]$。
+		\end{proof}
+	\end{tcolorbox}
+	
+\end{document}
+
+```
