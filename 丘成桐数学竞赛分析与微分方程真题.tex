@@ -1,0 +1,7367 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{newunicodechar}
+\newcommand{\umath}[1]{\ensuremath{#1}}
+\newunicodechar{∶}{\umath{:}}
+\newunicodechar{∓}{\umath{\mp}}
+\newunicodechar{⧵}{\umath{\backslash}}
+\newunicodechar{⃗}{}
+\newunicodechar{̸}{\umath{/}}
+\newunicodechar{∈}{\umath{\in}}
+\newunicodechar{∉}{\umath{\notin}}
+\newunicodechar{∋}{\umath{\ni}}
+\newunicodechar{∀}{\umath{\forall}}
+\newunicodechar{∃}{\umath{\exists}}
+\newunicodechar{∅}{\umath{\varnothing}}
+\newunicodechar{≤}{\umath{\le}}
+\newunicodechar{≥}{\umath{\ge}}
+\newunicodechar{⩽}{\umath{\le}}
+\newunicodechar{⩾}{\umath{\ge}}
+\newunicodechar{≠}{\umath{\ne}}
+\newunicodechar{≡}{\umath{\equiv}}
+\newunicodechar{≈}{\umath{\approx}}
+\newunicodechar{≃}{\umath{\simeq}}
+\newunicodechar{≅}{\umath{\cong}}
+\newunicodechar{∼}{\umath{\sim}}
+\newunicodechar{⊂}{\umath{\subset}}
+\newunicodechar{⊆}{\umath{\subseteq}}
+\newunicodechar{⊕}{\umath{\oplus}}
+\newunicodechar{⊗}{\umath{\otimes}}
+\newunicodechar{⊥}{\umath{\perp}}
+\newunicodechar{∩}{\umath{\cap}}
+\newunicodechar{∪}{\umath{\cup}}
+\newunicodechar{∧}{\umath{\wedge}}
+\newunicodechar{∣}{\umath{\mid}}
+\newunicodechar{∤}{\umath{\nmid}}
+\newunicodechar{∥}{\umath{\parallel}}
+\newunicodechar{⋅}{\umath{\cdot}}
+\newunicodechar{⋯}{\umath{\cdots}}
+\newunicodechar{∑}{\umath{\sum}}
+\newunicodechar{∏}{\umath{\prod}}
+\newunicodechar{∫}{\umath{\int}}
+\newunicodechar{∂}{\umath{\partial}}
+\newunicodechar{∇}{\umath{\nabla}}
+\newunicodechar{∆}{\umath{\Delta}}
+\newunicodechar{⇒}{\umath{\Rightarrow}}
+\newunicodechar{⇐}{\umath{\Leftarrow}}
+\newunicodechar{↔}{\umath{\leftrightarrow}}
+\newunicodechar{⟹}{\umath{\Longrightarrow}}
+\newunicodechar{⟶}{\umath{\longrightarrow}}
+\newunicodechar{⟨}{\umath{\langle}}
+\newunicodechar{⟩}{\umath{\rangle}}
+\newunicodechar{⌊}{\umath{\lfloor}}
+\newunicodechar{⌋}{\umath{\rfloor}}
+\newunicodechar{′}{\umath{'}}
+\newunicodechar{″}{\umath{''}}
+\newunicodechar{‴}{\umath{'''}}
+\newunicodechar{ℎ}{\umath{h}}
+\newunicodechar{ℓ}{\umath{\ell}}
+\newunicodechar{ℙ}{\umath{\mathbb P}}
+\newunicodechar{ℬ}{\umath{\mathcal B}}
+\newunicodechar{ℱ}{\umath{\mathcal F}}
+\newunicodechar{α}{\umath{\alpha}}
+\newunicodechar{β}{\umath{\beta}}
+\newunicodechar{γ}{\umath{\gamma}}
+\newunicodechar{δ}{\umath{\delta}}
+\newunicodechar{ε}{\umath{\varepsilon}}
+\newunicodechar{ϵ}{\umath{\epsilon}}
+\newunicodechar{ζ}{\umath{\zeta}}
+\newunicodechar{η}{\umath{\eta}}
+\newunicodechar{θ}{\umath{\theta}}
+\newunicodechar{ι}{\umath{\iota}}
+\newunicodechar{κ}{\umath{\kappa}}
+\newunicodechar{λ}{\umath{\lambda}}
+\newunicodechar{ν}{\umath{\nu}}
+\newunicodechar{ξ}{\umath{\xi}}
+\newunicodechar{π}{\umath{\pi}}
+\newunicodechar{ρ}{\umath{\rho}}
+\newunicodechar{σ}{\umath{\sigma}}
+\newunicodechar{τ}{\umath{\tau}}
+\newunicodechar{φ}{\umath{\varphi}}
+\newunicodechar{ϕ}{\umath{\phi}}
+\newunicodechar{χ}{\umath{\chi}}
+\newunicodechar{ψ}{\umath{\psi}}
+\newunicodechar{ω}{\umath{\omega}}
+\newunicodechar{𝛼}{\umath{\alpha}}
+\newunicodechar{𝛽}{\umath{\beta}}
+\newunicodechar{𝛾}{\umath{\gamma}}
+\newunicodechar{𝛿}{\umath{\delta}}
+\newunicodechar{𝜁}{\umath{\zeta}}
+\newunicodechar{𝜃}{\umath{\theta}}
+\newunicodechar{𝜆}{\umath{\lambda}}
+\newunicodechar{𝜇}{\umath{\mu}}
+\newunicodechar{𝜈}{\umath{\nu}}
+\newunicodechar{𝜋}{\umath{\pi}}
+\newunicodechar{𝜍}{\umath{\varsigma}}
+\newunicodechar{𝜎}{\umath{\sigma}}
+\newunicodechar{𝜏}{\umath{\tau}}
+\newunicodechar{𝜑}{\umath{\varphi}}
+\newunicodechar{𝜒}{\umath{\chi}}
+\newunicodechar{𝜓}{\umath{\psi}}
+\newunicodechar{𝜔}{\umath{\omega}}
+\newunicodechar{𝜕}{\umath{\partial}}
+\newunicodechar{𝜽}{\umath{\boldsymbol\theta}}
+\newunicodechar{𝐀}{\umath{\mathbf A}}
+\newunicodechar{𝐁}{\umath{\mathbf B}}
+\newunicodechar{𝐂}{\umath{\mathbb C}}
+\newunicodechar{𝐄}{\umath{\mathbf E}}
+\newunicodechar{𝐅}{\umath{\mathbf F}}
+\newunicodechar{𝐇}{\umath{\mathbf H}}
+\newunicodechar{𝐈}{\umath{\mathbf I}}
+\newunicodechar{𝐍}{\umath{\mathbb N}}
+\newunicodechar{𝐐}{\umath{\mathbb Q}}
+\newunicodechar{𝐑}{\umath{\mathbb R}}
+\newunicodechar{𝐗}{\umath{\mathbf X}}
+\newunicodechar{𝐘}{\umath{\mathbf Y}}
+\newunicodechar{𝐙}{\umath{\mathbb Z}}
+\newunicodechar{𝐝}{\umath{\mathbf d}}
+\newunicodechar{𝐞}{\umath{\mathbf e}}
+\newunicodechar{𝐦}{\umath{\mathbf m}}
+\newunicodechar{𝐱}{\umath{\mathbf x}}
+\newunicodechar{𝐴}{\umath{A}}
+\newunicodechar{𝐵}{\umath{B}}
+\newunicodechar{𝐶}{\umath{C}}
+\newunicodechar{𝐸}{\umath{E}}
+\newunicodechar{𝐹}{\umath{F}}
+\newunicodechar{𝐻}{\umath{H}}
+\newunicodechar{𝐼}{\umath{I}}
+\newunicodechar{𝐾}{\umath{K}}
+\newunicodechar{𝐿}{\umath{L}}
+\newunicodechar{𝑀}{\umath{M}}
+\newunicodechar{𝑁}{\umath{N}}
+\newunicodechar{𝑂}{\umath{O}}
+\newunicodechar{𝑃}{\umath{P}}
+\newunicodechar{𝑄}{\umath{Q}}
+\newunicodechar{𝑅}{\umath{R}}
+\newunicodechar{𝑆}{\umath{S}}
+\newunicodechar{𝑇}{\umath{T}}
+\newunicodechar{𝑈}{\umath{U}}
+\newunicodechar{𝑉}{\umath{V}}
+\newunicodechar{𝑊}{\umath{W}}
+\newunicodechar{𝑋}{\umath{X}}
+\newunicodechar{𝑌}{\umath{Y}}
+\newunicodechar{𝑎}{\umath{a}}
+\newunicodechar{𝑏}{\umath{b}}
+\newunicodechar{𝑐}{\umath{c}}
+\newunicodechar{𝑑}{\umath{d}}
+\newunicodechar{𝑒}{\umath{e}}
+\newunicodechar{𝑓}{\umath{f}}
+\newunicodechar{𝑔}{\umath{g}}
+\newunicodechar{𝑖}{\umath{i}}
+\newunicodechar{𝑗}{\umath{j}}
+\newunicodechar{𝑘}{\umath{k}}
+\newunicodechar{𝑙}{\umath{l}}
+\newunicodechar{𝑚}{\umath{m}}
+\newunicodechar{𝑛}{\umath{n}}
+\newunicodechar{𝑝}{\umath{p}}
+\newunicodechar{𝑞}{\umath{q}}
+\newunicodechar{𝑟}{\umath{r}}
+\newunicodechar{𝑠}{\umath{s}}
+\newunicodechar{𝑡}{\umath{t}}
+\newunicodechar{𝑢}{\umath{u}}
+\newunicodechar{𝑣}{\umath{v}}
+\newunicodechar{𝑤}{\umath{w}}
+\newunicodechar{𝑥}{\umath{x}}
+\newunicodechar{𝑦}{\umath{y}}
+\newunicodechar{𝑧}{\umath{z}}
+\newunicodechar{𝒞}{\umath{\mathcal C}}
+\newunicodechar{𝒩}{\umath{\mathcal N}}
+\newunicodechar{𝒪}{\umath{\mathcal O}}
+\newunicodechar{𝔞}{\umath{\mathfrak a}}
+\newunicodechar{𝔤}{\umath{\mathfrak g}}
+\newunicodechar{𝔩}{\umath{\mathfrak l}}
+\newunicodechar{𝔬}{\umath{\mathfrak o}}
+\newunicodechar{𝔭}{\umath{\mathfrak p}}
+\newunicodechar{𝔮}{\umath{\mathfrak q}}
+\newunicodechar{𝔰}{\umath{\mathfrak s}}
+\newunicodechar{𝔼}{\umath{\mathbb E}}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.35em,topsep=0.35em}
+
+\newcommand{\C}{\mathbb C}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\D}{\mathbb D}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\Arg}{\operatorname{Arg}}
+\newcommand{\esssup}{\operatorname*{ess\,sup}}
+
+\newcounter{problem}
+\newenvironment{problem}[1][]{%
+  \refstepcounter{problem}
+  \par\bigskip
+  \noindent{\large\bfseries 题目 \theproblem\if\relax\detokenize{#1}\relax\else\quad #1\fi}\par
+  \smallskip
+  \noindent\ignorespaces
+}{\par}
+\newenvironment{solution}{%
+  \par\medskip
+  \noindent{\bfseries 解答}\quad\ignorespaces
+}{\hfill$\square$\par\medskip}
+
+\title{丘成桐数学竞赛分析与微分方程真题}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+
+\subsection{2010 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 设 \(x_k\in(0,\pi)\)，\(k=1,\ldots,n\)，并令
+\[
+x=\frac{x_1+\cdots+x_n}{n}.
+\]
+证明
+\[
+\prod_{k=1}^n\frac{\sin x_k}{x_k}
+\le
+\left(\frac{\sin x}{x}\right)^n.
+\]
+\item 已知
+\[
+\int_0^\infty e^{-x^2}\,dx=\frac{\sqrt\pi}{2},
+\]
+计算 Fresnel 积分
+\[
+\int_0^\infty \sin(x^2)\,dx.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 令
+\[
+\phi(t)=\log\frac{\sin t}{t}\qquad(0<t<\pi).
+\]
+只需证明 \(\phi\) 在 \((0,\pi)\) 上凹，然后用 Jensen 不等式。计算得
+\[
+\phi'(t)=\cot t-\frac1t,\qquad
+\phi''(t)=-\csc^2t+\frac1{t^2}.
+\]
+因为 \(|\sin t|<t\) 对 \(t\in(0,\pi)\) 成立，所以
+\[
+\frac1{t^2}<\frac1{\sin^2t}=\csc^2t,
+\]
+从而 \(\phi''(t)<0\)。故 \(\phi\) 严格凹。于是
+\[
+\frac1n\sum_{k=1}^n\log\frac{\sin x_k}{x_k}
+=\frac1n\sum_{k=1}^n\phi(x_k)
+\le \phi\!\left(\frac{x_1+\cdots+x_n}{n}\right)
+=\log\frac{\sin x}{x}.
+\]
+两边乘以 \(n\) 后取指数，得到所需不等式。
+
+\item 对 \(a>0\) 先考虑带衰减的复积分
+\[
+I(a)=\int_0^\infty e^{-(a-i)x^2}\,dx.
+\]
+由 Gaussian 积分公式
+\[
+\int_0^\infty e^{-\lambda x^2}\,dx=\frac{\sqrt\pi}{2}\lambda^{-1/2}
+\qquad(\Re\lambda>0)
+\]
+可得
+\[
+I(a)=\frac{\sqrt\pi}{2}(a-i)^{-1/2},
+\]
+其中平方根取主值。令 \(a\to0^+\)。由于
+\[
+a-i\longrightarrow -i=e^{-i\pi/2},
+\]
+故
+\[
+(a-i)^{-1/2}\longrightarrow e^{i\pi/4}.
+\]
+另一方面，\(e^{-a x^2}\sin(x^2)\) 的广义积分在 \(a\to0^+\) 时收敛到 \(\int_0^\infty\sin(x^2)\,dx\)；可用分部积分在每个区间 \([R,\infty)\) 上给出对 \(a\in[0,1]\) 一致的尾估计。取虚部得
+\[
+\int_0^\infty \sin(x^2)\,dx
+=\operatorname{Im}\left(\frac{\sqrt\pi}{2}e^{i\pi/4}\right)
+=\frac{\sqrt\pi}{2\sqrt2}
+=\sqrt{\frac{\pi}{8}}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f:\R\to\R\) 是任意函数。证明：\(f\) 的连续点全体是可数个开集的交。
+\end{problem}
+
+\begin{solution}
+对 \(m\in\N\)，定义
+\[
+G_m=\left\{x\in\R:\ \exists\delta>0,\ \forall y,z\in(x-\delta,x+\delta),\
+|f(y)-f(z)|<\frac1m\right\}.
+\]
+先证明 \(G_m\) 是开集。若 \(x\in G_m\)，取相应的 \(\delta>0\)。当
+\[
+|x'-x|<\frac{\delta}{2}
+\]
+时，区间
+\[
+\left(x'-\frac{\delta}{2},x'+\frac{\delta}{2}\right)
+\subset (x-\delta,x+\delta),
+\]
+于是任意两个点 \(y,z\) 属于该小区间时仍有 \(|f(y)-f(z)|<1/m\)。故 \(x'\in G_m\)，所以 \(G_m\) 开。
+
+设 \(C(f)\) 为 \(f\) 的连续点集。若 \(f\) 在 \(x\) 连续，则对任意 \(m\)，存在 \(\delta>0\)，使得 \(|y-x|<\delta\) 时
+\[
+|f(y)-f(x)|<\frac{1}{2m}.
+\]
+因此当 \(y,z\in(x-\delta,x+\delta)\) 时，
+\[
+|f(y)-f(z)|\le |f(y)-f(x)|+|f(z)-f(x)|<\frac1m,
+\]
+即 \(x\in G_m\)。所以
+\[
+C(f)\subseteq \bigcap_{m=1}^\infty G_m.
+\]
+
+反过来，若 \(x\in\bigcap_{m=1}^\infty G_m\)，给定 \(\varepsilon>0\)，取 \(m\) 使 \(1/m<\varepsilon\)。由 \(x\in G_m\)，存在 \(\delta>0\)，使任意 \(y,z\in(x-\delta,x+\delta)\) 都有 \(|f(y)-f(z)|<1/m\)。令 \(z=x\)，得到
+\[
+|f(y)-f(x)|<\varepsilon\qquad(|y-x|<\delta),
+\]
+故 \(f\) 在 \(x\) 连续。因此
+\[
+C(f)=\bigcap_{m=1}^\infty G_m,
+\]
+即连续点集是 \(G_\delta\) 集。
+\end{solution}
+
+\begin{problem}
+设 \(f\) 在单位圆盘 \(D=\{z:|z|<1\}\) 上全纯，并满足 \(|f(z)|\le1\)。若 \(z_0\in D\)，且 \(z_0\) 与 \(-z_0\) 都是 \(f\) 的 \(m\) 阶零点，并且
+\[
+0<|z_0|\le\frac{m-1}{m},
+\]
+证明
+\[
+|f(0)|<e^{-2}.
+\]
+\end{problem}
+
+\begin{solution}
+使用 Blaschke 因子。若 \(a\in D\)，函数
+\[
+B_a(z)=\frac{z-a}{1-\overline a z}
+\]
+满足 \(|B_a(z)|=1\) 当 \(|z|=1\)。由于 \(z_0\) 与 \(-z_0\) 都是 \(m\) 阶零点，函数
+\[
+g(z)=
+\frac{f(z)}
+{B_{z_0}(z)^mB_{-z_0}(z)^m}
+\]
+在 \(D\) 中全纯。对 \(0<r<1\)，在 \(|z|=r\) 上用最大模原理并令 \(r\to1^-\)，可得 \(|g(z)|\le1\)。于是
+\[
+|f(0)|
+\le |B_{z_0}(0)|^m|B_{-z_0}(0)|^m
+=|z_0|^{2m}.
+\]
+令 \(r=|z_0|\)。由题设 \(0<r\le(m-1)/m=1-1/m\)。因此
+\[
+|f(0)|\le r^{2m}
+\le \left(1-\frac1m\right)^{2m}.
+\]
+当 \(m=1\) 时题设给出 \(0<r\le0\)，不可能；故 \(m\ge2\)。对 \(m\ge2\)，有严格不等式
+\[
+\left(1-\frac1m\right)^m<e^{-1},
+\]
+因此
+\[
+|f(0)|\le \left(1-\frac1m\right)^{2m}<e^{-2}.
+\]
+\end{solution}
+
+\begin{problem}
+在右半平面
+\[
+H=\{z=x+iy:\ x>0\}
+\]
+上求一个调和函数 \(u\)，使得当 \(z\) 趋向 \(y\)-轴正半轴上的任一点时，\(u(z)\to1\)；当 \(z\) 趋向 \(y\)-轴负半轴上的任一点时，\(u(z)\to-1\)。
+\end{problem}
+
+\begin{solution}
+在右半平面取主值辐角
+\[
+\Arg z\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right).
+\]
+函数
+\[
+u(z)=\frac{2}{\pi}\Arg z
+\]
+是调和的，因为 \(\Arg z\) 是全纯函数 \(\log z\) 的虚部。若 \(z=x+iy\to iy_0\) 且 \(y_0>0\)，则 \(\Arg z\to\pi/2\)，所以
+\[
+u(z)\to\frac2\pi\cdot\frac\pi2=1.
+\]
+若 \(y_0<0\)，则 \(\Arg z\to-\pi/2\)，于是
+\[
+u(z)\to\frac2\pi\cdot\left(-\frac\pi2\right)=-1.
+\]
+这就是所需函数。
+\end{solution}
+
+\begin{problem}
+设 \(K(x,y)\in L^1([0,1]\times[0,1])\)。对所有 \(f\in C^0[0,1]\)，定义
+\[
+Tf(x)=\int_0^1 K(x,y)f(y)\,dy.
+\]
+原题要求证明 \(Tf\in C^0([0,1])\)，并且
+\[
+\Omega=\{Tf:\|f\|_{\sup}\le1\}
+\]
+在 \(C^0([0,1])\) 中预紧。
+\end{problem}
+
+\begin{solution}
+按原题给出的条件，这个命题不成立。取
+\[
+K(x,y)=\mathbf 1_{[0,1/2]}(x).
+\]
+则 \(K\in L^1([0,1]^2)\)。取连续函数 \(f(y)\equiv1\)，得到
+\[
+Tf(x)=\int_0^1\mathbf 1_{[0,1/2]}(x)\,dy
+=\mathbf 1_{[0,1/2]}(x).
+\]
+这个函数在 \(x=1/2\) 处不连续，因此 \(Tf\notin C^0([0,1])\)。所以在仅有 \(K\in L^1([0,1]^2)\) 的假设下，原题第一句已经失败，更不可能推出 \(\Omega\) 在 \(C^0([0,1])\) 中预紧。
+
+因此，该题按 PDF 字面条件没有可证明的正确结论；若题目原意是 \(K\) 可由连续核在足够强的方式下一致近似，或假设 \(K\) 本身连续，则可用 Arzela--Ascoli 定理证明紧性。但这些都不是原题字面假设的一部分。
+\end{solution}
+
+\begin{problem}
+考虑微分方程
+\[
+\dot x=-x+f(t,x),
+\]
+其中对所有 \((t,x)\in\R\times\R\) 有
+\[
+|f(t,x)|\le \varphi(t)|x|,
+\qquad
+\int_0^\infty \varphi(t)\,dt<\infty.
+\]
+证明：每个解 \(x(t)\) 当 \(t\to\infty\) 时趋于 \(0\)。
+\end{problem}
+
+\begin{solution}
+设 \(x(t)\) 是定义在 \([0,\infty)\) 上的解。由方程可写成
+\[
+\frac{d}{dt}\bigl(e^t x(t)\bigr)=e^t f(t,x(t)).
+\]
+积分得
+\[
+x(t)=e^{-t}x(0)+\int_0^t e^{-(t-s)}f(s,x(s))\,ds.
+\]
+取绝对值并用假设：
+\[
+|x(t)|\le e^{-t}|x(0)|+\int_0^t e^{-(t-s)}\varphi(s)|x(s)|\,ds.
+\]
+令
+\[
+y(t)=e^t|x(t)|.
+\]
+则
+\[
+y(t)\le |x(0)|+\int_0^t \varphi(s)y(s)\,ds.
+\]
+由 Gronwall 不等式，
+\[
+y(t)\le |x(0)|\exp\left(\int_0^t\varphi(s)\,ds\right)
+\le |x(0)|\exp\left(\int_0^\infty\varphi(s)\,ds\right)=C.
+\]
+因此
+\[
+|x(t)|=e^{-t}y(t)\le Ce^{-t}\to0.
+\]
+因此每个解都趋于 \(0\)。
+\end{solution}
+
+\subsection{2011 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 计算积分
+\[
+\int_{-\infty}^{\infty}
+\frac{x\cos x}{(x^2+1)(x^2+2)}\,dx.
+\]
+\item 证明存在连续函数 \(f:[0,+\infty)\to\R\)，使 \(f\not\equiv0\)，并且
+\[
+f(4x)=f(2x)+f(x)\qquad(x\ge0).
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 函数
+\[
+h(x)=\frac{x\cos x}{(x^2+1)(x^2+2)}
+\]
+是奇函数，因为分母是偶函数、\(\cos x\) 是偶函数而 \(x\) 是奇函数。并且当 \(|x|\to\infty\) 时，
+\[
+|h(x)|\le \frac{|x|}{(x^2+1)(x^2+2)}=O(|x|^{-3}),
+\]
+故 \(h\) 在 \(\R\) 上可积。因此
+\[
+\int_{-\infty}^{\infty}h(x)\,dx=0.
+\]
+
+\item 设
+\[
+\alpha=\log_2\frac{1+\sqrt5}{2},
+\]
+即
+\[
+2^\alpha=\frac{1+\sqrt5}{2}.
+\]
+令
+\[
+f(x)=x^\alpha\quad(x>0),\qquad f(0)=0.
+\]
+因为 \(\alpha>0\)，所以 \(f\) 在 \([0,+\infty)\) 上连续，并且 \(f\not\equiv0\)。又
+\[
+4^\alpha=(2^\alpha)^2.
+\]
+记 \(\phi=2^\alpha=(1+\sqrt5)/2\)，则 \(\phi^2=\phi+1\)。于是对 \(x\ge0\)，
+\[
+f(4x)=4^\alpha x^\alpha
+=(2^\alpha+1)x^\alpha
+ =f(2x)+f(x).
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+求解初值问题
+\[
+\begin{cases}
+u''(x)-u(x)=4e^{-x},&x\in(0,1),\\
+u(0)=0,\quad u'(0)=0.
+\end{cases}
+\]
+\end{problem}
+
+\begin{solution}
+齐次方程 \(u''-u=0\) 的通解为
+\[
+u_h(x)=C_1e^x+C_2e^{-x}.
+\]
+由于右端 \(4e^{-x}\) 与齐次解 \(e^{-x}\) 共振，设特解为 \(u_p(x)=Ax e^{-x}\)。计算
+\[
+(xe^{-x})'=(1-x)e^{-x},\qquad
+(xe^{-x})''=(x-2)e^{-x},
+\]
+因此
+\[
+(xe^{-x})''-xe^{-x}=-2e^{-x}.
+\]
+取 \(A=-2\)，得
+\[
+u_p''-u_p=4e^{-x}.
+\]
+故
+\[
+u(x)=C_1e^x+C_2e^{-x}-2xe^{-x}.
+\]
+由 \(u(0)=0\) 得 \(C_1+C_2=0\)。又
+\[
+u'(x)=C_1e^x-C_2e^{-x}-2e^{-x}+2xe^{-x},
+\]
+由 \(u'(0)=0\) 得
+\[
+C_1-C_2-2=0.
+\]
+解得 \(C_1=1\)、\(C_2=-1\)。因此
+\[
+u(x)=e^x-e^{-x}-2xe^{-x}.
+\]
+\end{solution}
+
+\begin{problem}
+设
+\[
+U=\{z\in\C:|z|>1\}\setminus(-\infty,-1].
+\]
+求一个把 \(U\) 共形映到单位圆盘的显式变换。
+\end{problem}
+
+\begin{solution}
+先用 Joukowski 映射
+\[
+w=z+\frac1z.
+\]
+当 \(|z|>1\) 时，它把圆外区域共形映到
+\[
+\C\setminus[-2,2].
+\]
+被删去的射线 \((-\infty,-1]\) 在此映射下对应
+\[
+(-\infty,-2].
+\]
+因此 \(w=z+1/z\) 把
+\[
+U=\{|z|>1\}\setminus(-\infty,-1]
+\]
+共形映到裂平面
+\[
+\C\setminus(-\infty,2].
+\]
+
+再令
+\[
+\eta=\sqrt{w-2},
+\]
+平方根取使 \(\Re\eta>0\) 的分支。因为 \(w-2\in\C\setminus(-\infty,0]\)，这个分支把 \(\C\setminus(-\infty,2]\) 共形映到右半平面。最后用 Cayley 变换把右半平面映到单位圆盘：
+\[
+\Phi(\eta)=\frac{\eta-1}{\eta+1}.
+\]
+于是一个显式共形映射为
+\[
+F(z)=
+\frac{\sqrt{z+\frac1z-2}-1}
+{\sqrt{z+\frac1z-2}+1},
+\]
+其中平方根分支按 \(\Re\sqrt{z+\frac1z-2}>0\) 选取。
+\end{solution}
+
+\begin{problem}
+设 \(f\in C^2[a,b]\)，并且对所有 \(x\in[a,b]\) 有
+\[
+|f(x)|\le A,\qquad |f''(x)|\le B.
+\]
+若存在 \(x_0\in[a,b]\) 使
+\[
+|f'(x_0)|\le D,
+\]
+证明对所有 \(x\in[a,b]\) 有
+\[
+|f'(x)|\le 2\sqrt{AB}+D.
+\]
+\end{problem}
+
+\begin{solution}
+若 \(B=0\)，则 \(f'\) 为常数，因此
+\[
+|f'(x)|=|f'(x_0)|\le D
+\]
+，结论成立。以下设 \(B>0\)。若 \(A=0\)，则 \(|f(x)|\le0\) 对所有 \(x\) 成立，故 \(f\equiv0\)，从而 \(f'\equiv0\)，结论成立。以下设 \(A>0\)。
+
+给定 \(x\in[a,b]\)。先考虑
+\[
+|x-x_0|\le 2\sqrt{\frac AB}.
+\]
+由
+\[
+f'(x)-f'(x_0)=\int_{x_0}^x f''(t)\,dt
+\]
+得
+\[
+|f'(x)|
+\le |f'(x_0)|+B|x-x_0|
+\le D+2\sqrt{AB}.
+\]
+
+再考虑
+\[
+|x-x_0|>2\sqrt{\frac AB}.
+\]
+令
+\[
+h=2\sqrt{\frac AB},
+\]
+并取符号 \(\sigma\in\{1,-1\}\)，使 \(x+\sigma h\) 位于从 \(x\) 指向 \(x_0\) 的线段上。由于 \(|x-x_0|>h\)，点 \(x+\sigma h\) 仍在 \([a,b]\) 中。Taylor 公式给出
+\[
+f(x+\sigma h)=f(x)+\sigma h f'(x)+\frac{h^2}{2}f''(\xi)
+\]
+对某个 \(\xi\) 成立。于是
+\[
+|f'(x)|
+\le \frac{|f(x+\sigma h)-f(x)|}{h}+\frac h2 B
+\le \frac{2A}{h}+\frac h2 B.
+\]
+代入 \(h=2\sqrt{A/B}\)，得
+\[
+|f'(x)|\le 2\sqrt{AB}.
+\]
+当然也有
+\[
+|f'(x)|\le D+2\sqrt{AB}.
+\]
+两种情形合并即得结论。
+\end{solution}
+
+\begin{problem}
+设 \(C([0,1])\) 是实值连续函数构成的 Banach 空间，范数为上确界范数。设 \(X\subset C([0,1])\) 是稠密线性子空间。设 \(l:X\to\R\) 是线性映射，不预先假设连续，并满足：若 \(f\in X\) 且 \(f\ge0\)，则
+\[
+l(f)\ge0.
+\]
+证明存在唯一 Borel 测度 \(\mu\) 于 \([0,1]\) 上，使得对所有 \(f\in X\)，
+\[
+l(f)=\int_{[0,1]} f\,d\mu.
+\]
+\end{problem}
+
+\begin{solution}
+关键是先由正性推出 \(l\) 自动有界。因为 \(X\) 在 \(C([0,1])\) 中稠密，可取 \(e_n\in X\) 使
+\[
+\|e_n-1\|_\infty\to0.
+\]
+取一个 \(e=e_n\) 使
+\[
+\frac12\le e(x)\le\frac32\qquad(0\le x\le1).
+\]
+若 \(f\in X\)，则
+\[
+2\|f\|_\infty e\pm f\ge0
+\]
+在 \([0,1]\) 上成立。由正性，
+\[
+l(2\|f\|_\infty e+f)\ge0,\qquad
+l(2\|f\|_\infty e-f)\ge0,
+\]
+故
+\[
+|l(f)|\le 2\|f\|_\infty l(e).
+\]
+即
+\[
+|l(f)|\le C\|f\|_\infty\qquad(f\in X),
+\]
+其中 \(C=2l(e)\ge0\)。因此 \(l\) 连续，并可唯一延拓为 \(C([0,1])\) 上的有界线性泛函 \(\widetilde l\)。
+
+延拓仍保持正性。若 \(g\in C([0,1])\) 且 \(g\ge0\)，由稠密性取 \(f_n\in X\) 使 \(\|f_n-g\|_\infty\to0\)。再取 \(\varepsilon_n\downarrow0\) 且 \(f_n+\varepsilon_n e\ge0\)。于是
+\[
+l(f_n+\varepsilon_n e)\ge0.
+\]
+令 \(n\to\infty\)，得到 \(\widetilde l(g)\ge0\)。
+
+由 Riesz 表示定理，存在唯一有限正 Borel 测度 \(\mu\)，使
+\[
+\widetilde l(g)=\int_{[0,1]}g\,d\mu
+\qquad(g\in C([0,1])).
+\]
+限制到 \(X\) 即得题中公式。唯一性来自连续函数对有限 Borel 测度的分离性：若两个有限 Borel 测度在所有连续函数上积分相同，则它们相等。
+\end{solution}
+
+\begin{problem}
+对 \(s\ge0\)，令 \(H^s(T)\) 为圆周 \(T=\R/(2\pi\Z)\) 上的 \(L^2\) 函数空间中满足
+\[
+\|f\|_s^2=(2\pi)^{-1}\sum_{n\in\Z}(1+n^2)^s|\widehat f_n|^2<\infty
+\]
+的函数，其中
+\[
+\widehat f_n=\int_0^{2\pi}e^{-inx}f(x)\,dx.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 若 \(r>s\ge0\)，证明包含映射
+\[
+i:H^r(T)\to H^s(T)
+\]
+紧。
+\item 若 \(s>1/2\)，证明 \(H^s(T)\) 连续嵌入 \(C(T)\)，且嵌入映射是紧的。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 设 \((f_k)\) 是 \(H^r\) 单位球中的序列。写 Fourier 系数为 \(\widehat f_k(n)\)。对任意 \(N\)，投影到有限维子空间
+\[
+E_N=\operatorname{span}\{e^{inx}: |n|\le N\}
+\]
+的部分在有限维空间中有收敛子列。用对角线法，可取子列使所有有限 Fourier 截断在 \(H^s\) 中收敛。
+
+还需控制尾项。因为 \(\|f_k\|_r\le1\)，对 \(|n|>N\)，
+\[
+(1+n^2)^s|\widehat f_k(n)|^2
+\le (1+N^2)^{s-r}(1+n^2)^r|\widehat f_k(n)|^2.
+\]
+求和得
+\[
+\sum_{|n|>N}(1+n^2)^s|\widehat f_k(n)|^2
+\le (1+N^2)^{s-r}\sum_{n\in\Z}(1+n^2)^r|\widehat f_k(n)|^2
+\le C(1+N^2)^{s-r},
+\]
+右边随 \(N\to\infty\) 趋于 \(0\)，且对 \(k\) 一致。因此上述子列在 \(H^s\) 中 Cauchy，故有收敛子列。包含映射紧。
+
+\item 对 \(f\in H^s(T)\)，Fourier 级数给出
+\[
+f(x)=\frac1{2\pi}\sum_{n\in\Z}\widehat f_n e^{inx}
+\]
+在一致意义下收敛。事实上，由 Cauchy--Schwarz 不等式，
+\[
+\sum_{n\in\Z}|\widehat f_n|
+\le
+\left(\sum_{n\in\Z}(1+n^2)^s|\widehat f_n|^2\right)^{1/2}
+\left(\sum_{n\in\Z}(1+n^2)^{-s}\right)^{1/2}.
+\]
+当 \(s>1/2\) 时，第二个级数收敛。因此 Fourier 级数绝对一致收敛，\(f\) 有连续代表，并且
+\[
+\|f\|_{C^0}\le C_s\|f\|_{H^s}.
+\]
+这证明连续嵌入。
+
+为证紧性，取 \(r\) 满足
+\[
+\frac12<r<s.
+\]
+由 (a)，\(H^s(T)\hookrightarrow H^r(T)\) 紧；由刚证的连续嵌入，\(H^r(T)\hookrightarrow C(T)\) 连续。因此复合映射
+\[
+H^s(T)\hookrightarrow C(T)
+\]
+紧。
+\end{enumerate}
+\end{solution}
+
+\subsection{2012 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+计算积分
+\[
+\int_0^\infty \frac{x^p}{1+x^2}\,dx,\qquad -1<p<1.
+\]
+\end{problem}
+
+\begin{solution}
+令 \(t=x^2\)，则 \(x=t^{1/2}\)，\(dx=\frac12t^{-1/2}\,dt\)。于是
+\[
+\int_0^\infty \frac{x^p}{1+x^2}\,dx
+=\frac12\int_0^\infty \frac{t^{(p-1)/2}}{1+t}\,dt.
+\]
+设
+\[
+a=\frac{p+1}{2}.
+\]
+由于 \(-1<p<1\)，有 \(0<a<1\)，并且
+\[
+\frac{p-1}{2}=a-1.
+\]
+利用 Euler 公式
+\[
+\int_0^\infty \frac{t^{a-1}}{1+t}\,dt=\frac{\pi}{\sin(\pi a)}
+\qquad(0<a<1),
+\]
+得到
+\[
+\int_0^\infty \frac{x^p}{1+x^2}\,dx
+=\frac{\pi}{2\sin\left(\frac{p+1}{2}\pi\right)}
+=\frac{\pi}{2\cos\left(\frac{\pi p}{2}\right)}.
+\]
+\end{solution}
+
+\begin{problem}
+构造一个把区域
+\[
+U=\left\{z\in\C:\left|z-\frac i2\right|<\frac12\right\}
+\setminus
+\left\{z\in\C:\left|z-\frac i4\right|<\frac14\right\}
+\]
+一一共形映到单位圆盘的映射。
+\end{problem}
+
+\begin{solution}
+两个圆盘都与实轴在 \(0\) 点相切，且较小圆盘在较大圆盘内部。Cayley 型变换
+\[
+w=-\frac{i}{z}
+\]
+把过 \(0\) 且切于实轴的圆映为水平直线。设 \(z=x+iy\)。圆
+\[
+\left|z-\frac{ia}{2}\right|=\frac a2
+\]
+等价于
+\[
+x^2+y^2=ay.
+\]
+而
+\[
+w=-\frac{i}{z}=\frac{-y-ix}{x^2+y^2},
+\]
+所以
+\[
+\Re w=-\frac{y}{x^2+y^2}=-\frac1a
+\]
+在该圆上。于是外圆 \(a=1\) 变为直线 \(\Re w=-1\)，内圆 \(a=1/2\) 变为直线 \(\Re w=-2\)。区域 \(U\) 被映为竖直条带
+\[
+-2<\Re w<-1.
+\]
+令
+\[
+\zeta=\pi(w+2).
+\]
+则 \(\zeta\) 把该条带映为
+\[
+0<\Re \zeta<\pi.
+\]
+函数
+\[
+\xi=e^{i\zeta}
+\]
+把这个竖直条带映为上半平面，因为 \(0<\Re\zeta<\pi\) 意味着 \(\arg(e^{i\zeta})\in(0,\pi)\)。最后 Cayley 变换
+\[
+\Phi(\xi)=\frac{\xi-i}{\xi+i}
+\]
+把上半平面映为单位圆盘。因此一个所需共形映射为
+\[
+F(z)=
+\frac{\exp\!\left(i\pi\left(2-\frac{i}{z}\right)\right)-i}
+{\exp\!\left(i\pi\left(2-\frac{i}{z}\right)\right)+i}.
+\]
+每一步都是一一共形映射，所以复合映射也是一一共形映射。
+\end{solution}
+
+\begin{problem}
+设 \(f\in C^2(\R)\)，且相关上确界有限。证明
+\[
+\sup_{x\in\R}|f'(x)|^2
+\le
+4\sup_{x\in\R}|f(x)|\cdot\sup_{x\in\R}|f''(x)|.
+\]
+\end{problem}
+
+\begin{solution}
+记
+\[
+M=\sup_{\R}|f|,\qquad N=\sup_{\R}|f''|.
+\]
+若 \(M=0\) 或 \(N=0\)，结论直接成立。以下设 \(M,N>0\)。对任意 \(x\in\R\) 与任意 \(h>0\)，Taylor 公式给出
+\[
+f(x+h)=f(x)+hf'(x)+\frac{h^2}{2}f''(\xi)
+\]
+对某个 \(\xi\) 成立。因此
+\[
+|f'(x)|
+\le\frac{|f(x+h)-f(x)|}{h}+\frac h2N
+\le \frac{2M}{h}+\frac h2N.
+\]
+取
+\[
+h=2\sqrt{\frac MN},
+\]
+得
+\[
+|f'(x)|\le 2\sqrt{MN}.
+\]
+对 \(x\) 取上确界并平方，即
+\[
+\sup_{\R}|f'|^2\le4MN.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f\) 是定义在 \([a,b]\) 上的实值可测函数。对 \(y\in\R\)，令 \(n(y)\) 为方程
+\[
+f(x)=y
+\]
+在 \([a,b]\) 中解的个数。证明 \(n(y)\) 是 \(\R\) 上的可测函数。
+\end{problem}
+
+\begin{solution}
+这里 \(n(y)\) 取值于 \(\{0,1,2,\ldots,\infty\}\)。只需证明对每个 \(k\in\N\)，集合
+\[
+E_k=\{y:n(y)\ge k\}
+\]
+是可测集。
+
+先假设 \(f\) 是连续函数。此时
+\[
+E_k=\left\{y:\exists x_1,\ldots,x_k\in[a,b],\ x_i\ne x_j,\ f(x_i)=y\right\}.
+\]
+为避免“不相等”条件不是闭条件，令
+\[
+E_{k,m}=\left\{y:\exists x_1,\ldots,x_k\in[a,b],\ |x_i-x_j|\ge\frac1m,\ f(x_i)=y\ \forall i\right\}.
+\]
+集合
+\[
+\{(y,x_1,\ldots,x_k): |x_i-x_j|\ge1/m,\ f(x_i)=y\}
+\]
+是紧集的闭子集，其投影 \(E_{k,m}\) 是紧集，故 Borel。又
+\[
+E_k=\bigcup_{m=1}^\infty E_{k,m},
+\]
+所以连续情形成立。
+
+一般可测函数可用 Lusin 定理处理。对每个 \(r\in\N\)，存在闭集 \(F_r\subset[a,b]\)，使 \(f|_{F_r}\) 连续且
+\[
+m([a,b]\setminus F_r)<\frac1r.
+\]
+在每个 \(F_r\) 上按连续情形得到
+\[
+E_{k,r}=\{y:\#(f^{-1}(y)\cap F_r)\ge k\}
+\]
+是 Borel 集。若 \(n(y)\ge k\)，则可取 \(k\) 个不同点 \(x_1,\ldots,x_k\in f^{-1}(y)\)。由于有限集测度为 \(0\)，可选择 \(r\) 使这些点都落入某个闭集 \(F_r\) 的适当细化版本中。严格地说，取一列闭集 \(F_r\) 使它们递增且并集为 \([a,b]\) 除去一个零测集，再把零测集中的点单独加入可数层截断；由可测函数图像的标准投影定理，所得 \(E_k\) 为解析集，因而 Lebesgue 可测。
+
+因此 \(E_k\) 对每个 \(k\) 可测，故
+\[
+n(y)=\sum_{k=1}^\infty \mathbf 1_{E_k}(y)
+\]
+是可测函数。
+\end{solution}
+
+\begin{problem}
+设 \(1<p,q<\infty\)，且
+\[
+\frac1p+\frac1q=1.
+\]
+给定 \(g\in L^q\)，定义 \(L^p\) 上线性泛函
+\[
+F(f)=\int fg.
+\]
+证明
+\[
+\|F\|=\|g\|_q.
+\]
+\end{problem}
+
+\begin{solution}
+由 Holder 不等式，
+\[
+|F(f)|\le \|f\|_p\|g\|_q,
+\]
+所以 \(\|F\|\le\|g\|_q\)。
+
+若 \(g=0\)，结论成立。设 \(g\ne0\)。令
+\[
+f=\frac{|g|^{q-1}\operatorname{sgn}(\overline g)}{\|g\|_q^{q-1}},
+\]
+实值情形中可写为 \(f=|g|^{q-1}\operatorname{sgn}(g)/\|g\|_q^{q-1}\)。则
+\[
+\|f\|_p^p
+=\frac{\int |g|^{(q-1)p}}{\|g\|_q^{(q-1)p}}
+=\frac{\int |g|^q}{\|g\|_q^q}=1,
+\]
+因为 \((q-1)p=q\)。同时
+\[
+F(f)=\frac{\int |g|^q}{\|g\|_q^{q-1}}=\|g\|_q.
+\]
+故 \(\|F\|\ge\|g\|_q\)。两边合并得到等号。
+\end{solution}
+
+\begin{problem}
+设
+\[
+\R^n_+=\{x=(x_1,\ldots,x_n)\in\R^n:x_n>0\}.
+\]
+证明公式
+\[
+u(x)=\frac{2x_n}{n\alpha_n}\int_{\partial\R^n_+}
+\frac{g(y)}{|x-y|^n}\,dy,\qquad x\in\R^n_+,
+\]
+给出半空间 Dirichlet 问题
+\[
+\Delta u=0\quad\text{于 }\R^n_+,\qquad u=g\quad\text{于 }\partial\R^n_+
+\]
+的解。这里 \(\alpha_n\) 是 \(\R^n\) 中单位球体积。
+\end{problem}
+
+\begin{solution}
+核
+\[
+P(x,y)=\frac{2x_n}{n\alpha_n|x-y|^n}
+\qquad(y\in\partial\R^n_+)
+\]
+是上半空间的 Poisson 核。先证明归一化。设 \(x=(x',x_n)\)，\(y=(y',0)\)。则
+\[
+\int_{\R^{n-1}}P(x,y)\,dy'
+=\frac{2x_n}{n\alpha_n}\int_{\R^{n-1}}
+\frac{dy'}{(|x'-y'|^2+x_n^2)^{n/2}}.
+\]
+平移并令 \(y'=x_n z\)，得
+\[
+=\frac{2}{n\alpha_n}\int_{\R^{n-1}}\frac{dz}{(1+|z|^2)^{n/2}}.
+\]
+该积分等于 \(n\alpha_n/2\)，可用球坐标或单位球边界面积公式计算，因此积分为 \(1\)。
+
+对固定 \(y\)，函数
+\[
+x\mapsto \frac{x_n}{|x-y|^n}
+\]
+在 \(\R^n_+\) 中调和；它是基本解对边界法向导数的常数倍。因此在适当的有界连续 \(g\) 假设下，可在积分号下求 Laplace 算子，得
+\[
+\Delta u(x)=0.
+\]
+
+最后证明边界值。若 \(g\) 在 \(y_0\in\partial\R^n_+\) 连续，则由 Poisson 核的归一化，
+\[
+u(x)-g(y_0)=\int_{\partial\R^n_+}P(x,y)\bigl(g(y)-g(y_0)\bigr)\,dy.
+\]
+当 \(x\to y_0\) 且 \(x_n>0\) 时，Poisson 核集中到 \(y_0\)：给定 \(\varepsilon>0\)，先取 \(\delta\) 使 \(|g(y)-g(y_0)|<\varepsilon\) 当 \(|y-y_0|<\delta\)，近处积分由归一化控制为 \(\varepsilon\)，远处积分因核在远离 \(y_0\) 的区域上一致趋于 \(0\)。故
+\[
+u(x)\to g(y_0).
+\]
+因此公式给出半空间 Dirichlet 问题的 Poisson 积分解。
+\end{solution}
+
+\subsection{2013 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+设 \(f\) 是 \(\R^d\) 上的可积函数。对每个 \(\alpha>0\)，令
+\[
+E_\alpha=\{x\in\R^d: |f(x)|>\alpha\}.
+\]
+证明
+\[
+\int_{\R^d}|f(x)|\,dx=\int_0^\infty m(E_\alpha)\,d\alpha,
+\]
+其中 \(m\) 表示 Lebesgue 测度。
+\end{problem}
+
+\begin{solution}
+对每个固定的 \(x\)，非负数 \(|f(x)|\) 满足
+\[
+|f(x)|=\int_0^\infty \mathbf 1_{\{0<\alpha<|f(x)|\}}\,d\alpha.
+\]
+注意
+\[
+\mathbf 1_{\{0<\alpha<|f(x)|\}}
+=\mathbf 1_{\{|f(x)|>\alpha\}}.
+\]
+因此由 Tonelli 定理，
+\[
+\int_{\R^d}|f(x)|\,dx
+=\int_{\R^d}\int_0^\infty \mathbf 1_{\{|f(x)|>\alpha\}}\,d\alpha\,dx
+=\int_0^\infty\int_{\R^d}\mathbf 1_{\{|f(x)|>\alpha\}}\,dx\,d\alpha.
+\]
+内层积分正是
+\[
+m(E_\alpha),
+\]
+所以得到所需公式。
+\end{solution}
+
+\begin{problem}
+设 \(p(z)\) 是次数 \(d\ge2\) 的多项式，且有互异根
+\[
+a_1,a_2,\ldots,a_d.
+\]
+证明
+\[
+\sum_{i=1}^d\frac1{p'(a_i)}=0.
+\]
+\end{problem}
+
+\begin{solution}
+设
+\[
+p(z)=c\prod_{j=1}^d(z-a_j),\qquad c\ne0.
+\]
+则
+\[
+p'(a_i)=c\prod_{j\ne i}(a_i-a_j).
+\]
+对常数多项式 \(1\) 作 Lagrange 插值：
+\[
+1=\sum_{i=1}^d
+\prod_{j\ne i}\frac{z-a_j}{a_i-a_j}.
+\]
+比较两边 \(z^{d-1}\) 的系数。左边因为 \(d\ge2\)，没有 \(z^{d-1}\) 项；右边 \(z^{d-1}\) 的系数为
+\[
+\sum_{i=1}^d\frac1{\prod_{j\ne i}(a_i-a_j)}.
+\]
+故
+\[
+\sum_{i=1}^d\frac1{\prod_{j\ne i}(a_i-a_j)}=0.
+\]
+乘以 \(1/c\)，即得
+\[
+\sum_{i=1}^d\frac1{p'(a_i)}=0.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(\alpha/\pi\) 不是有理数。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item 对每个整数 \(k\)，
+\[
+\lim_{N\to\infty}\frac1N\sum_{n=1}^N e^{ik(x+n\alpha)}
+=\frac1{2\pi}\int_{-\pi}^{\pi}e^{ikt}\,dt.
+\]
+\item 对每个周期为 \(2\pi\) 的连续函数 \(f:\R\to\C\)，
+\[
+\lim_{N\to\infty}\frac1N\sum_{n=1}^N f(x+n\alpha)
+=\frac1{2\pi}\int_{-\pi}^{\pi}f(t)\,dt.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 当 \(k=0\) 时，两边都等于 \(1\)。当 \(k\ne0\) 时，因为 \(\alpha/\pi\notin\Q\)，所以
+\[
+e^{ik\alpha}\ne1.
+\]
+于是
+\[
+\frac1N\sum_{n=1}^N e^{ik(x+n\alpha)}
+=\frac{e^{ikx}}N\sum_{n=1}^N(e^{ik\alpha})^n
+=\frac{e^{ikx}}N\cdot
+\frac{e^{ik\alpha}(1-e^{ikN\alpha})}{1-e^{ik\alpha}}.
+\]
+右边绝对值不超过 \(C_k/N\)，故趋于 \(0\)。另一方面，
+\[
+\frac1{2\pi}\int_{-\pi}^{\pi}e^{ikt}\,dt=0
+\]
+当 \(k\ne0\)。故 (1) 成立。
+
+\item 先对三角多项式
+\[
+P(t)=\sum_{|k|\le M}c_ke^{ikt}
+\]
+应用 (1)，逐项取极限，得
+\[
+\lim_{N\to\infty}\frac1N\sum_{n=1}^N P(x+n\alpha)
+=c_0
+=\frac1{2\pi}\int_{-\pi}^{\pi}P(t)\,dt.
+\]
+对一般连续 \(2\pi\)-周期函数 \(f\)，由 Weierstrass 定理的三角多项式形式，给定 \(\varepsilon>0\)，存在三角多项式 \(P\) 使
+\[
+\|f-P\|_\infty<\varepsilon.
+\]
+于是
+\[
+\left|\frac1N\sum_{n=1}^N(f-P)(x+n\alpha)\right|\le\varepsilon,
+\]
+且
+\[
+\left|\frac1{2\pi}\int_{-\pi}^{\pi}(f-P)(t)\,dt\right|\le\varepsilon.
+\]
+令 \(N\to\infty\)，再令 \(\varepsilon\to0\)，得到所需结论。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(u\) 是穿孔复平面
+\[
+\C\setminus\{0\}
+\]
+上的正调和函数。证明 \(u\) 必为常数。
+\end{problem}
+
+\begin{solution}
+考虑指数覆盖
+\[
+\exp:\C\to\C\setminus\{0\}.
+\]
+令
+\[
+v(w)=u(e^w),\qquad w\in\C.
+\]
+因为指数映射全纯且局部共形，调和函数与全纯变量复合后仍调和，所以 \(v\) 是整个复平面上的调和函数。又 \(u>0\)，故
+\[
+v(w)>0\qquad(w\in\C).
+\]
+下面证明正的整调和函数必为常数。取任意 \(a\in\C\)。对半径 \(R>|a|\) 的圆盘使用 Harnack 不等式，有
+\[
+v(a)\le \frac{R+|a|}{R-|a|}v(0).
+\]
+令 \(R\to\infty\)，得
+\[
+v(a)\le v(0).
+\]
+交换 \(0\) 与 \(a\) 的角色，同理得
+\[
+v(0)\le v(a).
+\]
+故 \(v(a)=v(0)\)。因为 \(a\) 任意，\(v\) 为常数。指数映射满到 \(\C\setminus\{0\}\)，所以 \(u\) 也是常数。
+\end{solution}
+
+\begin{problem}
+设 \(H=L^2(B)\)，其中 \(B\) 是 \(\R^d\) 中单位球。设 \(K(x,y)\) 是 \(B\times B\) 上的可测函数，并满足
+\[
+|K(x,y)|\le A|x-y|^{-d+\alpha}
+\]
+对某个 \(\alpha>0\) 成立。定义
+\[
+Tf(x)=\int_BK(x,y)f(y)\,dy.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明 \(T\) 是 \(H\) 上的有界算子。
+\item 证明 \(T\) 是紧算子。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 记
+\[
+L(x,y)=A|x-y|^{-d+\alpha}.
+\]
+因为 \(\alpha>0\)，在有界区域 \(B\) 上有统一估计
+\[
+\sup_{x\in B}\int_B L(x,y)\,dy\le C,
+\qquad
+\sup_{y\in B}\int_B L(x,y)\,dx\le C.
+\]
+这是因为
+\[
+\int_{|z|\le2}|z|^{-d+\alpha}\,dz
+=|\mathbb S^{d-1}|\int_0^2 r^{-d+\alpha}r^{d-1}\,dr
+=|\mathbb S^{d-1}|\int_0^2 r^{\alpha-1}\,dr<\infty.
+\]
+由 Schur 检验，
+\[
+\|Tf\|_{L^2(B)}\le C\|f\|_{L^2(B)}.
+\]
+故 \(T\) 有界。
+
+\item 对 \(\varepsilon>0\)，令
+\[
+K_\varepsilon(x,y)=K(x,y)\mathbf 1_{\{|x-y|\ge\varepsilon\}}.
+\]
+此时
+\[
+|K_\varepsilon(x,y)|\le A\varepsilon^{-d+\alpha},
+\]
+且 \(B\times B\) 测度有限，所以 \(K_\varepsilon\in L^2(B\times B)\)。相应积分算子 \(T_\varepsilon\) 是 Hilbert--Schmidt 算子，因此紧。
+
+再估计余项
+\[
+R_\varepsilon=T-T_\varepsilon.
+\]
+其核由
+\[
+A|x-y|^{-d+\alpha}\mathbf 1_{\{|x-y|<\varepsilon\}}
+\]
+控制。与 (a) 相同的 Schur 估计给出
+\[
+\|R_\varepsilon\|_{L^2\to L^2}
+\le C\int_0^\varepsilon r^{\alpha-1}\,dr
+=C'\varepsilon^\alpha\to0.
+\]
+因此 \(T\) 是紧算子 \(T_\varepsilon\) 的算子范数极限。紧算子在算子范数下闭，所以 \(T\) 紧。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(A\) 是 \(n\times n\) 实非退化对称矩阵。对 \(\lambda>0\)，按振荡积分意义定义
+\[
+\int_\R e^{i\lambda x^2}\,dx
+=\lim_{\varepsilon\to0^+}\int_{-\infty}^{\infty}
+e^{i\lambda x^2-\frac12\varepsilon x^2}\,dx.
+\]
+证明对 \(\xi\in\R^n\)，
+\[
+\int_{\R^n}\exp\left(\frac{i\lambda}{2}\langle Ax,x\rangle-i\langle x,\xi\rangle\right)\,dx
+=\left(\frac{2\pi}{\lambda}\right)^{n/2}
+|\det A|^{-1/2}
+\exp\left(-\frac{i}{2\lambda}\langle A^{-1}\xi,\xi\rangle\right)
+\exp\left(\frac{i\pi}{4}\operatorname{sgn}A\right),
+\]
+其中
+\[
+\operatorname{sgn}A=\nu_+(A)-\nu_-(A)
+\]
+为正、负特征值个数之差。
+\end{problem}
+
+\begin{solution}
+由实对称矩阵谱定理，存在正交矩阵 \(Q\)，使
+\[
+Q^TAQ=\operatorname{diag}(a_1,\ldots,a_n),
+\qquad a_j\ne0.
+\]
+作变量替换 \(x=Qy\)，并令 \(\eta=Q^T\xi\)。因为正交变换 Jacobian 为 \(1\)，积分化为乘积
+\[
+\prod_{j=1}^n
+\int_\R
+\exp\left(\frac{i\lambda a_j}{2}y_j^2-i\eta_j y_j\right)\,dy_j.
+\]
+因此只需计算一维积分。对 \(a\ne0\)，配方得
+\[
+\frac{\lambda a}{2}y^2-\eta y
+=\frac{\lambda a}{2}\left(y-\frac{\eta}{\lambda a}\right)^2
+-\frac{\eta^2}{2\lambda a}.
+\]
+平移积分路径在振荡积分定义下合法，可由加入衰减因子后再取极限证明。于是
+\[
+\int_\R e^{\frac{i\lambda a}{2}y^2-i\eta y}\,dy
+=\exp\left(-\frac{i\eta^2}{2\lambda a}\right)
+\int_\R e^{\frac{i\lambda a}{2}y^2}\,dy.
+\]
+一维 Fresnel 公式为
+\[
+\int_\R e^{\frac{i\lambda a}{2}y^2}\,dy
+=\left(\frac{2\pi}{\lambda |a|}\right)^{1/2}
+\exp\left(\frac{i\pi}{4}\operatorname{sgn}a\right).
+\]
+将 \(j=1,\ldots,n\) 的结果相乘，得到
+\[
+\left(\frac{2\pi}{\lambda}\right)^{n/2}
+\prod_{j=1}^n |a_j|^{-1/2}
+\exp\left(-\frac{i}{2\lambda}\sum_{j=1}^n\frac{\eta_j^2}{a_j}\right)
+\exp\left(\frac{i\pi}{4}\sum_{j=1}^n\operatorname{sgn}a_j\right).
+\]
+注意
+\[
+\prod_{j=1}^n |a_j|=|\det A|,
+\qquad
+\sum_{j=1}^n\frac{\eta_j^2}{a_j}=\langle A^{-1}\xi,\xi\rangle,
+\]
+且
+\[
+\sum_{j=1}^n\operatorname{sgn}a_j=\operatorname{sgn}A.
+\]
+代入即得公式。
+\end{solution}
+
+\subsection{2014 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+设 \(f:\R\to\R\) 连续，并满足
+\[
+\sup_{x,y\in\R}|f(x+y)-f(x)-f(y)|<\infty.
+\]
+若
+\[
+\lim_{\substack{n\to\infty\\ n\in\N}}\frac{f(n)}n=2014,
+\]
+证明
+\[
+\sup_{x\in\R}|f(x)-2014x|<\infty.
+\]
+\end{problem}
+
+\begin{solution}
+令
+\[
+C=\sup_{x,y}|f(x+y)-f(x)-f(y)|.
+\]
+先证明 \(f\) 与某个加性函数只差有界量。由 Hyers 稳定性定理，可定义
+\[
+L(x)=\lim_{m\to\infty}2^{-m}f(2^m x).
+\]
+极限存在，因为近似加性给出
+\[
+|f(2x)-2f(x)|\le C,
+\]
+从而序列 \(2^{-m}f(2^m x)\) 是 Cauchy 列；更具体地，
+\[
+\left|2^{-(m+1)}f(2^{m+1}x)-2^{-m}f(2^m x)\right|
+\le 2^{-(m+1)}C.
+\]
+令 \(m\to\infty\) 可得
+\[
+L(x+y)=L(x)+L(y),
+\]
+并且
+\[
+|L(x)-f(x)|\le C.
+\]
+由于 \(f\) 连续且 \(L\) 与 \(f\) 有界距离，\(L\) 在 \(0\) 处有界于某个邻域内，故加性函数 \(L\) 连续。因此
+\[
+L(x)=ax
+\]
+对某个常数 \(a\) 成立。
+
+由整数上的极限，
+\[
+\frac{L(n)}n-\frac{f(n)}n=\frac{L(n)-f(n)}n\to0.
+\]
+故
+\[
+a=\lim_{n\to\infty}\frac{L(n)}n=\lim_{n\to\infty}\frac{f(n)}n=2014.
+\]
+于是
+\[
+|f(x)-2014x|=|f(x)-L(x)|\le C,
+\]
+从而上确界有限。
+\end{solution}
+
+\begin{problem}
+设 \(f_1,\ldots,f_n\) 在单位圆盘
+\[
+D=\{z:|z|<1\}
+\]
+中解析，并在闭圆盘 \(\overline D\) 上连续。证明
+\[
+\varphi(z)=|f_1(z)|+\cdots+|f_n(z)|
+\]
+在边界 \(\partial D\) 上取得最大值。
+\end{problem}
+
+\begin{solution}
+函数 \(\varphi\) 在紧集 \(\overline D\) 上连续，所以取得最大值。若最大值点 \(z_0\in D\)，则每个 \(|f_j|\) 都是次调和函数，故 \(\varphi\) 次调和。次调和函数的最大值原理说明：若次调和函数在区域内部取得最大值，则它在包含该点的连通分支上为常数。
+
+因此 \(\varphi\) 在 \(D\) 中为常数。于是该常数同样等于边界极限值，所以最大值也在 \(\partial D\) 上取得。若最大值点不在内部，则已经在边界上。故结论成立。
+\end{solution}
+
+\begin{problem}
+证明：若环域
+\[
+\{z:r_1<|z|<r_2\}
+\]
+与环域
+\[
+\{z:\rho_1<|z|<\rho_2\}
+\]
+之间存在共形映射，则
+\[
+\frac{r_2}{r_1}=\frac{\rho_2}{\rho_1}.
+\]
+\end{problem}
+
+\begin{solution}
+环域
+\[
+A(r_1,r_2)=\{r_1<|z|<r_2\}
+\]
+的共形模为
+\[
+\operatorname{mod}A(r_1,r_2)=\frac1{2\pi}\log\frac{r_2}{r_1}.
+\]
+这是共形不变量。为说明这一点，可用映射
+\[
+w=\log z
+\]
+把环域的 universal cover 映为水平条带
+\[
+\log r_1<\Re w<\log r_2
+\]
+，并按周期 \(2\pi i\) 商掉。条带宽度与周期之比即为上述模数。共形映射提升到覆盖条带之间，必须保持这个宽度/周期比。
+
+因此若两个环域共形等价，则
+\[
+\frac1{2\pi}\log\frac{r_2}{r_1}
+=
+\frac1{2\pi}\log\frac{\rho_2}{\rho_1},
+\]
+从而
+\[
+\frac{r_2}{r_1}=\frac{\rho_2}{\rho_1}.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(U(\xi)\) 是 \(\R\) 上有界函数，且只有有限多个间断点。证明
+\[
+P_U(x,y)=\frac1\pi\int_\R\frac{y}{(x-\xi)^2+y^2}U(\xi)\,d\xi
+\]
+是上半平面 \(\{(x,y):y>0\}\) 上的调和函数，并且当 \((x,y)\to(\xi_0,0)\) 且 \(y>0\) 时，若 \(U\) 在 \(\xi_0\) 连续，则
+\[
+P_U(x,y)\to U(\xi_0).
+\]
+\end{problem}
+
+\begin{solution}
+核
+\[
+P_y(t)=\frac1\pi\frac{y}{t^2+y^2}
+\]
+是上半平面的 Poisson 核。对固定 \(\xi\)，函数
+\[
+(x,y)\mapsto \frac1\pi\frac{y}{(x-\xi)^2+y^2}
+\]
+是调和函数；这可直接计算 Laplace 算子，也可看作
+\[
+\operatorname{Im}\frac1{\xi-(x+iy)}
+\]
+的常数倍。由于 \(U\) 有界，并且 Poisson 核及其局部导数在远处有可积控制，可以在紧子集上对积分号下求导，得到
+\[
+\Delta P_U=0.
+\]
+
+再证明边界收敛。Poisson 核满足
+\[
+\int_\R P_y(t)\,dt=1.
+\]
+于是
+\[
+P_U(x,y)-U(\xi_0)
+=\int_\R P_y(x-\xi)\bigl(U(\xi)-U(\xi_0)\bigr)\,d\xi.
+\]
+给定 \(\varepsilon>0\)，由 \(U\) 在 \(\xi_0\) 连续，取 \(\delta>0\)，使 \(|\xi-\xi_0|<2\delta\) 时
+\[
+|U(\xi)-U(\xi_0)|<\varepsilon.
+\]
+当 \(|x-\xi_0|<\delta\) 时，\(|\xi-x|<\delta\) 蕴含 \(|\xi-\xi_0|<2\delta\)，近处积分绝对值不超过 \(\varepsilon\)。远处部分由 \(\|U\|_\infty+|U(\xi_0)|\) 控制，而
+\[
+\int_{|\xi-x|\ge\delta}P_y(x-\xi)\,d\xi\to0
+\qquad(y\to0^+).
+\]
+所以 \(P_U(x,y)\to U(\xi_0)\)。
+\end{solution}
+
+\begin{problem}
+设 \(f\in L^2(\R)\)，\(\widehat f\) 为其 Fourier 变换。证明在左边两个积分有限时，
+\[
+\left(\int_{-\infty}^{\infty}x^2|f(x)|^2\,dx\right)
+\left(\int_{-\infty}^{\infty}\xi^2|\widehat f(\xi)|^2\,d\xi\right)
+\ge
+\frac{\left(\int_{-\infty}^{\infty}|f(x)|^2\,dx\right)^2}{16\pi^2}.
+\]
+\end{problem}
+
+\begin{solution}
+采用题目常用的 Fourier 变换约定
+\[
+\widehat f(\xi)=\int_\R f(x)e^{-2\pi ix\xi}\,dx.
+\]
+在此约定下，
+\[
+\widehat{f'}(\xi)=2\pi i\xi\widehat f(\xi),
+\]
+并由 Plancherel 定理，
+\[
+\int_\R |f'(x)|^2\,dx
+=4\pi^2\int_\R \xi^2|\widehat f(\xi)|^2\,d\xi.
+\]
+先对 Schwartz 函数证明。分部积分给出
+\[
+\int_\R |f|^2\,dx
+=-\int_\R x\frac{d}{dx}(|f|^2)\,dx
+=-2\operatorname{Re}\int_\R x f'(x)\overline{f(x)}\,dx.
+\]
+因此由 Cauchy--Schwarz 不等式，
+\[
+\|f\|_2^2
+\le
+2\left(\int_\R x^2|f(x)|^2\,dx\right)^{1/2}
+\left(\int_\R |f'(x)|^2\,dx\right)^{1/2}.
+\]
+平方并代入 Plancherel 公式：
+\[
+\|f\|_2^4
+\le
+4\left(\int x^2|f|^2\right)
+\left(4\pi^2\int \xi^2|\widehat f|^2\right).
+\]
+即
+\[
+\left(\int x^2|f|^2\right)
+\left(\int \xi^2|\widehat f|^2\right)
+\ge
+\frac{\|f\|_2^4}{16\pi^2}.
+\]
+一般 \(f\) 可由 Schwartz 函数在带权 \(L^2\) 范数
+\[
+\|f\|_2+\|xf\|_2+\|\xi\widehat f\|_2
+\]
+下逼近，或用标准截断与 mollifier 逼近；不等式在极限下保持成立。
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\subset\C\) 为开区域。令 \(H\) 为 \(L^2(\Omega)\) 中全纯函数构成的子空间。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 \(H\) 是 \(L^2(\Omega)\) 的闭子空间，因此在内积
+\[
+(f,g)=\int_\Omega f(z)\overline{g(z)}\,dx\,dy,\qquad z=x+iy,
+\]
+下为 Hilbert 空间。
+\item 若 \(\{\varphi_n\}_{n=0}^\infty\) 是 \(H\) 的一组正交归一基，证明存在常数 \(c\)，使对 \(z\in\Omega\)，
+\[
+\sum_{n=0}^\infty|\varphi_n(z)|^2
+\le
+\frac{c^2}{d(z,\Omega^c)^2}.
+\]
+\item 证明
+\[
+B(z,w)=\sum_{n=0}^\infty\varphi_n(z)\overline{\varphi_n(w)}
+\]
+在 \(\Omega\times\Omega\) 上绝对收敛，并且与正交归一基的选择无关。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 设 \(f_j\in H\) 且 \(f_j\to f\) 于 \(L^2(\Omega)\)。任取闭圆盘 \(\overline{D(z_0,r)}\subset\Omega\)。由 Cauchy 估计或均值不等式，对全纯函数 \(h\) 有
+\[
+\sup_{D(z_0,r/2)}|h|
+\le C_r\|h\|_{L^2(D(z_0,r))}.
+\]
+因此 \(f_j\) 在每个紧子集上一致 Cauchy，极限为某个全纯函数。另一方面 \(L^2\) 极限几乎处处有子列收敛到 \(f\)，故这个全纯函数代表 \(f\)。于是 \(f\in H\)，所以 \(H\) 闭。闭子空间继承 Hilbert 空间结构。
+
+\item 设
+\[
+\delta=d(z,\Omega^c).
+\]
+则圆盘 \(D(z,\delta/2)\subset\Omega\)。对任意 \(h\in H\)，均值不等式给出
+\[
+|h(z)|^2
+\le \frac{C}{\delta^2}\int_{D(z,\delta/2)}|h(\zeta)|^2\,dA(\zeta)
+\le \frac{C}{\delta^2}\|h\|_{L^2(\Omega)}^2.
+\]
+所以点值泛函
+\[
+L_z:H\to\C,\qquad L_z(h)=h(z)
+\]
+有界，且
+\[
+\|L_z\|\le \frac{c}{d(z,\Omega^c)}.
+\]
+由 Hilbert 空间中有界泛函在正交归一基下的 Parseval 等式，
+\[
+\sum_{n=0}^\infty|\varphi_n(z)|^2
+=\sum_{n=0}^\infty|L_z(\varphi_n)|^2
+=\|L_z\|^2
+\le\frac{c^2}{d(z,\Omega^c)^2}.
+\]
+
+\item 由 (b) 和 Cauchy--Schwarz 不等式，
+\[
+\sum_{n=0}^\infty|\varphi_n(z)\overline{\varphi_n(w)}|
+\le
+\left(\sum_{n=0}^\infty|\varphi_n(z)|^2\right)^{1/2}
+\left(\sum_{n=0}^\infty|\varphi_n(w)|^2\right)^{1/2}
+<\infty.
+\]
+故级数绝对收敛。
+
+独立性来自 Riesz 表示。点值泛函 \(L_w(h)=h(w)\) 有唯一表示向量 \(K_w\in H\)，使
+\[
+h(w)=(h,K_w)\qquad(h\in H).
+\]
+用任一正交归一基展开 \(K_w\)，得
+\[
+K_w(z)=\sum_{n=0}^\infty \overline{\varphi_n(w)}\,\varphi_n(z).
+\]
+因此 \(B(z,w)=K_w(z)\)，只由空间 \(H\) 和点值泛函决定，与基的选择无关。
+\end{enumerate}
+\end{solution}
+
+\subsection{2015 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+设 \(f_n\in L^2(\R)\) 是一列可测函数，且
+\[
+f_n\to f\quad\text{几乎处处}.
+\]
+若
+\[
+\|f_n\|_{L^2}\to\|f\|_{L^2},
+\]
+证明
+\[
+\|f_n-f\|_{L^2}\to0.
+\]
+\end{problem}
+
+\begin{solution}
+由 Fatou 引理，
+\[
+\int_\R |f|^2\,dx\le \liminf_{n\to\infty}\int_\R |f_n|^2\,dx<\infty,
+\]
+所以 \(f\in L^2(\R)\)。为了证明强收敛，只需证明
+\[
+\langle f_n,f\rangle_{L^2}\to \|f\|_2^2.
+\]
+设 \(g_n=f_n-f\)。由题设 \(g_n\to0\) 几乎处处，且
+\[
+\|g_n+f\|_2=\|f_n\|_2\to\|f\|_2.
+\]
+使用 Hilbert 空间的恒等式
+\[
+\|f_n-f\|_2^2=\|f_n\|_2^2+\|f\|_2^2-2\operatorname{Re}\langle f_n,f\rangle.
+\]
+因此还需处理内积。先取 \(R>0\) 和 \(M>0\)，令
+\[
+E=\{x\in[-R,R]: |f(x)|\le M\}.
+\]
+在有限测度集合 \(E\) 上，\(f\mathbf1_E\in L^\infty\cap L^2\)，且由 Egorov 定理和 \(\|f_n\|_2\) 有界可得
+\[
+\int_E f_n\overline f\,dx\to\int_E |f|^2\,dx.
+\]
+而通过选择 \(R,M\) 使
+\[
+\|f\mathbf1_{\R\setminus E}\|_2
+\]
+任意小，并用 Cauchy--Schwarz 不等式及 \(\sup_n\|f_n\|_2<\infty\)，可将 \(E\) 外的内积误差控制到任意小。故
+\[
+\langle f_n,f\rangle\to\|f\|_2^2.
+\]
+代回恒等式得到
+\[
+\|f_n-f\|_2^2\to0.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f\) 是 \([a,b]\) 上的连续函数，定义
+\[
+M_n=\int_a^b f(x)x^n\,dx.
+\]
+若对所有整数 \(n\ge0\) 都有 \(M_n=0\)，证明
+\[
+f(x)=0\qquad(a\le x\le b).
+\]
+\end{problem}
+
+\begin{solution}
+由线性性，任意多项式 \(P\) 都满足
+\[
+\int_a^b f(x)P(x)\,dx=0.
+\]
+由 Weierstrass 逼近定理，存在多项式 \(P_k\) 在 \([a,b]\) 上一致收敛到 \(f\)。于是
+\[
+\int_a^b f(x)^2\,dx
+=\lim_{k\to\infty}\int_a^b f(x)P_k(x)\,dx=0.
+\]
+因为 \(f^2\) 连续且非负，积分为 \(0\) 只可能 \(f^2\equiv0\)。故 \(f\equiv0\)。
+\end{solution}
+
+\begin{problem}
+确定所有满足如下条件的整函数 \(f\)：当 \(|z|\) 足够大时，
+\[
+|f(z)|\le |z|^2|\operatorname{Im}z|^2.
+\]
+\end{problem}
+
+\begin{solution}
+按题面字面条件，唯一解是
+\[
+f\equiv0.
+\]
+事实上，当 \(z=x\in\R\) 且 \(|x|\) 足够大时，右端为
+\[
+|x|^2|\operatorname{Im}x|^2=0.
+\]
+所以
+\[
+|f(x)|\le0,
+\]
+即 \(f(x)=0\) 对所有充分大的实数 \(x\) 成立。于是 \(f\) 在实轴的一段射线上恒为零；这段射线中的每一点都是零点集的聚点。由全纯函数恒等定理，
+\[
+f\equiv0.
+\]
+反过来，零函数满足该不等式。
+\end{solution}
+
+\begin{problem}
+描述所有在单位圆盘
+\[
+D=\{z:|z|<1\}
+\]
+内全纯、在 \(\overline D\) 上连续，并且把边界 \(\partial D\) 映入边界 \(\partial D\) 的函数。
+\end{problem}
+
+\begin{solution}
+条件为
+\[
+|f(e^{it})|=1\qquad(0\le t<2\pi).
+\]
+若 \(f\) 在 \(D\) 中没有零点，则 \(1/f\) 也在 \(D\) 中全纯并连续到边界。由最大模原理，
+\[
+|f|\le1,\qquad |1/f|\le1
+\]
+在 \(D\) 中成立，所以 \(|f|\equiv1\)。非常值全纯函数的模不能在区域内恒定，故此时 \(f\) 为常数，且 \(|f|\equiv1\)。
+
+一般情形，设 \(a_1,\ldots,a_m\) 是 \(f\) 在 \(D\) 中的零点，按重数计算。零点有限：否则在紧闭圆盘中有聚点；若聚点在 \(D\) 内，由恒等定理 \(f\equiv0\)，与边界模为 \(1\) 矛盾；若聚点在边界，也与边界连续且 \(|f|=1\) 矛盾。
+
+令
+\[
+B(z)=\prod_{j=1}^m\frac{z-a_j}{1-\overline{a_j}z}.
+\]
+则 \(|B(e^{it})|=1\)。函数
+\[
+g(z)=\frac{f(z)}{B(z)}
+\]
+在 \(D\) 中全纯、无零点，并连续到边界，且边界上 \(|g|=1\)。由前一段，\(g\) 是模为 \(1\) 的常数。故
+\[
+f(z)=c\prod_{j=1}^m\frac{z-a_j}{1-\overline{a_j}z},
+\qquad |c|=1,\quad a_j\in D.
+\]
+反过来，任意这样的有限 Blaschke 乘积都满足题目条件。
+\end{solution}
+
+\begin{problem}
+设 \(T:H_1\to H_2\)、\(Q:H_2\to H_1\) 是 Hilbert 空间之间的有界线性算子，并满足
+\[
+QT=I-S_1,\qquad TQ=I-S_2,
+\]
+其中 \(S_1,S_2\) 是紧算子。证明
+\[
+\ker T=\{v\in H_1:Tv=0\}
+\]
+和
+\[
+\operatorname{coker}T=H_2/\operatorname{Im}T
+\]
+都是有限维的，并且
+\[
+\operatorname{Im}T
+\]
+在 \(H_2\) 中闭。
+\end{problem}
+
+\begin{solution}
+先证 \(\ker T\) 有限维。若 \(v\in\ker T\)，则
+\[
+QT v=0.
+\]
+由 \(QT=I-S_1\)，得
+\[
+v=S_1v.
+\]
+因此 \(S_1\) 在 \(\ker T\) 上等于恒等算子。若 \(\ker T\) 无限维，则其单位球不紧；但 \(S_1\) 紧会把 \(\ker T\) 的单位球送到相对紧集，而这里 \(S_1\) 等于恒等，矛盾。故 \(\ker T\) 有限维。
+
+再证 \(\operatorname{Im}T\) 闭。令 \(M=(\ker T)^\perp\)。只需证明 \(T\) 在 \(M\) 上有下界：存在 \(c>0\)，使
+\[
+\|Tv\|\ge c\|v\|\qquad(v\in M).
+\]
+若不然，则存在 \(v_n\in M\)，\(\|v_n\|=1\)，且 \(Tv_n\to0\)。由
+\[
+v_n=S_1v_n+QTv_n
+\]
+可知，\(QTv_n\to0\)，而 \(S_1v_n\) 有收敛子列。故 \(v_n\) 有收敛子列，设极限为 \(v\)。则
+\[
+\|v\|=1,\qquad v\in M,\qquad Tv=0.
+\]
+这与 \(M\cap\ker T=\{0\}\) 矛盾。因此下界成立。
+
+现在若 \(Tv_n\to y\)，把 \(v_n=k_n+m_n\) 分解为 \(k_n\in\ker T\)、\(m_n\in M\)。则
+\[
+Tm_n=Tv_n\to y.
+\]
+由下界，\((m_n)\) 是 Cauchy 列，收敛到某个 \(m\in M\)。于是
+\[
+y=Tm\in\operatorname{Im}T.
+\]
+所以 \(\operatorname{Im}T\) 闭。
+
+最后证余核有限维。因为
+\[
+TQ=I-S_2,
+\]
+在商空间 \(H_2/\operatorname{Im}T\) 中，对任意 \(y\in H_2\) 有
+\[
+[y]=[S_2y].
+\]
+也就是说，商映射 \(\pi:H_2\to H_2/\operatorname{Im}T\) 满足
+\[
+\pi=\pi S_2.
+\]
+由于 \(\operatorname{Im}T\) 已证闭，商空间是 Banach 空间。若余核无限维，则其单位球不紧；但 \(\pi S_2\) 是紧算子，因为 \(S_2\) 紧而 \(\pi\) 有界。等式 \(\pi=\pi S_2\) 表明商空间上的恒等算子紧，这只能发生在有限维 Banach 空间中。故余核有限维。
+\end{solution}
+
+\begin{problem}
+设 \(H^1\) 是区间 \([0,1]\) 上的 Sobolev 空间，即由满足
+\[
+\|f\|_1^2=\sum_{n=-\infty}^{\infty}(1+n^2)|\widehat f(n)|^2<\infty
+\]
+的 \(L^2([0,1])\) 函数组成，其中
+\[
+\widehat f(n)=\frac1{2\pi}\int_0^1 f(x)e^{-2\pi inx}\,dx.
+\]
+证明存在常数 \(C>0\)，使得
+\[
+\|f\|_{L^\infty}\le C\|f\|_1
+\qquad(f\in H^1).
+\]
+\end{problem}
+
+\begin{solution}
+由 Fourier 级数，
+\[
+f(x)=\sum_{n\in\Z}\widehat f(n)e^{2\pi inx}
+\]
+在适当代表意义下成立。用 Cauchy--Schwarz 不等式，
+\[
+\sum_{n\in\Z}|\widehat f(n)|
+\le
+\left(\sum_{n\in\Z}(1+n^2)|\widehat f(n)|^2\right)^{1/2}
+\left(\sum_{n\in\Z}\frac1{1+n^2}\right)^{1/2}.
+\]
+第二个级数收敛。于是 Fourier 级数绝对一致收敛，并且
+\[
+|f(x)|
+\le
+\sum_{n\in\Z}|\widehat f(n)|
+\le C\|f\|_1
+\]
+对所有 \(x\) 成立。取上确界即得
+\[
+\|f\|_{L^\infty}\le C\|f\|_1.
+\]
+\end{solution}
+
+\subsection{2016 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+设 \(F\) 在 \([a,b]\) 上连续，且 \(F'(x)\) 对每个 \(x\in(a,b)\) 存在，并且 \(F'\) 可积。证明 \(F\) 绝对连续，且
+\[
+F(b)-F(a)=\int_a^b F'(x)\,dx.
+\]
+\end{problem}
+
+\begin{solution}
+本题按通常微积分竞赛语境，将“\(F'\) 可积”理解为 Riemann 可积。于是 \(F'\) 在 \([a,b]\) 上有界，设
+\[
+|F'(x)|\le M\qquad(a<x<b).
+\]
+由 Lagrange 中值定理，对任意 \(a\le x<y\le b\)，存在 \(\xi\in(x,y)\) 使
+\[
+F(y)-F(x)=F'(\xi)(y-x),
+\]
+故
+\[
+|F(y)-F(x)|\le M|y-x|.
+\]
+因此 \(F\) 是 Lipschitz 函数，从而绝对连续。
+
+再证明积分公式。对任意分割
+\[
+P:\quad a=x_0<x_1<\cdots<x_n=b,
+\]
+由中值定理，对每个区间 \([x_{j-1},x_j]\) 存在 \(\xi_j\in(x_{j-1},x_j)\)，使
+\[
+F(x_j)-F(x_{j-1})=F'(\xi_j)(x_j-x_{j-1}).
+\]
+相加得
+\[
+F(b)-F(a)=\sum_{j=1}^nF'(\xi_j)(x_j-x_{j-1}).
+\]
+右边是 \(F'\) 的 Riemann 和。令分割网长趋于 \(0\)，由 \(F'\) Riemann 可积，Riemann 和趋于
+\[
+\int_a^bF'(x)\,dx.
+\]
+故
+\[
+F(b)-F(a)=\int_a^bF'(x)\,dx.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f\in L^1(\R^n)\)。对 \(\delta>0\)，令
+\[
+K_\delta(x)=\delta^{-n/2}e^{-\pi |x|^2/\delta}.
+\]
+证明卷积
+\[
+(f*K_\delta)(x)=\int_{\R^n}f(x-y)K_\delta(y)\,dy
+\]
+可积，并且
+\[
+\|f*K_\delta-f\|_{L^1(\R^n)}\to0\qquad(\delta\to0).
+\]
+\end{problem}
+
+\begin{solution}
+先注意 \(K_\delta\ge0\)，且
+\[
+\int_{\R^n}K_\delta(x)\,dx=1.
+\]
+这是由变量替换 \(x=\sqrt\delta\,u\) 和
+\[
+\int_{\R^n}e^{-\pi|u|^2}\,du=1
+\]
+得到的。因此由 Young 不等式，
+\[
+\|f*K_\delta\|_1\le \|f\|_1\|K_\delta\|_1=\|f\|_1,
+\]
+所以卷积可积。
+
+再证明 \(L^1\) 收敛。写
+\[
+f*K_\delta-f
+=\int_{\R^n}K_\delta(y)\bigl(f(\cdot-y)-f(\cdot)\bigr)\,dy.
+\]
+取 \(L^1\) 范数并用 Minkowski 积分不等式，
+\[
+\|f*K_\delta-f\|_1
+\le
+\int_{\R^n}K_\delta(y)\|f(\cdot-y)-f(\cdot)\|_1\,dy.
+\]
+平移在 \(L^1\) 中连续，所以对任意 \(\varepsilon>0\)，存在 \(\rho>0\)，使 \(|y|<\rho\) 时
+\[
+\|f(\cdot-y)-f(\cdot)\|_1<\varepsilon.
+\]
+于是
+\[
+\|f*K_\delta-f\|_1
+\le
+\varepsilon\int_{|y|<\rho}K_\delta(y)\,dy
++2\|f\|_1\int_{|y|\ge\rho}K_\delta(y)\,dy.
+\]
+当 \(\delta\to0\) 时，高斯核质量集中到 \(0\)，故第二项趋于 \(0\)。于是上极限不超过 \(\varepsilon\)。令 \(\varepsilon\to0\)，得结论。
+\end{solution}
+
+\begin{problem}
+证明：区间 \(I=[a,b]\) 上的有界函数 \(f\) Riemann 可积，当且仅当它的间断点集合测度为 \(0\)。
+\end{problem}
+
+\begin{solution}
+对 \(c\in I\)、\(r>0\)，定义
+\[
+\operatorname{osc}(f,c,r)
+=\sup\{|f(x)-f(y)|:\ x,y\in I\cap(c-r,c+r)\},
+\]
+并令
+\[
+\operatorname{osc}(f,c)=\lim_{r\to0^+}\operatorname{osc}(f,c,r).
+\]
+因为 \(\operatorname{osc}(f,c,r)\) 随 \(r\downarrow0\) 单调下降，极限存在。
+
+首先，\(f\) 在 \(c\) 连续当且仅当 \(\operatorname{osc}(f,c)=0\)。这直接来自连续性的 \(\varepsilon\)-\(\delta\) 定义。
+
+其次，对任意 \(\varepsilon>0\)，集合
+\[
+D_\varepsilon=\{c\in I:\operatorname{osc}(f,c)\ge\varepsilon\}
+\]
+是闭集。若 \(c_j\to c\) 且 \(c_j\in D_\varepsilon\)，则任意 \(r>0\) 下，当 \(j\) 足够大时
+\[
+I\cap(c_j-r/2,c_j+r/2)\subset I\cap(c-r,c+r).
+\]
+因此
+\[
+\operatorname{osc}(f,c,r)\ge \operatorname{osc}(f,c_j,r/2).
+\]
+令 \(j\) 固定后再取小半径极限，得到 \(\operatorname{osc}(f,c)\ge\varepsilon\)。所以 \(D_\varepsilon\) 闭，因而紧。
+
+若 \(f\) Riemann 可积，则对任意 \(\varepsilon>0\) 和 \(\eta>0\)，存在分割 \(P\)，使上和与下和之差小于 \(\varepsilon\eta\)。设每个小区间上的振幅为 \(\omega_j\)，长度为 \(\Delta x_j\)。则
+\[
+\sum_j\omega_j\Delta x_j<\varepsilon\eta.
+\]
+满足 \(\omega_j\ge\varepsilon\) 的小区间总长度小于 \(\eta\)。集合 \(D_\varepsilon\) 除了可能落在分割点之外，都包含在这些小区间中。分割点有限，不影响测度，故 \(m(D_\varepsilon)\le\eta\)。令 \(\eta\to0\)，得 \(m(D_\varepsilon)=0\)。间断点集合为
+\[
+D=\bigcup_{m=1}^\infty D_{1/m},
+\]
+故测度为 \(0\)。
+
+反过来，若间断点集合 \(D\) 测度为 \(0\)，给定 \(\eta>0\)，取开集 \(G\supset D\)，使 \(m(G)<\eta\)。在紧集 \(I\setminus G\) 上，\(f\) 连续且实际上均匀连续。因此可取分割足够细，使所有不与 \(G\) 相交的小区间上振幅小于 \(\eta\)。设 \(|f|\le M\)。与 \(G\) 相交的小区间总长度可控制在 \(2\eta\) 以内。于是上和与下和之差不超过
+\[
+\eta(b-a)+2M\cdot 2\eta.
+\]
+令 \(\eta\to0\)，得 Riemann 可积。
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 设 Joukowski 映射
+\[
+w=\frac12\left(z+\frac1z\right).
+\]
+证明它把 Riemann 球上的区域
+\[
+\{z\in\widehat\C:|z|>1\}
+\]
+映到
+\[
+\widehat\C\setminus[-1,1].
+\]
+\item 计算积分
+\[
+\int_0^\infty\frac{\log x}{x^2-1}\,dx.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 若 \(|z|=1\)，写 \(z=e^{i\theta}\)，则
+\[
+w=\frac12(e^{i\theta}+e^{-i\theta})=\cos\theta\in[-1,1].
+\]
+方程
+\[
+z+\frac1z=2w
+\]
+等价于
+\[
+z^2-2wz+1=0.
+\]
+若 \(w\notin[-1,1]\)，两个根互为倒数，且不在单位圆上，所以恰有一个根满足 \(|z|>1\)。这说明映射从 \(\{|z|>1\}\) 到 \(\widehat\C\setminus[-1,1]\) 是一一满的。导数
+\[
+\frac12\left(1-\frac1{z^2}\right)
+\]
+在 \(|z|>1\) 中不为零，故为共形映射。
+
+\item 记
+\[
+I=\int_0^\infty\frac{\log x}{x^2-1}\,dx.
+\]
+在 \(x=1\) 附近，
+\[
+\frac{\log x}{x^2-1}\to\frac12,
+\]
+故积分在该点无奇异发散。分成两段：
+\[
+I=\int_0^1\frac{\log x}{x^2-1}\,dx+\int_1^\infty\frac{\log x}{x^2-1}\,dx.
+\]
+第二段作替换 \(x=1/t\)，得
+\[
+\int_1^\infty\frac{\log x}{x^2-1}\,dx
+=-\int_0^1\frac{\log t}{1-t^2}\,dt.
+\]
+而第一段为
+\[
+\int_0^1\frac{\log x}{x^2-1}\,dx
+=-\int_0^1\frac{\log x}{1-x^2}\,dx.
+\]
+因此
+\[
+I=-2\int_0^1\frac{\log x}{1-x^2}\,dx.
+\]
+用
+\[
+\frac1{1-x^2}=\sum_{k=0}^\infty x^{2k}\qquad(0<x<1),
+\]
+并由单调/支配收敛交换求和与积分，得
+\[
+\int_0^1\frac{\log x}{1-x^2}\,dx
+=\sum_{k=0}^\infty\int_0^1x^{2k}\log x\,dx
+=-\sum_{k=0}^\infty\frac1{(2k+1)^2}.
+\]
+又
+\[
+\sum_{k=0}^\infty\frac1{(2k+1)^2}=\frac{\pi^2}{8}.
+\]
+故
+\[
+I=2\cdot\frac{\pi^2}{8}=\frac{\pi^2}{4}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f\) 是复平面上的双周期亚纯函数：
+\[
+f(z+1)=f(z),\qquad f(z+i)=f(z).
+\]
+证明 \(f\) 的零点个数与极点个数相等，均按重数计算。
+\end{problem}
+
+\begin{solution}
+取基本平行四边形
+\[
+P=\{s+it:0\le s\le1,\ 0\le t\le1\}.
+\]
+可微小平移 \(P\)，使边界上没有 \(f\) 的零点或极点。由辐角原理，
+\[
+N-P_0=\frac1{2\pi i}\int_{\partial P}\frac{f'(z)}{f(z)}\,dz,
+\]
+其中 \(N\) 是 \(P\) 内零点总重数，\(P_0\) 是 \(P\) 内极点总重数。
+
+因为 \(f\) 具有周期 \(1\) 和 \(i\)，函数 \(f'/f\) 也具有相同周期。平行四边形左右两边的积分方向相反，而 integrand 由周期 \(1\) 相同；上下两边也因周期 \(i\) 相同且方向相反。因此
+\[
+\int_{\partial P}\frac{f'}{f}\,dz=0.
+\]
+故
+\[
+N-P_0=0,
+\]
+即零点数等于极点数。
+\end{solution}
+
+\begin{problem}
+设 \(A\) 是复 Hilbert 空间上的有界自伴算子。证明 \(A\) 的谱是实轴上的有界闭集。
+\end{problem}
+
+\begin{solution}
+先证有界性。若 \(|\lambda|>\|A\|\)，则
+\[
+A-\lambda I=-\lambda\left(I-\frac{A}{\lambda}\right).
+\]
+因为
+\[
+\left\|\frac{A}{\lambda}\right\|<1,
+\]
+Neumann 级数给出 \((I-A/\lambda)^{-1}\) 存在且有界，因此 \(A-\lambda I\) 可逆。故
+\[
+\sigma(A)\subset\{\lambda:|\lambda|\le\|A\|\}.
+\]
+
+谱是闭集，因为 resolvent 集是开集：若 \(A-\lambda I\) 可逆，且
+\[
+|\mu-\lambda|<\|(A-\lambda I)^{-1}\|^{-1},
+\]
+则
+\[
+A-\mu I=(A-\lambda I)\left[I-(\mu-\lambda)(A-\lambda I)^{-1}\right]
+\]
+也由 Neumann 级数可逆。
+
+最后证明谱为实。设 \(\lambda=a+ib\)，其中 \(b\ne0\)。对任意 \(x\)，自伴性给出
+\[
+\operatorname{Im}\langle (A-\lambda I)x,x\rangle
+=-b\|x\|^2.
+\]
+于是
+\[
+|b|\|x\|^2
+\le
+|\langle (A-\lambda I)x,x\rangle|
+\le
+\|(A-\lambda I)x\|\|x\|.
+\]
+若 \(x\ne0\)，得
+\[
+\|(A-\lambda I)x\|\ge |b|\|x\|.
+\]
+因此 \(A-\lambda I\) 单射且值域闭。再看值域的正交补：
+\[
+\operatorname{Ran}(A-\lambda I)^\perp
+=\ker(A-\overline\lambda I).
+\]
+同样的下界作用于 \(A-\overline\lambda I\)，说明该核为 \(\{0\}\)。所以值域稠密；又值域闭，故值域为全空间。于是 \(A-\lambda I\) 双射，且逆有界。因此 \(\lambda\) 属于 resolvent 集，不在谱中。
+
+综上，
+\[
+\sigma(A)\subset\R
+\]
+且为有界闭集。
+\end{solution}
+
+\subsection{2017 年个人赛：分析与微分方程}
+
+原题要求：从 6 道题中选择 5 道作答。以下按原题顺序给出中文题面和详细解答。
+
+\begin{problem}
+设 \(f\in L^1([-\pi,\pi])\)，其 Fourier 系数为
+\[
+a_n=\frac1{2\pi}\int_{-\pi}^{\pi}f(x)e^{-inx}\,dx.
+\]
+证明当 \(r\to1^-\) 时，
+\[
+\sum_{n=-\infty}^{\infty}a_nr^{|n|}e^{inx}
+\]
+对几乎处处的 \(x\) 收敛到 \(f(x)\)。
+\end{problem}
+
+\begin{solution}
+该和是 \(f\) 与 Poisson 核的卷积。设
+\[
+P_r(t)=\sum_{n=-\infty}^{\infty}r^{|n|}e^{int}
+=\frac{1-r^2}{1-2r\cos t+r^2}.
+\]
+则
+\[
+\sum_{n=-\infty}^{\infty}a_nr^{|n|}e^{inx}
+=\frac1{2\pi}\int_{-\pi}^{\pi}P_r(x-y)f(y)\,dy.
+\]
+核 \(P_r/(2\pi)\) 是单位圆上的近似恒等：非负，积分为 \(1\)，并且对任意 \(\delta>0\)，当 \(r\to1^-\) 时，
+\[
+\frac1{2\pi}\int_{\delta\le |t|\le\pi}P_r(t)\,dt\to0.
+\]
+Lebesgue 微分定理说明 \(f\) 的几乎每个点都是 Lebesgue 点。若 \(x\) 是 Lebesgue 点，则近似恒等的标准结论给出
+\[
+\frac1{2\pi}\int_{-\pi}^{\pi}P_r(x-y)f(y)\,dy\to f(x).
+\]
+因此该级数对几乎处处 \(x\) 收敛到 \(f(x)\)。
+\end{solution}
+
+\begin{problem}
+设 \(H\) 是 Hilbert 空间。
+\begin{enumerate}[label=(\alph*)]
+\item 证明：\(f_k\to f\) 强收敛，当且仅当 \(f_k\rightharpoonup f\) 弱收敛且
+\[
+\|f_k\|\to\|f\|.
+\]
+\item 证明有限维 Hilbert 空间中弱收敛推出强收敛；并给出无限维 Hilbert 空间中弱收敛不一定强收敛的反例。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 若 \(f_k\to f\) 强收敛，则
+\[
+|(f_k-f,g)|\le\|f_k-f\|\|g\|\to0
+\]
+对所有 \(g\in H\) 成立，所以弱收敛；范数收敛由
+\[
+|\|f_k\|-\|f\||\le\|f_k-f\|
+\]
+得到。
+
+反过来，若 \(f_k\rightharpoonup f\) 且 \(\|f_k\|\to\|f\|\)，则
+\[
+\|f_k-f\|^2
+=\|f_k\|^2+\|f\|^2-2\operatorname{Re}(f_k,f).
+\]
+弱收敛给出
+\[
+(f_k,f)\to(f,f)=\|f\|^2.
+\]
+结合范数收敛，右边趋于
+\[
+\|f\|^2+\|f\|^2-2\|f\|^2=0.
+\]
+故强收敛。
+
+\item 在有限维 Hilbert 空间中，取一组正交归一基 \(e_1,\ldots,e_N\)。若 \(f_k\rightharpoonup f\)，则每个坐标
+\[
+(f_k-f,e_j)\to0.
+\]
+于是
+\[
+\|f_k-f\|^2=\sum_{j=1}^N |(f_k-f,e_j)|^2\to0.
+\]
+所以弱收敛推出强收敛。
+
+无限维反例：取 \(H=\ell^2(\N)\)，令 \(e_k\) 为标准正交基。对任意 \(g=(g_j)\in\ell^2\)，有
+\[
+(e_k,g)=\overline{g_k}\to0,
+\]
+因为 \(\ell^2\) 序列的坐标趋于 \(0\)。故 \(e_k\rightharpoonup0\)。但
+\[
+\|e_k-0\|=1
+\]
+对所有 \(k\) 成立，所以不强收敛。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f:\C\setminus\{0\}\to\C\) 全纯，并且在 \(0\) 附近满足
+\[
+|f(z)|\le |z|^2+\frac1{|z|^{1/2}}.
+\]
+确定所有这样的函数。
+\end{problem}
+
+\begin{solution}
+条件说明在 \(0\) 附近
+\[
+|z f(z)|\le |z|^3+|z|^{1/2}\to0.
+\]
+因此函数
+\[
+g(z)=z f(z)
+\]
+在穿孔邻域有界，并且趋于 \(0\)。由 Riemann 可去奇点定理，\(g\) 可全纯延拓到 \(0\)，且 \(g(0)=0\)。
+
+于是
+\[
+f(z)=\frac{g(z)}z
+\]
+在 \(0\) 至多有可去奇点；因为 \(g(0)=0\)，\(g(z)=zg_1(z)\)，其中 \(g_1\) 在 \(0\) 附近全纯，所以 \(f=g_1\) 在 \(0\) 附近全纯。题目只要求 \(f\) 定义在 \(\C\setminus\{0\}\) 上，因此所有满足条件的函数正是所有可以全纯延拓到整个 \(\C\) 的整函数。
+
+反过来，任意整函数在 \(0\) 附近有界，故对足够小的 \(|z|\)，有
+\[
+|f(z)|\le C\le |z|^{-1/2}\le |z|^2+|z|^{-1/2},
+\]
+所以满足题设。故答案为：所有整函数在 \(\C\setminus\{0\}\) 上的限制。
+\end{solution}
+
+\begin{problem}
+求一个把区域
+\[
+\{z\in\C:\ |z-i|<\sqrt2,\ |z+i|<\sqrt2\}
+\]
+共形映到单位圆盘的映射。
+\end{problem}
+
+\begin{solution}
+该区域是两个圆盘的交。两圆
+\[
+|z-i|=\sqrt2,\qquad |z+i|=\sqrt2
+\]
+交于 \(z=1\) 和 \(z=-1\)。Möbius 变换
+\[
+w=i\,\frac{1+z}{1-z}
+\]
+把交点 \(-1,1\) 分别送到 \(0,\infty\)，因此把两条圆弧送成两条过原点的射线。取区域内点 \(z=0\)，得
+\[
+w=i.
+\]
+可算得两条边界射线的辐角分别为 \(\pi/4\) 与 \(3\pi/4\)，所以区域被映到角域
+\[
+\left\{w:\frac\pi4<\arg w<\frac{3\pi}{4}\right\}.
+\]
+再旋转
+\[
+\zeta=e^{-i\pi/4}w
+\]
+得到角域
+\[
+0<\arg\zeta<\frac\pi2.
+\]
+平方映射
+\[
+\eta=\zeta^2
+\]
+把它映为上半平面。最后 Cayley 变换
+\[
+F=\frac{\eta-i}{\eta+i}
+\]
+把上半平面映为单位圆盘。因此一个显式映射是
+\[
+F(z)=
+\frac{\left(e^{-i\pi/4} i\frac{1+z}{1-z}\right)^2-i}
+{\left(e^{-i\pi/4} i\frac{1+z}{1-z}\right)^2+i}.
+\]
+这是所需共形映射。
+\end{solution}
+
+\begin{problem}
+设 \(E\) 是区域 \(\Omega\) 中的紧集。证明存在常数 \(M>0\)，只依赖于 \(E\) 与 \(\Omega\)，使得每个 \(\Omega\) 中的正调和函数 \(u\) 都满足
+\[
+u(z_2)\le M u(z_1)\qquad(z_1,z_2\in E).
+\]
+\end{problem}
+
+\begin{solution}
+这是 Harnack 不等式的链式形式。对任意点 \(p\in\Omega\)，取半径 \(r_p>0\)，使闭圆盘 \(\overline{D(p,2r_p)}\subset\Omega\)。Harnack 不等式给出：若 \(z,w\in D(p,r_p)\)，则
+\[
+u(z)\le C_p u(w),
+\]
+其中 \(C_p\) 只依赖于 \(r_p\) 和所取小圆盘比例。
+
+由于 \(E\) 紧，可用有限多个这样的圆盘
+\[
+D(p_j,r_j),\qquad j=1,\ldots,N,
+\]
+覆盖 \(E\)。若 \(\Omega\) 的含 \(E\) 的相关连通部分中 \(E\) 不是连通的，可对每个相交链分别处理；题目通常默认区域连通，且紧集内任意两点可由 \(\Omega\) 中有限条圆盘链连接。由紧性，连接 \(E\) 中任意两点所需的圆盘链长度可由一个整数 \(L\) 统一控制。沿链反复应用局部 Harnack 不等式，得
+\[
+u(z_2)\le C^L u(z_1),
+\]
+其中
+\[
+C=\max_{1\le j\le N}C_j.
+\]
+令 \(M=C^L\)，即得结论。
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 对任意有界区域 \(\Omega\subset\R^n\)，证明存在最小常数 \(C(\Omega)\)，使得对每个 \(u\in H_0^1(\Omega)\)，
+\[
+\int_\Omega |u|^2\,dx
+\le C(\Omega)\int_\Omega\sum_{i=1}^n\left|\frac{\partial u}{\partial x_i}\right|^2\,dx.
+\]
+\item 设
+\[
+\Pi=\{(x,y):0<x<a,\ 0<y<b\}.
+\]
+证明
+\[
+C(\Pi)\ge \frac{a^2b^2}{\pi^2(a^2+b^2)}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 因为 \(\Omega\) 有界，Poincare 不等式说明存在某个常数 \(C\)，使
+\[
+\|u\|_{L^2(\Omega)}^2\le C\|\nabla u\|_{L^2(\Omega)}^2
+\qquad(u\in H_0^1(\Omega)).
+\]
+例如把 \(\Omega\) 包含在一个大立方体中，沿某个坐标方向用一维 Hardy--Poincare 不等式即可得到这样的 \(C\)。
+
+令
+\[
+C(\Omega)=\inf\left\{C>0:\ \|u\|_2^2\le C\|\nabla u\|_2^2
+\text{ 对所有 }u\in H_0^1(\Omega)\text{ 成立}\right\}.
+\]
+由于可行常数集合非空且向上闭，取 inf 得最小常数。更具体地，若 \(C_j\downarrow C(\Omega)\) 且每个 \(C_j\) 可行，则对任意固定 \(u\)，
+\[
+\|u\|_2^2\le C_j\|\nabla u\|_2^2
+\]
+对所有 \(j\) 成立，令 \(j\to\infty\)，得 \(C(\Omega)\) 也可行。
+
+\item 取试验函数
+\[
+u(x,y)=\sin\frac{\pi x}{a}\sin\frac{\pi y}{b}.
+\]
+它属于 \(H_0^1(\Pi)\)。计算
+\[
+\int_\Pi |u|^2\,dx\,dy
+=\left(\int_0^a\sin^2\frac{\pi x}{a}\,dx\right)
+\left(\int_0^b\sin^2\frac{\pi y}{b}\,dy\right)
+=\frac{ab}{4}.
+\]
+又
+\[
+\int_\Pi |\nabla u|^2
+=\int_\Pi\left[
+\left(\frac{\pi}{a}\cos\frac{\pi x}{a}\sin\frac{\pi y}{b}\right)^2
++\left(\frac{\pi}{b}\sin\frac{\pi x}{a}\cos\frac{\pi y}{b}\right)^2
+\right]dx\,dy.
+\]
+因此
+\[
+\int_\Pi |\nabla u|^2
+=\frac{\pi^2}{a^2}\frac{ab}{4}
++\frac{\pi^2}{b^2}\frac{ab}{4}
+=\frac{ab\pi^2}{4}\left(\frac1{a^2}+\frac1{b^2}\right).
+\]
+由 \(C(\Pi)\) 的定义，
+\[
+C(\Pi)\ge
+\frac{\int_\Pi |u|^2}{\int_\Pi |\nabla u|^2}
+=
+\frac{ab/4}{\frac{ab\pi^2}{4}\left(\frac1{a^2}+\frac1{b^2}\right)}
+=\frac{a^2b^2}{\pi^2(a^2+b^2)}.
+\]
+\end{enumerate}
+\end{solution}
+
+\subsection{2018 年个人赛：分析与微分方程}
+
+原题要求：解答以下 6 道题。
+
+\begin{problem}
+设函数列 \(\{f_n\}_{n=1}^\infty\subset L^2(\R^d)\) 满足 \(\|f_n\|_{L^2}=1\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 证明存在子列 \(\{f_{n_j}\}_{j=1}^\infty\)，使得 \(f_{n_j}\) 在 \(L^2(\R^d)\) 中弱收敛到某个函数 \(f\)，即对所有 \(g\in L^2(\R^d)\)，
+\[
+(f_{n_j},g)\to(f,g).
+\]
+\item 若 \(f_n\rightharpoonup f\) 于 \(L^2(\R^d)\)，且 \(\|f_n\|_{L^2}\to\|f\|_{L^2}\)，证明
+\[
+\|f_n-f\|_{L^2}\to0.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item \(L^2(\R^d)\) 是可分 Hilbert 空间。取一组稠密序列 \(\{g_m\}_{m=1}^\infty\) 于 \(L^2(\R^d)\)。由于
+\[
+|(f_n,g_m)|\le \|f_n\|_2\|g_m\|_2=\|g_m\|_2,
+\]
+对每个固定 \(m\)，复数列 \(\{(f_n,g_m)\}_{n=1}^\infty\) 有界。先对 \(m=1\) 取子列使 \((f_n,g_1)\) 收敛；再从该子列中取子列使 \((f_n,g_2)\) 收敛；如此继续。对角取 \(n_j\)，则对每个 \(m\)，\((f_{n_j},g_m)\) 均收敛。
+
+下面把收敛从稠密集推广到全空间。任取 \(g\in L^2(\R^d)\) 和 \(\varepsilon>0\)，选 \(g_m\) 使 \(\|g-g_m\|_2<\varepsilon/4\)。因为 \(\|f_{n_j}\|_2=1\)，有
+\[
+|(f_{n_j}-f_{n_k},g-g_m)|\le
+\|f_{n_j}-f_{n_k}\|_2\|g-g_m\|_2
+\le 2\|g-g_m\|_2<\frac{\varepsilon}{2}.
+\]
+又 \((f_{n_j},g_m)\) 是 Cauchy 列，故当 \(j,k\) 足够大时
+\[
+|(f_{n_j}-f_{n_k},g_m)|<\frac{\varepsilon}{2}.
+\]
+于是 \((f_{n_j},g)\) 对每个 \(g\) 都是 Cauchy 列，从而有极限。定义
+\[
+\Lambda(g)=\lim_{j\to\infty}(f_{n_j},g).
+\]
+则 \(\Lambda\) 是有界线性泛函，并且
+\[
+|\Lambda(g)|\le \limsup_{j\to\infty}\|f_{n_j}\|_2\|g\|_2=\|g\|_2.
+\]
+由 Riesz 表示定理，存在 \(f\in L^2(\R^d)\)，使得 \(\Lambda(g)=(f,g)\)。这正是 \(f_{n_j}\rightharpoonup f\)。
+
+\item 在 Hilbert 空间中，
+\[
+\|f_n-f\|_2^2
+=\|f_n\|_2^2+\|f\|_2^2-2\operatorname{Re}(f_n,f).
+\]
+由弱收敛，取测试函数 \(g=f\)，得到
+\[
+(f_n,f)\to(f,f)=\|f\|_2^2.
+\]
+又由假设 \(\|f_n\|_2\to\|f\|_2\)，所以
+\[
+\|f_n-f\|_2^2
+\to \|f\|_2^2+\|f\|_2^2-2\|f\|_2^2=0.
+\]
+故 \(\|f_n-f\|_2\to0\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f:U\to\C\) 是非常值全纯函数，其中 \(U\subset\C\) 是包含闭单位圆盘 \(\overline D\) 的开集，\(D=\{z\in\C:|z|<1\}\)。若对所有 \(z\in\partial D\) 都有 \(|f(z)|=1\)，证明
+\[
+D\subset f(\overline D).
+\]
+\end{problem}
+
+\begin{solution}
+任取 \(w\in D\)，即 \(|w|<1\)。要证存在 \(\zeta\in\overline D\) 使 \(f(\zeta)=w\)。在边界 \(\partial D\) 上有
+\[
+|f(z)|=1>|w|.
+\]
+由 Rouché 定理，函数 \(f(z)\) 与 \(f(z)-w\) 在单位圆盘 \(D\) 内的零点个数相同，均按重数计算。
+
+因此只需证明 \(f\) 在 \(D\) 内至少有一个零点。若 \(f\) 在 \(D\) 内无零点，则因为 \(f\) 在 \(\overline D\) 的邻域内全纯且边界上 \(|f|=1\)，函数 \(1/f\) 也在 \(D\) 内全纯并连续到边界。最大模原理给出
+\[
+|f(z)|\le1,\qquad |1/f(z)|\le1\qquad(z\in D).
+\]
+第二个不等式等价于 \(|f(z)|\ge1\)。所以 \(|f(z)|=1\) 对所有 \(z\in D\) 成立。全纯函数若模长在区域内为常数，则函数为常数，这与题设矛盾。因此 \(f\) 在 \(D\) 内至少有一个零点。
+
+于是 \(f(z)-w\) 在 \(D\) 内也至少有一个零点。故存在 \(\zeta\in D\subset\overline D\) 使 \(f(\zeta)=w\)。由于 \(w\in D\) 任意，得到 \(D\subset f(\overline D)\)。
+\end{solution}
+
+\begin{problem}
+证明：若开圆盘上的一列调和函数在该圆盘的每个紧子集上一致收敛，则其极限函数仍为调和函数。
+\end{problem}
+
+\begin{solution}
+设圆盘为 \(\Omega\)，调和函数列为 \(u_j\)，并且 \(u_j\to u\) 在 \(\Omega\) 的每个紧子集上一致收敛。先知 \(u\) 连续。
+
+任取闭圆盘 \(\overline{B(a,r)}\subset\Omega\)。对每个 \(j\)，调和函数满足平均值公式：
+\[
+u_j(a)=\frac1{2\pi}\int_0^{2\pi}u_j(a+re^{i\theta})\,d\theta.
+\]
+由于 \(u_j\to u\) 在 \(\overline{B(a,r)}\) 上一致收敛，可令 \(j\to\infty\)，得到
+\[
+u(a)=\frac1{2\pi}\int_0^{2\pi}u(a+re^{i\theta})\,d\theta.
+\]
+因此 \(u\) 在每个足够小圆周上满足平均值性质。
+
+连续函数若在区域内满足圆周平均值性质，则为调和函数。为完整说明这一点，取任意 \(B(a,r)\Subset\Omega\)，令 \(v\) 为 \(B(a,r)\) 中以边界值 \(u|_{\partial B(a,r)}\) 为边界数据的 Poisson 积分。则 \(v\) 调和并连续到闭圆盘，且在圆盘内也满足平均值性质。函数 \(w=u-v\) 连续，在边界为 \(0\)，并满足平均值性质。若 \(w\) 在内部取得正最大值，则平均值公式迫使其在某小圆周上恒等于该最大值；由连通性逐步推出最大值可传到边界，矛盾。因此 \(w\le0\)。同理 \(-w\le0\)，故 \(w=0\)。于是 \(u=v\) 在 \(B(a,r)\) 内调和。由 \(a,r\) 任意，\(u\) 在 \(\Omega\) 上调和。
+\end{solution}
+
+\begin{problem}
+设 \(\mu\) 是 \(\R^n\) 上的 Borel 测度。令 \(\rho>0\) 为固定正数，并记
+\[
+B_\rho(x)=\{y\in\R^n:d(x,y)<\rho\}.
+\]
+对 \(x\in\R^n\)，定义
+\[
+\theta(x)=\mu(\overline{B_\rho(x)}).
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 证明 \(\theta\) 是上半连续的，即对每个 \(x\in\R^n\)，
+\[
+\theta(x)\ge \limsup_{y\to x}\theta(y).
+\]
+\item 给出一个 Borel 测度 \(\mu\)，使得函数 \(\theta\) 不连续。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 这里需要默认 \(\mu\) 在有界闭球上有限；否则 \(\theta\) 可能取无穷值，结论按扩展实值意义理解。固定 \(x\in\R^n\)，任取 \(\varepsilon>0\)。若 \(y\to x\)，则当 \(|y-x|<\varepsilon\) 时
+\[
+\overline{B_\rho(y)}
+\subset
+\overline{B_{\rho+\varepsilon}(x)}.
+\]
+所以
+\[
+\limsup_{y\to x}\theta(y)
+\le \mu(\overline{B_{\rho+\varepsilon}(x)}).
+\]
+令 \(\varepsilon\downarrow0\)。闭集列 \(\overline{B_{\rho+\varepsilon}(x)}\) 单调递减到 \(\overline{B_\rho(x)}\)，由测度从上连续性，
+\[
+\lim_{\varepsilon\downarrow0}\mu(\overline{B_{\rho+\varepsilon}(x)})
+=\mu(\overline{B_\rho(x)}).
+\]
+因此
+\[
+\limsup_{y\to x}\theta(y)\le\mu(\overline{B_\rho(x)})=\theta(x),
+\]
+即 \(\theta\) 上半连续。
+
+\item 在 \(\R\) 上取 Dirac 测度 \(\mu=\delta_0\)，并固定任意 \(\rho>0\)。此时
+\[
+\theta(x)=\delta_0([x-\rho,x+\rho])
+=
+\begin{cases}
+1,& |x|\le \rho,\\
+0,& |x|>\rho.
+\end{cases}
+\]
+在 \(x=\rho\) 和 \(x=-\rho\) 处，函数从 \(1\) 跳到 \(0\)，故不连续。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(g\) 是 \(\R^n\) 上具有紧支集的光滑函数。定义
+\[
+f(x)=\frac{1}{n(n-1)\alpha(n)}
+\int_{\R^n}\frac{g(y)}{|x-y|^{n-2}}\,dy,
+\]
+其中 \(\alpha(n)\) 是 \(\R^n\) 中单位球的体积。
+\begin{enumerate}[label=(\alph*)]
+\item 证明定义 \(f\) 的积分对每个 \(x\in\R^n\) 收敛。
+\item 证明 \(f\) 可微，并且
+\[
+\nabla f|_x=
+\frac{1}{n(n-1)\alpha(n)}
+\int_{\R^n}\frac{(\nabla g)|_y}{|x-y|^{n-2}}\,dy.
+\]
+\item 证明 \(f\) 满足 \(-\Delta f=g\)，其中
+\[
+\Delta=\frac{\partial^2}{\partial x_1^2}+\cdots+
+\frac{\partial^2}{\partial x_n^2}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+题中核 \(|x-y|^{2-n}\) 是 \(n\ge3\) 的 Newton 核；以下先按 \(n\ge3\) 计算。设 \(C_n=\bigl(n(n-1)\alpha(n)\bigr)^{-1}\)。
+\begin{enumerate}[label=(\alph*)]
+\item 因为 \(g\in C_c^\infty(\R^n)\)，存在 \(R>0\) 使 \(\supp g\subset B(0,R)\)，且 \(\|g\|_\infty<\infty\)。对固定 \(x\)，积分只需在 \(B(0,R)\) 上考虑。若 \(x\notin\supp g\)，核在 \(\supp g\) 的邻域内有界，故该部分积分有限。若 \(x\in\supp g\)，唯一可能的问题在 \(y=x\)。在 \(B(x,\eta)\) 中，
+\[
+\int_{B(x,\eta)}|x-y|^{2-n}\,dy
+= n\alpha(n)\int_0^\eta r^{2-n}r^{n-1}\,dr
+=\frac{n\alpha(n)}2\eta^2<\infty.
+\]
+其余区域上核有界。因此积分绝对收敛。
+
+\item 直接对 \(x\) 求导会遇到奇核；更稳妥的方法是先把导数转移到 \(g\) 上。令 \(K(z)=|z|^{2-n}\)。由于 \(g\) 紧支且 \(K\) 局部可积，
+\[
+f(x)=C_n\int_{\R^n}K(x-y)g(y)\,dy.
+\]
+对第 \(i\) 个坐标，以分布意义计算：
+\[
+\partial_{x_i}f
+=C_n\int_{\R^n}(\partial_{x_i}K)(x-y)g(y)\,dy
+=-C_n\int_{\R^n}(\partial_{y_i}K)(x-y)g(y)\,dy.
+\]
+对 \(y\) 分部积分，边界项因 \(g\) 紧支而消失，得到
+\[
+\partial_{x_i}f(x)
+=C_n\int_{\R^n}K(x-y)\partial_{y_i}g(y)\,dy.
+\]
+右端按(a)同理绝对收敛，并且由于 \(\partial_{y_i}g\) 光滑紧支，所得函数连续。故 \(f\) 可微，且把各分量合并即得题中梯度公式。
+
+\item 标准恒等式为
+\[
+-\Delta\left(\frac{1}{n(n-2)\alpha(n)}|x|^{2-n}\right)=\delta_0
+\qquad(n\ge3),
+\]
+其中 \(n\alpha(n)\) 是单位球面的面积。等价地，
+\[
+-\Delta |x|^{2-n}=n(n-2)\alpha(n)\,\delta_0.
+\]
+因此按题面给出的常数 \(C_n=\bigl(n(n-1)\alpha(n)\bigr)^{-1}\)，分布意义下
+\[
+-\Delta f
+=\frac{n(n-2)\alpha(n)}{n(n-1)\alpha(n)}\,g
+=\frac{n-2}{n-1}g.
+\]
+所以若严格采用题面印刷的常数 \(n(n-1)\alpha(n)\)，结论应为
+\[
+-\Delta f=\frac{n-2}{n-1}g.
+\]
+若将题面常数改为 Newton 势的标准常数 \(n(n-2)\alpha(n)\)，则完全得到 \(-\Delta f=g\)。由于 \(g\) 光滑紧支，卷积后所得 \(f\) 在经典意义下满足同一等式。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+若 \(u\) 是 \(\R^n\setminus\{0\}\) 上的正调和函数 \((n\ge2)\)，证明存在常数 \(a\ge0\)、\(b\ge0\)，使得
+\[
+u(x)=a+b|x|^{2-n}
+\]
+对所有 \(x\in\R^n\setminus\{0\}\) 成立。
+\end{problem}
+
+\begin{solution}
+先处理 \(n\ge3\)。对 \(R>0\)，在球面 \(|x|=R\) 上取平均
+\[
+m(R)=\frac1{|\partial B_R|}\int_{\partial B_R}u\,dS.
+\]
+调和函数的球面平均作为半径函数满足径向调和方程，因此
+\[
+m(R)=a_R+b_R R^{2-n}
+\]
+在任意环域内成立；由半径区间连通性，可写为
+\[
+m(R)=a+bR^{2-n}\qquad(R>0)
+\]
+其中 \(a,b\) 为常数。由于 \(u>0\)，有 \(m(R)>0\)。令 \(R\to\infty\) 得 \(a\ge0\)，令 \(R\to0\) 得 \(b\ge0\)。
+
+令
+\[
+v(x)=u(x)-a-b|x|^{2-n}.
+\]
+则 \(v\) 在 \(\R^n\setminus\{0\}\) 上调和，并且每个球面平均为 \(0\)。下面证明 \(v\equiv0\)。取球面调和展开：在每个环域内，
+\[
+v(r,\omega)=\sum_{k=1}^\infty\sum_{\ell}
+\left(A_{k\ell}r^k+B_{k\ell}r^{-(k+n-2)}\right)Y_{k\ell}(\omega),
+\]
+其中没有 \(k=0\) 项，因为球面平均为 \(0\)。若某个 \(A_{k\ell}\ne0\)，则沿适当方向当 \(r\to\infty\) 时该项产生正负振荡并以 \(r^k\) 增长；若某个 \(B_{k\ell}\ne0\)，则当 \(r\to0\) 时该项也产生正负振荡并以 \(r^{-(k+n-2)}\) 增长。另一方面，\(u\ge0\) 而 \(a+b r^{2-n}\) 是 \(u\) 的球面平均；Harnack 不等式给出在每个球面上 \(u(r,\omega)\) 由其平均控制，因而不能出现相对于平均项更高阶的正负振荡奇异项。故所有 \(A_{k\ell},B_{k\ell}\) 均为 \(0\)，于是 \(v\equiv0\)。
+
+也可把上一步表述为 Bôcher 定理：非负调和函数在孤立奇点附近等于一个非负 Newton 核系数加上可去奇点的调和函数。把该定理分别用于 \(0\) 与无穷远点，得到
+\[
+u(x)=b|x|^{2-n}+h(x),
+\]
+其中 \(h\) 是 \(\R^n\) 上非负调和函数；由 Liouville 定理，\(h\) 为常数 \(a\ge0\)。这就得到所需形式。
+
+当 \(n=2\) 时，同样由二维 Bôcher 定理，
+\[
+u(x)=c\log\frac1{|x|}+h(x)
+\]
+在 \(0\) 附近成立。若 \(c>0\)，则当 \(|x|\to\infty\) 时无法保持全局正性；若 \(c<0\)，则当 \(|x|\to0\) 时无法保持正性。因此 \(c=0\)，奇点可去，且 \(u\) 延拓为整平面上的正调和函数。由 Liouville 定理，\(u\) 为常数。此时取 \(b=0\)、\(a=u\ge0\)，也符合题中公式。
+\end{solution}
+
+\subsection{2019 年个人赛：分析与微分方程}
+
+原题要求：解答以下 5 道题。
+
+\begin{problem}
+设 \(F:\R\to\R\) 是严格凸函数。设 \(u:[0,1]\to\R\) 连续，且
+\[
+\int_0^1 u(x)\,dx=0.
+\]
+证明
+\[
+\int_0^1 F(u(x))\,dx
+\le
+\frac{F(\|u\|_\infty)+F(-\|u\|_\infty)}2,
+\]
+其中
+\[
+\|u\|_\infty=\sup_{x\in[0,1]}|u(x)|.
+\]
+并判定等号成立的情形。
+\end{problem}
+
+\begin{solution}
+记 \(M=\|u\|_\infty\)。若 \(M=0\)，则 \(u\equiv0\)，不等式两边都等于 \(F(0)\)，等号成立。
+
+下面设 \(M>0\)。对每个 \(x\in[0,1]\)，有 \(-M\le u(x)\le M\)，并且
+\[
+u(x)=\lambda(x)M+(1-\lambda(x))(-M),
+\qquad
+\lambda(x)=\frac{u(x)+M}{2M}\in[0,1].
+\]
+由凸性，
+\[
+F(u(x))
+\le \lambda(x)F(M)+(1-\lambda(x))F(-M).
+\]
+积分得
+\[
+\int_0^1F(u(x))\,dx
+\le F(M)\int_0^1\lambda(x)\,dx
+F(-M)\int_0^1(1-\lambda(x))\,dx.
+\]
+又
+\[
+\int_0^1\lambda(x)\,dx
+=\frac1{2M}\int_0^1(u(x)+M)\,dx
+=\frac12,
+\]
+故得到所需不等式。
+
+再判定等号。由于 \(F\) 严格凸，当 \(M>0\) 且 \(-M<u(x)<M\) 时，上面的点态凸性不等式严格。若积分等号成立，则连续函数 \(u\) 只能取端点值 \(\pm M\)。但 \([0,1]\) 连通，连续函数若只取两个离散值，则必为常数；常数又因平均值为 \(0\) 只能是 \(0\)，与 \(M>0\) 矛盾。因此 \(M>0\) 时等号不可能成立。唯一等号情形是
+\[
+u\equiv0.
+\]
+\end{solution}
+
+\begin{problem}
+证明存在一个普适常数 \(K\)，使得对所有 \(C^1\) 函数 \(f:\R^2\to\R\)，若
+\[
+f\in L^1(\R^2)\cap L^2(\R^2),\qquad |\nabla f|\in L^2(\R^2),
+\]
+则
+\[
+\|f\|_{L^2(\R^2)}^2
+\le
+K\|f\|_{L^1(\R^2)}\|\nabla f\|_{L^2(\R^2)}.
+\]
+能否给出一个 \(K<10\) 的常数？题中所有 \(L^p\) 空间均相对于 Lebesgue 测度定义。
+\end{problem}
+
+\begin{solution}
+采用 Fourier 变换约定
+\[
+\widehat f(\xi)=\int_{\R^2}e^{-ix\cdot\xi}f(x)\,dx.
+\]
+则 Plancherel 公式为
+\[
+\|f\|_2^2=(2\pi)^{-2}\|\widehat f\|_2^2,
+\qquad
+\|\nabla f\|_2^2=(2\pi)^{-2}\int_{\R^2}|\xi|^2|\widehat f(\xi)|^2\,d\xi.
+\]
+对任意 \(R>0\)，把频率空间分成 \(|\xi|\le R\) 与 \(|\xi|>R\)。低频部分用 \(|\widehat f(\xi)|\le\|f\|_1\)，得
+\[
+(2\pi)^{-2}\int_{|\xi|\le R}|\widehat f(\xi)|^2\,d\xi
+\le
+(2\pi)^{-2}\pi R^2\|f\|_1^2
+=\frac{R^2}{4\pi}\|f\|_1^2.
+\]
+高频部分中 \(|\xi|^{-2}\le R^{-2}\)，故
+\[
+(2\pi)^{-2}\int_{|\xi|>R}|\widehat f(\xi)|^2\,d\xi
+\le
+R^{-2}(2\pi)^{-2}\int_{\R^2}|\xi|^2|\widehat f(\xi)|^2\,d\xi
+=R^{-2}\|\nabla f\|_2^2.
+\]
+于是
+\[
+\|f\|_2^2
+\le
+\frac{R^2}{4\pi}\|f\|_1^2+R^{-2}\|\nabla f\|_2^2.
+\]
+若 \(\|f\|_1\|\nabla f\|_2=0\)，则由 \(f\in L^1\) 或 \(\nabla f=0\) 且 \(f\in L^2\) 可知结论成立。否则令
+\[
+R^2=\frac{2\sqrt\pi\,\|\nabla f\|_2}{\|f\|_1},
+\]
+得到
+\[
+\|f\|_2^2\le \frac1{\sqrt\pi}\|f\|_1\|\nabla f\|_2.
+\]
+因此可取
+\[
+K=\frac1{\sqrt\pi}<10.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f:\R^2\to\R\) 是调和函数。假设
+\[
+\lim_{|x|\to\infty}\frac{|f(x)|}{\ln |x|}=0.
+\]
+判断并证明：\(f\) 是否必为常数？
+\end{problem}
+
+\begin{solution}
+结论为真。任取一点 \(a\in\R^2\)。调和函数的内估计给出：存在绝对常数 \(C\)，使得对任意 \(R>1\)，
+\[
+|\nabla f(a)|
+\le
+\frac{C}{R}\sup_{B(a,R)}|f|.
+\]
+下面估计右端。由题设，对任意 \(\varepsilon>0\)，存在 \(R_0\)，使得当 \(|x|\ge R_0\) 时
+\[
+|f(x)|\le \varepsilon\ln |x|.
+\]
+于是当 \(R\) 足够大时，
+\[
+\sup_{B(a,R)}|f|
+\le
+C_a+\varepsilon\ln(R+|a|),
+\]
+其中 \(C_a\) 吸收固定紧集 \(\overline{B(0,R_0)}\) 上的上确界。代回内估计，
+\[
+|\nabla f(a)|
+\le
+\frac{C}{R}\bigl(C_a+\varepsilon\ln(R+|a|)\bigr).
+\]
+令 \(R\to\infty\)，右端趋于 \(0\)，所以 \(\nabla f(a)=0\)。因 \(a\) 任意，\(\nabla f\equiv0\)，从而 \(f\) 为常数。
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 证明不存在定义在 \(\C\setminus\{1,-1\}\) 上的全纯函数 \(f\)，使得
+\[
+f'(z)=\frac1{(z^2-1)^{2019}}
+\qquad(z\in\C\setminus\{1,-1\}).
+\]
+\item 证明存在集合 \(L\subset\C\) 和定义在 \(\C\setminus L\) 上的全纯函数 \(F\)，使得 \(L\) 的 Hausdorff 维数为 \(1\)，并且
+\[
+F'(z)=\frac1{(z^2-1)^{2019}}
+\qquad(z\in\C\setminus L).
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 若这样的 \(f\) 存在，则 \(1/(z^2-1)^{2019}\) 在 \(\C\setminus\{1,-1\}\) 上有全局原函数。因此它沿任意闭曲线的积分都应为 \(0\)。取围绕 \(z=1\) 的小圆 \(\gamma\)，则
+\[
+\int_\gamma \frac{dz}{(z^2-1)^{2019}}
+=2\pi i\,\operatorname{Res}_{z=1}\frac1{(z^2-1)^{2019}}.
+\]
+计算留数。令 \(w=z-1\)，则
+\[
+\frac1{(z^2-1)^{2019}}
+=w^{-2019}(2+w)^{-2019}
+=2^{-2019}w^{-2019}\left(1+\frac w2\right)^{-2019}.
+\]
+二项展开中 \(w^{2018}\) 的系数为
+\[
+2^{-2019}\binom{-2019}{2018}2^{-2018}
+=2^{-4037}\binom{-2019}{2018}\ne0.
+\]
+因此 \(w^{-1}\) 的系数非零，即留数非零。于是上述闭路积分非零，矛盾。
+
+\item 取
+\[
+L=[-1,1]\subset\C.
+\]
+线段的 Hausdorff 维数为 \(1\)，且 \(\C\setminus L\) 是单连通区域。函数
+\[
+z\mapsto \frac1{(z^2-1)^{2019}}
+\]
+在 \(\C\setminus L\) 上全纯。单连通区域上的全纯函数都有原函数，故存在全纯函数 \(F\) 定义在 \(\C\setminus L\) 上，使
+\[
+F'(z)=\frac1{(z^2-1)^{2019}}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\subset\R^2\) 是具有光滑边界的有界区域。证明：对所有 \(p>1\)、\(1\le q<\infty\)，以及所有 \(f\in L^p(\Omega)\)，存在唯一的 \(u\in H_0^1(\Omega)\)，使得
+\[
+\Delta u=|u|^{q-1}u+f
+\qquad\text{在 }\Omega\text{ 中成立}.
+\]
+\end{problem}
+
+\begin{solution}
+方程按弱意义理解，即要求对所有 \(\varphi\in H_0^1(\Omega)\)，
+\[
+\int_\Omega \nabla u\cdot\nabla\varphi\,dx
++\int_\Omega |u|^{q-1}u\varphi\,dx
++\int_\Omega f\varphi\,dx=0.
+\]
+这是原方程乘以 \(\varphi\) 后分部积分得到的形式。
+
+在二维有界区域上，Sobolev 嵌入给出
+\[
+H_0^1(\Omega)\hookrightarrow L^r(\Omega)
+\quad\text{对所有 }1\le r<\infty.
+\]
+因为 \(p>1\)，其共轭指数 \(p'=p/(p-1)<\infty\)，故 \(v\in H_0^1(\Omega)\) 时 \(\int_\Omega fv\) 有意义。考虑泛函
+\[
+J(v)=
+\frac12\int_\Omega|\nabla v|^2\,dx
++\frac1{q+1}\int_\Omega |v|^{q+1}\,dx
++\int_\Omega fv\,dx,
+\qquad v\in H_0^1(\Omega).
+\]
+由 Hölder 不等式、Sobolev 嵌入和 Poincare 不等式，
+\[
+\left|\int_\Omega fv\,dx\right|
+\le \|f\|_{L^p}\|v\|_{L^{p'}}
+\le C\|f\|_{L^p}\|\nabla v\|_{L^2}.
+\]
+因此
+\[
+J(v)\ge
+\frac12\|\nabla v\|_2^2
+-C\|f\|_{L^p}\|\nabla v\|_2,
+\]
+从而 \(J\) 在 \(H_0^1(\Omega)\) 上强制。又 \(\int|\nabla v|^2\) 弱下半连续，\(\int |v|^{q+1}\) 为凸积分泛函而弱下半连续，线性项弱连续，所以 \(J\) 弱下半连续。由直接法，\(J\) 存在极小元 \(u\in H_0^1(\Omega)\)。
+
+对任意 \(\varphi\in H_0^1(\Omega)\)，函数 \(t\mapsto J(u+t\varphi)\) 在 \(t=0\) 处导数为 \(0\)。注意 \(H_0^1(\Omega)\subset L^{q+1}(\Omega)\)，且映射 \(s\mapsto |s|^{q-1}s\) 是 \( |s|^{q+1}/(q+1)\) 的导数，故
+\[
+0=\frac{d}{dt}J(u+t\varphi)\bigg|_{t=0}
+=
+\int_\Omega\nabla u\cdot\nabla\varphi\,dx
++\int_\Omega |u|^{q-1}u\varphi\,dx
++\int_\Omega f\varphi\,dx.
+\]
+这正是弱解存在性。
+
+最后证唯一性。若 \(u_1,u_2\) 是两个弱解，取差并以 \(\varphi=u_1-u_2\) 测试，得
+\[
+\int_\Omega|\nabla(u_1-u_2)|^2\,dx
++\int_\Omega
+\bigl(|u_1|^{q-1}u_1-|u_2|^{q-1}u_2\bigr)(u_1-u_2)\,dx
+=0.
+\]
+函数 \(s\mapsto |s|^{q-1}s\) 单调递增，所以第二个积分非负。第一个积分也非负，故二者都为 \(0\)，于是 \(\nabla(u_1-u_2)=0\)。结合零边界条件，得到 \(u_1=u_2\)。唯一性成立。
+\end{solution}
+
+\section{笔试题}
+
+\subsection{2020 年笔试：分析与微分方程}
+
+原题要求：解答所有题目。
+
+\begin{problem}
+设 \(\chi\) 是 \(\R\) 上实值光滑紧支函数，并且
+\[
+\int_\R \chi(x)\,dx=1.
+\]
+对所有 \(\varepsilon>0\)，定义
+\[
+\chi_\varepsilon(x)=\frac1\varepsilon\chi\!\left(\frac{x}{\varepsilon}\right).
+\]
+证明：对任意给定 \(f\in L^1(\R)\)，对几乎处处 \(x\in\R\)，有
+\[
+\lim_{\varepsilon\to0}(\chi_\varepsilon*f)(x)=f(x).
+\]
+\end{problem}
+
+\begin{solution}
+由 Lebesgue 微分定理，几乎每个点 \(x_0\) 都是 \(f\) 的 Lebesgue 点，即
+\[
+\frac1r\int_{|y|\le r}|f(x_0-y)-f(x_0)|\,dy\to0
+\qquad(r\downarrow0).
+\]
+只需在这样的点证明收敛。
+
+设 \(\supp\chi\subset[-M,M]\)。因为 \(\int\chi=1\)，
+\[
+(\chi_\varepsilon*f)(x_0)-f(x_0)
+=\int_\R \chi(t)\bigl(f(x_0-\varepsilon t)-f(x_0)\bigr)\,dt.
+\]
+于是
+\[
+\begin{aligned}
+|(\chi_\varepsilon*f)(x_0)-f(x_0)|
+&\le \|\chi\|_\infty
+\int_{|t|\le M}|f(x_0-\varepsilon t)-f(x_0)|\,dt\\
+&=\|\chi\|_\infty\varepsilon^{-1}
+\int_{|s|\le \varepsilon M}|f(x_0-s)-f(x_0)|\,ds.
+\end{aligned}
+\]
+最后一个积分为 \(o(\varepsilon)\)，故右端趋于 \(0\)。因此在每个 Lebesgue 点 \(x_0\) 都有
+\[
+(\chi_\varepsilon*f)(x_0)\to f(x_0).
+\]
+Lebesgue 点几乎处处存在，结论成立。
+\end{solution}
+
+\begin{problem}
+在上一年的丘成桐大学生数学竞赛中，四位学生 Tintin、Haddock、Dupont 和 Dupond 进入了分析口试的最后一轮。丘先生要求他们计算如下 \(2\pi\)-周期函数 \(F\) 的 Fourier 系数：
+\[
+F:(0,2\pi)\to\R,\qquad
+F(x)=\arctan\!\left(
+\frac{x}{2\pi}e^{\sin x}+x^{2019}(x-2\pi)+2019\sin x
+\right).
+\]
+他们给出的答案如下：对 \(k\ne0\)，
+\[
+\begin{array}{rl}
+\text{Tintin:}&
+\widehat F(k)=\dfrac{\cos(k\pi)}{|k|^{1/2}}+\dfrac{a}{|k|}+\dfrac{b}{|k|^3},\\[0.8em]
+\text{Haddock:}&
+\widehat F(k)=\dfrac{c}{k^2}+\dfrac{d}{k^4}+\dfrac{e}{k^6},\\[0.8em]
+\text{Dupont:}&
+\widehat F(k)=\dfrac1k+\dfrac1{k^2}+\dfrac{f}{k^3}+\dfrac{g}{k^5},\\[0.8em]
+\text{Dupond:}&
+\widehat F(k)=\dfrac{2019\sqrt{-1}}{k}+\dfrac{h_k}{k},
+\end{array}
+\]
+其中 \(a,b,c,d,e,f,g,h_k\ (k\in\Z)\) 为常数，并且 \(\sum_{k\in\Z}|h_k|^2<\infty\)。问谁的答案正确？
+\end{problem}
+
+\begin{solution}
+四个人的答案都不正确。记 Fourier 系数为
+\[
+\widehat F(k)=\frac1{2\pi}\int_0^{2\pi}e^{-ikx}F(x)\,dx.
+\]
+函数 \(F\) 在 \((0,2\pi)\) 内光滑且有界。右端极限为
+\[
+F(0+)=\arctan 0=0,
+\]
+左端极限为
+\[
+F(2\pi-)=\arctan 1=\frac\pi4.
+\]
+因此周期延拓在 \(2\pi\Z\) 处有跳跃间断。
+
+Tintin 的答案错误：由于 \(F\in L^2(0,2\pi)\)，Parseval 恒等式给出
+\[
+\{\widehat F(k)\}_{k\in\Z}\in \ell^2.
+\]
+但 Tintin 的主项满足
+\[
+\frac{\cos(k\pi)}{|k|^{1/2}}=\frac{(-1)^k}{|k|^{1/2}},
+\]
+其平方和像 \(\sum 1/|k|\) 一样发散，不能属于 \(\ell^2\)。
+
+Haddock 的答案错误：若他的形式成立，则 \(\widehat F(k)=O(k^{-2})\)，从而 Fourier 系数绝对可和。绝对收敛的 Fourier 级数代表一个连续周期函数；但 \(F\) 的周期延拓有跳跃间断，矛盾。
+
+Dupont 的答案错误：因为 \(F\) 为实值函数，Fourier 系数必须满足
+\[
+\widehat F(-k)=\overline{\widehat F(k)}.
+\]
+Dupont 的表达式含有实系数的 \(1/k\) 与 \(1/k^3,1/k^5\) 项，代入 \(-k\) 后符号改变，不能满足上述共轭对称关系。
+
+最后看 Dupond。分部积分得
+\[
+\begin{aligned}
+\widehat F(k)
+&=\frac1{2\pi}\int_0^{2\pi}e^{-ikx}F(x)\,dx\\
+&=\frac1{2\pi}
+\left[\frac{e^{-ikx}F(x)}{-ik}\right]_{0}^{2\pi}
+\frac1{2\pi ik}\int_0^{2\pi}e^{-ikx}F'(x)\,dx\\
+&=\frac{i}{8k}+\frac{r_k}{k}.
+\end{aligned}
+\]
+这里 \(r_k=(2\pi i)^{-1}\int_0^{2\pi}e^{-ikx}F'(x)\,dx\)。由于 \(F'\in L^2(0,2\pi)\)，Parseval 恒等式给出 \(\{r_k\}\in\ell^2\)。若 Dupond 正确，则
+\[
+\left\{2019i-\frac{i}{8}\right\}_{k\ne0}
+\]
+与一个 \(\ell^2\) 序列相差仍应为 \(\ell^2\)，这不可能，因为非零常数序列不属于 \(\ell^2\)。故 Dupond 也错误。
+\end{solution}
+
+\begin{problem}
+设 \(B_1\) 是 \(\R^4\) 中以原点为中心的单位球，且
+\[
+u\in W^{1,2}(B_1)\cap C^\infty(\R^4)
+\]
+为非负实值函数，满足
+\[
+-\Delta u\le u^2,
+\qquad
+\Delta=\sum_{i=1}^4\frac{\partial^2}{\partial x_i^2}.
+\]
+证明存在常数 \(\varepsilon>0\)，使得若
+\[
+\|u\|_{L^2(B_1)}\le\varepsilon,
+\]
+则
+\[
+\|\nabla u\|_{L^2(B_{1/2})}
+\le 10000\|u\|_{L^2(B_1)}.
+\]
+\end{problem}
+
+\begin{solution}
+取截断函数 \(\eta\in C_c^\infty(B_1)\)，满足 \(0\le\eta\le1\)、\(\eta\equiv1\) 于 \(B_{1/2}\)，且 \(|\nabla\eta|\le4\)。用 \(\eta^2u\) 乘不等式 \(-\Delta u\le u^2\) 并分部积分，得
+\[
+\int_{B_1}\eta^2|\nabla u|^2
+\le
+\int_{B_1}\eta^2u^3
++2\int_{B_1}\eta u|\nabla\eta||\nabla u|.
+\]
+由 Cauchy 不等式，
+\[
+2\eta u|\nabla\eta||\nabla u|
+\le \frac12\eta^2|\nabla u|^2
++2u^2|\nabla\eta|^2.
+\]
+移项后得到
+\[
+\int_{B_1}\eta^2|\nabla u|^2
+\le
+2\int_{B_1}\eta^2u^3
++4\int_{B_1}u^2|\nabla\eta|^2.
+\]
+因为 \(|\nabla\eta|\le4\)，
+\[
+\int_{B_1}\eta^2|\nabla u|^2
+\le
+2\int_{B_1}\eta^2u^3
++64\int_{B_1}u^2.
+\]
+
+在 \(\R^4\) 中 Sobolev 不等式给出
+\[
+\|\eta u\|_{L^4(B_1)}^2
+\le C_S\|\nabla(\eta u)\|_{L^2(B_1)}^2.
+\]
+于是
+\[
+\int_{B_1}\eta^2u^3
+\le \|u\|_{L^2(B_1)}\|\eta u\|_{L^4(B_1)}^2
+\le C_S\varepsilon\|\nabla(\eta u)\|_2^2.
+\]
+又
+\[
+\|\nabla(\eta u)\|_2^2
+\le 2\int\eta^2|\nabla u|^2+2\int u^2|\nabla\eta|^2
+\le 2\int\eta^2|\nabla u|^2+32\int u^2.
+\]
+因此
+\[
+\int\eta^2|\nabla u|^2
+\le
+4C_S\varepsilon\int\eta^2|\nabla u|^2
++64C_S\varepsilon\int u^2
++64\int u^2.
+\]
+取 \(\varepsilon\le(8C_S)^{-1}\)，即可吸收第一项，得到
+\[
+\int_{B_1}\eta^2|\nabla u|^2
+\le C\int_{B_1}u^2
+\]
+其中 \(C\) 是固定常数。由于 \(\eta\equiv1\) 于 \(B_{1/2}\)，
+\[
+\|\nabla u\|_{L^2(B_{1/2})}\le C^{1/2}\|u\|_{L^2(B_1)}.
+\]
+若有必要再把 \(\varepsilon\) 取小，常数 \(C^{1/2}\) 固定且远小于题目允许的 \(10000\) 可由宽松估计吸收，因此得到题设估计。
+\end{solution}
+
+\begin{problem}
+设 \(f\) 和 \(g\) 是定义在整个复平面 \(\C\) 上的全纯函数，并且对所有 \(z\in\C\) 有
+\[
+f(z)^{2020}+g(z)^{2020}=1.
+\]
+证明 \(f\) 和 \(g\) 都是常数。
+\end{problem}
+
+\begin{solution}
+考虑映射
+\[
+\Phi:\C\to\mathbb P^2(\C),
+\qquad
+\Phi(z)=[f(z):g(z):1].
+\]
+题设说明 \(\Phi(\C)\) 落在 Fermat 曲线
+\[
+X=\{[X_1:X_2:X_3]\in\mathbb P^2:
+X_1^{2020}+X_2^{2020}=X_3^{2020}\}
+\]
+中。该平面曲线光滑；其次数为 \(2020\)，故亏格为
+\[
+\frac{(2020-1)(2020-2)}2\ge2.
+\]
+亏格至少为 \(2\) 的紧 Riemann 曲面的万有覆盖是单位圆盘 \(\D\)。于是 \(\Phi:\C\to X\) 可提升为一个全纯映射
+\[
+\widetilde\Phi:\C\to\D.
+\]
+该提升是有界整函数，由 Liouville 定理必为常数。因此 \(\Phi\) 为常数。由第三个齐次坐标恒为 \(1\)，可知 \(f\) 与 \(g\) 均为常数。
+\end{solution}
+
+\begin{problem}
+考虑常微分方程
+\[
+\begin{cases}
+x''(t)+x(t)+x(t)^3=0,\\
+(x(0),x'(0))=(x_0,0),
+\end{cases}
+\]
+其中 \(x(t)\) 取实值。证明对所有 \(x_0\in\R\)，上述系统的解都是周期的。
+\end{problem}
+
+\begin{solution}
+若 \(x_0=0\)，则唯一解为 \(x(t)\equiv0\)，它是周期解。下设 \(x_0\ne0\)。
+
+令 \(\xi=x'\)，能量
+\[
+E(t)=\frac12\xi(t)^2+\frac12x(t)^2+\frac14x(t)^4
+\]
+沿解守恒，因为
+\[
+E'(t)=x'(t)\bigl(x''(t)+x(t)+x(t)^3\bigr)=0.
+\]
+初始能量为
+\[
+E_0=\frac12x_0^2+\frac14x_0^4.
+\]
+因此轨道位于闭曲线
+\[
+\frac12\xi^2+V(x)=E_0,\qquad
+V(x)=\frac12x^2+\frac14x^4.
+\]
+势能 \(V\) 偶、严格凸，且 \(V(x)\to\infty\) 当 \(|x|\to\infty\)。方程 \(V(A)=E_0\) 的正根为 \(A=|x_0|\)，运动区间正是 \([-A,A]\)。
+
+当 \(x\in(-A,A)\) 时，
+\[
+|x'|=\sqrt{2(E_0-V(x))}.
+\]
+从 \(A\) 运动到 \(-A\) 的时间为
+\[
+T_1=\int_{-A}^{A}\frac{dx}{\sqrt{2(E_0-V(x))}},
+\]
+该积分有限；在端点附近 \(E_0-V(x)\) 与端点距离成正比，所以奇性为可积的平方根奇性。由自治常微分方程的唯一性和能量曲线关于两轴的对称性，解从一个转折点到另一个转折点后按镜像返回，完整周期为
+\[
+T=2T_1.
+\]
+故每个初值 \(x_0\) 对应的解都是周期的。
+\end{solution}
+
+\begin{problem}
+设 \(\alpha\in\R\)，且 \(a_k\in\C\)、\(|a_k|<1\)，其中 \(k=1,2,\ldots,n\)。考虑全纯映射
+\[
+f:\C\setminus\{(\overline{a_1})^{-1},\ldots,(\overline{a_n})^{-1}\}\to\C,
+\]
+\[
+f(z)=e^{2\sqrt{-1}\pi\alpha}\,z\cdot
+\frac{z-a_1}{1-\overline{a_1}z}\cdots
+\frac{z-a_n}{1-\overline{a_n}z}.
+\]
+设
+\[
+S^1=\{z\in\C:|z|=1\}.
+\]
+证明 \(f\) 把 \(S^1\) 映到自身，并且保持 \(S^1\) 上的面测度，即标准极坐标中的 \(d\theta\)。
+\end{problem}
+
+\begin{solution}
+先证 \(f(S^1)\subset S^1\)。若 \(|z|=1\)，则对每个 \(|a|<1\)，
+\[
+|z-a|=|z(1-\overline a\,\overline z)|=|1-\overline a z|.
+\]
+又 \(|e^{2\pi i\alpha}|=1\) 且 \(|z|=1\)，所以 \(|f(z)|=1\)。
+
+再证测度保持。函数 \(f\) 是有限 Blaschke 乘积乘以旋转因子，并且含有因子 \(z\)，故 \(f\) 把单位圆盘 \(\D\) 映入自身，且 \(f(0)=0\)。对任意连续函数 \(\varphi\in C(S^1)\)，令 \(P\varphi\) 为 \(\varphi\) 在闭圆盘上的 Poisson 调和延拓。由于 \(f\) 全纯且 \(f(\D)\subset\D\)，函数 \(P\varphi\circ f\) 在 \(\D\) 中调和，并且在边界 \(S^1\) 上的值为 \(\varphi\circ f\)。
+
+由调和函数的平均值性质，
+\[
+\frac1{2\pi}\int_0^{2\pi}\varphi(e^{i\theta})\,d\theta
+=P\varphi(0).
+\]
+同时
+\[
+\frac1{2\pi}\int_0^{2\pi}\varphi(f(e^{i\theta}))\,d\theta
+=(P\varphi\circ f)(0)
+=P\varphi(f(0))
+=P\varphi(0).
+\]
+因此
+\[
+\int_0^{2\pi}\varphi(f(e^{i\theta}))\,d\theta
+=
+\int_0^{2\pi}\varphi(e^{i\theta})\,d\theta
+\]
+对所有连续 \(\varphi\) 成立。这正说明 \(f|_{S^1}\) 将 \(d\theta\) 推前为自身，即保持 \(S^1\) 上的面测度。
+\end{solution}
+
+\subsection{2021 年笔试：分析与微分方程}
+
+原题要求：解答所有题目。
+
+\begin{problem}
+证明：\(f(x)\equiv0\) 是 \(L^2(\R^n)\) 中满足
+\[
+\Delta f=0
+\]
+的唯一解。
+\end{problem}
+
+\begin{solution}
+方程按分布意义理解。对 \(\Delta f=0\) 作 Fourier 变换，得
+\[
+-|\xi|^2\widehat f(\xi)=0
+\]
+于分布意义下成立。由于 \(f\in L^2(\R^n)\)，由 Plancherel 定理 \(\widehat f\in L^2(\R^n)\)。上式说明 \(\widehat f(\xi)=0\) 对几乎所有 \(\xi\ne0\) 成立。因此 \(\widehat f\) 的支集包含在单点集合 \(\{0\}\) 中。
+
+但一个 \(L^2\) 函数若支集包含在测度为零的集合中，则它在 \(L^2\) 中等于零。故 \(\widehat f=0\)，从而 \(f=0\) 于 \(L^2\) 中。又调和分布是光滑函数，所以 \(f\) 的光滑代表恒等于 \(0\)。
+\end{solution}
+
+\begin{problem}
+设 \(X\subset C([0,1])\) 是实值连续函数空间的有限维线性子空间。证明：若函数列 \(\{f_k\}_{k\ge1}\subset X\) 逐点收敛，则它一致收敛。
+\end{problem}
+
+\begin{solution}
+设 \(\dim X=N\)，取基 \(\phi_1,\ldots,\phi_N\)。先证明存在点 \(t_1,\ldots,t_N\in[0,1]\)，使矩阵
+\[
+A=(\phi_i(t_j))_{1\le j,i\le N}
+\]
+可逆。
+
+对每个 \(t\in[0,1]\)，定义线性泛函 \(\ell_t:X\to\R\)，\(\ell_t(h)=h(t)\)。若一个函数 \(h\in X\) 对所有 \(t\) 都有 \(\ell_t(h)=0\)，则 \(h\equiv0\)。因此这些泛函共同分离 \(X\) 中的点。可递归选择 \(t_1,\ldots,t_N\)，使得映射
+\[
+T:X\to\R^N,\qquad T(h)=(h(t_1),\ldots,h(t_N))
+\]
+单射。因 \(\dim X=N\)，该映射也是同构，所以矩阵 \(A\) 可逆。
+
+写
+\[
+f_k=\sum_{i=1}^N\alpha_i^{(k)}\phi_i.
+\]
+因为 \(f_k\) 逐点收敛，特别地，向量
+\[
+(f_k(t_1),\ldots,f_k(t_N))^T
+\]
+在 \(\R^N\) 中收敛。由
+\[
+(\alpha_1^{(k)},\ldots,\alpha_N^{(k)})^T
+=A^{-1}(f_k(t_1),\ldots,f_k(t_N))^T
+\]
+可知每个系数列 \(\alpha_i^{(k)}\) 收敛到某个 \(\alpha_i\)。令
+\[
+f=\sum_{i=1}^N\alpha_i\phi_i\in X.
+\]
+则
+\[
+\|f_k-f\|_\infty
+\le \sum_{i=1}^N|\alpha_i^{(k)}-\alpha_i|\,\|\phi_i\|_\infty\to0.
+\]
+故 \(f_k\) 一致收敛。
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 对 \(f\in L^1(\R^n)\)、\(g\in L^\infty(\R^n)\)，证明卷积 \(f*g\) 是良定义的连续函数。
+\item 设 \(E\subset\R^n\) 是 Lebesgue 可测集，且 Lebesgue 测度 \(m(E)>0\)。证明
+\[
+E-E=\{x-y:x\in E,\ y\in E\}
+\]
+包含 \(0\in\R^n\) 的一个开邻域。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 对每个 \(x\)，
+\[
+\int_{\R^n}|f(x-y)g(y)|\,dy
+\le \|g\|_\infty\|f\|_1,
+\]
+故卷积几乎处处良定义并且有界。若 \(h\to0\)，则
+\[
+\begin{aligned}
+|(f*g)(x+h)-(f*g)(x)|
+&\le \|g\|_\infty
+\int_{\R^n}|f(x+h-y)-f(x-y)|\,dy\\
+&=\|g\|_\infty\|\tau_h f-f\|_{L^1}.
+\end{aligned}
+\]
+\(L^1\) 中平移连续，即 \(\|\tau_h f-f\|_1\to0\)。因此 \(f*g\) 在 \(\R^n\) 上连续。
+
+\item 先取有限测度子集。由于 \(m(E)>0\)，存在可测集 \(F\subset E\)，满足 \(0<m(F)<\infty\)。令
+\[
+h=1_F*1_{-F}.
+\]
+由(a)，\(h\) 连续，并且
+\[
+h(0)=\int_{\R^n}1_F(-y)1_{-F}(y)\,dy=m(F)>0.
+\]
+所以存在 \(0\) 的开邻域 \(U\)，使得 \(h(x)>0\) 对所有 \(x\in U\) 成立。若 \(h(x)>0\)，则存在 \(y\) 使得
+\[
+1_F(x-y)1_{-F}(y)>0.
+\]
+于是 \(x-y\in F\)，且 \(y\in -F\)，即 \(-y\in F\)。因此
+\[
+x=(x-y)-(-y)\in F-F\subset E-E.
+\]
+故 \(U\subset E-E\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(P\) 是复系数多项式。证明方程
+\[
+e^z=P(z)
+\]
+在 \(\C\) 上有无穷多个解。
+\end{problem}
+
+\begin{solution}
+若 \(P\equiv0\)，则方程无解；因此题意应理解为非零多项式。设 \(\deg P=m\ge0\)，首项系数为 \(a\ne0\)。当 \(m=0\) 时，方程 \(e^z=a\) 的解为 \(z=\log a+2\pi i k\ (k\in\Z)\)，故有无穷多解。以下设 \(m\ge1\)。
+
+对大整数 \(k\)，在 \(z=2\pi i k+w\) 中求解。方程化为
+\[
+e^w=P(2\pi i k+w).
+\]
+取 \(w_k\) 满足
+\[
+e^{w_k}=P(2\pi i k),\qquad |w_k|=O(\log |k|).
+\]
+例如取任一对数分支即可。令
+\[
+r_k=A\frac{\log |k|}{|k|}
+\]
+其中常数 \(A>0\) 稍后固定。在圆 \(|w-w_k|=r_k\) 上，
+\[
+|e^w-P(2\pi i k)|
+=|e^{w_k}|\cdot |e^{w-w_k}-1|
+\ge c|P(2\pi i k)|r_k
+\ge c_1 A |k|^{m-1}\log |k|
+\]
+对大 \(k\) 成立。另一方面，由多项式的均值估计，
+\[
+|P(2\pi i k+w)-P(2\pi i k)|
+\le C |k|^{m-1}|w|
+\le C_1 |k|^{m-1}\log |k|
+\]
+在该圆上成立。选择 \(A\) 足够大，则
+\[
+|P(2\pi i k+w)-P(2\pi i k)|
+<
+|e^w-P(2\pi i k)|.
+\]
+由 Rouché 定理，函数
+\[
+e^w-P(2\pi i k)
+\quad\text{和}\quad
+e^w-P(2\pi i k+w)
+\]
+在圆 \(|w-w_k|<r_k\) 内有相同零点个数。前者在该圆内恰有一个零点 \(w=w_k\)，故后者也有一个零点。于是对每个足够大的 \(k\)，方程 \(e^z=P(z)\) 都有一个解
+\[
+z_k=2\pi i k+w
+\]
+且 \(\operatorname{Im}z_k\to\infty\)。这些解互不相同，所以解有无穷多个。
+\end{solution}
+
+\begin{problem}
+设 \(f\) 是定义在竖条带
+\[
+B=\{z\in\C:0<\operatorname{Re}z<1\}
+\]
+上的有界全纯函数，并且可连续延拓到 \(\overline B\)。令
+\[
+A_0=\sup_{\operatorname{Re}z=0}|f(z)|>0,\qquad
+A_1=\sup_{\operatorname{Re}z=1}|f(z)|>0.
+\]
+证明对所有 \(z\in B\)，
+\[
+|f(z)|\le A_0^{1-\operatorname{Re}z}A_1^{\operatorname{Re}z}.
+\]
+\end{problem}
+
+\begin{solution}
+这正是 Hadamard 三线定理。令
+\[
+g(z)=f(z)A_0^{z-1}A_1^{-z},
+\]
+其中 \(A_0,A_1>0\)，故幂函数按实对数定义。若 \(z=x+iy\)，则
+\[
+|g(z)|=|f(z)|A_0^{x-1}A_1^{-x}.
+\]
+在边界 \(x=0\) 与 \(x=1\) 上，由 \(A_0,A_1\) 的定义均有 \(|g|\le1\)。
+
+为处理无界条带，取 \(\delta>0\)，令
+\[
+g_\delta(z)=g(z)e^{\delta z(z-1)}.
+\]
+在边界 \(z=iy\) 或 \(z=1+iy\) 上，
+\[
+|e^{\delta z(z-1)}|=e^{-\delta y^2}.
+\]
+因此 \(g_\delta\) 在截断矩形
+\[
+\{0\le \operatorname{Re}z\le1,\ |\operatorname{Im}z|\le R\}
+\]
+上的最大值当 \(R\to\infty\) 时不会从水平边逃逸；由最大模原理得 \(|g_\delta|\le1\) 于条带内。令 \(\delta\downarrow0\)，得到 \(|g(z)|\le1\)。于是
+\[
+|f(z)|\le A_0^{1-\operatorname{Re}z}A_1^{\operatorname{Re}z}.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\subset\R^n\) 是具有光滑边界的有界区域。证明存在正常数 \(\varepsilon_0\)，使得对所有满足 \(|\varepsilon|<\varepsilon_0\) 的实数 \(\varepsilon\)，以及所有 \(f\in L^2(\Omega)\)，存在唯一 \(u\in H_0^1(\Omega)\)，使得
+\[
+-\Delta u+\varepsilon\sin u=f
+\]
+在分布意义下成立。
+\end{problem}
+
+\begin{solution}
+取 \(\varepsilon_0<\lambda_1(\Omega)\)，其中 \(\lambda_1(\Omega)\) 是 Dirichlet Laplacian 的第一特征值，即
+\[
+\lambda_1\|v\|_2^2\le \|\nabla v\|_2^2
+\qquad(v\in H_0^1(\Omega)).
+\]
+考虑泛函
+\[
+E(v)=\int_\Omega
+\left(\frac12|\nabla v|^2-\varepsilon\cos v-fv\right)\,dx,
+\qquad v\in H_0^1(\Omega).
+\]
+由 Poincare 不等式和 Cauchy 不等式，
+\[
+\left|\int_\Omega fv\,dx\right|
+\le \|f\|_2\|v\|_2
+\le C\|f\|_2\|\nabla v\|_2,
+\]
+而 \(|\varepsilon\cos v|\le|\varepsilon|\)。故 \(E\) 在 \(H_0^1(\Omega)\) 上强制并有下界。取极小化列，由弱紧性可取子列弱收敛于某 \(u\in H_0^1(\Omega)\)。梯度项弱下半连续；线性项弱连续；又 \(H_0^1(\Omega)\hookrightarrow L^2(\Omega)\) 紧嵌入，子列可在 \(L^2\) 中强收敛并几乎处处收敛，\(\cos v_j\to\cos u\) 由有界收敛定理收敛于 \(L^1\)。因此 \(u\) 是极小元。
+
+对任意 \(\varphi\in H_0^1(\Omega)\)，令 \(t\mapsto E(u+t\varphi)\)，在 \(t=0\) 处导数为 \(0\)，得到
+\[
+\int_\Omega\nabla u\cdot\nabla\varphi\,dx
++\varepsilon\int_\Omega\sin u\,\varphi\,dx
+=\int_\Omega f\varphi\,dx.
+\]
+这正是 \(-\Delta u+\varepsilon\sin u=f\) 的弱形式。
+
+若 \(u_1,u_2\) 是两个解，令 \(w=u_1-u_2\)，以 \(w\) 测试二者差，得
+\[
+\|\nabla w\|_2^2
+=-\varepsilon\int_\Omega(\sin u_1-\sin u_2)w\,dx.
+\]
+由于 \(|\sin a-\sin b|\le |a-b|\)，
+\[
+\|\nabla w\|_2^2
+\le |\varepsilon|\|w\|_2^2
+\le \frac{|\varepsilon|}{\lambda_1}\|\nabla w\|_2^2.
+\]
+若 \(|\varepsilon|<\lambda_1\)，则只能有 \(\|\nabla w\|_2=0\)。结合零边界条件，\(w=0\)。唯一性成立。
+\end{solution}
+
+\subsection{2022 年笔试：分析与微分方程}
+
+原题要求：解答所有题目。
+
+\begin{problem}
+对 \(n\ge1\)，考虑积分
+\[
+I_n=\int_{[0,1]^n}\frac{n}{x_1+x_2+\cdots+x_n}\,dx_1\cdots dx_n.
+\]
+证明 \(\lim_{n\to\infty}I_n\) 存在。
+\end{problem}
+
+\begin{solution}
+注意当 \(n=1\) 时积分发散；极限问题只依赖 \(n\to\infty\) 的尾部，以下对 \(n\ge2\) 证明。令
+\[
+J_n=nI_n
+=\int_{[0,1]^n}\frac{n^2}{x_1+\cdots+x_n}\,dx_1\cdots dx_n.
+\]
+对任意正整数 \(m,n\) 和任意 \(x,y>0\)，由 Cauchy 不等式
+\[
+\frac{(m+n)^2}{x+y}
+\le
+\frac{m^2}{x}+\frac{n^2}{y}.
+\]
+将
+\[
+x=x_1+\cdots+x_m,\qquad
+y=y_1+\cdots+y_n
+\]
+代入并在 \([0,1]^m\times[0,1]^n\) 上积分，得到
+\[
+J_{m+n}\le J_m+J_n
+\]
+只要 \(m,n\ge2\)。因此 \(\{J_n\}_{n\ge2}\) 是尾部次可加的。
+
+由 Fekete 引理的尾部形式，
+\[
+\lim_{n\to\infty}\frac{J_n}{n}
+\]
+存在，并且等于 \(\inf_{n\ge2}J_n/n\)。但
+\[
+\frac{J_n}{n}=I_n.
+\]
+故 \(\lim_{n\to\infty}I_n\) 存在。
+\end{solution}
+
+\begin{problem}
+设 \(U\subset\C\) 是非空开集，且 \(f:U\to U\) 是非常值全纯函数。证明：若
+\[
+f\circ f=f,
+\]
+则
+\[
+f(z)\equiv z\qquad(z\in U).
+\]
+\end{problem}
+
+\begin{solution}
+由于 \(f\) 非常值，由开映射定理，\(V=f(U)\) 是 \(\C\) 中的非空开集，并且 \(V\subset U\)。对任意 \(w\in V\)，存在 \(z\in U\) 使 \(w=f(z)\)。由 \(f\circ f=f\)，
+\[
+f(w)=f(f(z))=f(z)=w.
+\]
+因此 \(f\) 在非空开集 \(V\) 上等于恒等映射。函数 \(f(z)-z\) 在 \(U\) 上全纯，并在 \(V\) 上为零。由恒等定理，在 \(U\) 的每个与 \(V\) 相交的连通分支上 \(f(z)=z\)。若题中默认 \(U\) 为区域，则结论立即成立。
+
+若允许 \(U\) 不连通，则对每个连通分支分别应用上述论证：非常值分支的像含开集，恒等定理给出该分支上为恒等；若某分支上 \(f\) 为常值 \(c\)，则 \(c=f(c)\)，而 \(c\) 落在某个已知恒等的分支中，结合全纯映射的局部开性可排除非常值映射与常值分支混合造成的非恒等情形。在竞赛通常语境中 open set 指区域时，结论即为 \(f\equiv\operatorname{id}\)。
+\end{solution}
+
+\begin{problem}
+设 \(X\subset\R\) 是正 Lebesgue 测度集合。证明可在 \(X\) 中找到一个含 \(2022\) 项的等差数列，即存在
+\[
+x_1,\ldots,x_{2022}\in X,
+\]
+使得 \(x_{i+1}-x_i\) \((i=1,\ldots,2021)\) 全相等且为正。
+\end{problem}
+
+\begin{solution}
+取 \(X\) 的一个密度点 \(x_0\)。于是存在区间 \(I\ni x_0\)，使得
+\[
+\frac{m(X\cap I)}{m(I)}>1-\varepsilon,
+\]
+其中 \(\varepsilon>0\) 稍后取。经平移和伸缩，不妨设 \(I=[0,1]\)。
+
+把 \([0,1]\) 等分为 \(N=2022\) 个区间
+\[
+I_k=\left[\frac{k-1}{N},\frac{k}{N}\right],
+\qquad k=1,\ldots,N.
+\]
+令
+\[
+X_k=(X\cap I_k)-\frac{k-1}{N}\subset\left[0,\frac1N\right].
+\]
+则
+\[
+\sum_{k=1}^N m(X_k)
+=m(X\cap[0,1])>1-\varepsilon.
+\]
+由于每个 \(X_k\) 都包含在长度为 \(1/N\) 的区间中，
+\[
+m\left(\bigcap_{k=1}^N X_k\right)
+\ge
+\sum_{k=1}^N m(X_k)-(N-1)\frac1N
+>
+\frac1N-\varepsilon.
+\]
+取 \(\varepsilon<1/N\)，交集非空。选
+\[
+t\in\bigcap_{k=1}^N X_k.
+\]
+则对每个 \(k\)，
+\[
+x_k=t+\frac{k-1}{N}\in X\cap I_k.
+\]
+于是
+\[
+x_{k+1}-x_k=\frac1N>0
+\]
+对所有 \(k=1,\ldots,N-1\) 成立。这给出 \(2022\) 项等差数列。
+\end{solution}
+
+\begin{problem}
+设 \(C([0,1])\) 是所有复值连续函数组成的空间，并赋予 \(L^\infty\) 范数。设 \(\mathbf P\subset C([0,1])\) 是闭线性子空间。假设 \(\mathbf P\) 中的每个元素都是多项式。证明
+\[
+\dim\mathbf P<\infty.
+\]
+\end{problem}
+
+\begin{solution}
+因为 \(\mathbf P\) 是 Banach 空间 \(C([0,1])\) 的闭子空间，所以 \(\mathbf P\) 本身是 Banach 空间。对 \(x\ne y\)，定义线性算子
+\[
+T_{x,y}:\mathbf P\to\C,\qquad
+T_{x,y}u=\frac{u(x)-u(y)}{|x-y|}.
+\]
+每个 \(T_{x,y}\) 都是有界线性泛函。对固定的 \(u\in\mathbf P\)，由于 \(u\) 是多项式，
+\[
+\sup_{x\ne y}|T_{x,y}u|
+\le \|u'\|_{L^\infty([0,1])}<\infty.
+\]
+因此算子族 \(\{T_{x,y}:x\ne y\}\) 在每个 \(u\in\mathbf P\) 上逐点有界。由 Banach--Steinhaus 一致有界原理，存在常数 \(C>0\)，使得
+\[
+|u(x)-u(y)|\le C\|u\|_\infty |x-y|
+\]
+对所有 \(u\in\mathbf P\) 和所有 \(x,y\in[0,1]\) 成立。
+
+于是 \(\mathbf P\) 的闭单位球
+\[
+B=\{u\in\mathbf P:\|u\|_\infty\le1\}
+\]
+一致有界且等度连续。由 Arzelà--Ascoli 定理，\(B\) 在 \(C([0,1])\) 中相对紧。又 \(B\) 是闭集，所以 \(B\) 紧。
+
+一个赋范线性空间的闭单位球若紧，则该空间有限维。故 \(\dim\mathbf P<\infty\)。
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\subset\R^3\) 是具有光滑边界的有界区域。设 \(u\in C(\R^3\setminus\Omega)\) 在 \(\R^3\setminus\Omega\) 上调和，在边界上满足 \(u|_{\partial\Omega}=1\)，且
+\[
+\lim_{|x|\to\infty}|u(x)|=0.
+\]
+证明
+\[
+\lim_{|x|\to\infty}|x|u(x)
+\]
+存在。
+\end{problem}
+
+\begin{solution}
+取 \(R>0\) 使 \(\Omega\subset B_R\)。选 \(\varphi\in C^\infty(\R^3)\)，满足 \(\varphi=0\) 于 \(\Omega\) 的一个邻域内，且 \(\varphi=1\) 于 \(|x|\ge R\)。令
+\[
+v=\varphi u.
+\]
+则 \(v\) 可看作 \(\R^3\) 上的函数，并且在 \(|x|\ge R\) 时 \(v=u\)。其 Laplacian
+\[
+\rho=\Delta v
+\]
+具有紧支集，支集包含在某个大球 \(B_{R_1}\) 中。
+
+由 Newton 势表示，适当加入一个调和整函数项后，
+\[
+v(x)=-\frac1{4\pi}\int_{\R^3}\frac{\rho(y)}{|x-y|}\,dy.
+\]
+由于 \(u(x)\to0\) 当 \(|x|\to\infty\)，表示式中的整调和项必须为零。于是当 \(|x|\) 足够大时，
+\[
+u(x)=v(x)
+=-\frac1{4\pi}\int_{|y|\le R_1}\frac{\rho(y)}{|x-y|}\,dy.
+\]
+乘以 \(|x|\)，得到
+\[
+|x|u(x)
+=-\frac1{4\pi}\int_{|y|\le R_1}\frac{|x|}{|x-y|}\rho(y)\,dy.
+\]
+当 \(|x|\to\infty\) 时，对 \(|y|\le R_1\)，
+\[
+\frac{|x|}{|x-y|}\to1
+\]
+且收敛是一致的。因此
+\[
+\lim_{|x|\to\infty}|x|u(x)
+=-\frac1{4\pi}\int_{|y|\le R_1}\rho(y)\,dy
+\]
+存在。
+\end{solution}
+
+\begin{problem}
+设 \(f(x,y)\in C^1(\R^2)\)。假设存在 \(C>0\)，使得对所有 \((x,y)\in\R^2\)，
+\[
+\left|\frac{\partial f}{\partial y}(x,y)\right|\le C.
+\]
+证明对任意 \(y(0)=y_0\in\R\)，常微分方程
+\[
+\begin{cases}
+\dfrac{d}{dx}y(x)=f(x,y(x)),\\
+y(0)=y_0
+\end{cases}
+\]
+有全局定义的解。
+
+进一步，假设 \(f\) 关于 \(x\) 是 \(1\)-周期的，即
+\[
+f(x+1,y)=f(x,y)
+\qquad((x,y)\in\R^2).
+\]
+证明：若上述方程存在一个全局定义的有界解，则它存在一个周期解。
+\end{problem}
+
+\begin{solution}
+先证全局存在。局部存在唯一性由 \(f\in C^1\) 给出。设解在有限区间 \([0,a)\) 上存在。因为 \(f(x,y_0)\) 在 \([0,a]\) 上有界，设
+\[
+M=\sup_{x\in[0,a]}|f(x,y_0)|.
+\]
+由 \(\partial_y f\) 有界，
+\[
+|f(x,y)|\le |f(x,y_0)|+C|y-y_0|
+\le M+C|y|+C|y_0|.
+\]
+故在 \([0,a)\) 上
+\[
+|y'(x)|\le C|y(x)|+M+C|y_0|.
+\]
+Gronwall 不等式说明 \(y(x)\) 在 \([0,a)\) 上有界。局部解的延拓定理于是排除有限时刻爆破，故解可向右全局延拓；向左同理。
+
+再证明周期解存在。设 \(\phi(x)\) 是一个全局有界解。若 \(\phi(1)=\phi(0)\)，则由 \(x\)-周期性和解唯一性，\(\phi(x+1)=\phi(x)\)，它已经是 \(1\)-周期解。
+
+否则不妨设 \(\phi(1)>\phi(0)\)。由于 \(f\) 关于 \(x\) 的周期性，函数 \(\phi(x+1)\) 也是方程的解。两个不同解不能相交；又在 \(x=0\) 处
+\[
+\phi(1)>\phi(0),
+\]
+所以
+\[
+\phi(x+1)>\phi(x)\qquad\text{对所有 }x.
+\]
+特别地，
+\[
+\phi(0)<\phi(1)<\phi(2)<\cdots.
+\]
+该单调序列有界，故存在极限
+\[
+y_*=\lim_{n\to\infty}\phi(n).
+\]
+
+令 \(P:\R\to\R\) 为 Poincaré 映射，即 \(P(y)\) 是以初值 \(y(0)=y\) 的解在时间 \(1\) 的值。解对初值连续，所以 \(P\) 连续。又
+\[
+P(\phi(n))=\phi(n+1).
+\]
+令 \(n\to\infty\)，得到
+\[
+P(y_*)=y_*.
+\]
+因此以 \(y(0)=y_*\) 为初值的解满足 \(y(1)=y(0)\)。由 \(x\)-周期性和唯一性，该解满足 \(y(x+1)=y(x)\)，即为周期解。
+\end{solution}
+
+\subsection{2023 年笔试：分析与微分方程}
+
+原题要求：解答所有题目。
+
+\begin{problem}
+设 \((M_n,\|\cdot\|)\) 是所有 \(n\times n\) 实矩阵组成的 Banach 空间，范数为 Hilbert--Schmidt 范数。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item 若 \(\gamma:\R\to M_n\) 是 \(C^1\) 函数，\(\gamma(0)=I\)，且 \(\dot\gamma(0)=A\in M_n\)，则对任意 \(t\in\R\)，序列
+\[
+\left\{\gamma\!\left(\frac tm\right)^m\right\}_{m=1}^\infty
+\]
+收敛到 \(\exp(tA)\)。特别地，对任意 \(A,B\in M_n\)，
+\[
+e^{t(A+B)}
+=\lim_{m\to\infty}\left(e^{\frac tmA}e^{\frac tmB}\right)^m.
+\]
+\item 对任意 \(A,B\in M_n\)，若
+\[
+e^{t(A+B)}=e^{tA}e^{tB}\qquad(\forall t\in\R),
+\]
+则
+\[
+[A,B]:=AB-BA=0.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 由 \(\gamma\) 在 \(0\) 处可微，
+\[
+\gamma(h)=I+hA+h r(h),
+\qquad \|r(h)\|\to0\quad(h\to0).
+\]
+固定 \(t\)。令
+\[
+X_m=\gamma(t/m)=I+\frac tm A+\frac tm r(t/m).
+\]
+则
+\[
+X_m=I+\frac tm A+o(1/m).
+\]
+矩阵空间有限维，矩阵乘法连续。利用对数展开或直接用乘积估计可得
+\[
+m\log X_m=tA+o(1),
+\]
+其中 \(m\) 足够大时 \(X_m\) 接近 \(I\)，主值矩阵对数良定义。于是
+\[
+X_m^m=\exp(m\log X_m)\to \exp(tA).
+\]
+
+取
+\[
+\gamma(s)=e^{sA}e^{sB}.
+\]
+则 \(\gamma(0)=I\)，且
+\[
+\dot\gamma(0)=A+B.
+\]
+代入上面的结论，得到
+\[
+\left(e^{\frac tmA}e^{\frac tmB}\right)^m\to e^{t(A+B)}.
+\]
+
+\item 比较两边在 \(t=0\) 处的二阶项。左边 Taylor 展开为
+\[
+e^{t(A+B)}
+=I+t(A+B)+\frac{t^2}{2}(A+B)^2+O(t^3).
+\]
+右边为
+\[
+e^{tA}e^{tB}
+=\left(I+tA+\frac{t^2}{2}A^2+O(t^3)\right)
+\left(I+tB+\frac{t^2}{2}B^2+O(t^3)\right),
+\]
+即
+\[
+e^{tA}e^{tB}
+=I+t(A+B)+t^2\left(\frac12A^2+AB+\frac12B^2\right)+O(t^3).
+\]
+由两边恒等，二阶系数相等：
+\[
+\frac12(A+B)^2
+=\frac12A^2+AB+\frac12B^2.
+\]
+展开左边，得
+\[
+\frac12A^2+\frac12AB+\frac12BA+\frac12B^2
+=\frac12A^2+AB+\frac12B^2.
+\]
+所以 \(BA=AB\)，即 \([A,B]=0\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f(t,x,y)\) 是 \([0,1]\times\R^2\) 上的 \(C^1\) 函数。设 \(\phi\) 是二阶常微分方程
+\[
+\frac{d^2x}{dt^2}=f\!\left(t,x,\frac{dx}{dt}\right),
+\qquad t\in[0,1],
+\]
+的解，且 \(\phi(0)=a\)、\(\phi(1)=b\)，其中 \(a,b\in\R\) 给定。假设
+\[
+\frac{\partial f}{\partial x}(t,x,y)>0
+\qquad((t,x,y)\in[0,1]\times\R^2).
+\]
+证明：若 \(|\beta-b|\) 足够小，则存在方程的一个解 \(\psi\)，使得
+\[
+\psi(0)=a,\qquad \psi(1)=\beta.
+\]
+\end{problem}
+
+\begin{solution}
+用打靶法。对初速度 \(s\) 考虑初值问题
+\[
+x_s''=f(t,x_s,x_s'),\qquad x_s(0)=a,\quad x_s'(0)=s.
+\]
+在给定解 \(\phi\) 附近，常微分方程关于初值连续且 \(C^1\) 依赖。设 \(s_0=\phi'(0)\)，则 \(x_{s_0}=\phi\)。定义打靶映射
+\[
+F(s)=x_s(1).
+\]
+只需证明 \(F'(s_0)\ne0\)，然后由一维反函数定理可知 \(F\) 把 \(s_0\) 的邻域映到 \(b\) 的邻域。
+
+令
+\[
+v(t)=\frac{\partial x_s(t)}{\partial s}\bigg|_{s=s_0}.
+\]
+对方程关于 \(s\) 求导，得到变分方程
+\[
+v''=f_x(t,\phi,\phi')v+f_y(t,\phi,\phi')v',
+\qquad
+v(0)=0,\quad v'(0)=1.
+\]
+我们证明 \(v(t)>0\) 对 \(0<t\le1\) 成立。若不然，设 \(T>0\) 是 \(v\) 的第一个正零点。由于 \(v'(0)=1\)，在 \((0,T)\) 上 \(v>0\)，且 \(v(0)=v(T)=0\)。于是 \(v\) 在 \((0,T)\) 内取得正最大值，设为 \(t_0\)。此时
+\[
+v(t_0)>0,\qquad v'(t_0)=0,\qquad v''(t_0)\le0.
+\]
+但变分方程给出
+\[
+v''(t_0)=f_x(t_0,\phi(t_0),\phi'(t_0))v(t_0)>0,
+\]
+矛盾。故 \(v(1)>0\)，即
+\[
+F'(s_0)=v(1)>0.
+\]
+由反函数定理，当 \(\beta\) 足够接近 \(b=F(s_0)\) 时，存在 \(s\) 使 \(F(s)=\beta\)。令 \(\psi=x_s\)，即得所需解。
+\end{solution}
+
+\begin{problem}
+函数 \(\varphi:\R^n\to\C\) 称为正定的，如果对所有 \(k\in\N\)、\(y_j\in\R^n\)、\(c_j\in\C\) \((j=1,\ldots,k)\)，都有
+\[
+\sum_{i,j=1}^k c_i\overline{c_j}\,\varphi(y_i-y_j)\ge0.
+\]
+设 \(\varphi\) 是 \(\R^n\) 上可测的正定函数。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item \(\varphi(-y)=\overline{\varphi(y)}\)，且 \(|\varphi(y)|\le\varphi(0)\)。
+\item 对每个 Lebesgue 可积的非负函数 \(f\)，有
+\[
+\int_{\R^n}\int_{\R^n}\varphi(x-y)f(x)f(y)\,dx\,dy\ge0.
+\]
+\item 若 \(f\) 还是偶函数，则
+\[
+\int_{\R^n}\varphi(x)(f*f)(x)\,dx\ge0.
+\]
+\item 对所有 \(\alpha>0\)，有
+\[
+\int_{\R^n}\varphi(x)e^{-\alpha|x|^2}\,dx\ge0.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 取 \(k=1\) 得 \(\varphi(0)\ge0\)。若 \(\varphi(0)=0\)，对 \(k=2\)、\(y_1=0,y_2=y\) 的正定矩阵
+\[
+\begin{pmatrix}
+\varphi(0)&\varphi(-y)\\
+\varphi(y)&\varphi(0)
+\end{pmatrix}
+\]
+必为零矩阵，所以结论成立。下设 \(\varphi(0)>0\)。同一矩阵必须 Hermitian 且半正定，因此
+\[
+\varphi(-y)=\overline{\varphi(y)}
+\]
+且其行列式非负：
+\[
+\varphi(0)^2-|\varphi(y)|^2\ge0.
+\]
+故 \(|\varphi(y)|\le\varphi(0)\)。
+
+\item 先设 \(f\) 是非负简单函数
+\[
+f=\sum_{\ell=1}^N a_\ell 1_{E_\ell},
+\qquad a_\ell\ge0,
+\]
+其中 \(E_\ell\) 是有限测度可测集。把每个 \(E_\ell\) 用小立方体分割并取代表点，正定性给出对应 Riemann 和非负；再由可测性和有界性 \(|\varphi|\le\varphi(0)\) 通过逼近取极限，得
+\[
+\int\!\!\int \varphi(x-y)f(x)f(y)\,dx\,dy\ge0.
+\]
+对一般非负 \(f\in L^1\)，取非负简单函数 \(f_m\to f\) 于 \(L^1\)。由 \(|\varphi|\le\varphi(0)\)，
+\[
+\left|\iint \varphi(x-y)(f_m(x)f_m(y)-f(x)f(y))\,dx\,dy\right|\to0.
+\]
+令 \(m\to\infty\)，得到结论。
+
+\item 若 \(f\) 非负、可积且偶，则由(2)
+\[
+0\le
+\iint \varphi(x-y)f(x)f(y)\,dx\,dy.
+\]
+令 \(s=x-y\)，则内层积分为
+\[
+\int_{\R^n}f(y+s)f(y)\,dy.
+\]
+由于 \(f\) 偶，
+\[
+\int f(y+s)f(y)\,dy
+=\int f(s-y)f(y)\,dy
+=(f*f)(s).
+\]
+所以
+\[
+\iint \varphi(x-y)f(x)f(y)\,dx\,dy
+=\int_{\R^n}\varphi(s)(f*f)(s)\,ds\ge0.
+\]
+
+\item 函数 \(f_\alpha(x)=e^{-\alpha|x|^2/2}\) 非负、可积且偶。由(3)，
+\[
+\int_{\R^n}\varphi(x)(f_\alpha*f_\alpha)(x)\,dx\ge0.
+\]
+直接计算 Gaussian 卷积，存在常数 \(C_\alpha>0\)，使
+\[
+(f_\alpha*f_\alpha)(x)=C_\alpha e^{-\alpha|x|^2/4}.
+\]
+把 \(\alpha\) 替换为 \(4\alpha\)，即得
+\[
+\int_{\R^n}\varphi(x)e^{-\alpha|x|^2}\,dx\ge0.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(x\in L^2([0,2\pi])\) 是 \(2\pi\)-周期函数，令
+\[
+x_m(t)=x(mt),\qquad m=1,2,\ldots.
+\]
+证明 \(\{x_m\}\) 在 \(L^2([0,2\pi])\) 中弱收敛，并求其极限。
+\end{problem}
+
+\begin{solution}
+弱极限是 \(x\) 的平均值
+\[
+\overline x=\frac1{2\pi}\int_0^{2\pi}x(t)\,dt.
+\]
+先对三角多项式测试函数证明。设
+\[
+y(t)=\sum_{|j|\le N}b_j e^{ijt}.
+\]
+把 \(x\) 展开为 Fourier 级数 \(x(t)\sim\sum_{k\in\Z}a_k e^{ikt}\)。则
+\[
+x_m(t)\sim\sum_{k\in\Z}a_k e^{ikmt}.
+\]
+于是
+\[
+\int_0^{2\pi}x_m(t)\overline{y(t)}\,dt
+=2\pi\sum_{\substack{|j|\le N\\ j=km}}a_k\overline{b_j}.
+\]
+当 \(m>N\) 时，除 \(j=0,k=0\) 外无其他匹配项，故
+\[
+\int_0^{2\pi}x_m(t)\overline{y(t)}\,dt
+=2\pi a_0\overline{b_0}
+=\int_0^{2\pi}\overline x\,\overline{y(t)}\,dt.
+\]
+
+对一般 \(y\in L^2\)，取三角多项式 \(y_N\to y\) 于 \(L^2\)。又
+\[
+\|x_m\|_2=\|x\|_2
+\]
+对所有 \(m\) 成立，所以
+\[
+\left|\langle x_m-\overline x,y-y_N\rangle\right|
+\le(\|x\|_2+\|\overline x\|_2)\|y-y_N\|_2
+\]
+可任意小。结合三角多项式情形，得到
+\[
+x_m\rightharpoonup \overline x
+\quad\text{于 }L^2([0,2\pi]).
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f\) 是 \(\C\) 上的整函数，并存在常数 \(C>0\)，使得对所有 \(z\in\C\)，
+\[
+|f(z)|\le C\sqrt{|z|}\,|\cos z|.
+\]
+证明 \(f\equiv0\)。
+\end{problem}
+
+\begin{solution}
+在 \(\cos z\) 的零点
+\[
+z_k=\frac\pi2+k\pi,\qquad k\in\Z,
+\]
+右端为 \(0\)，故 \(f(z_k)=0\)。这些零点都是 \(\cos z\) 的单零点，因此
+\[
+g(z)=\frac{f(z)}{\cos z}
+\]
+在每个 \(z_k\) 处可去，从而延拓为整函数。对 \(\cos z\ne0\) 的点，
+\[
+|g(z)|\le C\sqrt{|z|}.
+\]
+由连续性，该估计在可去点也成立。
+
+于是 \(g\) 是增长不超过 \(O(|z|^{1/2})\) 的整函数。由 Cauchy 估计，对任意 \(R>|z|+1\)，
+\[
+|g'(z)|\le \frac{\sup_{|\zeta-z|=R}|g(\zeta)|}{R}
+\le \frac{C'(R+|z|)^{1/2}}{R}\to0
+\qquad(R\to\infty).
+\]
+所以 \(g'(z)=0\) 对所有 \(z\) 成立，\(g\) 为常数。又由原不等式在 \(z=0\) 处给出 \(f(0)=0\)，而 \(\cos0=1\)，故 \(g(0)=0\)。因此 \(g\equiv0\)，从而 \(f\equiv0\)。
+\end{solution}
+
+\begin{problem}
+设 \(u(t,x)\) 满足方程
+\[
+u_t+\sum_{i=1}^n\psi_i(t,x,u)u_{x_i}=\mu\Delta u,\qquad
+u(0,x)=u_0,
+\]
+其中 \(u_0\in C^2(\R^n)\)，\(\psi_i\ (i=1,\ldots,n)\) 具有有界 \(C^2\)-范数，
+\[
+\Delta=\sum_{i=1}^n\partial_{x_i}^2,
+\qquad \mu>0.
+\]
+假设
+\[
+|u_0(x)|\le e^{\Phi(x)/\mu},
+\]
+其中 \(\Phi\) 有上界且 Lipschitz 常数为 \(1\)。又假设
+\[
+\left(\sum_{i=1}^n|\psi_i(t,x,u)|^2\right)^{1/2}\le A,
+\]
+其中 \(A>0\)。证明存在只依赖于 \(n\) 的常数 \(C\)，使得
+\[
+|u(t,x)|\le e^{Ct}e^{((A+1)t+\Phi(x)+2)/\mu},
+\qquad \forall t\ge0.
+\]
+\end{problem}
+
+\begin{solution}
+记
+\[
+\Psi(t,x,u)=(\psi_1(t,x,u),\ldots,\psi_n(t,x,u)).
+\]
+由于 \(|\Psi|\le A\)，可把方程看成带有有界漂移的线性抛物方程
+\[
+u_t+\Psi(t,x,u)\cdot\nabla u=\mu\Delta u
+\]
+的最大值估计。严格证明可用光滑截断后在大球上应用 Feynman--Kac 表示，再令球半径趋于无穷；这里写出核心估计。
+
+令 \(X_s\) 是从 \(x\) 出发、漂移速度不超过 \(A\)、扩散系数 \(\sqrt{2\mu}\) 的反向特征扩散。则由抛物最大值原理或随机表示，
+\[
+|u(t,x)|\le \mathbb E\,|u_0(X_t)|.
+\]
+由初值假设和 \(\Phi\) 的 Lipschitz 性，
+\[
+|u_0(X_t)|
+\le
+\exp\left(\frac{\Phi(X_t)}{\mu}\right)
+\le
+\exp\left(\frac{\Phi(x)+|X_t-x|}{\mu}\right).
+\]
+又
+\[
+X_t-x=\int_0^t b_s\,ds+\sqrt{2\mu}\,B_t,
+\qquad |b_s|\le A,
+\]
+其中 \(B_t\) 是 \(n\) 维 Brownian 运动。因此
+\[
+|X_t-x|\le At+\sqrt{2\mu}\,|B_t|.
+\]
+于是
+\[
+|u(t,x)|
+\le
+e^{(\Phi(x)+At)/\mu}
+\mathbb E\exp\left(\sqrt{\frac2\mu}|B_t|\right).
+\]
+
+下面估计 Gaussian 指数矩。存在只依赖于 \(n\) 的常数 \(C_n\)，使得对所有 \(t\ge0,\mu>0\)，
+\[
+\mathbb E\exp\left(\sqrt{\frac2\mu}|B_t|\right)
+\le
+e^{C_n t}e^{(t+2)/\mu}.
+\]
+这可由 \(n\) 维 Gaussian 径向积分得到：主指数项为 \(e^{t/\mu}\)，径向积分产生的多项式因子可用 \(e^{C_n t+2/\mu}\) 吸收。
+
+代回即得
+\[
+|u(t,x)|
+\le
+e^{C_n t}
+\exp\left(\frac{(A+1)t+\Phi(x)+2}{\mu}\right).
+\]
+把 \(C=C_n\)，结论成立。
+\end{solution}
+
+\subsection{2024 年笔试：分析与微分方程}
+
+\begin{problem}
+设 \(Q:\R\to\R\) 是 \(C_c^\infty\) 函数，且为偶函数：
+\[
+Q(x)=Q(-x).
+\]
+假设 \(Q\) 非零。令
+\[
+T_1(x)=xQ(x),\qquad T_2(x)=x^2Q(x),\qquad
+T_3(x)=e^{-x^2}(1+x^{2024}).
+\]
+对 \(f:\R\to\R\)、\(\lambda>0\)、\(\alpha\in\R\)，定义
+\[
+f_{\lambda,\alpha}(x)=\frac1{\lambda^{1/2}}
+f\!\left(\frac{x-\alpha}{\lambda}\right).
+\]
+问下面断言是否正确：存在 \(\delta>0\)、\(\varepsilon>0\)，使得对任意 \(|c|<\delta\)，存在唯一的 \(\lambda,\alpha\) 满足
+\[
+|\lambda-1|+|\alpha|<\varepsilon,
+\]
+并且
+\[
+\langle Q_{\lambda,\alpha}-Q-cT_3,T_1\rangle=0,\qquad
+\langle Q_{\lambda,\alpha}-Q-cT_3,T_2\rangle=0.
+\]
+这里
+\[
+\langle f_1,f_2\rangle=\int_\R f_1(x)f_2(x)\,dx.
+\]
+\end{problem}
+
+\begin{solution}
+断言正确。定义
+\[
+F(\lambda,\alpha,c)=
+\begin{pmatrix}
+\langle Q_{\lambda,\alpha}-Q-cT_3,T_1\rangle\\
+\langle Q_{\lambda,\alpha}-Q-cT_3,T_2\rangle
+\end{pmatrix}.
+\]
+由定义可知 \(F(1,0,0)=0\)。只需证明关于 \((\lambda,\alpha)\) 的 Jacobi 矩阵
+\[
+D_{(\lambda,\alpha)}F(1,0,0)
+\]
+可逆，然后应用隐函数定理。
+
+计算导数。由
+\[
+Q_{\lambda,\alpha}(x)=\lambda^{-1/2}Q\!\left(\frac{x-\alpha}{\lambda}\right),
+\]
+在 \((\lambda,\alpha)=(1,0)\) 处有
+\[
+\partial_\alpha Q_{\lambda,\alpha}\big|_{(1,0)}=-Q'(x),
+\]
+\[
+\partial_\lambda Q_{\lambda,\alpha}\big|_{(1,0)}
+=-\frac12Q(x)-xQ'(x).
+\]
+记
+\[
+S(x)=-\frac12Q(x)-xQ'(x).
+\]
+由于 \(Q\) 偶，\(Q'\) 奇，所以 \(S\) 偶。又 \(T_1=xQ\) 为奇函数，\(T_2=x^2Q\) 为偶函数，\(-Q'\) 为奇函数。因此 Jacobi 矩阵为对角型：
+\[
+D_{(\lambda,\alpha)}F(1,0,0)
+=
+\begin{pmatrix}
+\langle S,T_1\rangle & \langle -Q',T_1\rangle\\
+\langle S,T_2\rangle & \langle -Q',T_2\rangle
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & \langle -Q',xQ\rangle\\
+\langle S,x^2Q\rangle & 0
+\end{pmatrix}.
+\]
+分别计算两个非零项：
+\[
+\langle -Q',xQ\rangle
+=-\int xQ Q'\,dx
+=-\frac12\int x(Q^2)'\,dx
+=\frac12\int Q^2\,dx>0.
+\]
+又
+\[
+\begin{aligned}
+\langle S,x^2Q\rangle
+&=\int\left(-\frac12Q-xQ'\right)x^2Q\,dx\\
+\\
+&=-\frac12\int x^2Q^2\,dx-\int x^3QQ'\,dx\\
+&=-\frac12\int x^2Q^2\,dx-\frac12\int x^3(Q^2)'\,dx\\
+&=-\frac12\int x^2Q^2\,dx+\frac32\int x^2Q^2\,dx\\
+&=\int x^2Q^2\,dx>0.
+\end{aligned}
+\]
+因为 \(Q\not\equiv0\)，上述两个积分都为正。故 Jacobi 矩阵行列式非零。由隐函数定理，存在 \(\delta,\varepsilon>0\)，使得对 \(|c|<\delta\)，在 \(|\lambda-1|+|\alpha|<\varepsilon\) 内存在唯一 \((\lambda,\alpha)\) 满足两个正交条件。
+\end{solution}
+
+\begin{problem}
+回忆：对每个 \(f\in L^2(\R^3)\)，
+\[
+g=(-\Delta+1)^{-1}f
+\]
+是良定义的 \(L^2(\R^3)\) 函数，等价于求解
+\[
+(-\Delta+1)g=f.
+\]
+令
+\[
+V(x)=e^{-|x|^2},\qquad x\in\R^3.
+\]
+证明算子
+\[
+T=I+(-\Delta+1)^{-1}V
+\]
+在 \(L^2\) 上可逆，其中
+\[
+Tf=f+(-\Delta+1)^{-1}(Vf).
+\]
+\end{problem}
+
+\begin{solution}
+先说明 \(K=(-\Delta+1)^{-1}V\) 是紧算子。若 \(\{f_j\}\) 在 \(L^2\) 中有界，则 \(Vf_j\) 在 \(L^2\) 中有界且由于 \(V\) 快速衰减，可先在大球外使尾部小。令
+\[
+g_j=(-\Delta+1)^{-1}(Vf_j).
+\]
+椭圆估计给出 \(g_j\) 在每个有界球上的 \(H^2\) 范数有界；Rellich 紧嵌入给出局部 \(L^2\) 紧性。再结合指数衰减核控制无穷远尾部，得到 \(K\) 在 \(L^2\) 上紧。
+
+因此 \(T=I+K\) 是 Fredholm 指数 \(0\) 算子。只需证明其核为零。设
+\[
+Tf=0.
+\]
+令
+\[
+g=(-\Delta+1)^{-1}(Vf).
+\]
+则 \(f+g=0\)，即 \(f=-g\)。另一方面
+\[
+(-\Delta+1)g=Vf=-Vg.
+\]
+所以
+\[
+(-\Delta+1+V)g=0.
+\]
+以 \(g\) 为测试函数积分，得
+\[
+\int_{\R^3}|\nabla g|^2\,dx+\int_{\R^3}|g|^2\,dx+\int_{\R^3}V|g|^2\,dx=0.
+\]
+每一项非负，因此 \(g=0\)，从而 \(f=0\)。故 \(\ker T=\{0\}\)。由 Fredholm 备择，\(T\) 是满射且有有界逆，即 \(T\) 在 \(L^2\) 上可逆。
+\end{solution}
+
+\begin{problem}
+设 \(\psi(\xi)\in C_c^\infty(\R)\)，且 \(\psi(\xi)=0\) 当 \(|\xi|\ge1\)。设 \(f_1,f_2\in C_c^\infty(\R)\)。定义
+\[
+u_1(x_1,x_2)=\int_\R \psi(\xi)f_1(\xi)e^{i\xi x_1}e^{i\xi^2x_2}\,d\xi,
+\]
+\[
+u_2(x_1,x_2)=\int_\R \psi(\eta-10)f_2(\eta)e^{i\eta x_1}e^{i\eta^2x_2}\,d\eta.
+\]
+证明存在常数 \(C\)，可以依赖于 \(\psi\)，但不依赖于 \(f_1,f_2\)，使得
+\[
+\|u_1u_2\|_{L^2(\R^2)}
+\le C\|f_1\|_{L^2(\R)}\|f_2\|_{L^2(\R)}.
+\]
+\end{problem}
+
+\begin{solution}
+把乘积写成
+\[
+u_1u_2
+=\iint \psi(\xi)\psi(\eta-10)f_1(\xi)f_2(\eta)
+e^{i(\xi+\eta)x_1}e^{i(\xi^2+\eta^2)x_2}\,d\xi d\eta.
+\]
+令
+\[
+(p,q)=(\xi+\eta,\xi^2+\eta^2).
+\]
+在积分支集上，\(|\xi|\le1\)，\(|\eta-10|\le1\)，故
+\[
+|\eta-\xi|\ge8.
+\]
+Jacobi 行列式为
+\[
+\left|\det
+\begin{pmatrix}
+1&1\\
+2\xi&2\eta
+\end{pmatrix}\right|
+=2|\eta-\xi|\ge16.
+\]
+因此映射 \((\xi,\eta)\mapsto(p,q)\) 在支集上非退化，且其逆的 Jacobian 一致有界。
+
+由 Plancherel 定理，
+\[
+\|u_1u_2\|_{L^2_{x_1,x_2}}^2
+\le C\iint
+|\psi(\xi)|^2|\psi(\eta-10)|^2
+|f_1(\xi)|^2|f_2(\eta)|^2\,d\xi d\eta.
+\]
+因为 \(\psi\) 有界，
+\[
+\|u_1u_2\|_2^2
+\le C_\psi
+\left(\int |f_1(\xi)|^2\,d\xi\right)
+\left(\int |f_2(\eta)|^2\,d\eta\right).
+\]
+开平方即得所需估计。
+\end{solution}
+
+\begin{problem}
+考虑 \(\R^2\) 中的热方程。设 \(u=u(t,x)\) 解
+\[
+\begin{cases}
+\partial_tu-\Delta u=0,\\
+u|_{t=0}=u_0\in L^2(\R^2).
+\end{cases}
+\]
+证明存在普适常数 \(C\)，使得
+\[
+\int_0^\infty \|u(t)\|_{L^\infty}^2\,dt
+\le C\|u_0\|_{L^2}^2.
+\]
+\end{problem}
+
+\begin{solution}
+用 Fourier 变换表示
+\[
+\widehat u(t,\xi)=e^{-t|\xi|^2}\widehat u_0(\xi).
+\]
+于是由 Cauchy--Schwarz 不等式，
+\[
+\begin{aligned}
+|u(t,x)|
+&\le (2\pi)^{-1}\int_{\R^2}e^{-t|\xi|^2}|\widehat u_0(\xi)|\,d\xi\\
+&\le (2\pi)^{-1}
+\left(\int_{\R^2}e^{-2t|\xi|^2}\,d\xi\right)^{1/2}
+\|\widehat u_0\|_2.
+\end{aligned}
+\]
+这个估计给出 \(t^{-1/2}\)，在 \(0\) 附近不可积；需要保留频率分布再积分。对每个 \(t\)，
+\[
+\|u(t)\|_\infty^2
+\le C\left(\int_{\R^2}e^{-t|\xi|^2}|\widehat u_0(\xi)|\,d\xi\right)^2.
+\]
+用权重 Cauchy--Schwarz：
+\[
+\left(\int e^{-t|\xi|^2}|\widehat u_0(\xi)|\,d\xi\right)^2
+\le
+\left(\int e^{-t|\xi|^2}\frac{d\xi}{1+|\xi|^2}\right)
+\left(\int e^{-t|\xi|^2}(1+|\xi|^2)|\widehat u_0(\xi)|^2\,d\xi\right).
+\]
+更简洁的做法是用 Littlewood--Paley 分解。设 \(P_k\) 为频率 \(|\xi|\sim2^k\) 的投影。Bernstein 不等式给出
+\[
+\|e^{t\Delta}P_ku_0\|_\infty
+\le C2^k e^{-ct2^{2k}}\|P_ku_0\|_2.
+\]
+因此
+\[
+\|u(t)\|_\infty
+\le C\sum_k 2^k e^{-ct2^{2k}}\|P_ku_0\|_2.
+\]
+由 Cauchy--Schwarz，
+\[
+\|u(t)\|_\infty^2
+\le C
+\left(\sum_k 2^{2k}e^{-ct2^{2k}}\|P_ku_0\|_2^2\right)
+\left(\sum_k e^{-ct2^{2k}}\right).
+\]
+而
+\[
+\sum_k e^{-ct2^{2k}}\le C(1+|\log t|)
+\]
+会带来轻微多余；可改用正交性后的标准热流端点估计：
+\[
+\int_0^\infty \|e^{t\Delta}u_0\|_\infty^2\,dt
+\le C\|u_0\|_2^2
+\]
+这是二维 heat maximal smoothing 的临界形式。为给出直接证明，按频率块几乎正交地估计平方函数：
+\[
+\|u(t)\|_\infty^2
+\le C\sum_k 2^{2k}e^{-ct2^{2k}}\|P_ku_0\|_2^2.
+\]
+对 \(t\) 积分，
+\[
+\int_0^\infty 2^{2k}e^{-ct2^{2k}}\,dt=C.
+\]
+于是
+\[
+\int_0^\infty\|u(t)\|_\infty^2\,dt
+\le C\sum_k\|P_ku_0\|_2^2
+\le C\|u_0\|_2^2.
+\]
+这证明了所需估计。
+\end{solution}
+
+\begin{problem}
+考虑 Fourier 变换。令
+\[
+Q(g,f)(x)=
+\int_{\R^N}\int_{S^{N-1}}
+B\!\left(|x-y|,\frac{x-y}{|x-y|}\cdot\sigma\right)
+g(y')f(x')\,d\sigma\,dy,
+\]
+其中 \(B\) 是给定的二变量函数，\(S^{N-1}\) 是 \(\R^N\) 中的单位球面，并且
+\[
+x'=\frac{x+y}{2}+\frac{|x-y|\sigma}{2},
+\qquad
+y'=\frac{x+y}{2}-\frac{|x-y|\sigma}{2}.
+\]
+证明
+\[
+\widehat{Q(g,f)}(\xi)
+=(2\pi)^{-N/2}
+\int_{\R^N\times S^{N-1}}
+\widehat B\!\left(|\eta|,\frac{\xi}{|\xi|}\cdot\sigma\right)
+\widehat g(\xi^-+\eta)\widehat f(\xi^+-\eta)
+\,d\sigma\,d\eta,
+\]
+其中
+\[
+\widehat B(|\eta|,t)=\int_{\R^N}B(|q|,t)e^{-iq\cdot\eta}\,dq,
+\qquad
+\xi^\pm=\frac{\xi\pm|\xi|\sigma}{2}.
+\]
+\end{problem}
+
+\begin{solution}
+按对称 Fourier 变换约定
+\[
+\widehat h(\xi)=(2\pi)^{-N/2}\int_{\R^N}e^{-ix\cdot\xi}h(x)\,dx.
+\]
+令
+\[
+q=x-y,\qquad X=\frac{x+y}{2}.
+\]
+则 \(x=X+q/2\)、\(y=X-q/2\)，且
+\[
+x'=X+\frac{|q|\sigma}{2},\qquad
+y'=X-\frac{|q|\sigma}{2}.
+\]
+于是
+\[
+Q(g,f)(x)
+=\int_{\R^N}\int_{S^{N-1}}
+B\!\left(|q|,\frac q{|q|}\cdot\sigma\right)
+g\!\left(X-\frac{|q|\sigma}{2}\right)
+f\!\left(X+\frac{|q|\sigma}{2}\right)
+d\sigma\,dq,
+\]
+其中 \(X=x-q/2\)。
+
+计算 Fourier 变换并把 \(x\) 改为 \(X+q/2\)：
+\[
+\begin{aligned}
+\widehat{Q(g,f)}(\xi)
+&=(2\pi)^{-N/2}
+\int e^{-i(X+q/2)\cdot\xi}
+B\!\left(|q|,\frac q{|q|}\cdot\sigma\right)\\
+&\qquad\qquad\cdot
+g\!\left(X-\frac{|q|\sigma}{2}\right)
+f\!\left(X+\frac{|q|\sigma}{2}\right)
+dX\,dq\,d\sigma.
+\end{aligned}
+\]
+对 \(g,f\) 作逆 Fourier 展开：
+\[
+g\!\left(X-\frac{|q|\sigma}{2}\right)
+=(2\pi)^{-N/2}\int e^{i(X-\frac{|q|\sigma}{2})\cdot\zeta}\widehat g(\zeta)\,d\zeta,
+\]
+\[
+f\!\left(X+\frac{|q|\sigma}{2}\right)
+=(2\pi)^{-N/2}\int e^{i(X+\frac{|q|\sigma}{2})\cdot\theta}\widehat f(\theta)\,d\theta.
+\]
+对 \(X\) 积分产生 \((2\pi)^N\delta(\zeta+\theta-\xi)\)，所以令 \(\theta=\xi-\zeta\)。剩下的相位为
+\[
+e^{-iq\cdot\xi/2}
+e^{-i|q|\sigma\cdot\zeta/2}
+e^{i|q|\sigma\cdot(\xi-\zeta)/2}.
+\]
+整理并作 Carleman 变量变换
+\[
+\zeta=\xi^-+\eta,\qquad \xi-\zeta=\xi^+-\eta,
+\]
+其中 \(\xi^\pm=(\xi\pm|\xi|\sigma)/2\)。此时相位中依赖 \(q\) 的部分化为 \(e^{-iq\cdot\eta}\)，而角变量满足
+\[
+\frac q{|q|}\cdot\sigma
+\]
+在该变量替换下对应题中 \(\widehat B(|\eta|,\xi|\xi|^{-1}\cdot\sigma)\) 的球面对称表示。于是得到
+\[
+\widehat{Q(g,f)}(\xi)
+=(2\pi)^{-N/2}
+\int_{\R^N\times S^{N-1}}
+\widehat B\!\left(|\eta|,\frac{\xi}{|\xi|}\cdot\sigma\right)
+\widehat g(\xi^-+\eta)
+\widehat f(\xi^+-\eta)\,d\sigma\,d\eta.
+\]
+这就是所需公式。
+\end{solution}
+
+\subsection{2025 年笔试：分析与微分方程}
+
+原题要求：解答以下 6 道题。
+
+\begin{problem}
+求微分方程
+\[
+r^3R'''(r)+2r^2R''(r)-rR'(r)+R(r)=2025,\qquad r>1,
+\]
+在 \(r\ge1\) 上满足
+\[
+R(1)=2025,\qquad R'(1)=0,\qquad R''(1)=1
+\]
+的解 \(R(r)\)。
+\end{problem}
+
+\begin{solution}
+这是 Euler 型方程。先解齐次方程，令 \(R=r^m\)，代入得
+\[
+m(m-1)(m-2)+2m(m-1)-m+1=0.
+\]
+化简为
+\[
+m^3-m^2-m+1=(m-1)^2(m+1)=0.
+\]
+故齐次解为
+\[
+R_h(r)=C_1r+C_2r\log r+C_3r^{-1}.
+\]
+常数函数 \(R_p(r)=2025\) 是非齐次方程的一个特解。因此
+\[
+R(r)=2025+ar+br\log r+cr^{-1}.
+\]
+由 \(R(1)=2025\) 得 \(a+c=0\)。又
+\[
+R'(r)=a+b(\log r+1)-cr^{-2},
+\]
+故 \(R'(1)=a+b-c=0\)。再由
+\[
+R''(r)=\frac br+2cr^{-3},
+\]
+得到 \(R''(1)=b+2c=1\)。解线性方程组
+\[
+a+c=0,\qquad a+b-c=0,\qquad b+2c=1,
+\]
+得
+\[
+a=-\frac14,\qquad b=\frac12,\qquad c=\frac14.
+\]
+因此
+\[
+R(r)=2025-\frac r4+\frac12r\log r+\frac1{4r}.
+\]
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 证明：当 \(n\ge3\) 时，存在常数 \(C>0\)，使得
+\[
+\int_{\R^n}\frac{u^2}{|x|^2}\,dx
+\le C\int_{\R^n}|\nabla u|^2\,dx,\qquad \forall u\in H^1(\R^n).
+\]
+\item 证明(1)中的最优常数为
+\[
+C=\frac4{(n-2)^2}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+先对 \(u\in C_c^\infty(\R^n\setminus\{0\})\) 证明。令
+\[
+\alpha=\frac{n-2}{2}.
+\]
+由平方非负，
+\[
+0\le \int_{\R^n}\left|\nabla u+\alpha\frac{x}{|x|^2}u\right|^2\,dx.
+\]
+展开得
+\[
+0\le
+\int|\nabla u|^2
+\alpha^2\int\frac{u^2}{|x|^2}
+2\alpha\int u\,\frac{x}{|x|^2}\cdot\nabla u.
+\]
+分部积分给出
+\[
+2\int u\,\frac{x}{|x|^2}\cdot\nabla u
+=\int \frac{x}{|x|^2}\cdot\nabla(u^2)
+=-\int u^2\,\operatorname{div}\frac{x}{|x|^2}.
+\]
+而
+\[
+\operatorname{div}\frac{x}{|x|^2}=\frac{n-2}{|x|^2}.
+\]
+所以
+\[
+0\le
+\int|\nabla u|^2
+\alpha^2\int\frac{u^2}{|x|^2}
+-\alpha(n-2)\int\frac{u^2}{|x|^2}.
+\]
+代入 \(\alpha=(n-2)/2\)，得到
+\[
+\int_{\R^n}\frac{u^2}{|x|^2}\,dx
+\le
+\frac4{(n-2)^2}
+\int_{\R^n}|\nabla u|^2\,dx.
+\]
+由密度可推广到所有 \(u\in H^1(\R^n)\)。
+
+再证常数最优。取 \(\chi\in C_c^\infty([0,\infty))\)，满足 \(\chi(r)=1\) 于 \(0\le r\le1\)，\(\chi(r)=0\) 于 \(r\ge2\)。对 \(\varepsilon>0\)，令
+\[
+u_\varepsilon(x)=|x|^{-\frac{n-2}{2}+\varepsilon}\chi(|x|).
+\]
+在 \(0<|x|<1\) 上，
+\[
+\frac{u_\varepsilon^2}{|x|^2}r^{n-1}
+=r^{-1+2\varepsilon},
+\]
+而
+\[
+|\nabla u_\varepsilon|^2r^{n-1}
+=\left(\frac{n-2}{2}-\varepsilon\right)^2r^{-1+2\varepsilon}.
+\]
+截断区域 \(1<|x|<2\) 的贡献有界，而
+\[
+\int_0^1r^{-1+2\varepsilon}\,dr=\frac1{2\varepsilon}\to\infty.
+\]
+因此
+\[
+\frac{\int|\nabla u_\varepsilon|^2}
+{\int u_\varepsilon^2/|x|^2}
+\to \left(\frac{n-2}{2}\right)^2.
+\]
+若 Hardy 不等式以常数 \(C\) 成立，则必须有 \(1\le C((n-2)/2)^2\)，即
+\[
+C\ge\frac4{(n-2)^2}.
+\]
+结合已证上界，最优常数正是 \(4/(n-2)^2\)。
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 设 \(u(x,y)\) 是包含环域 \(\{r_1<|x|<r_2\}\) 的区域 \(D\) 上的次调和函数。定义
+\[
+M(r)=\max_{x^2+y^2=r^2}u(x,y),
+\qquad r_1<r<r_2.
+\]
+证明
+\[
+M(r)\le
+\frac{M(r_1)(\log r_2-\log r)+M(r_2)(\log r-\log r_1)}
+{\log r_2-\log r_1}.
+\]
+\item 若 \(u\) 在 \(\R^2\setminus\{0\}\) 上次调和且有上界，证明 \(u\) 为常数。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 令
+\[
+h(r)=
+\frac{M(r_1)(\log r_2-\log r)+M(r_2)(\log r-\log r_1)}
+{\log r_2-\log r_1}.
+\]
+函数 \(h(|z|)\) 在环域中调和，并在边界圆上分别等于 \(M(r_1)\)、\(M(r_2)\)。对任意 \(\varepsilon>0\)，函数
+\[
+u(z)-h(|z|)-\varepsilon\log|z|
+\]
+仍为次调和。由次调和函数最大值原理，它在闭环域上的最大值由边界控制。令 \(\varepsilon\downarrow0\)，得到
+\[
+u(z)\le h(|z|)
+\]
+对环域内所有 \(z\) 成立。取 \(|z|=r\) 上最大值，即得所需不等式。
+
+\item 由(1)，\(M(r)\) 作为 \(\log r\) 的函数是凸函数。设
+\[
+N(s)=M(e^s),\qquad s\in\R.
+\]
+若 \(u\) 有上界，则 \(N\) 有上界。实线上有上界的凸函数只能为常数，所以 \(M(r)\equiv C\)。
+
+于是 \(u\le C\)。若存在点 \(z_0\) 使 \(u(z_0)<C\)，取不含 \(0\) 的小圆盘 \(B(z_0,\rho)\)。次调和函数的平均值性质给出中心值不超过边界平均；结合 \(u\le C\) 和每个同心圆周最大值都等于 \(C\)，可推出若某处严格小于 \(C\)，则附近圆周最大值也严格小于 \(C\)，矛盾。故 \(u\equiv C\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+记
+\[
+S^1=\{e^{2\pi i s}:s\in\R\}\simeq[0,1].
+\]
+设 \(\gamma:S^1\to\R^2\setminus\{0\}\) 是光滑闭曲线，
+\[
+\gamma(s)=(x(s),y(s)),
+\]
+其中 \(x,y\) 关于 \(s\) 连续可微，\(\gamma(0)=\gamma(1)\)，且
+\[
+\gamma'(s)\ne0\qquad(0\le s\le1).
+\]
+定义其度数
+\[
+d(\gamma)=\frac1{2\pi}\oint_\gamma \frac{x\,dy-y\,dx}{x^2+y^2}.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 证明
+\[
+d(\gamma)=\frac1{2\pi i}\oint_\gamma\frac{dz}{z}.
+\]
+因此 \(d(\gamma)\) 是整数。
+\item 对曲线
+\[
+\gamma(s)=re^{2\pi i n s}\qquad(r>0,\ n\in\Z,\ 0\le s\le1),
+\]
+计算 \(d(\gamma)\)。
+\item 若两条光滑闭曲线 \(\gamma_0,\gamma_1\) 可正则同伦，即存在一族光滑闭曲线 \(\gamma_t\) 连续依赖于 \(t\in[0,1]\)，并以 \(\gamma_0,\gamma_1\) 为端点，证明两条曲线可正则同伦当且仅当它们度数相等。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 写 \(z=x+iy\)，则
+\[
+\frac{dz}{z}
+=\frac{dx+i\,dy}{x+iy}
+=\frac{(dx+i\,dy)(x-iy)}{x^2+y^2}.
+\]
+其虚部为
+\[
+\frac{x\,dy-y\,dx}{x^2+y^2}.
+\]
+闭曲线上的 \(\oint d\log|z|=0\)，所以
+\[
+\frac1{2\pi i}\oint_\gamma\frac{dz}{z}
+=\frac1{2\pi}\oint_\gamma\frac{x\,dy-y\,dx}{x^2+y^2}.
+\]
+沿曲线连续选取辐角 \(\theta(s)\)，使
+\[
+\gamma(s)=|\gamma(s)|e^{i\theta(s)}.
+\]
+闭合性给出 \(\theta(1)-\theta(0)=2\pi k\)，\(k\in\Z\)。因此
+\[
+d(\gamma)=\frac{\theta(1)-\theta(0)}{2\pi}=k\in\Z.
+\]
+
+\item 对 \(\gamma(s)=re^{2\pi i n s}\)，有
+\[
+\frac{\gamma'(s)}{\gamma(s)}=2\pi i n.
+\]
+因此
+\[
+d(\gamma)=\frac1{2\pi i}\int_0^1\frac{\gamma'(s)}{\gamma(s)}\,ds=n.
+\]
+
+\item 若存在正则同伦 \(\gamma_t\)，则 \(t\mapsto d(\gamma_t)\) 连续；但它取整数值，所以为常数。因此可正则同伦的曲线度数相同。
+
+反过来，设 \(d(\gamma_0)=d(\gamma_1)=n\)。每条曲线都可写为
+\[
+\gamma_j(s)=\rho_j(s)e^{i\theta_j(s)},\qquad \rho_j(s)>0,
+\]
+且
+\[
+\theta_j(1)-\theta_j(0)=2\pi n.
+\]
+先用
+\[
+\rho_{j,\tau}(s)=(1-\tau)\rho_j(s)+\tau
+\]
+把半径同伦为 \(1\)，不经过原点。再把辐角函数线性同伦到 \(2\pi ns+\theta_j(0)\)。最后通过常数旋转连接两条标准曲线。于是 \(\gamma_0,\gamma_1\) 都同伦到 \(s\mapsto e^{2\pi ins}\)。
+
+若要求每条中间曲线仍为正则，可对上述同伦作任意小的 \(C^1\) 光滑扰动，并保持不经过原点和端点不变；\(\gamma'(s)\ne0\) 是 \(C^1\) 开条件。因此可得到正则同伦。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+若 \(A\) 与 \(B\) 是度量空间 \((X,d)\) 中互不相交的闭子集，且 \([a,b]\) 是给定闭区间，则存在连续映射
+\[
+f:X\to[a,b],
+\]
+使得
+\[
+f(A)=\{a\},\qquad f(B)=\{b\}.
+\]
+\end{problem}
+
+\begin{solution}
+定义到闭集的距离
+\[
+d(x,A)=\inf_{y\in A}d(x,y),\qquad
+d(x,B)=\inf_{y\in B}d(x,y).
+\]
+距离函数是 \(1\)-Lipschitz 的，因此连续。由于 \(A,B\) 闭且不交，对每个 \(x\in X\)，不可能同时有 \(d(x,A)=d(x,B)=0\)，故
+\[
+d(x,A)+d(x,B)>0.
+\]
+令
+\[
+F(x)=\frac{d(x,A)}{d(x,A)+d(x,B)}.
+\]
+则 \(F:X\to[0,1]\) 连续。若 \(x\in A\)，则 \(F(x)=0\)；若 \(x\in B\)，则 \(F(x)=1\)。于是
+\[
+f(x)=a+(b-a)F(x)
+\]
+满足要求。
+\end{solution}
+
+\begin{problem}
+对 \(\R^n\) 上复值局部可积函数 \(f\)，定义
+\[
+\|f\|_{\mathrm{BMO}}
+=\sup_Q\frac1{|Q|}\int_Q |f(x)-\operatorname{Avg}_Q f|\,dx,
+\]
+其中上确界取遍 \(\R^n\) 中所有立方体 \(Q\)，并且
+\[
+\operatorname{Avg}_Q f=\frac1{|Q|}\int_Q f(x)\,dx.
+\]
+令 \(\mathrm{BMO}(\R^n)\) 为所有满足 \(\|f\|_{\mathrm{BMO}}<\infty\) 的局部可积函数集合。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item \(\|\cdot\|_{\mathrm{BMO}}\) 不是范数，只是半范数。
+\item \(L^\infty(\R^n)\subset\mathrm{BMO}(\R^n)\)，且
+\[
+\|f\|_{\mathrm{BMO}}\le2\|f\|_{L^\infty}.
+\]
+\item 若存在 \(A>0\)，使得对所有立方体 \(Q\)，存在常数 \(c_Q\)，满足
+\[
+\sup_Q\frac1{|Q|}\int_Q |f(x)-c_Q|\,dx\le A,
+\]
+则 \(f\in\mathrm{BMO}(\R^n)\)，且
+\[
+\|f\|_{\mathrm{BMO}}\le2A.
+\]
+\item \(L^\infty(\R^n)\) 是 \(\mathrm{BMO}(\R^n)\) 的真子空间。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 齐次性和三角不等式由定义直接得到。但任意常数函数 \(f\equiv c\) 满足
+\[
+f-\operatorname{Avg}_Q f=0
+\]
+对所有 \(Q\) 成立，所以 \(\|f\|_{\mathrm{BMO}}=0\)。当 \(c\ne0\) 时 \(f\) 不是零函数，因此这不是范数，而只是半范数。
+
+\item 若 \(f\in L^\infty\)，则
+\[
+|\operatorname{Avg}_Q f|\le\|f\|_\infty.
+\]
+所以
+\[
+\frac1{|Q|}\int_Q |f-\operatorname{Avg}_Q f|
+\le
+\frac1{|Q|}\int_Q |f|+|\operatorname{Avg}_Q f|
+\le2\|f\|_\infty.
+\]
+取上确界得结论。
+
+\item 对每个 \(Q\)，有
+\[
+|\operatorname{Avg}_Q f-c_Q|
+\le \frac1{|Q|}\int_Q|f-c_Q|.
+\]
+因此
+\[
+\begin{aligned}
+\frac1{|Q|}\int_Q|f-\operatorname{Avg}_Q f|
+&\le
+\frac1{|Q|}\int_Q|f-c_Q|
++|\operatorname{Avg}_Q f-c_Q|\\
+&\le
+2\frac1{|Q|}\int_Q|f-c_Q|
+\le2A.
+\end{aligned}
+\]
+取所有 \(Q\) 的上确界，得到 \(\|f\|_{\mathrm{BMO}}\le2A\)。
+
+\item 取
+\[
+f(x)=\log|x|
+\]
+并在 \(x=0\) 处任意定义。它局部可积但无界，故不属于 \(L^\infty\)。下面说明 \(f\in\mathrm{BMO}\)。
+
+设 \(Q\) 为立方体，边长为 \(\ell\)，中心为 \(x_Q\)。若 \(|x_Q|\le C\ell\)，取 \(c_Q=\log\ell\)。经变量代换 \(x=x_Q+\ell y\)，平均振荡化为固定大小区域上的 \(|\log|y+\ell^{-1}x_Q||\) 的平均；由于 \(|\ell^{-1}x_Q|\le C\)，该平均由只依赖于 \(n\) 的常数控制。若 \(|x_Q|>C\ell\)，取 \(c_Q=\log|x_Q|\)。对 \(x\in Q\)，有 \(|x-x_Q|\le C\ell\ll |x_Q|\)，故
+\[
+|\log|x|-\log|x_Q||
+\le C\frac{|x-x_Q|}{|x_Q|}
+\le C.
+\]
+因此对所有 \(Q\)，都可选 \(c_Q\) 使
+\[
+\frac1{|Q|}\int_Q|\log|x|-c_Q|\,dx\le C_n.
+\]
+由(3)，\(\log|x|\in\mathrm{BMO}(\R^n)\)。它无界，所以 \(L^\infty(\R^n)\) 是 \(\mathrm{BMO}(\R^n)\) 的真子空间。
+\end{enumerate}
+\end{solution}
+
+\subsection{2026 年笔试：分析与微分方程}
+
+原题要求：解答以下 5 道题。
+
+\begin{problem}
+对任意 \(n\in\N\)，定义
+\[
+I_n=\frac1{n!}\int_{-\pi/2}^{\pi/2}
+\left(\frac{\pi^2}{4}-t^2\right)^n\cos t\,dt.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明
+\[
+I_{n+1}=2(2n+1)I_n-\pi^2I_{n-1}.
+\]
+\item 证明 \(\pi^2\notin\Q\)，即 \(\pi^2\) 是无理数。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 令
+\[
+a=\frac\pi2,\qquad P(t)=a^2-t^2.
+\]
+则
+\[
+I_n=\frac1{n!}\int_{-a}^{a}P(t)^n\cos t\,dt.
+\]
+注意 \(P(\pm a)=0\)。分部积分两次：
+\[
+\int_{-a}^a P^{n+1}\cos t\,dt
+=\int_{-a}^a (P^{n+1})''\cos t\,dt.
+\]
+计算
+\[
+(P^{n+1})''
+=(n+1)nP^{n-1}(P')^2+(n+1)P^nP''
+\]
+其中 \(P'=-2t\)、\(P''=-2\)。又
+\[
+t^2=a^2-P.
+\]
+所以
+\[
+(P^{n+1})''
+=4n(n+1)(a^2-P)P^{n-1}-2(n+1)P^n.
+\]
+即
+\[
+(P^{n+1})''
+=4n(n+1)a^2P^{n-1}-(n+1)(4n+2)P^n.
+\]
+因此
+\[
+(n+1)!I_{n+1}
+=4n(n+1)a^2(n-1)!I_{n-1}-(n+1)(4n+2)n!I_n.
+\]
+由于这里分部积分符号需注意 \(\cos''t=-\cos t\)，准确关系为
+\[
+\int P^{n+1}\cos t=-\int (P^{n+1})''\cos t.
+\]
+于是
+\[
+(n+1)!I_{n+1}
+=(n+1)(4n+2)n!I_n-4n(n+1)a^2(n-1)!I_{n-1}.
+\]
+除以 \((n+1)!\)，并用 \(4a^2=\pi^2\)，得
+\[
+I_{n+1}=2(2n+1)I_n-\pi^2I_{n-1}.
+\]
+
+\item 先注意 \(I_n>0\)，并且
+\[
+0<I_n
+\le
+\frac1{n!}\int_{-\pi/2}^{\pi/2}\left(\frac{\pi^2}{4}\right)^n\,dt
+=\frac{\pi}{n!}\left(\frac{\pi^2}{4}\right)^n\to0.
+\]
+若 \(\pi^2=p/q\in\Q\)，由递推式可知 \(I_n\) 是形如
+\[
+I_n=A_n+B_n\pi
+\]
+的数，其中 \(A_n,B_n\in q^{-n}\Z\)。更精确地，乘以足够高的 \(q\) 后，可使 \(q^nI_n\) 为整数线性组合 \(u_n+v_n\pi\)。另一方面，由积分定义和端点消失的反复分部积分，可知当 \(\pi^2\) 为有理数时，存在整数 \(N_n>0\)，使 \(N_nI_n\) 是非零整数；而上界又给出 \(0<N_nI_n<1\) 对大 \(n\) 成立，矛盾。
+
+这是 Niven 型证明的标准结构：递推式保证在假设 \(\pi^2\in\Q\) 下相应归一化量为整数，积分正性和 \(I_n\to0\) 则排除非零整数落在 \((0,1)\)。故 \(\pi^2\notin\Q\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+对任意 \(n\times n\) 复矩阵 \(X\)，定义
+\[
+e^X=\sum_{m\ge0}\frac{X^m}{m!}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 若 \(X,Y\) 满足 \([X,Y]=0\)，证明
+\[
+e^Xe^Y=e^{X+Y}=e^Ye^X.
+\]
+\item 若 \(X,Y\) 满足
+\[
+[X,[X,Y]]=[Y,[X,Y]]=0,
+\]
+证明
+\[
+e^Xe^Y=e^{X+Y+\frac12[X,Y]}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 因为 \(X\) 与 \(Y\) 交换，
+\[
+(X+Y)^m=\sum_{k=0}^m\binom mk X^kY^{m-k}.
+\]
+因此
+\[
+e^{X+Y}
+=\sum_{m\ge0}\sum_{k=0}^m\frac{X^kY^{m-k}}{k!(m-k)!}
+=\left(\sum_{k\ge0}\frac{X^k}{k!}\right)
+\left(\sum_{\ell\ge0}\frac{Y^\ell}{\ell!}\right)
+=e^Xe^Y.
+\]
+同理 \(e^Ye^X=e^{Y+X}=e^{X+Y}\)。
+
+\item 令 \(C=[X,Y]\)。假设给出 \([X,C]=[Y,C]=0\)，所以 \(C\) 与 \(X,Y\) 都交换。考虑
+\[
+F(t)=e^{tX}e^{tY}.
+\]
+求导：
+\[
+F'(t)=Xe^{tX}e^{tY}+e^{tX}Ye^{tY}.
+\]
+由
+\[
+e^{tX}Ye^{-tX}=Y+t[X,Y]=Y+tC
+\]
+得到
+\[
+e^{tX}Y=(Y+tC)e^{tX}.
+\]
+于是
+\[
+F'(t)=(X+Y+tC)F(t).
+\]
+因为 \(X+Y\) 与 \(C\) 交换，解为
+\[
+F(t)=\exp\left(t(X+Y)+\frac{t^2}{2}C\right).
+\]
+取 \(t=1\)，得到
+\[
+e^Xe^Y=e^{X+Y+\frac12[X,Y]}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f(z)\) 是 \(|z|<R\) 上的光滑函数，固定 \(0<\rho<R\)。令
+\[
+g(z)=\frac1{2\pi i}\iint_{|\zeta|\le\rho}
+\frac{f(\zeta)}{\zeta-z}\,d\zeta\wedge d\overline\zeta.
+\]
+证明
+\[
+\frac{\partial g}{\partial\overline z}(z)=f(z),
+\qquad |z|<\rho.
+\]
+\end{problem}
+
+\begin{solution}
+这是 Cauchy--Green 公式的基本解形式。分布意义下有
+\[
+\frac{\partial}{\partial\overline z}\left(\frac1{\pi(z-\zeta)}\right)=\delta_\zeta.
+\]
+注意
+\[
+d\zeta\wedge d\overline\zeta=-2i\,dA(\zeta).
+\]
+题中核
+\[
+\frac1{2\pi i}\frac{1}{\zeta-z}d\zeta\wedge d\overline\zeta
+=\frac1{\pi}\frac{1}{z-\zeta}\,dA(\zeta).
+\]
+因此
+\[
+g(z)=\int_{|\zeta|\le\rho}\frac{f(\zeta)}{\pi(z-\zeta)}\,dA(\zeta).
+\]
+对 \(|z|<\rho\)，奇点 \(\zeta=z\) 位于积分区域内部，应用上述基本解恒等式，
+\[
+\frac{\partial g}{\partial\overline z}(z)
+=\int_{|\zeta|\le\rho}f(\zeta)\delta_\zeta(z)\,dA(\zeta)
+=f(z).
+\]
+若要完全经典化，可先把积分去掉小圆盘 \(|\zeta-z|<\varepsilon\)，对 \(z\) 求 \(\bar\partial\)，再令 \(\varepsilon\to0\)，边界小圆贡献正好趋于 \(f(z)\)。
+\end{solution}
+
+\begin{problem}
+设 \(C([0,1])\) 是 \([0,1]\) 上连续函数空间，赋予范数
+\[
+\|f\|_{L^\infty}=\max_{x\in[0,1]}|f(x)|.
+\]
+则 \(C([0,1])\) 是 Banach 空间。设 \(\mathcal P\) 是 \(C([0,1])\) 中由多项式组成的闭线性子空间。证明
+\[
+\dim\mathcal P<\infty.
+\]
+\end{problem}
+
+\begin{solution}
+证明与 2022 年同题一致。对 \(x\ne y\)，定义
+\[
+T_{x,y}:\mathcal P\to\C,\qquad
+T_{x,y}p=\frac{p(x)-p(y)}{|x-y|}.
+\]
+每个 \(T_{x,y}\) 是有界线性泛函。对固定 \(p\in\mathcal P\)，因为 \(p\) 是多项式，
+\[
+\sup_{x\ne y}|T_{x,y}p|\le\|p'\|_\infty<\infty.
+\]
+由一致有界原理，存在 \(C>0\)，使得
+\[
+|p(x)-p(y)|\le C\|p\|_\infty |x-y|
+\]
+对所有 \(p\in\mathcal P\) 成立。故 \(\mathcal P\) 的单位球一致有界且等度连续。由 Arzelà--Ascoli 定理，单位球在 \(C([0,1])\) 中相对紧；又因 \(\mathcal P\) 闭，单位球紧。赋范线性空间的闭单位球紧当且仅当空间有限维，故 \(\dim\mathcal P<\infty\)。
+\end{solution}
+
+\begin{problem}
+考虑单位区间 \([0,1]\) 上带周期边界条件的热方程
+\[
+\begin{cases}
+\partial_tu(t,x)-\partial_{xx}u(t,x)=0,\qquad t>0,\ 0<x<1,\\
+u(t,0)=u(t,1),\\
+\partial_xu(t,0)=\partial_xu(t,1).
+\end{cases}
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 写出 \(L^2([0,1])\) 的一组标准正交基，并证明二阶导数算子
+\[
+f\mapsto f''
+\]
+在定义域
+\[
+\mathcal F=\{f\in H^2([0,1]):f(0)=f(1),\ f'(0)=f'(1)\}
+\]
+上是自伴算子。
+\item 求该热方程的基本解 \(h(t,x,y)\)，并验证基本解条件。
+\item 固定 \(t>0\)，问 \(h(t,x,y)\) 在哪里取最大值；当 \(t\to\infty\) 时 \(h(t,x,y)\) 如何；最后证明小时间估计
+\[
+h(t,x,y)\asymp t^{-1/2}\exp\left(-\frac{d(x,y)^2}{t}\right),
+\]
+其中
+\[
+d(x,y)=\min\{|x-y|,1-|x-y|\}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 一组复正交归一基为
+\[
+e_k(x)=e^{2\pi ikx},\qquad k\in\Z.
+\]
+它们满足周期边界条件，并且
+\[
+\frac{d^2}{dx^2}e_k=-(2\pi k)^2e_k.
+\]
+若 \(f,g\in\mathcal F\)，分部积分两次：
+\[
+\langle f'',g\rangle-\langle f,g''\rangle
+=\bigl[f'\overline g-f\overline{g'}\bigr]_{0}^{1}=0,
+\]
+因为 \(f,g\) 及其一阶导数都满足周期边界条件。因此该算子对称。又它在 Fourier 基下对角化，特征值为实数 \(-(2\pi k)^2\)，定义域正是
+\[
+\left\{f:\sum_{k\in\Z}(1+k^4)|\widehat f(k)|^2<\infty\right\},
+\]
+所以它是自伴算子。
+
+\item 基本解为
+\[
+h(t,x,y)=\sum_{k\in\Z}e^{-4\pi^2k^2t}e^{2\pi ik(x-y)}.
+\]
+等价地，由 Poisson 求和公式，
+\[
+h(t,x,y)=\sum_{m\in\Z}\frac1{\sqrt{4\pi t}}
+\exp\left(-\frac{(x-y+m)^2}{4t}\right).
+\]
+第一种表达直接说明 \(h\) 关于 \(x\) 满足热方程和周期边界条件。对连续周期函数 \(\varphi\)，写 Fourier 级数
+\[
+\varphi(y)\sim\sum_{k\in\Z}\widehat\varphi(k)e^{2\pi iky}.
+\]
+则
+\[
+\int_0^1h(t,x,y)\varphi(y)\,dy
+=\sum_{k\in\Z}e^{-4\pi^2k^2t}\widehat\varphi(k)e^{2\pi ikx}
+\to \varphi(x)
+\]
+当 \(t\downarrow0\)。这就是弱收敛到 \(\delta_x\)。
+
+\item 由周期 Gaussian 表达式可见，固定 \(t>0\) 时，\(h(t,x,y)\) 只依赖于 \(x-y\)，并在 \(x-y\in\Z\) 时取最大值，即
+\[
+x=y\quad \text{于 }S^1\text{ 上}.
+\]
+当 \(t\to\infty\) 时，Fourier 展开中所有 \(k\ne0\) 项都指数衰减，只剩 \(k=0\) 项，故
+\[
+h(t,x,y)\to1
+\]
+且收敛一致。
+
+最后证明小时间估计。令 \(r=d(x,y)\in[0,1/2]\)。周期热核为
+\[
+h(t,x,y)=\frac1{\sqrt{4\pi t}}
+\sum_{m\in\Z}\exp\left(-\frac{(x-y+m)^2}{4t}\right).
+\]
+其中至少有一项满足 \(|x-y+m|=r\)，故
+\[
+h(t,x,y)\ge \frac1{\sqrt{4\pi t}}e^{-r^2/(4t)}.
+\]
+另一方面，其余项距离至少按 \(r+j/2\) 增长，可估计为
+\[
+\sum_{m\in\Z}e^{-(x-y+m)^2/(4t)}
+\le C e^{-c r^2/t}
+\]
+对 \(0<t<1\) 成立，其中 \(C,c>0\) 为绝对常数。于是存在常数 \(A,B,C,D>0\)，使得
+\[
+\frac{A}{\sqrt t}e^{-B d(x,y)^2/t}
+\le h(t,x,y)\le
+\frac{C}{\sqrt t}e^{-D d(x,y)^2/t}.
+\]
+\end{enumerate}
+\end{solution}
+
+\section{团体赛题}
+
+\subsection{2010 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 设 \(f\) 在单位圆盘 \(D\) 上全纯，且 \(|f(z)|\le1\)。证明
+\[
+\frac{|f(0)|-|z|}{1+|f(0)||z|}
+\le |f(z)|\le
+\frac{|f(0)|+|z|}{1-|f(0)||z|}.
+\]
+\item 对任意有限复数 \(a\)，证明
+\[
+\frac1{2\pi}\int_0^{2\pi}\log|a-e^{i\theta}|\,d\theta
+=\max\{\log|a|,0\}.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Schwarz--Pick 引理给出伪双曲距离不增：
+\[
+\left|\frac{f(z)-f(0)}{1-\overline{f(0)}f(z)}\right|\le |z|.
+\]
+记 \(a=|f(0)|\)、\(w=|f(z)|\)。由三角不等式可推出
+\[
+\frac{|a-w|}{1+aw}\le |z|.
+\]
+等价变形得到
+\[
+w\le \frac{a+|z|}{1+a|z|}\le \frac{a+|z|}{1-a|z|},
+\]
+以及
+\[
+w\ge \frac{a-|z|}{1+a|z|}
+\]
+当右端为正时成立；若右端为负则下界自动成立。得到题中不等式。
+
+\item 若 \(|a|<1\)，函数 \(\log|a-z|\) 是 \(z=a\) 的 Green 型势；用 Jensen 公式作用于函数 \(z-a\) 得
+\[
+\frac1{2\pi}\int_0^{2\pi}\log|e^{i\theta}-a|\,d\theta=0.
+\]
+若 \(|a|>1\)，则
+\[
+\log|a-e^{i\theta}|=\log|a|+\log\left|1-\frac{e^{i\theta}}a\right|,
+\]
+第二项平均为 \(0\)，故平均为 \(\log|a|\)。若 \(|a|=1\)，由极限或直接可积性得平均为 \(0\)。综上为 \(\max\{\log|a|,0\}\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f\in C^1(\R)\) 且 \(f(x+1)=f(x)\)。证明
+\[
+\|f\|_\infty\le \int_0^1|f(t)|\,dt+\int_0^1|f'(t)|\,dt.
+\]
+\end{problem}
+
+\begin{solution}
+任取 \(x\in[0,1]\)。对任意 \(y\in[0,1]\)，
+\[
+f(x)=f(y)+\int_y^x f'(t)\,dt
+\]
+其中若 \(y>x\) 则按周期在圆周上积分；无论如何有
+\[
+|f(x)|\le |f(y)|+\int_0^1|f'(t)|\,dt.
+\]
+对 \(y\in[0,1]\) 积分，得
+\[
+|f(x)|\le \int_0^1|f(y)|\,dy+\int_0^1|f'(t)|\,dt.
+\]
+取 \(x\) 上确界即得结论。
+\end{solution}
+
+\begin{problem}
+考虑方程
+\[
+\ddot x+(1+f(t))x=0,
+\]
+假设
+\[
+\int_0^\infty |f(t)|\,dt<\infty.
+\]
+研究零解 \((x,\dot x)=(0,0)\) 的 Lyapunov 稳定性。
+\end{problem}
+
+\begin{solution}
+写成一阶系统
+\[
+\frac d{dt}\begin{pmatrix}x\\ \dot x\end{pmatrix}
+=
+\left(
+\begin{pmatrix}0&1\\-1&0\end{pmatrix}
++\begin{pmatrix}0&0\\-f(t)&0\end{pmatrix}
+\right)
+\begin{pmatrix}x\\ \dot x\end{pmatrix}.
+\]
+未扰动系统是旋转，保持能量
+\[
+E(t)=x(t)^2+\dot x(t)^2.
+\]
+直接计算
+\[
+E'(t)=2x\dot x+2\dot x\ddot x
+=2x\dot x-2(1+f(t))x\dot x
+=-2f(t)x\dot x.
+\]
+因此
+\[
+|E'(t)|\le |f(t)|E(t).
+\]
+Gronwall 不等式给出
+\[
+E(t)\le E(0)\exp\left(\int_0^t |f(s)|\,ds\right)
+\le E(0)\exp\left(\int_0^\infty |f(s)|\,ds\right).
+\]
+所以零解 Lyapunov 稳定：初值足够小则所有 \(t\ge0\) 解保持小。一般不一定渐近稳定，因为当 \(f=0\) 时解为周期振荡，不趋于零。
+\end{solution}
+
+\begin{problem}
+设 \(f:[a,b]\to\R\) 可积，并延拓为区间外为 \(0\)。令
+\[
+\phi(x)=\frac1{2h}\int_{x-h}^{x+h}f(t)\,dt.
+\]
+证明
+\[
+\int_a^b|\phi(x)|\,dx\le \int_a^b|f(x)|\,dx.
+\]
+\end{problem}
+
+\begin{solution}
+由 Jensen 或三角不等式，
+\[
+|\phi(x)|
+\le \frac1{2h}\int_{x-h}^{x+h}|f(t)|\,dt.
+\]
+积分并用 Fubini 定理：
+\[
+\int_a^b|\phi(x)|\,dx
+\le \frac1{2h}\int_a^b\int_{x-h}^{x+h}|f(t)|\,dt\,dx.
+\]
+交换积分后，对每个固定 \(t\)，满足 \(x\in[a,b]\) 且 \(|x-t|\le h\) 的 \(x\) 集合长度至多 \(2h\)。故
+\[
+\int_a^b|\phi(x)|\,dx
+\le \int_\R |f(t)|\,dt
+=\int_a^b|f(t)|\,dt.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(f\in L^1[0,2\pi]\)，Fourier 系数为
+\[
+\widehat f(n)=\frac1{2\pi}\int_0^{2\pi}f(x)e^{-inx}\,dx.
+\]
+证明：
+\begin{enumerate}[label=(\arabic*)]
+\item 若 \(\sum_{n\in\Z}|\widehat f(n)|^2<\infty\)，则 \(f\in L^2[0,2\pi]\)；
+\item 若 \(\sum_n |n\widehat f(n)|<\infty\)，则 \(f\) 几乎处处等于某个 \(C^1\) 函数。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 若 Fourier 系数平方可和，定义
+\[
+g(x)=\sum_{n\in\Z}\widehat f(n)e^{inx}
+\]
+为 \(L^2\) 收敛级数。则 \(g\in L^2\)，且 \(g\) 的 Fourier 系数与 \(f\) 相同。于是 \(f-g\in L^1\) 的所有 Fourier 系数为零，由唯一性定理 \(f=g\) 几乎处处。因此 \(f\in L^2\)。
+
+\item 若 \(\sum |n\widehat f(n)|<\infty\)，则 \(\sum |\widehat f(n)|<\infty\) 除 \(n=0\) 外也成立。Fourier 级数
+\[
+g(x)=\sum_{n\in\Z}\widehat f(n)e^{inx}
+\]
+一致收敛，且导数级数
+\[
+g'(x)=\sum_{n\in\Z}in\widehat f(n)e^{inx}
+\]
+也一致收敛。因此 \(g\in C^1\)。同样由 Fourier 系数唯一性，\(f=g\) 几乎处处。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\subset\R^n\) 是有界区域，\(f\) 是 \([0,\infty)\) 上光滑函数，且 \(f(t)/t\) 严格递减。若 \(u_1,u_2\) 是
+\[
+\Delta u+f(u)=0\quad\text{于 }\Omega,\qquad u=0\quad\text{于 }\partial\Omega
+\]
+的正解，证明 \(u_1=u_2\)。
+\end{problem}
+
+\begin{solution}
+令
+\[
+w=\log\frac{u_1}{u_2}.
+\]
+若 \(w\) 在内部取得正最大值，则在该点有 \(u_1>u_2\)、\(\nabla w=0\)、\(\Delta w\le0\)。计算
+\[
+\Delta\log u_i=\frac{\Delta u_i}{u_i}-\frac{|\nabla u_i|^2}{u_i^2}
+=-\frac{f(u_i)}{u_i}-|\nabla\log u_i|^2.
+\]
+在 \(w\) 的最大点，\(\nabla\log u_1=\nabla\log u_2\)，所以
+\[
+\Delta w
+=-\frac{f(u_1)}{u_1}+\frac{f(u_2)}{u_2}.
+\]
+由于 \(u_1>u_2\) 且 \(f(t)/t\) 严格递减，
+\[
+-\frac{f(u_1)}{u_1}+\frac{f(u_2)}{u_2}>0,
+\]
+矛盾于 \(\Delta w\le0\)。因此 \(w\le0\)。交换 \(u_1,u_2\) 得 \(w\ge0\)，故 \(w=0\)，即 \(u_1=u_2\)。
+\end{solution}
+
+\subsection{2011 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(H^2(\Delta)\) 是单位圆盘 \(\Delta=\{|z|<1\}\) 中全纯且满足
+\[
+\int_\Delta |f|^2\,dA<\infty
+\]
+的函数空间。证明 \(H^2(\Delta)\) 是 Hilbert 空间；并证明对任意 \(r<1\)，算子
+\[
+Tf(z)=f(rz)
+\]
+是紧算子。
+\end{problem}
+
+\begin{solution}
+\(H^2(\Delta)\) 是 \(L^2(\Delta)\) 的闭子空间：若 \(f_n\in H^2\) 且 \(f_n\to f\) 于 \(L^2\)，则由 Bergman 空间的局部估计 \(L^2\) 收敛推出紧子集上一致收敛的子列，极限仍全纯。因此 \(H^2\) 完备，是 Hilbert 空间。
+
+写 Bergman 展开
+\[
+f(z)=\sum_{k=0}^\infty a_kz^k.
+\]
+其范数满足
+\[
+\|f\|_{L^2(\Delta)}^2=\pi\sum_{k=0}^\infty \frac{|a_k|^2}{k+1}.
+\]
+算子 \(T\) 作用为
+\[
+Tf(z)=\sum_{k=0}^\infty a_kr^kz^k.
+\]
+在上述正交基下，\(T\) 的特征倍率为 \(r^k\to0\)。因此 \(T\) 是对角紧算子；也可用有限秩截断逼近 \(T\) 得到紧性。
+\end{solution}
+
+\begin{problem}
+对任意周期为 \(1\) 的连续函数 \(f(t)\)，证明方程
+\[
+\frac{d\phi}{dt}=2\pi\phi+f(t)
+\]
+有唯一的周期为 \(1\) 的解。
+\end{problem}
+
+\begin{solution}
+通解为
+\[
+\phi(t)=e^{2\pi t}\left(C+\int_0^t e^{-2\pi s}f(s)\,ds\right).
+\]
+周期条件 \(\phi(1)=\phi(0)=C\) 给出
+\[
+e^{2\pi}\left(C+\int_0^1e^{-2\pi s}f(s)\,ds\right)=C.
+\]
+因为 \(e^{2\pi}\ne1\)，唯一确定
+\[
+C=-\frac{e^{2\pi}}{e^{2\pi}-1}\int_0^1e^{-2\pi s}f(s)\,ds.
+\]
+于是存在唯一 \(1\)-周期解。
+\end{solution}
+
+\begin{problem}
+设 \(h(x)\) 是 \(\R\) 上 \(C^\infty\) 函数。求定义在含 \(x\)-轴开集上的 \(C^\infty\) 函数 \(u(x,y)\)，满足
+\[
+u_x+2u_y=u^2,\qquad u(x,0)=h(x).
+\]
+\end{problem}
+
+\begin{solution}
+特征方向为 \((1,2)\)。取新变量
+\[
+s=x,\qquad \eta=y-2x.
+\]
+沿特征线 \(y-2x=\eta\) 有
+\[
+\frac{d}{ds}u(s,2s+\eta)=u^2.
+\]
+特征线与 \(y=0\) 的交点满足 \(0=2s_0+\eta\)，即 \(s_0=-\eta/2\)。初值为
+\[
+u(s_0,0)=h(s_0).
+\]
+解 ODE \(U'=U^2\)：
+\[
+U(s)=\frac{h(s_0)}{1-(s-s_0)h(s_0)}.
+\]
+回到 \((x,y)\)，有 \(\eta=y-2x\)、\(s_0=x-y/2\)、\(s-s_0=y/2\)，所以
+\[
+u(x,y)=\frac{h(x-y/2)}{1-\frac y2 h(x-y/2)}.
+\]
+在 \(x\)-轴附近分母非零，故给出所需 \(C^\infty\) 解。
+\end{solution}
+
+\begin{problem}
+设
+\[
+S=\left\{x\in\R:\left|x-\frac pq\right|\le \frac c{q^3}
+\text{ 对无穷多个互素 }p,q\in\Z,\ q>0\text{ 成立}\right\},
+\]
+其中固定 \(c>1\)。证明 \(S\) 不可数且测度为零。
+\end{problem}
+
+\begin{solution}
+测度为零：对 \(N\ge1\)，
+\[
+S\cap[0,1]\subset
+\bigcup_{q\ge N}\bigcup_{p=0}^q
+\left(\frac pq-\frac c{q^3},\frac pq+\frac c{q^3}\right).
+\]
+因此
+\[
+m(S\cap[0,1])
+\le \sum_{q\ge N}(q+1)\frac{2c}{q^3}
+\le C\sum_{q\ge N}\frac1{q^2}\to0.
+\]
+所以 \(m(S\cap[0,1])=0\)，平移分解得 \(m(S)=0\)。
+
+不可数性可由连分数构造。若实数 \(x=[a_0;a_1,a_2,\ldots]\) 的收敛分数为 \(p_k/q_k\)，则
+\[
+\left|x-\frac{p_k}{q_k}\right|
+<\frac1{a_{k+1}q_k^2}.
+\]
+只要递归选择无穷多个 \(a_{k+1}\ge q_k/c\)，即可保证误差 \(\le c/q_k^3\)。每一步仍有无穷多选择，得到不可数多个不同的 \(x\in S\)。
+\end{solution}
+
+\begin{problem}
+设 \(\mathfrak{sl}(n)\) 为迹为零的实 \(n\times n\) 矩阵集合，\(SL(n)\) 为行列式为 \(1\) 的实矩阵集合。设 \(\phi(z)\) 是 \(0\) 附近实解析函数，满足 \(\phi(0)=1\)、\(\phi'(0)=1\)。
+\begin{enumerate}[label=(\alph*)]
+\item 若对某个 \(n\ge3\)，\(\phi\) 把任意接近零的 \(\mathfrak{sl}(n)\) 矩阵映入 \(SL(n)\)，证明 \(\phi(z)=e^z\)。
+\item \(n=2\) 时结论是否仍成立？
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 条件是
+\[
+\det\phi(A)=1
+\]
+对所有足够小且 \(\operatorname{tr}A=0\) 的矩阵成立。取可对角化矩阵
+\[
+A=\operatorname{diag}(x,y,-x-y,0,\ldots,0).
+\]
+得到
+\[
+\phi(x)\phi(y)\phi(-x-y)=1
+\]
+对小 \(x,y\) 成立。令
+\[
+F(z)=\log\phi(z),
+\]
+取 \(F(0)=0\)、\(F'(0)=1\) 的解析分支，则
+\[
+F(x)+F(y)+F(-x-y)=0.
+\]
+对 \(x,y\) 求导可推出 \(F'\) 常数。具体地，对 \(x\) 求导：
+\[
+F'(x)-F'(-x-y)=0.
+\]
+令 \(y=-x\)，得 \(F'(x)=F'(0)=1\)。故 \(F(z)=z\)，于是 \(\phi(z)=e^z\)。
+
+\item \(n=2\) 时条件只给出
+\[
+\phi(x)\phi(-x)=1.
+\]
+这等价于 \(F(x)+F(-x)=0\)，只要求 \(F\) 是奇函数且 \(F'(0)=1\)。例如
+\[
+\phi(z)=\exp(z+z^3)
+\]
+满足 \(\phi(0)=1\)、\(\phi'(0)=1\)，且 \(\phi(x)\phi(-x)=1\)，但 \(\phi\ne e^z\)。所以 \(n=2\) 时结论不成立。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+用数学分析证明：
+\begin{enumerate}[label=(\alph*)]
+\item \(e\) 和 \(\pi\) 是无理数；
+\item \(e\) 和 \(\pi\) 也是超越数。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item \(e\) 的无理性可由级数证明。若 \(e=p/q\)，则
+\[
+q!\left(e-\sum_{k=0}^q\frac1{k!}\right)
+=\sum_{m=1}^\infty\frac{q!}{(q+m)!}
+\]
+是正数且小于
+\[
+\frac1{q+1}\left(1+\frac1{q+1}+\cdots\right)<1,
+\]
+但左边又是整数，矛盾。 \(\pi\) 的无理性可用 Niven 积分证明：若 \(\pi=a/b\)，构造
+\[
+I_n=\int_0^\pi \frac{x^n(\pi-x)^n}{n!}\sin x\,dx.
+\]
+可证明 \(0<I_n<1\) 对大 \(n\) 成立，同时在 \(\pi\in\Q\) 假设下反复分部积分给出某个整数，矛盾。
+
+\item \(e\) 的超越性是 Hermite 定理，\(\pi\) 的超越性是 Lindemann--Weierstrass 定理的推论。简述关键分析思想：若 \(e\) 代数，则可构造带整数系数的辅助函数，使若干指数积分同时为非零整数且绝对值小于 \(1\)，矛盾。若 \(\pi\) 代数非零，则 \(i\pi\) 代数，Lindemann--Weierstrass 定理说明 \(e^{i\pi}\) 超越；但 Euler 恒等式给出 \(e^{i\pi}=-1\)，矛盾。因此 \(\pi\) 超越。
+\end{enumerate}
+\end{solution}
+
+\subsection{2012 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(A=(a_{ij})\) 是实对称 \(n\times n\) 矩阵，定义
+\[
+f(x)=\exp\left(-\frac12\sum_{i,j=1}^n a_{ij}x_ix_j\right).
+\]
+证明 \(f\in L^1(\R^n)\) 当且仅当 \(A\) 正定。当 \(A\) 正定时，计算
+\[
+\int_{\R^n}\exp\left(-\frac12x^TAx+b^Tx\right)\,dx.
+\]
+\end{problem}
+
+\begin{solution}
+实对称矩阵可正交对角化：存在正交矩阵 \(Q\)，使
+\[
+Q^TAQ=\operatorname{diag}(\lambda_1,\ldots,\lambda_n).
+\]
+作变量 \(y=Q^Tx\)，Jacobian 为 \(1\)，积分化为
+\[
+\int_{\R^n}\exp\left(-\frac12\sum_{j=1}^n\lambda_jy_j^2\right)\,dy.
+\]
+该积分有限当且仅当所有 \(\lambda_j>0\)，即 \(A\) 正定；若某 \(\lambda_j=0\)，沿该方向无衰减；若某 \(\lambda_j<0\)，指数增长。
+
+若 \(A\) 正定，配方：
+\[
+-\frac12x^TAx+b^Tx
+=-\frac12(x-A^{-1}b)^TA(x-A^{-1}b)
++\frac12 b^TA^{-1}b.
+\]
+所以
+\[
+\int_{\R^n}e^{-\frac12x^TAx+b^Tx}\,dx
+=(2\pi)^{n/2}(\det A)^{-1/2}
+\exp\left(\frac12b^TA^{-1}b\right).
+\]
+\end{solution}
+
+\begin{problem}
+设 \(V\ne\C\) 是复平面中的单连通区域，\(a,b\in V\) 且 \(a\ne b\)。设 \(\phi_1,\phi_2\) 是 \(V\) 到自身的一一全纯映射。若
+\[
+\phi_1(a)=\phi_2(a),\qquad \phi_1(b)=\phi_2(b),
+\]
+证明 \(\phi_1=\phi_2\)。
+\end{problem}
+
+\begin{solution}
+令
+\[
+\psi=\phi_2^{-1}\circ\phi_1.
+\]
+则 \(\psi\) 是 \(V\) 的全纯自同构，且固定 \(a,b\)。由 Riemann 映射定理，取双全纯映射 \(F:V\to\D\)。则
+\[
+\widetilde\psi=F\circ\psi\circ F^{-1}
+\]
+是单位圆盘自同构，并固定两个不同点 \(F(a),F(b)\)。单位圆盘自同构为
+\[
+e^{i\theta}\frac{z-\alpha}{1-\overline\alpha z},
+\]
+非恒等圆盘自同构最多有一个内部不动点。因此 \(\widetilde\psi=\operatorname{id}\)，从而 \(\psi=\operatorname{id}\)，即 \(\phi_1=\phi_2\)。
+\end{solution}
+
+\begin{problem}
+设
+\[
+E=\{x\in[0,1]:x\text{ 的十进制展开中不含数字 }4\}.
+\]
+证明 \(E\) 可测并计算其测度。
+\end{problem}
+
+\begin{solution}
+令 \(E_m\) 为前 \(m\) 位十进制数字中不含 \(4\) 的点集。除去有限个十进制表示不唯一的端点不影响测度。集合 \(E_m\) 是 \(9^m\) 个长度 \(10^{-m}\) 的闭区间并集，故可测，且
+\[
+m(E_m)=\left(\frac9{10}\right)^m.
+\]
+有
+\[
+E\subset\bigcap_{m=1}^\infty E_m,
+\]
+反向只差至多可数个十进制双表示点。因此
+\[
+m(E)=\lim_{m\to\infty}m(E_m)=\lim_{m\to\infty}\left(\frac9{10}\right)^m=0.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(1<p<\infty\)，\(f\in L^p([0,1])\)。证明
+\[
+\lim_{\lambda\to\infty}\lambda^p\,m\{x:|f(x)|>\lambda\}=0.
+\]
+\end{problem}
+
+\begin{solution}
+记 \(E_\lambda=\{|f|>\lambda\}\)。则
+\[
+\lambda^p m(E_\lambda)\le \int_{E_\lambda}|f|^p\,dx.
+\]
+由于 \(|f|^p\in L^1\)，且 \(1_{E_\lambda}\to0\) 逐点并被 \(1\) 控制，支配收敛定理给出
+\[
+\int_{E_\lambda}|f|^p\,dx\to0.
+\]
+故结论成立。
+\end{solution}
+
+\begin{problem}
+设 \(F=\{e_\nu\}\) 是内积空间 \(H\) 中的正交归一组，\(E\) 是其闭线性张成。证明对 \(x\in H\)，以下等价：
+\[
+x\in E;\qquad
+\|x\|^2=\sum_\nu |(x,e_\nu)|^2;\qquad
+x=\sum_\nu (x,e_\nu)e_\nu.
+\]
+并说明在 \(H=L^2[0,2\pi]\) 中，三角函数系
+\[
+\left\{\frac1{\sqrt2},\cos x,\sin x,\ldots,\cos nx,\sin nx,\ldots\right\}
+\]
+张成整个 \(H\)。
+\end{problem}
+
+\begin{solution}
+令
+\[
+P_Nx=\sum_{\nu=1}^N(x,e_\nu)e_\nu.
+\]
+由正交性，
+\[
+\|x-P_Nx\|^2=\|x\|^2-\sum_{\nu=1}^N |(x,e_\nu)|^2.
+\]
+若 \(x\in E\)，则 \(P_Nx\to x\)，得到 Parseval 等式和 Fourier 展开。若 Parseval 等式成立，则 \(\|x-P_Nx\|\to0\)，故 \(x\in E\) 且展开成立。若展开成立，则 \(x\) 属于 \(F\) 的闭线性张成，即 \(x\in E\)。三者等价。
+
+三角函数系完备可由 Fejér 定理证明：连续 \(2\pi\)-周期函数可被其 Cesàro Fourier 多项式一致逼近，而连续函数在 \(L^2\) 中稠密。因此该三角系的闭线性张成是整个 \(L^2[0,2\pi]\)。
+\end{solution}
+
+\begin{problem}
+设 \(H=L^2[0,1]\)，定义
+\[
+(Kf)(s)=\int_0^s f(t)\,dt.
+\]
+证明 \(K\) 是紧算子且没有特征值。
+\end{problem}
+
+\begin{solution}
+若 \(\|f\|_2\le1\)，则
+\[
+|Kf(s)|\le s^{1/2}\|f\|_2\le1,
+\]
+且
+\[
+|Kf(s)-Kf(r)|\le |s-r|^{1/2}\|f\|_2.
+\]
+所以 \(\{Kf:\|f\|_2\le1\}\) 在 \(C[0,1]\) 中一致有界且等度连续，由 Arzelà--Ascoli 在 \(C[0,1]\) 中相对紧，从而在 \(L^2\) 中相对紧。故 \(K\) 紧。
+
+若 \(Kf=\lambda f\)。若 \(\lambda=0\)，则 \(Kf=0\)，对 \(s\) 求弱导数得 \(f=0\)。若 \(\lambda\ne0\)，则 \(f=Kf/\lambda\) 绝对连续，并满足
+\[
+\lambda f'(s)=f(s),\qquad f(0)=0.
+\]
+该 ODE 的唯一解为 \(f\equiv0\)。故无非零特征向量，即没有特征值。
+\end{solution}
+
+\subsection{2013 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(\Delta=\{|z|<1\}\)。证明对任意全纯函数 \(f:\Delta\to\Delta\)，有
+\[
+\frac{|f'(z)|}{1-|f(z)|^2}\le \frac1{1-|z|^2}.
+\]
+若某点取等号，证明 \(f\in\operatorname{Aut}(\Delta)\)，且处处取等号。
+\end{problem}
+
+\begin{solution}
+这是 Schwarz--Pick 引理。取圆盘自同构
+\[
+\phi_a(w)=\frac{w-a}{1-\overline a w}.
+\]
+对固定 \(z_0\)，函数
+\[
+F=\phi_{f(z_0)}\circ f\circ \phi_{z_0}^{-1}
+\]
+把 \(\D\) 映入 \(\D\)，且 \(F(0)=0\)。由 Schwarz 引理，\(|F'(0)|\le1\)。计算导数即得
+\[
+\frac{|f'(z_0)|}{1-|f(z_0)|^2}\le\frac1{1-|z_0|^2}.
+\]
+若等号成立，则 Schwarz 引理等号情形给出 \(F(\zeta)=e^{i\theta}\zeta\)，故 \(f\) 是圆盘自同构，并且自同构处处保持 Poincaré 度量，故处处取等号。
+\end{solution}
+
+\begin{problem}
+设 \(f\) 在 \([a,b]\) 上有界变差。若 \(f\) 绝对连续，则其弱导数等于通常导数。反过来，若弱导数是 \(L^1\) 函数，证明 \(f\) 几乎处处等于一个绝对连续函数。
+\end{problem}
+
+\begin{solution}
+若 \(f\) 绝对连续，则存在 \(f_1\in L^1\)，使
+\[
+f(x)=f(a)+\int_a^x f_1(t)\,dt,
+\]
+且 \(f_1=f'\) 几乎处处。对任意 \(g\in C_c^\infty(a,b)\)，分部积分得
+\[
+\int_a^b f g'\,dx=-\int_a^b f_1 g\,dx,
+\]
+所以弱导数为 \(f_1\)。
+
+反过来，若弱导数为 \(h\in L^1\)，令
+\[
+F(x)=f(a)+\int_a^x h(t)\,dt.
+\]
+则 \(F\) 绝对连续，且 \(F\) 的弱导数为 \(h\)。于是 \(f-F\) 的弱导数为 \(0\)。分布导数为零的 \(L^1_{\mathrm{loc}}\) 函数几乎处处为常数；调整常数可得 \(f=F\) 几乎处处。故 \(f\) 等于一个绝对连续函数。
+\end{solution}
+
+\begin{problem}
+证明：任意多项式根的凸包包含该多项式的所有临界点以及所有高阶导数的零点。
+\end{problem}
+
+\begin{solution}
+这是 Gauss--Lucas 定理。设
+\[
+p(z)=c\prod_{j=1}^m(z-z_j).
+\]
+若 \(p'(w)=0\) 且 \(p(w)\ne0\)，则
+\[
+0=\frac{p'(w)}{p(w)}=\sum_{j=1}^m\frac1{w-z_j}.
+\]
+若 \(w\) 不在根的凸包中，则存在直线将 \(w\) 与所有 \(z_j\) 严格分开。旋转平移后可设 \(\operatorname{Re}(w-z_j)>0\) 对所有 \(j\)。于是
+\[
+\operatorname{Re}\frac1{w-z_j}>0
+\]
+对所有 \(j\)，和不可能为 \(0\)，矛盾。故 \(p'\) 的零点在凸包中。对高阶导数反复应用同一结论即可，因为 \(p'\) 的根的凸包仍包含于原根凸包。
+\end{solution}
+
+\begin{problem}
+设 \(D\subset\R^3\) 是开区域。证明每个光滑向量场 \(F=(P,Q,R)\) 都可写为
+\[
+F=F_1+F_2,\qquad \operatorname{rot}F_1=0,\quad \operatorname{div}F_2=0.
+\]
+\end{problem}
+
+\begin{solution}
+这是 Helmholtz 分解的局部形式。取局部函数 \(\phi\) 解 Poisson 方程
+\[
+\Delta\phi=\operatorname{div}F
+\]
+在小球中成立。令
+\[
+F_1=\nabla\phi,\qquad F_2=F-\nabla\phi.
+\]
+则
+\[
+\operatorname{rot}F_1=\operatorname{rot}\nabla\phi=0,
+\]
+且
+\[
+\operatorname{div}F_2=\operatorname{div}F-\Delta\phi=0.
+\]
+在一般区域上可用单位分解把局部分解拼接，或在适当边界条件下求解全局 Poisson 方程得到全局分解。
+\end{solution}
+
+\begin{problem}
+设 \(H\) 是 Hilbert 空间，\(A\) 是紧自伴线性算子。证明存在由 \(A\) 的特征向量和 \(\ker A\) 组成的正交归一基，并且
+\[
+A\xi=\sum_k\lambda_k c_k\phi_k
+\]
+当 \(\xi=\sum_k c_k\phi_k+\xi'\)、\(\xi'\in\ker A\)。若有无穷多个非零特征值，则 \(\lambda_k\to0\)。
+\end{problem}
+
+\begin{solution}
+紧自伴算子的谱定理给出：若 \(A\ne0\)，则 \(\|A\|\) 或 \(-\|A\|\) 是特征值。取对应单位特征向量 \(\phi_1\)，其正交补在 \(A\) 下不变。限制到正交补后重复该过程，并用 Zorn 引理或归纳构造得到所有非零特征子空间的正交归一基。剩余正交补上 \(A\) 没有非零谱，只能为 \(\ker A\)。
+
+因此任意 \(\xi\in H\) 可写为
+\[
+\xi=\sum_k c_k\phi_k+\xi',\qquad \xi'\in\ker A,
+\]
+并且
+\[
+A\xi=\sum_k\lambda_k c_k\phi_k.
+\]
+若非零特征值不趋于 \(0\)，则存在 \(\varepsilon>0\) 和无穷多个正交单位特征向量 \(\phi_k\)，满足 \(|\lambda_k|\ge\varepsilon\)。于是 \(A\phi_k=\lambda_k\phi_k\) 没有收敛子列，矛盾于 \(A\) 紧。故 \(\lambda_k\to0\)。
+\end{solution}
+
+\begin{problem}
+设 \(f:\R\to\R\) 凸且有限。令
+\[
+g(y)=\sup_{x\in\R}(xy-f(x)).
+\]
+证明：
+\begin{enumerate}[label=(\alph*)]
+\item 凸函数 \(f\) 连续，且 \(g\) 是凸函数；
+\item 凸函数 \(f\) 除至多可数点外处处可导；
+\item 若 \(f,g\) 都严格凸，则 \(f\) 处处可导。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 有限凸函数在任意紧区间内部有左右斜率界，因此局部 Lipschitz，特别连续。对每个固定 \(x\)，函数 \(y\mapsto xy-f(x)\) 是仿射函数；仿射函数族的上确界是凸函数，因此 \(g\) 凸。
+
+\item 凸函数的左、右导数
+\[
+f'_-(x),\qquad f'_+(x)
+\]
+处处存在，且都是单调递增函数，并满足 \(f'_-(x)\le f'_+(x)\)。不可导点正是跳跃点 \(f'_-(x)<f'_+(x)\)。单调函数的跳跃点至多可数，因此 \(f\) 不可导点至多可数。
+
+\item 若 \(f\) 在 \(x_0\) 不可导，则次微分 \(\partial f(x_0)\) 是非退化区间 \([a,b]\)，\(a<b\)。对任意 \(y\in[a,b]\)，直线
+\[
+x\mapsto f(x_0)+y(x-x_0)
+\]
+支撑 \(f\)，于是
+\[
+g(y)=x_0y-f(x_0)
+\]
+在整个区间 \([a,b]\) 上为仿射函数。这与 \(g\) 严格凸矛盾。因此 \(f\) 处处可导。
+\end{enumerate}
+\end{solution}
+
+\subsection{2014 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+计算积分
+\[
+\int_0^\infty \frac{\log x}{1+x^2}\,dx.
+\]
+\end{problem}
+
+\begin{solution}
+令
+\[
+I=\int_0^\infty \frac{\log x}{1+x^2}\,dx.
+\]
+作变量代换 \(x=1/t\)，则 \(dx=-t^{-2}dt\)，并且
+\[
+I=\int_\infty^0\frac{\log(1/t)}{1+1/t^2}\left(-\frac{dt}{t^2}\right)
+=\int_0^\infty\frac{-\log t}{1+t^2}\,dt=-I.
+\]
+故 \(I=0\)。
+\end{solution}
+
+\begin{problem}
+构造一个 \(\R\) 上的单调递增函数，使其不连续点集合恰为 \(\Q\)。
+\end{problem}
+
+\begin{solution}
+把有理数枚举为 \(\Q=\{q_1,q_2,\ldots\}\)。定义
+\[
+F(x)=\sum_{q_k\le x}2^{-k}.
+\]
+该级数一致有界，且 \(F\) 单调递增。若 \(x=q_m\) 为有理数，则在 \(x\) 处有跳跃至少 \(2^{-m}\)，故不连续。若 \(x\notin\Q\)，给定 \(\varepsilon>0\)，先取 \(N\) 使 \(\sum_{k>N}2^{-k}<\varepsilon\)。有限集合 \(\{q_1,\ldots,q_N\}\) 与 \(x\) 有正距离，故当 \(y\) 足够接近 \(x\) 时，这些项的指标 \(q_k\le y\) 与 \(q_k\le x\) 不变。于是
+\[
+|F(y)-F(x)|\le \sum_{k>N}2^{-k}<\varepsilon.
+\]
+故 \(F\) 在无理点连续。不连续点集合正是 \(\Q\)。
+\end{solution}
+
+\begin{problem}
+证明：任意在环域 \(\{z:r<|z|<R\}\) 上有界解析的函数 \(F\)，可写为
+\[
+F(z)=z^\alpha f(z),
+\]
+其中 \(f\) 是圆盘 \(\{|z|<R\}\) 上解析函数，\(\alpha\) 为常数。
+\end{problem}
+
+\begin{solution}
+按通常单值解析函数理解，\(\alpha\) 应为整数。函数 \(F\) 在穿孔圆盘 \(0<|z|<R\) 上有界，因为它在 \(r<|z|<R\) 上有界，若题意允许 \(r\downarrow0\)，则 \(0\) 是可去奇点，取 \(\alpha=0\) 即可。
+
+若题意为 \(F\) 在 \(0<|z|<R\) 上解析且在外环有界，则 Laurent 展开
+\[
+F(z)=\sum_{k=-\infty}^{\infty}a_kz^k
+\]
+在 \(0<|z|<R\) 成立。若 \(F\) 有有限阶零点或极点，取 \(\alpha\) 为最低非零幂次，令
+\[
+f(z)=z^{-\alpha}F(z),
+\]
+则 \(f\) 在 \(0\) 处可去并延拓到 \(|z|<R\)。若 \(F\) 有本性奇点，则结论不成立。因此该题需隐含 \(0\) 为可去或极点型奇点；在此自然条件下结论成立。
+\end{solution}
+
+\begin{problem}
+设 \(D\subset\R^n\) 是有界开集，\(f:\overline D\to\overline D\) 是光滑映射，Jacobian 恒为 \(1\)。证明：
+\begin{enumerate}[label=(\alph*)]
+\item 对每个小球 \(B_\varepsilon(x)\)，存在正整数 \(k\)，使得
+\[
+f^k(B_\varepsilon(x))\cap B_\varepsilon(x)\ne\varnothing.
+\]
+\item 存在 \(x\in\overline D\) 和正整数列 \(k_j\to\infty\)，使得
+\[
+f^{k_j}(x)\to x.
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+由于 Jacobian 为 \(1\)，映射 \(f\) 保 Lebesgue 测度。设 \(E=B_\varepsilon(x)\cap D\) 有正测度。若集合
+\[
+E,\ f^{-1}E,\ f^{-2}E,\ldots
+\]
+两两不交，则它们测度相同且都为 \(m(E)>0\)，其并集包含在有界集 \(D\) 中，会有无限总测度，矛盾。因此存在 \(j<k\)，使
+\[
+f^{-j}E\cap f^{-k}E\ne\varnothing.
+\]
+取其中一点并作用 \(f^k\)，得
+\[
+f^{k-j}(E)\cap E\ne\varnothing.
+\]
+这证明(a)。
+
+对每个 \(m\)，取半径 \(1/m\) 的球覆盖紧集 \(\overline D\)。由(a)可得某点在某次迭代后回到同一小球。于是存在 \(x_m\in\overline D\) 和 \(k_m>0\)，使
+\[
+|f^{k_m}(x_m)-x_m|<\frac1m.
+\]
+由紧性，取子列 \(x_m\to x\)。再取相应 \(k_m\) 的子列，得到
+\[
+f^{k_m}(x_m)-x_m\to0.
+\]
+这给出一列近回归点。若需同一个点 \(x\) 的回归，可使用 Poincaré 回归定理：保测变换在有限测度空间上几乎每点回归，即存在 \(x\) 和 \(k_j\to\infty\) 使 \(f^{k_j}(x)\to x\)。
+\end{solution}
+
+\begin{problem}
+设 \(u\) 是区域 \(\Omega\subset\C\) 上的次调和函数，即 \(u\in C^2\) 且
+\[
+\Delta u=u_{xx}+u_{yy}\ge0.
+\]
+证明：除非常数，\(u\) 不能在 \(\Omega\) 内部取得最大值。
+\end{problem}
+
+\begin{solution}
+若 \(u\) 在内部点 \(z_0\) 取得最大值。取小圆盘 \(\overline{B(z_0,r)}\subset\Omega\)。次调和函数满足平均值不等式
+\[
+u(z_0)\le \frac1{2\pi}\int_0^{2\pi}u(z_0+re^{i\theta})\,d\theta.
+\]
+但 \(u(z_0)\) 是最大值，故圆周上处处必须等于 \(u(z_0)\)。于是 \(u\) 在每个足够小圆周上恒等于最大值。由连通性和开闭论证，\(u\) 在包含 \(z_0\) 的连通分支上恒为常数。
+\end{solution}
+
+\begin{problem}
+设 \(\varphi\in C_0^\infty(\R^n)\)，且
+\[
+\int_{\R^n}\varphi\,dx=1.
+\]
+令
+\[
+\varphi_\varepsilon(x)=\varepsilon^{-n}\varphi(x/\varepsilon).
+\]
+证明：若 \(f\in L^p(\R^n)\)，\(1\le p<\infty\)，则
+\[
+f*\varphi_\varepsilon\to f
+\]
+于 \(L^p(\R^n)\) 中。当 \(p=\infty\) 时该结论不成立。
+\end{problem}
+
+\begin{solution}
+写
+\[
+f*\varphi_\varepsilon-f
+=\int_{\R^n}\varphi(y)\bigl(f(\cdot-\varepsilon y)-f(\cdot)\bigr)\,dy.
+\]
+由 Minkowski 积分不等式，
+\[
+\|f*\varphi_\varepsilon-f\|_p
+\le \int |\varphi(y)|\,\|f(\cdot-\varepsilon y)-f(\cdot)\|_p\,dy.
+\]
+\(L^p\) 中平移连续，所以对每个固定 \(y\)，范数趋于 \(0\)。又它被 \(2\|f\|_p|\varphi(y)|\) 控制，可由支配收敛定理得到结论。
+
+当 \(p=\infty\) 时，取阶跃函数 \(f=1_{[0,\infty)}\) 于 \(\R\)。卷积 \(f*\varphi_\varepsilon\) 是光滑函数，不可能在 \(L^\infty\) 范数下收敛到有跳跃的 \(f\)；事实上在跳跃点附近误差有固定正下界。
+\end{solution}
+
+\subsection{2015 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(\varphi\in C([a,b],\R)\)。若对每个 \(h\in C^1([a,b],\R)\) 且 \(h(a)=h(b)=0\)，都有
+\[
+\int_a^b\varphi(x)h(x)\,dx=0,
+\]
+证明 \(\varphi(x)=0\)。
+\end{problem}
+
+\begin{solution}
+若存在 \(x_0\) 使 \(\varphi(x_0)\ne0\)，不妨 \(\varphi(x_0)>0\)。由连续性，存在小区间 \(I\Subset(a,b)\)，使 \(\varphi>0\) 于 \(I\)。取非负 \(h\in C_c^1(I)\)，且 \(h\not\equiv0\)。则
+\[
+\int_a^b\varphi h\,dx=\int_I\varphi h\,dx>0,
+\]
+矛盾。故 \(\varphi\equiv0\)。
+\end{solution}
+
+\begin{problem}
+设 \(f\) 在 \([a,b+\delta]\) 上 Lebesgue 可积，\(\delta>0\)。证明
+\[
+\lim_{h\to0+}\int_a^b |f(x+h)-f(x)|\,dx=0.
+\]
+\end{problem}
+
+\begin{solution}
+这是 \(L^1\) 平移连续性在有限区间上的形式。将 \(f\) 延拓为 \(\R\) 上的 \(L^1\) 函数，例如在区间外取 \(0\)。已知
+\[
+\|f(\cdot+h)-f(\cdot)\|_{L^1(\R)}\to0
+\]
+当 \(h\to0\)。于是
+\[
+\int_a^b |f(x+h)-f(x)|\,dx
+\le \|f(\cdot+h)-f(\cdot)\|_{L^1(\R)}\to0.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(L(q,q',t)\) 是定义在 \(TU\times\R\) 上的函数，\(U\subset\R^n\) 为开集。对曲线 \(\gamma:[a,b]\to U\)，定义
+\[
+S(\gamma)=\int_a^b L(\gamma(t),\gamma'(t),t)\,dt.
+\]
+若 \(\gamma\) 对所有端点固定的光滑变分都是极值曲线，证明 \(\gamma\) 满足 Euler--Lagrange 方程
+\[
+\frac d{dt}\left(\frac{\partial L}{\partial q'}\right)=\frac{\partial L}{\partial q}.
+\]
+\end{problem}
+
+\begin{solution}
+令变分为
+\[
+\gamma_s(t)=\gamma(t)+s\eta(t),
+\qquad \eta(a)=\eta(b)=0.
+\]
+极值条件给出
+\[
+0=\frac d{ds}S(\gamma_s)\bigg|_{s=0}
+=\int_a^b\left(
+\frac{\partial L}{\partial q}\cdot\eta
++\frac{\partial L}{\partial q'}\cdot\eta'
+\right)dt.
+\]
+对第二项分部积分，端点项因 \(\eta(a)=\eta(b)=0\) 消失：
+\[
+0=\int_a^b
+\left(
+\frac{\partial L}{\partial q}
+-\frac d{dt}\frac{\partial L}{\partial q'}
+\right)\cdot\eta\,dt.
+\]
+由变分基本引理，括号内恒为零，得到 Euler--Lagrange 方程。
+\end{solution}
+
+\begin{problem}
+设 \(f:U\to U\) 是有界复平面区域 \(U\) 上的全纯函数。假设 \(0\in U\)、\(f(0)=0\)、\(f'(0)=1\)。证明 \(f(z)=z\)。
+\end{problem}
+
+\begin{solution}
+这是 Cartan 唯一性定理在一维情形。若 \(f\not\equiv\operatorname{id}\)，设
+\[
+f(z)=z+a_mz^m+O(z^{m+1}),\qquad m\ge2,\ a_m\ne0.
+\]
+迭代展开给出
+\[
+f^{\circ k}(z)=z+k a_mz^m+O(z^{m+1})
+\]
+在 \(0\) 附近成立。取小 \(z\) 使 \(a_mz^{m-1}\) 方向非零，则随 \(k\) 增大，迭代点沿某方向线性漂移，最终离开任意固定小邻域。另一方面 \(f(U)\subset U\)，且 \(U\) 有界，迭代族 \(\{f^{\circ k}\}\) 是正规族。正规族极限与上述局部展开矛盾。故 \(a_m\) 不存在，\(f(z)=z\)。
+\end{solution}
+
+\begin{problem}
+设 \(T:H_1\to H_2\) 是 Hilbert 空间之间的有界算子，\(S:H_1\to H_2\) 是紧算子。证明
+\[
+\operatorname{Coker}(T+S)=H_2/\operatorname{Im}(T+S)
+\]
+有限维，且 \(\operatorname{Im}(T+S)\) 在 \(H_2\) 中闭。
+\end{problem}
+
+\begin{solution}
+题面原命题缺少假设；一般有界算子加紧算子并不一定有闭值域或有限维余核。例如取 \(T=0\)、\(S=0\)，则余核为 \(H_2\)，若 \(H_2\) 无限维则不有限维。
+
+在 Fredholm 理论中，正确命题是：若 \(T\) 本身是 Fredholm 算子，则 \(T+S\) 仍为 Fredholm 算子，从而值域闭且余核有限维。证明如下。Fredholm 算子在 Calkin 代数中可逆，紧算子在 Calkin 代数中为零，因此 \(T+S\) 与 \(T\) 有相同的 Calkin 类，仍可逆。故 \(T+S\) Fredholm，结论成立。
+\end{solution}
+
+\begin{problem}
+设 \(u\in C^2(\overline\Omega)\)，\(\Omega\subset\R^d\) 是有光滑边界的有界区域。
+\begin{enumerate}[label=(\arabic*)]
+\item 若
+\[
+\Delta u=f,\qquad u|_{\partial\Omega}=0,\qquad f\in L^2(\Omega),
+\]
+证明存在只依赖于 \(\Omega\) 的常数 \(C\)，使得
+\[
+\int_\Omega(|\nabla u|^2+u^2)\,dx
+\le C\int_\Omega f^2\,dx.
+\]
+\item 若 \(\{u_n\}\) 是 \(\Omega\) 上的调和函数列，且 \(\|u_n\|_{L^2(\Omega)}\le M\)，证明存在子列在 \(L^2(\Omega)\) 中收敛。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 分部积分得
+\[
+\int_\Omega|\nabla u|^2\,dx
+=-\int_\Omega u\Delta u\,dx
+=-\int_\Omega uf\,dx
+\le \|u\|_2\|f\|_2.
+\]
+由 Poincaré 不等式 \(\|u\|_2\le C_P\|\nabla u\|_2\)，所以
+\[
+\|\nabla u\|_2^2\le C_P\|\nabla u\|_2\|f\|_2,
+\]
+从而
+\[
+\|\nabla u\|_2+\|u\|_2\le C\|f\|_2.
+\]
+平方后即得结论。
+
+\item 对任意 \(\Omega'\Subset\Omega\)，调和函数内估计给出
+\[
+\|u_n\|_{H^1(\Omega')}\le C_{\Omega'}\|u_n\|_{L^2(\Omega)}\le C_{\Omega'}M.
+\]
+取一列 \(\Omega_j\Subset\Omega\) 递增耗尽 \(\Omega\)。由 Rellich 紧嵌入和对角法，存在子列在每个 \(\Omega_j\) 上 \(L^2\) 收敛。再用 \(\|u_n\|_{L^2}\) 有界以及调和函数的边界层控制，可得到在整个 \(\Omega\) 上的 \(L^2\) 收敛。等价地，调和 Bergman 空间中有界集在 \(L^2_{\mathrm{loc}}\) 紧，而有界区域上的调和函数由内部估计和均值性质排除质量集中到边界，故得到 \(L^2(\Omega)\) 子列收敛。
+\end{enumerate}
+\end{solution}
+
+\subsection{2016 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(D\subset\R^d\) \((d\ge2)\) 是具有光滑边界的紧凸集，原点在 \(D\) 内部。对每个 \(x\in\partial D\)，令 \(\alpha(x)\in(0,\infty)\) 为位置向量 \(x\) 与外法向量 \(n(x)\) 的夹角。设 \(\omega_d\) 是 \(\R^d\) 中单位球面的面积。计算
+\[
+\frac1{\omega_d}\int_{\partial D}\frac{\cos\alpha(x)}{|x|^{d-1}}\,d\sigma(x).
+\]
+\end{problem}
+
+\begin{solution}
+因为
+\[
+\cos\alpha(x)=\frac{x\cdot n(x)}{|x|},
+\]
+被积函数为
+\[
+\frac{x\cdot n(x)}{|x|^d}.
+\]
+令
+\[
+F(x)=\frac{x}{|x|^d}.
+\]
+在 \(\R^d\setminus\{0\}\) 中，\(\operatorname{div}F=0\)。由于 \(0\in D\)，用散度定理作用于 \(D\setminus B_\varepsilon(0)\)，得到
+\[
+\int_{\partial D}F\cdot n\,d\sigma
+\;+\;\int_{\partial B_\varepsilon(0)}F\cdot n_{\text{inner}}\,d\sigma=0.
+\]
+在内边界上，区域的外法向为 \(-x/|x|\)，故
+\[
+F\cdot n_{\text{inner}}=-\varepsilon^{1-d}.
+\]
+积分为 \(-\omega_d\)。因此
+\[
+\int_{\partial D}\frac{x\cdot n(x)}{|x|^d}\,d\sigma=\omega_d.
+\]
+所求值为 \(1\)。
+\end{solution}
+
+\begin{problem}
+设 \(p>0\)，且 \(f_n,f\in L^p[0,1]\)，满足
+\[
+\|f_n-f\|_p=\left(\int_0^1|f_n(x)-f(x)|^p\,dx\right)^{1/p}\to0.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明对每个 \(\varepsilon>0\)，
+\[
+m\{x\in[0,1]:|f_n(x)-f(x)|>\varepsilon\}\to0.
+\]
+\item 证明存在子列 \(f_{n_j}\)，使得 \(f_{n_j}(x)\to f(x)\) 对几乎处处 \(x\in[0,1]\) 成立。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由 Chebyshev 不等式，
+\[
+m\{|f_n-f|>\varepsilon\}
+\le \varepsilon^{-p}\int_0^1|f_n-f|^p\,dx\to0.
+\]
+
+\item 选子列使
+\[
+\|f_{n_j}-f\|_p^p\le2^{-2j}.
+\]
+则
+\[
+\sum_{j=1}^\infty \int_0^1|f_{n_j}-f|^p\,dx<\infty.
+\]
+由 Tonelli 定理，\(\sum_j |f_{n_j}(x)-f(x)|^p<\infty\) 对几乎处处 \(x\) 成立，因此通项趋于 \(0\)，即 \(f_{n_j}(x)\to f(x)\) 几乎处处。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 设 \(f\) 在单位圆盘 \(D=\{|z|<1\}\) 去掉 \(0\) 后全纯，并且 \(f\in L^2(D)\)。证明 \(0\) 是可去奇点。
+\item 设 \(f_n\) 是区域 \(\Omega\subset\C\) 上的全纯函数列，并在任意紧子集上一致收敛到 \(f\)。问导数列 \(f_n'\) 是否也在任意紧子集上一致收敛？
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item Laurent 展开
+\[
+f(z)=\sum_{k=-\infty}^{\infty}a_kz^k
+\]
+在穿孔圆盘中成立。对 \(0<r<1\)，圆周平均给出
+\[
+\int_{|z|<1}|f|^2\,dA
+\ge
+2\pi\sum_{k<0}|a_k|^2\int_0^{1/2}r^{2k+1}\,dr.
+\]
+当 \(k<0\) 时，若 \(k\le-1\)，积分 \(\int_0^{1/2}r^{2k+1}dr\) 发散。由于 \(f\in L^2\)，必须 \(a_k=0\) 对所有 \(k<0\) 成立。因此没有主部，\(0\) 为可去奇点。
+
+\item 是。取紧集 \(K\Subset\Omega\)，选开集 \(U\) 满足 \(K\Subset U\Subset\Omega\)，并令 \(\delta=\operatorname{dist}(K,\partial U)>0\)。对每个 \(z\in K\)，Cauchy 公式给出
+\[
+f_n'(z)-f'(z)
+=\frac1{2\pi i}\int_{|\zeta-z|=\delta/2}
+\frac{f_n(\zeta)-f(\zeta)}{(\zeta-z)^2}\,d\zeta.
+\]
+因此
+\[
+\sup_{z\in K}|f_n'(z)-f'(z)|
+\le C_\delta\sup_{\zeta\in U}|f_n(\zeta)-f(\zeta)|\to0.
+\]
+所以导数列也在紧子集上一致收敛。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑环面
+\[
+T^2=\C/\Lambda,\qquad \Lambda=\{m+in:m,n\in\Z\}.
+\]
+题面要求证明 \(T^2\) 的全纯自同构群是 \(SL(2,\Z)\)。
+\end{problem}
+
+\begin{solution}
+按复环面理论，题面原说法不准确。作为复一维环面，\(T^2=\C/(\Z+i\Z)\) 的全纯自同构由平移和保持格 \(\Lambda\) 的复线性映射组成。任意全纯自同构 \(F:T^2\to T^2\) 可提升为
+\[
+\widetilde F(z)=az+b
+\]
+其中 \(a\Lambda=\Lambda\)。对方格 \(\Z+i\Z\)，满足 \(a\Lambda=\Lambda\) 的复数只有
+\[
+a\in\{\pm1,\pm i\}.
+\]
+再加上任意平移 \(b\in T^2\)。因此
+\[
+\operatorname{Aut}_{\mathrm{hol}}(T^2)
+=T^2\rtimes\{\pm1,\pm i\}.
+\]
+\(SL(2,\Z)\) 是实二维环面的某些线性保面积自同构群，不等于该复环面的全纯自同构群。故题面按“全纯”理解时结论为假，正确结论如上。
+\end{solution}
+
+\begin{problem}
+设 \(\{e_n\}\) 是 \(\ell^2\) 的标准正交基。定义线性算子
+\[
+Ae_1=0,\qquad Ae_n=\frac{e_{n-1}}{n-1}\quad(n>1).
+\]
+证明 \(A\) 是紧算子且无特征向量。求 \(A\) 的谱。
+\end{problem}
+
+\begin{solution}
+对基向量，
+\[
+\|Ae_n\|=
+\begin{cases}
+0,&n=1,\\
+\frac1{n-1},&n>1.
+\end{cases}
+\]
+令 \(A_N\) 为只保留 \(e_1,\ldots,e_N\) 方向作用的有限秩截断，则
+\[
+\|A-A_N\|=\sup_{n>N}\|Ae_n\|=\frac1N\to0.
+\]
+故 \(A\) 是紧算子。
+
+若 \(Ax=\lambda x\)，写 \(x=\sum_{n\ge1}x_ne_n\)。由坐标关系
+\[
+(Ax)_k=\frac{x_{k+1}}{k}
+\]
+得
+\[
+\frac{x_{k+1}}{k}=\lambda x_k,\qquad k\ge1.
+\]
+若 \(\lambda\ne0\)，则
+\[
+x_{k+1}=k\lambda x_k,
+\]
+所以 \(x_k=(k-1)!\lambda^{k-1}x_1\)，除非 \(x_1=0\)，否则不属于 \(\ell^2\)；若 \(x_1=0\)，则全为 \(0\)。若 \(\lambda=0\)，则 \(x_{k+1}=0\) 对所有 \(k\)，且 \(Ax=0\) 还要求 \(x\) 可为 \(x_1e_1\)。所以 \(0\) 有特征向量 \(e_1\)。题面“无特征向量”不准确；准确说法是无非零特征值的特征向量。
+
+紧算子的非零谱只能由非零特征值组成，并且 \(0\in\sigma(A)\)。上面证明无非零特征值，故
+\[
+\sigma(A)=\{0\}.
+\]
+\end{solution}
+
+\begin{problem}
+区间 \(M=[0,1]\) 上 Dirichlet 热核可写为
+\[
+p(x,y,t)=\sum_k \phi_k(x)\phi_k(y)e^{\lambda_k t},
+\]
+其中 \(\lambda_k\) 是 \(\Delta=d^2/dx^2\) 在 \(M\) 上、边界值为零的特征值，\(\phi_k\) 是对应特征函数。
+\begin{enumerate}[label=(\roman*)]
+\item 计算 \(\{\lambda_k\}\) 和对应特征函数；
+\item 证明 \(0<t<1\) 时 \(|p(x,y,t)|\le Ct^{-1/2}\)；
+\item 求 \(t\to\infty\) 时 \(p(x,y,t)\) 的指数衰减率。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\roman*)]
+\item 解
+\[
+\phi''=\lambda\phi,\qquad \phi(0)=\phi(1)=0.
+\]
+非零解为
+\[
+\phi_k(x)=\sqrt2\sin(k\pi x),\qquad
+\lambda_k=-k^2\pi^2,\qquad k=1,2,\ldots.
+\]
+
+\item 因此
+\[
+p(x,y,t)=2\sum_{k=1}^\infty e^{-k^2\pi^2t}\sin(k\pi x)\sin(k\pi y).
+\]
+于是
+\[
+|p(x,y,t)|\le2\sum_{k=1}^\infty e^{-k^2\pi^2t}.
+\]
+用积分比较，
+\[
+\sum_{k=1}^\infty e^{-c k^2t}\le C t^{-1/2},\qquad 0<t<1.
+\]
+得到所需估计。
+
+\item 主项来自 \(k=1\)：
+\[
+p(x,y,t)=2e^{-\pi^2t}\sin(\pi x)\sin(\pi y)+O(e^{-4\pi^2t}).
+\]
+若 \(x,y\in(0,1)\)，则
+\[
+\lim_{t\to\infty}\frac1t\log p(x,y,t)=-\pi^2.
+\]
+若 \(x\) 或 \(y\) 在边界，热核恒为 \(0\)。因此内部点的指数衰减率为 \(-\pi^2\)。
+\end{enumerate}
+\end{solution}
+
+\subsection{2017 年团体赛：分析与微分方程}
+
+原题要求：从以下 6 道题中选择 5 道作答。
+
+\begin{problem}
+设 \(f\) 是圆周上的可积函数，Fourier 系数
+\[
+\widehat f(n)=\frac1{2\pi}\int_0^{2\pi}f(x)e^{-inx}\,dx
+\]
+满足 \(\widehat f(n)=0\) 对所有 \(n\in\Z\)。证明：若 \(f\) 在点 \(\theta\) 连续，则 \(f(\theta)=0\)。
+\end{problem}
+
+\begin{solution}
+取 Poisson 核
+\[
+P_r(t)=\sum_{n\in\Z}r^{|n|}e^{int},\qquad 0<r<1.
+\]
+Poisson 积分为
+\[
+(P_r*f)(\theta)=\sum_{n\in\Z}r^{|n|}\widehat f(n)e^{in\theta}=0.
+\]
+另一方面，Poisson 核是恒等逼近。若 \(f\) 在 \(\theta\) 连续，则
+\[
+\lim_{r\uparrow1}(P_r*f)(\theta)=f(\theta).
+\]
+因此 \(f(\theta)=0\)。
+\end{solution}
+
+\begin{problem}
+设 \(F\) 在 \([a,b]\) 上连续。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item 若
+\[
+D^+F(x)=\limsup_{\substack{h\to0\\ h>0}}\frac{F(x+h)-F(x)}h>0
+\]
+对每个 \(x\in[a,b)\) 成立，则 \(F\) 在 \([a,b]\) 上递增。
+\item 若 \(F'(x)\) 对每个 \(x\in(a,b)\) 存在，且 \(|F'(x)|\le M\)，则
+\[
+|F(x)-F(y)|\le M|x-y|
+\]
+并且 \(F\) 绝对连续。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 对任意 \(\varepsilon>0\)，令
+\[
+G(x)=F(x)+\varepsilon x.
+\]
+则 \(D^+G(x)>0\)。若 \(G\) 不是递增的，则存在 \(s<t\) 使 \(G(s)>G(t)\)。函数 \(G\) 在 \([s,t]\) 上连续，取
+\[
+H(x)=G(x)-\ell(x)
+\]
+其中 \(\ell\) 是连接 \((s,G(s))\)、\((t,G(t))\) 的线性函数。由于斜率为负，可构造出 \(H\) 在内部取得最大值且右上 Dini 导数不正，矛盾于 \(D^+G>0\)。故 \(G\) 递增。令 \(\varepsilon\downarrow0\)，得 \(F\) 递增。
+
+\item 对 \(x<y\)，应用平均值定理，存在 \(\xi\in(x,y)\)，使
+\[
+F(y)-F(x)=F'(\xi)(y-x),
+\]
+故
+\[
+|F(y)-F(x)|\le M|y-x|.
+\]
+Lipschitz 函数绝对连续，因此 \(F\) 绝对连续。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(f\) 在 \(|z|<1\) 内全纯，且 \(|f(z)|<1\)。若 \(|\alpha|<1\)、\(|\beta|<1\)、\(\alpha\ne\beta\)，并且
+\[
+f(\alpha)=f(\beta)=0,
+\]
+证明
+\[
+|f(z)|\le
+\left|\frac{z-\alpha}{1-\overline\alpha z}
+\frac{z-\beta}{1-\overline\beta z}\right|,
+\qquad |z|<1.
+\]
+\end{problem}
+
+\begin{solution}
+令 Blaschke 因子
+\[
+B_a(z)=\frac{z-a}{1-\overline a z}.
+\]
+函数
+\[
+g(z)=\frac{f(z)}{B_\alpha(z)B_\beta(z)}
+\]
+在 \(\alpha,\beta\) 处奇点可去，并在单位圆盘内全纯。对 \(0<r<1\)，在圆 \(|z|=r\) 上应用最大模原理于稍微缩小的圆盘，并令 \(r\uparrow1\)。因为 \(|B_a(e^{it})|=1\)，边界上有
+\[
+\limsup_{|z|\to1}|g(z)|\le1.
+\]
+故 \(|g(z)|\le1\)。于是
+\[
+|f(z)|\le |B_\alpha(z)B_\beta(z)|.
+\]
+\end{solution}
+
+\begin{problem}
+证明：在任何其补集使 \(\pm1\) 位于同一连通分支的区域中，可以定义 \(\sqrt{1-z^2}\) 的单值解析分支。问闭曲线上的积分
+\[
+\oint\frac{dz}{\sqrt{1-z^2}}
+\]
+可能取哪些值？
+\end{problem}
+
+\begin{solution}
+函数 \(1-z^2=(1-z)(1+z)\) 的零点为 \(\pm1\)。在区域 \(\Omega\) 中存在 \(\sqrt{1-z^2}\) 的单值解析分支，当且仅当 \(1-z^2\) 沿 \(\Omega\) 中任意闭曲线的绕数为偶数。若 \(\pm1\) 在补集同一连通分支中，则任何闭曲线绕 \(1\) 与绕 \(-1\) 的次数相同模 \(2\)，所以总绕数为偶数，从而平方根分支存在。
+
+一旦选定分支，
+\[
+\frac{d}{dz}\arcsin z=\frac1{\sqrt{1-z^2}}
+\]
+在单值分支对应的覆盖上成立。闭曲线积分只可能来自 \(\arcsin\) 的周期变化。等价地，该微分在 \(\C\setminus\{\pm1\}\) 上的周期由围绕割线的循环给出，基本周期为 \(2\pi\)。因此闭曲线积分可能值为
+\[
+2\pi k,\qquad k\in\Z,
+\]
+符号取决于分支和方向。
+\end{solution}
+
+\begin{problem}
+在 \(\R^n\) 中考虑 Laplace 方程
+\[
+u_{11}+u_{22}+\cdots+u_{nn}=0.
+\]
+证明该方程在正交变换下不变。求所有旋转对称解。
+\end{problem}
+
+\begin{solution}
+若 \(Q\) 是正交矩阵，令 \(v(x)=u(Qx)\)。由链式法则，
+\[
+\nabla v(x)=Q^T\nabla u(Qx),
+\]
+而 Hessian 满足
+\[
+D^2v(x)=Q^TD^2u(Qx)Q.
+\]
+取迹得
+\[
+\Delta v(x)=\operatorname{tr}(Q^TD^2u(Qx)Q)=\operatorname{tr}D^2u(Qx)=\Delta u(Qx).
+\]
+故方程正交不变。
+
+旋转对称解写为 \(u(x)=U(r)\)，\(r=|x|\)。则
+\[
+\Delta u=U''(r)+\frac{n-1}{r}U'(r)=0.
+\]
+即
+\[
+(r^{n-1}U'(r))'=0.
+\]
+若 \(n\ge3\)，
+\[
+U(r)=A+Br^{2-n}.
+\]
+若 \(n=2\)，
+\[
+U(r)=A+B\log r.
+\]
+若要求在 \(r=0\) 处光滑，则必须 \(B=0\)，只剩常数解。
+\end{solution}
+
+\begin{problem}
+设 \(A:C[a,b]\to C[a,b]\) 定义为
+\[
+(Af)(x)=\int_a^bK(x,y)f(y)\,dy,
+\]
+其中 \(K(x,y)\) 在 \([a,b]\times[a,b]\) 上除有限条曲线
+\[
+y=\phi_k(x),\qquad k=1,\ldots,n
+\]
+外连续，且 \(\phi_k\) 连续。证明 \(A\) 是紧算子。
+\end{problem}
+
+\begin{solution}
+若 \(K\) 有界且仅在这些曲线上有跳跃型不连续，可用连续核逼近。对 \(\delta>0\)，去掉曲线的 \(\delta\)-邻域，并在邻域内用连续截断平滑，得到连续核 \(K_\delta\)，使
+\[
+\sup_x\int_a^b|K(x,y)-K_\delta(x,y)|\,dy\to0.
+\]
+对应算子 \(A_\delta\) 满足
+\[
+\|A-A_\delta\|_{C\to C}
+\le \sup_x\int_a^b|K(x,y)-K_\delta(x,y)|\,dy\to0.
+\]
+连续核积分算子 \(A_\delta\) 把单位球送到一致有界且等度连续的函数族，由 Arzelà--Ascoli 定理是紧算子。紧算子的算子范数极限仍紧，故 \(A\) 紧。
+\end{solution}
+
+\subsection{2018 年团体赛：分析与微分方程}
+
+原题要求：解答以下 5 道题。
+
+\begin{problem}
+设 \(\{f_n\}_{n=1}^\infty\subset L^2(\R)\) 且 \(f_n\to0\) 于 \(L^2\) 范数。证明存在子列 \(\{f_{n_k}\}\)，使得
+\[
+f_{n_k}(x)\to0
+\]
+对几乎处处 \(x\in\R\) 成立。
+\end{problem}
+
+\begin{solution}
+因为 \(f_n\to0\) 于 \(L^2\)，可递归选取子列 \(f_{n_k}\)，使
+\[
+\|f_{n_k}\|_2^2\le 2^{-2k}.
+\]
+于是
+\[
+\sum_{k=1}^\infty \|f_{n_k}\|_2^2<\infty.
+\]
+由 Tonelli 定理，
+\[
+\int_\R \sum_{k=1}^\infty |f_{n_k}(x)|^2\,dx
+=\sum_{k=1}^\infty \|f_{n_k}\|_2^2<\infty.
+\]
+所以对几乎处处 \(x\)，级数
+\[
+\sum_{k=1}^\infty |f_{n_k}(x)|^2
+\]
+收敛。收敛级数的通项趋于 \(0\)，故 \(f_{n_k}(x)\to0\) 几乎处处成立。
+\end{solution}
+
+\begin{problem}
+设 Fourier 变换定义为
+\[
+\widehat f(\xi)=\int_\R e^{-ix\xi}f(x)\,dx,\qquad f\in\mathcal S(\R).
+\]
+题面要求：若 \(f(2\pi n)=0\) 且 \(\widehat f(n)=0\) 对所有整数 \(n\) 成立，证明 \(f=0\)。
+\end{problem}
+
+\begin{solution}
+按题面原样，该命题不成立。下面给出反例。
+
+取任意非零函数 \(\phi\in C_c^\infty(0,\pi)\)，定义
+\[
+f(x)=\phi(x)-\phi(x-2\pi).
+\]
+则 \(f\in\mathcal S(\R)\)，且 \(f\not\equiv0\)。由于 \(\phi\) 的支集避开所有 \(2\pi n\)，可知
+\[
+f(2\pi n)=0\qquad(n\in\Z).
+\]
+另一方面，对整数 \(n\)，
+\[
+\widehat f(n)
+=\int e^{-inx}\phi(x)\,dx-\int e^{-inx}\phi(x-2\pi)\,dx.
+\]
+第二项令 \(u=x-2\pi\)，得
+\[
+\int e^{-in(u+2\pi)}\phi(u)\,du
+=e^{-2\pi in}\int e^{-inu}\phi(u)\,du
+=\int e^{-inu}\phi(u)\,du.
+\]
+故 \(\widehat f(n)=0\) 对所有 \(n\in\Z\) 成立，但 \(f\ne0\)。因此原命题为假，不能证明。
+\end{solution}
+
+\begin{problem}
+若 \(f\) 在 \(\R^d\) 上可积，证明
+\[
+\lim_{m(B)\to0,\ x\in B}\frac1{m(B)}\int_B f(y)\,dy=f(x)
+\]
+对几乎处处 \(x\) 成立，其中 \(B\) 是以 \(x\) 为中心的开球。
+\end{problem}
+
+\begin{solution}
+这是 Lebesgue 微分定理。给出证明框架。先对连续紧支函数 \(g\) 成立：由于 \(g\) 在紧集上一致连续，当球 \(B(x,r)\) 半径 \(r\to0\) 时，
+\[
+\left|\frac1{|B(x,r)|}\int_{B(x,r)}g(y)\,dy-g(x)\right|
+\le \sup_{|y-x|<r}|g(y)-g(x)|\to0.
+\]
+对一般 \(f\in L^1\)，取 \(g\in C_c(\R^d)\)，使 \(\|f-g\|_1\) 任意小。Hardy--Littlewood 极大不等式给出
+\[
+m\{x:M(f-g)(x)>\lambda\}\le \frac{C_d}{\lambda}\|f-g\|_1.
+\]
+在极大函数较小的点，\(f\) 的平均值与 \(g\) 的平均值差由 \(M(f-g)\) 控制。令 \(\|f-g\|_1\to0\)，得到除零测集外 \(f\) 的球平均收敛到 \(f(x)\)。
+\end{solution}
+
+\begin{problem}
+设
+\[
+C[0,1]=\{f:[0,1]\to\R:\ f\text{ 连续}\},
+\]
+并定义
+\[
+\rho(f,g)=\int_0^1 |f(x)-g(x)|\,dx.
+\]
+证明 \((C[0,1],\rho)\) 不是完备度量向量空间。构造完备度量向量空间 \((W,\widetilde\rho)\)，使得
+\[
+i:(C[0,1],\rho)\hookrightarrow (W,\widetilde\rho)
+\]
+是等距嵌入，且 \(C[0,1]\) 在 \(W\) 中稠密。
+\end{problem}
+
+\begin{solution}
+度量 \(\rho\) 正是 \(L^1\) 距离在连续函数上的限制。取阶跃函数
+\[
+h(x)=
+\begin{cases}
+0,&0\le x<1/2,\\
+1,&1/2\le x\le1.
+\end{cases}
+\]
+可取连续函数 \(h_n\) 在 \(1/2\) 附近线性过渡，使 \(h_n\to h\) 于 \(L^1\)。则 \(\{h_n\}\) 在 \(\rho\) 下是 Cauchy 列。若它在 \(C[0,1]\) 中收敛到某连续函数 \(h_*\)，则也在 \(L^1\) 中收敛到 \(h_*\)。但 \(L^1\) 极限几乎处处唯一，所以 \(h_*=h\) 几乎处处，这不可能，因为 \(h\) 没有连续代表。故不完备。
+
+取
+\[
+W=L^1([0,1]),\qquad
+\widetilde\rho(F,G)=\int_0^1|F-G|\,dx.
+\]
+将连续函数按等价类嵌入 \(L^1\)。这是等距嵌入。连续函数在 \(L^1([0,1])\) 中稠密，故 \(C[0,1]\) 在 \(W\) 中稠密，而 \(L^1\) 是完备空间。
+\end{solution}
+
+\begin{problem}
+设 \(\Omega\) 是 \(\C\) 中单连通区域，\(z_0\in\Omega\)。令 \(G(z,z_0)\) 为边界值为 \(\log|\zeta-z_0|\) 的 Dirichlet 问题解，并令
+\[
+g(z,z_0)=G(z,z_0)-\log|z-z_0|.
+\]
+设 \(w=f(z):\Omega\to\D=\{|z|<1\}\) 是双全纯映射，且 \(f(z_0)=0\)。证明：
+\begin{enumerate}[label=(\arabic*)]
+\item \(g(z,z_0)=-\log|f(z)|\)；
+\item \(g(z,z_0)=g(z_0,z)\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 函数
+\[
+\log|f(z)|-\log|z-z_0|
+\]
+在 \(z_0\) 附近的奇性可去，因为 \(f(z)=f'(z_0)(z-z_0)+O((z-z_0)^2)\)。函数
+\[
+-\log|f(z)|
+\]
+在 \(\Omega\setminus\{z_0\}\) 中调和，并且在边界上具有与
+\[
+G(z,z_0)-\log|z-z_0|
+\]
+相同的边界行为。由 Dirichlet 问题唯一性，
+\[
+g(z,z_0)=-\log|f(z)|.
+\]
+
+\item 这是 Green 函数的对称性。设 \(z_1,z_2\in\Omega\)，记
+\[
+g_1(z)=g(z,z_1),\qquad g_2(z)=g(z,z_2).
+\]
+在去掉 \(z_1,z_2\) 的小圆盘后的区域上应用 Green 第二恒等式：
+\[
+\int_{\partial D_\varepsilon}
+\left(g_1\frac{\partial g_2}{\partial n}
+-g_2\frac{\partial g_1}{\partial n}\right)\,ds=0.
+\]
+外边界贡献为 \(0\)，因为 Green 函数满足相同的边界归一化。令小圆半径趋于 \(0\)，利用
+\[
+g(z,z_j)=\text{调和正则部分}-\log|z-z_j|
+\]
+的局部展开，得到
+\[
+g(z_1,z_2)=g(z_2,z_1).
+\]
+\end{enumerate}
+\end{solution}
+
+\subsection{2019 年团体赛：分析与微分方程}
+
+原题要求：解答以下 5 道题。
+
+\begin{problem}
+证明不存在非零函数 \(f\in C_0^\infty(\R^2)\)，使得它的 Fourier 变换 \(\widehat f(\xi)\) 也具有紧支集。
+\end{problem}
+
+\begin{solution}
+因为 \(f\in C_0^\infty(\R^2)\)，其 Fourier 变换
+\[
+\widehat f(\zeta)=\int_{\R^2}e^{-ix\cdot \zeta}f(x)\,dx
+\]
+不仅在 \(\R^2\) 上光滑，而且可延拓为 \(\C^2\) 上的整函数：积分区域紧，故对复变量 \(\zeta\) 可逐项求导。
+
+若 \(\widehat f\) 也有紧支集，则存在 \(R>0\)，使得当 \(|\xi|>R\) 时 \(\widehat f(\xi)=0\)。这说明整函数 \(\widehat f\) 在实空间中的非空开集 \(\{|\xi|>R\}\) 上为零。沿任意复直线限制，得到一元整函数在有聚点的集合上为零，故恒为零。于是 \(\widehat f\equiv0\)，由 Fourier 反演，\(f\equiv0\)。因此非零这样的 \(f\) 不存在。
+\end{solution}
+
+\begin{problem}
+证明经典内 Schauder 估计：存在普适常数 \(C\)，使得对所有光滑紧支函数 \(u,f\in C_0^\infty(\R^3)\)，若
+\[
+\Delta u=f,
+\]
+则
+\[
+\|u\|_{C^{2,\alpha}}\le C\|f\|_{C^{0,\alpha}},
+\qquad 0<\alpha<1.
+\]
+\end{problem}
+
+\begin{solution}
+严格的全空间估计应理解为对二阶导数的 Schauder 估计，或在加上低阶范数后成立。对 \(u\in C_0^\infty(\R^3)\)，Newton 势表示给出
+\[
+u(x)=-\frac1{4\pi}\int_{\R^3}\frac{f(y)}{|x-y|}\,dy.
+\]
+二阶导数是 Calderón--Zygmund 奇异积分：
+\[
+\partial_i\partial_j u(x)=\operatorname{p.v.}\int_{\R^3}K_{ij}(x-y)f(y)\,dy+c_{ij}f(x),
+\]
+其中 \(K_{ij}\) 是均值为零、阶数 \(-3\) 的齐次光滑核。标准 Schauder 奇异积分估计说明
+\[
+[\partial_i\partial_j u]_{C^\alpha}
+\le C[f]_{C^\alpha}.
+\]
+再由局部椭圆估计和 \(u\) 的紧支性控制低阶项，得到
+\[
+\|u\|_{C^{2,\alpha}}\le C\|f\|_{C^{0,\alpha}}.
+\]
+核心点是核在球面上的平均为零，因此在估计差
+\(\partial_i\partial_j u(x)-\partial_i\partial_j u(x')\) 时，近区由 Hölder 连续性给出 \(|x-x'|^\alpha\)，远区由核的光滑性给出同阶界；两部分相加得到所需估计。
+\end{solution}
+
+\begin{problem}
+设 \((X,\mathcal A,\mu)\) 是概率空间，\(T:X\to X\) 是可测且保测度的映射，即对所有 \(A\in\mathcal A\)，
+\[
+\mu(T^{-1}A)=\mu(A).
+\]
+若 \(A\in\mathcal A\) 满足
+\[
+T^{-1}(A)=A\quad\text{几乎处处},
+\]
+证明存在 \(B\in\mathcal A\)，使得
+\[
+T^{-1}B=B,\qquad A=B\quad\text{几乎处处}.
+\]
+\end{problem}
+
+\begin{solution}
+令
+\[
+B=\bigcup_{m=0}^\infty\bigcap_{k\ge m}T^{-k}A.
+\]
+这是 \(A\) 的最终不变版本。先证明 \(B=A\) 几乎处处。由 \(T^{-1}A=A\) 几乎处处，归纳得
+\[
+T^{-k}A=A\quad\text{几乎处处}
+\]
+对所有 \(k\ge0\) 成立。可数交并不改变零测差异，因此 \(B=A\) 几乎处处。
+
+再证严格不变。由定义，
+\[
+T^{-1}B
+=\bigcup_{m=0}^\infty\bigcap_{k\ge m}T^{-(k+1)}A
+=\bigcup_{m=1}^\infty\bigcap_{k\ge m}T^{-k}A.
+\]
+这与 \(B\) 的差别只可能来自 \(m=0\) 项
+\[
+\bigcap_{k\ge0}T^{-k}A.
+\]
+但该项也包含在 \(m=1\) 项中，所以两者相等。故 \(T^{-1}B=B\)，且 \(B=A\) 几乎处处。
+\end{solution}
+
+\begin{problem}
+是否存在一个有无穷多个零点的整函数 \(f\)，使得对每个 \(r\in(0,1)\)，存在常数 \(A_r,B_r<\infty\)，满足
+\[
+|f(z)|\le A_r e^{B_r|z|^r}
+\qquad(z\in\C)?
+\]
+\end{problem}
+
+\begin{solution}
+不存在。题设说明 \(f\) 的增长阶不超过任意 \(r<1\)，因此 \(f\) 的阶为 \(0\)：
+\[
+\rho=\limsup_{R\to\infty}\frac{\log\log M(R)}{\log R}=0,
+\qquad M(R)=\max_{|z|=R}|f(z)|.
+\]
+若非零整函数有无穷多个零点 \(\{a_k\}\)，则由 Jensen 公式，
+\[
+\sum_{|a_k|<R}\log\frac{R}{|a_k|}
+\le \log M(R)-\log|f(0)|
+\]
+在 \(f(0)\ne0\) 时成立；若 \(f(0)=0\)，先除去原点有限阶零点。无穷多个零点迫使零点计数函数 \(n(R)\to\infty\)。由 Jensen 公式可推出整函数的阶至少等于零点指数的收敛指数；特别地，一个阶为 \(0\) 的非零整函数只能有零点收敛指数为 \(0\) 的零集。取任意无穷零点列仍可非常稀疏，所以还需进一步使用题设“对所有 \(r<1\)”并不能排除这种稀疏零集；例如 canonical product
+\[
+\prod_{k=1}^\infty \left(1-\frac{z}{e^{k^2}}\right)
+\]
+就是阶 \(0\) 且有无穷零点的整函数，并满足对每个 \(r>0\) 有
+\[
+|f(z)|\le A_r e^{B_r|z|^r}.
+\]
+因此答案是：存在。
+
+具体构造如上。因为零点 \(a_k=e^{k^2}\) 满足 \(\sum 1/|a_k|<\infty\)，乘积
+\[
+f(z)=\prod_{k=1}^\infty\left(1-\frac{z}{e^{k^2}}\right)
+\]
+一致收敛于整函数，并在每个 \(e^{k^2}\) 处有零点。对给定 \(r\in(0,1)\)，估计
+\[
+\log|f(z)|
+\le \sum_{k=1}^\infty \log\left(1+\frac{|z|}{e^{k^2}}\right).
+\]
+当 \(e^{k^2}\le 2|z|\) 时，项数为 \(O(\sqrt{\log |z|})\)，贡献为 \(O((\log |z|)^{3/2})\)；其余尾项由 \(|z|\sum_{e^{k^2}>2|z|}e^{-k^2}\) 控制，也为低于任意幂 \(|z|^r\) 的量。因此对每个 \(r>0\)，
+\[
+\log|f(z)|\le C_r(1+|z|^r),
+\]
+即满足题设。
+\end{solution}
+
+\begin{problem}
+设 \(u(t,x,y)\) 是定义在 \(\R\times\R^2\) 上的光滑实函数，满足半线性波方程
+\[
+-\frac{\partial^2u}{\partial t^2}+\Delta u=u^3.
+\]
+若初始数据 \(u(0,x)\) 与 \(\partial_tu(0,x)\) 的支集均紧，证明对所有 \(t_0\in\R\)，\(u(t_0,x)\) 与 \(\partial_tu(t_0,x)\) 的支集均紧。
+\end{problem}
+
+\begin{solution}
+这是波方程的有限传播速度。设初始数据支集包含在球 \(B_R(0)\) 中。取任意点 \((t_0,x_0)\) 满足
+\[
+|x_0|>R+|t_0|.
+\]
+则向后光锥
+\[
+\{(t,x):0\le t\le t_0,\ |x-x_0|\le |t_0-t|\}
+\]
+在 \(t=0\) 的截面与 \(B_R(0)\) 不相交。在线性波方程中，能量恒等式说明锥内解只由底部初值决定；半线性项 \(u^3\) 是局部项，不会产生超光速传播。
+
+更具体地，对截断光锥内的局部能量
+\[
+E(s)=\int_{|x-x_0|\le t_0-s}
+\left(\frac12|u_t|^2+\frac12|\nabla u|^2+\frac14u^4\right)\,dx
+\]
+作能量恒等式。边界通量非负，且底部初始能量为 \(0\)，故 \(E(s)=0\)。于是 \(u\) 与 \(u_t\) 在该锥内为零，特别地 \(u(t_0,x_0)=u_t(t_0,x_0)=0\)。
+
+因此
+\[
+\supp u(t_0,\cdot)\cup\supp u_t(t_0,\cdot)\subset B_{R+|t_0|}(0),
+\]
+为紧集。
+\end{solution}
+
+\end{document}

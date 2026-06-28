@@ -1,0 +1,3467 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.3cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{newunicodechar}
+\newcommand{\umath}[1]{\ensuremath{#1}}
+\newunicodechar{∶}{\umath{:}}
+\newunicodechar{∓}{\umath{\mp}}
+\newunicodechar{⧵}{\umath{\backslash}}
+\newunicodechar{⃗}{}
+\newunicodechar{̸}{\umath{/}}
+\newunicodechar{∈}{\umath{\in}}
+\newunicodechar{∉}{\umath{\notin}}
+\newunicodechar{∋}{\umath{\ni}}
+\newunicodechar{∀}{\umath{\forall}}
+\newunicodechar{∃}{\umath{\exists}}
+\newunicodechar{∅}{\umath{\varnothing}}
+\newunicodechar{≤}{\umath{\le}}
+\newunicodechar{≥}{\umath{\ge}}
+\newunicodechar{⩽}{\umath{\le}}
+\newunicodechar{⩾}{\umath{\ge}}
+\newunicodechar{≠}{\umath{\ne}}
+\newunicodechar{≡}{\umath{\equiv}}
+\newunicodechar{≈}{\umath{\approx}}
+\newunicodechar{≃}{\umath{\simeq}}
+\newunicodechar{≅}{\umath{\cong}}
+\newunicodechar{∼}{\umath{\sim}}
+\newunicodechar{⊂}{\umath{\subset}}
+\newunicodechar{⊆}{\umath{\subseteq}}
+\newunicodechar{⊕}{\umath{\oplus}}
+\newunicodechar{⊗}{\umath{\otimes}}
+\newunicodechar{⊥}{\umath{\perp}}
+\newunicodechar{∩}{\umath{\cap}}
+\newunicodechar{∪}{\umath{\cup}}
+\newunicodechar{∧}{\umath{\wedge}}
+\newunicodechar{∣}{\umath{\mid}}
+\newunicodechar{∤}{\umath{\nmid}}
+\newunicodechar{∥}{\umath{\parallel}}
+\newunicodechar{⋅}{\umath{\cdot}}
+\newunicodechar{⋯}{\umath{\cdots}}
+\newunicodechar{∑}{\umath{\sum}}
+\newunicodechar{∏}{\umath{\prod}}
+\newunicodechar{∫}{\umath{\int}}
+\newunicodechar{∂}{\umath{\partial}}
+\newunicodechar{∇}{\umath{\nabla}}
+\newunicodechar{∆}{\umath{\Delta}}
+\newunicodechar{⇒}{\umath{\Rightarrow}}
+\newunicodechar{⇐}{\umath{\Leftarrow}}
+\newunicodechar{↔}{\umath{\leftrightarrow}}
+\newunicodechar{⟹}{\umath{\Longrightarrow}}
+\newunicodechar{⟶}{\umath{\longrightarrow}}
+\newunicodechar{⟨}{\umath{\langle}}
+\newunicodechar{⟩}{\umath{\rangle}}
+\newunicodechar{⌊}{\umath{\lfloor}}
+\newunicodechar{⌋}{\umath{\rfloor}}
+\newunicodechar{′}{\umath{'}}
+\newunicodechar{″}{\umath{''}}
+\newunicodechar{‴}{\umath{'''}}
+\newunicodechar{ℎ}{\umath{h}}
+\newunicodechar{ℓ}{\umath{\ell}}
+\newunicodechar{ℙ}{\umath{\mathbb P}}
+\newunicodechar{ℬ}{\umath{\mathcal B}}
+\newunicodechar{ℱ}{\umath{\mathcal F}}
+\newunicodechar{α}{\umath{\alpha}}
+\newunicodechar{β}{\umath{\beta}}
+\newunicodechar{γ}{\umath{\gamma}}
+\newunicodechar{δ}{\umath{\delta}}
+\newunicodechar{ε}{\umath{\varepsilon}}
+\newunicodechar{ϵ}{\umath{\epsilon}}
+\newunicodechar{ζ}{\umath{\zeta}}
+\newunicodechar{η}{\umath{\eta}}
+\newunicodechar{θ}{\umath{\theta}}
+\newunicodechar{ι}{\umath{\iota}}
+\newunicodechar{κ}{\umath{\kappa}}
+\newunicodechar{λ}{\umath{\lambda}}
+\newunicodechar{ν}{\umath{\nu}}
+\newunicodechar{ξ}{\umath{\xi}}
+\newunicodechar{π}{\umath{\pi}}
+\newunicodechar{ρ}{\umath{\rho}}
+\newunicodechar{σ}{\umath{\sigma}}
+\newunicodechar{τ}{\umath{\tau}}
+\newunicodechar{φ}{\umath{\varphi}}
+\newunicodechar{ϕ}{\umath{\phi}}
+\newunicodechar{χ}{\umath{\chi}}
+\newunicodechar{ψ}{\umath{\psi}}
+\newunicodechar{ω}{\umath{\omega}}
+\newunicodechar{𝛼}{\umath{\alpha}}
+\newunicodechar{𝛽}{\umath{\beta}}
+\newunicodechar{𝛾}{\umath{\gamma}}
+\newunicodechar{𝛿}{\umath{\delta}}
+\newunicodechar{𝜁}{\umath{\zeta}}
+\newunicodechar{𝜃}{\umath{\theta}}
+\newunicodechar{𝜆}{\umath{\lambda}}
+\newunicodechar{𝜇}{\umath{\mu}}
+\newunicodechar{𝜈}{\umath{\nu}}
+\newunicodechar{𝜋}{\umath{\pi}}
+\newunicodechar{𝜍}{\umath{\varsigma}}
+\newunicodechar{𝜎}{\umath{\sigma}}
+\newunicodechar{𝜏}{\umath{\tau}}
+\newunicodechar{𝜑}{\umath{\varphi}}
+\newunicodechar{𝜒}{\umath{\chi}}
+\newunicodechar{𝜓}{\umath{\psi}}
+\newunicodechar{𝜔}{\umath{\omega}}
+\newunicodechar{𝜕}{\umath{\partial}}
+\newunicodechar{𝜽}{\umath{\boldsymbol\theta}}
+\newunicodechar{𝐀}{\umath{\mathbf A}}
+\newunicodechar{𝐁}{\umath{\mathbf B}}
+\newunicodechar{𝐂}{\umath{\mathbb C}}
+\newunicodechar{𝐄}{\umath{\mathbf E}}
+\newunicodechar{𝐅}{\umath{\mathbf F}}
+\newunicodechar{𝐇}{\umath{\mathbf H}}
+\newunicodechar{𝐈}{\umath{\mathbf I}}
+\newunicodechar{𝐍}{\umath{\mathbb N}}
+\newunicodechar{𝐐}{\umath{\mathbb Q}}
+\newunicodechar{𝐑}{\umath{\mathbb R}}
+\newunicodechar{𝐗}{\umath{\mathbf X}}
+\newunicodechar{𝐘}{\umath{\mathbf Y}}
+\newunicodechar{𝐙}{\umath{\mathbb Z}}
+\newunicodechar{𝐝}{\umath{\mathbf d}}
+\newunicodechar{𝐞}{\umath{\mathbf e}}
+\newunicodechar{𝐦}{\umath{\mathbf m}}
+\newunicodechar{𝐱}{\umath{\mathbf x}}
+\newunicodechar{𝐴}{\umath{A}}
+\newunicodechar{𝐵}{\umath{B}}
+\newunicodechar{𝐶}{\umath{C}}
+\newunicodechar{𝐸}{\umath{E}}
+\newunicodechar{𝐹}{\umath{F}}
+\newunicodechar{𝐻}{\umath{H}}
+\newunicodechar{𝐼}{\umath{I}}
+\newunicodechar{𝐾}{\umath{K}}
+\newunicodechar{𝐿}{\umath{L}}
+\newunicodechar{𝑀}{\umath{M}}
+\newunicodechar{𝑁}{\umath{N}}
+\newunicodechar{𝑂}{\umath{O}}
+\newunicodechar{𝑃}{\umath{P}}
+\newunicodechar{𝑄}{\umath{Q}}
+\newunicodechar{𝑅}{\umath{R}}
+\newunicodechar{𝑆}{\umath{S}}
+\newunicodechar{𝑇}{\umath{T}}
+\newunicodechar{𝑈}{\umath{U}}
+\newunicodechar{𝑉}{\umath{V}}
+\newunicodechar{𝑊}{\umath{W}}
+\newunicodechar{𝑋}{\umath{X}}
+\newunicodechar{𝑌}{\umath{Y}}
+\newunicodechar{𝑎}{\umath{a}}
+\newunicodechar{𝑏}{\umath{b}}
+\newunicodechar{𝑐}{\umath{c}}
+\newunicodechar{𝑑}{\umath{d}}
+\newunicodechar{𝑒}{\umath{e}}
+\newunicodechar{𝑓}{\umath{f}}
+\newunicodechar{𝑔}{\umath{g}}
+\newunicodechar{𝑖}{\umath{i}}
+\newunicodechar{𝑗}{\umath{j}}
+\newunicodechar{𝑘}{\umath{k}}
+\newunicodechar{𝑙}{\umath{l}}
+\newunicodechar{𝑚}{\umath{m}}
+\newunicodechar{𝑛}{\umath{n}}
+\newunicodechar{𝑝}{\umath{p}}
+\newunicodechar{𝑞}{\umath{q}}
+\newunicodechar{𝑟}{\umath{r}}
+\newunicodechar{𝑠}{\umath{s}}
+\newunicodechar{𝑡}{\umath{t}}
+\newunicodechar{𝑢}{\umath{u}}
+\newunicodechar{𝑣}{\umath{v}}
+\newunicodechar{𝑤}{\umath{w}}
+\newunicodechar{𝑥}{\umath{x}}
+\newunicodechar{𝑦}{\umath{y}}
+\newunicodechar{𝑧}{\umath{z}}
+\newunicodechar{𝒞}{\umath{\mathcal C}}
+\newunicodechar{𝒩}{\umath{\mathcal N}}
+\newunicodechar{𝒪}{\umath{\mathcal O}}
+\newunicodechar{𝔞}{\umath{\mathfrak a}}
+\newunicodechar{𝔤}{\umath{\mathfrak g}}
+\newunicodechar{𝔩}{\umath{\mathfrak l}}
+\newunicodechar{𝔬}{\umath{\mathfrak o}}
+\newunicodechar{𝔭}{\umath{\mathfrak p}}
+\newunicodechar{𝔮}{\umath{\mathfrak q}}
+\newunicodechar{𝔰}{\umath{\mathfrak s}}
+\newunicodechar{𝔼}{\umath{\mathbb E}}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.35em,topsep=0.35em}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\sgn}{\operatorname{sgn}}
+
+\newcounter{problem}
+\newenvironment{problem}[1][]{%
+  \refstepcounter{problem}
+  \par\bigskip
+  \noindent{\large\bfseries 题目 \theproblem\if\relax\detokenize{#1}\relax\else\quad #1\fi}\par
+  \smallskip
+  \noindent\ignorespaces
+}{\par}
+\newenvironment{solution}{%
+  \par\medskip
+  \noindent{\bfseries 解答}\quad\ignorespaces
+}{\hfill$\square$\par\medskip}
+
+\title{丘成桐数学竞赛数学物理真题}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+
+\section{笔试题}
+
+\subsection{2022 年笔试：数学物理}
+
+\begin{problem}
+\begin{enumerate}[label=(\alph*)]
+\item 量子力学中的对称变换由作用在 Hilbert 空间上的酉算子或反酉算子表示。时间反演变换 \(\Theta\) 把时刻 \(t\) 的波函数与时刻 \(-t\) 的波函数联系起来。证明：\(\Theta\) 是反酉算子。
+\item 设量子系统的态矢量为 \(|\psi\rangle\)，时间反演由反酉算子 \(\Theta\) 表示。记位置表象波函数为
+\[
+\psi(x)=\langle x|\psi\rangle,
+\]
+并假设 \(\Theta|x\rangle=|x\rangle\)。证明：态 \(\Theta|\psi\rangle\) 的位置表象波函数为
+\[
+\psi(x)^*.
+\]
+\item 一个一维量子系统在时间反演下不变，因而 Hamilton 算子满足 \(\Theta H=H\Theta\)。若能量本征态 \(|\psi\rangle\) 非简并，证明：可以选取它的位置表象能量本征函数为实函数，即
+\[
+\psi(x)^*=\psi(x).
+\]
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 时间演化算子为
+\[
+U(t)=\exp\!\left(-\frac{\ii Ht}{\hbar}\right).
+\]
+时间反演把向前演化变为向后演化，所以在时间反演对称系统中应有
+\[
+\Theta^{-1}U(t)\Theta=U(-t)=U(t)^\dagger.
+\]
+考察无穷小时间 \(t\)。若 \(\Theta\) 是线性的酉算子，则
+\[
+\Theta^{-1}\left(1-\frac{\ii Ht}{\hbar}+O(t^2)\right)\Theta
+=1-\frac{\ii\,\Theta^{-1}H\Theta\,t}{\hbar}+O(t^2),
+\]
+而右边
+\[
+U(-t)=1+\frac{\ii Ht}{\hbar}+O(t^2).
+\]
+比较一次项得到
+\[
+\Theta^{-1}H\Theta=-H.
+\]
+这会把任意能量本征态 \(H|E\rangle=E|E\rangle\) 送到能量 \(-E\) 的本征态：
+\[
+H\Theta|E\rangle=-E\,\Theta|E\rangle.
+\]
+一般量子系统的能谱并不关于 \(0\) 对称，甚至自由粒子的能量也非负，所以线性酉实现不可能给出通常意义下的时间反演。
+
+反酉算子是反线性的，并满足
+\[
+\Theta(\alpha|\psi\rangle+\beta|\phi\rangle)
+=\alpha^*\Theta|\psi\rangle+\beta^*\Theta|\phi\rangle.
+\]
+因此它把 \(\ii\) 变为 \(-\ii\)。若 \(\Theta^{-1}H\Theta=H\)，则
+\[
+\Theta^{-1}U(t)\Theta
+=\Theta^{-1}\exp\!\left(-\frac{\ii Ht}{\hbar}\right)\Theta
+=\exp\!\left(\frac{\ii Ht}{\hbar}\right)=U(-t).
+\]
+这正是时间反演应满足的关系。因此时间反演算子必须按反酉方式实现。
+
+\item 用位置本征态展开
+\[
+|\psi\rangle=\int \dd x\, |x\rangle\langle x|\psi\rangle
+=\int \dd x\,\psi(x)|x\rangle.
+\]
+由于 \(\Theta\) 反线性且 \(\Theta|x\rangle=|x\rangle\)，
+\[
+\Theta|\psi\rangle
+=\int \dd x\,\psi(x)^*\Theta|x\rangle
+=\int \dd x\,\psi(x)^*|x\rangle.
+\]
+所以 \(\Theta|\psi\rangle\) 的位置表象系数就是 \(\psi(x)^*\)。
+
+\item 若
+\[
+H|\psi\rangle=E|\psi\rangle,
+\]
+则由 \(\Theta H=H\Theta\) 得
+\[
+H\Theta|\psi\rangle=\Theta H|\psi\rangle=E\Theta|\psi\rangle.
+\]
+故 \(\Theta|\psi\rangle\) 也是能量 \(E\) 的本征态。由于该本征值非简并，存在常数 \(\lambda\) 使
+\[
+\Theta|\psi\rangle=\lambda|\psi\rangle.
+\]
+反酉性保持范数，故 \(|\lambda|=1\)。在位置表象中，上式变为
+\[
+\psi(x)^*=\lambda\psi(x).
+\]
+取相位 \(\lambda=\ee^{\ii\alpha}\)，把本征态重新定义为
+\[
+|\psi'\rangle=\ee^{\ii\alpha/2}|\psi\rangle.
+\]
+则
+\[
+\psi'(x)^*
+=\ee^{-\ii\alpha/2}\psi(x)^*
+=\ee^{-\ii\alpha/2}\ee^{\ii\alpha}\psi(x)
+=\ee^{\ii\alpha/2}\psi(x)
+=\psi'(x).
+\]
+所以在非简并情形下可以选取实的能量本征函数。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑 Hamilton 算子
+\[
+H_0=\frac{p_1^2}{2m}+\frac12m\omega^2x_1^2
++\frac{p_2^2}{2m}+\frac12m\omega^2x_2^2,
+\]
+这是两个解耦的一维谐振子的 Hamilton 算子。
+\begin{enumerate}[label=(\alph*)]
+\item 求 \(H_0\) 的本征态和本征值。本征态可记为 \(|n_1,n_2\rangle\)。
+\item 设两个谐振子的产生、湮灭算子为 \(a_i^\dagger,a_i\)，\(i=1,2\)。定义
+\[
+J_+=a_1^\dagger a_2,\qquad
+J_-=a_2^\dagger a_1,\qquad
+J_z=\frac12(a_1^\dagger a_1-a_2^\dagger a_2).
+\]
+证明
+\[
+[J_z,J_\pm]=\pm J_\pm,\qquad [J_+,J_-]=2J_z.
+\]
+再考虑 \(H_0\) 的某个能级 \(E_n\)，其中 \(n_1+n_2=n\)。证明该能级的全部本征态构成 \(su(2)\) Lie 代数的一个不可约表示，并求其自旋。
+\item 考虑微扰 Hamilton 算子
+\[
+H=H_0+\lambda x_1^2p_2^2,
+\]
+其中 \(\lambda\) 很小。求能级 \(n_1+n_2=2\) 的一阶能量修正。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 定义
+\[
+a_i=\sqrt{\frac{m\omega}{2\hbar}}x_i+\frac{\ii}{\sqrt{2m\hbar\omega}}p_i,\qquad
+a_i^\dagger=\sqrt{\frac{m\omega}{2\hbar}}x_i-\frac{\ii}{\sqrt{2m\hbar\omega}}p_i.
+\]
+它们满足
+\[
+[a_i,a_j^\dagger]=\delta_{ij},\qquad [a_i,a_j]=[a_i^\dagger,a_j^\dagger]=0.
+\]
+于是
+\[
+H_0=\hbar\omega\left(a_1^\dagger a_1+a_2^\dagger a_2+1\right).
+\]
+设 \(|0,0\rangle\) 满足 \(a_1|0,0\rangle=a_2|0,0\rangle=0\)。归一化本征态为
+\[
+|n_1,n_2\rangle
+=\frac{(a_1^\dagger)^{n_1}(a_2^\dagger)^{n_2}}{\sqrt{n_1!\,n_2!}}|0,0\rangle,
+\qquad n_1,n_2=0,1,2,\ldots.
+\]
+对应本征值是
+\[
+E_{n_1,n_2}=\hbar\omega(n_1+n_2+1).
+\]
+
+\item 记 \(N_i=a_i^\dagger a_i\)。由
+\[
+[N_i,a_i^\dagger]=a_i^\dagger,\qquad [N_i,a_i]=-a_i
+\]
+以及不同模式的算子相互对易可得
+\[
+[J_z,J_+]
+=\frac12[N_1-N_2,a_1^\dagger a_2]
+=\frac12(a_1^\dagger a_2+a_1^\dagger a_2)=J_+,
+\]
+同理
+\[
+[J_z,J_-]=-J_-.
+\]
+再算
+\[
+\begin{aligned}
+[J_+,J_-]
+&=a_1^\dagger a_2a_2^\dagger a_1-a_2^\dagger a_1a_1^\dagger a_2\\
+&=a_1^\dagger(N_2+1)a_1-a_2^\dagger(N_1+1)a_2\\
+&=N_1N_2+N_1-(N_1N_2+N_2)\\
+&=N_1-N_2=2J_z.
+\end{aligned}
+\]
+
+固定 \(n_1+n_2=n\) 时，能级 \(E_n=\hbar\omega(n+1)\) 的本征空间
+\[
+\mathcal H_n=\operatorname{span}\{|n_1,n_2\rangle:n_1+n_2=n\}
+\]
+维数为 \(n+1\)。算子 \(J_\pm,J_z\) 都保持总粒子数 \(N=N_1+N_2\)，故作用在 \(\mathcal H_n\) 上。并且
+\[
+J_z|n_1,n_2\rangle=\frac{n_1-n_2}{2}|n_1,n_2\rangle.
+\]
+最大权向量为 \(|n,0\rangle\)，权为 \(n/2\)，且 \(J_+|n,0\rangle=0\)。连续作用 \(J_-\) 得到
+\[
+|n-1,1\rangle,\ |n-2,2\rangle,\ldots,\ |0,n\rangle,
+\]
+覆盖整个 \(\mathcal H_n\)。因此这是最高权 \(j=n/2\) 的不可约 \(su(2)\) 表示，自旋为
+\[
+j=\frac n2.
+\]
+
+\item 在简并微扰论中，应在三维空间
+\[
+\mathcal H_2=\operatorname{span}\{|0,2\rangle,|1,1\rangle,|2,0\rangle\}
+\]
+上对微扰 \(V=x_1^2p_2^2\) 求矩阵并对角化。由
+\[
+x_1=\sqrt{\frac{\hbar}{2m\omega}}(a_1+a_1^\dagger),\qquad
+p_2=-\ii\sqrt{\frac{m\hbar\omega}{2}}(a_2-a_2^\dagger),
+\]
+得
+\[
+x_1^2=\frac{\hbar}{2m\omega}(a_1^2+(a_1^\dagger)^2+a_1a_1^\dagger+a_1^\dagger a_1),
+\]
+\[
+p_2^2=-\frac{m\hbar\omega}{2}(a_2^2+(a_2^\dagger)^2-a_2a_2^\dagger-a_2^\dagger a_2).
+\]
+所以
+\[
+\langle n|x^2|n\rangle=\frac{\hbar}{2m\omega}(2n+1),\qquad
+\langle n+2|x^2|n\rangle=\frac{\hbar}{2m\omega}\sqrt{(n+1)(n+2)},
+\]
+\[
+\langle n|p^2|n\rangle=\frac{m\hbar\omega}{2}(2n+1),\qquad
+\langle n+2|p^2|n\rangle=-\frac{m\hbar\omega}{2}\sqrt{(n+1)(n+2)}.
+\]
+按基 \((|0,2\rangle,|1,1\rangle,|2,0\rangle)\)，矩阵元素可分解为
+\[
+\langle n_1,n_2|x_1^2p_2^2|n'_1,n'_2\rangle
+=\langle n_1|x_1^2|n'_1\rangle\langle n_2|p_2^2|n'_2\rangle.
+\]
+得到
+\[
+V_{\mathcal H_2}
+=\frac{\hbar^2}{4}
+\begin{pmatrix}
+5&0&-2\\
+0&3&0\\
+-2&0&5
+\end{pmatrix}.
+\]
+因此一阶能量修正为该矩阵乘以 \(\lambda\) 的三个本征值：
+\[
+\Delta E^{(1)}
+=\lambda\frac{\hbar^2}{4}\cdot 3,\quad
+\lambda\frac{\hbar^2}{4}\cdot 3,\quad
+\lambda\frac{\hbar^2}{4}\cdot 7.
+\]
+也就是
+\[
+\Delta E^{(1)}=\frac{3\lambda\hbar^2}{4},\quad
+\frac{3\lambda\hbar^2}{4},\quad
+\frac{7\lambda\hbar^2}{4}.
+\]
+若采用源解答中 \(p^2\) 矩阵整体带负号的记号，则三个数同时变为相反号；按标准 \(p=-\ii\sqrt{m\hbar\omega/2}(a-a^\dagger)\) 的正定约定，上述结果为物理 Hamilton 算子的修正。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+Killing 向量场 \(k^\mu\partial/\partial x^\mu\) 满足
+\[
+k^\lambda\partial_\lambda g_{\mu\nu}
++\partial_\mu k^\lambda g_{\lambda\nu}
++\partial_\nu k^\lambda g_{\lambda\mu}=0.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明
+\[
+D_\mu k_\nu+D_\nu k_\mu=0,
+\]
+其中 \(D_\mu\) 为协变导数。
+\item 对引力背景中沿测地线运动的粒子，若背景有 Killing 向量场，证明
+\[
+k^\mu P_\mu
+\]
+是守恒量。这里
+\[
+P_\mu=m\frac{\dd x^\nu}{\dd\tau}g_{\mu\nu}
+\]
+是自由下落粒子轨道 \(x^\nu(\tau)\) 的动量。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由 \(k_\nu=g_{\nu\lambda}k^\lambda\)，
+\[
+D_\mu k_\nu
+=\partial_\mu(g_{\nu\lambda}k^\lambda)-\Gamma^\rho_{\mu\nu}g_{\rho\sigma}k^\sigma.
+\]
+于是
+\[
+\begin{aligned}
+D_\mu k_\nu+D_\nu k_\mu
+&=g_{\nu\lambda}\partial_\mu k^\lambda+g_{\mu\lambda}\partial_\nu k^\lambda
++k^\lambda(\partial_\mu g_{\nu\lambda}+\partial_\nu g_{\mu\lambda})\\
+&\quad
+-2\Gamma^\rho_{\mu\nu}g_{\rho\sigma}k^\sigma.
+\end{aligned}
+\]
+Levi-Civita 联络满足
+\[
+2\Gamma^\rho_{\mu\nu}g_{\rho\sigma}
+=\partial_\mu g_{\nu\sigma}+\partial_\nu g_{\mu\sigma}-\partial_\sigma g_{\mu\nu}.
+\]
+代入得
+\[
+\begin{aligned}
+D_\mu k_\nu+D_\nu k_\mu
+&=g_{\nu\lambda}\partial_\mu k^\lambda+g_{\mu\lambda}\partial_\nu k^\lambda
++k^\sigma\partial_\sigma g_{\mu\nu}.
+\end{aligned}
+\]
+右边正是 Killing 方程左端，因而为 \(0\)。
+
+\item 令 \(\dot x^\mu=\dd x^\mu/\dd\tau\)。有
+\[
+k^\mu P_\mu=m k_\nu\dot x^\nu.
+\]
+沿轨道求导，并用协变形式书写：
+\[
+\frac{\dd}{\dd\tau}(k_\nu\dot x^\nu)
+=\dot x^\mu D_\mu k_\nu\,\dot x^\nu+k_\nu\dot x^\mu D_\mu\dot x^\nu.
+\]
+自由下落粒子满足测地线方程
+\[
+\dot x^\mu D_\mu\dot x^\nu=0,
+\]
+故第二项为 \(0\)。第一项中 \(\dot x^\mu\dot x^\nu\) 关于 \(\mu,\nu\) 对称，而 Killing 方程给出 \(D_\mu k_\nu=-D_\nu k_\mu\)，反对称张量与对称张量收缩为零：
+\[
+\dot x^\mu\dot x^\nu D_\mu k_\nu
+=\frac12\dot x^\mu\dot x^\nu(D_\mu k_\nu+D_\nu k_\mu)=0.
+\]
+因此
+\[
+\frac{\dd}{\dd\tau}(k^\mu P_\mu)=0.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑度量
+\[
+\dd s^2=-\left(1-\frac{2M}{r}\right)\dd v^2+\dd r\,\dd v+r^2\dd\Omega^2,
+\]
+其中 \(\dd\Omega^2\) 是二球面上的标准度量。考虑由
+\[
+S=r-2M=0
+\]
+定义的超曲面，以及向量场
+\[
+l=\tilde f(x)(g^{\mu\nu}\partial_\nu S)\frac{\partial}{\partial x^\mu},
+\]
+其中 \(\tilde f(x)\ne0\)。证明：
+\begin{enumerate}[label=(\alph*)]
+\item \(l\) 垂直于曲面 \(S\)；
+\item \(l^2=0\) 在曲面 \(S\) 上成立；
+\item \(\partial/\partial v\) 是 Killing 向量场。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 超曲面 \(S=0\) 的法协向量为
+\[
+n_\mu=\partial_\mu S.
+\]
+题中 \(l^\mu=\tilde f\, g^{\mu\nu}n_\nu\)，即 \(l\) 是法协向量升指标后的向量，乘以非零函数不改变法方向。若 \(X\) 是切向量，则 \(X(S)=X^\mu\partial_\mu S=0\)。因此
+\[
+g(l,X)=g_{\mu\nu}l^\mu X^\nu
+=\tilde f\,\partial_\nu S\,X^\nu=0.
+\]
+故 \(l\) 垂直于 \(S=0\)。
+
+\item 只需计算
+\[
+l^2=g_{\mu\nu}l^\mu l^\nu
+=\tilde f^{\,2}g^{\mu\nu}\partial_\mu S\partial_\nu S.
+\]
+因为 \(S=r-2M\)，所以 \(\partial_\mu S=\delta^r_\mu\)，于是
+\[
+l^2=\tilde f^{\,2}g^{rr}.
+\]
+在 \((v,r)\) 坐标块中，若把交叉项理解为 \(2g_{vr}\dd v\dd r=\dd r\,\dd v\)，则 \(g_{vr}=g_{rv}=1/2\)。该块矩阵为
+\[
+\begin{pmatrix}
+-(1-2M/r)&1/2\\
+1/2&0
+\end{pmatrix}.
+\]
+其逆矩阵给出
+\[
+g^{rr}=4\left(1-\frac{2M}{r}\right).
+\]
+因此在 \(r=2M\) 上
+\[
+l^2=0.
+\]
+若原题约定 \(\dd r\,\dd v\) 代表 \(2\dd r\dd v\)，则只会改变常数系数，不改变 \(g^{rr}\) 在 \(r=2M\) 上为零的结论。
+
+\item 度量各分量只依赖 \(r\) 和角坐标，不依赖 \(v\)。因此对向量场 \(K=\partial_v\)，Lie 导数
+\[
+(\mathcal L_Kg)_{\mu\nu}=\partial_vg_{\mu\nu}=0.
+\]
+故 \(\partial_v\) 是 Killing 向量场。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+相对论量子场论的能动张量记为 \(\theta_{\mu\nu}\)，假设它对称且守恒。
+\begin{enumerate}[label=(\alph*)]
+\item 定义新流
+\[
+s_\mu=x^\nu\theta_{\mu\nu},\qquad
+K_{\lambda\mu}=x^2\theta_{\lambda\mu}-2x_\lambda x^\rho\theta_{\rho\mu}.
+\]
+计算 \(\partial^\mu s_\mu\) 和 \(\partial^\mu K_{\lambda\mu}\)，并说明这些新流守恒所需的条件。
+\item 设标量场 \(\sigma(x)\) 在尺度变换下满足
+\[
+\delta\sigma=x^\lambda\partial_\lambda\sigma+f^{-1},
+\]
+并考虑 Lagrangian
+\[
+\mathcal L=\mathcal L_s-\frac{\mu_0^2}{2}\phi^2\ee^{2f\sigma}
++\frac{1}{2f^2}\partial_\mu\ee^{f\sigma}\partial^\mu\ee^{f\sigma}.
+\]
+标量场 \(\phi\) 的无穷小尺度变换为
+\[
+\delta\phi=(1+x^\lambda\partial_\lambda)\phi.
+\]
+其中 \(\mathcal L_s\) 是尺度不变部分。证明上述 Lagrangian 是尺度不变的。
+\item 解释为什么经典尺度不变的量子场论 Lagrangian 在量子力学层面可能不再尺度不变。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 用 \(\partial^\mu\theta_{\mu\nu}=0\) 得
+\[
+\partial^\mu s_\mu
+=\partial^\mu(x^\nu\theta_{\mu\nu})
+=\theta^\mu{}_\mu+x^\nu\partial^\mu\theta_{\mu\nu}
+=\theta^\mu{}_\mu.
+\]
+所以尺度流 \(s_\mu\) 守恒当且仅当能动张量无迹：
+\[
+\theta^\mu{}_\mu=0.
+\]
+再计算特殊共形流：
+\[
+\begin{aligned}
+\partial^\mu K_{\lambda\mu}
+&=\partial^\mu(x^2\theta_{\lambda\mu})
+-2\partial^\mu(x_\lambda x^\rho\theta_{\rho\mu})\\
+&=2x^\mu\theta_{\lambda\mu}
+-2\left(\delta^\mu_\lambda x^\rho\theta_{\rho\mu}
++x_\lambda\delta^\rho_\mu\theta_{\rho\mu}
++x_\lambda x^\rho\partial^\mu\theta_{\rho\mu}\right).
+\end{aligned}
+\]
+由于 \(\theta_{\mu\nu}\) 对称，前两项
+\[
+2x^\mu\theta_{\lambda\mu}-2x^\rho\theta_{\rho\lambda}=0.
+\]
+守恒性使最后含 \(\partial^\mu\theta_{\rho\mu}\) 的项为零，剩下
+\[
+\partial^\mu K_{\lambda\mu}=-2x_\lambda\theta^\mu{}_\mu.
+\]
+故特殊共形流也在 \(\theta^\mu{}_\mu=0\) 时守恒。
+
+\item 在四维中，若采用主动无穷小尺度变换 \(\delta x^\mu=0\)，场的变化含有 \(x^\lambda\partial_\lambda\)。给定
+\[
+\delta\sigma=x\cdot\partial\sigma+f^{-1},
+\]
+可得
+\[
+\delta(\ee^{f\sigma})
+=f\ee^{f\sigma}\delta\sigma
+=x\cdot\partial(\ee^{f\sigma})+\ee^{f\sigma}.
+\]
+所以 \(\ee^{f\sigma}\) 与 \(\phi\) 一样具有尺度维数 \(1\)。于是
+\[
+\delta(\phi\,\ee^{f\sigma})
+=2\phi\ee^{f\sigma}+x\cdot\partial(\phi\ee^{f\sigma}).
+\]
+因此质量型组合
+\[
+\phi^2\ee^{2f\sigma}
+\]
+的变换为
+\[
+\delta(\phi^2\ee^{2f\sigma})
+=4\phi^2\ee^{2f\sigma}
++x\cdot\partial(\phi^2\ee^{2f\sigma}),
+\]
+正是四维 Lagrangian 密度所需的变换律。
+
+同理，\(\chi=f^{-1}\ee^{f\sigma}\) 具有尺度维数 \(1\)，其动能项
+\[
+\frac12\partial_\mu\chi\,\partial^\mu\chi
+=\frac{1}{2f^2}\partial_\mu\ee^{f\sigma}\partial^\mu\ee^{f\sigma}
+\]
+在尺度变换下变为
+\[
+\delta\left(\frac12\partial_\mu\chi\partial^\mu\chi\right)
+=4\left(\frac12\partial_\mu\chi\partial^\mu\chi\right)
++x\cdot\partial\left(\frac12\partial_\mu\chi\partial^\mu\chi\right).
+\]
+题设 \(\mathcal L_s\) 已尺度不变，所以整个 \(\mathcal L\) 满足
+\[
+\delta\mathcal L=4\mathcal L+x^\mu\partial_\mu\mathcal L
+=\partial_\mu(x^\mu\mathcal L).
+\]
+作用量 \(\int \dd^4x\,\mathcal L\) 的变化是边界项，故 Lagrangian 给出的理论尺度不变。
+
+\item 量子化时需要正则化和重整化。正则化通常引入一个具有质量量纲的尺度 \(\mu\)，例如维数正则化中的重整化尺度。重整化后的耦合常数随 \(\mu\) 变化，其变化由 \(\beta\) 函数控制。若 \(\beta(g)\ne0\)，则能动张量迹一般出现量子反常项：
+\[
+\theta^\mu{}_\mu\sim \beta(g)\mathcal O_g+\cdots.
+\]
+这称为尺度反常或迹反常。因此经典 Lagrangian 即使没有显式质量尺度，量子理论也可能因正则化和重整化而破坏尺度不变性。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑 \(N\) 个标量场 \(\phi_a\)，\(a=1,\ldots,N\)，其 Lagrangian 为
+\[
+\mathcal L=\frac12\partial_\mu\phi_a\partial^\mu\phi_a
+-\frac12\mu_0^2\phi_a\phi_a-\frac18\lambda_0(\phi_a\phi_a)^2,
+\]
+重复指标表示求和。
+\begin{enumerate}[label=(\alph*)]
+\item 写出该模型的传播子和相互作用顶角，并写出四点函数到一圈阶的 Feynman 图。
+\item 定义 \(g_0=\lambda_0N\)。计算上一问列出的各图关于 \(g_0\) 和 \(N\) 的阶数。若固定 \(g_0\) 并令 \(N\to\infty\)，列出 \(1/N\) 展开中的领头 Feynman 图。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 自由二次项给出动量空间传播子
+\[
+\langle\phi_a(p)\phi_b(-p)\rangle_0
+=\frac{\ii\delta_{ab}}{p^2-\mu_0^2+\ii0}
+\]
+在 Minkowski 号差约定改变时，分母相应整体改写，但指标结构不变。
+
+相互作用项为
+\[
+\mathcal L_{\mathrm{int}}=-\frac{\lambda_0}{8}(\phi_a\phi_a)(\phi_b\phi_b).
+\]
+四点顶角的 \(O(N)\) 不变指标结构为
+\[
+-\ii\lambda_0\bigl(
+\delta_{ab}\delta_{cd}
++\delta_{ac}\delta_{bd}
++\delta_{ad}\delta_{bc}
+\bigr),
+\]
+这里 \(a,b,c,d\) 是四条外腿的 \(O(N)\) 指标；不同规范化会把整体常数吸收到 \(\lambda_0\) 中，但三个 Kronecker 结构固定。
+
+四点函数到一圈包括：
+树图：一个四点顶角；
+一圈图：由两个四点顶角和两条内部传播线组成的泡图，分别对应 \(s,t,u\) 三个道。
+
+\item 固定 \(g_0=\lambda_0N\)，即
+\[
+\lambda_0=\frac{g_0}{N}.
+\]
+每个四点顶角给出一个因子 \(\lambda_0\sim g_0/N\)。每个闭合的内部 \(O(N)\) 指标环给出一个因子 \(N\)。
+
+树级四点图只有一个顶角，没有闭合指标环，所以阶数为
+\[
+O\!\left(\frac{g_0}{N}\right).
+\]
+一圈泡图有两个顶角，通常有一个闭合指标环，因此阶数为
+\[
+O\!\left(\lambda_0^2N\right)
+=O\!\left(\frac{g_0^2}{N}\right).
+\]
+若继续串接泡图，含 \(r\) 个四点顶角的链状泡图有 \(r-1\) 个独立闭合指标环，因此阶数为
+\[
+O\!\left(\lambda_0^rN^{r-1}\right)
+=O\!\left(\frac{g_0^r}{N}\right).
+\]
+所以在固定 \(g_0\)、\(N\to\infty\) 时，四点函数的领头阶为 \(1/N\)，由所有泡链图组成：一个树级顶角、一个一圈泡、两个泡串联，依此类推。非泡链图的闭合指标环数少于顶角数减一，因而多带至少一个额外的 \(1/N\) 抑制。
+\end{enumerate}
+\end{solution}
+
+\subsection{2023 年笔试：数学物理}
+
+\begin{problem}
+考虑 Lagrangian
+\[
+L(x,y,\dot x,\dot y)
+=\frac12\,\frac{\dot x^2+\dot y^2+2(x\dot y-y\dot x)}{x^2+y^2}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 求 Hamiltonian \(H(x,y,p_x,p_y)\)，并把最终形式写成
+\[
+\frac12 f(x,y)\bigl[(p_x-A_x(x,y))^2+(p_y-A_y(x,y))^2\bigr].
+\]
+求向量势 \(\bm A\)，并求原点外对应的磁场。
+\item 证明该 Lagrangian 在旋转和尺度变换下不变。
+\item 求这两个对称性对应的守恒量。
+\item 把 Lagrangian 写成极坐标形式，写出 Euler-Lagrange 方程并求解。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+记 \(r^2=x^2+y^2\)。
+\begin{enumerate}[label=(\alph*)]
+\item 广义动量为
+\[
+p_x=\frac{\partial L}{\partial \dot x}
+=\frac{\dot x-y}{r^2},\qquad
+p_y=\frac{\partial L}{\partial \dot y}
+=\frac{\dot y+x}{r^2}.
+\]
+因此
+\[
+\dot x=r^2p_x+y,\qquad
+\dot y=r^2p_y-x.
+\]
+写成磁耦合形式，取
+\[
+A_x=-\frac{y}{r^2},\qquad A_y=\frac{x}{r^2}.
+\]
+则
+\[
+p_x-A_x=\frac{\dot x}{r^2},\qquad
+p_y-A_y=\frac{\dot y}{r^2}.
+\]
+Legendre 变换给出
+\[
+\begin{aligned}
+H&=p_x\dot x+p_y\dot y-L\\
+&=\frac12 r^2\left[
+\left(p_x+\frac{y}{r^2}\right)^2
++\left(p_y-\frac{x}{r^2}\right)^2
+\right].
+\end{aligned}
+\]
+所以
+\[
+f(x,y)=x^2+y^2,\qquad
+\bm A=\left(-\frac{y}{x^2+y^2},\,\frac{x}{x^2+y^2},\,0\right).
+\]
+在原点外，
+\[
+B_z=\partial_xA_y-\partial_yA_x
+=\partial_x\frac{x}{r^2}-\partial_y\left(-\frac{y}{r^2}\right)
+=\frac{r^2-2x^2}{r^4}+\frac{r^2-2y^2}{r^4}=0.
+\]
+因此原点外磁场为零；向量势是 \(\nabla\theta\)，其奇性集中在原点。
+
+\item 旋转下 \(r^2\)、\(\dot x^2+\dot y^2\) 与面积形式 \(x\dot y-y\dot x\) 都不变，所以 \(L\) 不变。尺度变换 \((x,y)\mapsto \lambda(x,y)\) 下，
+\[
+\dot x^2+\dot y^2+2(x\dot y-y\dot x)
+\mapsto \lambda^2\bigl(\dot x^2+\dot y^2+2(x\dot y-y\dot x)\bigr),
+\]
+而 \(x^2+y^2\mapsto\lambda^2(x^2+y^2)\)，二者相消，故 \(L\) 也不变。
+
+\item 旋转的无穷小变换为
+\[
+\delta x=-\varepsilon y,\qquad \delta y=\varepsilon x.
+\]
+Noether 守恒量为
+\[
+J=p_x\delta x/\varepsilon+p_y\delta y/\varepsilon
+=-yp_x+xp_y.
+\]
+代入动量表达式得
+\[
+J=\frac{-y(\dot x-y)+x(\dot y+x)}{r^2}
+=1+\frac{x\dot y-y\dot x}{r^2}.
+\]
+尺度变换的无穷小形式为
+\[
+\delta x=\varepsilon x,\qquad \delta y=\varepsilon y,
+\]
+对应守恒量
+\[
+D=xp_x+yp_y
+=\frac{x\dot x+y\dot y}{r^2}
+=\frac{\dot r}{r}.
+\]
+
+\item 令
+\[
+x=r\cos\theta,\qquad y=r\sin\theta.
+\]
+则
+\[
+\dot x^2+\dot y^2=\dot r^2+r^2\dot\theta^2,\qquad
+x\dot y-y\dot x=r^2\dot\theta.
+\]
+故
+\[
+L=\frac12\left(\frac{\dot r^2}{r^2}+\dot\theta^2+2\dot\theta\right).
+\]
+令 \(u=\log r\)，则
+\[
+L=\frac12(\dot u^2+\dot\theta^2+2\dot\theta).
+\]
+Euler-Lagrange 方程为
+\[
+\ddot u=0,\qquad \ddot\theta=0.
+\]
+所以通解是
+\[
+u(t)=at+b,\qquad \theta(t)=ct+d,
+\]
+即
+\[
+r(t)=r_0\ee^{at},\qquad \theta(t)=ct+\theta_0.
+\]
+其中 \(a,c,r_0,\theta_0\) 为常数。若 \(a=0\) 是圆周运动；若 \(c=0\) 是径向指数运动；一般情形是对数螺线。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+质量为 \(m\) 的二维粒子受各向同性谐振子势束缚，频率为 \(\omega\)，并受强度 \(\alpha\ll1\) 的弱各向异性微扰。Hamiltonian 为
+\[
+H=H_0+V=\frac{p_x^2}{2m}+\frac{p_y^2}{2m}
++\frac12m\omega^2(x^2+y^2)+\alpha m\omega^2xy.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 当 \(\alpha=0\) 时，求三个最低未微扰能级的能量和简并度。
+\item 用微扰论求这些能级到 \(\alpha\) 一阶的能量修正。
+\item 求 \(H\) 的精确谱。
+\item 检查精确谱的一阶展开与上一问的微扰结果一致。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 二维各向同性谐振子的本征态可写作 \(|n_x,n_y\rangle\)，能量为
+\[
+E^{(0)}_{n_x,n_y}=\hbar\omega(n_x+n_y+1).
+\]
+令 \(N=n_x+n_y\)，则能量
+\[
+E_N^{(0)}=\hbar\omega(N+1)
+\]
+的简并度为 \(N+1\)。三个最低能级分别为
+\[
+N=0:\ E=\hbar\omega,\ d=1;
+\qquad
+N=1:\ E=2\hbar\omega,\ d=2;
+\qquad
+N=2:\ E=3\hbar\omega,\ d=3.
+\]
+
+\item 写
+\[
+x=\sqrt{\frac{\hbar}{2m\omega}}(a_x+a_x^\dagger),\qquad
+y=\sqrt{\frac{\hbar}{2m\omega}}(a_y+a_y^\dagger).
+\]
+于是
+\[
+V=\frac{\alpha\hbar\omega}{2}(a_x+a_x^\dagger)(a_y+a_y^\dagger).
+\]
+基态 \(|0,0\rangle\) 上 \(\langle xy\rangle=0\)，故一阶修正为 \(0\)。
+
+在 \(N=1\) 子空间 \(\{|1,0\rangle,|0,1\rangle\}\) 中，
+\[
+V_{N=1}=\frac{\alpha\hbar\omega}{2}
+\begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix}.
+\]
+因此一阶修正为
+\[
+\Delta E=\pm\frac{\alpha\hbar\omega}{2}.
+\]
+
+在 \(N=2\) 子空间 \(\{|2,0\rangle,|1,1\rangle,|0,2\rangle\}\) 中，
+\[
+V_{N=2}=\frac{\alpha\hbar\omega}{2}
+\begin{pmatrix}
+0&\sqrt2&0\\
+\sqrt2&0&\sqrt2\\
+0&\sqrt2&0
+\end{pmatrix}.
+\]
+该矩阵本征值为
+\[
+\alpha\hbar\omega,\quad 0,\quad -\alpha\hbar\omega.
+\]
+
+\item 作正交变换
+\[
+u=\frac{x+y}{\sqrt2},\qquad v=\frac{x-y}{\sqrt2},
+\]
+以及相应动量
+\[
+p_u=\frac{p_x+p_y}{\sqrt2},\qquad p_v=\frac{p_x-p_y}{\sqrt2}.
+\]
+则
+\[
+x^2+y^2=u^2+v^2,\qquad xy=\frac12(u^2-v^2).
+\]
+Hamiltonian 化为两个解耦谐振子：
+\[
+H=\frac{p_u^2}{2m}+\frac12m\omega^2(1+\alpha)u^2
++\frac{p_v^2}{2m}+\frac12m\omega^2(1-\alpha)v^2.
+\]
+故精确频率为
+\[
+\omega_u=\omega\sqrt{1+\alpha},\qquad
+\omega_v=\omega\sqrt{1-\alpha},
+\]
+精确能谱为
+\[
+E_{n_u,n_v}
+=\hbar\omega\left[
+\left(n_u+\frac12\right)\sqrt{1+\alpha}
++\left(n_v+\frac12\right)\sqrt{1-\alpha}
+\right].
+\]
+
+\item 展开
+\[
+\sqrt{1+\alpha}=1+\frac{\alpha}{2}+O(\alpha^2),\qquad
+\sqrt{1-\alpha}=1-\frac{\alpha}{2}+O(\alpha^2).
+\]
+于是
+\[
+E_{n_u,n_v}
+=\hbar\omega(n_u+n_v+1)
++\frac{\alpha\hbar\omega}{2}(n_u-n_v)+O(\alpha^2).
+\]
+对 \(N=0\)，只有 \(n_u=n_v=0\)，修正为 \(0\)。对 \(N=1\)，\(n_u-n_v=\pm1\)，修正为 \(\pm\alpha\hbar\omega/2\)。对 \(N=2\)，\(n_u-n_v=2,0,-2\)，修正为 \(\alpha\hbar\omega,0,-\alpha\hbar\omega\)。这与简并微扰论完全一致。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+电场 \(\bm E\) 与磁场 \(\bm B\) 可由标量势和向量势 \(A^\mu=(\phi,\bm A)\) 表示。
+\begin{enumerate}[label=(\alph*)]
+\item 写出 \(\bm E,\bm B\) 关于 \((\phi,\bm A)\) 的表达式，并证明在规范变换
+\[
+\phi\mapsto \phi+\frac{\partial f}{\partial t},\qquad
+\bm A\mapsto \bm A-\nabla f
+\]
+下结果不变。
+\item 证明用 \(A^\mu=(\phi,\bm A)\) 表示时，Maxwell 方程中的两条自动满足。
+\item 在 Lorentz 规范
+\[
+\frac1c\partial_t\phi+\nabla\cdot\bm A=0
+\]
+下，由剩下的 Maxwell 方程导出标量势和向量势满足的方程。
+\item 已知波方程 Green 函数
+\[
+\left(\frac1{c^2}\partial_t^2-\nabla^2\right)G(t,\bm r)=\delta(t)\delta^3(\bm r)
+\]
+为
+\[
+G(t-t',\bm r-\bm r')
+=\frac{\theta(t-t')}{4\pi|\bm r-\bm r'|}
+\delta\left(t-t'-\frac{|\bm r-\bm r'|}{c}\right).
+\]
+设电荷 \(e\) 沿轨道 \(\bm R(t)\) 运动，速度 \(\bm v(t)=\dd\bm R(t)/\dd t\)。用 Green 函数推导该粒子在 \((\bm r,t)\) 处产生的 \(\phi(\bm r,t)\) 和 \(\bm A(\bm r,t)\)。可假设 \(|\bm R(t)|\ll|\bm r|\)、\(|\bm R(t)|\ll ct\)、\(|\bm v(t)|\ll c\)，并保留到 \(O(1/|\bm r|)\) 与 \(O(|\bm v|/c)\) 阶。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 为配合题目给出的规范变换，取
+\[
+\bm E=\nabla\phi+\partial_t\bm A,\qquad
+\bm B=\nabla\times\bm A.
+\]
+则变换后
+\[
+\bm E'=\nabla(\phi+\partial_tf)+\partial_t(\bm A-\nabla f)
+=\nabla\phi+\partial_t\bm A=\bm E,
+\]
+\[
+\bm B'=\nabla\times(\bm A-\nabla f)
+=\nabla\times\bm A=\bm B.
+\]
+所以场强规范不变。
+
+\item 由 \(\bm B=\nabla\times\bm A\)，
+\[
+\nabla\cdot\bm B=\nabla\cdot(\nabla\times\bm A)=0.
+\]
+又
+\[
+\nabla\times\bm E
+=\nabla\times(\nabla\phi+\partial_t\bm A)
+=\partial_t(\nabla\times\bm A)
+=\partial_t\bm B.
+\]
+因此齐次 Maxwell 方程
+\[
+\nabla\cdot\bm B=0,\qquad
+\nabla\times\bm E-\partial_t\bm B=0
+\]
+自动成立。若采用常见约定 \(\bm E=-\nabla\phi-\partial_t\bm A\)，则相应规范变换整体改号，物理内容相同。
+
+\item 设源为电荷密度 \(\rho\) 与电流密度 \(\bm j\)，在相容单位制中非齐次方程可写为
+\[
+\nabla\cdot\bm E=\rho,\qquad
+\nabla\times\bm B-\frac1{c^2}\partial_t\bm E=\bm j.
+\]
+代入势并使用 Lorentz 规范，可把混合项消去，得到波动方程
+\[
+\left(\frac1{c^2}\partial_t^2-\nabla^2\right)\phi=\rho,
+\qquad
+\left(\frac1{c^2}\partial_t^2-\nabla^2\right)\bm A=\bm j.
+\]
+若采用 Gaussian 或 SI 单位，右端只需乘上相应的 \(4\pi\)、\(\varepsilon_0,\mu_0\) 常数；题目关注的是势方程的结构。
+
+\item 点电荷的源为
+\[
+\rho(\bm r,t)=e\,\delta^3(\bm r-\bm R(t)),\qquad
+\bm j(\bm r,t)=e\,\bm v(t)\delta^3(\bm r-\bm R(t)).
+\]
+由 retarded Green 函数，
+\[
+\phi(\bm r,t)
+=\int\dd t'\dd^3r'\,
+G(t-t',\bm r-\bm r')\rho(\bm r',t').
+\]
+先对 \(\bm r'\) 积分，得
+\[
+\phi(\bm r,t)
+=\frac{e}{4\pi}
+\int\dd t'\,
+\frac{\delta\left(t-t'-|\bm r-\bm R(t')|/c\right)}
+{|\bm r-\bm R(t')|}.
+\]
+令 \(t_r\) 为 retarded time：
+\[
+t-t_r=\frac{|\bm r-\bm R(t_r)|}{c}.
+\]
+严格处理 \(\delta\)-函数会给出 Lienard-Wiechert 分母
+\[
+\phi(\bm r,t)
+=\frac{e}{4\pi}
+\frac{1}{(1-\bm n\cdot\bm v(t_r)/c)|\bm r-\bm R(t_r)|},
+\]
+其中
+\[
+\bm n=\frac{\bm r-\bm R(t_r)}{|\bm r-\bm R(t_r)|}.
+\]
+同理
+\[
+\bm A(\bm r,t)
+=\frac{e}{4\pi}
+\frac{\bm v(t_r)}
+{(1-\bm n\cdot\bm v(t_r)/c)|\bm r-\bm R(t_r)|}.
+\]
+在非相对论远场近似下，\(|\bm r-\bm R|\simeq r\)，\(\bm n\simeq \hat{\bm r}\)，且保留到 \(O(v/c)\)：
+\[
+\phi(\bm r,t)
+\simeq \frac{e}{4\pi r}
+\left(1+\frac{\hat{\bm r}\cdot\bm v(t-r/c)}{c}\right),
+\]
+\[
+\bm A(\bm r,t)
+\simeq \frac{e}{4\pi r}\,\bm v(t-r/c).
+\]
+这就是题设精度下的势。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑一维自由无质量玻色子体系，只有一种偏振，色散关系为
+\[
+E_k=\hbar v|k|.
+\]
+粒子之间以及粒子与外部散射势之间均无相互作用。体系在温度 \(T\) 下平衡。
+\begin{enumerate}[label=(\alph*)]
+\item 设化学势 \(\mu=0\)，求单位长度热容 \(C\)。
+\item 对有质量费米子重复计算，其中
+\[
+E_k=\frac{\hbar^2k^2}{2m},
+\]
+并且化学势远高于能谱底部：
+\[
+\mu\gg k_BT.
+\]
+只考虑一个自旋方向，可作合理近似。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 单位长度内能为
+\[
+\frac UL
+=\int_{-\infty}^{\infty}\frac{\dd k}{2\pi}
+\frac{\hbar v|k|}{\ee^{\beta\hbar v|k|}-1}
+=\frac1\pi\int_0^\infty\dd k
+\frac{\hbar vk}{\ee^{\beta\hbar vk}-1}.
+\]
+令 \(x=\beta\hbar vk\)，则
+\[
+\frac UL
+=\frac1\pi\frac1{\beta^2\hbar v}
+\int_0^\infty\frac{x\,\dd x}{\ee^x-1}.
+\]
+利用
+\[
+\int_0^\infty\frac{x\,\dd x}{\ee^x-1}=\frac{\pi^2}{6},
+\]
+得到
+\[
+\frac UL=\frac{\pi}{6}\frac{k_B^2T^2}{\hbar v}.
+\]
+因此单位长度热容为
+\[
+\frac CL=\frac{\partial}{\partial T}\frac UL
+=\frac{\pi}{3}\frac{k_B^2T}{\hbar v}.
+\]
+
+\item 一维、单自旋方向费米子的单位长度态密度为
+\[
+g(E)=\frac1\pi\frac{\dd k}{\dd E}
+=\frac1{\pi\hbar}\sqrt{\frac{m}{2E}},
+\qquad E>0.
+\]
+低温且 \(\mu\gg k_BT\) 时，用 Sommerfeld 展开：
+\[
+\frac UL=\int_0^\infty E\,g(E)f_F(E)\,\dd E
+=\int_0^\mu E\,g(E)\,\dd E
++\frac{\pi^2}{6}(k_BT)^2\frac{\dd}{\dd E}(Eg(E))\bigg|_{E=\mu}
++O(T^4).
+\]
+热容只由 \(T^2\) 项贡献：
+\[
+\frac CL
+=\frac{\pi^2}{3}k_B^2T\,g(\mu)
+=\frac{\pi k_B^2T}{3\hbar}\sqrt{\frac{m}{2\mu}}.
+\]
+这正是低温简并一维费米气的线性热容。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑四维时空中带宇宙学常数的真空 Einstein 方程
+\[
+R_{\mu\nu}-\frac12g_{\mu\nu}R+g_{\mu\nu}\Lambda=0.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明 \(R_{\mu\nu}=kg_{\mu\nu}\)，并求 \(k\)。
+\item 取度量 ansatz
+\[
+\dd s^2=-f(r)\dd t^2+\frac1{f(r)}\dd r^2
++r^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2),
+\]
+其中 \(f(r)\) 为关于 \(r\) 的函数。求该度量的非零 Ricci 张量分量和标量曲率。
+\item 假设上述 ansatz 是带宇宙学常数的真空 Einstein 方程解，求 \(f(r)\)。
+\item 证明 \(\partial_t\) 和 \(\partial_\phi\) 是 Killing 向量场。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 对 Einstein 方程取迹。四维中 \(g^{\mu\nu}g_{\mu\nu}=4\)，所以
+\[
+R-\frac12\cdot4R+4\Lambda=0,
+\]
+即
+\[
+-R+4\Lambda=0,\qquad R=4\Lambda.
+\]
+代回原方程：
+\[
+R_{\mu\nu}-\frac12g_{\mu\nu}(4\Lambda)+g_{\mu\nu}\Lambda=0,
+\]
+故
+\[
+R_{\mu\nu}=\Lambda g_{\mu\nu}.
+\]
+所以 \(k=\Lambda\)。
+
+\item 对
+\[
+\dd s^2=-f\dd t^2+f^{-1}\dd r^2+r^2\dd\Omega^2
+\]
+直接计算 Christoffel 符号并收缩，得到非零 Ricci 分量
+\[
+R_{tt}=f\left(\frac{f''}{2}+\frac{f'}{r}\right),
+\]
+\[
+R_{rr}=-\frac1f\left(\frac{f''}{2}+\frac{f'}{r}\right),
+\]
+\[
+R_{\theta\theta}=1-f-rf',
+\qquad
+R_{\phi\phi}=(1-f-rf')\sin^2\theta.
+\]
+标量曲率为
+\[
+R=-f''-\frac{4f'}{r}+\frac{2(1-f)}{r^2}.
+\]
+
+\item 由 \(R_{\theta\theta}=\Lambda g_{\theta\theta}=\Lambda r^2\)，有
+\[
+1-f-rf'=\Lambda r^2.
+\]
+即
+\[
+(rf)'=1-\Lambda r^2.
+\]
+积分得
+\[
+rf=r-\frac{\Lambda}{3}r^3+C,
+\]
+所以
+\[
+f(r)=1+\frac{C}{r}-\frac{\Lambda}{3}r^2.
+\]
+通常把积分常数写为 \(C=-2GM\)，得到 Schwarzschild-de Sitter 形式
+\[
+f(r)=1-\frac{2GM}{r}-\frac{\Lambda r^2}{3}.
+\]
+代入 \(tt\) 或 \(rr\) 方程可验证同一结果满足全部方程。
+
+\item 度量分量均不依赖 \(t\)，因此
+\[
+\mathcal L_{\partial_t}g=0,
+\]
+故 \(\partial_t\) 是 Killing 向量场。度量分量也不依赖 \(\phi\)，并且球面对称项为 \(r^2(\dd\theta^2+\sin^2\theta\,\dd\phi^2)\)，所以
+\[
+\mathcal L_{\partial_\phi}g=0.
+\]
+故 \(\partial_\phi\) 也是 Killing 向量场。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑 \(3+1\) 维 Minkowski 时空中实标量场的 \(\phi^3\) 模型，号差为 \((-,+,+,+)\)，Lagrangian 密度为
+\[
+\mathcal L=-\frac12\partial_\mu\phi\partial^\mu\phi
+-\frac12m^2\phi^2-\frac16g\phi^3,
+\]
+其中 \(g\) 具有质量量纲。
+\begin{enumerate}[label=(\alph*)]
+\item 写出动量空间中的传播子和相互作用顶角。
+\item 用维数正则化计算一圈自能图。
+\item 引入 \(m^2=m_R^2+\delta m^2\)。若希望一圈自能图写成 \(m_R\) 的有限函数，求 \(\delta m^2\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 在题目号差下，自由二次型给出的 Feynman 传播子可写为
+\[
+\frac{\ii}{p^2+m^2-\ii0},
+\]
+其中 \(p^2=-p_0^2+\bm p^2\)。三点相互作用项 \(-g\phi^3/6\) 给出顶角
+\[
+-\ii g.
+\]
+
+\item 一圈自能图有两个三点顶角和两条内部线，并带对称因子 \(1/2\)。外动量为 \(p\) 时，
+\[
+\ii\Sigma(p^2)
+=\frac12(-\ii g)^2
+\int\frac{\dd^d k}{(2\pi)^d}
+\frac{\ii}{k^2+m^2-\ii0}
+\frac{\ii}{(k+p)^2+m^2-\ii0}.
+\]
+用 Feynman 参数
+\[
+\frac1{AB}=\int_0^1\frac{\dd x}{[xA+(1-x)B]^2},
+\]
+并平移 \(q=k+(1-x)p\)，分母化为
+\[
+\bigl[q^2+m^2+x(1-x)p^2-\ii0\bigr]^2.
+\]
+在 \(d=4-\varepsilon\) 维中，
+\[
+\Sigma(p^2)
+=\frac{g^2}{2}\mu^\varepsilon
+\int_0^1\dd x
+\int\frac{\dd^dq}{(2\pi)^d}
+\frac{\ii}{[q^2+\Delta(x)-\ii0]^2},
+\]
+其中
+\[
+\Delta(x)=m^2+x(1-x)p^2.
+\]
+标准维数正则化积分给出
+\[
+\Sigma(p^2)
+=\frac{g^2}{32\pi^2}
+\int_0^1\dd x
+\left[
+\frac{2}{\varepsilon}-\gamma+\log(4\pi)
+-\log\frac{\Delta(x)}{\mu^2}
+\right]
++O(\varepsilon).
+\]
+因此发散部分为
+\[
+\Sigma_{\mathrm{div}}(p^2)
+=\frac{g^2}{32\pi^2}
+\left(\frac{2}{\varepsilon}-\gamma+\log4\pi\right).
+\]
+它与外动量无关，所以在一圈阶只需质量反项即可吸收该自能发散。
+
+\item 质量反项在二点函数中贡献 \(-\delta m^2\) 的自能反项。要求
+\[
+\Sigma_{\mathrm{div}}+\delta m^2=0
+\]
+时，\(\overline{\mathrm{MS}}\) 型选择为
+\[
+\delta m^2
+=-\frac{g^2}{32\pi^2}
+\left(\frac{2}{\varepsilon}-\gamma+\log4\pi\right).
+\]
+若采用 MS 而非 \(\overline{\mathrm{MS}}\)，则只保留 \(-g^2(2/\varepsilon)/(32\pi^2)\)。加上该反项后，重整化自能可写为有限函数
+\[
+\Sigma_R(p^2)
+=-\frac{g^2}{32\pi^2}\int_0^1\dd x\,
+\log\frac{m_R^2+x(1-x)p^2}{\mu^2}
+\]
+外加有限重整化约定决定的常数。
+\end{enumerate}
+\end{solution}
+
+\subsection{2024 年笔试：数学物理}
+
+\begin{problem}
+设质量为 \(m\) 的粒子在吸引中心势
+\[
+V(r)=\alpha r^k
+\]
+中运动，其中 \(k,\alpha\) 为同号实常数。
+\begin{enumerate}[label=(\alph*)]
+\item 用极坐标 \((r,\varphi)\) 写出 Lagrangian。
+\item 利用角动量守恒，把径向运动化为有效一维问题，并写出有效 Lagrangian。
+\item 求圆轨道半径和周期。
+\item 对哪些 \(k\)，圆轨道稳定？
+\item 在稳定情形下，考虑圆轨道附近的小扰动，求小振动周期。在小振动近似中，对哪些 \(k\)，轨道闭合？
+\item 回到完整二维问题，消去时间，写出轨道微分方程。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 平面极坐标中
+\[
+L=\frac m2(\dot r^2+r^2\dot\varphi^2)-\alpha r^k.
+\]
+吸引势要求圆轨道处向心力为正，即 \(-V'(r)=-\alpha k r^{k-1}<0\)，故题设 \(k\alpha>0\) 与吸引性相容。
+
+\item 角动量
+\[
+\ell=\frac{\partial L}{\partial\dot\varphi}=mr^2\dot\varphi
+\]
+守恒。代入
+\[
+\dot\varphi=\frac{\ell}{mr^2}
+\]
+得到径向有效能量
+\[
+E=\frac m2\dot r^2+V_{\mathrm{eff}}(r),
+\qquad
+V_{\mathrm{eff}}(r)=\frac{\ell^2}{2mr^2}+\alpha r^k.
+\]
+对应有效 Lagrangian 可写为
+\[
+L_{\mathrm{eff}}=\frac m2\dot r^2-V_{\mathrm{eff}}(r).
+\]
+
+\item 圆轨道半径 \(r_0\) 满足
+\[
+V_{\mathrm{eff}}'(r_0)
+=-\frac{\ell^2}{mr_0^3}+\alpha k r_0^{k-1}=0.
+\]
+因此
+\[
+\ell^2=m\alpha k r_0^{k+2}.
+\]
+给定 \(\ell\) 时
+\[
+r_0=\left(\frac{\ell^2}{m\alpha k}\right)^{1/(k+2)}
+\quad(k\ne -2).
+\]
+圆运动角频率 \(\Omega\) 满足
+\[
+m r_0\Omega^2=\alpha k r_0^{k-1},
+\]
+所以
+\[
+\Omega^2=\frac{\alpha k}{m}r_0^{k-2},
+\qquad
+T_\varphi=\frac{2\pi}{\Omega}
+=2\pi\sqrt{\frac{m}{\alpha k}}\,r_0^{(2-k)/2}.
+\]
+
+\item 稳定性由
+\[
+V_{\mathrm{eff}}''(r_0)
+=\frac{3\ell^2}{mr_0^4}+\alpha k(k-1)r_0^{k-2}
+\]
+决定。用 \(\ell^2=m\alpha k r_0^{k+2}\) 化简得
+\[
+V_{\mathrm{eff}}''(r_0)
+=\alpha k(k+2)r_0^{k-2}.
+\]
+因吸引性给出 \(\alpha k>0\)，所以稳定当且仅当
+\[
+k+2>0,\qquad\text{即 }k>-2.
+\]
+
+\item 小扰动 \(r=r_0+\rho\) 满足
+\[
+m\ddot\rho+V_{\mathrm{eff}}''(r_0)\rho=0,
+\]
+故径向小振动频率
+\[
+\omega_r^2=\frac{V_{\mathrm{eff}}''(r_0)}m
+=(k+2)\Omega^2.
+\]
+于是
+\[
+T_r=\frac{2\pi}{\omega_r}
+=\frac{2\pi}{\sqrt{k+2}\,\Omega}.
+\]
+一次径向周期内方位角增加
+\[
+\Delta\varphi=\Omega T_r=\frac{2\pi}{\sqrt{k+2}}.
+\]
+小振动近似下轨道闭合当且仅当 \(\Delta\varphi/(2\pi)=1/\sqrt{k+2}\) 为有理数，即
+\[
+\sqrt{k+2}\in\mathbb Q.
+\]
+
+\item 令 \(u=1/r\)。角动量守恒给出
+\[
+\dot\varphi=\frac{\ell u^2}{m}.
+\]
+径向方程
+\[
+m(\ddot r-r\dot\varphi^2)=-\alpha k r^{k-1}.
+\]
+标准 Binet 公式为
+\[
+\frac{\dd^2u}{\dd\varphi^2}+u
+=-\frac{m}{\ell^2u^2}F(1/u),
+\]
+其中 \(F(r)=-\alpha k r^{k-1}\) 是径向力。代入得到
+\[
+\frac{\dd^2u}{\dd\varphi^2}+u
+=\frac{m\alpha k}{\ell^2}u^{-k-1}.
+\]
+这就是轨道微分方程。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+一维量子谐振子质量为 \(m\)、频率为 \(\omega\)，初始 \(t\to-\infty\) 时处在基态。随后受到瞬时微扰
+\[
+\Delta H=F(t)x,\qquad F(t\to\pm\infty)\to0.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 用通常升降算子写出受扰 Hamiltonian，在 Heisenberg 表象解其运动方程。说明 \(t\to\pm\infty\) 时
+\[
+\hat H=\hbar\omega(a_{\pm\infty}^\dagger a_{\pm\infty}+1/2),
+\]
+并求 \(a_{+\infty}\) 与 \(a_{-\infty}\) 的关系。
+\item 设 \(|n_{\pm\infty}\rangle=(a_{\pm\infty}^\dagger)^n|0_{\pm\infty}\rangle/\sqrt{n!}\)。求振子从初始基态跃迁到最终第 \(n\) 激发态的概率 \(|c_n|^2\)。
+\item 求最终能量期望值。
+\item 设
+\[
+F(t)=F_0\ee^{-t^2/(2\sigma_t^2)},\qquad
+F_0=\eta\hbar\omega/l,\qquad l=\sqrt{\frac{\hbar}{m\omega}}.
+\]
+对短脉冲 \(\sigma_t\omega\ll1\)，求使基态损失小于 \(1\%\) 的最大 \(\eta\)。并说明 \(\sigma_t\omega\gg1\) 时任意给定 \(\eta\) 的损失都可被抑制。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 写
+\[
+x=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger),\qquad
+H=\hbar\omega(a^\dagger a+1/2)+F(t)\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger).
+\]
+Heisenberg 方程为
+\[
+\dot a=\frac{\ii}{\hbar}[H,a]
+=-\ii\omega a-\ii\frac{F(t)}{\sqrt{2m\hbar\omega}}.
+\]
+乘以 \(\ee^{\ii\omega t}\) 得
+\[
+\frac{\dd}{\dd t}\bigl(a(t)\ee^{\ii\omega t}\bigr)
+=-\ii\frac{F(t)}{\sqrt{2m\hbar\omega}}\ee^{\ii\omega t}.
+\]
+从 \(-\infty\) 积分到 \(+\infty\)，定义自由渐近算子
+\[
+a_{\pm\infty}=\lim_{t\to\pm\infty}a(t)\ee^{\ii\omega t},
+\]
+得到
+\[
+a_{+\infty}=a_{-\infty}+\alpha,
+\qquad
+\alpha=-\ii\frac1{\sqrt{2m\hbar\omega}}
+\int_{-\infty}^{\infty}F(t)\ee^{\ii\omega t}\dd t.
+\]
+由于 \(F(t)\to0\)，渐近 Hamiltonian 均为自由谐振子形式
+\[
+H_{\pm\infty}=\hbar\omega(a_{\pm\infty}^\dagger a_{\pm\infty}+1/2).
+\]
+
+\item 关系 \(a_+=a_-+\alpha\) 表明最终真空满足
+\[
+a_+|0_+\rangle=0
+\quad\Longleftrightarrow\quad
+(a_-+\alpha)|0_+\rangle=0.
+\]
+因此初始真空 \(|0_-\rangle\) 相对于最终基底是 coherent state，平均激发数为
+\[
+\bar n=|\alpha|^2.
+\]
+展开系数满足 Poisson 分布：
+\[
+|c_n|^2=\ee^{-|\alpha|^2}\frac{|\alpha|^{2n}}{n!}.
+\]
+
+\item 最终平均能量为
+\[
+\langle H_{+\infty}\rangle
+=\hbar\omega\left(|\alpha|^2+\frac12\right).
+\]
+
+\item 对 Gaussian 脉冲，
+\[
+\int_{-\infty}^{\infty}F(t)\ee^{\ii\omega t}\dd t
+=F_0\sqrt{2\pi}\sigma_t\,\ee^{-\omega^2\sigma_t^2/2}.
+\]
+所以
+\[
+|\alpha|^2
+=\frac{F_0^2}{2m\hbar\omega}(2\pi\sigma_t^2)\ee^{-\omega^2\sigma_t^2}.
+\]
+用 \(F_0=\eta\hbar\omega/l\)、\(l^2=\hbar/(m\omega)\)，得
+\[
+|\alpha|^2=\pi\eta^2(\omega\sigma_t)^2\ee^{-(\omega\sigma_t)^2}.
+\]
+基态存活概率为 \(P_0=\ee^{-|\alpha|^2}\)，损失为
+\[
+1-P_0=1-\ee^{-|\alpha|^2}.
+\]
+短脉冲 \(\omega\sigma_t\ll1\) 下
+\[
+|\alpha|^2\simeq \pi\eta^2(\omega\sigma_t)^2.
+\]
+要求损失小于 \(1\%\)，即 \(\ee^{-|\alpha|^2}>0.99\)，所以
+\[
+|\alpha|^2<-\log0.99.
+\]
+最大近似为
+\[
+\eta_{\max}
+\simeq \frac{\sqrt{-\log0.99}}{\sqrt\pi\,\omega\sigma_t}.
+\]
+当 \(\omega\sigma_t\gg1\) 时，
+\[
+|\alpha|^2=\pi\eta^2(\omega\sigma_t)^2\ee^{-(\omega\sigma_t)^2}
+\]
+指数趋于零，因此对任意固定 \(\eta\)，跃迁损失都可任意小。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑电导率 \(\sigma\) 很大但有限、磁导率 \(\mu=1\) 的 Ohmic 金属，使用 Heaviside-Lorentz 单位。
+\begin{enumerate}[label=(\alph*)]
+\item 证明对谐振时间依赖且高电导 \(\sigma\gg\omega\)，在金属中沿 \(z\) 方向传播的阻尼波近似为
+\[
+H(t,z)=H_c\ee^{-\ii\omega t+\ii k_cz},
+\qquad
+k_c=\frac{1+\ii}{\sqrt2}\sqrt{\frac{\sigma\omega}{c}}.
+\]
+\item 电场也满足 \(E(t,z)=E_c\ee^{-\ii\omega t+\ii k_cz}\)。用 Maxwell 方程以 \(H_c\) 表示 \(E_c\)。
+\item 真空中频率为 \(\omega\) 的线偏振平面波垂直入射到无限电导金属半空间。说明反射波振幅等于入射波振幅但偏振反向的原因。
+\item 若金属电导率很大但有限，求金属内部电场和磁场到 \(\omega/\sigma\) 的领头阶。设入射波电场振幅为 \(E_I\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 在金属中 Ohm 定律为 \(\bm j=\sigma\bm E\)。高电导下位移电流相对传导电流可忽略，Maxwell 方程给出
+\[
+\nabla\times\bm H\simeq \frac{\sigma}{c}\bm E,\qquad
+\nabla\times\bm E=-\frac1c\partial_t\bm H.
+\]
+对第二式取旋度，并用 \(\nabla\cdot\bm H=0\)，
+\[
+-\nabla^2\bm H
+=-\frac1c\partial_t(\nabla\times\bm E)
+=\frac1{c^2}\partial_t^2\bm H
+\]
+若保留传导项，更直接由
+\[
+\nabla\times(\nabla\times\bm H)
+=\frac{\sigma}{c}\nabla\times\bm E
+=-\frac{\sigma}{c^2}\partial_t\bm H
+\]
+得
+\[
+\nabla^2\bm H=\frac{\sigma}{c^2}\partial_t\bm H.
+\]
+代入 \(\bm H=\bm H_c\ee^{-\ii\omega t+\ii k_cz}\)，得到
+\[
+-k_c^2=-\ii\frac{\sigma\omega}{c^2},
+\qquad
+k_c^2=\ii\frac{\sigma\omega}{c^2}.
+\]
+按衰减方向取根，得到
+\[
+k_c=\frac{1+\ii}{\sqrt2}\frac{\sqrt{\sigma\omega}}{c}.
+\]
+若题面把 \(\sigma\) 的量纲吸入 \(c\) 的约定，便写作题中形式；实质是 \(k_c\propto(1+\ii)\sqrt{\sigma\omega}\)。
+
+\item 设波沿 \(+z\) 方向，\(\bm H=H_c\hat{\bm y}\ee^{-\ii\omega t+\ii k_cz}\)，电场沿 \(\hat{\bm x}\)。由
+\[
+\nabla\times\bm H=\frac{\sigma}{c}\bm E
+\]
+得
+\[
+-\ii k_cH_c\,\hat{\bm x}=\frac{\sigma}{c}E_c\,\hat{\bm x}.
+\]
+因此
+\[
+E_c=-\ii\frac{c k_c}{\sigma}H_c.
+\]
+这表明 \(|E_c/H_c|\sim \sqrt{\omega/\sigma}\)，在好导体内电场比磁场小。
+
+\item 无限电导金属内部电场为零。切向电场在界面连续，所以金属表面外侧总切向电场也必须为零。若入射电场为 \(E_I\hat{\bm x}\ee^{\ii kz-\ii\omega t}\)，反射波在 \(z=0\) 处必须满足
+\[
+E_I+E_R=0.
+\]
+因此
+\[
+E_R=-E_I.
+\]
+即反射波振幅大小相等，偏振方向反向。
+
+\item 有限大 \(\sigma\) 时，金属内部取
+\[
+\bm H_T=H_c\hat{\bm y}\ee^{-\ii\omega t+\ii k_cz},\qquad
+\bm E_T=E_c\hat{\bm x}\ee^{-\ii\omega t+\ii k_cz}.
+\]
+边界处切向 \(H\) 连续。好导体近似下反射几乎完全，真空侧表面磁场约为入射磁场与反射磁场之和，
+\[
+H_c\simeq 2E_I
+\]
+在 Heaviside-Lorentz 平面波单位中 \(H=E\)。于是
+\[
+\bm H_T(z,t)\simeq 2E_I\,\hat{\bm y}\,
+\exp(-\ii\omega t+\ii k_cz),
+\]
+\[
+\bm E_T(z,t)
+\simeq -2\ii\frac{ck_c}{\sigma}E_I\,\hat{\bm x}\,
+\exp(-\ii\omega t+\ii k_cz).
+\]
+因为 \(ck_c/\sigma\sim (1+\ii)\sqrt{\omega/\sigma}\)，金属内电场是相对 \(H\) 的小量，且场随深度按趋肤深度
+\[
+\delta=\frac1{\operatorname{Im}k_c}
+\]
+指数衰减。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+平均场近似下，外场 \(h\) 中 \(N\) 个 Ising 自旋 \(\sigma_i=\pm1\) 的 Hamiltonian 为
+\[
+H_{\mathrm{MF}}=\frac12NJm^2-(Jm+h)\sum_i\sigma_i.
+\]
+磁化强度、比热和磁化率定义为
+\[
+m=\frac{\partial f}{\partial h},\qquad
+C=\frac{\partial U}{\partial T},\qquad
+\chi=\frac{\partial m}{\partial h},
+\]
+其中 \(T\) 是温度，\(U\) 是内能，\(f\) 是每格点自由能。
+\begin{enumerate}[label=(\alph*)]
+\item 求平均场配分函数，并求系统自由能。
+\item 推导磁化强度约束方程，并对 \(h=0\) 作图像解讨论。求临界温度 \(T_c\)。
+\item 在 \(\beta(Jm+h)\ll1\) 下，求 \(m,C,\chi\) 关于
+\[
+t=\frac{T-T_c}{T_c}
+\]
+的临界行为，并求平均场临界指数 \(\alpha_c,\beta_c,\gamma_c\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 配分函数为
+\[
+Z=\sum_{\{\sigma_i\}}
+\exp\left[-\beta\frac12NJm^2+\beta(Jm+h)\sum_i\sigma_i\right].
+\]
+各自旋因子化，得
+\[
+Z=\ee^{-\beta NJm^2/2}
+\left[2\cosh\beta(Jm+h)\right]^N.
+\]
+每格点自由能按 \(f=-(1/\beta N)\log Z\) 为
+\[
+f(m,T,h)=\frac12Jm^2-k_BT\log\left[2\cosh\beta(Jm+h)\right].
+\]
+
+\item 平衡 \(m\) 由自由能极小或自洽平均给出：
+\[
+m=\langle\sigma_i\rangle
+=\tanh\beta(Jm+h).
+\]
+当 \(h=0\) 时，
+\[
+m=\tanh(\beta Jm).
+\]
+图像上直线 \(y=m\) 与 \(y=\tanh(\beta Jm)\) 的交点决定解。若 \(\beta J<1\)，即 \(T>J/k_B\)，原点斜率 \(\beta J<1\)，只有 \(m=0\) 稳定解。若 \(\beta J>1\)，原点变为不稳定，并出现两个稳定非零解 \(\pm m_0\)。临界温度为
+\[
+T_c=\frac{J}{k_B}.
+\]
+
+\item 近临界展开
+\[
+\tanh x=x-\frac{x^3}{3}+O(x^5).
+\]
+先取 \(h=0\)。自洽方程
+\[
+m=\beta Jm-\frac13(\beta J)^3m^3+\cdots
+\]
+给出非零解
+\[
+m^2=\frac{3(\beta J-1)}{(\beta J)^3}.
+\]
+在 \(T<T_c\) 且 \(|t|\ll1\) 时 \(\beta J=T_c/T=1/(1+t)\)，故
+\[
+m\sim (-t)^{1/2}.
+\]
+所以
+\[
+\beta_c=\frac12.
+\]
+
+题目提示近临界内能 \(U\propto Jm^2\)。因此 \(T<T_c\) 时
+\[
+U-U_c\propto -Jt,
+\]
+其温度导数为常数；\(T>T_c\) 时 \(m=0\)，奇异部分为零。比热至多有跳跃而无幂次发散，所以
+\[
+\alpha_c=0.
+\]
+
+磁化率由自洽方程对 \(h\) 求导：
+\[
+\chi=\beta(J\chi+1)\sech^2\beta(Jm+h).
+\]
+在 \(h=0,T>T_c\)，\(m=0\)，故
+\[
+\chi=\beta(J\chi+1),
+\qquad
+\chi=\frac{\beta}{1-\beta J}
+\sim \frac1{J}\,t^{-1}.
+\]
+在 \(T<T_c\) 也有同样的 \(|t|^{-1}\) 幂次，只是振幅不同。因此
+\[
+\gamma_c=1.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设
+\[
+\dd s^2=-(\dd x^0)^2+\sum_{i=1}^n(\dd x^i)^2
+\]
+为 \(\R^{1,n}\) 的 Minkowski 度量。de Sitter 空间 \(dS_n\) 是满足
+\[
+-(x^0)^2+\sum_{i=1}^n(x^i)^2=\alpha^2
+\]
+的子流形。定义静态坐标 \((t,r,z^2,\ldots,z^n)\)：
+\[
+x^0=\sqrt{\alpha^2-r^2}\sinh(t/\alpha),\qquad
+x^1=\sqrt{\alpha^2-r^2}\cosh(t/\alpha),\qquad
+x^i=rz^i,\ 2\le i\le n,
+\]
+其中 \(z^i\) 是单位 \((n-2)\)-球坐标。
+\begin{enumerate}[label=(\alph*)]
+\item 证明这些是 \(dS_n\) 的局部坐标。
+\item 求由 \(\R^{1,n}\) 诱导到 \(dS_n\) 上的度量。
+\item 当 \(n=3\) 时，求 \(dS_3\) 的 Ricci 张量和标量曲率。它是否为 Einstein 度量？
+\item 当 \(n=3\) 时，在静态坐标中 \(\partial_t,\partial_\phi\) 是否为 Killing 向量场？证明。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 代入定义式：
+\[
+-(x^0)^2+(x^1)^2
+=(\alpha^2-r^2)(-\sinh^2(t/\alpha)+\cosh^2(t/\alpha))
+=\alpha^2-r^2.
+\]
+又
+\[
+\sum_{i=2}^n(x^i)^2=r^2\sum_{i=2}^n(z^i)^2=r^2.
+\]
+总和为 \(\alpha^2\)。在 \(0<r<|\alpha|\) 且球面坐标图不奇异的区域，Jacobian 满秩，故给出局部坐标。
+
+\item 令 \(A=\sqrt{\alpha^2-r^2}\)。有
+\[
+-(\dd x^0)^2+(\dd x^1)^2
+=-\frac{A^2}{\alpha^2}\dd t^2+\frac{r^2}{A^2}\dd r^2.
+\]
+而
+\[
+\sum_{i=2}^n(\dd x^i)^2=\dd r^2+r^2\dd\Omega_{n-2}^2.
+\]
+相加得
+\[
+\dd s^2
+=-\left(1-\frac{r^2}{\alpha^2}\right)\dd t^2
++\left(1-\frac{r^2}{\alpha^2}\right)^{-1}\dd r^2
++r^2\dd\Omega_{n-2}^2.
+\]
+
+\item 当 \(n=3\)，
+\[
+\dd s^2=-f(r)\dd t^2+f(r)^{-1}\dd r^2+r^2\dd\phi^2,
+\qquad
+f(r)=1-\frac{r^2}{\alpha^2}.
+\]
+三维 de Sitter 空间是常曲率空间，截面曲率
+\[
+K=\frac1{\alpha^2}.
+\]
+在三维中
+\[
+R_{\mu\nu}=(n-1)K g_{\mu\nu}= \frac{2}{\alpha^2}g_{\mu\nu},
+\]
+\[
+R=n(n-1)K=\frac{6}{\alpha^2}.
+\]
+因此 \(dS_3\) 是 Einstein 度量。
+
+\item 上述静态度量分量只依赖 \(r\)，不依赖 \(t\) 与 \(\phi\)。故
+\[
+\mathcal L_{\partial_t}g=\partial_tg_{\mu\nu}\dd x^\mu\dd x^\nu=0,
+\qquad
+\mathcal L_{\partial_\phi}g=\partial_\phi g_{\mu\nu}\dd x^\mu\dd x^\nu=0.
+\]
+所以 \(\partial_t\) 和 \(\partial_\phi\) 都是 Killing 向量场。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑实标量场 \(\phi\) 与 Dirac 旋量场 \(\psi\) 的 Yukawa 理论
+\[
+\mathcal L=\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2
++\bar\psi(\ii\gamma^\mu\partial_\mu-M)\psi
+-\ii g\bar\psi\gamma^5\psi\phi.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 求标量 \(\phi\) 一圈自能图中的全部发散，并写出抵消它们的反项。
+\item 求旋量 \(\psi\) 一圈自能图中的全部发散，并写出抵消它们的反项。
+\item 该理论是否有不能被重整化的发散？
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 标量自能的一圈图是一个费米子闭环，两个外部 \(\phi\) 线接在 Yukawa 顶角上。维数正则化中，发散部分必为外动量二次多项式：
+\[
+\Pi_\phi(p^2)_{\mathrm{div}}
+=\frac{g^2}{8\pi^2\varepsilon}\bigl(p^2-C_m M^2\bigr)
+\]
+其中 \(C_m\) 的精确数值依赖 \(\gamma^5\)、号差和顶角归一化约定；重要的是只出现 \(p^2\) 与质量项型发散。它们分别由
+\[
+\delta\mathcal L_\phi
+=\frac12\delta Z_\phi\,\partial_\mu\phi\partial^\mu\phi
+-\frac12\delta m^2\,\phi^2
+\]
+吸收。选择 \(\delta Z_\phi\) 抵消 \(p^2/\varepsilon\) 项，选择 \(\delta m^2\) 抵消 \(M^2/\varepsilon\) 项。
+
+\item 旋量自能的一圈图由一条内部标量线和一条内部费米子线构成。发散部分具有
+\[
+\Sigma_\psi(\not p)_{\mathrm{div}}
+=\frac{g^2}{16\pi^2\varepsilon}(A\not p+B M)
+\]
+的形式，其中 \(A,B\) 为由具体约定决定的数值。没有更高阶动量结构出现。相应反项为
+\[
+\delta\mathcal L_\psi
+=\delta Z_\psi\,\bar\psi\ii\gamma^\mu\partial_\mu\psi
+-\delta M\,\bar\psi\psi.
+\]
+取 \(\delta Z_\psi\) 抵消 \(\not p/\varepsilon\) 项，取 \(\delta M\) 抵消 \(M/\varepsilon\) 项。
+
+\item 四维 Yukawa 耦合 \(g\) 是无量纲耦合。按幂计数，该理论可重整化；一圈以及更高圈发散都可由原 Lagrangian 中已有结构的反项吸收：
+\[
+\delta Z_\phi,\quad \delta m^2,\quad
+\delta Z_\psi,\quad \delta M,\quad \delta g
+\]
+以及若对称性允许还包括真空能反项。因而不存在需要加入无限多个高维算符才能吸收的不可重整化发散。
+\end{enumerate}
+\end{solution}
+
+\subsection{2025 年笔试：数学物理}
+
+\begin{problem}
+质量为 \(m\) 的小珠无摩擦地约束在半径为 \(R\) 的圆环上。圆环绕竖直轴以常角速度 \(\omega\) 旋转，小珠受地球表面重力作用。
+\begin{enumerate}[label=(\arabic*)]
+\item 写出系统的 Lagrangian 和运动方程。
+\item 求可能存在的守恒量。构造 Hamiltonian。它是否等于固定非旋转参考系中的能量？固定系能量是否守恒？
+\item 求临界角速度 \(\Omega\)，使得当 \(\omega<\Omega\) 时圆环底端为稳定平衡。分别求 \(\omega<\Omega\) 和 \(\omega>\Omega\) 时的稳定平衡位置。
+\item 求稳定平衡位置附近的小振动频率。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+令 \(\theta\) 为小珠相对竖直向下方向的夹角。惯性系中
+\[
+x=R\sin\theta\cos\omega t,\quad
+y=R\sin\theta\sin\omega t,\quad
+z=-R\cos\theta.
+\]
+于是
+\[
+v^2=R^2\dot\theta^2+R^2\omega^2\sin^2\theta.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 取势能 \(V=mgz=-mgR\cos\theta\)，得
+\[
+L=\frac12mR^2\dot\theta^2+\frac12mR^2\omega^2\sin^2\theta+mgR\cos\theta.
+\]
+Euler-Lagrange 方程为
+\[
+mR^2\ddot\theta
+-mR^2\omega^2\sin\theta\cos\theta+mgR\sin\theta=0,
+\]
+即
+\[
+\ddot\theta=(\omega^2\cos\theta-g/R)\sin\theta.
+\]
+
+\item 该 Lagrangian 不显含时间，所以 Hamiltonian 守恒。共轭动量
+\[
+p_\theta=mR^2\dot\theta.
+\]
+Hamiltonian 为
+\[
+H=p_\theta\dot\theta-L
+=\frac{p_\theta^2}{2mR^2}
+-\frac12mR^2\omega^2\sin^2\theta-mgR\cos\theta.
+\]
+固定惯性系机械能为
+\[
+E_{\mathrm{lab}}
+=\frac12mR^2\dot\theta^2
++\frac12mR^2\omega^2\sin^2\theta
+-mgR\cos\theta.
+\]
+它与 \(H\) 不相等，差别为
+\[
+E_{\mathrm{lab}}-H=mR^2\omega^2\sin^2\theta.
+\]
+由于约束圆环由外部马达维持匀速转动，约束力可对小珠做功，所以 \(E_{\mathrm{lab}}\) 一般不守恒；守恒的是旋转约束下的 Jacobi 型 Hamiltonian \(H\)。
+
+\item 平衡满足
+\[
+(\omega^2\cos\theta-g/R)\sin\theta=0.
+\]
+底端为 \(\theta=0\)。线性化
+\[
+\ddot\theta=(\omega^2-g/R)\theta+O(\theta^3).
+\]
+稳定要求 \(\omega^2<g/R\)，故
+\[
+\Omega=\sqrt{\frac gR}.
+\]
+当 \(\omega<\Omega\) 时，稳定平衡为底端 \(\theta=0\)。当 \(\omega>\Omega\) 时，底端不稳定，新的平衡满足
+\[
+\cos\theta_0=\frac{g}{R\omega^2}=\frac{\Omega^2}{\omega^2},
+\]
+有两个对称位置 \(\theta=\pm\theta_0\)。
+
+\item 对 \(\omega<\Omega\)，底端附近
+\[
+\ddot\theta=-(\Omega^2-\omega^2)\theta,
+\]
+故小振动频率
+\[
+\omega_{\mathrm{small}}=\sqrt{\Omega^2-\omega^2}.
+\]
+对 \(\omega>\Omega\)，令 \(\theta=\theta_0+\eta\)。右端函数
+\[
+F(\theta)=(\omega^2\cos\theta-\Omega^2)\sin\theta.
+\]
+在平衡点 \(\cos\theta_0=\Omega^2/\omega^2\)，
+\[
+F'(\theta_0)
+=-\omega^2\sin^2\theta_0.
+\]
+所以
+\[
+\ddot\eta=-\omega^2\sin^2\theta_0\,\eta,
+\]
+小振动频率为
+\[
+\omega_{\mathrm{small}}
+=\omega\sin\theta_0
+=\omega\sqrt{1-\frac{\Omega^4}{\omega^4}}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+横向轮廓为 \(E_0(x,y)\) 的波包沿 \(z\) 方向传播。可取 Gaussian 轮廓
+\[
+E_0(x,y)=A\ee^{-(x^2+y^2)/(4\sigma^2)}.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 忽略 \(E_0\) 的所有导数时，证明
+\[
+\bm E^{(0)}(t,\bm r)=E_0(x,y)\ee^{\ii(kz-\omega t)}\frac{\hat{\bm x}+\ii\hat{\bm y}}{\sqrt2},
+\qquad
+\bm B^{(0)}=\hat{\bm z}\times\bm E^{(0)}
+\]
+在 \(\omega=ck\) 时满足 Maxwell 方程。
+\item 求波包单位长度的时间平均能量 \(\langle U\rangle\)。
+\item 当不忽略 \(E_0\) 导数时，求 \(k\sigma\gg1\) 下电磁场一阶梯度修正。
+\item 把上一问写成平面波解的线性叠加，并解释为何出现 \(z\) 向电场修正。
+\item 求单位长度时间平均角动量的 \(z\) 分量 \(\langle L_z\rangle\) 的最低非平凡阶。
+\item 求 \(\langle L_z\rangle/\langle U\rangle\)，并用光子解释。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 忽略横向导数时，场就是沿 \(+z\) 传播的圆偏振平面波。由 \(\omega=ck\) 和
+\[
+\bm B^{(0)}=\hat{\bm z}\times\bm E^{(0)}
+\]
+可得
+\[
+\nabla\cdot\bm E^{(0)}=0,\quad \nabla\cdot\bm B^{(0)}=0,
+\]
+\[
+\nabla\times\bm E^{(0)}=-\partial_t\bm B^{(0)},\qquad
+\nabla\times\bm B^{(0)}=\frac1{c^2}\partial_t\bm E^{(0)}.
+\]
+因此 Maxwell 方程成立。
+
+\item Heaviside-Lorentz 单位中能量密度为
+\[
+u=\frac12(E^2+B^2).
+\]
+对复振幅取时间平均，且平面波中 \(|B|=|E|\)，有
+\[
+\langle u\rangle=\frac12|E_0(x,y)|^2.
+\]
+单位长度能量为
+\[
+\langle U\rangle
+=\frac12\int_{\R^2}|E_0(x,y)|^2\dd x\dd y.
+\]
+若 \(E_0=A\ee^{-(x^2+y^2)/(4\sigma^2)}\)，则
+\[
+|E_0|^2=|A|^2\ee^{-(x^2+y^2)/(2\sigma^2)}
+\]
+并且
+\[
+\int_{\R^2}|E_0|^2\dd x\dd y=2\pi\sigma^2|A|^2.
+\]
+所以
+\[
+\langle U\rangle=\pi\sigma^2|A|^2.
+\]
+
+\item 横向变化导致 \(\nabla\cdot\bm E=0\) 不再自动成立。设
+\[
+\bm E=\left(E_0\bm e_++E_z^{(1)}\hat{\bm z}\right)\ee^{\ii(kz-\omega t)},
+\qquad
+\bm e_+=\frac{\hat{\bm x}+\ii\hat{\bm y}}{\sqrt2}.
+\]
+由 \(\nabla\cdot\bm E=0\) 得
+\[
+\nabla_\perp\cdot(E_0\bm e_+)+\ii kE_z^{(1)}=0.
+\]
+因此
+\[
+E_z^{(1)}
+=\frac{\ii}{k}\,\bm e_+\cdot\nabla_\perp E_0
+=\frac{\ii}{\sqrt2 k}(\partial_x+\ii\partial_y)E_0.
+\]
+类似地
+\[
+\bm B=\hat{\bm z}\times E_0\bm e_+\,\ee^{\ii(kz-\omega t)}
++B_z^{(1)}\hat{\bm z}\ee^{\ii(kz-\omega t)}
+\]
+且
+\[
+B_z^{(1)}
+=\frac{\ii}{k}(\hat{\bm z}\times\bm e_+)\cdot\nabla_\perp E_0
+=\frac{\ii}{k}\frac{\hat{\bm y}-\ii\hat{\bm x}}{\sqrt2}\cdot\nabla_\perp E_0.
+\]
+因 \(\hat{\bm z}\times\bm e_+=-\ii\bm e_+\)，所以
+\[
+B_z^{(1)}=\frac1{k\sqrt2}(\partial_x+\ii\partial_y)E_0.
+\]
+这些修正相对主场为 \(O((k\sigma)^{-1})\)。
+
+\item 写 Fourier 分解
+\[
+E_0(x,y)=\int\frac{\dd^2q}{(2\pi)^2}\tilde E_0(\bm q)\ee^{\ii\bm q\cdot\bm x_\perp}.
+\]
+每个分量的波矢为
+\[
+\bm K=(q_x,q_y,k_z),\qquad k_z=\sqrt{k^2-q^2}=k+O(q^2/k).
+\]
+Maxwell 方程要求电场横向于 \(\bm K\)，即 \(\bm K\cdot\bm E_{\bm q}=0\)。若横向偏振主部为 \(\bm e_+\)，则
+\[
+q_xE_x+q_yE_y+kE_z=0,
+\]
+所以
+\[
+E_z=-\frac{\bm q\cdot\bm e_+}{k}\tilde E_0(\bm q).
+\]
+变回坐标空间正是上一问的 \(E_z^{(1)}\)。这说明 \(z\) 向电场来自各平面波分量传播方向略偏离 \(z\) 轴时的横向性条件。
+
+\item 圆偏振光的自旋角动量密度与能量密度之比为 \(1/\omega\)，最低非平凡阶中轨道角动量因轴对称 Gaussian 轮廓为零。因此
+\[
+\langle L_z\rangle
+=\frac{\langle U\rangle}{\omega}
+\]
+对右旋圆偏振取正号；若取相反圆偏振，符号相反。本题的 \((\hat x+\ii\hat y)/\sqrt2\) 约定给出一个固定手征，上式符号随该约定确定。
+
+\item 因而
+\[
+\frac{\langle L_z\rangle}{\langle U\rangle}=\frac1\omega
+\]
+或按相反偏振为 \(-1/\omega\)。光子解释是：频率为 \(\omega\) 的每个光子能量为 \(\hbar\omega\)，圆偏振光每个光子沿传播方向携带自旋角动量 \(\pm\hbar\)，所以角动量与能量之比为
+\[
+\frac{\pm\hbar}{\hbar\omega}=\pm\frac1\omega.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+质量为 \(m\)、电荷为 \(q\) 的一维粒子受谐振子势和均匀静电场 \(E\) 作用：
+\[
+H=\frac{p^2}{2m}+\frac12m\omega^2x^2-qEx=H_0-qEx.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 证明 \(H=\ee^{-A}H_0\ee^A+B\)，求 \(A,B\)，并由此求 \(H\) 的本征值问题。
+\item 用 \(H_0\) 的湮灭算子 \(a\) 与产生算子 \(a^\dagger\) 表示 \(A\)。若 \(t=0\) 时系统在 \(H_0\) 基态，求时刻 \(t\) 处于 \(H\) 基态的概率。
+\item 求系统从 \(H_0\) 基态出发，时刻 \(t\) 仍处于 \(H_0\) 基态的概率。何时该概率为 \(1\)？
+\item 求系统从 \(H_0\) 基态出发，时刻 \(t\) 处于 \(H_0\) 第一激发态的概率。
+\item 用 \(a,a^\dagger\) 表示偶极矩 \(d=qx\)，并求同样初态下时刻 \(t\) 的偶极矩平均值。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+配方：
+\[
+\frac12m\omega^2x^2-qEx
+=\frac12m\omega^2(x-x_0)^2-\frac12m\omega^2x_0^2,
+\qquad
+x_0=\frac{qE}{m\omega^2}.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 平移算子满足
+\[
+\ee^{-\frac{\ii}{\hbar}x_0p}x\,\ee^{\frac{\ii}{\hbar}x_0p}=x-x_0.
+\]
+取
+\[
+A=\frac{\ii}{\hbar}x_0p,\qquad
+B=-\frac12m\omega^2x_0^2=-\frac{q^2E^2}{2m\omega^2},
+\]
+则
+\[
+H=\ee^{-A}H_0\ee^A+B.
+\]
+因此若 \(H_0|n\rangle=E_n^{(0)}|n\rangle\)，则
+\[
+H(\ee^{-A}|n\rangle)=(E_n^{(0)}+B)\ee^{-A}|n\rangle.
+\]
+能谱为
+\[
+E_n=\hbar\omega\left(n+\frac12\right)-\frac{q^2E^2}{2m\omega^2}.
+\]
+
+\item 用
+\[
+p=\ii\sqrt{\frac{m\hbar\omega}{2}}(a^\dagger-a)
+\]
+得
+\[
+A=-x_0\sqrt{\frac{m\omega}{2\hbar}}(a^\dagger-a).
+\]
+令
+\[
+\lambda=x_0\sqrt{\frac{m\omega}{2\hbar}}.
+\]
+则 \(H\) 的基态是位移态
+\[
+|0_H\rangle=\ee^{-A}|0\rangle
+=\ee^{\lambda(a^\dagger-a)}|0\rangle.
+\]
+若初态为 \(|0\rangle\)，在 \(H\) 下演化等价于受平移后的谐振子演化。相干态振幅为
+\[
+\alpha(t)=\lambda(\ee^{-\ii\omega t}-1).
+\]
+处于 \(H\) 基态的概率为相干态真空重叠：
+\[
+P_{0_H}(t)=\exp[-|\alpha(t)|^2]
+=\exp[-2\lambda^2(1-\cos\omega t)].
+\]
+
+\item 回到 \(H_0\) 基底，时间演化后的态是相干态，振幅可写为
+\[
+\beta(t)=\lambda(1-\ee^{-\ii\omega t}).
+\]
+故留在 \(H_0\) 基态的概率
+\[
+P_{0\to0}(t)=\ee^{-|\beta(t)|^2}
+=\exp[-2\lambda^2(1-\cos\omega t)].
+\]
+当
+\[
+\omega t=2\pi n,\qquad n\in\mathbb Z,
+\]
+时 \(\beta(t)=0\)，概率为 \(1\)。
+
+\item 相干态中第一激发态概率为
+\[
+P_{0\to1}(t)=\ee^{-|\beta(t)|^2}|\beta(t)|^2.
+\]
+即
+\[
+P_{0\to1}(t)
+=2\lambda^2(1-\cos\omega t)
+\exp[-2\lambda^2(1-\cos\omega t)].
+\]
+
+\item
+\[
+x=\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger),
+\qquad
+d=q\sqrt{\frac{\hbar}{2m\omega}}(a+a^\dagger).
+\]
+经典受力使振子中心按
+\[
+\langle x(t)\rangle=x_0(1-\cos\omega t)
+\]
+振荡，因此
+\[
+\langle d(t)\rangle
+=qx_0(1-\cos\omega t)
+=\frac{q^2E}{m\omega^2}(1-\cos\omega t).
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+三角形 Ising 模型能量为
+\[
+E=-J(\sigma_1\sigma_2+\sigma_2\sigma_3+\sigma_3\sigma_1)
+-h(\sigma_1+\sigma_2+\sigma_3),
+\]
+其中 \(\sigma_i=\pm1\)，温度为 \(T\)。可取 \(k_B=1\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 求配分函数。
+\item 求自由能和熵。
+\item 求 \(h=0\) 时比热，并讨论 \(T\ll J\) 与 \(T\gg J\)。
+\item 在 \(T\ll J\) 下求磁化强度 \(M=\langle\sigma_1+\sigma_2+\sigma_3\rangle\)，并求低温磁化率 \(\chi=\partial M/\partial h|_{h=0}\) 的行为。
+\item 求 \(T\ll J\) 下磁化强度涨落 \(\langle(\sigma-M)^2\rangle\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+令总磁化 \(S=\sigma_1+\sigma_2+\sigma_3\)。恒等式
+\[
+\sigma_1\sigma_2+\sigma_2\sigma_3+\sigma_3\sigma_1=\frac{S^2-3}{2}
+\]
+把能量写为
+\[
+E(S)=-\frac J2(S^2-3)-hS.
+\]
+可能的 \(S\) 为 \(3,1,-1,-3\)，简并度分别为 \(1,3,3,1\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 配分函数
+\[
+Z=\sum_S g(S)\ee^{-\beta E(S)}
+=\ee^{3\beta J+3\beta h}
+\ee^{3\beta J-3\beta h}
+3\ee^{-\beta J+\beta h}
+3\ee^{-\beta J-\beta h}.
+\]
+即
+\[
+Z=2\ee^{3\beta J}\cosh(3\beta h)
++6\ee^{-\beta J}\cosh(\beta h).
+\]
+
+\item 自由能
+\[
+F=-T\log Z.
+\]
+熵
+\[
+S_{\mathrm{th}}=-\frac{\partial F}{\partial T}
+=\log Z+\beta\langle E\rangle,
+\]
+其中
+\[
+\langle E\rangle=-\frac{\partial}{\partial\beta}\log Z
+\]
+在固定 \(J,h\) 下计算。
+
+\item 取 \(h=0\)，
+\[
+Z=2\ee^{3\beta J}+6\ee^{-\beta J}
+=2\ee^{3\beta J}(1+3\ee^{-4\beta J}).
+\]
+内能
+\[
+U=-\partial_\beta\log Z
+=-3J+\frac{12J\ee^{-4\beta J}}{1+3\ee^{-4\beta J}}.
+\]
+比热
+\[
+C=\frac{\partial U}{\partial T}
+=\beta^2\frac{\partial^2}{\partial\beta^2}\log Z
+=\frac{48\beta^2J^2\ee^{-4\beta J}}{(1+3\ee^{-4\beta J})^2}.
+\]
+当 \(T\ll J\)，
+\[
+C\sim48\frac{J^2}{T^2}\ee^{-4J/T},
+\]
+指数小。当 \(T\gg J\)，\(\beta J\ll1\)，比热按
+\[
+C=O\!\left(\frac{J^2}{T^2}\right)
+\]
+趋于零。
+
+\item
+\[
+M=\langle S\rangle
+=\frac{6\ee^{3\beta J}\sinh(3\beta h)+6\ee^{-\beta J}\sinh(\beta h)}
+{2\ee^{3\beta J}\cosh(3\beta h)+6\ee^{-\beta J}\cosh(\beta h)}.
+\]
+在 \(T\ll J\) 时，反平行激发被 \(\ee^{-4\beta J}\) 抑制，故
+\[
+M\simeq 3\tanh(3\beta h).
+\]
+于是
+\[
+\chi=\left.\frac{\partial M}{\partial h}\right|_{h=0}
+\simeq 9\beta=\frac9T.
+\]
+
+\item 在低温 \(h=0\) 时主要只有 \(S=\pm3\) 两个基态，且等概率，所以
+\[
+\langle S\rangle=0,\qquad
+\langle S^2\rangle\simeq9.
+\]
+故磁化强度涨落
+\[
+\langle(S-\langle S\rangle)^2\rangle\simeq9.
+\]
+若题中 \(\sigma\) 表示总磁化，则答案为 \(9\)；若表示每格点平均磁化 \(S/3\)，则涨落为 \(1\)。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+研究双黑洞系统发出的引力波。把黑洞视为点质量。对质量 \(m\) 在 \((x,y)\) 平面近原点运动的情形，广义相对论预言距离 \(L\)、倾角 \(\theta\) 处的引力波振幅为
+\[
+h_+=\frac1L\frac{G}{c^4}\frac{1+\cos^2\theta}{2}
+m\frac{\dd^2}{\dd t^2}(x^2-y^2),
+\]
+\[
+h_\times=\frac1L\frac{G}{c^4}\cos\theta\,
+m\frac{\dd^2}{\dd t^2}(2xy).
+\]
+两个质量 \(m_1,m_2\)、间距 \(r\) 的黑洞在 Newton 引力下绕质心作圆运动。
+\begin{enumerate}[label=(\arabic*)]
+\item 推导 \(h_+,h_\times\)，并求引力波频率 \(f\)。
+\item 已知单位立体角功率
+\[
+p=\frac{c^3L^2}{16\pi G}\left[
+\left(\frac{\partial h_+}{\partial t}\right)^2
++\left(\frac{\partial h_\times}{\partial t}\right)^2
+\right],
+\]
+求对方向和一周期平均后的总功率 \(P\)。
+\item 若初始时刻 \(t_0\) 的引力波频率为 \(f_0\)，求 \(f(t)\)。
+\item 初始间距为 \(r_0\)，求并合时间 \(T_C\)。
+\item 若 \(m_1=m_2=10M_\odot\)，估计能在宇宙年龄 \(T\simeq10^{10}\) 年内并合的最大初始间距 \(r_0\)，用 au 表示，数量级估计即可。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+记总质量 \(M=m_1+m_2\)，约化质量 \(\mu=m_1m_2/M\)。相对坐标取
+\[
+x=r\cos\Omega t,\qquad y=r\sin\Omega t,
+\]
+其中 Newton 圆轨道满足
+\[
+\Omega^2=\frac{GM}{r^3}.
+\]
+质心系四极矩中 \(m x_ix_j\) 的和等价于 \(\mu x_ix_j\)。
+\begin{enumerate}[label=(\arabic*)]
+\item
+\[
+x^2-y^2=r^2\cos2\Omega t,\qquad
+2xy=r^2\sin2\Omega t.
+\]
+二阶导数为
+\[
+\frac{\dd^2}{\dd t^2}(x^2-y^2)=-4\Omega^2r^2\cos2\Omega t,
+\]
+\[
+\frac{\dd^2}{\dd t^2}(2xy)=-4\Omega^2r^2\sin2\Omega t.
+\]
+所以
+\[
+h_+=-\frac{4G\mu\Omega^2r^2}{Lc^4}
+\frac{1+\cos^2\theta}{2}\cos2\Omega t,
+\]
+\[
+h_\times=-\frac{4G\mu\Omega^2r^2}{Lc^4}
+\cos\theta\,\sin2\Omega t.
+\]
+引力波角频率为 \(2\Omega\)，频率
+\[
+f=\frac{\Omega}{\pi}.
+\]
+
+\item 由上一问，设
+\[
+A=\frac{4G\mu\Omega^2r^2}{Lc^4}.
+\]
+则
+\[
+\langle\dot h_+^2+\dot h_\times^2\rangle_t
+=2\Omega^2A^2\left[
+\frac{(1+\cos^2\theta)^2}{4}+\cos^2\theta
+\right].
+\]
+对立体角积分：
+\[
+\int\left[
+\frac{(1+u^2)^2}{4}+u^2
+\right]\dd\Omega
+=2\pi\int_{-1}^1\left(\frac14+\frac32u^2+\frac14u^4\right)\dd u
+=\frac{16\pi}{5}.
+\]
+故
+\[
+P=\frac{c^3L^2}{16\pi G}
+2\Omega^2A^2\frac{16\pi}{5}
+=\frac{32}{5}\frac{G\mu^2\Omega^6r^4}{c^5}.
+\]
+用 \(\Omega^2=GM/r^3\)，得标准形式
+\[
+P=\frac{32}{5}\frac{G^4\mu^2M^3}{c^5r^5}.
+\]
+
+\item 轨道能量
+\[
+E=-\frac{G\mu M}{2r}.
+\]
+能量损失满足
+\[
+\frac{\dd E}{\dd t}=-P.
+\]
+由 \(f=\Omega/\pi=(1/\pi)\sqrt{GM/r^3}\)，可得到 chirp 方程
+\[
+\frac{\dd f}{\dd t}
+=\frac{96}{5}\pi^{8/3}
+\left(\frac{GM_c}{c^3}\right)^{5/3}f^{11/3},
+\]
+其中 chirp mass
+\[
+M_c=\mu^{3/5}M^{2/5}.
+\]
+积分得
+\[
+f(t)=\left[
+f_0^{-8/3}
+-\frac{256}{5}\pi^{8/3}
+\left(\frac{GM_c}{c^3}\right)^{5/3}(t-t_0)
+\right]^{-3/8}.
+\]
+
+\item 由 \(\dd r/\dd t\) 方程
+\[
+\frac{\dd r}{\dd t}
+=-\frac{64}{5}\frac{G^3\mu M^2}{c^5r^3},
+\]
+从 \(r_0\) 积分到 \(0\)，得到
+\[
+T_C=\frac{5}{256}
+\frac{c^5r_0^4}{G^3\mu M^2}.
+\]
+
+\item 等质量 \(m_1=m_2=m=10M_\odot\) 时
+\[
+M=2m,\qquad \mu=\frac m2.
+\]
+由
+\[
+r_0=\left(\frac{256}{5}\frac{G^3\mu M^2T_C}{c^5}\right)^{1/4}
+\]
+估算。取 \(M_\odot\simeq2.0\times10^{30}\,\mathrm{kg}\)，
+\[
+m\simeq2.0\times10^{31}\,\mathrm{kg},\quad
+T_C\simeq10^{10}\mathrm{yr}\simeq3.2\times10^{17}\,\mathrm{s}.
+\]
+代入得
+\[
+r_0\sim 1.6\times10^{10}\,\mathrm m.
+\]
+而 \(1\,\mathrm{au}\simeq1.5\times10^{11}\,\mathrm m\)，所以
+\[
+r_0\sim 0.1\,\mathrm{au}.
+\]
+数量级上，初始间距须不超过约十分之一天文单位。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+研究共形标量场，取自然单位 \(c=\hbar=1\)。
+\begin{enumerate}[label=(\arabic*)]
+\item Minkowski 时空中无质量标量场作用量
+\[
+S=-\frac12\int\dd^4x\,(\partial_\mu\phi)^2.
+\]
+证明在刚性度量缩放 \(\eta_{\mu\nu}\mapsto\tilde\eta_{\mu\nu}=\Omega^2\eta_{\mu\nu}\) 下，若同时令 \(\phi\mapsto\tilde\phi=\Omega^\Delta\phi\)，可使作用量不变，并求 \(\Delta\)。
+\item 对一般度量的局部缩放 \(g_{\mu\nu}\mapsto\Omega^2(x)g_{\mu\nu}\)、\(\phi\mapsto\Omega^\Delta(x)\phi\)，求
+\[
+S=-\frac12\int\dd^4x\sqrt{-g}\,g^{\mu\nu}\partial_\mu\phi\partial_\nu\phi
+\]
+的变换。能否只靠选择 \(\Delta\) 使其不变？
+\item 求 Ricci 标量 \(R\) 在 \(g_{\mu\nu}\mapsto\Omega^2g_{\mu\nu}\) 下的变换。
+\item 证明加入
+\[
+S=\int\dd^4x\sqrt{-g}\left[
+-\frac12(\partial_\mu\phi)^2-\frac12\xi R\phi^2
+\right]
+\]
+后可恢复局部缩放不变性，并求 \(\xi\)。
+\item 对度量
+\[
+\dd s^2=\frac{-\dd\tau^2+\dd\bm x^2}{(H\tau)^2},
+\qquad \bm x\in\R^3,\quad \tau\in(-\infty,0),
+\]
+证明共形标量场的作用量等同于一个非零质量标量场作用量，并求 \(m\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 刚性缩放下
+\[
+\sqrt{-\eta}\mapsto\Omega^4\sqrt{-\eta},\qquad
+\eta^{\mu\nu}\mapsto\Omega^{-2}\eta^{\mu\nu},\qquad
+\partial_\mu\phi\mapsto\Omega^\Delta\partial_\mu\phi.
+\]
+作用量整体因子为
+\[
+\Omega^{4-2+2\Delta}=\Omega^{2+2\Delta}.
+\]
+不变要求
+\[
+2+2\Delta=0,\qquad \Delta=-1.
+\]
+
+\item 取 \(\Delta=-1\)。局部缩放时
+\[
+\tilde\phi=\Omega^{-1}\phi,
+\quad
+\partial_\mu\tilde\phi
+=\Omega^{-1}\partial_\mu\phi-\Omega^{-2}\phi\partial_\mu\Omega.
+\]
+代入
+\[
+\sqrt{-\tilde g}\tilde g^{\mu\nu}\partial_\mu\tilde\phi\partial_\nu\tilde\phi
+\]
+得
+\[
+\sqrt{-g}g^{\mu\nu}
+\left(\partial_\mu\phi-\phi\partial_\mu\log\Omega\right)
+\left(\partial_\nu\phi-\phi\partial_\nu\log\Omega\right).
+\]
+除原动能外，还出现
+\[
+-2\phi\,\partial^\mu\phi\,\partial_\mu\log\Omega
++\phi^2(\partial\log\Omega)^2.
+\]
+这些项一般不是边界项，故仅靠选择 \(\Delta\) 不能使纯动能作用量局部共形不变。
+
+\item 四维中，设 \(\omega=\log\Omega\)。Ricci 标量变换为
+\[
+\tilde R=\Omega^{-2}\left[
+R-6\nabla^2\omega-6(\nabla\omega)^2
+\right].
+\]
+等价地，
+\[
+\tilde R=\Omega^{-2}\left[
+R-6\Omega^{-1}\nabla^2\Omega
+\right],
+\]
+其中第二式使用
+\(\nabla^2\log\Omega+(\nabla\log\Omega)^2=\Omega^{-1}\nabla^2\Omega\)。
+
+\item 仍取 \(\phi\mapsto\Omega^{-1}\phi\)。由上一问 \(R\) 的变换和动能项的额外项可知，组合
+\[
+-\frac12(\nabla\phi)^2-\frac12\xi R\phi^2
+\]
+在四维中局部共形不变当且仅当
+\[
+\xi=\frac16.
+\]
+直接验证时，把曲率项变换中的
+\[
+-\frac12\cdot\frac16\sqrt{-g}\,\phi^2[-6\nabla^2\omega-6(\nabla\omega)^2]
+\]
+与动能项变换多出的交叉项和 \((\nabla\omega)^2\) 项相加；交叉项经分部积分恰与 \(\phi^2\nabla^2\omega\) 抵消，余项也抵消，只剩原作用量加边界项。
+
+\item 题中度量为共形平坦：
+\[
+g_{\mu\nu}=a^2(\tau)\eta_{\mu\nu},\qquad
+a(\tau)=-\frac1{H\tau}.
+\]
+四维 de Sitter 的 Ricci 标量为
+\[
+R=12H^2.
+\]
+共形耦合标量作用量中 \(\xi=1/6\)，曲率项相当于
+\[
+-\frac12\xi R\phi^2=-\frac12(2H^2)\phi^2
+\]
+在局部惯性规范下的质量项。换言之，若把作用量写作
+\[
+S=\int\sqrt{-g}\left[-\frac12(\nabla\phi)^2-\frac12m^2\phi^2\right],
+\]
+则共形耦合项对应
+\[
+m^2=\xi R=\frac16\cdot12H^2=2H^2.
+\]
+在把场重定义为 \(\chi=a\phi\) 后，\(\chi\) 的平坦共形时间作用量中 \(a''/a\) 与 \(\xi R a^2\) 正好抵消，体现共形标量与平坦无质量标量的等价；从原 \(\phi\) 的曲率耦合角度看，它等同于质量平方 \(m^2=2H^2\) 的标量项。
+\end{enumerate}
+\end{solution}
+
+\subsection{2026 年笔试：数学物理}
+
+\begin{problem}
+考虑滑动摆：质量 \(M\) 可无摩擦地沿水平杆运动，并通过长为 \(l\) 的无质量杆连接质量 \(m\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 求 \(x-z\) 平面内小振动角频率。
+\item 再考虑滑动圆锥摆，其中质量 \(M\) 可在水平 \(x-y\) 平面内无摩擦运动。两质量作固定角 \(\theta\) 的圆周运动。求角频率关于 \(\theta\) 的函数，并检查小 \(\theta\) 极限。
+\item 对倒立滑动摆，初始从 \(\theta=\pi\) 静止下落，求杆张力 \(T\) 首次为零时的 \(\theta\)。为简化，设 \(M\) 无限大。
+\item 同一设置，但 \(M,m\) 任意，求从 \(\theta=\pi\) 静止下落时在 \(\theta=\pi/2\) 和 \(\theta=\pi\) 处的张力。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 令 \(X\) 为上端质量 \(M\) 的水平坐标，\(\theta\) 为杆偏离竖直向下方向的角。下端质量坐标为
+\[
+x=X+l\sin\theta,\qquad z=-l\cos\theta.
+\]
+动能
+\[
+T=\frac12M\dot X^2+\frac12m\left[(\dot X+l\dot\theta\cos\theta)^2
++l^2\dot\theta^2\sin^2\theta\right],
+\]
+势能
+\[
+V=-mgl\cos\theta.
+\]
+小振动时保留二阶项：
+\[
+T\simeq \frac12(M+m)\dot X^2+ml\dot X\dot\theta+\frac12ml^2\dot\theta^2,
+\qquad
+V\simeq -mgl+\frac12mgl\theta^2.
+\]
+\(X\) 为循环坐标，总水平动量守恒。小振动本征模可取质心水平静止：
+\[
+(M+m)\dot X+ml\dot\theta=0.
+\]
+代入得到有效动能
+\[
+T_{\mathrm{eff}}=\frac12\frac{mM}{M+m}l^2\dot\theta^2.
+\]
+势能二次项为 \(\frac12mgl\theta^2\)。故
+\[
+\omega_0^2=\frac{mgl}{(mM/(M+m))l^2}
+=\frac{M+m}{M}\frac gl.
+\]
+所以
+\[
+\omega_0=\sqrt{\frac{M+m}{M}\frac gl}.
+\]
+
+\item 圆锥摆中系统可绕竖直轴整体转动。令上端质量在半径 \(R\) 的圆上运动，下端质量在同角速度 \(\Omega\) 下运动，杆与竖直夹角为 \(\theta\)。无外水平力，质心在水平面中静止，故
+\[
+MR+m(R+l\sin\theta)=0.
+\]
+下端相对转轴半径为
+\[
+\rho_m=R+l\sin\theta=\frac{M}{M+m}l\sin\theta.
+\]
+对下端质量作径向受力：
+\[
+T\sin\theta=m\Omega^2\rho_m.
+\]
+竖直方向平衡：
+\[
+T\cos\theta=mg.
+\]
+两式相除得
+\[
+\tan\theta=\frac{\Omega^2\rho_m}{g}
+=\frac{\Omega^2}{g}\frac{M}{M+m}l\sin\theta.
+\]
+若 \(\sin\theta\ne0\)，
+\[
+\Omega^2=\frac{M+m}{M}\frac{g}{l\cos\theta}.
+\]
+小 \(\theta\) 时
+\[
+\Omega\to\sqrt{\frac{M+m}{M}\frac gl},
+\]
+与上一问小振动频率一致。
+
+\item 当 \(M\to\infty\)，支点固定。倒立摆从 \(\theta=\pi\) 静止释放。能量守恒：
+\[
+\frac12ml^2\dot\theta^2-mgl\cos\theta=mg l,
+\]
+故
+\[
+\dot\theta^2=\frac{2g}{l}(1+\cos\theta).
+\]
+沿杆径向方程，取沿支点指向小球方向为正，张力指向支点，得
+\[
+-T+mg\cos\theta=-ml\dot\theta^2.
+\]
+所以
+\[
+T=m(l\dot\theta^2+g\cos\theta)
+=mg\left[2(1+\cos\theta)+\cos\theta\right]
+=mg(2+3\cos\theta).
+\]
+令 \(T=0\)，得
+\[
+\cos\theta=-\frac23.
+\]
+
+\item 有限 \(M\) 时，使用质心静止约束
+\[
+\dot X=-\frac{m}{M+m}l\dot\theta\cos\theta.
+\]
+精确有效动能为
+\[
+T=\frac12ml^2\dot\theta^2
+-\frac12\frac{m^2}{M+m}l^2\dot\theta^2\cos^2\theta
+=\frac12ml^2\dot\theta^2
+\left(1-\frac{m}{M+m}\cos^2\theta\right).
+\]
+记
+\[
+\mu(\theta)=m\left(1-\frac{m}{M+m}\cos^2\theta\right).
+\]
+从 \(\theta=\pi\) 静止释放，能量守恒给出
+\[
+\frac12\mu(\theta)l^2\dot\theta^2-mgl\cos\theta=mgl,
+\]
+即
+\[
+l\dot\theta^2
+=\frac{2g(1+\cos\theta)}
+{l\,\bigl(1-\frac{m}{M+m}\cos^2\theta\bigr)}\,l
+=\frac{2g(1+\cos\theta)}
+{1-\frac{m}{M+m}\cos^2\theta}.
+\]
+张力可由下端质量沿杆方向的 Newton 方程得到。下端相对支点沿杆的向心加速度仍含支点加速度投影。结果为
+\[
+T=m\left(l\dot\theta^2+g\cos\theta-\ddot X\sin\theta\right).
+\]
+在 \(\theta=\pi\) 初始静止时 \(\dot\theta=0,\sin\theta=0,\cos\theta=-1\)，因此
+\[
+T(\pi)=-mg.
+\]
+负值表示若杆只能拉不能推，则释放瞬间即失去接触；若为刚杆，则对应压力大小 \(mg\)。
+
+在 \(\theta=\pi/2\)，\(\cos\theta=0\)，能量给出
+\[
+l\dot\theta^2=2g.
+\]
+而 \(\ddot X\sin\theta\) 在该点由水平动量方程给出
+\[
+\ddot X=\frac{m}{M+m}l\dot\theta^2
+\]
+（此时 \(\sin\theta=1\)）。于是
+\[
+T\left(\frac\pi2\right)
+=m\left(2g-\frac{m}{M+m}2g\right)
+=2mg\frac{M}{M+m}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+两个半径为 \(a\) 的相同圆线圈相距 \(h\)，各载慢变正弦电流 \(I(t)=I_0\cos\omega t\)，轴线为 \(z\) 轴，几何中心在 \(z=0\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 在磁静近似最低阶，证明轴附近且 \(z=0\) 附近稍离轴磁场可写为
+\[
+B_z\simeq B_0+\frac12\beta_2\left(z^2-\frac{\rho^2}{2}\right)+\cdots,\qquad
+B_\rho\simeq-\frac12\beta_2z\rho+\cdots,
+\]
+其中 \(B_0,\beta_2\) 由轴上磁场 Taylor 展开
+\[
+B_z(z)\simeq B_0+\frac12\beta_2z^2+\cdots
+\]
+确定。
+\item 用磁静近似求 \(z=0\) 附近轴向磁场到 \(z,\rho\) 的二次阶，并说明 \(h=a\) 时磁场情况。
+\item 求 \(z=0\) 附近最低非平凡频率和 \(\rho\) 阶的电场。
+\item 简答：有限频率修正的大小；以及沿轴计算大 \(z\) 磁场时磁静近似在何处失效。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 轴对称且无源区域内
+\[
+\nabla\cdot\bm B=0,\qquad \nabla\times\bm B=0.
+\]
+设
+\[
+B_z=B_0+\frac12\beta_2z^2+A\rho^2+\cdots,\qquad
+B_\rho=Cz\rho+\cdots.
+\]
+由散度方程
+\[
+\frac1\rho\partial_\rho(\rho B_\rho)+\partial_zB_z=0
+\]
+得
+\[
+2Cz+\beta_2z=0,\qquad C=-\frac{\beta_2}{2}.
+\]
+由旋度方程 \(\partial_zB_\rho-\partial_\rho B_z=0\)，得
+\[
+C\rho-2A\rho=0,\qquad A=\frac C2=-\frac{\beta_2}{4}.
+\]
+于是
+\[
+B_z=B_0+\frac12\beta_2z^2-\frac14\beta_2\rho^2
+=B_0+\frac12\beta_2\left(z^2-\frac{\rho^2}{2}\right),
+\]
+\[
+B_\rho=-\frac12\beta_2z\rho.
+\]
+
+\item 单个半径 \(a\)、位于 \(z=z_0\) 的圆环在轴上磁场为
+\[
+B_{\mathrm{loop}}(z)
+=\frac{\mu_0 I a^2}{2[a^2+(z-z_0)^2]^{3/2}}
+\]
+在 SI 单位中；Heaviside-Lorentz 单位只差常数。两线圈在 \(z=\pm h/2\)，故
+\[
+B_z^{\mathrm{axis}}(z)
+=\frac{\mu_0 I a^2}{2}
+\left[
+\frac1{(a^2+(z-h/2)^2)^{3/2}}
++\frac1{(a^2+(z+h/2)^2)^{3/2}}
+\right].
+\]
+因此
+\[
+B_0=\frac{\mu_0 I a^2}{(a^2+h^2/4)^{3/2}}.
+\]
+二阶系数为二阶导数在零点：
+\[
+\beta_2
+=\mu_0 I a^2
+\left[
+-\frac{3}{(a^2+h^2/4)^{5/2}}
++\frac{15h^2/4}{(a^2+h^2/4)^{7/2}}
+\right].
+\]
+即
+\[
+\beta_2
+=\frac{3\mu_0 I a^2(h^2-a^2)}
+{(a^2+h^2/4)^{7/2}}.
+\]
+代回上一问公式即得轴附近二次展开。若 \(h=a\)，则
+\[
+\beta_2=0,
+\]
+二阶不均匀项消失，这就是 Helmholtz 线圈条件，中心附近磁场更均匀。
+
+\item 由 Faraday 定律
+\[
+\nabla\times\bm E=-\partial_t\bm B.
+\]
+在 \(z=0\) 且最低阶，磁场近似为均匀轴向场 \(B_0(t)\hat z\)。轴对称电场只有方位分量 \(E_\phi\)，满足
+\[
+\frac1\rho\partial_\rho(\rho E_\phi)=-\dot B_0(t).
+\]
+正则解为
+\[
+E_\phi(\rho,t)=-\frac{\rho}{2}\dot B_0(t).
+\]
+若 \(I(t)=I_0\cos\omega t\)，则
+\[
+B_0(t)=\frac{\mu_0 I_0a^2}{(a^2+h^2/4)^{3/2}}\cos\omega t,
+\]
+\[
+E_\phi(\rho,t)
+=\frac{\rho\omega}{2}
+\frac{\mu_0 I_0a^2}{(a^2+h^2/4)^{3/2}}\sin\omega t.
+\]
+
+\item 有限频率修正由 retardation 控制，典型大小为
+\[
+O\left(\frac{\omega a}{c}\right)
+\]
+或对磁场幅度的偶次修正 \(O((\omega a/c)^2)\)，取决于所求量的对称性。沿轴在很大 \(z\) 计算时，磁静近似要求传播相位 \(\omega z/c\ll1\)，所以当
+\[
+z\gtrsim \frac c\omega
+\]
+时失效，必须使用含迟滞的电磁辐射解。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+一维非相对论粒子质量为 \(m\)、动能 \(E\)，散射势为两个 delta 函数
+\[
+U(x)=\beta[\delta(x)+\delta(x-a)].
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 粒子能否无反射穿过势垒？说明理由。
+\item 若可以，求对应动能。
+\end{enumerate}
+再考虑三维非相对论粒子被两个三维 delta 中心散射：
+\[
+U(\bm r)=\beta_3\left[\delta^{(3)}(\bm r-\bm r_1)+\delta^{(3)}(\bm r-\bm r_2)\right].
+\]
+设每个 delta 中心的 \(S\)-波散射长度 \(a<0\)。
+\begin{enumerate}[label=(\arabic*),resume]
+\item 写出每个中心附近的 \(S\)-波束缚态波函数形式，并说明单个中心在 \(a<0\) 时不支持束缚态。
+\item 双中心势能否支持束缚态？若可以，条件是什么？
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 一维中每个 delta 势有转移矩阵；两个散射中心之间的自由传播会产生相位。当两次反射的相位相消时，可发生共振透射，故可以无反射穿过双 delta 势。
+
+\item 令
+\[
+k=\sqrt{2mE}/\hbar.
+\]
+单个 delta 势 \(U=\beta\delta(x)\) 的散射可用不连续条件
+\[
+\psi'(0^+)-\psi'(0^-)=\frac{2m\beta}{\hbar^2}\psi(0).
+\]
+计算双 delta 势的反射振幅，令其为零，得到共振条件
+\[
+\ee^{2\ii ka}=\left(\frac{2\ii k-\lambda}{\lambda}\right)^2
+\]
+的等价实形式，其中
+\[
+\lambda=\frac{2m\beta}{\hbar^2}.
+\]
+对实 \(k\) 可写为
+\[
+\tan(ka)=-\frac{2k\lambda}{4k^2-\lambda^2}.
+\]
+满足该方程的正 \(k\) 给出无反射能量
+\[
+E=\frac{\hbar^2k^2}{2m}.
+\]
+这是一系列 Fabry-Perot 型共振。
+
+\item 三维 \(S\)-波束缚态在某中心附近的约化波函数
+\[
+\chi(r)=r\psi(r)
+\]
+满足自由束缚方程，故
+\[
+\psi(r)\sim \frac{C\ee^{-\kappa r}}{r},\qquad E=-\frac{\hbar^2\kappa^2}{2m}.
+\]
+零程势的边界条件为
+\[
+\frac{\chi'(0)}{\chi(0)}=-\frac1a.
+\]
+单中心束缚态要求 \(\kappa=1/a\)。若 \(a<0\)，则 \(\kappa<0\)，不能给出平方可积的 \(\ee^{-\kappa r}/r\) 衰减解，所以单个中心无束缚态。
+
+\item 设两中心距离为 \(R=|\bm r_1-\bm r_2|\)。束缚态可设为
+\[
+\psi(\bm r)=A\frac{\ee^{-\kappa|\bm r-\bm r_1|}}{|\bm r-\bm r_1|}
++B\frac{\ee^{-\kappa|\bm r-\bm r_2|}}{|\bm r-\bm r_2|}.
+\]
+在每个中心施加 Bethe-Peierls 边界条件，得到
+\[
+\begin{pmatrix}
+\kappa-\frac1a&-\frac{\ee^{-\kappa R}}{R}\\
+-\frac{\ee^{-\kappa R}}{R}&\kappa-\frac1a
+\end{pmatrix}
+\begin{pmatrix}A\\B\end{pmatrix}=0.
+\]
+非零解要求
+\[
+\kappa-\frac1a=\pm\frac{\ee^{-\kappa R}}{R}.
+\]
+对 \(a<0\)，反对称号通常不给正 \(\kappa\) 解；对称态条件为
+\[
+\kappa-\frac1a=\frac{\ee^{-\kappa R}}{R}.
+\]
+令 \(\kappa\to0^+\)，存在正解的条件为
+\[
+-\frac1a<\frac1R,
+\]
+即
+\[
+R<|a|.
+\]
+因此两个本身不束缚的吸引零程中心距离足够近时，可以通过对称组合支持一个束缚态。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+\begin{enumerate}[label=(\arabic*)]
+\item 写出液相和气相沿液气共存曲线处于热力学平衡的条件。
+\item 利用上一问并考虑液气相变的熵变，推导共存曲线上的蒸气压关系。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 两相共存平衡要求温度、压强和化学势相等：
+\[
+T_l=T_g,\qquad p_l=p_g,\qquad \mu_l(T,p)=\mu_g(T,p).
+\]
+沿共存曲线 \(p=p(T)\)，两相 Gibbs molar free energy 相等。
+
+\item 对每摩尔 Gibbs 自由能，
+\[
+\dd\mu=-s\,\dd T+v\,\dd p.
+\]
+沿共存曲线有 \(\mu_l=\mu_g\)，微分后
+\[
+-s_l\dd T+v_l\dd p=-s_g\dd T+v_g\dd p.
+\]
+因此
+\[
+\frac{\dd p}{\dd T}
+=\frac{s_g-s_l}{v_g-v_l}
+=\frac{L}{T(v_g-v_l)},
+\]
+其中 \(L=T(s_g-s_l)\) 为摩尔汽化潜热。这是 Clapeyron 方程。
+
+若气相近似为理想气体且 \(v_g\gg v_l\)，则
+\[
+v_g\simeq\frac{RT}{p}.
+\]
+于是
+\[
+\frac{\dd p}{\dd T}
+=\frac{Lp}{RT^2},
+\qquad
+\frac{\dd\log p}{\dd T}=\frac{L}{RT^2}.
+\]
+若 \(L\) 近似常数，积分得 Clausius-Clapeyron 关系
+\[
+\log p=-\frac{L}{RT}+C,
+\]
+或
+\[
+p(T)=p_0\exp\!\left(-\frac{L}{RT}\right)
+\]
+其中常数由某参考温度下的蒸气压决定。
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+考虑 \(3+1\) 维 Minkowski 时空中的实标量 \(\phi^4\) 模型，号差 \((-,+,+,+)\)：
+\[
+\mathcal L=-\frac12\partial_\mu\phi\partial^\mu\phi-\frac12m^2\phi^2-\frac g{4!}\phi^4.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 写出动量空间传播子和相互作用顶角。
+\item 用维数正则化计算四点函数的一圈修正。
+\item 求抵消发散所需反项，并在一圈阶写出重整化耦合，可用最小减除。
+\item 写出耦合常数的重整化群流方程。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 传播子为
+\[
+\frac{\ii}{p^2+m^2-\ii0}
+\]
+按题目号差书写；四点顶角为
+\[
+-\ii g.
+\]
+
+\item 四点函数一圈由 \(s,t,u\) 三个泡图贡献。以 \(s\) 道为例，
+\[
+\mathcal M_s^{(1)}
+=\frac12(-\ii g)^2
+\int\frac{\dd^dk}{(2\pi)^d}
+\frac{\ii}{k^2+m^2-\ii0}
+\frac{\ii}{(k+p)^2+m^2-\ii0}.
+\]
+维数正则化给出发散部分
+\[
+\mathcal M_s^{(1)}\big|_{\mathrm{div}}
+=-\ii\frac{g^2}{32\pi^2}\frac{2}{\varepsilon}
+\]
+在 MS 记号下。三个道相加：
+\[
+\mathcal M^{(1)}_{\mathrm{div}}
+=-\ii\frac{3g^2}{16\pi^2}\frac1{\varepsilon}.
+\]
+有限部分为各道的 Feynman 参数积分
+\[
+\sim -\ii\frac{g^2}{32\pi^2}
+\int_0^1\dd x\,
+\log\frac{m^2+x(1-x)s}{\mu^2}
+\]
+及 \(s\to t,u\)。
+
+\item 加入反项
+\[
+\mathcal L_{\mathrm{ct}}\supset-\frac{\delta g}{4!}\phi^4.
+\]
+反项顶角为 \(-\ii\delta g\)。令其抵消上式发散，得
+\[
+\delta g=\frac{3g_R^2}{16\pi^2}\frac1{\varepsilon}
+\]
+在 MS 方案下。裸耦合写为
+\[
+g_0=\mu^\varepsilon\left(g_R+\delta g\right)
+=\mu^\varepsilon\left[
+g_R+\frac{3g_R^2}{16\pi^2}\frac1{\varepsilon}
++O(g_R^3)
+\right].
+\]
+
+\item 由裸耦合与 \(\mu\) 无关，得到一圈 beta 函数
+\[
+\beta(g_R)=\mu\frac{\dd g_R}{\dd\mu}
+=\frac{3g_R^2}{16\pi^2}+O(g_R^3).
+\]
+因此 RG 方程为
+\[
+\mu\frac{\dd g}{\dd\mu}
+=\frac{3g^2}{16\pi^2}+O(g^3).
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+Klein 圆盘模型用单位圆盘内坐标 \(\bm x=(x^1,x^2)\) 描述非欧几何。两点 \(\bm x,\bm y\) 的距离定义为
+\[
+\cosh d(\bm x,\bm y)
+=\frac{1-\bm x\cdot\bm y}
+{\sqrt{1-\bm x\cdot\bm x}\sqrt{1-\bm y\cdot\bm y}}.
+\]
+\begin{enumerate}[label=(\arabic*)]
+\item 令 \(y^j=x^j+\dd x^j\)，由距离公式求度量分量 \(g_{11},g_{12},g_{22}\)。
+\item 引入极坐标 \((r,\theta)\)，写出线元。
+\item 求极坐标中非零 Christoffel 符号。
+\item 求 \(R_{r\theta r\theta}\)。
+\item 证明该模型的 Riemann 曲率具有
+\[
+R_{\mu\nu\rho\sigma}=K(g_{\mu\sigma}g_{\nu\rho}-g_{\mu\rho}g_{\nu\sigma})
+\]
+形式，并求 \(K\)。
+\item 求标量曲率。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 记 \(s=1-\bm x^2\)，\(\bm y=\bm x+\dd\bm x\)。距离小时
+\[
+\cosh d=1+\frac12d^2+O(d^4).
+\]
+展开定义式到二阶：
+\[
+d^2=\frac{\dd\bm x\cdot\dd\bm x}{s}
++\frac{(\bm x\cdot\dd\bm x)^2}{s^2}.
+\]
+故
+\[
+g_{ij}=\frac{\delta_{ij}}{1-r^2}
++\frac{x_ix_j}{(1-r^2)^2},
+\qquad r^2=(x^1)^2+(x^2)^2.
+\]
+于是
+\[
+g_{11}=\frac1{1-r^2}+\frac{(x^1)^2}{(1-r^2)^2},
+\]
+\[
+g_{22}=\frac1{1-r^2}+\frac{(x^2)^2}{(1-r^2)^2},
+\qquad
+g_{12}=\frac{x^1x^2}{(1-r^2)^2}.
+\]
+
+\item 极坐标中
+\[
+\dd\bm x^2=\dd r^2+r^2\dd\theta^2,\qquad
+\bm x\cdot\dd\bm x=r\dd r.
+\]
+所以
+\[
+\dd s^2=\frac{\dd r^2+r^2\dd\theta^2}{1-r^2}
++\frac{r^2\dd r^2}{(1-r^2)^2}
+=\frac{\dd r^2}{(1-r^2)^2}
++\frac{r^2}{1-r^2}\dd\theta^2.
+\]
+
+\item 度量分量为
+\[
+g_{rr}=(1-r^2)^{-2},\qquad
+g_{\theta\theta}=r^2(1-r^2)^{-1}.
+\]
+逆度量为
+\[
+g^{rr}=(1-r^2)^2,\qquad
+g^{\theta\theta}=\frac{1-r^2}{r^2}.
+\]
+计算得
+\[
+\Gamma^r_{rr}=\frac{2r}{1-r^2},
+\]
+\[
+\Gamma^r_{\theta\theta}
+=-\frac12g^{rr}\partial_rg_{\theta\theta}
+=-r,
+\]
+\[
+\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}
+=\frac12g^{\theta\theta}\partial_rg_{\theta\theta}
+=\frac1{r(1-r^2)}.
+\]
+
+\item 用
+\[
+R^r{}_{\theta r\theta}
+=\partial_r\Gamma^r_{\theta\theta}
++\Gamma^r_{r\lambda}\Gamma^\lambda_{\theta\theta}
+-\Gamma^r_{\theta\lambda}\Gamma^\lambda_{r\theta}
+\]
+且无 \(\theta\) 依赖，得
+\[
+R^r{}_{\theta r\theta}
+=(-1)+\frac{2r}{1-r^2}(-r)
+-(-r)\frac1{r(1-r^2)}
+=-1-\frac{2r^2}{1-r^2}+\frac1{1-r^2}
+=-\frac{r^2}{1-r^2}.
+\]
+因此
+\[
+R_{r\theta r\theta}
+=g_{rr}R^r{}_{\theta r\theta}
+=-\frac{r^2}{(1-r^2)^3}.
+\]
+
+\item 有
+\[
+g_{rr}g_{\theta\theta}-g_{r\theta}^2
+=\frac1{(1-r^2)^2}\frac{r^2}{1-r^2}
+=\frac{r^2}{(1-r^2)^3}.
+\]
+而上一问
+\[
+R_{r\theta r\theta}
+=-\frac{r^2}{(1-r^2)^3}.
+\]
+与题中形式
+\[
+R_{\mu\nu\rho\sigma}=K(g_{\mu\sigma}g_{\nu\rho}-g_{\mu\rho}g_{\nu\sigma})
+\]
+取 \(\mu=r,\nu=\theta,\rho=r,\sigma=\theta\) 时，右边为
+\[
+K(g_{r\theta}g_{\theta r}-g_{rr}g_{\theta\theta})
+=-K\frac{r^2}{(1-r^2)^3}.
+\]
+比较得
+\[
+K=1
+\]
+在题中该曲率张量号约定下。若采用常见约定 \(R_{\mu\nu\rho\sigma}=K(g_{\mu\rho}g_{\nu\sigma}-g_{\mu\sigma}g_{\nu\rho})\)，则 Klein 圆盘的 Gauss 曲率为 \(-1\)。两者只是 Riemann 张量符号约定相反。
+
+\item 二维常曲率空间满足
+\[
+R=2K_{\mathrm{Gauss}}.
+\]
+按通常 Gauss 曲率约定，Klein 双曲圆盘的曲率为 \(-1\)，故
+\[
+R=-2.
+\]
+按题中第 (5) 问采用的 Riemann 张量符号写法，对应标量曲率符号为 \(+2\)。几何内容是该模型具有常负 Gauss 曲率 \(-1\)。
+\end{enumerate}
+\end{solution}
+
+\section{团体赛题}
+
+\end{document}

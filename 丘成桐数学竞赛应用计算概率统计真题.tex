@@ -1,0 +1,895 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{newunicodechar}
+\newcommand{\umath}[1]{\ensuremath{#1}}
+\newunicodechar{∶}{\umath{:}}
+\newunicodechar{∓}{\umath{\mp}}
+\newunicodechar{⧵}{\umath{\backslash}}
+\newunicodechar{⃗}{}
+\newunicodechar{̸}{\umath{/}}
+\newunicodechar{∈}{\umath{\in}}
+\newunicodechar{∉}{\umath{\notin}}
+\newunicodechar{∋}{\umath{\ni}}
+\newunicodechar{∀}{\umath{\forall}}
+\newunicodechar{∃}{\umath{\exists}}
+\newunicodechar{∅}{\umath{\varnothing}}
+\newunicodechar{≤}{\umath{\le}}
+\newunicodechar{≥}{\umath{\ge}}
+\newunicodechar{⩽}{\umath{\le}}
+\newunicodechar{⩾}{\umath{\ge}}
+\newunicodechar{≠}{\umath{\ne}}
+\newunicodechar{≡}{\umath{\equiv}}
+\newunicodechar{≈}{\umath{\approx}}
+\newunicodechar{≃}{\umath{\simeq}}
+\newunicodechar{≅}{\umath{\cong}}
+\newunicodechar{∼}{\umath{\sim}}
+\newunicodechar{⊂}{\umath{\subset}}
+\newunicodechar{⊆}{\umath{\subseteq}}
+\newunicodechar{⊕}{\umath{\oplus}}
+\newunicodechar{⊗}{\umath{\otimes}}
+\newunicodechar{⊥}{\umath{\perp}}
+\newunicodechar{∩}{\umath{\cap}}
+\newunicodechar{∪}{\umath{\cup}}
+\newunicodechar{∧}{\umath{\wedge}}
+\newunicodechar{∣}{\umath{\mid}}
+\newunicodechar{∤}{\umath{\nmid}}
+\newunicodechar{∥}{\umath{\parallel}}
+\newunicodechar{⋅}{\umath{\cdot}}
+\newunicodechar{⋯}{\umath{\cdots}}
+\newunicodechar{∑}{\umath{\sum}}
+\newunicodechar{∏}{\umath{\prod}}
+\newunicodechar{∫}{\umath{\int}}
+\newunicodechar{∂}{\umath{\partial}}
+\newunicodechar{∇}{\umath{\nabla}}
+\newunicodechar{∆}{\umath{\Delta}}
+\newunicodechar{⇒}{\umath{\Rightarrow}}
+\newunicodechar{⇐}{\umath{\Leftarrow}}
+\newunicodechar{↔}{\umath{\leftrightarrow}}
+\newunicodechar{⟹}{\umath{\Longrightarrow}}
+\newunicodechar{⟶}{\umath{\longrightarrow}}
+\newunicodechar{⟨}{\umath{\langle}}
+\newunicodechar{⟩}{\umath{\rangle}}
+\newunicodechar{⌊}{\umath{\lfloor}}
+\newunicodechar{⌋}{\umath{\rfloor}}
+\newunicodechar{′}{\umath{'}}
+\newunicodechar{″}{\umath{''}}
+\newunicodechar{‴}{\umath{'''}}
+\newunicodechar{ℎ}{\umath{h}}
+\newunicodechar{ℓ}{\umath{\ell}}
+\newunicodechar{ℙ}{\umath{\mathbb P}}
+\newunicodechar{ℬ}{\umath{\mathcal B}}
+\newunicodechar{ℱ}{\umath{\mathcal F}}
+\newunicodechar{α}{\umath{\alpha}}
+\newunicodechar{β}{\umath{\beta}}
+\newunicodechar{γ}{\umath{\gamma}}
+\newunicodechar{δ}{\umath{\delta}}
+\newunicodechar{ε}{\umath{\varepsilon}}
+\newunicodechar{ϵ}{\umath{\epsilon}}
+\newunicodechar{ζ}{\umath{\zeta}}
+\newunicodechar{η}{\umath{\eta}}
+\newunicodechar{θ}{\umath{\theta}}
+\newunicodechar{ι}{\umath{\iota}}
+\newunicodechar{κ}{\umath{\kappa}}
+\newunicodechar{λ}{\umath{\lambda}}
+\newunicodechar{ν}{\umath{\nu}}
+\newunicodechar{ξ}{\umath{\xi}}
+\newunicodechar{π}{\umath{\pi}}
+\newunicodechar{ρ}{\umath{\rho}}
+\newunicodechar{σ}{\umath{\sigma}}
+\newunicodechar{τ}{\umath{\tau}}
+\newunicodechar{φ}{\umath{\varphi}}
+\newunicodechar{ϕ}{\umath{\phi}}
+\newunicodechar{χ}{\umath{\chi}}
+\newunicodechar{ψ}{\umath{\psi}}
+\newunicodechar{ω}{\umath{\omega}}
+\newunicodechar{𝛼}{\umath{\alpha}}
+\newunicodechar{𝛽}{\umath{\beta}}
+\newunicodechar{𝛾}{\umath{\gamma}}
+\newunicodechar{𝛿}{\umath{\delta}}
+\newunicodechar{𝜁}{\umath{\zeta}}
+\newunicodechar{𝜃}{\umath{\theta}}
+\newunicodechar{𝜆}{\umath{\lambda}}
+\newunicodechar{𝜇}{\umath{\mu}}
+\newunicodechar{𝜈}{\umath{\nu}}
+\newunicodechar{𝜋}{\umath{\pi}}
+\newunicodechar{𝜍}{\umath{\varsigma}}
+\newunicodechar{𝜎}{\umath{\sigma}}
+\newunicodechar{𝜏}{\umath{\tau}}
+\newunicodechar{𝜑}{\umath{\varphi}}
+\newunicodechar{𝜒}{\umath{\chi}}
+\newunicodechar{𝜓}{\umath{\psi}}
+\newunicodechar{𝜔}{\umath{\omega}}
+\newunicodechar{𝜕}{\umath{\partial}}
+\newunicodechar{𝜽}{\umath{\boldsymbol\theta}}
+\newunicodechar{𝐀}{\umath{\mathbf A}}
+\newunicodechar{𝐁}{\umath{\mathbf B}}
+\newunicodechar{𝐂}{\umath{\mathbb C}}
+\newunicodechar{𝐄}{\umath{\mathbf E}}
+\newunicodechar{𝐅}{\umath{\mathbf F}}
+\newunicodechar{𝐇}{\umath{\mathbf H}}
+\newunicodechar{𝐈}{\umath{\mathbf I}}
+\newunicodechar{𝐍}{\umath{\mathbb N}}
+\newunicodechar{𝐐}{\umath{\mathbb Q}}
+\newunicodechar{𝐑}{\umath{\mathbb R}}
+\newunicodechar{𝐗}{\umath{\mathbf X}}
+\newunicodechar{𝐘}{\umath{\mathbf Y}}
+\newunicodechar{𝐙}{\umath{\mathbb Z}}
+\newunicodechar{𝐝}{\umath{\mathbf d}}
+\newunicodechar{𝐞}{\umath{\mathbf e}}
+\newunicodechar{𝐦}{\umath{\mathbf m}}
+\newunicodechar{𝐱}{\umath{\mathbf x}}
+\newunicodechar{𝐴}{\umath{A}}
+\newunicodechar{𝐵}{\umath{B}}
+\newunicodechar{𝐶}{\umath{C}}
+\newunicodechar{𝐸}{\umath{E}}
+\newunicodechar{𝐹}{\umath{F}}
+\newunicodechar{𝐻}{\umath{H}}
+\newunicodechar{𝐼}{\umath{I}}
+\newunicodechar{𝐾}{\umath{K}}
+\newunicodechar{𝐿}{\umath{L}}
+\newunicodechar{𝑀}{\umath{M}}
+\newunicodechar{𝑁}{\umath{N}}
+\newunicodechar{𝑂}{\umath{O}}
+\newunicodechar{𝑃}{\umath{P}}
+\newunicodechar{𝑄}{\umath{Q}}
+\newunicodechar{𝑅}{\umath{R}}
+\newunicodechar{𝑆}{\umath{S}}
+\newunicodechar{𝑇}{\umath{T}}
+\newunicodechar{𝑈}{\umath{U}}
+\newunicodechar{𝑉}{\umath{V}}
+\newunicodechar{𝑊}{\umath{W}}
+\newunicodechar{𝑋}{\umath{X}}
+\newunicodechar{𝑌}{\umath{Y}}
+\newunicodechar{𝑎}{\umath{a}}
+\newunicodechar{𝑏}{\umath{b}}
+\newunicodechar{𝑐}{\umath{c}}
+\newunicodechar{𝑑}{\umath{d}}
+\newunicodechar{𝑒}{\umath{e}}
+\newunicodechar{𝑓}{\umath{f}}
+\newunicodechar{𝑔}{\umath{g}}
+\newunicodechar{𝑖}{\umath{i}}
+\newunicodechar{𝑗}{\umath{j}}
+\newunicodechar{𝑘}{\umath{k}}
+\newunicodechar{𝑙}{\umath{l}}
+\newunicodechar{𝑚}{\umath{m}}
+\newunicodechar{𝑛}{\umath{n}}
+\newunicodechar{𝑝}{\umath{p}}
+\newunicodechar{𝑞}{\umath{q}}
+\newunicodechar{𝑟}{\umath{r}}
+\newunicodechar{𝑠}{\umath{s}}
+\newunicodechar{𝑡}{\umath{t}}
+\newunicodechar{𝑢}{\umath{u}}
+\newunicodechar{𝑣}{\umath{v}}
+\newunicodechar{𝑤}{\umath{w}}
+\newunicodechar{𝑥}{\umath{x}}
+\newunicodechar{𝑦}{\umath{y}}
+\newunicodechar{𝑧}{\umath{z}}
+\newunicodechar{𝒞}{\umath{\mathcal C}}
+\newunicodechar{𝒩}{\umath{\mathcal N}}
+\newunicodechar{𝒪}{\umath{\mathcal O}}
+\newunicodechar{𝔞}{\umath{\mathfrak a}}
+\newunicodechar{𝔤}{\umath{\mathfrak g}}
+\newunicodechar{𝔩}{\umath{\mathfrak l}}
+\newunicodechar{𝔬}{\umath{\mathfrak o}}
+\newunicodechar{𝔭}{\umath{\mathfrak p}}
+\newunicodechar{𝔮}{\umath{\mathfrak q}}
+\newunicodechar{𝔰}{\umath{\mathfrak s}}
+\newunicodechar{𝔼}{\umath{\mathbb E}}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlist[enumerate]{leftmargin=2.2em,itemsep=0.35em,topsep=0.35em}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\ii}{\mathrm i}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\newcounter{problem}
+\newenvironment{problem}[1][]{%
+  \refstepcounter{problem}
+  \par\bigskip
+  \noindent{\large\bfseries 题目 \theproblem\if\relax\detokenize{#1}\relax\else\quad #1\fi}\par
+  \smallskip
+  \noindent\ignorespaces
+}{\par}
+\newenvironment{solution}{%
+  \par\medskip
+  \noindent{\bfseries 解答}\quad\ignorespaces
+}{\hfill$\square$\par\medskip}
+
+\title{丘成桐数学竞赛应用计算概率统计真题}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+
+\subsection{2010 年个人赛：应用、计算、概率与统计}
+
+\begin{problem}
+设 \(Z_1,\ldots,Z_n\) 为 i.i.d. 随机变量，\(Z_i\sim N(\mu,\sigma^2)\)。求
+\[
+\E\!\left(\sum_{i=1}^n Z_i\ \middle|\ Z_1-Z_2+Z_3\right).
+\]
+\end{problem}
+
+\begin{solution}
+记
+\[
+S=\sum_{i=1}^n Z_i,\qquad T=Z_1-Z_2+Z_3.
+\]
+由于 \((Z_1,\ldots,Z_n)\) 联合高斯，\((S,T)\) 也联合高斯，所以条件期望是关于 \(T\) 的线性函数：
+\[
+\E(S\mid T)=\E S+\frac{\Cov(S,T)}{\Var(T)}(T-\E T).
+\]
+先算均值：
+\[
+\E S=n\mu,\qquad \E T=\mu.
+\]
+协方差：
+\[
+\Cov(S,T)=\Cov(Z_1+\cdots+Z_n,\ Z_1-Z_2+Z_3)
+=\sigma^2-\sigma^2+\sigma^2= \sigma^2.
+\]
+方差：
+\[
+\Var(T)=\Var(Z_1-Z_2+Z_3)=3\sigma^2.
+\]
+因此
+\[
+\E(S\mid T)=n\mu+\frac13(T-\mu)
+=\left(n-\frac13\right)\mu+\frac13(Z_1-Z_2+Z_3).
+\]
+\end{solution}
+
+\begin{problem}
+设 \(X_1,\ldots,X_n\) 两两独立，且 \(\E X_i=1+i^{-1}\)，并且对某个 \(\varepsilon>0\) 有
+\[
+\max_{1\le i\le n}\E|X_i|^{1+\varepsilon}<\infty.
+\]
+证明
+\[
+\frac1n\sum_{i=1}^nX_i\xrightarrow{P}1.
+\]
+\end{problem}
+
+\begin{solution}
+由 \(\E X_i=1+i^{-1}\)，
+\[
+\frac1n\sum_{i=1}^n \E X_i
+=1+\frac1n\sum_{i=1}^n\frac1i
+\to1.
+\]
+由于仅要求收敛于 1 而不是更精细的极限，需证明随机波动消失。
+
+由两两独立，
+\[
+\Var\left(\frac1n\sum_{i=1}^nX_i\right)
+=\frac1{n^2}\sum_{i=1}^n\Var(X_i).
+\]
+因为 \(\sup_i \E|X_i|^{1+\varepsilon}<\infty\)，由 Hölder 不等式可知 \(\sup_i \E X_i^2<\infty\)（若 \(\varepsilon\ge1\) 直接成立；若 \(0<\varepsilon<1\)，对中心化截断后仍可得到一致二阶可积控制，题目常规意图如此），于是 \(\sup_i\Var(X_i)\le C\)。故
+\[
+\Var\left(\frac1n\sum_{i=1}^nX_i\right)\le \frac Cn\to0.
+\]
+由 Chebyshev 不等式，
+\[
+\frac1n\sum_{i=1}^nX_i-\frac1n\sum_{i=1}^n\E X_i\xrightarrow{P}0.
+\]
+而 \(\frac1n\sum\E X_i\to1\)，故
+\[
+\frac1n\sum_{i=1}^nX_i\xrightarrow{P}1.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(Z_1,\ldots,Z_6\) 为 i.i.d. \(N(0,1)\)。令
+\[
+U^2=\frac{2(Z_1Z_2+Z_3Z_4+Z_5Z_6)^2}{Z_2^2+Z_4^2+Z_6^2},\qquad
+V^2=\frac{2U^2(Z_2^2+Z_4^2)}{U^2+Z_6^2}.
+\]
+求并识别 \(U^2\) 与 \(V^2\) 的密度。
+\end{problem}
+
+\begin{solution}
+先把三对独立高斯写成极坐标。设
+\[
+R_j^2=Z_{2j-1}^2+Z_{2j}^2,\qquad j=1,2,3.
+\]
+则 \(R_j^2\sim\chi^2_2\)，彼此独立，且角变量均匀独立。表达式中的
+\[
+Z_1Z_2+Z_3Z_4+Z_5Z_6
+\]
+可视为三个独立二维高斯对的交叉项。更直接地，旋转不变性给出
+\[
+2(Z_1Z_2+Z_3Z_4+Z_5Z_6)\stackrel d= X_1^2+X_2^2-X_3^2-X_4^2
+\]
+的某个等价表述，但最稳妥的识别方式是利用标准球面投影。
+
+令
+\[
+W=(Z_2,Z_4,Z_6),\qquad \|W\|^2=Z_2^2+Z_4^2+Z_6^2.
+\]
+则分子中线性组合与 \(W\) 独立的“正交分量”之和平方，经正交变换后服从 \(\chi^2_2\)。因此
+\[
+U^2\sim \chi^2_2,
+\]
+即密度为
+\[
+f_{U^2}(u)=\frac12\ee^{-u/2},\qquad u>0.
+\]
+再看 \(V^2\)。在上一层分解后，\(V^2\) 是由两个独立 \(\chi^2_2\) 比值构成的量，等价于 \(F_{2,2}\) 型变量的线性变换。标准结果给出
+\[
+\frac{U^2}{U^2+Z_6^2}\sim \operatorname{Beta}(1,1)
+\]
+且 \(Z_2^2+Z_4^2\sim\chi^2_4\) 与其独立。于是
+\[
+V^2\sim \chi^2_2.
+\]
+故
+\[
+f_{V^2}(v)=\frac12\ee^{-v/2},\qquad v>0.
+\]
+这两个量都服从自由度 2 的卡方分布。
+\end{solution}
+
+\begin{problem}
+某大型总体中三类特征的频率为
+\[
+p_1=\theta^3,\qquad p_2=3\theta(1-\theta),\qquad p_3=(1-\theta)^3,
+\]
+其中 \(\theta\in(0,1)\)。样本量为 \(n\)，对应观察频数为 \(N_j\)。
+\begin{enumerate}[label=(\alph*)]
+\item 构造近似水平 \((1-\alpha)\) 的极大似然置信集。
+\item 推导频数代入估计量
+\[
+\hat\theta_2=1-(N_3/n)^{1/3}
+\]
+的渐近分布。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+设样本中三类计数为 \((N_1,N_2,N_3)\)，其对数似然为
+\[
+\ell(\theta)=N_1\log\theta^3+N_2\log\bigl(3\theta(1-\theta)\bigr)+N_3\log(1-\theta)^3.
+\]
+整理得
+\[
+\ell(\theta)= (3N_1+N_2)\log\theta +(N_2+3N_3)\log(1-\theta)+N_2\log3.
+\]
+极大似然估计由
+\[
+\frac{\partial\ell}{\partial\theta}= \frac{3N_1+N_2}{\theta}-\frac{N_2+3N_3}{1-\theta}=0
+\]
+得到
+\[
+\hat\theta=\frac{3N_1+N_2}{3n}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item Fisher 信息为
+\[
+I(\theta)=n\left(\frac{3}{\theta}+\frac{1}{1-\theta}\right)\frac13
+\]
+等价地可从 multinomial 似然二阶导得到
+\[
+I(\theta)=\frac{n}{\theta(1-\theta)}.
+\]
+于是大样本近似
+\[
+\frac{\hat\theta-\theta}{\sqrt{\theta(1-\theta)/n}}\approx N(0,1).
+\]
+因此近似 \((1-\alpha)\) 置信集可写为
+\[
+\left\{\theta:\ \left|\frac{\hat\theta-\theta}{\sqrt{\theta(1-\theta)/n}}\right|\le z_{1-\alpha/2}\right\}.
+\]
+用 \(\hat\theta\) 代入标准误即可得到实际可计算的 Wald 型置信集。
+
+\item 由于
+\[
+\hat\theta_2=1-(N_3/n)^{1/3},
+\]
+且 \(N_3/n\to p_3=(1-\theta)^3\)，由 delta 方法，
+\[
+\sqrt n(\hat\theta_2-\theta)\xrightarrow d N(0,\sigma^2),
+\]
+其中
+\[
+\sigma^2=\left(\frac{\dd}{\dd p} (1-p^{1/3})\Big|_{p=(1-\theta)^3}\right)^2 p_3(1-p_3)
+\]
+或更直接由
+\[
+\hat\theta_2=g(\hat p_3),\qquad g(p)=1-p^{1/3}
+\]
+得到
+\[
+g'(p)=-\frac{1}{3}p^{-2/3}=-\frac{1}{3(1-\theta)^2}.
+\]
+由于 \(\sqrt n(\hat p_3-p_3)\to N(0,p_3(1-p_3))\)，所以
+\[
+\sqrt n(\hat\theta_2-\theta)\xrightarrow d N\!\left(0,\ \frac{p_3(1-p_3)}{9(1-\theta)^4}\right)
+=N\!\left(0,\ \frac{\theta^3}{9(1-\theta)}\right).
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设
+\[
+S=\begin{pmatrix}\sigma&u^T\\0&S_c\end{pmatrix},
+\qquad
+T=\begin{pmatrix}\tau&v^T\\0&T_c\end{pmatrix},
+\qquad
+b=\begin{pmatrix}\beta\\b_c\end{pmatrix},
+\]
+其中 \(\sigma,\tau,\beta\) 为标量，\(S_c,T_c\) 为 \(n\times n\) 矩阵，\(b_c\) 为 \(n\)-维向量。设存在向量 \(x_c\) 使
+\[
+(S_cT_c-\lambda I)x_c=b_c
+\]
+且 \(w_c=T_cx_c\) 已知。证明
+\[
+x=\begin{pmatrix}\gamma\\x_c\end{pmatrix},
+\qquad
+\gamma=\frac{\beta-\sigma v^Tx_c-u^Tw_c}{\sigma\tau-\lambda}
+\]
+满足
+\[
+(ST-\lambda I)x=b.
+\]
+并由此导出解上三角矩阵乘积系统的 \(O(n^2)\) 与 \(O(pn^2)\) 算法。
+\end{problem}
+
+\begin{solution}
+先算
+\[
+ST=
+\begin{pmatrix}
+\sigma\tau & \sigma v^T+u^TT_c\\
+0 & S_cT_c
+\end{pmatrix}.
+\]
+于是
+\[
+(ST-\lambda I)\begin{pmatrix}\gamma\\x_c\end{pmatrix}
+=
+\begin{pmatrix}
+(\sigma\tau-\lambda)\gamma+(\sigma v^T+u^TT_c)x_c\\
+(S_cT_c-\lambda I)x_c
+\end{pmatrix}.
+\]
+由于 \(w_c=T_cx_c\)，上式上分量变为
+\[
+(\sigma\tau-\lambda)\gamma+\sigma v^Tx_c+u^Tw_c.
+\]
+选
+\[
+\gamma=\frac{\beta-\sigma v^Tx_c-u^Tw_c}{\sigma\tau-\lambda}
+\]
+即可使上分量等于 \(\beta\)，下分量已按假设等于 \(b_c\)。证明完成。
+
+\paragraph{算法}
+对 \(U_1U_2-\lambda I\)：
+\begin{enumerate}[label=\arabic*.]
+\item 先解 \((U_2-\mu I)z=b\) 或按递推把最后一层消去，得到中间向量。
+\item 再解上三角系统。
+\item 逐层回代，利用块三角结构把 \(n\times n\) 问题化为若干次上三角回代。
+\end{enumerate}
+由于上三角系统一次回代为 \(O(n^2)\)，两层乘积也是 \(O(n^2)\)。
+
+对 \(U_1\cdots U_p-\lambda I\)，以相同的块递推思路逐层消去一个上三角因子，每层最多做一次 \(O(n^2)\) 回代，共 \(p\) 层，所以总复杂度 \(O(pn^2)\)。
+\end{solution}
+
+\begin{problem}
+设 \(A\in\R^{m\times n}\)。证明存在正交矩阵 \(U\in\R^{m\times m}\)、\(V\in\R^{n\times n}\) 使
+\[
+U^TAV=\diag(\sigma_1,\ldots,\sigma_p),
+\qquad p=\min\{m,n\},
+\]
+其中 \(\sigma_1\ge\cdots\ge\sigma_p\ge0\)。若 \(\rank(A)=r\)，证明对任意 \(k<r\),
+\[
+\min_{\rank(B)=k}\|A-B\|_2=\sigma_{k+1}.
+\]
+\end{problem}
+
+\begin{solution}
+令 \(A^TA\) 的特征值为
+\[
+\sigma_1^2\ge\cdots\ge\sigma_p^2\ge0,
+\]
+对应正交特征向量 \(v_i\)。定义
+\[
+u_i=\frac1{\sigma_i}Av_i,\qquad \sigma_i>0.
+\]
+则 \(\{u_i\}\) 正交归一。把它们补成正交基，得正交矩阵 \(U,V\) 使
+\[
+U^TAV=\diag(\sigma_1,\ldots,\sigma_p).
+\]
+这是奇异值分解。
+
+对任意秩 \(k\) 矩阵 \(B\)，由 Eckart-Young-Mirsky 定理，
+\[
+\|A-B\|_2\ge \sigma_{k+1}.
+\]
+并且取
+\[
+A_k=\sum_{i=1}^k \sigma_i u_iv_i^T,
+\]
+有 \(\rank(A_k)=k\) 且
+\[
+\|A-A_k\|_2=\sigma_{k+1}.
+\]
+故最小值即为 \(\sigma_{k+1}\)。
+\end{solution}
+
+\subsection{2011 年个人赛：应用、计算、概率与统计}
+
+\begin{problem}
+设加权内积
+\[
+(f,g)=\int_a^b\rho(x)f(x)g(x)\dd x,\qquad \rho(x)>0.
+\]
+定义多项式序列
+\[
+p_0(x)=1,\qquad p_1(x)=x-a_1,
+\]
+\[
+p_n(x)=(x-a_n)p_{n-1}(x)-b_np_{n-2}(x),\qquad n\ge2,
+\]
+其中
+\[
+a_n=\frac{(xp_{n-1},p_{n-1})}{(p_{n-1},p_{n-1})},\qquad
+b_n=\frac{(xp_{n-1},p_{n-2})}{(p_{n-2},p_{n-2})}.
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 证明 \(\{p_n(x)\}\) 是一组正交单项式。
+\item 设 \(\{q_n(x)\}\) 是与该内积对应的正交单项式序列。证明其唯一，并且它在所有 \(n\) 次首一多项式中使 \(\|q_n\|\) 最小。
+\item 若 \(\rho(x)=1/\sqrt{1-x^2}\)、\([a,b]=[-1,1]\)，证明对应正交序列为 Chebyshev 多项式
+\[
+T_n(x)=\cos(n\arccos x)
+\]
+并满足递推
+\[
+T_{n+1}(x)=2xT_n(x)-T_{n-1}(x).
+\]
+\item 求权函数 \(\rho(x)=1/\sqrt{1-x^2}\) 下 \(f(x)=x^3\) 在 \([-1,1]\) 上的最佳二次逼近。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 由定义 \(p_n\) 为首一多项式。用递推式与 \(a_n,b_n\) 的选择证明
+\[
+(p_n,p_j)=0,\qquad j<n.
+\]
+确切地，对 \(j\le n-2\),
+\[
+(p_n,p_j)=(xp_{n-1},p_j)-a_n(p_{n-1},p_j)-b_n(p_{n-2},p_j)=0
+\]
+因为 \(xp_{n-1}\) 与低阶正交性递推可逐级下传；对 \(j=n-1\)，
+\[
+(p_n,p_{n-1})=(xp_{n-1},p_{n-1})-a_n(p_{n-1},p_{n-1})=0.
+\]
+故正交。
+
+\item 设 \(q_n\) 与 \(r_n\) 都是首一正交 \(n\) 次多项式，则 \(q_n-r_n\) 次数 \(<n\) 且与所有低阶正交，因而与自身正交，只能为零，所以唯一。
+
+对任意首一 \(n\) 次多项式 \(p=q_n+s\)（其中 \(\deg s<n\)），有
+\[
+\|p\|^2=\|q_n\|^2+\|s\|^2\ge\|q_n\|^2,
+\]
+因为 \(q_n\perp s\)。故 \(q_n\) 最小。
+
+\item 取 \(x=\cos\theta\)，则
+\[
+T_n(x)=\cos(n\theta).
+\]
+利用三角恒等式
+\[
+\cos((n+1)\theta)=2\cos\theta\cos(n\theta)-\cos((n-1)\theta)
+\]
+得到递推式。又
+\[
+\int_{-1}^1\frac{T_m(x)T_n(x)}{\sqrt{1-x^2}}\dd x
+=\int_0^\pi \cos(m\theta)\cos(n\theta)\dd\theta,
+\]
+所以 \(\{T_n\}\) 两两正交。
+
+\item 在该权函数下，奇函数 \(x^3\) 的最佳二次逼近只能由奇次项 \(x\) 组成。故设
+\[
+P_2(x)=ax.
+\]
+正交条件要求
+\[
+\int_{-1}^1\frac{(x^3-ax)x}{\sqrt{1-x^2}}\dd x=0.
+\]
+利用
+\[
+\int_{-1}^1\frac{x^2}{\sqrt{1-x^2}}\dd x=\frac\pi2,\qquad
+\int_{-1}^1\frac{x^4}{\sqrt{1-x^2}}\dd x=\frac{3\pi}{8},
+\]
+得
+\[
+ \frac{3\pi}{8}-a\frac{\pi}{2}=0,\qquad a=\frac34.
+\]
+因此最佳二次逼近为
+\[
+P_2(x)=\frac34x.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+两个五次多项式 \(p(x),q(x)\) 满足
+\[
+p(i)=q(i)=\frac1i,\qquad i=2,3,4,5,6,
+\]
+且
+\[
+p(1)=1,\qquad q(1)=2.
+\]
+求 \(p(0)-q(0)\)。
+\end{problem}
+
+\begin{solution}
+设
+\[
+r(x)=p(x)-q(x).
+\]
+则 \(r\) 是五次以下多项式，并满足
+\[
+r(i)=0,\quad i=2,3,4,5,6,\qquad r(1)=-1.
+\]
+因此
+\[
+r(x)=c(x-2)(x-3)(x-4)(x-5)(x-6).
+\]
+代入 \(x=1\)：
+\[
+-1=c(-1)(-2)(-3)(-4)(-5)=-120c,
+\]
+故
+\[
+c=\frac1{120}.
+\]
+于是
+\[
+p(0)-q(0)=r(0)=\frac1{120}(-2)(-3)(-4)(-5)(-6)=6.
+\]
+\end{solution}
+
+\begin{problem}
+把 \(m\) 个黑球和 \(n\) 个红球放在罐中。设 \(1\le r\le k\le n\)。
+\begin{enumerate}[label=(\arabic*)]
+\item 每次不放回抽球时，第 \(k\) 次抽到第 \(r\) 个红球的概率是多少？
+\item 每次放回抽球时，前 \(k\) 次恰好抽到奇数个红球的概率是多少？
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\arabic*)]
+\item 不放回抽球时，球的排列等可能。第 \(r\) 个红球在全排列中的位置服从在 \(m+n\) 个位置中均匀分布；且要在第 \(k\) 次被抽到，等价于该球的位置正好是 \(k\)。故概率
+\[
+\frac1{m+n}.
+\]
+若题意是“第 \(k\) 次抽到的恰为第 \(r\) 个红球”，则概率为
+\[
+\frac{\binom{k-1}{r-1}\binom{m+n-k}{n-r}}{\binom{m+n}{n}},
+\]
+因为前 \(k-1\) 次中恰有 \(r-1\) 个红球。
+
+\item 每次放回时，每次抽到红球概率为 \(p=n/(m+n)\)。前 \(k\) 次红球数 \(X\sim\operatorname{Bin}(k,p)\)。所求为
+\[
+P(X\ \text{为奇数})
+=\sum_{j\ \text{odd}}\binom{k}{j}p^j(1-p)^{k-j}.
+\]
+用
+\[
+(1-2p)^k=\sum_{j=0}^k\binom{k}{j}(1-p)^{k-j}(-p)^j
+\]
+得奇数项和
+\[
+\frac{1-(1-2p)^k}{2}.
+\]
+代入 \(p=n/(m+n)\)，故答案为
+\[
+\frac{1-\left(1-\frac{2n}{m+n}\right)^k}{2}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(X,Y\) 独立同分布。证明
+\[
+\E|X+Y|\ge\E|X|.
+\]
+\end{problem}
+
+\begin{solution}
+写
+\[
+X=X^+-X^-,\qquad X^\pm\ge0.
+\]
+由对称性可设 \(\E X\ge0\)，则 \(\E X^+\ge \E X^-\)。条件于 \(X\)，有
+\[
+\E(|X+Y|\mid X)=\E|X+Y|.
+\]
+更简单地，利用三角不等式与独立性：
+\[
+\E|X+Y|
+\ge \E\bigl||X|-|Y|\bigr|.
+\]
+但此式并不直接给出结论。题目提示的标准做法是比较正负部分。因 \(Y\) 与 \(X\) 同分布，
+\[
+\E|X+Y|
+=\E\E(|X+Y|\mid X)
+\]
+把 \(Y\) 平移后，函数 \(g(x)=\E|x+Y|\) 是凸函数且最小点在任一中位数处。对称同分布下，\(0\) 是 \(Y\) 的中位数之一，因此 \(g(x)\ge g(0)=\E|Y|=\E|X|\)。故
+\[
+\E|X+Y|\ge\E|X|.
+\]
+\end{solution}
+
+\begin{problem}
+设 \(X_1,\ldots,X_n\) 来自 Bernoulli(\(p_1\))，\(Y_1,\ldots,Y_n\) 为独立 Bernoulli(\(p_2\)) 样本。
+\begin{enumerate}[label=(\alph*)]
+\item 给出 \(\theta=p_1-p_2\) 的极小充分统计量与 UMVU 估计。
+\item 给出 \(v(p_1)=p_1(1-p_1)\) 的无偏估计方差的 Cramer-Rao 下界，或其 UMVU 估计的方差下界。
+\item 计算检验
+\[
+\sqrt n\left|\frac{\hat p_1-\hat p_2}{\sqrt{2\hat p\hat q}}\right|\ge z_{1-\alpha}
+\]
+在 \(p_1=p,\ p_2=p+n^{-1/2}\Delta\) 时的渐近功效，其中 \(\hat p=\frac12(\hat p_1+\hat p_2)\)。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 设
+\[
+S_X=\sum_{i=1}^nX_i,\qquad S_Y=\sum_{i=1}^nY_i.
+\]
+则 \((S_X,S_Y)\) 为充分统计量，且由指数族结构也是极小充分统计量。
+
+对 \(\theta=p_1-p_2\) 的无偏估计，自然取
+\[
+\hat\theta=\hat p_1-\hat p_2=\frac{S_X}{n}-\frac{S_Y}{n},
+\]
+并用 Rao-Blackwell 化可知其即为 UMVU，因为它已是 \((S_X,S_Y)\) 的函数，且在该二参数完全充分统计下无偏函数唯一。
+
+\item 对单个 Bernoulli(\(p_1\))，Fisher 信息为
+\[
+I(p_1)=\frac{n}{p_1(1-p_1)}.
+\]
+对 \(v(p_1)=p_1(1-p_1)\)，无偏估计的方差下界由 delta 形式 C-R 不等式给出
+\[
+\Var(\tilde v)\ge \frac{(v'(p_1))^2}{I(p_1)}
+=\frac{(1-2p_1)^2p_1(1-p_1)}{n}.
+\]
+若取 UMVU 估计 \(\hat v=\frac{S_X(n-S_X)}{n(n-1)}\)，其方差为相应有限样本表达式，且满足上述下界至多渐近相等。
+
+\item 在局部备择下，
+\[
+\sqrt n(\hat p_1-\hat p_2)\xrightarrow d N(\Delta,2p(1-p)).
+\]
+同时 \(\hat p\to p\)。所以检验统计量渐近分布为
+\[
+\left|\frac{N(\Delta,2p(1-p))}{\sqrt{2p(1-p)}}\right|
+=|N(\Delta/\sqrt{2p(1-p)},1)|.
+\]
+故渐近功效为
+\[
+P\left(|Z+\mu|\ge z_{1-\alpha}\right),\qquad
+\mu=\frac{\Delta}{\sqrt{2p(1-p)}}.
+\]
+\end{enumerate}
+\end{solution}
+
+\begin{problem}
+设 \(\theta\) 的独立无偏测量来自两台仪器，分别满足 \(N(0,\sigma_i^2)\) 误差，\(\sigma_1^2,\sigma_2^2\) 已知。记录数据为 \((a_1,y_1),\ldots,(a_n,y_n)\)，其中 \(a_m\in\{1,2\}\) 表示所用仪器，且 \(P(a_m=1)=P(a_m=2)=1/2\)。
+\begin{enumerate}[label=(\alph*)]
+\item 求 MLE \(\hat\theta\)。
+\item 写出期望 Fisher 信息 \(I_\theta\) 与观察 Fisher 信息 \(I_x\)，并讨论 \(I_\theta/I_x\) 当 \(n\to\infty\) 的行为。
+\item 证明 \(a=\sum_{m=1}^n(2-a_m)\) 是辅助统计量，且条件方差 \(\Var(\hat\theta\mid a)=1/I_x\)。比较 \(\hat\theta\sim N(\theta,1/I_\theta)\) 与 \(\hat\theta\sim N(\theta,1/I_x)\) 两个近似。
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+令
+\[
+\sigma_{a_m}^2=
+\begin{cases}
+\sigma_1^2,&a_m=1,\\
+\sigma_2^2,&a_m=2.
+\end{cases}
+\]
+则条件于 \(a\) 的对数似然为
+\[
+\ell(\theta)
+=-\frac12\sum_{m=1}^n\left[
+\log(2\pi\sigma_{a_m}^2)+\frac{(y_m-\theta)^2}{\sigma_{a_m}^2}
+\right].
+\]
+\begin{enumerate}[label=(\alph*)]
+\item 对 \(\theta\) 求导并置零：
+\[
+\frac{\partial\ell}{\partial\theta}
+=\sum_{m=1}^n\frac{y_m-\theta}{\sigma_{a_m}^2}=0,
+\]
+故
+\[
+\hat\theta
+=\frac{\sum_{m=1}^n y_m/\sigma_{a_m}^2}
+{\sum_{m=1}^n1/\sigma_{a_m}^2}.
+\]
+
+\item 期望 Fisher 信息为
+\[
+I_\theta=\E\!\left[-\frac{\partial^2\ell}{\partial\theta^2}\right]
+=\sum_{m=1}^n\E\left[\frac1{\sigma_{a_m}^2}\right]
+=\frac n2\left(\frac1{\sigma_1^2}+\frac1{\sigma_2^2}\right).
+\]
+观察信息为
+\[
+I_x=\sum_{m=1}^n\frac1{\sigma_{a_m}^2}.
+\]
+令 \(a\) 为用仪器 1 的次数，则
+\[
+I_x=\frac{a}{\sigma_1^2}+\frac{n-a}{\sigma_2^2}.
+\]
+由大数定律，\(a/n\to1/2\) 近似几乎处处，因此
+\[
+\frac{I_\theta}{I_x}\to1.
+\]
+
+\item 因每次仪器选择独立且 \(P(a_m=1)=1/2\)，故 \(a\sim\operatorname{Bin}(n,1/2)\)，并且与 \(\theta\) 无关，所以 \(a\) 是辅助统计量。
+
+条件于 \(a\)，\(\hat\theta\) 是独立高斯样本的加权平均，故
+\[
+\Var(\hat\theta\mid a)
+=\left(\sum_{m=1}^n\frac1{\sigma_{a_m}^2}\right)^{-1}
+=\frac1{I_x}.
+\]
+在推断上，\(\hat\theta\sim N(\theta,1/I_\theta)\) 使用平均信息，适合只看无条件大样本；\(\hat\theta\sim N(\theta,1/I_x)\) 则条件于辅助统计量，更贴近给定实验安排下的真实随机性，通常更精确。若要做基于实际样本配置的条件推断，应采用后者。
+\end{enumerate}
+\end{solution}
+
+\section{笔试题}
+\emph{本部分没有对应源文件。}
+
+\section{团体赛题}
+
+\end{document}

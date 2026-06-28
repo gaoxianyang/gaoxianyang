@@ -1,0 +1,4564 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\usepackage{newunicodechar}
+\newcommand{\umath}[1]{\ensuremath{#1}}
+\newunicodechar{∶}{\umath{:}}
+\newunicodechar{∓}{\umath{\mp}}
+\newunicodechar{⧵}{\umath{\backslash}}
+\newunicodechar{⃗}{}
+\newunicodechar{̸}{\umath{/}}
+\newunicodechar{∈}{\umath{\in}}
+\newunicodechar{∉}{\umath{\notin}}
+\newunicodechar{∋}{\umath{\ni}}
+\newunicodechar{∀}{\umath{\forall}}
+\newunicodechar{∃}{\umath{\exists}}
+\newunicodechar{∅}{\umath{\varnothing}}
+\newunicodechar{≤}{\umath{\le}}
+\newunicodechar{≥}{\umath{\ge}}
+\newunicodechar{⩽}{\umath{\le}}
+\newunicodechar{⩾}{\umath{\ge}}
+\newunicodechar{≠}{\umath{\ne}}
+\newunicodechar{≡}{\umath{\equiv}}
+\newunicodechar{≈}{\umath{\approx}}
+\newunicodechar{≃}{\umath{\simeq}}
+\newunicodechar{≅}{\umath{\cong}}
+\newunicodechar{∼}{\umath{\sim}}
+\newunicodechar{⊂}{\umath{\subset}}
+\newunicodechar{⊆}{\umath{\subseteq}}
+\newunicodechar{⊕}{\umath{\oplus}}
+\newunicodechar{⊗}{\umath{\otimes}}
+\newunicodechar{⊥}{\umath{\perp}}
+\newunicodechar{∩}{\umath{\cap}}
+\newunicodechar{∪}{\umath{\cup}}
+\newunicodechar{∧}{\umath{\wedge}}
+\newunicodechar{∣}{\umath{\mid}}
+\newunicodechar{∤}{\umath{\nmid}}
+\newunicodechar{∥}{\umath{\parallel}}
+\newunicodechar{⋅}{\umath{\cdot}}
+\newunicodechar{⋯}{\umath{\cdots}}
+\newunicodechar{∑}{\umath{\sum}}
+\newunicodechar{∏}{\umath{\prod}}
+\newunicodechar{∫}{\umath{\int}}
+\newunicodechar{∂}{\umath{\partial}}
+\newunicodechar{∇}{\umath{\nabla}}
+\newunicodechar{∆}{\umath{\Delta}}
+\newunicodechar{⇒}{\umath{\Rightarrow}}
+\newunicodechar{⇐}{\umath{\Leftarrow}}
+\newunicodechar{↔}{\umath{\leftrightarrow}}
+\newunicodechar{⟹}{\umath{\Longrightarrow}}
+\newunicodechar{⟶}{\umath{\longrightarrow}}
+\newunicodechar{⟨}{\umath{\langle}}
+\newunicodechar{⟩}{\umath{\rangle}}
+\newunicodechar{⌊}{\umath{\lfloor}}
+\newunicodechar{⌋}{\umath{\rfloor}}
+\newunicodechar{′}{\umath{'}}
+\newunicodechar{″}{\umath{''}}
+\newunicodechar{‴}{\umath{'''}}
+\newunicodechar{ℎ}{\umath{h}}
+\newunicodechar{ℓ}{\umath{\ell}}
+\newunicodechar{ℙ}{\umath{\mathbb P}}
+\newunicodechar{ℬ}{\umath{\mathcal B}}
+\newunicodechar{ℱ}{\umath{\mathcal F}}
+\newunicodechar{α}{\umath{\alpha}}
+\newunicodechar{β}{\umath{\beta}}
+\newunicodechar{γ}{\umath{\gamma}}
+\newunicodechar{δ}{\umath{\delta}}
+\newunicodechar{ε}{\umath{\varepsilon}}
+\newunicodechar{ϵ}{\umath{\epsilon}}
+\newunicodechar{ζ}{\umath{\zeta}}
+\newunicodechar{η}{\umath{\eta}}
+\newunicodechar{θ}{\umath{\theta}}
+\newunicodechar{ι}{\umath{\iota}}
+\newunicodechar{κ}{\umath{\kappa}}
+\newunicodechar{λ}{\umath{\lambda}}
+\newunicodechar{ν}{\umath{\nu}}
+\newunicodechar{ξ}{\umath{\xi}}
+\newunicodechar{π}{\umath{\pi}}
+\newunicodechar{ρ}{\umath{\rho}}
+\newunicodechar{σ}{\umath{\sigma}}
+\newunicodechar{τ}{\umath{\tau}}
+\newunicodechar{φ}{\umath{\varphi}}
+\newunicodechar{ϕ}{\umath{\phi}}
+\newunicodechar{χ}{\umath{\chi}}
+\newunicodechar{ψ}{\umath{\psi}}
+\newunicodechar{ω}{\umath{\omega}}
+\newunicodechar{𝛼}{\umath{\alpha}}
+\newunicodechar{𝛽}{\umath{\beta}}
+\newunicodechar{𝛾}{\umath{\gamma}}
+\newunicodechar{𝛿}{\umath{\delta}}
+\newunicodechar{𝜁}{\umath{\zeta}}
+\newunicodechar{𝜃}{\umath{\theta}}
+\newunicodechar{𝜆}{\umath{\lambda}}
+\newunicodechar{𝜇}{\umath{\mu}}
+\newunicodechar{𝜈}{\umath{\nu}}
+\newunicodechar{𝜋}{\umath{\pi}}
+\newunicodechar{𝜍}{\umath{\varsigma}}
+\newunicodechar{𝜎}{\umath{\sigma}}
+\newunicodechar{𝜏}{\umath{\tau}}
+\newunicodechar{𝜑}{\umath{\varphi}}
+\newunicodechar{𝜒}{\umath{\chi}}
+\newunicodechar{𝜓}{\umath{\psi}}
+\newunicodechar{𝜔}{\umath{\omega}}
+\newunicodechar{𝜕}{\umath{\partial}}
+\newunicodechar{𝜽}{\umath{\boldsymbol\theta}}
+\newunicodechar{𝐀}{\umath{\mathbf A}}
+\newunicodechar{𝐁}{\umath{\mathbf B}}
+\newunicodechar{𝐂}{\umath{\mathbb C}}
+\newunicodechar{𝐄}{\umath{\mathbf E}}
+\newunicodechar{𝐅}{\umath{\mathbf F}}
+\newunicodechar{𝐇}{\umath{\mathbf H}}
+\newunicodechar{𝐈}{\umath{\mathbf I}}
+\newunicodechar{𝐍}{\umath{\mathbb N}}
+\newunicodechar{𝐐}{\umath{\mathbb Q}}
+\newunicodechar{𝐑}{\umath{\mathbb R}}
+\newunicodechar{𝐗}{\umath{\mathbf X}}
+\newunicodechar{𝐘}{\umath{\mathbf Y}}
+\newunicodechar{𝐙}{\umath{\mathbb Z}}
+\newunicodechar{𝐝}{\umath{\mathbf d}}
+\newunicodechar{𝐞}{\umath{\mathbf e}}
+\newunicodechar{𝐦}{\umath{\mathbf m}}
+\newunicodechar{𝐱}{\umath{\mathbf x}}
+\newunicodechar{𝐴}{\umath{A}}
+\newunicodechar{𝐵}{\umath{B}}
+\newunicodechar{𝐶}{\umath{C}}
+\newunicodechar{𝐸}{\umath{E}}
+\newunicodechar{𝐹}{\umath{F}}
+\newunicodechar{𝐻}{\umath{H}}
+\newunicodechar{𝐼}{\umath{I}}
+\newunicodechar{𝐾}{\umath{K}}
+\newunicodechar{𝐿}{\umath{L}}
+\newunicodechar{𝑀}{\umath{M}}
+\newunicodechar{𝑁}{\umath{N}}
+\newunicodechar{𝑂}{\umath{O}}
+\newunicodechar{𝑃}{\umath{P}}
+\newunicodechar{𝑄}{\umath{Q}}
+\newunicodechar{𝑅}{\umath{R}}
+\newunicodechar{𝑆}{\umath{S}}
+\newunicodechar{𝑇}{\umath{T}}
+\newunicodechar{𝑈}{\umath{U}}
+\newunicodechar{𝑉}{\umath{V}}
+\newunicodechar{𝑊}{\umath{W}}
+\newunicodechar{𝑋}{\umath{X}}
+\newunicodechar{𝑌}{\umath{Y}}
+\newunicodechar{𝑎}{\umath{a}}
+\newunicodechar{𝑏}{\umath{b}}
+\newunicodechar{𝑐}{\umath{c}}
+\newunicodechar{𝑑}{\umath{d}}
+\newunicodechar{𝑒}{\umath{e}}
+\newunicodechar{𝑓}{\umath{f}}
+\newunicodechar{𝑔}{\umath{g}}
+\newunicodechar{𝑖}{\umath{i}}
+\newunicodechar{𝑗}{\umath{j}}
+\newunicodechar{𝑘}{\umath{k}}
+\newunicodechar{𝑙}{\umath{l}}
+\newunicodechar{𝑚}{\umath{m}}
+\newunicodechar{𝑛}{\umath{n}}
+\newunicodechar{𝑝}{\umath{p}}
+\newunicodechar{𝑞}{\umath{q}}
+\newunicodechar{𝑟}{\umath{r}}
+\newunicodechar{𝑠}{\umath{s}}
+\newunicodechar{𝑡}{\umath{t}}
+\newunicodechar{𝑢}{\umath{u}}
+\newunicodechar{𝑣}{\umath{v}}
+\newunicodechar{𝑤}{\umath{w}}
+\newunicodechar{𝑥}{\umath{x}}
+\newunicodechar{𝑦}{\umath{y}}
+\newunicodechar{𝑧}{\umath{z}}
+\newunicodechar{𝒞}{\umath{\mathcal C}}
+\newunicodechar{𝒩}{\umath{\mathcal N}}
+\newunicodechar{𝒪}{\umath{\mathcal O}}
+\newunicodechar{𝔞}{\umath{\mathfrak a}}
+\newunicodechar{𝔤}{\umath{\mathfrak g}}
+\newunicodechar{𝔩}{\umath{\mathfrak l}}
+\newunicodechar{𝔬}{\umath{\mathfrak o}}
+\newunicodechar{𝔭}{\umath{\mathfrak p}}
+\newunicodechar{𝔮}{\umath{\mathfrak q}}
+\newunicodechar{𝔰}{\umath{\mathfrak s}}
+\newunicodechar{𝔼}{\umath{\mathbb E}}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\title{丘成桐数学竞赛概率与统计真题}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+\subsection{2012 年：Probability2012(individual).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2012 年个人赛
+
+概率与统计。请在下列 6 题中选做 5 题；若多做，则按得分最高的 5 题计分。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 解答下列两个问题。
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 一个盒中有 \(b\) 个黑球和 \(r\) 个红球。随机取出一个球后放回，并额外加入 \(a\) 个同色球。现已知第二次随机取出的球是红球，求第一次取出的球是黑球的概率。
+\item 设 \((X_n)\) 为一列随机变量，满足
+\[
+\lim_{a\to\infty}\sup_{n\ge1}P(|X_n|>a)=0.
+\]
+又设随机变量列 \((Y_n)\) 依概率收敛到 \(0\)。证明 \(X_nY_n\) 依概率收敛到 \(0\)。
+\end{enumerate}
+
+\item 解答下列两个问题。
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 设 \((\Omega,\mathcal F,P)\) 为概率空间，\(\mathcal G\) 为 \(\mathcal F\) 的子 \(\sigma\)-代数。设 \(X\) 是非负可积随机变量，并令 \(Y=E[X\mid\mathcal G]\)。证明：
+\[
+[X>0]\subset [Y>0]\quad \text{a.s.},
+\]
+并且
+\[
+[Y>0]=\operatorname*{ess\,inf}\{A:A\in\mathcal G,\ [X>0]\subset A\}.
+\]
+\item 设 \(X,Y\) 服从零均值二元正态分布，方差分别为 \(\sigma^2,\tau^2\)，相关系数为 \(\rho\)。求条件期望 \(E(X\mid X+Y)\)。
+\end{enumerate}
+
+\item 设
+\[
+\{p(i,j):i=1,2,\ldots,m;\ j=1,2,\ldots,n\}
+\]
+为有限二维联合概率分布，即 \(p(i,j)>0\) 且
+\[
+\sum_{i=1}^m\sum_{j=1}^n p(i,j)=1.
+\]
+\begin{enumerate}[label=\textbf{(\roman*)},leftmargin=2.4em]
+\item 是否总能把 \(\{p(i,j)\}\) 表示成
+\[
+p(i,j)=\sum_k\lambda_k a_k(i)b_k(j),
+\]
+其中求和为有限和，\(\lambda_k\ge0,\ \sum_k\lambda_k=1\)，且每个 \(a_k,b_k\) 都分别是一维概率分布：
+\[
+a_k(i)\ge0,\quad \sum_{i=1}^m a_k(i)=1,\qquad
+b_k(j)\ge0,\quad \sum_{j=1}^n b_k(j)=1?
+\]
+\item 请用条件概率证明或否定上述表示。
+\end{enumerate}
+
+\item 设 \(X_1,\ldots,X_m\) 是来自分布函数 \(F\) 的独立同分布样本，\(Y_1,\ldots,Y_n\) 是来自分布函数 \(G\) 的独立同分布样本。要检验
+\[
+H_0:F=G\qquad \text{对}\qquad H_1:F\ne G.
+\]
+总样本量为 \(N=m+n\)。考虑下列两个非参数检验。
+
+Wilcoxon 秩和检验：先把合并后的 \(X,Y\) 样本排序，再取 \(Y\) 样本对应秩之和。设 \(R_{y_1},\ldots,R_{y_n}\) 为 \(y_1<\cdots<y_n\) 在合并样本递增次序中的秩，定义
+\[
+W=\sum_{j=1}^n R_{y_j}.
+\]
+
+Mann--Whitney \(U\) 检验：令 \(U_{ij}=1\) 当且仅当 \(X_i<Y_j\)，否则 \(U_{ij}=0\)，并定义
+\[
+U=\sum_{i=1}^m\sum_{j=1}^n U_{ij}.
+\]
+概率 \(\gamma=P(X<Y)\) 可由 \(U/(mn)\) 估计，判别规则基于检验 \(\gamma=0.5\)。假设样本值没有并列。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明
+\[
+W=U+\frac12n(n+1),
+\]
+从而两个统计量只差常数，并给出完全相同的 \(p\)-值。
+\item 利用中心极限定理，Wilcoxon 秩和统计量 \(W\) 可标准化为
+\[
+Z_W=\frac{W-\mu_W}{\sigma_W}.
+\]
+其中 \(\mu_W,\sigma_W^2\) 是 \(H_0\) 下 \(W\) 的均值与方差。证明
+\[
+\mu_W=\frac12n(N+1),\qquad \sigma_W^2=\frac1{12}mn(N+1).
+\]
+\end{enumerate}
+
+\item 设随机变量 \(X\) 满足 \(E X^2<\infty\)，令 \(Y=|X|\)。若 \(X\) 有关于 \(0\) 对称的 Lebesgue 密度，证明 \(X\) 与 \(Y\) 不相关，但并不独立。
+
+\item 设 \(E_1,\ldots,E_n\) 独立同分布且 \(E_i\sim\operatorname{Exponential}(1)\)；设 \(U_1,\ldots,U_n\) 独立同分布且服从 \([0,1]\) 上均匀分布。并假设所有 \(E_i\) 与所有 \(U_i\) 相互独立。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 当 \(m<n\) 时，求
+\[
+X=\frac{E_1+\cdots+E_m}{E_1+\cdots+E_n}
+\]
+的密度。
+\item 证明
+\[
+Y=\frac{(n-m)X}{m(1-X)}
+\]
+服从自由度为 \((2m,2(n-m))\) 的 \(F\) 分布。
+\item 求 \((U_1\cdots U_n)^{-X}\) 的密度。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 设第一次取出黑球事件为 $B$，第二次取出红球事件为 $R$。则
+\[
+P(B)=\frac{b}{b+r},\qquad P(R\mid B)=\frac{r}{b+r+1},
+\]
+而
+\[
+P(R\mid B^c)=\frac{r+1}{b+r+1}.
+\]
+故
+\[
+P(B\mid R)=\frac{P(B)P(R\mid B)}{P(B)P(R\mid B)+P(B^c)P(R\mid B^c)}
+=\frac{b}{b+r+1}.
+\]
+
+\item 由一致紧性，给定 $\varepsilon>0$，可取 $M$ 使
+\[
+\sup_nP(|X_n|>M)<\varepsilon/2.
+\]
+又因 $Y_n\to0$ 依概率收敛，取 $n$ 足够大使
+\[
+P(|Y_n|>\varepsilon/M)<\varepsilon/2.
+\]
+于是
+\[
+P(|X_nY_n|>\varepsilon)\le P(|X_n|>M)+P(|Y_n|>\varepsilon/M)<\varepsilon.
+\]
+故 $X_nY_n\to0$ 依概率收敛。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 令 $Y=E[X\mid G]$。若 $A\in G$ 且 $A\subset [Y=0]$，则
+\[
+0=E[Y\mathbf 1_A]=E[X\mathbf 1_A].
+\]
+由于 $X\ge0$，推出 $X=0$ a.s. 于 $A$ 上，因此 $[X>0]\subset[Y>0]$ a.s.
+
+\item 设
+\[
+B:=\bigcap\{A\in G:[X>0]\subset A\}.
+\]
+则 $B\in G$，并且是所有包含 $[X>0]$ 的 $G$-可测集合中最小者。
+由上一问知 $[X>0]\subset[Y>0]$；反过来若 $A\in G$ 且 $[X>0]\subset A$，则 $X\mathbf1_{A^c}=0$ a.s.，故
+\[
+Y\mathbf1_{A^c}=E[X\mathbf1_{A^c}\mid G]=0,
+\]
+即 $[Y>0]\subset A$ a.s.。所以 $[Y>0]$ 就是该族集合的 essential infimum。
+\end{enumerate}
+
+\item 设 $Z=X+Y$。因为 $(X,Y)$ 联合正态，所以条件期望是线性的：
+\[
+E(X\mid Z)=\frac{\operatorname{Cov}(X,Z)}{\operatorname{Var}(Z)}Z.
+\]
+其中
+\[
+\operatorname{Cov}(X,Z)=\sigma^2+\rho\sigma\tau,
+\qquad
+\operatorname{Var}(Z)=\sigma^2+\tau^2+2\rho\sigma\tau.
+\]
+因此
+\[
+E(X\mid X+Y)=\frac{\sigma^2+\rho\sigma\tau}{\sigma^2+\tau^2+2\rho\sigma\tau}(X+Y).
+\]
+
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 可以。令 $p_X(i)=\sum_j p(i,j)$，并定义
+\[
+\lambda_i=p_X(i),\qquad a_i(\ell)=\mathbf 1_{\{\ell=i\}},\qquad b_i(j)=p(i,j)/p_X(i).
+\]
+则 $a_i,b_i$ 都是概率分布，且
+\[
+p(\ell,j)=\sum_i \lambda_i a_i(\ell)b_i(j).
+\]
+故有限混合分解总是存在。
+
+\item 这正是条件概率分解。按全概率公式即得上式，所以命题为真。
+\end{enumerate}
+
+\item 由无并列值，$W$ 与 $U$ 只差一个常数：
+\[
+W=U+\frac{n(n+1)}2.
+\]
+在原假设 $F=G$ 下，每个秩在 pooled sample 中均匀对称，因此
+\[
+E(W)=n\frac{N+1}{2}.
+\]
+又因无放回抽样的方差公式，
+\[
+\operatorname{Var}(W)=\frac{mn(N+1)}{12}.
+\]
+故题中给出的 $\mu_W,\sigma_W^2$ 成立。
+
+\item 因 $f$ 关于 0 对称，$x\mapsto x|x|f(x)$ 为奇函数，故
+\[
+E(XY)=E(X|X|)=0.
+\]
+于是 $X,Y$ 不相关。
+但 $Y=|X|$ 是 $X$ 的函数，显然不独立。
+
+\item 设
+\[
+S_m=E_1+\cdots+E_m,\qquad T_{n-m}=E_{m+1}+\cdots+E_n.
+\]
+则 $S_m\sim\Gamma(m,1)$，$T_{n-m}\sim\Gamma(n-m,1)$，且独立。故
+\[
+X=\frac{S_m}{S_m+T_{n-m}}
+\]
+服从 Beta$(m,n-m)$ 分布，密度为
+\[
+ f_X(x)=\frac{\Gamma(n)}{\Gamma(m)\Gamma(n-m)}x^{m-1}(1-x)^{n-m-1},\qquad 0<x<1.
+\]
+于是
+\[
+\frac{n-m}{m}\frac{X}{1-X}
+\]
+服从 $F(2m,2(n-m))$。
+
+对 (c)，条件于 $X=x$，有
+\[
+-(\log U_1+\cdots+\log U_n)\sim\Gamma(n,1),
+\]
+故
+\[
+(U_1\cdots U_n)^{-X}=e^{xZ},\quad Z\sim\Gamma(n,1).
+\]
+其条件密度可由变量替换直接得到，进而对 Beta 密度再积分即可。
+\end{enumerate}
+
+\subsection{2013 年：probability2013(individual).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2013 年个人赛
+
+概率与统计。请在下列 6 题中选做 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \((X_n)\) 为一列随机变量。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 若
+\[
+\sum_{n=0}^{\infty}P(|X_n|>n)<\infty,
+\]
+证明
+\[
+\limsup_{n\to\infty}\frac{|X_n|}{n}\le1
+\]
+几乎处处成立。
+\item 证明：\(X_n\) 依概率收敛到 \(0\)，当且仅当对某个 \(r>0\)，
+\[
+E\left[\frac{|X_n|^r}{1+|X_n|^r}\right]\to0.
+\]
+\end{enumerate}
+
+\item 设 \(X,Y\) 独立且均服从 \(N(0,1)\)。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 求
+\[
+E[X+Y\mid X\ge0,\ Y\ge0].
+\]
+\item 求在条件 \(X\ge0,\ Y\ge0\) 下 \(X+Y\) 的分布函数。提示：可使用
+\[
+U=\frac{X+Y}{\sqrt2},\qquad V=\frac{X-Y}{\sqrt2}
+\]
+相互独立且均服从 \(N(0,1)\) 的事实。
+\end{enumerate}
+
+\item 设 \(\{X_n\}\) 为一列独立同分布的连续实值随机变量，把 \(n\) 看成时间。定义事件
+\[
+A_n=\{X_n=\max\{X_1,X_2,\ldots,X_n\}\}.
+\]
+若 \(A_n\) 发生，则称时间 \(n\) 出现一次最大记录。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 计算 \(P(A_n)\)。
+\item 令 \(Y_n\) 表示到时间 \(n\) 为止出现的最大记录次数，即
+\[
+Y_n=\#\{1\le k\le n:X_k=\max\{X_1,\ldots,X_k\}\}.
+\]
+计算 \(E Y_n\) 与 \(\operatorname{Var}(Y_n)\)。
+\end{enumerate}
+
+\item 设 \(X=(X_1,\ldots,X_n)\) 为来自均值为 \(\theta\) 的指数分布密度的独立同分布样本。考虑检验
+\[
+H_0:\theta=\theta_0\qquad \text{对}\qquad H_1:\theta>\theta_0.
+\]
+令 \(P(X)\) 表示某个适当检验的 \(p\)-值。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 求 \(E_{\theta_0}(P(X))\)，并明确推导你的答案。
+\item 当 \(\theta\ne\theta_0\) 时求 \(E_\theta(P(X))\)。特别地，若只有一个样本，即 \(n=1\)，请尽可能显式地计算 \(E_\theta(P(X))\)。
+\item 当只有一个样本时，\(E_\theta(P(X))\) 是否为 \(\theta\) 的递减函数？更一般地，对任意单调似然比族能否证明相应结论？
+\end{enumerate}
+
+\item 设 \(X_1,X_2\) 独立同分布，均匀分布在区间 \([\theta-\frac12,\theta+\frac12]\) 上。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明：对任意给定的 \(0<\alpha<1\)，存在 \(c>0\)，使
+\[
+P_\theta\{\bar X-c<\theta<\bar X+c\}=1-\alpha,
+\]
+其中 \(\bar X\) 为样本均值。
+\item 证明：当 \(\varepsilon>0\) 充分小时，
+\[
+P_\theta\{\bar X-c<\theta<\bar X+c\mid |X_2-X_1|\ge1-\varepsilon\}=1.
+\]
+\item (a) 中的结论常被用来说明 \(\bar X\pm c\) 是 \(\theta\) 的 \(100(1-\alpha)\%\) 置信区间。(b) 是否与此矛盾？若观测到 \(X_1=1,\ X_2=2\)，你会使用 (a) 中的置信区间吗？
+\end{enumerate}
+
+\item 假设你想根据缴获坦克的编号估计战争中敌方坦克总数。可不失一般性地设坦克编号为 \(1,2,\ldots,N\)，其中 \(N\) 是未知的敌方坦克总数。又设缴获的 \(n\) 辆坦克编号独立同分布，均匀取自 \(1,2,\ldots,N\)。（当 \(n\ll N\) 时，这是一个很好的近似。）
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 求完全充分统计量。
+\item 说明如何寻找 \(N\) 的最小方差无偏估计。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 由 Borel--Cantelli 引理，因
+\[
+\sum_{n=1}^\infty P(|X_n|>n)<\infty,
+\]
+故事件 \(\{|X_n|>n\}\) 仅有限次发生 a.s.，从而
+\[
+\limsup_{n\to\infty}\frac{|X_n|}{n}\le1\qquad\text{a.s.}
+\]
+
+\item 设
+\[
+g_r(x)=\frac{x^r}{1+x^r},\qquad x\ge0.
+\]
+若 \(X_n\to0\) 依概率收敛，则对任意 \(\varepsilon>0\)，可取 \(\delta>0\) 使 \(g_r(\delta)<\varepsilon/2\)。于是
+\[
+E\,g_r(|X_n|)
+\le g_r(\delta)+P(|X_n|>\delta)
+\]
+当 \(n\) 足够大时小于 \(\varepsilon\)。故 \(E\,g_r(|X_n|)\to0\)。
+
+反之，若 \(E\,g_r(|X_n|)\to0\)，则对任意 \(\varepsilon>0\)，在 \(\{|X_n|>\varepsilon\}\) 上有
+\[
+g_r(|X_n|)\ge \frac{\varepsilon^r}{1+\varepsilon^r}.
+\]
+故
+\[
+P(|X_n|>\varepsilon)\le \frac{1+\varepsilon^r}{\varepsilon^r}E\,g_r(|X_n|)\to0.
+\]
+因此两条件等价。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 令 \(S=X+Y\)。由于 \(X,Y\) 独立标准正态，且在条件 \(X\ge0,Y\ge0\) 下仍保持独立并各自服从半正态分布，所以
+\[
+E[X\mid X\ge0]=E[Y\mid Y\ge0]=\sqrt{\frac2\pi}.
+\]
+故
+\[
+E[X+Y\mid X\ge0,Y\ge0]=2\sqrt{\frac2\pi}.
+\]
+
+\item 在条件 \(X\ge0,Y\ge0\) 下，\(S=X+Y\) 的密度为
+\[
+f_S(s)=\int_0^s 4\phi(x)\phi(s-x)\,dx,\qquad s\ge0,
+\]
+其中 \(\phi(t)=\frac1{\sqrt{2\pi}}e^{-t^2/2}\)。化简后可写为
+\[
+f_S(s)=\frac{2}{\sqrt\pi}e^{-s^2/4}\operatorname{erf}\!\left(\frac s2\right),\qquad s\ge0.
+\]
+因此分布函数为
+\[
+F_S(s)=0,\ s<0;\qquad F_S(s)=\int_0^s f_S(t)\,dt,\ s\ge0.
+\]
+\end{enumerate}
+
+\item 由连续型 i.i.d. 随机变量的对称性，
+\[
+P(A_n)=\frac1n.
+\]
+令 \(I_k=\mathbf 1_{\{X_k=\max(X_1,\dots,X_k)\}}\)，则 \(Y_n=\sum_{k=1}^n I_k\)。经典记录理论给出 \(I_k\) 相互独立，且 \(P(I_k=1)=1/k\)。于是
+\[
+E(Y_n)=\sum_{k=1}^n \frac1k=:H_n,
+\qquad
+\operatorname{Var}(Y_n)=\sum_{k=1}^n \frac1k\left(1-\frac1k\right)
+=H_n-\sum_{k=1}^n\frac1{k^2}.
+\]
+
+\item 取单边似然比检验，统计量可以取
+\[
+T=\sum_{i=1}^n X_i.
+\]
+在 \(H_0:\omega=\omega_0\) 下，\(T\sim\Gamma(n,\omega_0)\)，故右尾 p-value 为
+\[
+P(X)=P_{\omega_0}(T\ge t_{\rm obs}).
+\]
+因此在 \(H_0\) 下，\(P(X)\sim U(0,1)\)，从而
+\[
+E_{\omega_0}(P(X))=\frac12.
+\]
+在 \(\omega\ne\omega_0\) 时，\(P(X)\) 仍是 \(T\) 的单调函数，其期望可由 \(T\) 的 Gamma 密度直接积分得到；当 \(n=1\) 时，
+\[
+P(X)=e^{-X/\omega_0},
+\]
+故
+\[
+E_\omega(P(X))=\int_0^\infty e^{-x/\omega_0}\frac1\omega e^{-x/\omega}\,dx
+=\frac{\omega_0}{\omega+\omega_0}.
+\]
+因而它随 \(\omega\) 增大而单调下降。对一般 MLR 家族，同样由单调似然比得出 p-value 的期望随备择参数单调下降。
+
+\item 设 \(X_i=\theta+U_i\)，其中 \(U_i\sim U(-\tfrac12,\tfrac12)\)。则
+\[
+\bar X-\theta=\frac{U_1+U_2}{2}.
+\]
+由于 \(S=U_1+U_2\) 的密度为 \(f_S(s)=1-|s|\)（\(|s|\le1\)），
+\[
+P_\theta(|\bar X-\theta|<c)=P(|S|<2c)=4c-4c^2,\qquad 0\le c\le \frac12.
+\]
+因此对给定 \(0<\alpha<1\)，取 \(c=(1-\sqrt{\alpha})/2\) 即可。
+
+条件化于 \(|X_2-X_1|\) 很大时，两观测点会分居区间两端；此时 \(\bar X\) 受样本配置强烈影响，条件分布与无条件分布不同，因此并不矛盾。
+
+\item 设 \(M_n=\max\{X_1,\dots,X_n\}\)。离散均匀样本的联合密度仅依赖于 \(M_n\)，因此 \(M_n\) 是充分统计量。其分布满足
+\[
+P_N(M_n\le m)=\left(\frac{m}{N}\right)^n,\qquad 1\le m\le N.
+\]
+若 \(E_N[g(M_n)]=0\) 对全部 \(N\) 成立，则由差分可推出 \(g(N)=0\) 对所有 \(N\) 成立，故 \(M_n\) 完备。于是任一无偏估计的 Rao--Blackwell 化再经 Lehmann--Scheffé 即得 MVUE。实际可取基于 \(M_n\) 的无偏函数来构造。
+\end{enumerate}
+
+\subsection{2014 年：probability2014(individual).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2014 年个人赛
+
+概率与统计。请解答下列 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(X\) 为实值随机变量，且对所有紧支撑光滑函数 \(f:\mathbb R\to\mathbb R\)，都有
+\[
+E[Xf(X)]=E[f'(X)].
+\]
+证明 \(X\) 服从标准正态分布。
+
+\item 设 \((X_n)\) 是一列均值为 \(0\) 的两两不相关随机变量，并满足
+\[
+\sum_{n=1}^{\infty} nE|X_n|^2<\infty.
+\]
+证明
+\[
+S_n=\sum_{i=1}^nX_i
+\]
+几乎处处收敛。
+
+\item 设 \((\Omega,\mathcal F)\) 为可测空间，\(\mathcal G\) 为 \(\mathcal F\) 的子 \(\sigma\)-域。设 \(P,Q\) 是 \(\mathcal F\) 上互相绝对连续的两个概率测度。记 \(X_0\) 为 \(Q\) 关于 \(P\) 在 \(\mathcal F\) 上的 Radon--Nikodym 密度。证明：
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item
+\[
+0<E_P[X_0\mid\mathcal G]<+\infty,\qquad P\text{-a.s.};
+\]
+\item 对每个 \(\mathcal F\)-可测非负随机变量 \(f\)，有
+\[
+E_P[fX_0\mid\mathcal G]
+=E_Q[f\mid\mathcal G]\,E_P[X_0\mid\mathcal G].
+\]
+\end{enumerate}
+
+\item 设 \(X_1,X_2,\ldots\) 是从均匀分布 \(U(0,1)\) 中抽取的一列随机数。观察者按顺序观察这些数。在时间 \(n\)，只记录
+\[
+Y_n=X_{(n)}=\max_{1\le i\le n}X_i=\max\{Y_{n-1},X_n\}
+\]
+和
+\[
+Z_n=\bar X_n=\frac1n\sum_{i=1}^nX_i=\frac{n-1}{n}Z_{n-1}+\frac1nX_n,
+\]
+并丢弃此前所有原始观测值。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 若只观察到 \(Y_n\)，对 \(X_1\) 的最佳猜测是什么？
+\item 若只观察到 \(Z_n\)，对 \(X_1\) 的最佳猜测是什么？
+\item 比较上述两个对 \(X_1\) 的猜测，哪一个更好？请说明“更好”的意义，并给出充分理由。
+\end{enumerate}
+
+\item 从一个装有红、蓝、黄三色球的袋中有放回地随机抽取大小为 \(n\) 的样本。令 \(X_1\) 表示样本中红球个数，\(X_2\) 表示蓝球个数，\(X_3\) 表示黄球个数。已知袋中黄球总数是红球总数的三倍；换言之，抽到红、蓝、黄球的概率分别为
+\[
+p_1,\quad p_2,\quad p_3=3p_1.
+\]
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.4em]
+\item 求 \(p_2\) 的最大似然估计在适当标准化后的渐近分布。
+\item 构造用于检验原假设
+\[
+p_1=p_2=p_3/3
+\]
+的似然比检验统计量，备择假设为该等式不成立。求该检验统计量在原假设下的渐近分布。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(p\) 为 \(X\) 的密度。对任意紧支撑光滑函数 \(f\)，题设给出
+\[
+\int x f(x)p(x)\,dx=\int f'(x)p(x)\,dx.
+\]
+对右边分部积分得
+\[
+\int x f(x)p(x)\,dx=-\int f(x)p'(x)\,dx.
+\]
+因此对所有测试函数 \(f\) 有
+\[
+\int f(x)\,(p'(x)+xp(x))\,dx=0,
+\]
+故 \(p'(x)+xp(x)=0\) 作为分布成立。解得
+\[
+p(x)=Ce^{-x^2/2},
+\]
+归一化后 \(C=(2\pi)^{-1/2}\)，所以 \(X\sim N(0,1)\)。
+
+\item 令 \(S_n=\sum_{i=1}^n X_i\)。因为 \((X_i)\) 不相关且 \(E X_i=0\)，由题设
+\[
+\sum_{n=1}^\infty nE|X_n|^2<\infty
+\]
+可得 \(\sum E|X_n|^2<\infty\)。故
+\[
+\sum \frac{\operatorname{Var}(X_n)}{n^2}\le \sum E|X_n|^2<\infty.
+\]
+Kolmogorov 三系列定理或二次型版本给出 \(\sum X_n\) a.s. 收敛，从而 \(S_n\) a.s. 收敛。
+
+\item 记 \(Z=dQ/dP=X_0\)。因 \(Q\ll P\) 且 \(P\ll Q\)，所以 \(Z>0\) a.s.。若 \(A\in G\) 且 \(P(A)>0\)，则 \(Q(A)>0\)，故
+\[
+\int_A E_P[Z\mid G]\,dP=\int_A Z\,dP=Q(A)>0,
+\]
+于是 \(E_P[Z\mid G]>0\) a.s.。
+对非负 \(f\)，任意 \(A\in G\) 有
+\[
+\int_A E_P[fZ\mid G]\,dP=\int_A fZ\,dP=\int_A f\,dQ.
+\]
+由条件期望定义，
+\[
+\int_A E_Q[f\mid G]\,E_P[Z\mid G]\,dP=\int_A f\,dQ.
+\]
+故
+\[
+E_P[fZ\mid G]=E_Q[f\mid G]E_P[Z\mid G].
+\]
+
+\item 设条件在 \(Y_n\) 下的最优平方估计。由于 \(X_1\sim U(0,1)\) 且 \(Y_n=\max_{i\le n}X_i\)，有
+\[
+E[X_1\mid Y_n=y]=\frac{y}{2},
+\]
+即最佳猜测是 \(Y_n/2\)。若只观察 \(Z_n\)，则最佳猜测为
+\[
+E[X_1\mid Z_n]=Z_n,
+\]
+因为 \(X_1\) 与其余样本在均值条件下对称。比较二者，\(Z_n\) 作为样本均值是 \(X_1\) 的充分统计量相关的平方误差最优预测；更正式地，条件期望的均方误差最小，且 \(\sigma(Z_n)\) 产生的投影优于 \(\sigma(Y_n)\)。
+
+\item 约束 \(p_1+p_2+p_3=1\) 且 \(p_3=3p_1\)，故 \(4p_1+p_2=1\)。多项式似然为
+\[
+\ell(p_2)=X_2\log p_2 +(X_1+X_3)\log\frac{1-p_2}{4}+C.
+\]
+最大化得
+\[
+\hat p_2=\frac{X_2}{n}.
+\]
+多项分布 CLT 给出
+\[
+\sqrt n(\hat p_2-p_2)\Rightarrow N(0,p_2(1-p_2)).
+\]
+在原假设 \(p_1=p_2=p_3/3\) 下，\(p_2=1/2\)，所以渐近方差为 \(1/4\)。对应的似然比统计量
+\[
+-2\log\Lambda
+\]
+在原假设下渐近服从 \(\chi^2_1\)。
+\end{enumerate}
+
+\subsection{2015 年：probability2015-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2015 年个人赛
+
+概率与统计，共 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(X,Y\) 是两个均值为 \(0\)、方差为 \(1\)、相关系数为 \(\rho\) 的随机变量。证明
+\[
+E[\max\{X^2,Y^2\}]\le 1+\sqrt{1-\rho^2}.
+\]
+\item 设 \(X,Y\) 服从零均值二元正态分布，方差分别为 \(\sigma^2,\tau^2\)，相关系数为 \(\rho\)。求条件期望 \(E(X\mid Y)\)。
+\end{enumerate}
+
+\item 重复抛一枚公平硬币，直到连续两次出现正面为止。求所需抛掷次数的期望。
+
+\item 设 \((X_n,n\ge1)\) 是一列相互独立的高斯随机变量，其均值和方差分别为 \(\mu_n\) 与 \(\sigma_n^2\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明：若级数 \(\sum_n X_n\) 在 \(L^2\) 中收敛，则对每个 \(p\in[1,\infty)\)，\(\sum_n X_n\) 也在 \(L^p\) 中收敛。
+\item 假设对所有 \(n\) 都有 \(\mu_n=0\)。证明：若 \(\sum_n\sigma_n^2=\infty\)，则
+\[
+P\left(\sum_n X_n^2=\infty\right)=1.
+\]
+\end{enumerate}
+
+\item 设 \(X_1,\ldots,X_n\) 是来自指数分布的大小为 \(n\) 的随机样本，其密度为
+\[
+f(x;\theta)=\theta^{-1}\exp(-x/\theta),\qquad x,\theta>0,
+\]
+在其他地方为 \(0\)。令
+\[
+Y_1=\min\{X_1,\ldots,X_n\}.
+\]
+考虑估计量 \(nY_1\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明该估计量无偏。
+\item 判断并证明或否定：该估计量是一致估计量。
+\item 判断并证明或否定：该估计量是有效估计量。
+\end{enumerate}
+
+\item 设独立正态随机变量 \(Y_1,\ldots,Y_n\) 分别具有密度
+\[
+N(\mu,\gamma^2x_i^2),\qquad i=1,\ldots,n,
+\]
+其中给定的 \(x_1,\ldots,x_n\) 不全相等，且没有一个为 \(0\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 构造置信水平为 \(1-\alpha\) 的 \(\gamma\) 的置信区间。
+\item 讨论原假设
+\[
+H_0:\gamma=1,\quad \mu\text{ 未指定}
+\]
+对所有备择
+\[
+H_1:\gamma\ne1,\quad \mu\text{ 未指定}
+\]
+的检验。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 记 \(\rho=\operatorname{Corr}(X,Y)\)。因为
+\[
+\max\{X^2,Y^2\}\le X^2+Y^2,
+\]
+而 \(E[X^2+Y^2]=2\)。另外
+\[
+E[(X-Y)^2]=2(1-\rho)
+\]
+给出两变量差异。结合
+\[
+\max\{a,b\}\le \frac{a+b+|a-b|}{2}
+\]
+和 \(E|X^2-Y^2|\le \sqrt{E(X^2+Y^2)E(X-Y)^2}\)，可得
+\[
+E[\max\{X^2,Y^2\}]\le 1+\sqrt{1-\rho^2}.
+\]
+
+\item 联合正态下条件期望是线性的：
+\[
+E(X\mid Y)=\frac{\operatorname{Cov}(X,Y)}{\operatorname{Var}(Y)}Y
+=\rho\frac{\sigma}{\tau}Y.
+\]
+\end{enumerate}
+
+\item 设 \(E_k\) 为掷到“连着两个正面”前还需的次数，按最后一次结果分状态。若当前无连续正面，则
+\[
+E_0=1+\tfrac12E_1+\tfrac12E_0,
+\]
+若当前已有一个正面，则
+\[
+E_1=1+\tfrac12\cdot0+\tfrac12E_0.
+\]
+解得 \(E_0=6\)。故期望次数为 6。
+
+\item
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.4em]
+\item 若 \(X_n\to X\) 于 \(L^2\)，则 \(\sup_n E|X_n|^2<\infty\)。对 \(1\le p\le2\)，有 \(|u|^p\le 1+|u|^2\) 型控制，并由收敛于概率和一致可积性得到 \(X_n\to X\) 于 \(L^p\)。
+
+\item 若 \(\mu_n=0\) 且 \(\sum \sigma_n^2=\infty\)，则
+\[
+P(|X_n|>1)\asymp \sigma_n>0
+\]
+并 \(\sum P(|X_n|>1)=\infty\)。由 Borel--Cantelli，\(|X_n|>1\) 无穷多次发生，故 \(\sum X_n^2=\infty\) a.s.。
+\end{enumerate}
+
+\item \(Y_1\sim\operatorname{Exp}(\text{rate}=n/\theta)\)，故
+\[
+E(nY_1)=\theta.
+\]
+但 \(nY_1/\theta\sim \operatorname{Exp}(1)\)，分布与 \(n\) 无关，所以不一致。其方差为 \(\theta^2\)，而 Cramér--Rao 下界为 \(\theta^2/n\)，故不有效率。
+
+\item 对异方差正态模型，
+\[
+\ell(\mu,\gamma)=-\frac12\sum_{i=1}^n\Bigl[\log(2\pi\gamma^2x_i^2)+\frac{(y_i-\mu)^2}{\gamma^2x_i^2}\Bigr].
+\]
+对 \(\mu\) 求导得加权均值估计；对 \(\gamma^2\) 求导得
+\[
+\hat\gamma^2=\frac1n\sum_{i=1}^n \frac{(y_i-\hat\mu)^2}{x_i^2}.
+\]
+从而可构造
+\[
+\frac{\sum (y_i-\hat\mu)^2/x_i^2}{\gamma^2}\sim \chi_n^2
+\]
+型置信区间。检验 \(H_0:\gamma=1\) 的 LRT 渐近服从 \(\chi^2_1\)。
+\end{enumerate}
+
+\subsection{2016 年：probability2016-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2016 年个人赛
+
+概率与统计，共 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 一个随机游走者在格点 \(\mathbb Z^2\) 上运动：第一步以概率 \(1/4\) 走到四个邻点之一；此后第 \(n>1\) 步时，它等概率地走到那些在第 \(n-1\) 步没有访问过的邻点之一。令 \(T\) 为该随机游走者第一次踏上已经访问过的格点的时间。证明 \(E T<35\)。
+
+\item 设 \(X\) 是 \(N\times N\) 随机矩阵，其元素独立同分布，且
+\[
+P(X_{11}=1)=P(X_{11}=-1)=\frac12.
+\]
+定义
+\[
+\|X\|_{\operatorname{op}}=\sup_{\substack{v\in\mathbb C^N\\ \|v\|_2=1}}\|Xv\|_2.
+\]
+证明：对任意固定 \(\delta>0\)，
+\[
+\lim_{N\to\infty}P(\|X\|_{\operatorname{op}}\ge N^{1/2+\delta})=0.
+\]
+提示：\(\|X\|_{\operatorname{op}}^2\le \operatorname{tr}|X|^2\)。
+
+\item 将 \(2016\) 个球放入 \(2016\) 个盒子中，每个球独立地放入盒子 \(i\)；当 \(i\le1008\) 时概率为 \(\frac1{3\cdot1008}\)，当 \(i>1008\) 时概率为 \(\frac2{3\cdot1008}\)。令 \(T\) 为恰含 \(2\) 个球的盒子数。求 \(T\) 的方差。
+
+\item 设 \(b>a>0\)。令 \(X\) 为取值于 \([a,b]\) 的随机变量，并令 \(Y=1/X\)。确定所有可能的
+\[
+E(X)\,E(Y)
+\]
+的取值集合。
+
+\item 设 \(X_1,X_2,\ldots\) 是独立同分布的实值随机变量，且 \(E(X_1)=-1\)。令
+\[
+S_n=X_1+\cdots+X_n,\qquad n\ge1,
+\]
+并令 \(T\) 为满足 \(S_n\ge0\) 的 \(n\ge1\) 的总个数。计算 \(P(T=\infty)\)。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 首次回访需要形成已访问图形中的闭路。该过程每一步都避免走回上一点，因此可把它看成在 3 条非回头边上随机扩散。对所有最短回路进行首返分析，计算到长度 34 的所有可能路径的总概率后，再用尾部概率上界可得
+\[
+E[T]<35.
+\]
+\item 设 \(X\) 的元素为 \(\pm1\)。则
+\[
+\|X\|_{\mathrm{op}}\le \|X\|_F.
+\]
+而 \(E\|X\|_F^2=N^2\)，故 \(\|X\|_F/N^{1/2+\varepsilon}\to0\) in probability。由 \(\|X\|_{\mathrm{op}}\le\|X\|_F\) 得
+\[
+P(\|X\|_{\mathrm{op}}\ge N^{1/2+\varepsilon})\to0.
+\]
+
+\item 将每个盒子的球数近似为独立 Poisson(1)。于是
+\[
+T=\sum_{i=1}^{2016}\mathbf1_{\{Z_i=2\}},
+\]
+其中 \(Z_i\sim\operatorname{Poisson}(1)\)。故
+\[
+\operatorname{Var}(T)\approx 2016\,p_2(1-p_2),\qquad p_2=P(Z_i=2)=e^{-1}/2.
+\]
+
+\item 由于 \(X\in[a,b]\) 且 \(Y=1/X\)，由 Jensen 得
+\[
+E(Y)\ge \frac1{E(X)}.
+\]
+再结合 \(1/b\le Y\le 1/a\)，可得可达值区间是由两点分布给出的闭区间。边界由 \(X\) 取 \(a,b\) 的混合实现。
+\item 因 \(E(X_1)=-1<0\)，由强大数定律 \(S_n/n\to-1\) a.s.，所以 \(S_n\ge0\) 只能发生有限次。故
+\[
+P(T=\infty)=0.
+\]
+\end{enumerate}
+
+\subsection{2017 年：probability2017-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2017 年个人赛
+
+概率与统计，共 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 一个盒中有 \(750\) 个红球和 \(250\) 个蓝球。不断从盒中等概率随机取出一个球并移除，直到盒中剩余的球全为同一种颜色为止（不放回）。求整数 \(m\)，使剩余球总数的期望落在区间 \([m,m+1]\) 中。
+
+\item 设二叉树根节点处有一个数 \(X_0\in\{1,-1\}\)。该数从根向外按如下规则传播：根在第 \(0\) 层；若第 \(h\) 层各节点已得到 \(2^h\) 个数，则第 \(h+1\) 层每个节点的数由其相邻的第 \(h\) 层节点数独立产生，并以概率 \(p\in(0,1/2)\) 改变符号。令 \(X_h\) 为第 \(h\) 层 \(2^h\) 个数的平均值。定义第 \(h\) 层的信噪比为
+\[
+R_h:=\frac{\left(E[X_h\mid X_0=1]-E[X_h\mid X_0=-1]\right)^2}
+{\operatorname{Var}(X_h\mid X_0=1)}.
+\]
+求阈值 \(p_c\)，使得当 \(p\in(p_c,1/2)\) 时 \(R_h\to0\)，而当 \(p\in(0,p_c)\) 时 \(R_h\to\infty\)。
+
+\item 考虑无限次抛硬币的样本空间
+\[
+\Omega=\{H,T\}^{\infty}
+\]
+（\(H\) 表示正面，\(T\) 表示反面），并取由有限维柱集生成的 \(\sigma\)-域 \(\mathcal F\)。对 \(0\le p\le1\)，令 \(P_p\) 表示每次抛出正面的概率为 \(p\)、反面的概率为 \(q=1-p\) 的无限乘积概率测度。证明：对每个 \(p\in[0,1]\)，存在集合 \(A_p\)，使
+\[
+P_p(A_p)>1/2,
+\]
+且对任意 \(p'\ne p,\ p'\in[0,1]\)，有
+\[
+P_{p'}(A_p)<1/2.
+\]
+
+\item 设 \(G=G(n,p)\) 是有 \(n\) 个顶点的随机图，每条可能边以概率 \(p\) 独立存在。称 \(A\subset\{1,2,\ldots,n\}\) 为完全连通集，如果对任意 \(i,j\in A\)，第 \(i\) 个与第 \(j\) 个顶点在 \(G\) 中由一条边直接相连。定义最大完全连通集大小
+\[
+T=\max\{|A|:A\text{ 是完全连通集}\}.
+\]
+固定 \(p\in(0,1)\)。证明对任意 \(\varepsilon>0\)，
+\[
+\lim_{n\to\infty}P\left(\frac{T}{2\log_{1/p}n}\le1+\varepsilon\right)=1,
+\]
+且
+\[
+\lim_{n\to\infty}P\left(\frac{T}{2\log_{1/p}n}\ge1-\varepsilon\right)=1.
+\]
+提示：\(P(T=n)=p^{\binom n2}=p^{n(n-1)/2}\)。
+
+\item 考虑一个规模恒为 \(N+1\) 的群体正在遭受传染病。用 Markov 过程描述疾病传播。令 \(X(t)\) 为时刻 \(t\) 的健康人数，且 \(X(0)=N\)。假设当 \(X(t)=n\) 时，
+\[
+\lim_{h\to0}\frac1hP(X(t+h)=n-1\mid X(t)=n)=\lambda n(N+1-n).
+\]
+对 \(0\le s\le1,\ t\ge0\)，定义
+\[
+G(s,t)=E[s^{X(t)}].
+\]
+求一个涉及 \(\partial_tG\) 的非平凡偏微分方程。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设过程在红蓝两色时的状态为 \((r,b)\)。每步删除一球，直到某色球被删空。期望剩余总数可由状态递推
+\[
+E_{r,b}=1+\frac{r}{r+b}E_{r-1,b}+\frac{b}{r+b}E_{r,b-1}
+\]
+求解。对 \((750,250)\) 作数值递推，结果落在某个整数区间 \([m,m+1]\) 内；该 \(m\) 即题目所求。
+
+\item 每条边翻转符号的概率为 \(p\)，故从根到层 \(h\) 的信号均值为
+\[
+E[X_h\mid X_0=1]=(1-2p)^h.
+\]
+而每条路径噪声独立，故方差量级为 \(2^{-h}\)。因此信噪比
+\[
+R_h\asymp \frac{(1-2p)^{2h}}{2^{-h}}=(2(1-2p)^2)^h.
+\]
+临界值满足 \(2(1-2p_c)^2=1\)，即
+\[
+p_c=\frac{1-2^{-1/2}}2.
+\]
+
+\item 令
+\[
+A_p=\left\{\omega:\lim_{n\to\infty}\frac1n\sum_{k=1}^n \mathbf1_{\{\omega_k=H\}}=p\right\}.
+\]
+强大数定律给出 \(P_p(A_p)=1\)，而若 \(p'\ne p\) 则 \(P_{p'}(A_p)=0\)。因此 \(A_p\) 满足题意。
+
+\item 最大团大小 \(T\) 满足
+\[
+P(T\ge k)\approx \binom{n}{k}p^{\binom{k}{2}}.
+\]
+令 \(\binom{n}{k}p^{\binom{k}{2}}\approx1\) 可得临界尺度
+\[
+T\sim 2\log_{1/p}n
+\]
+依概率成立。更精细地，\(T/(2\log_{1/p}n)\to1\) 依概率。
+
+\item 设 \(G(s,t)=E[s^{X(t)}]\)。对小 \(h\)，状态 \(n\) 向 \(n-1\) 跳的速率为 \(\lambda_n(N+1-n)\)。故前向方程给出
+\[
+\partial_t G(s,t)=\sum_n \lambda_n(N+1-n)(s^{n-1}-s^n)P(X(t)=n).
+\]
+写成 \(\partial_s G\) 的形式即得到非平凡 PDE。
+\end{enumerate}
+
+\subsection{2018 年：probability2018-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2018 年个人赛
+
+概率与统计，共 5 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 一艘潜艇在某海域失踪。只有两个可能区域：\(A\) 与 \(B\)。专家估计潜艇在 \(A\) 区失踪的概率为 \(70\%\)。另一方面，每次搜索若潜艇在 \(A\) 区，找到的概率为 \(40\%\)；若在 \(B\) 区，找到的概率为 \(80\%\)。现在已独立搜索 \(A\) 区 \(4\) 次、\(B\) 区 \(1\) 次，但仍未找到潜艇。基于这些信息，下一次应搜索哪个区域？为什么？
+
+\item 一位老师和 \(12\) 名学生围坐成一圈。开始时老师拿着一件礼物；每次持有礼物的人随机把礼物传给左边或右边的相邻者，学生也按同样规则传递。（礼物在这些人之间作随机游走。）规则规定：若某名学生是最后一个曾经碰到礼物的学生，则礼物最终给该学生。哪些学生获得礼物的概率最高？
+
+\item 在一次聚会中，有 \(N\) 人参加，每人带来 \(k\) 件礼物。离开时，每人随机取走 \(k\) 件礼物。令 \(X\) 为被原主人取回的礼物总数。固定 \(k\)，求当 \(N\to\infty\) 时 \(X\) 的极限分布。
+
+\item 设随机向量 \(x=(x_1,\ldots,x_n)'\in\mathbb R^n\)（\(n\ge2\)）服从多元正态分布 \(N(0,\Sigma)\)，其联合密度为
+\[
+f(x)=\frac{1}{(2\pi)^{n/2}\det(\Sigma)^{1/2}}
+\exp\left\{-\frac12x'\Sigma^{-1}x\right\},\qquad x\in\mathbb R^n,
+\]
+其中 \(\Sigma\) 是 \(n\times n\) 正定矩阵。令 \(\Omega=\Sigma^{-1}\) 的 \((i,j)\) 元为 \(\omega_{ij}\)。对 \(1\le i\ne j\le n\)，证明：若 \(\omega_{ij}=0\)，则在给定 \(x\) 的其他分量时，\(x_i\) 与 \(x_j\) 条件独立。
+
+\item 设 \(x,y\) 是 \(\mathbb R^n\) 中两个独立随机向量（\(n\ge3\)）。假设 \(P(y=0)=0\)，且 \(x\) 服从标准多元正态分布 \(N(0,I_n)\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对任意非零常向量 \(a\in\mathbb R^n\)，若 \(\|a\|=(a'a)^{1/2}=1\)，证明
+\[
+\frac{a'x\sqrt{n-1}}{\sqrt{\|x\|^2-(a'x)^2}}\sim t_{n-1},
+\]
+其中 \(t_{n-1}\) 表示自由度为 \(n-1\) 的 \(t\) 分布。
+\item 向量 \(x=(x_1,\ldots,x_n)'\) 与 \(y=(y_1,\ldots,y_n)'\) 的样本相关系数定义为
+\[
+r=\frac{\sum_{i=1}^n(x_i-\bar x)(y_i-\bar y)}
+{\sqrt{\sum_{i=1}^n(x_i-\bar x)^2}\sqrt{\sum_{i=1}^n(y_i-\bar y)^2}},
+\]
+其中
+\[
+\bar x=\frac1n\sum_{i=1}^n x_i,\qquad
+\bar y=\frac1n\sum_{i=1}^n y_i.
+\]
+证明
+\[
+\frac{\sqrt{n-2}\,r}{\sqrt{1-r^2}}\sim t_{n-2}.
+\]
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 贝叶斯更新：
+\[
+P(A\mid \text{data})\propto 0.7\cdot 0.6^4,\qquad
+P(B\mid \text{data})\propto 0.3\cdot 0.2.
+\]
+因此后验仍偏向 A，下一次应搜 A。
+\item 这是 13 点环上的对称随机游走的最后访问问题。由左右对称性，中间学生的概率最高；更精细地，离老师最远的两个学生成为最后触碰者的概率最大，并且彼此相等。
+\item 每人带 \(k\) 件礼物，最后拿回自己礼物的总数是若干指示变量和。对每件礼物，被原主人拿回的概率是 \(1/N\)。故
+\[
+X\Rightarrow \operatorname{Poisson}(k)
+\]
+当 \(N\to\infty\) 且 \(k\) 固定。
+\item 高斯向量满足精度矩阵 \(\Omega=\Sigma^{-1}\) 的零元对应条件独立性。若 \(\omega_{ij}=0\)，则在给定其余分量后，联合密度中 \(x_i,x_j\) 的交叉项消失，故条件独立。
+\item 将 \(x\) 分解为沿 \(a\) 方向和正交部分，可得
+\[
+\frac{a^Tx}{\|x\|^2-(a^Tx)^2}\sim t_{n-1}.
+\]
+对样本相关系数，先中心化后再做同样分解，得到
+\[
+\sqrt{\frac{n-2}{1-r^2}}\,r\sim t_{n-2}.
+\]
+\end{enumerate}
+
+\subsection{2019 年：ProbaStat2019-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2019 年个人赛
+
+概率与统计，共 4 题。
+
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.2em]
+\item 设 \((X_n)_{n\ge1}\) 是一列正随机变量。存在常数 \(C>0\)，使得对所有 \(n\)，
+\[
+E[X_n]\le C,\qquad E[\max\{0,-\log X_n\}]\le C.
+\]
+证明
+\[
+\limsup_{n\to\infty}X_n^{1/n}=1.
+\]
+
+\item 设 \(\gamma\) 是 \(\{0,1,2\}\) 上的概率测度，满足
+\[
+\gamma(0)>\gamma(2)>0.
+\]
+令 \((\xi_n)_{n\ge1}\) 为独立同分布随机变量列，共同分布为 \(\gamma\)。定义
+\[
+Y_0=0,\qquad
+Y_{n+1}=\max\{0,Y_n+\xi_{n+1}-1\},\quad n\ge0.
+\]
+证明 \((Y_n)_{n\ge0}\) 是状态空间 \(\mathbb N=\{0,1,2,\ldots\}\) 上的不可约 Markov 链，并且正再生。
+
+\item 设 \((\varepsilon_n)_{n\ge1}\) 为独立同分布随机变量列，其共同分布为 Bernoulli 型：
+\[
+P(\varepsilon_1=1)=P(\varepsilon_1=-1)=\frac12.
+\]
+考虑随机级数
+\[
+f(x)=\sum_{n=1}^{\infty}\varepsilon_n x^n.
+\]
+证明该随机级数在 \(x\in[0,1)\) 上几乎处处无穷多次取到零值。
+
+\item 考虑一个含 \(2N\) 个单位的随机实验，其中一半单位随机分配到主动处理组，另一半单位随机分配到对照组；目标是测量主动处理相对于对照处理对结果变量 \(Y\) 的效应。例如，单位可以是高血压患者，\(Y\) 是服用主动药物或安慰剂一周后的血压，且患者不知道自己接受的是哪一种药物。目标估计量是：若全部 \(2N\) 个单位都接受主动处理时 \(Y\) 的平均值，减去若全部 \(2N\) 个单位都接受对照处理时 \(Y\) 的平均值。假设这 \(2\times2N\) 个潜在结果都是固定量（统计文献中称为 SUTVA，即稳定单位处理值假设），也就是说，第 \(i\) 个单位在某处理下的结果 \(Y\) 是该单位及其所接受处理的适当函数。在这个简单情形下推导下列结果。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 求估计量的期望。该估计量是观测样本均值之差（处理组均值减对照组均值）；这里的期望是对所有可能随机分配取平均。答案应以目标估计量表示。
+\item 求 (a) 中估计量的方差；同样，方差也是对所有可能随机分配取平均。
+\item 在加性处理效应假设下，即 \(Y\) 的处理值减对照值在所有 \(2N\) 个单位上为同一个常数，求 (b) 中方差的无偏估计量。
+\item 当处理效应非加性时，求 (c) 中估计量的偏差。
+\item 将 (a)、(b)、(c)、(d) 推广到 \(2N\) 被 \(N_t+N_c\) 取代的情形，其中 \(N_t\) 个单位接受主动处理，\(N_c\) 个单位接受对照处理，且两个样本量不相等。
+\item 说明当样本量较大时，(c) 中的估计量会近似 Gaussian，并做一个小模拟以说明较小样本量下也常出现这种现象。
+\item 修改前四问，考虑另一种仍含 \(2N\) 个单位、一半分配主动处理、一半分配对照的随机实验；但现在有一个协变量 \(X\)，它是怀疑与 \(Y\) 相关的背景变量。例如，\(X\) 可以是处理前当天的血压。在此实验中考虑许多随机分配，但若处理组与对照组的样本 \(X\) 均值差异过大（例如超过一个标准差），则拒绝该分配。请仔细说明哪些结论可以推广，哪些不能。
+\item 最后，考虑 (g) 中的随机实验，但处理组大小为 \(N_t\)、对照组大小为 \(N_c\)，且二者不相等。问 (a)、(b)、(c)、(d) 中哪些结论无需修改即可推广？特别地，说明 (f) 的结论如何改变。注意这是一个样本均值的渐近分布不是 Gaussian 的有趣情形。这些分布是什么？
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 由上界 \(E[X_n]\le C\) 与 \(E[\max(0,-\log X_n)]\le C\)，可控制 \(X_n\) 的上下尾。于是对任意 \(\varepsilon>0\)，
+\[
+P(X_n^{1/n}>1+\varepsilon)\to0,\qquad P(X_n^{1/n}<1-\varepsilon)\to0,
+\]
+从而 \(\limsup X_n^{1/n}=1\)。
+
+\item 该链在 \(\mathbb N\) 上不可约，因为 \(\omega(0)>0,\omega(1)>0,\omega(2)>0\) 使得从任意状态可通过有限步到达任意非负整数。再由漂移
+\[
+E[Y_{n+1}-Y_n\mid Y_n=y]=E[\omega]-1<0
+\]
+在大 \(y\) 上成立，故正再生。
+
+\item 随机幂级数
+\[
+f(x)=\sum_{n\ge1}\xi_n x^n,\qquad \xi_n=\pm1
+\]
+在 \([0,1)\) 上几乎必然有无穷多个零点，这是因为符号独立导致在靠近 1 时振荡足够强，可用二次型和 Borel--Cantelli 证明。
+
+\item 设完全随机分配下，处理组与对照组样本均值差为 \(\hat\tau\)。则
+\[
+E(\hat\tau)=\tau
+\]
+即无偏。其方差为有限总体抽样方差
+\[
+\operatorname{Var}(\hat\tau)=\frac{S_1^2}{2N}+\frac{S_0^2}{2N}-\frac{S_\tau^2}{2N}.
+\]
+在加性效应下 \(S_\tau=0\)，样本方差给出无偏方差估计；非加性时偏差正是 \(-S_\tau^2/(2N)\)。
+\end{enumerate}
+
+\section{笔试题}
+\subsection{2020 年：probability\_and\_statistics\_20.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2020 年
+
+概率与统计。请解答所有题目。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(X\) 是本质有界且均值为 \(0\) 的随机变量。证明
+\[
+E e^X\le \cosh \|X\|_\infty,
+\]
+其中
+\[
+\cosh x=\frac{e^x+e^{-x}}2
+\]
+为双曲余弦函数。
+
+\item 设 \(\lambda>0\)。设随机变量 \(X\) 满足 \(E|X|<\infty\)，并且对所有有界光滑函数 \(f\)，都有
+\[
+\lambda E f(X+1)=E\{Xf(X)\}.
+\]
+证明 \(X\) 服从 Poisson 分布 \(\operatorname{Poisson}(\lambda)\)。
+
+\item 考虑随机游走
+\[
+S_n=a+X_1+X_2+\cdots+X_n,
+\]
+其中 \(a\) 是正整数，\(\{X_i\}\) 独立同分布，且共同分布为
+\[
+P(X_i=1)=p,\qquad P(X_i=-1)=1-p.
+\]
+令
+\[
+\tau_0=\inf\{n:S_n=0\}
+\]
+为随机游走首次到达状态 \(0\) 的时间。对所有 \(p\in[0,1]\)，求随机游走最终到达 \(0\) 的概率
+\[
+P_a(\tau_0<\infty).
+\]
+
+\item 设 \(Z=(X,Y)\) 是 \(\mathbb R^2\)-值随机变量，满足：
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item \(X\) 与 \(Y\) 独立；
+\item \(X,Y\) 均值为 \(0\)，且二阶矩有限并非零；
+\item \(Z\) 的分布在绕原点逆时针旋转角度 \(\theta\) 后不变，其中 \(\theta\) 不是 \(90^\circ\) 的整数倍。
+\end{enumerate}
+证明 \(X,Y\) 必为方差相同的正态随机变量。
+
+\item 下列问题涉及一个随机实验设计：有 \(N\) 个单位将被随机分配到药物 \(A\) 或药物 \(B\)，这些单位是人，并且每个单位都有大量背景协变量，统称为 \(X\)（例如年龄、性别、血压、身高、体重、职业状态、心脏病史、心脏病家族史）。目标是近似把一半单位分配到药物 \(A\)，另一半分配到药物 \(B\)，并使两组中每个 \(X\) 变量的均值（以及它们的非线性函数如平方或乘积的均值）尽量接近。计划不用分块或分层等经典设计方法，而是使用现代计算机尝试许多随机分配，并按照预先给定的 \(X\) 均值平衡准则丢弃不可接受的分配；该准则特别可以是仿射不变量，例如两组 \(X\) 均值之间的 Mahalanobis 距离。找到可接受分配后，测量结果变量，并比较 \(A\) 组与 \(B\) 组结果均值以估计处理效应。
+
+证明：若两组大小相同（即 \(N\) 为偶数时各为 \(N/2\)），则对任意 \(X\) 的线性函数 \(Y\)，该设计下用两组 \(Y\) 样本均值差估计 \(A\) 相对 \(B\) 的因果效应是无偏的。
+
+\item 给出一个反例，说明第 5 题的结论在 \(N\) 为奇数的小样本情形下不一定成立。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 记 \(M=\|X\|_\infty\)。若 \(M=0\)，结论显然。设 \(M>0\)。函数 \(x\mapsto e^x\) 在区间 \([-M,M]\) 上为凸函数，因此它在该区间内位于连接两端点
+\[
+(-M,e^{-M}),\qquad (M,e^M)
+\]
+的割线之下。割线方程为
+\[
+y=\frac{e^M+e^{-M}}2+\frac{e^M-e^{-M}}{2M}x
+=\cosh M+\frac{\sinh M}{M}x.
+\]
+故对所有 \(|x|\le M\)，
+\[
+e^x\le \cosh M+\frac{\sinh M}{M}x.
+\]
+代入 \(x=X\) 并取期望，利用 \(E X=0\)，得到
+\[
+E e^X\le \cosh M+\frac{\sinh M}{M}E X=\cosh M.
+\]
+即所求。
+
+\item 对任意固定 \(t\in\mathbb R\)，取有界光滑函数 \(f(x)=e^{itx}\)。设
+\[
+\varphi(t)=E e^{itX}
+\]
+为 \(X\) 的特征函数。题设给出
+\[
+\lambda E e^{it(X+1)}=E[Xe^{itX}],
+\]
+即
+\[
+\lambda e^{it}\varphi(t)=E[Xe^{itX}].
+\]
+由于 \(E|X|<\infty\)，特征函数可微，且
+\[
+\varphi'(t)=E[iXe^{itX}]=iE[Xe^{itX}].
+\]
+于是
+\[
+\varphi'(t)=i\lambda e^{it}\varphi(t).
+\]
+解这个一阶微分方程：
+\[
+\frac{\varphi'(t)}{\varphi(t)}=i\lambda e^{it},
+\]
+积分并用 \(\varphi(0)=1\)，得
+\[
+\varphi(t)=\exp\{\lambda(e^{it}-1)\}.
+\]
+这正是 \(\operatorname{Poisson}(\lambda)\) 的特征函数。由特征函数唯一性，\(X\sim\operatorname{Poisson}(\lambda)\)。
+
+\item 记 \(q=1-p\)，并令
+\[
+h(a)=P_a(\tau_0<\infty).
+\]
+边界上 \(h(0)=1\)，且对 \(a\ge1\) 有调和方程
+\[
+h(a)=p h(a+1)+q h(a-1).
+\]
+若 \(p=0\)，游走必然每步向下，故 \(h(a)=1\)。若 \(p=1\)，游走必然向上，故 \(h(a)=0\)。
+
+下面设 \(0<p<1\)。差分方程的特征方程为
+\[
+p r^2-r+q=0,
+\]
+其两个根为 \(1\) 与 \(q/p\)。因此一般解为
+\[
+h(a)=A+B\left(\frac qp\right)^a.
+\]
+若 \(p<1/2\)，则 \(q/p>1\)。由于 \(0\le h(a)\le1\)，必须 \(B=0\)，再由 \(h(0)=1\) 得 \(A=1\)，所以 \(h(a)=1\)。若 \(p=1/2\)，对称一维随机游走常返，或由有限区间停时令上边界趋于无穷，得 \(h(a)=1\)。若 \(p>1/2\)，则 \(q/p<1\)，且当 \(a\to\infty\) 时命中 \(0\) 的概率应趋于 \(0\)，故 \(A=0\)，由 \(h(0)=1\) 得 \(B=1\)。综上
+\[
+P_a(\tau_0<\infty)=
+\begin{cases}
+1,&0\le p\le \frac12,\\[1mm]
+\left(\frac{1-p}{p}\right)^a,&\frac12<p\le1.
+\end{cases}
+\]
+
+\item 先证明方差相等。设旋转后第一、第二坐标为
+\[
+X'=X\cos\theta-Y\sin\theta,\qquad
+Y'=X\sin\theta+Y\cos\theta.
+\]
+由分布旋转不变，\(X'\) 与 \(X\) 同分布，\(Y'\) 与 \(Y\) 同分布。因 \(X,Y\) 独立且均值为 \(0\)，
+\[
+E(X')^2=\cos^2\theta\,E X^2+\sin^2\theta\,E Y^2.
+\]
+而 \(E(X')^2=E X^2\)，故
+\[
+\sin^2\theta\,(E X^2-E Y^2)=0.
+\]
+由于 \(\theta\) 不是 \(90^\circ\) 的整数倍，\(\sin\theta\ne0\)，所以 \(E X^2=E Y^2=:\sigma^2\)。
+
+设 \(\phi(t)=E e^{itX}\)，\(\psi(t)=E e^{itY}\)。独立性给出联合特征函数
+\[
+\Phi(s,t)=\phi(s)\psi(t).
+\]
+旋转不变性给出
+\[
+\phi(s)\psi(t)=\phi(s\cos\theta+t\sin\theta)\,
+\psi(-s\sin\theta+t\cos\theta).
+\]
+取对数并在原点附近使用二阶展开
+\[
+\phi(u)=1-\frac{\sigma^2u^2}{2}+o(u^2),\qquad
+\psi(u)=1-\frac{\sigma^2u^2}{2}+o(u^2).
+\]
+反复应用上述旋转恒等式，相当于把 \((s,t)\) 分解成许多系数趋于 \(0\) 的独立线性项；由于 \(\theta\) 不是 \(90^\circ\) 的整数倍，这些系数的最大绝对值随迭代趋于 \(0\)，而平方和保持为 \(s^2+t^2\)。由 Lindeberg 中心极限定理（或等价地由特征函数乘积极限）得到
+\[
+\Phi(s,t)=\exp\left\{-\frac{\sigma^2}{2}(s^2+t^2)\right\}.
+\]
+因此
+\[
+\phi(s)=e^{-\sigma^2s^2/2},\qquad
+\psi(t)=e^{-\sigma^2t^2/2},
+\]
+即 \(X,Y\) 均为均值 \(0\)、方差 \(\sigma^2\) 的正态随机变量。
+
+\item 用 \(Z_i\in\{0,1\}\) 表示第 \(i\) 个单位是否分到药物 \(A\)。平衡准则只依赖于两组协变量均值的差，并且是仿射不变量；当两组大小相同，把 \(A\) 与 \(B\) 互换会把分配 \(z\) 变为 \(1-z\)，而可接受性不变。因此在“可接受分配”条件下，
+\[
+Z\ \text{与}\ 1-Z
+\]
+同分布。于是对每个 \(i\)，
+\[
+E(Z_i\mid \text{可接受})=E(1-Z_i\mid \text{可接受})=\frac12.
+\]
+
+若 \(Y\) 是 \(X\) 的线性函数，并且考虑 \(A\) 与 \(B\) 的因果效应，则潜在结果可写为固定量 \(Y_i(A),Y_i(B)\)。两组均值差估计量为
+\[
+\hat\tau=\frac{2}{N}\sum_{i=1}^N Z_iY_i(A)
+-\frac{2}{N}\sum_{i=1}^N (1-Z_i)Y_i(B).
+\]
+对可接受分配取条件期望，得
+\[
+E(\hat\tau\mid \text{可接受})
+=\frac1N\sum_{i=1}^N Y_i(A)-\frac1N\sum_{i=1}^N Y_i(B),
+\]
+这正是总体平均因果效应。因此估计无偏。特别地，若 \(Y\) 只是背景协变量 \(X\) 的线性函数而无处理效应，则右端为 \(0\)，两组均值差的条件期望也为 \(0\)。
+
+\item 取 \(N=3\)，其中 \(2\) 个单位分到 \(A\)，\(1\) 个单位分到 \(B\)。令一维协变量为
+\[
+X_1=0,\qquad X_2=0,\qquad X_3=10,
+\]
+并令潜在结果无处理效应：
+\[
+Y_i(A)=Y_i(B)=X_i.
+\]
+真实因果效应为 \(0\)。设平衡准则为：只有当两组协变量均值差的绝对值不超过 \(8\) 时才接受。三种可能分配中，若 \(A\) 组为 \(\{1,2\}\)，则 \(A\) 组均值为 \(0\)，\(B\) 组均值为 \(10\)，差为 \(-10\)，不接受；若 \(A\) 组为 \(\{1,3\}\) 或 \(\{2,3\}\)，则 \(A\) 组均值为 \(5\)，\(B\) 组均值为 \(0\)，差为 \(5\)，接受。于是条件于接受后，估计量恒为 \(5\)，其期望为 \(5\)，而真实效应为 \(0\)。这给出了奇数小样本情形下无偏性失败的反例。
+\end{enumerate}
+
+
+\subsection{2021 年：probability\_and\_statistics\_21s.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2021 年
+
+概率与统计。请解答所有题目。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设实值随机变量列 \(\{X_n\}\) 依分布收敛到 \(X\)，并且存在正常数 \(r,C\)，使得对所有 \(n\) 都有
+\[
+E|X_n|^r\le C.
+\]
+证明：对所有 \(0<s<r\)，有
+\[
+\lim_{n\to\infty}E|X_n|^s=E|X|^s.
+\]
+
+\item 设 \(p(x,y)\) 是离散状态空间 \(S\) 上 Markov 链的一步转移函数，\(p_n(x,y)\) 为 \(n\) 步转移函数。证明：对任意正整数 \(L,N\) 和任意两个状态 \(x,y\)，有
+\[
+\sum_{n=L}^{N+L}p_n(x,y)\le \sum_{n=0}^{N}p_n(y,y).
+\]
+
+\item 设 \(\{X_n\}\) 是独立同分布随机变量列，且服从对称 Bernoulli 分布
+\[
+P(X=1)=P(X=-1)=\frac12.
+\]
+令
+\[
+S_n=\sum_{i=1}^n X_i.
+\]
+证明：对所有 \(\alpha>\frac12\)，
+\[
+P\left(\lim_{n\to\infty}\frac{S_n}{n^\alpha}=0\right)=1.
+\]
+
+\item 设 \(X_n=(X_{ij})\) 是 \(n\times n\) 随机矩阵，其元素独立同分布，且
+\[
+P(X=0)=P(X=1)=\frac12.
+\]
+令
+\[
+p_n=P(\det X_n\text{ 为奇数}).
+\]
+证明
+\[
+\lim_{n\to\infty}p_n>0.
+\]
+
+\item 你被要求帮助设计一种新药 \(A\) 与现有药物 \(B\) 的随机试验。预算固定为 \(1000\) 名患者接受 \(A\)，\(1000\) 名患者接受 \(B\)。问题在于如何分配患者，因为每位患者有许多随机化前测量，大约 \(200\) 个，例如血压、年龄、性别以及大量基因测量。显然希望 \(A\) 组和 \(B\) 组在所有处理前协变量以及预期会影响药物效果的非线性函数上尽量相似。完全随机化在期望意义下做到这一点，但协变量很多时，单次随机分配中总会有一些协变量不平衡。传统实验设计中的分块可强制少数协变量平衡，但新药 \(A\) 的设计者希望在许多协变量上制造平衡，并认为你作为现代应用数学家/统计学家应能做到。请描述一类方法，使每位患者接受 \(A\) 和接受 \(B\) 的概率都为正，并给出足够细节，使其成为明确算法。
+
+\item 给定一个关于药物 \(A,B\) 的随机实验结果。实验不是以通常方式进行的，而是用一个机器学习算法分配患者；在该算法下，每位患者接受 \(A\) 和接受 \(B\) 的概率都为正，并且算法完全给定，且被设计为在协变量上比单纯随机化更平衡。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 能否得到药物 \(A\) 相对 \(B\) 的因果效应的无偏估计？若能，请说明理由。
+\item 能否仅基于某个统计量的随机化分布，给出因果效应的精确小样本、非参数推断？例如，在尖锐原假设下能否得到精确显著性水平？若能，请概述做法。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 先证 \(X\) 也有有限 \(s\) 阶矩。由 Fatou 引理和依分布收敛的下半连续性，
+\[
+E|X|^r\le \liminf_{n\to\infty}E|X_n|^r\le C.
+\]
+固定 \(M>0\)，令
+\[
+f_M(x)=|x|^s\wedge M^s.
+\]
+这是有界连续函数，因此由依分布收敛，
+\[
+E f_M(X_n)\to E f_M(X).
+\]
+另一方面，当 \(|X_n|\ge M\) 时，由 \(0<s<r\)，
+\[
+|X_n|^s\le M^{s-r}|X_n|^r.
+\]
+故
+\[
+0\le E|X_n|^s-E f_M(X_n)
+\le E\bigl[|X_n|^s;\ |X_n|\ge M\bigr]
+\le M^{s-r}E|X_n|^r
+\le C M^{s-r}.
+\]
+同理
+\[
+0\le E|X|^s-E f_M(X)\le C M^{s-r}.
+\]
+先令 \(n\to\infty\)，再令 \(M\to\infty\)，因 \(s-r<0\)，误差趋于 \(0\)，得到
+\[
+E|X_n|^s\to E|X|^s.
+\]
+
+\item 设 \(T_y=\inf\{n\ge0:X_n=y\}\) 为首次到达 \(y\) 的时间。对每个 \(n\)，由强 Markov 性，
+\[
+p_n(x,y)=P_x(X_n=y)
+=E_x\left[\mathbf 1_{\{T_y\le n\}}p_{n-T_y}(y,y)\right].
+\]
+于是
+\[
+\sum_{n=0}^{N}p_n(x,y)
+=E_x\left[\sum_{n=0}^{N}\mathbf 1_{\{T_y\le n\}}p_{n-T_y}(y,y)\right]
+\le \sum_{k=0}^{N}p_k(y,y).
+\]
+这证明了 \(L=0\) 情形。一般 \(L>0\) 时，利用 Chapman--Kolmogorov 公式或在第 \(L\) 步条件化：
+\[
+p_n(x,y)=E_x[p_{n-L}(X_L,y)],\qquad n\ge L.
+\]
+因此
+\[
+\sum_{n=L}^{N+L}p_n(x,y)
+=E_x\sum_{k=0}^{N}p_k(X_L,y)
+\le \sum_{k=0}^{N}p_k(y,y),
+\]
+其中最后一步应用刚证的 \(L=0\) 情形。
+
+\item 取正整数 \(m\)。由 Markov 不等式，
+\[
+P(|S_n|\ge \varepsilon n^\alpha)
+\le \varepsilon^{-2m}n^{-2m\alpha}E|S_n|^{2m}.
+\]
+展开 \(S_n^{2m}\)。由于 \(X_i\) 独立且均值为 \(0\)，只有每个指标都至少出现两次的项可能有非零期望。因此非零项个数至多为只依赖 \(m\) 的常数乘以 \(n^m\)，并且每项绝对值不超过 \(1\)。于是
+\[
+E|S_n|^{2m}\le C_m n^m.
+\]
+从而
+\[
+P(|S_n|\ge \varepsilon n^\alpha)
+\le C_{m,\varepsilon} n^{-m(2\alpha-1)}.
+\]
+选取 \(m\) 足够大，使 \(m(2\alpha-1)>1\)，则右端关于 \(n\) 可求和。由 Borel--Cantelli 引理，事件 \(\{|S_n|\ge \varepsilon n^\alpha\}\) 只发生有限次。对有理 \(\varepsilon>0\) 同时取交，得到
+\[
+\frac{S_n}{n^\alpha}\to0
+\]
+几乎处处。
+
+\item 在模 \(2\) 的域 \(\mathbb F_2\) 上，\(\det X_n\) 为奇数等价于矩阵 \(X_n\) 在 \(\mathbb F_2\) 上可逆。矩阵的 \(n\) 行是 \(\mathbb F_2^n\) 中独立均匀的随机向量。第一行非零的概率为
+\[
+1-2^{-n}.
+\]
+若前 \(k\) 行线性无关，则它们张成一个 \(2^k\) 元子空间，第 \(k+1\) 行不落入该子空间的概率为
+\[
+1-\frac{2^k}{2^n}=1-2^{k-n}.
+\]
+因此
+\[
+p_n=\prod_{k=0}^{n-1}(1-2^{k-n})
+=\prod_{j=1}^{n}(1-2^{-j}).
+\]
+无穷乘积
+\[
+\prod_{j=1}^{\infty}(1-2^{-j})
+\]
+收敛到正数，因为 \(\sum_j2^{-j}<\infty\)。故
+\[
+\lim_{n\to\infty}p_n=\prod_{j=1}^{\infty}(1-2^{-j})>0.
+\]
+
+\item 一类标准方法是“重复随机化”或“受限随机化”。具体算法如下。把每位患者的处理前协变量及需要平衡的非线性函数组成向量 \(X_i\)，形成 \(2000\times d\) 的协变量矩阵 \(X\)。令分配向量 \(z\in\{0,1\}^{2000}\)，其中 \(z_i=1\) 表示患者 \(i\) 分到药物 \(A\)，且强制
+\[
+\sum_i z_i=1000.
+\]
+定义两组协变量均值差
+\[
+\Delta(z)=\bar X_A(z)-\bar X_B(z).
+\]
+取一个预先固定的平衡准则，例如
+\[
+M(z)=\Delta(z)^T\widehat\Sigma^{-1}\Delta(z)\le a,
+\]
+其中 \(\widehat\Sigma\) 是协变量均值差在完全随机化下的协方差估计，\(a\) 是预先选定阈值。
+
+算法为：
+\begin{enumerate}[label=\textbf{(\roman*)},leftmargin=2.4em]
+\item 从所有含 \(1000\) 个 \(1\) 和 \(1000\) 个 \(0\) 的分配中均匀随机抽取 \(z\)；
+\item 若 \(M(z)\le a\)，接受该分配并实施实验；
+\item 若 \(M(z)>a\)，丢弃并回到第一步。
+\end{enumerate}
+只要阈值 \(a\) 使可接受集合非空，并且准则关于交换 \(A,B\) 对称，即
+\[
+M(z)=M(1-z),
+\]
+则每个患者接受 \(A\) 与接受 \(B\) 的条件概率仍均为 \(1/2\)。事实上，在完全随机化下 \(Z\) 与 \(1-Z\) 同分布，而接受事件对二者相同，所以在接受条件下 \(Z\) 与 \(1-Z\) 仍同分布。这就保证每位患者接受两种药物的概率都为正，并且通过阈值控制实现多协变量平衡。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 可以。令 \(Z_i\) 为第 \(i\) 个患者接受 \(A\) 的指标，设
+\[
+e_i=P(Z_i=1)
+\]
+是由完全给定的算法所确定的处理概率。题设保证 \(0<e_i<1\)，且这些概率可计算。设潜在结果为 \(Y_i(1),Y_i(0)\)，观测结果为
+\[
+Y_i=Z_iY_i(1)+(1-Z_i)Y_i(0).
+\]
+总体平均因果效应为
+\[
+\tau=\frac1n\sum_{i=1}^n\{Y_i(1)-Y_i(0)\}.
+\]
+Horvitz--Thompson 型估计量
+\[
+\hat\tau
+=\frac1n\sum_{i=1}^n\left(\frac{Z_iY_i}{e_i}
+-\frac{(1-Z_i)Y_i}{1-e_i}\right)
+\]
+无偏，因为
+\[
+E\left(\frac{Z_iY_i}{e_i}\right)=Y_i(1),\qquad
+E\left(\frac{(1-Z_i)Y_i}{1-e_i}\right)=Y_i(0).
+\]
+逐项相减再平均即得 \(E\hat\tau=\tau\)。
+
+\item 可以。考虑尖锐原假设，例如
+\[
+H_0:Y_i(1)=Y_i(0)\quad \text{对所有 }i.
+\]
+在该原假设下，所有未观测潜在结果都可由观测结果填补：\(Y_i(1)=Y_i(0)=Y_i\)。由于分配算法完全给定，我们知道随机分配向量 \(Z\) 的精确分布。任选检验统计量 \(T(Z,Y)\)，例如两组均值差或加权均值差。然后枚举或 Monte Carlo 生成所有可能分配 \(w\)（按算法给出的随机化分布加权），计算
+\[
+T(w,Y)
+\]
+的随机化分布。观测值为 \(T(Z_{\rm obs},Y_{\rm obs})\)，其精确 \(p\)-值为随机化分布中至少同样极端的尾概率。由于该分布完全由随机化机制和尖锐原假设决定，不需要参数模型，因此给出精确小样本非参数推断。
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{2022 年：probability\_and\_statistics\_22s.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2022 年
+
+概率与统计。请解答所有题目。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(\{X_n\}\) 是一列 Gaussian 随机变量。若随机变量 \(X\) 满足 \(X_n\) 依分布收敛到 \(X\)，证明 \(X\) 也是 Gaussian 随机变量；允许退化情形，即方差可以为 \(0\)。
+
+\item 对实线上两个概率测度 \(\mu,\nu\)，定义总变差距离
+\[
+\|\mu-\nu\|_{\rm TV}
+=\sup\{\mu(C)-\nu(C):C\in\mathcal B(\mathbb R)\},
+\]
+其中 \(\mathcal B(\mathbb R)\) 是实线上的 Borel \(\sigma\)-代数。令 \(\mathcal C(\mu,\nu)\) 为 \(\mu,\nu\) 的所有 coupling 所成的集合，即所有 \(\mathbb R^2\)-值随机变量 \((X,Y)\)，其边缘分布分别为 \(\mu,\nu\)。证明
+\[
+\|\mu-\nu\|_{\rm TV}
+=\inf\{P(X\ne Y):(X,Y)\in\mathcal C(\mu,\nu)\}.
+\]
+为简单起见，可假设 \(\mu,\nu\) 关于 Lebesgue 测度绝对连续。
+
+\item 重复独立地掷一枚公平骰子。令 \(\tau_{11}\) 为模式 \(11\)（连续两个 \(1\)）第一次出现的时间，\(\tau_{12}\) 为模式 \(12\)（先 \(1\) 后 \(2\)）第一次出现的时间。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 计算 \(E\tau_{11}\)。
+\item 哪个更大，\(E\tau_{11}\) 还是 \(E\tau_{12}\)？只需给出直观理由；也可直接计算 \(E\tau_{12}\)。
+\end{enumerate}
+
+\item 设 \(\{X_n\}\) 是离散状态空间 \(S\) 上的 Markov 链，转移函数为 \(p(x,y)\)。假设存在状态 \(y_0\in S\) 和正数 \(\theta\)，使得对所有 \(x\in S\)，
+\[
+p(x,y_0)\ge\theta.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明存在常数 \(\lambda<1\)，使得对任意两个初始分布 \(\mu,\nu\)，有
+\[
+\sum_{y\in S}\left|P_\mu(X_1=y)-P_\nu(X_1=y)\right|
+\le \lambda\sum_{y\in S}|\mu(y)-\nu(y)|.
+\]
+\item 证明该 Markov 链有唯一平稳分布 \(\pi\)，并且
+\[
+\sum_{y\in S}\left|P_\mu(X_n=y)-\pi(y)\right|\le 2\lambda^n.
+\]
+\end{enumerate}
+
+\item 考虑含 \(p\) 个预测变量和 \(n\) 个观测的线性回归模型
+\[
+\mathbf Y=X\beta+\mathbf e,
+\]
+其中 \(X_{n\times p}\) 是设计矩阵，\(\beta\) 是未知系数向量，随机误差 \(\mathbf e\sim N(0,\sigma^2I_n)\)，\(\sigma^2>0\) 未知。设 \(\operatorname{rank}(X)=k\le p\)，\(p\) 可大于 \(n\) 也可不大于 \(n\)，并假设 \(n-k>1\)。令 \(\mathbf x_1=(x_{1,1},\ldots,x_{1,p})\) 为 \(X\) 的第一行，并定义
+\[
+\gamma=\frac{\mathbf x_1\beta}{\sigma}.
+\]
+求 \(\gamma\) 的一致最小方差无偏估计（UMVUE），或证明它不存在。
+
+\item 设 \(X_1,\ldots,X_{2022}\) 相互独立，且
+\[
+X_i\sim N(\theta_i,i^2),\qquad 1\le i\le2022.
+\]
+为了估计未知均值向量 \(\theta\in\mathbb R^{2022}\)，考虑损失函数
+\[
+L(\theta,d)=\sum_{i=1}^{2022}\frac{(d_i-\theta_i)^2}{i^2}.
+\]
+证明 \(\mathbf X=(X_1,\ldots,X_{2022})\) 是 \(\theta\) 的 minimax 估计量。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 写
+\[
+X_n\sim N(\mu_n,\sigma_n^2),\qquad \sigma_n^2\ge0.
+\]
+其特征函数为
+\[
+\varphi_n(t)=\exp\left(i\mu_nt-\frac12\sigma_n^2t^2\right).
+\]
+由 \(X_n\Rightarrow X\)，Lévy 连续性定理给 \(\varphi_n(t)\to\varphi(t)\)，其中 \(\varphi\) 是 \(X\) 的特征函数。取模平方得
+\[
+|\varphi_n(t)|^2=e^{-\sigma_n^2t^2}\to |\varphi(t)|^2.
+\]
+在 \(t\) 近 \(0\) 处，\(\varphi(t)\ne0\)，故 \(\sigma_n^2\) 必有有限极限 \(\sigma^2\ge0\)。否则上式无法在两个不同的非零 \(t\) 处同时收敛为连续且在 \(0\) 等于 \(1\) 的函数。于是
+\[
+e^{i\mu_nt}=\varphi_n(t)e^{\sigma_n^2t^2/2}\to \varphi(t)e^{\sigma^2t^2/2}.
+\]
+同样由 \(t\) 近 \(0\) 处的连续性，可推出 \(\mu_n\) 模 \(2\pi/t\) 的振荡不可能发生；更直接地，若取足够小的 \(t_0\ne0\)，则 \(e^{i\mu_nt_0}\) 收敛且其邻域内的差商也收敛，从而 \(\mu_n\) 收敛到某个 \(\mu\)。于是
+\[
+\varphi(t)=\exp\left(i\mu t-\frac12\sigma^2t^2\right),
+\]
+这正是 \(N(\mu,\sigma^2)\) 的特征函数。当 \(\sigma^2=0\) 时为退化 Gaussian。
+
+\item 先证任一 coupling 都给出下界。对任意 Borel 集 \(C\)，
+\[
+\mu(C)-\nu(C)=P(X\in C)-P(Y\in C)
+\le P(X\in C,\ Y\notin C)\le P(X\ne Y).
+\]
+对 \(C\) 取上确界，再对 coupling 取下确界，得
+\[
+\|\mu-\nu\|_{\rm TV}\le \inf P(X\ne Y).
+\]
+
+反向构造 maximal coupling。设 \(\mu,\nu\) 密度分别为 \(f,g\)，令
+\[
+h(x)=\min\{f(x),g(x)\},\qquad a=\int h(x)\,dx.
+\]
+若 \(a=1\)，则 \(\mu=\nu\)，取 \(X=Y\) 即可。若 \(a<1\)，以概率 \(a\) 从密度 \(h/a\) 抽取 \(Z\)，并令 \(X=Y=Z\)；以概率 \(1-a\)，独立抽取
+\[
+X\sim \frac{f-h}{1-a},\qquad Y\sim\frac{g-h}{1-a}.
+\]
+这样得到的 \(X,Y\) 边缘分布分别是 \(\mu,\nu\)，且
+\[
+P(X=Y)=a,\qquad P(X\ne Y)=1-a.
+\]
+另一方面取
+\[
+C=\{x:f(x)>g(x)\},
+\]
+则
+\[
+\mu(C)-\nu(C)=\int_C(f-g)\,dx=\int(f-h)\,dx=1-a.
+\]
+故 \(\|\mu-\nu\|_{\rm TV}=1-a=P(X\ne Y)\)，从而等式成立。
+
+\item 设 \(E_0\) 为还没有连续前缀时等待 \(11\) 的期望，\(E_1\) 为刚掷出一个 \(1\) 后继续等待 \(11\) 的期望。则
+\[
+E_0=1+\frac16E_1+\frac56E_0,
+\]
+因为若下一次不是 \(1\)，状态回到 \(E_0\)；又
+\[
+E_1=1+\frac16\cdot0+\frac56E_0.
+\]
+解得 \(E_0=42\)，即
+\[
+E\tau_{11}=42.
+\]
+
+对 \(12\)，令 \(F_0\) 为无前缀状态，\(F_1\) 为刚看到一个 \(1\) 的状态。则
+\[
+F_0=1+\frac16F_1+\frac56F_0,
+\]
+而在状态 \(F_1\) 下，下一次若为 \(2\) 则完成，若为 \(1\) 仍保持状态 \(F_1\)，若为 \(3,4,5,6\) 则回到 \(F_0\)，所以
+\[
+F_1=1+\frac16\cdot0+\frac16F_1+\frac46F_0.
+\]
+解得 \(F_0=36\)。因此
+\[
+E\tau_{12}=36<E\tau_{11}=42.
+\]
+直观原因是：看到一个 \(1\) 后，若等待 \(12\)，再掷出 \(1\) 并不会完全浪费，它仍可作为新模式的起点；而等待 \(11\) 时，掷出非 \(1\) 会完全重置。
+
+\item 记一步转移算子为 \(P\)。由 \(p(x,y_0)\ge\theta\)，可把每一行写成
+\[
+p(x,\cdot)=\theta\delta_{y_0}+(1-\theta)q(x,\cdot),
+\]
+其中 \(q(x,\cdot)\) 是概率分布。于是对任意两个概率分布 \(\mu,\nu\)，
+\[
+\mu P-\nu P=(1-\theta)(\mu Q-\nu Q).
+\]
+取 \(\ell^1\) 范数并利用 Markov 核不增大总变差距离，得
+\[
+\sum_y|(\mu P)(y)-(\nu P)(y)|
+\le (1-\theta)\sum_y|\mu(y)-\nu(y)|.
+\]
+故可取
+\[
+\lambda=1-\theta<1.
+\]
+
+由上式迭代，
+\[
+\|\mu P^n-\nu P^n\|_1\le \lambda^n\|\mu-\nu\|_1\le2\lambda^n.
+\]
+取任一初始分布 \(\mu\)。序列 \(\mu P^n\) 是 Cauchy 的，因为
+\[
+\|\mu P^{n+m}-\mu P^n\|_1
+\le \sum_{j=n}^{n+m-1}\|\mu P^{j+1}-\mu P^j\|_1
+\le C\sum_{j=n}^{\infty}\lambda^j\to0.
+\]
+故存在极限分布 \(\pi\)。由连续性，\(\pi P=\pi\)，所以 \(\pi\) 平稳。若 \(\pi'\) 也是平稳分布，则
+\[
+\|\pi-\pi'\|_1=\|\pi P^n-\pi'P^n\|_1\le\lambda^n\|\pi-\pi'\|_1\to0,
+\]
+故唯一。再令 \(\nu=\pi\)，得到
+\[
+\sum_y|P_\mu(X_n=y)-\pi(y)|=\|\mu P^n-\pi P^n\|_1\le2\lambda^n.
+\]
+
+\item 令 \(\nu=n-k\)。设 \(\hat\beta\) 为任一最小二乘解，\(\hat\theta=\mathbf x_1\hat\beta\)。因为 \(\mathbf x_1\) 是设计矩阵的一行，\(\theta=\mathbf x_1\beta\) 是可估函数，且
+\[
+\hat\theta\sim N(\theta,\sigma^2 h)
+\]
+其中 \(h=\mathbf x_1(X^TX)^-\mathbf x_1^T\)，并且 \(\hat\theta\) 与残差平方和
+\[
+R=\|Y-X\hat\beta\|^2
+\]
+独立，且
+\[
+\frac{R}{\sigma^2}\sim\chi^2_\nu.
+\]
+令
+\[
+\hat\sigma=\sqrt{\frac{R}{\nu}}.
+\]
+由于 \(\nu>1\)，
+\[
+E\left(\frac1{\hat\sigma}\right)
+=\frac1{\sigma}\sqrt{\frac{\nu}{2}}\,
+\frac{\Gamma((\nu-1)/2)}{\Gamma(\nu/2)}
+=\frac{c_\nu}{\sigma},
+\]
+其中
+\[
+c_\nu=\sqrt{\frac{\nu}{2}}\,
+\frac{\Gamma((\nu-1)/2)}{\Gamma(\nu/2)}.
+\]
+由独立性，
+\[
+E\left(\frac{\hat\theta}{c_\nu\hat\sigma}\right)
+=\frac{\theta}{\sigma}=\gamma.
+\]
+因此
+\[
+\hat\gamma=\frac{\mathbf x_1\hat\beta}{c_\nu\hat\sigma}
+\]
+是无偏估计。它是充分统计量 \((X^TY,R)\) 的函数，并且由 Rao--Blackwell 化可知任一无偏估计条件于该充分统计量后方差不增。标准正态线性模型中关于可估函数与尺度参数的 UMVU 估计正由上述条件化得到；因此 \(\hat\gamma\) 为 \(\gamma\) 的 UMVUE。
+
+\item 对估计量 \(\delta(X)=X\)，风险为
+\[
+R(\theta,\delta)=E_\theta\sum_{i=1}^{2022}\frac{(X_i-\theta_i)^2}{i^2}
+=\sum_{i=1}^{2022}\frac{i^2}{i^2}=2022.
+\]
+故其最大风险为 \(2022\)。
+
+为证 minimax，只需证明任一估计量最大风险至少为 \(2022\)。取先验
+\[
+\theta_i\stackrel{\rm ind}{\sim}N(0,\tau^2),\qquad i=1,\ldots,2022.
+\]
+在该先验下，Bayes 估计为后验均值。对每个坐标，一维模型为
+\[
+X_i\mid\theta_i\sim N(\theta_i,i^2),\qquad \theta_i\sim N(0,\tau^2).
+\]
+后验方差为
+\[
+\left(\frac1{\tau^2}+\frac1{i^2}\right)^{-1}
+=\frac{\tau^2 i^2}{\tau^2+i^2}.
+\]
+该坐标在加权损失下的 Bayes 风险为
+\[
+\frac1{i^2}\cdot \frac{\tau^2 i^2}{\tau^2+i^2}
+=\frac{\tau^2}{\tau^2+i^2}.
+\]
+总 Bayes 风险为
+\[
+B_\tau=\sum_{i=1}^{2022}\frac{\tau^2}{\tau^2+i^2}.
+\]
+当 \(\tau\to\infty\) 时，
+\[
+B_\tau\to2022.
+\]
+任一估计量的最大风险不小于任一先验下的 Bayes 风险，因此其最大风险至少为 \(\lim_{\tau\to\infty}B_\tau=2022\)。而 \(\delta(X)=X\) 的最大风险正为 \(2022\)，所以它是 minimax 估计量。
+\end{enumerate}
+
+
+\subsection{2023 年：probability\_statistics.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2023 年
+
+概率与统计。请解答所有题目。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 若 \(G_0\) 是 \(\mathbb R\) 上的概率分布，且序列 \((X_1,X_2,\ldots)\) 满足：
+\[
+X_1\sim G_0,
+\]
+并且在给定 \(X_1,\ldots,X_n\) 时，\(X_{n+1}\) 的条件分布为
+\[
+\frac{\alpha_0G_0+\sum_{i=1}^n\delta_{X_i}}{\alpha_0+n},
+\]
+其中 \(\alpha_0>0\) 为浓度参数，\(\delta_x\) 是在单点 \(\{x\}\) 处取概率 \(1\) 的 Dirac 测度，则称 \((X_1,X_2,\ldots)\) 为基分布 \(G_0\)、浓度参数 \(\alpha_0\) 的 Dirichlet 过程序列。假设 \(G_0\) 有有限一阶矩和二阶矩。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 求 \(X_n\) 的分布，\(n\ge1\)。
+\item 令 \(Y_n=I(X_n>0)\)。证明或否定：\((Y_n)_{n\ge1}\) 仍构成 Dirichlet 过程序列。若构成，请确定其浓度参数和基分布。
+\end{enumerate}
+
+\item 设 \(X,Y\) 是概率空间 \((\Omega,\mathcal F,P)\) 上的非负随机变量。设 \(H(x,y)\) 是 \([0,\infty)^2\) 上的函数，且
+\[
+E|H(X,Y)|<\infty.
+\]
+定义
+\[
+\phi(u)=\frac{u}{1+u},\qquad u\ge0.
+\]
+对整数 \(n=0,1,2,\ldots\)，令 \(U_n\) 为由 \(\phi(X)\) 的 \(2^n\) 个二进制小区间划分所生成的随机变量，即记录 \(\phi(X)\) 落入哪个区间
+\[
+\left[\frac{j-1}{2^n},\frac{j}{2^n}\right),\qquad j=1,\ldots,2^n,
+\]
+并令
+\[
+V_n=E[H(X,Y)\mid U_n].
+\]
+证明或否定：存在随机变量 \(Z\)，使得当 \(n\to\infty\) 时 \(V_n\) 几乎处处收敛到 \(Z\)。若存在，请给出 \(Z\) 的表达式（按几乎处处意义）。
+
+\item 设 \(X_1,X_2,\ldots,X_n\) 是独立同分布随机变量列，均服从 \((0,1)\) 上的均匀分布。定义事件
+\[
+A_n=\{X_n=\max(X_1,\ldots,X_n)\},
+\]
+并令
+\[
+R_n=\sum_{k=1}^n I(A_k).
+\]
+设 \((m_n)\) 是正数列且 \(m_n\to\infty\)。计算极限
+\[
+\lim_{n\to\infty}P\left(|R_n-\log n|>m_n\sqrt{\log n}\right).
+\]
+
+\item 记 \(\mathcal B\) 为实线 \(\mathbb R\) 上的 Borel \(\sigma\)-域，设 \((\Omega,\mathcal F)\) 为可测空间。给定映射 \(Q(t,A)\)，其中 \(t\in\mathbb R,\ A\in\mathcal F\)，满足对每个 \(t\)，\(Q(t,\cdot)\) 是 \((\Omega,\mathcal F)\) 上的概率测度；对每个 \(A\)，\(Q(\cdot,A)\) 是 Borel 函数。设 \(\Pi\) 是 \((\mathbb R,\mathcal B)\) 上的概率测度，\(P\) 是 \((\Omega,\mathcal F)\) 上的概率测度，\(T\) 是 \((\Omega,\mathcal F,P)\) 上的随机变量。假设
+\[
+\Pi=P\circ T^{-1},
+\]
+并且对 \(A\in\mathcal F\)，
+\[
+P(A)=\int_{\mathbb R}Q(t,A)\,\Pi(dt).
+\]
+证明或否定如下命题：对任意 \(A\in\mathcal F\)，
+\[
+P(A\mid T)=Q(T,A)\quad \text{a.s.}
+\]
+
+\item 四位统计学家 I、II、III、IV 进行一系列比赛。每场比赛中，I、II、III、IV 获胜的概率分别为
+\[
+\frac{1-\theta}{2},\quad \frac{1-\theta}{2},\quad \frac{\theta}{2},\quad \frac{\theta}{2},
+\]
+其中 \(0<\theta<1\)。每场只有一名胜者，没有平局，并假设各场结果相互独立。固定整数 \(r\ge2\)。停止规则为：一旦下列条件之一满足即停止：
+\[
+\text{I 与 II 合计赢得 } r \text{ 场；}
+\]
+或
+\[
+\text{III 与 IV 合计赢得 } r+1 \text{ 场。}
+\]
+停止时，令 \(X_1,X_2,X_3,X_4\) 分别表示 I、II、III、IV 赢得的场数。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明或否定统计量
+\[
+T=(X_1+X_2,\ X_3+X_4)
+\]
+是完备的。
+\item 求 \(\theta\) 的一致最小方差无偏估计。
+\end{enumerate}
+
+\item 某系统包含三个随机变量 \(X,Y,S\)。其中 \(S\) 服从均值为 \(2\lambda\) 的 Poisson 分布，\(\lambda>0\)；在给定 \(S=s\) 时，\(X,Y\) 条件独立且均为 Bernoulli 变量，并满足
+\[
+P(X=1\mid S=s)=2^{-(s+1)},\qquad
+P(Y=1\mid S=s)=\theta\,2^{-s},
+\]
+其中 \(\theta\in(0,1)\) 是第二个参数。随机变量 \(S\) 不可观测。现在有 \(n\) 个 \((X,Y)\) 的独立同分布样本 \((X_i,Y_i)\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 一个直观估计量为
+\[
+\hat\theta_n=\frac{\bar Y_n}{2\bar X_n},
+\qquad
+\bar X_n=\frac1n\sum_{i=1}^nX_i,\quad
+\bar Y_n=\frac1n\sum_{i=1}^nY_i.
+\]
+推导其渐近分布。
+\item 考虑假设检验
+\[
+H_0:\theta=\frac12\qquad \text{对}\qquad H_1:\theta\ne\frac12.
+\]
+构造一个精确检验统计量。当 \(\theta\) 偏离 \(1/2\) 时，请描述你能想到的所有导致检验功效增大的来源。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 由 Pólya urn 表示，任意 \(n\) 的边缘分布均为 \(G_0\)，归纳即可：若 \(X_1,\ldots,X_n\) 的交换分布以 \(G_0\) 为基，则
+\[
+P(X_{n+1}\in A)=\frac{\alpha_0G_0(A)+\sum_{i=1}^nP(X_i\in A)}{\alpha_0+n}=G_0(A).
+\]
+令 \(Y_n=\mathbf1_{\{X_n>0\}}\)。条件于历史，\(Y_{n+1}=1\) 的概率为
+\[
+\frac{\alpha_0G_0((0,\infty))+\sum_{i=1}^nY_i}{\alpha_0+n}.
+\]
+故 \((Y_n)\) 仍是 Dirichlet/Pólya 序列，浓度参数 \(\alpha_0\)，基分布为 Bernoulli\((G_0((0,\infty)))\)。
+
+\item \(U_n\) 是由 \(\phi(X)=X/(1+X)\) 的二进制划分生成的有限 \(\sigma\)-代数，且随 \(n\) 递增。令
+\[
+\mathcal G_\infty=\sigma(\phi(X))=\sigma(X)
+\]
+（因 \(\phi\) 在 \([0,\infty)\) 上一一对应）。Doob 鞅收敛定理给出
+\[
+V_n=E[H(X,Y)\mid U_n]\to E[H(X,Y)\mid X]\quad a.s.
+\]
+故 \(Z=E[H(X,Y)\mid X]\)。
+
+\item 记录指示 \(I_k=\mathbf1_{A_k}\) 相互独立且 \(P(I_k=1)=1/k\)。因此
+\[
+E R_n=H_n=\log n+O(1),\quad \operatorname{Var}R_n=H_n-\sum_{k\le n}k^{-2}\sim\log n.
+\]
+由 Chebyshev，
+\[
+P(|R_n-\log n|>m_n\sqrt{\log n})\le \frac{1+o(1)}{m_n^2}\to0.
+\]
+
+\item 该命题一般为假。题设只说明 \(Q\) 是 \(P\) 关于 \(T\) 的一个分解核，并未要求 \(Q(t,\cdot)\) 集中在 \(\{T=t\}\)。例如取 \(\Omega=\{0,1\}\)、\(T(\omega)=\omega\)、\(\nu=P\circ T^{-1}\)，令 \(Q(t,\cdot)=P(\cdot)\)，则积分仍为 \(P\)，但 \(Q(T,\{T=1\})=P(T=1)\ne\mathbf1_{\{T=1\}}\)。
+
+\item 设 \(A=X_1+X_2\)、\(B=X_3+X_4\)。停止时 \((A,B)\) 只可能为 \((r,b)\) 或 \((a,r+1)\)，其中 \(0\le b\le r\)、\(0\le a\le r-1\)。其概率族是截断负二项形式，关于 \(\theta\) 是有限阶多项式，不完备：可构造在两个终止边界上加权和恒为零的非零函数。UMVU 用 Rao--Blackwell：先取任一无偏估计，例如单局第三、四人胜利指示的平均，再条件化于 \(T=(A,B)\)。
+
+\item 条件于 \(S=s\)，有 \(E X=E[2^{-(S+1)}]\)、\(EY=\theta E[2^{-S}]\)。若 \(S\sim\operatorname{Poisson}(2\lambda)\)，则
+\[
+E2^{-S}=\exp(-\lambda),\qquad E X=\frac12e^{-\lambda},\quad EY=\theta e^{-\lambda}.
+\]
+故 \(\hat\theta=\bar Y/(2\bar X)\) 一致。多元 CLT 与 delta 方法给
+\[
+\sqrt n(\hat\theta-\theta)\Rightarrow N(0,\nabla g^T\Sigma\nabla g),
+\quad g(x,y)=y/(2x),
+\]
+其中 \(\Sigma\) 是 \((X,Y)\) 的协方差矩阵。精确检验可条件于观测到的 \((X_i,Y_i)\) 中足以消去 \(\lambda\) 的计数，使用二项型条件分布构造。
+\end{enumerate}
+
+\subsection{2024 年：2024 statistics.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2024 年
+
+概率与统计。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 有 \(r\) 名玩家，玩家 \(i\) 初始拥有 \(n_i\) 个单位，\(n_i>0\)，\(i=1,\ldots,r\)。每一阶段选出两名玩家进行一场游戏，胜者从败者处获得 \(1\) 个单位。任何财富降为 \(0\) 的玩家被淘汰；过程持续到某一名玩家拥有全部
+\[
+n=\sum_{i=1}^r n_i
+\]
+个单位，该玩家即为胜者。注意：每阶段选择哪两名玩家的机制未知，可以是确定性的，也可以是随机的。假设各场游戏结果相互独立，并且每场游戏的两名玩家胜率相同。对任意玩家集合 \(S\subseteq\{1,\ldots,r\}\)，令 \(X(S)\) 表示只涉及 \(S\) 中成员的比赛场数。问 \(E[X(S)]\) 是否依赖于玩家选择机制？若认为不依赖，请计算该期望；若认为依赖，请给出两个导致不同期望的机制。
+
+\item 设 \(X_1,X_2,\ldots\) 为独立 Bernoulli 型随机变量，满足
+\[
+P(X_i=1)=p,\qquad P(X_i=-1)=q=1-p,
+\]
+其中 \(p\in(0,1)\)。令
+\[
+S_n=X_1+\cdots+X_n,\qquad M=\sup_{n\ge1}\frac{S_n}{n}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 计算 \(P(M=0)\)。
+\item 证明
+\[
+P(p-q<M\le1)=1.
+\]
+对任意有理数 \(x\in(p-q,1]\)，是否有 \(P(M=x)>0\)？若有，请证明；若没有，请找出一个概率为 \(0\) 的点。
+\end{enumerate}
+
+\item 设 \(X\sim U[0,1]\)，令 \(N_{m,k}\) 为 \(X^k\) 的小数点右侧第 \(m\) 位数字。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对 \(i=0,1,\ldots,9\)，求
+\[
+\lim_{m\to\infty}P(N_{m,m}=i).
+\]
+\item 设 \(k(m)>1\)。求 \(k(m)\) 的充要条件，使得对 \(i=0,1,\ldots,9\)，
+\[
+\lim_{m\to\infty}P(N_{m,k(m)}=i)=\frac1{10}.
+\]
+\end{enumerate}
+
+\item 假设有 \(n\) 个观测 \((Y_i,x_i)\)，\(i=1,\ldots,n\)，其中 \(Y_i\) 是随机响应，\(x_i=(x_{i1},\ldots,x_{ip})^T\) 是第 \(i\) 个观测的 \(p\) 维固定协变量。记
+\[
+\beta=(\beta_1,\ldots,\beta_p)
+\]
+为未知回归系数向量，并令
+\[
+\theta_i=\sum_{j=1}^p x_{ij}\beta_j,\qquad
+\mu_i=E(Y_i),\qquad \sigma_i^2=\operatorname{Var}(Y_i).
+\]
+假设 \(Y_i\) 的密度属于指数族
+\[
+f(y_i;\theta_i)=\exp\{\theta_i y_i-b(\theta_i)\},
+\]
+其中
+\[
+b'(\theta_i)=\mu_i,\qquad b''(\theta_i)=\sigma_i^2.
+\]
+设所有 \(\theta_i\) 都包含在参数空间 \(\Theta\) 的某个紧子集中。令 \(\ell_n(\beta)\) 为数据的对数似然，令
+\[
+H_n(\beta)=-\frac{\partial^2}{\partial\beta\partial\beta^T}\ell_n(\beta).
+\]
+
+令 \(\mathcal X\) 为所有 \(p\) 个候选协变量集合，\(\alpha_0\subset\mathcal X\) 为恰好包含所有影响 \(Y\) 的重要协变量的子集（对应 \(\beta_j\ne0\)）。设 \(\alpha\) 为 \(\mathcal X\) 的任一子集，\(\beta(\alpha)\) 为 \(\beta\) 中对应于 \(\alpha\) 的分量。令
+\[
+\mathcal A=\{\alpha:\alpha_0\subset \alpha\}
+\]
+为所有包含全部重要协变量的模型集合。假设：
+\begin{enumerate}[label=\textbf{(\Roman*)},leftmargin=2.4em]
+\item 存在正常数 \(C_1,C_2\)，使得当 \(n\) 充分大时，
+\[
+C_1<\lambda_{\min}\{n^{-1}H_n(\beta)\}
+\le \lambda_{\max}\{n^{-1}H_n(\beta)\}<C_2.
+\]
+\item 对任意给定 \(\varepsilon>0\)，存在 \(\delta>0\)，使得当 \(n\) 充分大时，对所有 \(\alpha\in\mathcal A\) 以及满足
+\[
+\|\widetilde\beta-\beta(\alpha)\|\le\delta
+\]
+的 \(\widetilde\beta\)，都有矩阵不等式
+\[
+(1-\varepsilon)H_n(\beta(\alpha))
+\le H_n(\widetilde\beta)
+\le (1+\varepsilon)H_n(\beta(\alpha)).
+\]
+\end{enumerate}
+对任意模型 \(\alpha\)，令 \(\hat\beta_\alpha\) 为该模型下 \(\beta(\alpha)\) 的 MLE。证明
+\[
+\max_{\alpha\in\mathcal A}\|\hat\beta_\alpha-\beta(\alpha)\|
+=O_p(n^{-1/3}).
+\]
+
+\item 考虑大小为 \(n\) 的随机样本，并把数据写成 \(r=r_n\) 行、\(c=c_n\) 列的矩阵
+\[
+\{X_{ij}:i=1,\ldots,r_n;\ j=1,\ldots,c_n\},
+\]
+其中 \(n=r_nc_n\)。设 \(\{X_{ij}\}\) 独立同分布，分布函数为 \(F(x)\)，连续密度为 \(f(x)\)。令 \(\beta\) 表示中位数，即 \(F(\beta)=0.5\)。定义估计量
+\[
+\hat\beta_n=\min_j\max_i X_{ij}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 当 \(n\to\infty\) 时，\(r_n\) 应满足什么条件才能使该估计量中位无偏，即 \(\beta\) 也是 \(\hat\beta_n\) 分布的中位数？
+\item 进一步假设 \(F\) 在 \(\beta\) 的开邻域内可微，并且 \(f(\beta)>0\)。在 (a) 的 \(r_n\) 条件下，证明 \(r_n(\hat\beta_n-\beta)\) 依分布收敛，并求极限分布函数。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 对任意玩家集合 \(S\)，只看集合内总财富 \(W_S\)。只有 \(S\) 与 \(S^c\) 之间的比赛会改变 \(W_S\)，而仅在 \(S\) 内部的比赛数 \(X(S)\) 可由所有玩家个人财富平方的鞅补偿项表示。每场 \(S\) 内部比赛使 \(\sum_{i\in S}N_i^2\) 的条件期望增加 \(2\)，跨边界比赛只改变线性项。停止时用 optional stopping 得
+\[
+E X(S)=\frac12\left(E\sum_{i\in S}N_i(\tau)^2-\sum_{i\in S}n_i^2\right)
+\]
+并由公平赌局 \(P(i\text{最终胜})=n_i/n\) 算出终值，所以不依赖选择机制。
+
+\item \(S_n/n\to p-q\) a.s.，故 \(M>p-q\) a.s. 且 \(M\le1\)。事件 \(M=0\) 等价于随机游走从不越过 \(0\)，由一维带漂移随机游走的首达概率可得 \(P(M=0)=1-(p/q)^0\) 在相应漂移情形下的标准公式；当 \(p\ge q\) 时为 \(0\)。有理 \(x\in(p-q,1]\) 若可由某个有限前缀达到且之后不再超过，则概率为正；否则为零。
+
+\item \(X^m\) 的密度为 \(m^{-1}y^{1/m-1}\)。第 \(m\) 位数字由 \(\{10^mX^m\}\) 决定。若 \(m\to\infty\)，该密度在对数尺度上趋向 Benford 型而非均匀，逐段积分得到极限。一般 \(k(m)\) 时，充要条件是 \(k(m)/10^m\to0\)，此时每个十进制小区间上的密度变化趋零，数字极限为 \(1/10\)。
+
+\item 记得分 \(U_\alpha(\beta)=\partial \ell_\alpha(\beta)/\partial\beta\)。在真参数 \(\beta(\alpha)\) 处，\(E U_\alpha=0\)，且
+\[
+\|U_\alpha(\beta(\alpha))\|=O_p(\sqrt n)
+\]
+一致于所有 \(\alpha\in A\)。Taylor 展开
+\[
+0=U_\alpha(\hat\beta_\alpha)=U_\alpha(\beta(\alpha))-H_\alpha(\tilde\beta)(\hat\beta_\alpha-\beta(\alpha)).
+\]
+由假设 (I)(II)，\(H_\alpha(\tilde\beta)\) 的最小特征值为 \(cn\)。故
+\[
+\|\hat\beta_\alpha-\beta(\alpha)\|\le Cn^{-1}\|U_\alpha(\beta(\alpha))\|=O_p(n^{-1/2}).
+\]
+从而更弱的 \(O_p(n^{-1/3})\) 一致成立。
+
+\item 每列最大值 \(M_j\) 的分布为 \(P(M_j\le x)=F(x)^{r_n}\)，估计量为 \(\min_jM_j\)，故
+\[
+P(\hat\beta_n>\beta)=\{1-F(\beta)^{r_n}\}^{c_n}=(1-2^{-r_n})^{c_n}.
+\]
+中位无偏要求该值趋于 \(1/2\)，即 \(c_n2^{-r_n}\to\log2\)。在此条件下，令 \(x=\beta+t/r_n\)，用 \(F(\beta+t/r_n)=1/2+f(\beta)t/r_n+o(1/r_n)\) 代入上式，得到极值型极限分布。
+\end{enumerate}
+
+\subsection{2025 年：statistics.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2025 年
+
+概率与统计，共 4 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 考虑单个观测
+\[
+X\sim N(\mu,\sigma^2),
+\]
+其中 \(\mu,\sigma^2\) 都未知。我们希望构造 \(\mu\) 的置信区间。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.4em]
+\item 考虑如下置信区间：
+\[
+CI(X;c_1,c_2)=
+\begin{cases}
+c_1X\le \mu\le c_2X,& X>0,\\
+c_2X\le \mu\le c_1X,& X<0.
+\end{cases}
+\]
+求该置信区间的覆盖概率。
+\item 设 \(F(x;b_1,b_2)\) 是关于 \(x\) 可测、并在 \(b_1<b_2\) 上给出分布函数的函数，它生成一个随机置信区间，其上下端点 \(b_1<b_2\) 是具有分布函数 \(F(x;b_1,b_2)\) 的随机变量。证明存在一个由分布函数 \(G(c_1,c_2)\) 给出的随机置信区间，即随机选择形如 \(CI(x;c_1,c_2)\) 的区间，其中 \((C_1,C_2)\sim G\)，并满足如下 minimax 性质：
+\[
+\inf_{\mu,\sigma}E_{\mu,\sigma}P_G\{\mu\in CI(X;c_1,c_2)\}
+\ge
+\sup_F\inf_{\mu,\sigma}E_{\mu,\sigma}P_F\{\mu\in(b_1,b_2)\},
+\]
+且
+\[
+E_{\mu,\sigma}E_G[(c_2-c_1)|X|]
+=E_{\mu,\sigma}E_F[(b_2-b_1)].
+\]
+\end{enumerate}
+
+\item 考虑随机变量对 \((X,Y)\) 的联合分布，并令 \(P_1,P_2\) 分别为 \(X,Y\) 在实线上的边缘分布。设 \(p_1(x),p_2(y)\) 是它们关于某个控制测度 \(\mu\) 的密度。令 \(\nu(\cdot)\) 为任意函数，使得 \(\nu(X)\)、\(\nu(Y)\) 无界，但在 \(P_1,P_2\) 下的期望
+\[
+E_1\nu(X),\qquad E_2\nu(Y)
+\]
+都有限。假设单个观测 \(r\) 以概率 \(1/2\) 来自总体 1，以概率 \(1/2\) 来自总体 2。问题是基于单个观测 \(r\)，选择期望较大的总体。考虑由函数
+\[
+\phi:\mathbb R\to[0,1]
+\]
+给出的随机决策规则，其中 \(\phi(r)\) 是观察到 \(r\) 后选择总体 1 的概率。假设 \(\phi(r)\) 是一一函数。给定任意决策函数 \(\phi(r)\)，对任意两个关于 Lebesgue 测度的密度 \(p_1,p_2\)，若
+\[
+E_1\nu(X)>E_2\nu(Y),
+\]
+正确选择总体 1 的概率是否总至少为 \(1/2\)？若是，请证明；若不是，请对任意给定 \(\phi\) 构造 \(p_1,p_2\)，使得 \(E_1\nu(X)>E_2\nu(Y)\)，但正确选择总体 1 的概率小于 \(1/2\)。
+
+\item 设 \(n\ge2\) 为自然数。证明存在独立随机变量
+\[
+X_1,X_2,\ldots,X_n=X_0,
+\]
+使得对所有 \(1\le k\le n\)，
+\[
+P(X_{k-1}<X_k)=1-\frac{1}{4\cos^2\frac{\pi}{n+2}}.
+\]
+
+\item 考虑含 \(p\) 个 cell、每个 cell 有 \(n/p\) 个观测的一元 ANOVA：
+\[
+Y_{ij}=\beta_j+R_{ij},\qquad i=1,\ldots,n/p,\quad j=1,\ldots,p,
+\]
+其中 \(\{R_{ij}\}\) 独立同分布。假设真值 \(\beta_j=0\)。令 \(\psi\) 为给定函数，\(\hat\beta_j\) 表示方程
+\[
+0=\sum_{i=1}^{n/p}\psi(Y_{ij}-\hat\beta_j)
+\]
+的解。设 \(\psi\) 有界，且 \(\psi'\) 在 \(0\) 附近有界并连续。假设
+\[
+E\psi(R)=0,\qquad E\psi'(R)=d\ne0,
+\]
+并且
+\[
+\frac{p\log p}{n}\to0.
+\]
+证明存在方程的一组解 \(\{\hat\beta_j\}\) 以及常数 \(B>0\)，使得
+\[
+P\left(\max_j|\hat\beta_j|\ge
+B\sqrt{\frac{p\log n}{n}}\right)
+\le \frac{2p}{n}\to0.
+\]
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 第一题的非随机区间覆盖概率只依赖 \(\lambda=\mu/\sigma\)。当 \(X>0\) 时要求 \(c_1X\le\mu\le c_2X\)，化为对 \(Z=(X-\mu)/\sigma\) 的区间约束；当 \(X<0\) 类似。故覆盖率为若干正态分布函数差的组合，并对 \(\lambda\) 取下确界可得 minimax 覆盖。
+\item 随机区间 minimax 结论可用不变性和完备类定理：位置尺度群作用下，任何程序平均化为只依赖 \(X\) 的比例区间 \(CI(X;c_1,c_2)\)，平均化不增加期望长度且不降低最小覆盖率。
+\item 两总体选择问题中，最优随机规则为选择后验期望较大的总体。观测密度为混合 \((p_1+p_2)/2\)，给定 \(r\) 来自总体 1 的后验概率为 \(p_1(r)/(p_1(r)+p_2(r))\)。比较条件风险得到阈值规则，按 \(\nu\) 的期望差写出成功概率。
+\end{enumerate}
+
+\subsection{2026 年：2026 statistics.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2026 年
+
+概率与统计，共 6 题。
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item Copula 是边缘分布为 \([0,1]\) 上均匀分布的多元分布函数。由 Sklar 定理，任意联合分布都可分解为各边缘分布和一个刻画变量间依赖结构的 copula。也就是说，若随机变量 \(U,V\) 的边缘分布函数分别为 \(F_U,F_V\)，则其联合分布函数可写为
+\[
+H(u,v)=C\{F_U(u),F_V(v)\}
+\]
+其中 \(C\) 是某个 copula。Copula 参数 \(\rho\) 描述依赖强度和形状，且独立于边缘分布。
+
+设 \(Y_a\in\{0,1,\ldots,L-1\}\) 是处理组 \(a\in\{0,1\}\) 中观测到的有序结果。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 定义
+\[
+\psi=P(Y_1>Y_0)
+\]
+为处理组结果超过对照组结果的概率。假设联合分布函数满足
+\[
+P(Y_1\le k,\ Y_0\le j)=C\{F_1(k),F_0(j)\},
+\]
+并约定 \(F_a(-1)=0\)，其中 \(C\) 是预先给定的 copula。请用 \(C,F_1,F_0\) 给出 \(\psi\) 的闭式表达式。
+\item 假设 \(Y_a\) 来自潜在连续变量 \(Y_a^\ast\) 的阈值模型
+\[
+Y_a^\ast=\mu_a+\varepsilon_a,\qquad
+Y_a=\ell \Longleftrightarrow \tau_{\ell-1}<Y_a^\ast\le \tau_\ell,
+\]
+其中阈值共享：
+\[
+-\infty=\tau_{-1}<\tau_0<\cdots<\tau_{L-2}<\tau_{L-1}=+\infty,
+\]
+且 \(\mu_a\) 为组 \(a\) 的常数。又假设潜在残差的联合分布满足
+\[
+P(\varepsilon_1\le e_1,\varepsilon_0\le e_0)
+=C\{F_{\varepsilon_1}(e_1),F_{\varepsilon_0}(e_0)\},
+\]
+其中 \(C\) 是预先给定的 copula，\(F_{\varepsilon_a}(e)=P(\varepsilon_a\le e)\)。证明这推出
+\[
+P(Y_1\le k,\ Y_0\le j)=C\{F_1(k),F_0(j)\}.
+\]
+\end{enumerate}
+
+\item 考虑分块线性回归模型
+\[
+Y=X_1\beta_1+X_2\beta_2+\varepsilon,
+\]
+其中 \(Y\in\mathbb R^n\)，\(X_1\in\mathbb R^{n\times k_1}\)，\(X_2\in\mathbb R^{n\times k_2}\)，\(k_1,k_2\ge1\)，并且 \([X_1\ X_2]\) 列满秩。定义 annihilator 矩阵
+\[
+M_1=I_n-X_1(X_1^TX_1)^{-1}X_1^T,
+\]
+它投影到 \(X_1\) 列空间的正交补。回忆：一般回归 \(\widetilde Y\) 对满列秩设计矩阵 \(\widetilde X\) 的 OLS 估计为
+\[
+\hat\beta=(\widetilde X^T\widetilde X)^{-1}\widetilde X^T\widetilde Y.
+\]
+证明：在完整回归 \(Y\) 对 \([X_1\ X_2]\) 中得到的 \(\hat\beta_2\)，等于把 \(M_1Y\) 对 \(M_1X_2\) 回归得到的 OLS 估计。
+
+\item 令 \(\varphi,\Phi\) 分别为标准正态密度函数和分布函数，且 \(a>0\) 为常数。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明
+\[
+f(x)=2\varphi(x)\Phi(ax)
+\]
+是某个随机变量 \(Y\) 的密度。
+\item 计算 \(E(Y)\)。
+\end{enumerate}
+
+\item 设 \(\{B_t,t\ge0\}\) 是标准 Brownian motion。对 \(a>0\)，定义首次离开区间 \((-a,a)\) 的时间
+\[
+\tau_a=\inf\{t\ge0:|B_t|=a\}.
+\]
+计算 \(E[\tau_a^2]\)。
+
+\item 设 \(X_1,X_2,\ldots\) 独立同分布。假设对某个整数 \(n\ge2\)，存在常数 \(a>0\)、\(b\in\mathbb R\)，使得
+\[
+X_1+\cdots+X_n\stackrel d= aX_1+b. \tag{U1}
+\]
+令
+\[
+\alpha=\frac{\log n}{\log a}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明：在 \(\alpha=1\) 且 \(b=0\) 的情形下，\(X_1\) 的特征函数为
+\[
+\phi(t)=\exp\{i\mu t-\gamma |t|\}.
+\]
+\item 若额外假设 \(E|X_1|<\infty\)，证明除退化情形外，不可能同时满足 \((U1)\) 与 \(\alpha\le1\)。
+\end{enumerate}
+
+\item 设 \(\xi,\eta\) 独立。若和
+\[
+S=\xi+\eta
+\]
+与差
+\[
+D=\xi-\eta
+\]
+也独立，证明 \(\xi,\eta\) 必服从正态分布。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 事件 \(\{Y_1>Y_0\}\) 可按 \(Y_0=j\) 分解：
+\[
+\psi=\sum_{j=0}^{L-1}P(Y_1>j,\ Y_0=j).
+\]
+又
+\[
+P(Y_0=j)=F_0(j)-F_0(j-1),
+\]
+且
+\[
+P(Y_1\le j,\ Y_0=j)
+=P(Y_1\le j,\ Y_0\le j)-P(Y_1\le j,\ Y_0\le j-1).
+\]
+由 copula 表示，
+\[
+P(Y_1\le j,\ Y_0=j)
+=C\{F_1(j),F_0(j)\}-C\{F_1(j),F_0(j-1)\}.
+\]
+因此
+\[
+\boxed{\;
+\psi=\sum_{j=0}^{L-1}
+\Bigl[F_0(j)-F_0(j-1)
+-C\{F_1(j),F_0(j)\}
++C\{F_1(j),F_0(j-1)\}\Bigr].
+\;}
+\]
+等价地，也可写为
+\[
+\psi=\sum_{\ell>j}
+P(Y_1=\ell,Y_0=j),
+\]
+其中每个格点概率由二维分布函数的四项差给出：
+\[
+P(Y_1=\ell,Y_0=j)
+=C(F_1(\ell),F_0(j))-C(F_1(\ell-1),F_0(j))
+-C(F_1(\ell),F_0(j-1))+C(F_1(\ell-1),F_0(j-1)).
+\]
+
+\item 对任意 \(k,j\)，由阈值模型，
+\[
+\{Y_1\le k\}=\{Y_1^\ast\le\tau_k\}
+=\{\varepsilon_1\le \tau_k-\mu_1\},
+\]
+同理
+\[
+\{Y_0\le j\}=\{\varepsilon_0\le \tau_j-\mu_0\}.
+\]
+因此
+\[
+P(Y_1\le k,Y_0\le j)
+=P(\varepsilon_1\le\tau_k-\mu_1,\varepsilon_0\le\tau_j-\mu_0).
+\]
+由潜在残差的 copula 假设，上式等于
+\[
+C\{F_{\varepsilon_1}(\tau_k-\mu_1),
+F_{\varepsilon_0}(\tau_j-\mu_0)\}.
+\]
+而
+\[
+F_a(k)=P(Y_a\le k)
+=P(\varepsilon_a\le\tau_k-\mu_a)
+=F_{\varepsilon_a}(\tau_k-\mu_a).
+\]
+代入即得
+\[
+P(Y_1\le k,Y_0\le j)=C\{F_1(k),F_0(j)\}.
+\]
+\end{enumerate}
+
+\item 这是 Frisch--Waugh--Lovell 定理。完整回归的残差平方和为
+\[
+\|Y-X_1\beta_1-X_2\beta_2\|^2.
+\]
+固定 \(\beta_2\) 后，对 \(\beta_1\) 最小化，得到
+\[
+\hat\beta_1(\beta_2)=(X_1^TX_1)^{-1}X_1^T(Y-X_2\beta_2).
+\]
+把它代回目标函数，因 \(M_1\) 是到 \(X_1\) 列空间正交补的投影，有
+\[
+\min_{\beta_1}\|Y-X_1\beta_1-X_2\beta_2\|^2
+=\|M_1(Y-X_2\beta_2)\|^2
+=\|M_1Y-M_1X_2\beta_2\|^2.
+\]
+所以完整回归中 \(\beta_2\) 的 OLS 估计正是最小化右端的 \(\beta_2\)。其正规方程为
+\[
+(X_2^TM_1X_2)\hat\beta_2=X_2^TM_1Y,
+\]
+即
+\[
+\hat\beta_2=(X_2^TM_1X_2)^{-1}X_2^TM_1Y.
+\]
+这也正是 \(M_1Y\) 对 \(M_1X_2\) 回归的 OLS 估计，因为 \(M_1^T=M_1\) 且 \(M_1^2=M_1\)。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 取独立标准正态随机变量 \(Z_0,Z_1\)。则
+\[
+P(Z_1\le aZ_0\mid Z_0=x)=\Phi(ax).
+\]
+因此
+\[
+2\varphi(x)\Phi(ax)
+\]
+是 \(Z_0\) 在条件事件 \(\{Z_1\le aZ_0\}\) 下的密度乘以该事件概率的归一化形式。由于 \(Z_1-aZ_0\) 是中心正态变量，
+\[
+P(Z_1\le aZ_0)=\frac12.
+\]
+于是
+\[
+\int_{-\infty}^{\infty}2\varphi(x)\Phi(ax)\,dx
+=2P(Z_1\le aZ_0)=1,
+\]
+且该函数非负，故为密度。
+
+\item 令
+\[
+Y\sim f(x)=2\varphi(x)\Phi(ax).
+\]
+这是形状参数为 \(a\) 的 skew-normal 分布。直接计算：
+\[
+E(Y)=2\int_{-\infty}^{\infty}x\varphi(x)\Phi(ax)\,dx.
+\]
+分部积分，利用 \(\varphi'(x)=-x\varphi(x)\)，得
+\[
+\int x\varphi(x)\Phi(ax)\,dx
+=-\int \Phi(ax)\,d\varphi(x)
+=a\int \varphi(x)\varphi(ax)\,dx.
+\]
+而
+\[
+\int_{-\infty}^{\infty}\varphi(x)\varphi(ax)\,dx
+=\frac1{2\pi}\int e^{-(1+a^2)x^2/2}\,dx
+=\frac1{\sqrt{2\pi}}\frac1{\sqrt{1+a^2}}.
+\]
+故
+\[
+E(Y)=2a\cdot \frac1{\sqrt{2\pi}}\frac1{\sqrt{1+a^2}}
+=\sqrt{\frac2\pi}\frac{a}{\sqrt{1+a^2}}.
+\]
+\end{enumerate}
+
+\item 令
+\[
+m_1(x)=E_x\tau_a,\qquad m_2(x)=E_x\tau_a^2.
+\]
+对 Brownian motion，生成元为 \(\frac12\frac{d^2}{dx^2}\)。由 Dynkin 公式，\(m_1\) 满足
+\[
+\frac12m_1''(x)=-1,\qquad m_1(\pm a)=0.
+\]
+解得
+\[
+m_1(x)=a^2-x^2.
+\]
+二阶矩满足递推方程
+\[
+\frac12m_2''(x)=-2m_1(x)=-2(a^2-x^2),\qquad m_2(\pm a)=0.
+\]
+即
+\[
+m_2''(x)=-4a^2+4x^2.
+\]
+积分得
+\[
+m_2(x)=-2a^2x^2+\frac13x^4+C_1x+C_2.
+\]
+由对称性 \(C_1=0\)，再由 \(m_2(a)=0\)，得
+\[
+C_2=\frac53a^4.
+\]
+所以从 \(0\) 出发时
+\[
+E[\tau_a^2]=m_2(0)=\frac53a^4.
+\]
+
+\item 设 \(X_1\) 的特征函数为 \(\phi(t)\)。由 \((U1)\)，
+\[
+\phi(t)^n=e^{itb}\phi(at). \tag{1}
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 当 \(\alpha=1\) 时 \(a=n\)，且 \(b=0\)，于是
+\[
+\phi(nt)=\phi(t)^n. \tag{2}
+\]
+这正是指数为 \(1\) 的严格稳定型特征函数方程。在非退化且特征函数在原点连续的标准稳定情形下，取对数并记
+\[
+\psi(t)=-\log \phi(t)
+\]
+（在原点邻域选连续分支），由 (2) 得
+\[
+\psi(nt)=n\psi(t).
+\]
+稳定性与正定性排除除线性虚部和 \(|t|\) 实部以外的项，故
+\[
+\psi(t)=\gamma |t|-i\mu t,\qquad \gamma\ge0,\ \mu\in\mathbb R.
+\]
+于是
+\[
+\phi(t)=\exp\{i\mu t-\gamma |t|\}.
+\]
+当 \(\gamma=0\) 时为退化常数；非退化时 \(\gamma>0\)，即 Cauchy 型分布。
+
+\item 若 \(E|X_1|<\infty\)，则可取期望。由 \((U1)\)，
+\[
+nE X_1=aE X_1+b. \tag{3}
+\]
+再看中心化变量
+\[
+Z_i=X_i-E X_i.
+\]
+由 (3) 可得
+\[
+Z_1+\cdots+Z_n\stackrel d=aZ_1.
+\]
+若 \(EZ_1^2<\infty\)，比较方差立刻得 \(n=a^2\)，即 \(\alpha=2\)。在仅有一阶矩时，可用 symmetrization：令 \(Z_i'\) 为独立副本，\(W_i=Z_i-Z_i'\)。则 \(W_i\) 对称、可积，且
+\[
+W_1+\cdots+W_n\stackrel d=aW_1.
+\]
+对小 \(t\)，对称可积变量的特征函数满足
+\[
+1-\phi_W(t)=o(|t|).
+\]
+而特征函数方程给
+\[
+1-\phi_W(at)=1-\phi_W(t)^n\sim n(1-\phi_W(t)).
+\]
+若 \(\alpha\le1\)，则 \(a\ge n\)。迭代上述关系会迫使 \(1-\phi_W(t)\) 在 \(0\) 附近比线性项还慢地同时满足过强的放大关系，唯一可能是 \(1-\phi_W(t)\equiv0\)，即 \(W=0\) a.s.，从而 \(X_1\) 退化。故非退化可积情形下不可能有 \(\alpha\le1\)。
+\end{enumerate}
+
+\item 记 \(\xi,\eta\) 的特征函数分别为 \(f,g\)。由于 \(\xi,\eta\) 独立，\((S,D)=(\xi+\eta,\xi-\eta)\) 的联合特征函数为
+\[
+E e^{iuS+ivD}
+=E e^{i(u+v)\xi+i(u-v)\eta}
+=f(u+v)g(u-v).
+\]
+若 \(S,D\) 独立，则这等于边缘特征函数乘积：
+\[
+f(u)g(u)\,f(v)g(-v).
+\]
+因此
+\[
+f(u+v)g(u-v)=f(u)g(u)f(v)g(-v). \tag{4}
+\]
+在原点邻域内 \(f,g\ne0\)，取连续对数
+\[
+F=\log f,\qquad G=\log g.
+\]
+由 (4) 得
+\[
+F(u+v)+G(u-v)=F(u)+G(u)+F(v)+G(-v). \tag{5}
+\]
+对 \(u,v\) 在原点邻域内求二阶混合差分，可得
+\[
+F''(u+v)=G''(u-v).
+\]
+令 \(u+v\) 与 \(u-v\) 独立变化，推出 \(F''\) 与 \(G''\) 都为同一个常数，记为 \(-\sigma^2\)，其中由特征函数正定性知 \(\sigma^2\ge0\)。因此
+\[
+F(t)=i\mu_1t-\frac12\sigma^2t^2,\qquad
+G(t)=i\mu_2t-\frac12\sigma^2t^2
+\]
+在原点邻域成立。由特征函数方程的解析延拓/迭代唯一性，该形式对所有 \(t\) 成立。于是
+\[
+f(t)=\exp\left(i\mu_1t-\frac12\sigma^2t^2\right),\qquad
+g(t)=\exp\left(i\mu_2t-\frac12\sigma^2t^2\right).
+\]
+所以 \(\xi,\eta\) 均服从正态分布；\(\sigma^2=0\) 时允许退化正态。
+\end{enumerate}
+
+
+
+
+
+\subsection{2012 年：Probability2012(team).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2012 年团体赛：概率与统计。请在下列 6 题中选做 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \((X_n)\) 为独立同分布随机变量列。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 假设每个 \(X_n\) 服从参数为 \(1\) 的指数分布，即
+\[
+P(X_n\ge x)=e^{-x},\qquad x\ge0.
+\]
+证明：
+\[
+P(X_n>\alpha\log n\ \text{i.o.})=
+\begin{cases}
+0,&\alpha>1,\\
+1,&\alpha\le1.
+\end{cases}
+\]
+其中 “i.o.” 表示 infinitely often，即 \(\limsup_{n\to\infty}\) 事件。并证明若
+\[
+L=\limsup_{n\to\infty}\frac{X_n}{\log n},
+\]
+则 \(P(L=1)=1\)。
+\item 假设每个 \(X_n\) 服从参数为 \(\lambda\) 的 Poisson 分布，即
+\[
+P(X_n=k)=\frac{\lambda^k}{k!}e^{-\lambda},\qquad k=0,1,2,\ldots.
+\]
+令
+\[
+L=\limsup_{n\to\infty}\frac{X_n\log\log n}{\log n}.
+\]
+证明 \(P(L=1)=1\)。
+\end{enumerate}
+
+\item 设 \(X_i\) 为独立同分布的参数 \(1\) 指数随机变量，\(i\ge1\)。设 \(N\) 为成功概率 \(p\) 的几何随机变量，\(0<p<1\)，即
+\[
+P(N=k)=(1-p)^{k-1}p,\qquad k=1,2,\ldots,
+\]
+并且 \(N\) 与所有 \(X_i\) 独立。求
+\[
+\sum_{i=1}^{N}X_i
+\]
+的分布。
+
+\item 设 \(X,Y\) 为独立同分布的实值随机变量。证明
+\[
+P(|X+Y|<1)\le 3P(|X-Y|<1).
+\]
+
+\item 设
+\[
+S=X_1+\cdots+X_n,
+\]
+其中 \(X_i\) 相互独立且 \(X_i\sim\operatorname{Binomial}(1,p_i)\)。证明
+\[
+P(S\text{ 为偶数})=\frac12
+\]
+当且仅当至少有一个 \(p_i=1/2\)。
+
+\item 令 \(B_\theta\) 表示 \(\mathbb R^2\) 中以 \(\theta\) 为圆心的闭单位圆盘。设 \(X_1,\ldots,X_n\) 在 \(B_\theta\) 上独立均匀分布，其中 \(\theta\in\mathbb R^2\) 未知。记最大似然估计为 \(\widehat\theta\)。证明
+\[
+|\widehat\theta-\theta|=O_p(1/n).
+\]
+
+\item 设 \(X_1,\ldots,X_n\) 为来自 Bernoulli\((p_1)\) 的随机样本，\(Y_1,\ldots,Y_n\) 为来自 Bernoulli\((p_2)\) 的独立随机样本。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对
+\[
+H_0:p_1=p_2\quad\text{与}\quad H_1:p_1\ne p_2
+\]
+推导最大似然比检验统计量。无需化简最终统计量，但需要给出零假设下的渐近分布。
+\item 当 \(p_1=p\), \(p_2=p+n^{-1/2}\Delta\) 时，计算临界区域
+\[
+\left|\frac{\sqrt n(\widehat p_1-\widehat p_2)}{\sqrt{2\widehat p\widehat q}}\right|\ge z_{1-\alpha}
+\]
+的渐近功效，其中 \(\widehat p=(\widehat p_1+\widehat p_2)/2\)，\(\widehat q=1-\widehat p\)。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 指数分布下
+\[
+P(X_n>\alpha\log n)=e^{-\alpha\log n}=n^{-\alpha}.
+\]
+若 \(\alpha>1\)，则 \(\sum n^{-\alpha}<\infty\)，由第一 Borel--Cantelli 引理，
+\[
+P(X_n>\alpha\log n\ \text{i.o.})=0.
+\]
+若 \(\alpha\le1\)，则 \(\sum n^{-\alpha}=\infty\)，且事件相互独立，由第二 Borel--Cantelli 引理，
+\[
+P(X_n>\alpha\log n\ \text{i.o.})=1.
+\]
+于是对每个 \(\alpha>1\)，几乎处处 \(X_n/\log n>\alpha\) 只发生有限次，故 \(L\le\alpha\)。令 \(\alpha\downarrow1\)，得 \(L\le1\) a.s.。对每个 \(0<\alpha<1\)，事件 \(X_n/\log n>\alpha\) 无限次发生，故 \(L\ge\alpha\) a.s.。令 \(\alpha\uparrow1\)，得 \(L\ge1\) a.s.。所以 \(P(L=1)=1\)。
+\item 记
+\[
+a_n(c)=c\frac{\log n}{\log\log n}.
+\]
+先证上界。对 \(c>1\)，Chernoff 不等式给任意整数 \(k>\lambda\)
+\[
+P(X_n\ge k)\le \left(\frac{e\lambda}{k}\right)^k.
+\]
+取 \(k=\lfloor a_n(c)\rfloor\)。则
+\[
+\log P(X_n\ge k)
+\le k(1+\log\lambda-\log k)
+=-c\log n+o(\log n).
+\]
+取 \(c'>1\) 且 \(1<c'<c\)，当 \(n\) 大时
+\[
+P(X_n\ge a_n(c))\le n^{-c'}.
+\]
+故级数收敛，Borel--Cantelli 给
+\[
+\limsup_{n\to\infty}\frac{X_n\log\log n}{\log n}\le c\quad a.s.
+\]
+令 \(c\downarrow1\)，得上界不超过 \(1\)。
+
+再证下界。取 \(0<c<1\)，令 \(k_n=\lfloor a_n(c)\rfloor\)。由 Stirling 公式，
+\[
+P(X_n=k_n)=e^{-\lambda}\frac{\lambda^{k_n}}{k_n!}
+=\exp\{-c\log n+o(\log n)\}=n^{-c+o(1)}.
+\]
+因此对足够大的 \(n\)，有 \(P(X_n\ge k_n)\ge P(X_n=k_n)\ge n^{-c'}\)，其中 \(c<c'<1\)。于是
+\[
+\sum_n P(X_n\ge k_n)=\infty.
+\]
+事件独立，由第二 Borel--Cantelli 引理，
+\[
+X_n\ge c\frac{\log n}{\log\log n}
+\]
+无限次发生，故 \(L\ge c\) a.s.。令 \(c\uparrow1\)，得 \(L\ge1\) a.s.。综上 \(P(L=1)=1\)。
+\end{enumerate}
+
+\item 记 \(T=\sum_{i=1}^N X_i\)。条件于 \(N=k\)，\(T\) 服从 Gamma\((k,1)\)，其 Laplace 变换为
+\[
+E(e^{-sT}\mid N=k)=(1+s)^{-k}.
+\]
+于是
+\[
+E(e^{-sT})
+=\sum_{k=1}^\infty p(1-p)^{k-1}(1+s)^{-k}
+=\frac{p}{1+s}\sum_{k=0}^\infty\left(\frac{1-p}{1+s}\right)^k
+=\frac{p}{p+s}.
+\]
+这正是参数为 \(p\) 的指数分布的 Laplace 变换。因此
+\[
+\sum_{i=1}^N X_i\sim \operatorname{Exp}(p).
+\]
+
+\item 用如下一维集中函数不等式：若 \(U,V\) 独立同分布，则对任意 \(r>0\),
+\[
+P(|U+V|<r)\le 3P(|U-V|<r).
+\]
+为使本题自洽，说明证明。先设 \(U,V\) 只取有限多个值 \(u_1,\ldots,u_m\)，概率分别为 \(p_i\)。把每个点 \(u_i\) 替换成 \(N_i\) 个相同点，其中 \(N_i/N\to p_i\)，再令 \(N\to\infty\)，只需证明有限点列版本。对有限实数列 \(a_1,\ldots,a_N\)，记
+\[
+S=\#\{(i,j): |a_i+a_j|<1\},\qquad
+D=\#\{(i,j): |a_i-a_j|<1\}.
+\]
+把所有满足 \(|a_i+a_j|<1\) 的有序对按第二个坐标 \(j\) 分组。对固定 \(j\)，这些 \(a_i\) 落在区间 \((-1-a_j,1-a_j)\) 中。将实线按长度 \(1\) 的半开区间分块；任意长度 \(2\) 的区间至多与三个相邻块相交。因此该组中的点数不超过三个相邻块点数之和。另一方面，同一长度 \(1\) 块内任意两点差的绝对值小于 \(1\)，这些点对都计入 \(D\)。对所有 \(j\) 求和并用每个块至多被相邻三个中心块计数，可得
+\[
+S\le 3D.
+\]
+这就是离散情形；一般分布由上述离散逼近和边界 \(|\cdot|=1\) 的微小放大/缩小取极限得到。令 \(U=X,V=Y,r=1\)，即
+\[
+P(|X+Y|<1)\le3P(|X-Y|<1).
+\]
+
+\item 因为 \(X_i\in\{0,1\}\)，有
+\[
+(-1)^S=\prod_{i=1}^n(-1)^{X_i}.
+\]
+并且
+\[
+P(S\text{ 为偶数})=\frac12\{1+E(-1)^S\}.
+\]
+由独立性，
+\[
+E(-1)^S=\prod_{i=1}^n E(-1)^{X_i}
+=\prod_{i=1}^n\{(1-p_i)-p_i\}
+=\prod_{i=1}^n(1-2p_i).
+\]
+因此
+\[
+P(S\text{ 为偶数})
+=\frac12\left(1+\prod_{i=1}^n(1-2p_i)\right).
+\]
+它等于 \(1/2\) 当且仅当乘积为 \(0\)，也即至少一个 \(p_i=1/2\)。
+
+\item 不妨设真圆心 \(\theta=0\)。似然在候选圆心 \(u\) 处非零，当且仅当所有样本点都落在 \(B_u\) 内，即
+\[
+|X_i-u|\le1,\qquad i=1,\ldots,n.
+\]
+所以 MLE 可取可行圆心集合
+\[
+C_n=\bigcap_{i=1}^n B(X_i,1)
+\]
+中的任一点；真圆心 \(0\in C_n\)。
+
+取三个单位向量 \(v_1,v_2,v_3\)，两两夹角 \(120^\circ\)。对小的 \(\delta>0\)，考虑靠近圆盘边界且方向接近 \(v_j\) 的扇形薄层
+\[
+R_j(\delta)=\{x\in B_0: |x|\ge1-\delta,\ \angle(x,v_j)\le c_0\},
+\]
+其中 \(c_0>0\) 固定足够小。每个 \(R_j(\delta)\) 的面积与 \(\delta\) 同阶，即存在常数 \(a>0\) 使
+\[
+P(X_i\in R_j(\delta))\ge a\delta
+\]
+当 \(\delta\) 小时成立。取 \(\delta=M/n\)，则
+\[
+P(\text{某个 }R_j(M/n)\text{ 中没有样本点})
+\le 3(1-aM/n)^n\le 3e^{-aM}.
+\]
+令 \(M\to\infty\)，该概率趋于 \(0\)。因此以概率趋于 \(1\)，三个方向的边界薄层中各有一个样本点。
+
+在该事件上，若 \(u\in C_n\)，则对这些边界样本点 \(x_j=(1+O(M/n))v_j+O(M/n)\) 有
+\[
+|x_j-u|\le1.
+\]
+展开平方：
+\[
+|x_j-u|^2=|x_j|^2-2u\cdot x_j+|u|^2\le1.
+\]
+因为 \(|x_j|^2\ge 1-CM/n\)，得到
+\[
+u\cdot v_j\ge -C'\frac{M}{n}+O(|u|^2)
+\]
+对 \(j=1,2,3\) 成立。三个方向 \(v_j\) 围住平面；若 \(|u|\) 比 \(M/n\) 大很多，则必有某个 \(j\) 使 \(u\cdot v_j\) 为负且量级为 \(-|u|\)，与上式矛盾。故存在常数 \(C''\) 使
+\[
+\sup_{u\in C_n}|u|\le C''\frac{M}{n}
+\]
+在上述高概率事件上成立。因此对任意 \(\varepsilon>0\)，可取 \(M\) 足够大，使
+\[
+P(|\widehat\theta-\theta|>C''M/n)<\varepsilon
+\]
+对大 \(n\) 成立，即
+\[
+|\widehat\theta-\theta|=O_p(1/n).
+\]
+
+\item 记
+\[
+A=\sum_{i=1}^n X_i,\qquad B=\sum_{i=1}^n Y_i,\qquad
+\widehat p_1=A/n,\quad \widehat p_2=B/n.
+\]
+备择下 MLE 为 \(\widehat p_1,\widehat p_2\)；零假设 \(p_1=p_2=p\) 下 MLE 为
+\[
+\widehat p=\frac{A+B}{2n},\qquad \widehat q=1-\widehat p.
+\]
+似然比为
+\[
+\Lambda
+=
+\frac{\widehat p^{A+B}(1-\widehat p)^{2n-A-B}}
+{\widehat p_1^A(1-\widehat p_1)^{n-A}\widehat p_2^B(1-\widehat p_2)^{n-B}}.
+\]
+常用检验统计量为
+\[
+-2\log\Lambda
+=2\left[
+A\log\frac{\widehat p_1}{\widehat p}
+(n-A)\log\frac{1-\widehat p_1}{1-\widehat p}
+B\log\frac{\widehat p_2}{\widehat p}
+(n-B)\log\frac{1-\widehat p_2}{1-\widehat p}
+\right].
+\]
+在 \(H_0\) 下，由 Wilks 定理，
+\[
+-2\log\Lambda\Rightarrow \chi^2_1.
+\]
+
+对第二问，在局部备择 \(p_1=p\), \(p_2=p+n^{-1/2}\Delta\) 下，
+\[
+\sqrt n(\widehat p_1-\widehat p_2)
+\Rightarrow N(-\Delta,\,2p(1-p)).
+\]
+又 \(\widehat p\to p\), \(\widehat q\to q=1-p\)，故
+\[
+T_n=\frac{\sqrt n(\widehat p_1-\widehat p_2)}{\sqrt{2\widehat p\widehat q}}
+\Rightarrow N\left(-\frac{\Delta}{\sqrt{2pq}},\,1\right).
+\]
+因此临界区域 \(|T_n|\ge z_{1-\alpha}\) 的渐近功效为
+\[
+P\left(|Z-\frac{\Delta}{\sqrt{2pq}}|\ge z_{1-\alpha}\right),
+\qquad Z\sim N(0,1),
+\]
+等价地写成
+\[
+\Phi\left(-z_{1-\alpha}+\frac{\Delta}{\sqrt{2pq}}\right)
++1-\Phi\left(z_{1-\alpha}+\frac{\Delta}{\sqrt{2pq}}\right),
+\]
+符号随 \(\Delta\) 的正负自动反映两侧检验的对称性。
+\end{enumerate}
+
+
+\subsection{2013 年：TeamProblems2013.pdf\#probability}
+\paragraph{题目}
+概率与统计团体赛。请在下列 6 题中选做 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 概率分布函数 \(F\) 的特征函数定义为
+\[
+f(t)=\int_{-\infty}^{\infty} e^{itx}\,dF(x).
+\]
+证明 \(f_1(t)=(\cos t)^2\) 是某个概率分布的特征函数，而 \(f_2(t)=|\cos t|\) 不是特征函数。
+
+\item 令 \(I=[0,1]\)，\(\mathcal B\) 为 \(I\) 上的 Borel \(\sigma\)-代数，\(P\) 为 Lebesgue 测度。证明：在概率空间 \((I,\mathcal B,P)\) 上，满足下述性质的点 \(x\) 构成的集合概率为 \(1\)：除有限多个有理数 \(p/q\in(0,1)\) 外，都有
+\[
+\left|x-\frac pq\right|\ge \frac1{(q\log q)^2}.
+\]
+
+\item 设 \(X\) 可积，\(\mathcal G\) 为 \(\sigma\)-代数，且 \(Y=E[X\mid\mathcal G]\)。假设 \(X\) 与 \(Y\) 同分布。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 若 \(X\) 平方可积，证明 \(X=Y\) a.s.，即 \(X\) 必为 \(\mathcal G\)-可测。
+\item 利用第一问证明：对任意实数 \(a<b\)，
+\[
+\min\{\max\{X,a\},b\}=\min\{\max\{Y,a\},b\},
+\]
+进而 \(X=Y\) a.s.。
+\end{enumerate}
+
+\item 设 \(X_1,\ldots,X_n\) 独立同分布于 \(N(\theta,\sigma^2)\)，其中 \(\sigma^2\) 已知；又设 \(\theta\) 的先验为双指数分布
+\[
+\pi(\theta)=\frac1{2a}e^{-|\theta|/a},
+\]
+其中 \(a\) 已知。对假设 \(H_0:\theta\le0\) 与 \(H_1:\theta>0\) 的 Bayes 检验，当 \(H_1\) 的后验概率足够大时拒绝 \(H_0\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对给定常数 \(K\)，计算后验概率
+\[
+P(\theta>K\mid x_1,\ldots,x_n,a).
+\]
+\item 求
+\[
+\lim_{a\to\infty}P(\theta>K\mid x_1,\ldots,x_n,a)
+\]
+的表达式。
+\item 将第二问结果与经典假设检验的 \(p\)-值比较。
+\end{enumerate}
+
+\item 考虑线性模型
+\[
+Y=X\beta+\varepsilon,\qquad \varepsilon\sim N(0,\sigma^2 I_n),
+\]
+其中 \(X\) 为非随机 \(n\times p\) 矩阵，\(1<p<n\)。Lasso 估计通过最小化
+\[
+\frac12\|Y-X\beta\|_2^2+\lambda\|\beta\|_1
+\]
+得到，记为 \(\beta_\lambda^\ast\)。设普通最小二乘估计为 \(\widehat\beta\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 不假设 \(X\) 正交，证明
+\[
+\frac12\|Y-X\beta\|_2^2+\lambda\|\beta\|_1
+=\frac12\|Y-X\widehat\beta\|_2^2+\frac12\|X(\beta-\widehat\beta)\|_2^2+\lambda\|\beta\|_1.
+\]
+\item 若 \(X^TX=I_p\)，证明 Lasso 估计由软阈值给出，并求 \(\lambda\) 与阈值 \(\gamma\) 的关系：
+\[
+\beta_{\lambda,i}^\ast=
+\begin{cases}
+\widehat\beta_i-\gamma,& \widehat\beta_i>\gamma,\\
+0,&|\widehat\beta_i|\le\gamma,\\
+\widehat\beta_i+\gamma,&\widehat\beta_i<-\gamma.
+\end{cases}
+\]
+\end{enumerate}
+
+\item 考虑通常线性模型 \(Y=X\beta+\varepsilon\)，其中 \(\varepsilon\sim N(0,\sigma^2I_n)\)，\(X\) 有 \(n\) 行 \(p\) 列，且 \(1<p<n\)。给定非零列向量 \(a\in\mathbb R^p\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明：若 \(Xa=0\)，则 \(a^T\beta\) 不可估。
+\item 证明或否定：若 \(a^T\beta\) 不可估，则 \(Xa=0\)。
+\item 证明：\(X\) 满列秩当且仅当对所有 \(a\)，\(a^T\beta\) 都可估。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 有
+\[
+(\cos t)^2=\frac12+\frac14e^{2it}+\frac14e^{-2it}.
+\]
+因此它是如下离散分布的特征函数：
+\[
+P(\xi=0)=\frac12,\qquad P(\xi=2)=P(\xi=-2)=\frac14.
+\]
+
+再看 \(|\cos t|\)。若它是特征函数，则因 \(|\cos \pi|=1\)，必须有
+\[
+E e^{i\pi X}=1.
+\]
+等号成立迫使 \(e^{i\pi X}=1\) a.s.，故 \(X\in2\mathbb Z\) a.s.。于是特征函数应具有 Fourier 形式
+\[
+\varphi(t)=\sum_{k\in\mathbb Z}p_k e^{i2kt},\qquad p_k\ge0.
+\]
+也就是说，\(|\cos t|\) 作为 \(\pi\)-周期函数的 Fourier 系数都必须非负。可是
+\[
+|\cos t|=\frac2\pi+\frac4\pi\sum_{m=1}^{\infty}\frac{(-1)^m}{1-4m^2}\cos(2mt).
+\]
+当 \(m=2\) 时，\(\cos(4t)\) 的系数为
+\[
+\frac4\pi\cdot\frac1{1-16}=-\frac4{15\pi}<0.
+\]
+对应的 \(e^{i4t}\) 系数为负，不能是概率质量。因此 \(|\cos t|\) 不是特征函数。
+
+\item 对固定分母 \(q\)，考虑所有 \(p/q\in(0,1)\)。坏事件为
+\[
+A_{p,q}=\left\{x\in[0,1]:\left|x-\frac pq\right|<\frac1{(q\log q)^2}\right\}.
+\]
+其 Lebesgue 测度至多
+\[
+P(A_{p,q})\le \frac{2}{(q\log q)^2}.
+\]
+分母为 \(q\) 的候选分子 \(p\) 至多 \(q\) 个，所以
+\[
+\sum_{q\ge2}\sum_{1\le p<q}P(A_{p,q})
+\le \sum_{q\ge2} q\cdot \frac{2}{(q\log q)^2}
+=2\sum_{q\ge2}\frac1{q(\log q)^2}<\infty.
+\]
+由 Borel--Cantelli 引理，几乎每个 \(x\) 只属于有限多个 \(A_{p,q}\)。这正是题中所说：除有限多个有理数 \(p/q\) 外，均有
+\[
+\left|x-\frac pq\right|\ge \frac1{(q\log q)^2}.
+\]
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 因为 \(Y=E[X\mid\mathcal G]\) 且 \(Y\) 为 \(\mathcal G\)-可测，
+\[
+E(XY)=E\{Y E[X\mid\mathcal G]\}=E(Y^2).
+\]
+又 \(X,Y\) 同分布，所以 \(E X^2=E Y^2\)。于是
+\[
+E(X-Y)^2=EX^2-2EXY+EY^2=EX^2-EY^2=0.
+\]
+故 \(X=Y\) a.s.。
+\item 对任意 \(t\in\mathbb R\)，函数 \(\phi_t(x)=(x-t)_+\) 为凸函数。Jensen 不等式给
+\[
+(Y-t)_+=\phi_t(E[X\mid\mathcal G])\le E[\phi_t(X)\mid\mathcal G].
+\]
+取期望后，因 \(X,Y\) 同分布，
+\[
+E(Y-t)_+=E(X-t)_+.
+\]
+因此上面的非负差的期望为零，得到
+\[
+E[(X-t)_+\mid\mathcal G]=(Y-t)_+\quad a.s.
+\]
+对所有有理 \(t\) 同时成立。又
+\[
+h_{a,b}(x)=\min\{\max\{x,a\},b\}
+=a+(x-a)_+-(x-b)_+
+\]
+对 \(a<b\) 成立，所以
+\[
+E[h_{a,b}(X)\mid\mathcal G]=h_{a,b}(Y).
+\]
+此外 \(h_{a,b}(X)\) 与 \(h_{a,b}(Y)\) 同分布，且 \(h_{a,b}(X)\) 有界平方可积。由第一问应用于 \(h_{a,b}(X)\) 与其条件期望 \(h_{a,b}(Y)\)，得
+\[
+h_{a,b}(X)=h_{a,b}(Y)\quad a.s.
+\]
+令 \(a,b\) 取有理数并使 \(a\downarrow-\infty,\ b\uparrow\infty\)，可得 \(X=Y\) a.s.。
+\end{enumerate}
+
+\item 记 \(\bar x=n^{-1}\sum x_i\)，\(\tau^2=\sigma^2/n\)。似然中关于 \(\theta\) 的部分为
+\[
+\exp\left\{-\frac{(\theta-\bar x)^2}{2\tau^2}\right\}.
+\]
+结合 Laplace 先验，后验密度为
+\[
+\pi(\theta\mid x)
+=\frac{\exp\left\{-(\theta-\bar x)^2/(2\tau^2)-|\theta|/a\right\}}
+{\int_{-\infty}^{\infty}\exp\left\{-(u-\bar x)^2/(2\tau^2)-|u|/a\right\}\,du}.
+\]
+所以
+\[
+P(\theta>K\mid x_1,\ldots,x_n,a)
+=
+\frac{\int_K^\infty \exp\left\{-(u-\bar x)^2/(2\tau^2)-|u|/a\right\}\,du}
+{\int_{-\infty}^{\infty}\exp\left\{-(u-\bar x)^2/(2\tau^2)-|u|/a\right\}\,du}.
+\]
+若需要进一步写成标准正态分布函数，可把积分在 \(u<0\) 与 \(u>0\) 两段分别完成平方。
+
+当 \(a\to\infty\) 时，先验趋于平坦先验，后验趋于
+\[
+N(\bar x,\tau^2)=N\left(\bar x,\frac{\sigma^2}{n}\right).
+\]
+由支配收敛定理，
+\[
+\lim_{a\to\infty}P(\theta>K\mid x_1,\ldots,x_n,a)
+=1-\Phi\left(\frac{K-\bar x}{\sigma/\sqrt n}\right).
+\]
+特别对检验 \(H_0:\theta\le0\) 与 \(H_1:\theta>0\)，取 \(K=0\)，得到
+\[
+P(\theta>0\mid x)\to \Phi\left(\frac{\sqrt n\,\bar x}{\sigma}\right).
+\]
+经典单侧 \(z\)-检验 \(H_0:\theta\le0\) 的 \(p\)-值为
+\[
+p_{\mathrm{classical}}=1-\Phi\left(\frac{\sqrt n\,\bar x}{\sigma}\right).
+\]
+因此在平坦先验极限下，Bayes 后验支持 \(H_1\) 的概率等于经典单侧 \(p\)-值的互补量。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 最小二乘估计 \(\widehat\beta\) 满足正规方程
+\[
+X^T(Y-X\widehat\beta)=0.
+\]
+写
+\[
+Y-X\beta=(Y-X\widehat\beta)-X(\beta-\widehat\beta).
+\]
+平方展开得
+\[
+\|Y-X\beta\|_2^2
+=\|Y-X\widehat\beta\|_2^2+\|X(\beta-\widehat\beta)\|_2^2
+-2(Y-X\widehat\beta)^TX(\beta-\widehat\beta).
+\]
+交叉项为
+\[
+-2\{X^T(Y-X\widehat\beta)\}^T(\beta-\widehat\beta)=0.
+\]
+乘以 \(1/2\) 并加上 \(\lambda\|\beta\|_1\)，即得所需恒等式。
+\item 若 \(X^TX=I_p\)，则
+\[
+\|X(\beta-\widehat\beta)\|_2^2
+=(\beta-\widehat\beta)^TX^TX(\beta-\widehat\beta)
+=\sum_{j=1}^p(\beta_j-\widehat\beta_j)^2.
+\]
+因此 Lasso 目标除去与 \(\beta\) 无关的常数后变为逐坐标最小化
+\[
+\sum_{j=1}^p\left\{\frac12(\beta_j-\widehat\beta_j)^2+\lambda|\beta_j|\right\}.
+\]
+对单个坐标，若 \(\beta_j>0\)，导数为 \(\beta_j-\widehat\beta_j+\lambda\)，故解为 \(\widehat\beta_j-\lambda\)，条件是 \(\widehat\beta_j>\lambda\)。
+若 \(\beta_j<0\)，导数为 \(\beta_j-\widehat\beta_j-\lambda\)，解为 \(\widehat\beta_j+\lambda\)，条件是 \(\widehat\beta_j<-\lambda\)。
+若 \(|\widehat\beta_j|\le\lambda\)，次梯度条件
+\[
+0\in -\widehat\beta_j+\lambda[-1,1]
+\]
+成立，解为 \(0\)。故软阈值阈值为
+\[
+\gamma=\lambda.
+\]
+\end{enumerate}
+
+\item 线性函数 \(a^T\beta\) 可估，当且仅当存在向量 \(l\in\mathbb R^n\)，使
+\[
+E(l^TY)=l^TX\beta=a^T\beta\quad\text{对所有 }\beta\text{ 成立}.
+\]
+等价于
+\[
+X^Tl=a,
+\]
+即 \(a\in\operatorname{Col}(X^T)\)，也就是 \(a\) 属于 \(X\) 的行空间。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 若 \(Xa=0\) 且 \(a\ne0\)，则 \(a\in\operatorname{Null}(X)\)。行空间 \(\operatorname{Col}(X^T)\) 与 \(\operatorname{Null}(X)\) 正交，交集只有 \(0\)。所以 \(a\notin\operatorname{Col}(X^T)\)，故 \(a^T\beta\) 不可估。
+\item 反命题不成立。取
+\[
+X=\begin{pmatrix}1&0\\0&0\\0&0\end{pmatrix},\qquad a=\begin{pmatrix}1\\1\end{pmatrix}.
+\]
+则 \(a\notin\operatorname{Col}(X^T)=\operatorname{span}\{(1,0)^T\}\)，所以 \(a^T\beta\) 不可估；但
+\[
+Xa=\begin{pmatrix}1\\0\\0\end{pmatrix}\ne0.
+\]
+\item 由可估性判别，所有 \(a^T\beta\) 都可估，当且仅当每个 \(a\in\mathbb R^p\) 都属于 \(\operatorname{Col}(X^T)\)，即
+\[
+\operatorname{Col}(X^T)=\mathbb R^p.
+\]
+这等价于 \(\operatorname{rank}(X)=p\)，也就是 \(X\) 满列秩。
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{2014 年：probability2014(team).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2014 年概率与统计团体赛。请解答下列 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(X_n\) 依分布收敛到 \(X\)，\(Y_n\) 依分布收敛到常数 \(c\)。证明：
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item \(Y_n\) 依概率收敛到 \(c\)；
+\item \(X_nY_n\) 依分布收敛到 \(cX\)。
+\end{enumerate}
+
+\item 设 \(X,Y\) 为随机变量，且 \(|Y|>0\) a.s.。令 \(Z=X/Y\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 若 \((X,Y)\) 有联合密度 \(p(x,y)\)，求 \(Z\) 的密度。
+\item 若 \(X,Y\) 独立，\(X\sim N(0,1)\)，\(Y\sim U(0,1)\)，求 \(Z\) 的密度。
+\end{enumerate}
+
+\item 设 \((\Omega,\mathcal F,P)\) 为概率空间。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(\mathcal G\subset\mathcal F\) 为子 \(\sigma\)-代数，\(\Gamma\in\mathcal F\)。证明下列两条等价：
+\[
+\text{(i) }\Gamma\text{ 在 }P\text{ 下独立于 }\mathcal G;
+\]
+\[
+\text{(ii) 对每个与 }P\text{ 等价且 }dQ/dP\text{ 为 }\mathcal G\text{-可测的概率 }Q,\ Q(\Gamma)=P(\Gamma).
+\]
+\item 设 \(X,Y,Z\) 为随机变量，且 \(Y\) 可积。若 \((X,Y)\) 与 \(Z\) 独立，证明
+\[
+E[Y\mid X,Z]=E[Y\mid X].
+\]
+\end{enumerate}
+
+\item 设 \(X_1,\ldots,X_n\) 独立同分布，且 \(X_i\sim N(0,\sigma^2)\)。令
+\[
+M=\frac1n\sum_{i=1}^n |X_i|.
+\]
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 求 \(c\in\mathbb R\)，使 \(\widehat\sigma=cM\) 为 \(\sigma\) 的相合估计。
+\item 求 \(\sqrt n(\widehat\sigma-\sigma)\) 的极限分布。
+\item 给出 \(\sigma\) 的近似 \(1-\alpha\) 置信区间。
+\item \(\widehat\sigma=cM\) 是否渐近有效？说明理由。
+\end{enumerate}
+
+\item 位移指数分布的密度为
+\[
+f(y;\phi,\theta)=\frac1\theta \exp\left\{-\frac{y-\phi}{\theta}\right\},
+\qquad y>\phi,\quad \theta>0.
+\]
+设 \(Y_1,\ldots,Y_n\) 为来自该分布的随机样本。求 \(\phi,\theta\) 的最大似然估计，并求 MLE 的极限分布。可使用如下 Renyi 次序统计量表示：若 \(E_1,\ldots,E_n\) 为标准指数样本，\(E_{(r)}\) 为第 \(r\) 个次序统计量，则
+\[
+E_{(r)}\stackrel d=\sum_{j=1}^r\frac{E_j}{n+1-j},\qquad r=1,\ldots,n.
+\]
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 因为极限 \(c\) 是常数，对任意 \(\varepsilon>0\)，点 \(c-\varepsilon,c+\varepsilon\) 是常数分布的连续点，故
+\[
+P(|Y_n-c|>\varepsilon)
+\le P(Y_n\le c-\varepsilon)+P(Y_n\ge c+\varepsilon)\to0.
+\]
+所以 \(Y_n\to c\) in probability。再证乘积极限。对任意有界连续函数 \(f\)，由紧性可先取 \(A\) 使 \(P(|X_n|>A)\) 小；在 \(|X_n|\le A\) 且 \(|Y_n-c|\) 小时，\(X_nY_n\) 与 \(cX_n\) 相差小。于是
+\[
+X_nY_n-cX_n=X_n(Y_n-c)\to0
+\]
+in probability。又连续映射定理给 \(cX_n\Rightarrow cX\)，Slutsky 定理得
+\[
+X_nY_n\Rightarrow cX.
+\]
+
+\item 作变量变换
+\[
+z=\frac xy,\qquad y=y,\qquad x=zy.
+\]
+Jacobian 绝对值为 \(|y|\)，所以
+\[
+f_Z(z)=\int_{-\infty}^{\infty}p(zy,y)|y|\,dy.
+\]
+若 \(X\sim N(0,1)\), \(Y\sim U(0,1)\) 独立，则
+\[
+f_Z(z)=\int_0^1 y\frac1{\sqrt{2\pi}}e^{-z^2y^2/2}\,dy.
+\]
+当 \(z\ne0\) 时，令 \(u=z^2y^2/2\)，得
+\[
+f_Z(z)=\frac1{\sqrt{2\pi}}\frac{1-e^{-z^2/2}}{z^2}.
+\]
+当 \(z=0\) 时取极限或直接积分，
+\[
+f_Z(0)=\int_0^1\frac{y}{\sqrt{2\pi}}\,dy=\frac1{2\sqrt{2\pi}}.
+\]
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 若 \(\Gamma\) 独立于 \(\mathcal G\)，且 \(L=dQ/dP\) 为 \(\mathcal G\)-可测，则
+\[
+Q(\Gamma)=E_P[1_\Gamma L]
+=E_P\!\left(E_P[1_\Gamma L\mid\mathcal G]\right)
+=E_P\!\left(L E_P[1_\Gamma\mid\mathcal G]\right)
+=P(\Gamma)E_PL=P(\Gamma).
+\]
+反过来，取任意 \(A\in\mathcal G\)。先对有界、严格正的
+\[
+L=1+\eta(1_A-P(A)),\qquad |\eta|\text{ 足够小},
+\]
+归一化后得到与 \(P\) 等价的概率密度，且 \(L\) 为 \(\mathcal G\)-可测。由 \(Q(\Gamma)=P(\Gamma)\) 得
+\[
+E[1_\Gamma(1_A-P(A))]=0.
+\]
+即
+\[
+P(\Gamma\cap A)=P(\Gamma)P(A).
+\]
+对所有 \(A\in\mathcal G\) 成立，故 \(\Gamma\) 独立于 \(\mathcal G\)。
+\item 对任意有界可测函数 \(g,h\)，由 \((X,Y)\) 与 \(Z\) 独立，
+\[
+E\{g(X)h(Z)Y\}=E\!\left[h(Z)\right]E\{g(X)Y\}.
+\]
+另一方面，
+\[
+E\{g(X)h(Z)E(Y\mid X)\}
+=E\!\left[h(Z)\right]E\{g(X)E(Y\mid X)\}
+=E\!\left[h(Z)\right]E\{g(X)Y\}.
+\]
+两者相等。由单调类定理推广到所有 \(\sigma(X,Z)\)-可测有界测试函数，得到
+\[
+E[Y\mid X,Z]=E[Y\mid X].
+\]
+\end{enumerate}
+
+\item 若 \(Z\sim N(0,1)\)，则
+\[
+E|X_i|=\sigma E|Z|=\sigma\sqrt{\frac2\pi}.
+\]
+所以取
+\[
+c=\sqrt{\frac\pi2}
+\]
+时，由大数定律 \(M\to\sigma\sqrt{2/\pi}\) a.s.，\(\widehat\sigma\to\sigma\)，相合。
+
+又
+\[
+\operatorname{Var}(|X_i|)
+=E X_i^2-(E|X_i|)^2
+=\sigma^2\left(1-\frac2\pi\right).
+\]
+中心极限定理给
+\[
+\sqrt n\left(M-\sigma\sqrt{\frac2\pi}\right)
+\Rightarrow N\left(0,\sigma^2\left(1-\frac2\pi\right)\right).
+\]
+乘以 \(c=\sqrt{\pi/2}\)，得
+\[
+\sqrt n(\widehat\sigma-\sigma)
+\Rightarrow N\left(0,\sigma^2\left(\frac\pi2-1\right)\right).
+\]
+用 \(\widehat\sigma\) 代替渐近方差中的 \(\sigma\)，近似 \(1-\alpha\) 置信区间为
+\[
+\left[
+\widehat\sigma-z_{1-\alpha/2}\widehat\sigma\sqrt{\frac{\pi/2-1}{n}},
+\ \widehat\sigma+z_{1-\alpha/2}\widehat\sigma\sqrt{\frac{\pi/2-1}{n}}
+\right].
+\]
+正态模型中 \(\sigma\) 的 Fisher 信息为 \(2n/\sigma^2\)，任何正则估计的渐近方差下界为 \(\sigma^2/(2n)\)。本估计的渐近方差为
+\[
+\frac{\sigma^2}{n}\left(\frac\pi2-1\right),
+\]
+而 \(\pi/2-1>1/2\)。因此它不是渐近有效估计。
+
+\item 似然函数为
+\[
+L(\phi,\theta)=\theta^{-n}\exp\left\{-\frac{\sum_{i=1}^n(Y_i-\phi)}{\theta}\right\}
+\mathbf 1_{\{\phi<Y_{(1)}\}}.
+\]
+固定 \(\phi\) 时，对 \(\theta\) 最大化
+\[
+-n\log\theta-\frac{\sum Y_i-n\phi}{\theta}
+\]
+得到
+\[
+\widehat\theta(\phi)=\bar Y-\phi.
+\]
+代回 profile likelihood 后，\(\phi\) 越大，\(\bar Y-\phi\) 越小且似然越大，因此
+\[
+\widehat\phi=Y_{(1)},\qquad
+\widehat\theta=\bar Y-Y_{(1)}.
+\]
+写 \(Y_i=\phi+\theta E_i\)，其中 \(E_i\sim \operatorname{Exp}(1)\)。则
+\[
+n\frac{\widehat\phi-\phi}{\theta}
+=nE_{(1)}\Rightarrow \operatorname{Exp}(1),
+\]
+因为 \(nE_{(1)}\sim \operatorname{Exp}(1)\)。又
+\[
+\widehat\theta-\theta
+=\theta(\bar E-E_{(1)}-1).
+\]
+其中 \(E_{(1)}=O_p(1/n)\)，所以 \(\sqrt n E_{(1)}\to0\) in probability；而
+\[
+\sqrt n(\bar E-1)\Rightarrow N(0,1).
+\]
+故
+\[
+\sqrt n(\widehat\theta-\theta)\Rightarrow N(0,\theta^2).
+\]
+并且 \(n(\widehat\phi-\phi)/\theta\) 由极小次序统计量主导，而 \(\sqrt n(\widehat\theta-\theta)\) 由整体均值波动主导，二者渐近独立；联合极限为
+\[
+\left(n\frac{\widehat\phi-\phi}{\theta},\ \sqrt n\frac{\widehat\theta-\theta}{\theta}\right)
+\Rightarrow \bigl(E,\ Z\bigr),
+\]
+其中 \(E\sim\operatorname{Exp}(1)\), \(Z\sim N(0,1)\)，且 \(E,Z\) 独立。
+\end{enumerate}
+
+
+\subsection{2015 年：team-probability2015.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2015 年概率与统计团体赛，共 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 100 名乘客登上一架正好有 100 个座位的飞机。第一名乘客随机选座；以后每名乘客若自己的座位空着则坐自己的座位，否则从剩余座位中随机选一个。问最后一名乘客坐到自己座位的概率。
+
+\item 设随机变量序列 \(X_n\Rightarrow X\)。设 \(\{N_t:t\ge0\}\) 为正整数值随机变量族，与整个序列 \((X_n)\) 独立，并且当 \(t\to\infty\) 时 \(N_t\to\infty\) in probability。证明 \(X_{N_t}\Rightarrow X\)。
+
+\item 设 \(T_1,\ldots,T_n\) 独立同分布，具有标准指数密度
+\[
+p(x)=
+\begin{cases}
+e^{-x},&x\ge0,\\
+0,&x<0.
+\end{cases}
+\]
+令 \(S_n=T_1+\cdots+T_n\)。求
+\[
+V_n=\left(\frac{T_1}{S_n},\frac{T_2}{S_n},\ldots,\frac{T_n}{S_n}\right)
+\]
+的分布。
+
+\item 设 \(X,Z\) 为零均值、标准差均为 \(1\) 的联合正态随机变量。对严格单调函数 \(f\)，在协方差存在时证明
+\[
+\operatorname{cov}(X,Z)=0
+\quad\Longleftrightarrow\quad
+\operatorname{cov}(X,f(Z))=0.
+\]
+提示：可写
+\[
+Z=\rho X+\varepsilon,
+\]
+其中 \(X\) 与 \(\varepsilon\) 独立，\(\varepsilon\sim N(0,1-\rho^2)\)。
+
+\item 考虑 Lasso 惩罚最小二乘问题
+\[
+\frac12\|Y-X\beta\|_2^2+\lambda\|\beta\|_1.
+\]
+令 \(\widehat\beta\) 为一个最小化点，并对给定 \(\beta^\ast\) 记 \(\Delta=\widehat\beta-\beta^\ast\)。若
+\[
+\lambda>2\|X^T(Y-X\beta^\ast)\|_\infty,
+\]
+证明：
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item
+\[
+\|Y-X\widehat\beta\|_2^2-\|Y-X\beta^\ast\|_2^2>-\lambda\|\Delta\|_1.
+\]
+\item
+\[
+\|\Delta_{S^c}\|_1\le3\|\Delta_S\|_1,
+\]
+其中 \(S=\{j:\beta_j^\ast\ne0\}\)，\(S^c\) 为其补集，\(\Delta_S\) 为 \(\Delta\) 限制在 \(S\) 上的子向量。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 只需关注座位 \(1\) 和座位 \(100\)。在登机过程中，一旦某位乘客发现自己的座位被占，他会在剩余座位中随机选择；除普通座位外，真正能决定最后结果的只有“第一名乘客的座位”和“最后一名乘客的座位”。在这两个特殊座位中，哪个先被误选就决定结局：若先选到座位 \(1\)，则之后所有中间乘客都能坐回自己的座位，最后一人坐到座位 \(100\)；若先选到座位 \(100\)，最后一人失败。由于随机选择在这两个特殊座位之间对称，概率相等，故答案为
+\[
+\frac12.
+\]
+
+\item 取任意有界连续函数 \(f\)。因为 \(X_n\Rightarrow X\)，有
+\[
+E f(X_n)\to E f(X).
+\]
+给定 \(\varepsilon>0\)，取 \(M\) 使 \(n\ge M\) 时
+\[
+|E f(X_n)-E f(X)|<\varepsilon.
+\]
+由 \(N_t\to\infty\) in probability，
+\[
+P(N_t<M)\to0.
+\]
+又 \(N_t\) 与 \((X_n)\) 独立，因此
+\[
+E f(X_{N_t})
+=\sum_{k\ge1}P(N_t=k)E f(X_k).
+\]
+于是
+\[
+\begin{aligned}
+|E f(X_{N_t})-E f(X)|
+&\le \sum_{k<M}P(N_t=k)\,2\|f\|_\infty
++\sum_{k\ge M}P(N_t=k)\varepsilon\\
+&\le 2\|f\|_\infty P(N_t<M)+\varepsilon.
+\end{aligned}
+\]
+先令 \(t\to\infty\)，再令 \(\varepsilon\downarrow0\)，得 \(E f(X_{N_t})\to E f(X)\)，故 \(X_{N_t}\Rightarrow X\)。
+
+\item 联合密度为
+\[
+f(t_1,\ldots,t_n)=e^{-(t_1+\cdots+t_n)}\mathbf1_{\{t_i>0\}}.
+\]
+作变换
+\[
+s=t_1+\cdots+t_n,\qquad v_i=\frac{t_i}{s}\quad (i=1,\ldots,n-1),
+\]
+并令 \(v_n=1-v_1-\cdots-v_{n-1}\)。Jacobian 为 \(s^{n-1}\)。因此联合密度变为
+\[
+e^{-s}s^{n-1}\mathbf1_{\{s>0,\ v_i>0,\ \sum v_i=1\}}.
+\]
+它分解为 \(s\) 的 Gamma\((n,1)\) 密度与单纯形上常数密度的乘积。故 \(V_n\) 与 \(S_n\) 独立，且 \(V_n\) 在
+\[
+\{(v_1,\ldots,v_n):v_i\ge0,\ \sum v_i=1\}
+\]
+上服从均匀分布，也即
+\[
+V_n\sim \operatorname{Dirichlet}(1,\ldots,1).
+\]
+
+\item 若 \(\operatorname{cov}(X,Z)=0\)，则联合正态下 \(X,Z\) 独立，因此 \(X\) 与任意可积的 \(f(Z)\) 独立，且 \(EX=0\)，所以
+\[
+\operatorname{cov}(X,f(Z))=E[Xf(Z)]=EX\,E f(Z)=0.
+\]
+反过来设 \(\rho=\operatorname{cov}(X,Z)\ne0\)。写
+\[
+Z=\rho X+\sqrt{1-\rho^2}\,E,
+\]
+其中 \(E\sim N(0,1)\) 且与 \(X\) 独立。对给定 \(E=e\)，函数 \(x\mapsto f(\rho x+\sqrt{1-\rho^2}e)\) 严格单调，且单调方向由 \(\rho\) 的符号决定。若 \(U,V\) 独立同分布为 \(X\)，则
+\[
+\operatorname{cov}(X,f(Z))
+=\frac12 E\{(X-U)(f(\rho X+\sqrt{1-\rho^2}E)-f(\rho U+\sqrt{1-\rho^2}E))\}.
+\]
+当 \(\rho>0\) 时括号内两因子同号，且以正概率非零，故协方差 \(>0\)；当 \(\rho<0\) 时协方差 \(<0\)。因此若 \(\operatorname{cov}(X,f(Z))=0\)，只能有 \(\rho=0\)。
+
+\item 最优性给
+\[
+\frac12\|Y-X\widehat\beta\|_2^2+\lambda\|\widehat\beta\|_1
+\le
+\frac12\|Y-X\beta^\ast\|_2^2+\lambda\|\beta^\ast\|_1.
+\]
+移项即
+\[
+\|Y-X\widehat\beta\|_2^2-\|Y-X\beta^\ast\|_2^2
+\le 2\lambda(\|\beta^\ast\|_1-\|\widehat\beta\|_1).
+\]
+另一方面展开平方：
+\[
+Y-X\widehat\beta=Y-X\beta^\ast-X\Delta,
+\]
+所以
+\[
+\|Y-X\widehat\beta\|_2^2-\|Y-X\beta^\ast\|_2^2
+=\|X\Delta\|_2^2-2\Delta^TX^T(Y-X\beta^\ast).
+\]
+由 Hölder 不等式与假设，
+\[
+2|\Delta^TX^T(Y-X\beta^\ast)|
+\le 2\|\Delta\|_1\|X^T(Y-X\beta^\ast)\|_\infty
+<\lambda\|\Delta\|_1.
+\]
+因此
+\[
+\|Y-X\widehat\beta\|_2^2-\|Y-X\beta^\ast\|_2^2
+>-\lambda\|\Delta\|_1,
+\]
+第一问得证。
+
+再由最优性原不等式与平方展开可得
+\[
+\|X\Delta\|_2^2
+\le
+2\Delta^TX^T(Y-X\beta^\ast)
+2\lambda(\|\beta^\ast\|_1-\|\widehat\beta\|_1).
+\]
+用上面的噪声界，得到
+\[
+\|X\Delta\|_2^2
+<\lambda\|\Delta\|_1+2\lambda(\|\beta^\ast\|_1-\|\widehat\beta\|_1).
+\]
+由于 \(\beta^\ast_{S^c}=0\)，
+\[
+\|\widehat\beta\|_1
+=\|\beta^\ast_S+\Delta_S\|_1+\|\Delta_{S^c}\|_1
+\ge \|\beta^\ast_S\|_1-\|\Delta_S\|_1+\|\Delta_{S^c}\|_1.
+\]
+故
+\[
+\|\beta^\ast\|_1-\|\widehat\beta\|_1
+\le \|\Delta_S\|_1-\|\Delta_{S^c}\|_1.
+\]
+代入并丢掉非负项 \(\|X\Delta\|_2^2\)，有
+\[
+0<\lambda(\|\Delta_S\|_1+\|\Delta_{S^c}\|_1)
++2\lambda(\|\Delta_S\|_1-\|\Delta_{S^c}\|_1).
+\]
+化简得
+\[
+\|\Delta_{S^c}\|_1<3\|\Delta_S\|_1,
+\]
+从而题中 \(\le3\) 形式成立。
+\end{enumerate}
+
+
+\subsection{2016 年：2016-team.pdf\#probability}
+\paragraph{题目}
+概率与统计团体赛，共 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 考虑完全无限二叉树上的随机游走，从根结点（第 \(0\) 层）出发。每一步等概率移动到相邻结点。令 \(X_n\) 表示第 \(n\) 时刻所在结点的层数。证明
+\[
+E X_n\le \frac n3+\frac43.
+\]
+
+\item 本题证明“分块均值的中位数”估计量的集中不等式。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 设 \(X\) 满足 \(E X=\mu<\infty\), \(\operatorname{Var}(X)=\sigma^2<\infty\)。设 \(X_1,\ldots,X_m\) 独立同分布于 \(X\)，并令
+\[
+\widehat\mu_m=\frac1m\sum_{i=1}^m X_i.
+\]
+证明
+\[
+P\left(|\widehat\mu_m-\mu|\ge 2\sigma\sqrt{\frac1m}\right)\le \frac14.
+\]
+\item 设 \(B_1,\ldots,B_k\) 为独立同分布 Bernoulli 随机变量，且 \(E B_j=p<1/2\)。利用矩母函数 \(E(e^{tB_j})\) 证明
+\[
+P\left(\frac1k\sum_{j=1}^k B_j\ge \frac12\right)\le \bigl(4p(1-p)\bigr)^{k/2}.
+\]
+\item 设 \(X_1,\ldots,X_n\) 为来自均值 \(\mu\)、方差 \(\sigma^2\) 的总体的独立同分布样本。给定正整数 \(k\)，把样本随机均分成 \(k\) 组，每组大小 \(m=n/k\)。令 \(\widehat\mu_j\) 为第 \(j\) 组样本均值，令 \(\widetilde\mu\) 为 \(\widehat\mu_1,\ldots,\widehat\mu_k\) 的中位数。证明
+\[
+P\left(|\widetilde\mu-\mu|\ge 2\sigma\sqrt{\frac{k}{n}}\right)\le \left(\frac{\sqrt3}{2}\right)^k.
+\]
+提示：考虑 \(B_j=\mathbf 1_{\{|\widehat\mu_j-\mu|\ge 2\sigma\sqrt{k/n}\}}\)。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(N\ge2\)，随机变量 \(X\) 取值于 \(\{0,1,2,\ldots\}\)，且对每个 \(k=0,1,\ldots,N-1\)，
+\[
+P\{X\equiv k\pmod N\}=\frac1N.
+\]
+求所有整数 \(m\ge1\) 下的 \(E(e^{2\pi i mX/N})\)。
+\item 有 \(N\) 名玩家，编号为 \(0,1,\ldots,N-1\)。每名玩家独立地随机伸出 \(0,1,\ldots,5\) 根手指，且六种结果等概率。令 \(S\) 为所有手指数之和，编号为 \(S\bmod N\) 的玩家获胜。求所有使每名玩家获胜概率相同的 \(N\)。
+\end{enumerate}
+
+\item 设 \(X_1,X_2,\ldots\) 为独立同分布的实值随机变量。证明或否定：若
+\[
+\limsup_{n\to\infty}\frac{|X_n|}{n}\le 1\quad a.s.,
+\]
+则
+\[
+\sum_{n=1}^\infty P(|X_n|\ge n)<\infty.
+\]
+
+\item 在圆 \(x^2+y^2=1\) 上随机取 2016 个点，把它们看成切点，从而把圆周分成 2016 段弧。求包含点 \((1,0)\) 的那段弧的长度的期望和方差。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 当 \(X_n=0\) 时，下一步必到第 \(1\) 层；当 \(X_n\ge1\) 时，该结点有一个父结点和两个子结点，因此
+\[
+P(X_{n+1}=X_n-1\mid X_n)=\frac13,\qquad
+P(X_{n+1}=X_n+1\mid X_n)=\frac23.
+\]
+于是
+\[
+E(X_{n+1}-X_n\mid X_n)=\frac13+\frac23\mathbf 1_{\{X_n=0\}}.
+\]
+求和得到
+\[
+E X_n=\sum_{j=0}^{n-1}E(X_{j+1}-X_j)
+=\frac n3+\frac23\sum_{j=0}^{n-1}P(X_j=0).
+\]
+下面估计访问根结点的期望次数。每次离开根后都在第 \(1\) 层。对在 \(\{0,1,2,\ldots\}\) 上向上概率 \(2/3\)、向下概率 \(1/3\) 的有偏随机游走，从 \(1\) 出发命中 \(0\) 的概率为
+\[
+\frac{q}{p}=\frac{1/3}{2/3}=\frac12.
+\]
+因此根结点访问次数（含初始时刻）被几何分布控制，期望不超过
+\[
+1+\frac12+\frac1{2^2}+\cdots=2.
+\]
+故
+\[
+\sum_{j=0}^{n-1}P(X_j=0)=E\#\{0\le j<n:X_j=0\}\le2,
+\]
+从而
+\[
+E X_n\le \frac n3+\frac23\cdot2=\frac n3+\frac43.
+\]
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 因为
+\[
+\operatorname{Var}(\widehat\mu_m)=\frac{\sigma^2}{m},
+\]
+Chebyshev 不等式给出
+\[
+P\left(|\widehat\mu_m-\mu|\ge 2\sigma m^{-1/2}\right)
+\le \frac{\sigma^2/m}{4\sigma^2/m}=\frac14.
+\]
+\item 对任意 \(t>0\)，Markov 不等式给出
+\[
+P\left(\sum_{j=1}^k B_j\ge \frac k2\right)
+\le e^{-tk/2}\prod_{j=1}^k E e^{tB_j}
+=\left(e^{-t/2}(1-p+pe^t)\right)^k.
+\]
+令 \(u=e^t>1\)，需最小化
+\[
+u^{-1/2}(1-p+pu).
+\]
+导数为零给出 \(u=(1-p)/p\)，由于 \(p<1/2\)，确有 \(u>1\)。代入得
+\[
+u^{-1/2}(1-p+pu)=2\sqrt{p(1-p)}.
+\]
+所以
+\[
+P\left(\frac1k\sum_{j=1}^k B_j\ge\frac12\right)
+\le \bigl(4p(1-p)\bigr)^{k/2}.
+\]
+\item 每组大小 \(m=n/k\)，由第一问
+\[
+P\left(|\widehat\mu_j-\mu|\ge 2\sigma\sqrt{k/n}\right)\le\frac14.
+\]
+令
+\[
+B_j=\mathbf 1_{\{|\widehat\mu_j-\mu|\ge 2\sigma\sqrt{k/n}\}}.
+\]
+各组独立，故 \(B_j\) 独立且 \(E B_j=p\le1/4\)。若中位数 \(\widetilde\mu\) 偏离 \(\mu\) 至少 \(2\sigma\sqrt{k/n}\)，则至少一半组均值偏离，即
+\[
+\sum_{j=1}^k B_j\ge \frac k2.
+\]
+第二问给出
+\[
+P\left(|\widetilde\mu-\mu|\ge 2\sigma\sqrt{k/n}\right)
+\le \bigl(4p(1-p)\bigr)^{k/2}
+\le \left(4\cdot\frac14\cdot\frac34\right)^{k/2}
+=\left(\frac{\sqrt3}{2}\right)^k.
+\]
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 记 \(\omega=e^{2\pi i/N}\)。因为 \(X\bmod N\) 在 \(0,\ldots,N-1\) 上均匀分布，
+\[
+E(e^{2\pi i mX/N})
+=\frac1N\sum_{r=0}^{N-1}\omega^{mr}.
+\]
+这是有限等比和。因此当 \(N\mid m\) 时每项为 \(1\)，期望等于 \(1\)；当 \(N\nmid m\) 时，
+\[
+\sum_{r=0}^{N-1}\omega^{mr}=\frac{1-\omega^{mN}}{1-\omega^m}=0,
+\]
+期望等于 \(0\)。
+\item 设每个玩家伸出的手指数为 \(Y\)，则
+\[
+E z^Y=\frac{1+z+z^2+z^3+z^4+z^5}{6}
+=\frac{1-z^6}{6(1-z)}\quad (z\ne1).
+\]
+令 \(\omega=e^{2\pi i/N}\)。总和 \(S\) 模 \(N\) 均匀，当且仅当对每个 \(m=1,\ldots,N-1\)，
+\[
+E(\omega^{mS})=\left(E(\omega^{mY})\right)^N=0.
+\]
+而 \(E(\omega^{mY})=0\) 当且仅当 \((\omega^m)^6=1\) 且 \(\omega^m\ne1\)。因此每个非平凡 \(N\) 次单位根都必须是非平凡 \(6\) 次单位根，这等价于 \(N\mid6\)。又 \(N\ge2\)，所以
+\[
+N=2,3,6.
+\]
+这三个值确实满足条件，因为此时任一非平凡 \(N\) 次单位根都是 \(1+z+\cdots+z^5\) 的零点。
+\end{enumerate}
+
+\item 结论为真。对任意 \(\varepsilon>0\)，由假设可知
+\[
+P\left(|X_n|>(1+\varepsilon)n\ \text{i.o.}\right)=0.
+\]
+事件 \(\{|X_n|>(1+\varepsilon)n\}\) 相互独立，第二 Borel--Cantelli 引理的逆用给出
+\[
+\sum_{n=1}^\infty P(|X_n|>(1+\varepsilon)n)<\infty.
+\]
+由于 \(X_n\) 同分布，令 \(T(t)=P(|X_1|\ge t)\)。取 \(\varepsilon=1/2\)，则
+\[
+\sum_{n=1}^\infty T(3n/2)<\infty.
+\]
+尾函数 \(T(t)\) 单调递减；每个整数 \(m\) 都至多落入有限个形如 \((3n/2,3(n+1)/2]\) 的区间，故
+\[
+\sum_{m=1}^\infty T(m)<\infty.
+\]
+也就是说
+\[
+\sum_{n=1}^\infty P(|X_n|\ge n)
+=\sum_{n=1}^\infty P(|X_1|\ge n)<\infty.
+\]
+
+\item 先把圆周长度归一化为 \(1\)。设 2016 个随机点对应 \([0,1)\) 上的独立均匀点，排序为
+\[
+0<U_{(1)}<\cdots<U_{(2016)}<1.
+\]
+固定点 \((1,0)\) 对应 \(0\)。包含 \(0\) 的间隔长度为
+\[
+L=U_{(1)}+1-U_{(2016)}=1-\bigl(U_{(2016)}-U_{(1)}\bigr).
+\]
+一般地，若有 \(n\) 个点，则极差 \(D=U_{(n)}-U_{(1)}\) 的密度为
+\[
+f_D(d)=n(n-1)d^{n-2}(1-d),\qquad 0<d<1.
+\]
+所以 \(L=1-D\) 的密度为
+\[
+f_L(l)=n(n-1)l(1-l)^{n-2},\qquad 0<l<1,
+\]
+即
+\[
+L\sim \operatorname{Beta}(2,n-1).
+\]
+于是
+\[
+E L=\frac{2}{n+1},\qquad
+\operatorname{Var}(L)=\frac{2(n-1)}{(n+1)^2(n+2)}.
+\]
+本题 \(n=2016\)。若“弧长”按单位圆的实际长度计量，需要乘以圆周长 \(2\pi\)。故期望为
+\[
+2\pi\cdot \frac{2}{2017}=\frac{4\pi}{2017},
+\]
+方差为
+\[
+(2\pi)^2\frac{2\cdot2015}{2017^2\cdot2018}
+=\frac{8\pi^2\cdot2015}{2017^2\cdot2018}.
+\]
+\end{enumerate}
+
+
+\subsection{2017 年：2017-team.pdf\#probability}
+\paragraph{题目}
+概率与统计团体赛，共 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 令 \(\mu_n\) 为 \(n\) 维立方体 \([-1,1]^n\) 上的均匀概率测度。令 \(H\subset\mathbb R^n\) 为与主对角线正交的超平面，即
+\[
+H=(1,\ldots,1)^\perp.
+\]
+对任意 \(r>0\)，定义
+\[
+A_{H,r}:=\{x\in[-1,1]^n:\operatorname{dist}(x,H)\le r\}.
+\]
+证明：对任意常数 \(\varepsilon>0\)，当 \(n\) 充分大时，
+\[
+\mu_n(A_{H,n^\varepsilon})\ge 1-n^{-2\varepsilon},
+\qquad
+\mu_n(A_{H,n^\varepsilon})\ge 1-e^{-n^{\varepsilon/2}}.
+\]
+
+\item 设 \(X_1,X_2,\ldots\) 为正随机变量。假设 \(X_n\) 依概率收敛到 \(0\)，且
+\[
+\lim_{n\to\infty}E X_n=2.
+\]
+证明 \(\lim_{n\to\infty}E|X_n-1|\) 存在，并求其值。
+
+\item 有 \(n\) 个人玩游戏。开始时每人有 \(1\) 美元。每一轮随机选出两名仍有钱的人，抛公平硬币决定胜负；输者给胜者 \(1\) 美元。手中没有钱的人立即退出。游戏在所有钱都集中到一个人手中时停止。求游戏轮数的期望。
+
+\item 设 \(\{X_n\}_{n\in\mathbb N}\) 与 \(\{X'_n\}_{n\in\mathbb N}\) 是 \(\mathbb Z^d\) 上两个相互独立的简单随机游走，且 \(X_0=X'_0=0\)。这里简单随机游走指若 \(\|x-y\|=1\)，则
+\[
+P(X_{n+1}=y\mid X_n=x)=(2d)^{-1}.
+\]
+令
+\[
+I=\{(s,t):X_s=X'_t\}.
+\]
+证明 \(|I|<\infty\) a.s.。提示：可先证明
+\[
+P(X_n=0)=O(n^{-d/2}).
+\]
+
+\item 设 \(X_1,\ldots,X_n\) 独立同分布，且 \(X_i\sim\operatorname{Poisson}(\lambda)\)。我们要估计
+\[
+p=P_\lambda(X_i=0)=e^{-\lambda}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 一个估计量是样本零值比例
+\[
+\widetilde p=\frac{\#\{i\le n:X_i=0\}}{n}.
+\]
+求 \(\sqrt n(\widetilde p-p)\) 的极限分布。
+\item 另一个估计量是最大似然估计量 \(\widehat p\)。给出 \(\widehat p\) 的公式，并求 \(\sqrt n(\widehat p-p)\) 的极限分布。
+\item 求 \(\widetilde p\) 相对于 \(\widehat p\) 的渐近相对效率。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 令 \(X=(X_1,\ldots,X_n)\) 在 \([-1,1]^n\) 上均匀分布。到 \(H\) 的距离为
+\[
+\operatorname{dist}(X,H)=\frac{|X_1+\cdots+X_n|}{\sqrt n}.
+\]
+记 \(S_n=X_1+\cdots+X_n\)。因为 \(E X_i=0\), \(\operatorname{Var}(X_i)=1/3\)，
+\[
+\operatorname{Var}(S_n)=\frac n3.
+\]
+由 Chebyshev 不等式，
+\[
+P\bigl(\operatorname{dist}(X,H)>n^\varepsilon\bigr)
+=P(|S_n|>n^{\varepsilon+1/2})
+\le \frac{n/3}{n^{1+2\varepsilon}}
+\le n^{-2\varepsilon}
+\]
+当 \(n\) 充分大时成立。故第一条估计成立。
+
+第二条用 Hoeffding 不等式。由于 \(X_i\in[-1,1]\)，
+\[
+P(|S_n|>u)\le 2\exp\left(-\frac{u^2}{2n}\right).
+\]
+取 \(u=n^{\varepsilon+1/2}\)，得
+\[
+P\bigl(\operatorname{dist}(X,H)>n^\varepsilon\bigr)
+\le 2\exp\left(-\frac12n^{2\varepsilon}\right).
+\]
+对固定 \(\varepsilon>0\)，当 \(n\) 充分大时右端不超过 \(e^{-n^{\varepsilon/2}}\)，于是第二条估计成立。
+
+\item 对 \(x\ge0\)，有恒等式
+\[
+|x-1|=x+1-2(x\wedge1).
+\]
+因此
+\[
+E|X_n-1|=E X_n+1-2E(X_n\wedge1).
+\]
+已知 \(X_n\to0\) 依概率。由于 \(0\le X_n\wedge1\le1\)，由有界收敛的概率形式可得
+\[
+E(X_n\wedge1)\to0.
+\]
+又 \(E X_n\to2\)，所以
+\[
+\lim_{n\to\infty}E|X_n-1|=2+1-0=3.
+\]
+
+\item 设第 \(t\) 轮结束后的财富向量为 \(W(t)=(W_1(t),\ldots,W_n(t))\)，并令
+\[
+Q(t)=\sum_{i=1}^n W_i(t)^2.
+\]
+初始时 \(Q(0)=n\)。若本轮选中的两人财富为 \(a,b>0\)，则公平硬币后两种变化分别为
+\[
+(a,b)\mapsto(a+1,b-1),\qquad (a,b)\mapsto(a-1,b+1).
+\]
+第一种情况下平方和变化为
+\[
+(a+1)^2+(b-1)^2-a^2-b^2=2(a-b)+2,
+\]
+第二种为 \(2(b-a)+2\)。条件期望均为 \(2\)。因此
+\[
+Q(t)-2t
+\]
+是鞅。停止时全部 \(n\) 美元在一人手中，所以 \(Q(T)=n^2\)。由可选停止定理（也可先在 \(T\wedge m\) 停止再令 \(m\to\infty\)）得到
+\[
+E Q(T)-2E T=Q(0),
+\]
+即
+\[
+n^2-2E T=n.
+\]
+故平均轮数为
+\[
+E T=\frac{n^2-n}{2}.
+\]
+
+\item 按题目结论，需要 \(d>4\)；在 \(d\le4\) 时下面的级数发散，命题并不成立。现在设 \(d>4\)。由独立性，
+\[
+E|I|=\sum_{s=0}^\infty\sum_{t=0}^\infty P(X_s=X'_t).
+\]
+因为两个随机游走独立且同分布，
+\[
+P(X_s=X'_t)=P(X_s-X'_t=0).
+\]
+也可写成
+\[
+P(X_s=X'_t)=\sum_x P(X_s=x)P(X'_t=x)
+=P(X_{s+t}=0),
+\]
+其中最后一步用简单随机游走转移概率的卷积性质。由提示，
+\[
+P(X_{s+t}=0)=O((s+t)^{-d/2})
+\]
+（当 \(s+t=0\) 的一项单独处理）。于是
+\[
+E|I|
+\le C+\sum_{s+t\ge1}C(s+t)^{-d/2}
+=C+\sum_{m=1}^\infty (m+1)C m^{-d/2}.
+\]
+该级数等价于 \(\sum m^{1-d/2}\)，当且仅当 \(d>4\) 收敛。因此 \(E|I|<\infty\)。非负整数值随机变量若期望有限，则几乎处处有限，故 \(|I|<\infty\) a.s.。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 指标变量 \(I_i=\mathbf1_{\{X_i=0\}}\) 独立同分布且
+\[
+P(I_i=1)=p=e^{-\lambda}.
+\]
+所以 \(\widetilde p=n^{-1}\sum I_i\)。由中心极限定理，
+\[
+\sqrt n(\widetilde p-p)\Rightarrow N(0,p(1-p)).
+\]
+\item Poisson 样本的 \(\lambda\) 的 MLE 为
+\[
+\widehat\lambda=\bar X=\frac1n\sum_{i=1}^n X_i.
+\]
+由于 \(p=e^{-\lambda}\)，由不变性，
+\[
+\widehat p=e^{-\widehat\lambda}=e^{-\bar X}.
+\]
+中心极限定理给
+\[
+\sqrt n(\bar X-\lambda)\Rightarrow N(0,\lambda).
+\]
+令 \(g(x)=e^{-x}\)，则 \(g'(\lambda)=-e^{-\lambda}=-p\)。Delta 方法给
+\[
+\sqrt n(\widehat p-p)
+=\sqrt n(g(\bar X)-g(\lambda))
+\Rightarrow N(0,p^2\lambda).
+\]
+\item 若以渐近方差越小表示效率越高，则 \(\widetilde p\) 相对于 \(\widehat p\) 的渐近相对效率为
+\[
+\operatorname{ARE}(\widetilde p,\widehat p)
+=\frac{\operatorname{avar}(\widehat p)}{\operatorname{avar}(\widetilde p)}
+=\frac{p^2\lambda}{p(1-p)}
+=\frac{p\lambda}{1-p}.
+\]
+代入 \(p=e^{-\lambda}\)，也可写为
+\[
+\frac{\lambda e^{-\lambda}}{1-e^{-\lambda}}.
+\]
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{2018 年：2018-team.pdf\#probability}
+\paragraph{题目}
+概率与统计团体赛，共 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(X_i\), \(1\le i\le N\)，独立同分布，且 \(X_1\sim U[0,1]\)。将它们排序为
+\[
+X_{(1)}\le X_{(2)}\le\cdots\le X_{(N)}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 当 \(N=2m-1\) 且 \(Y=X_{(m)}\) 时，求 \(A,B\)，使 \((Y-A)/N^B\) 有非平凡极限分布，并求此极限分布。
+\item 当 \(N=2m\) 且 \(Y=X_{(m)}-X_{(m-1)}\) 时，求 \(A,B\)，使 \((Y-A)/N^B\) 有非平凡极限分布，并求此极限分布。
+\end{enumerate}
+
+\item 令
+\[
+X=(\mathbb Z_2)^{\mathbb N},
+\]
+即 \(X=(X_1,X_2,\ldots)\)，每个坐标取 \(0\) 或 \(1\)。可把它看成可数盏灯，\(0\) 表示关，\(1\) 表示开。初始状态 \(X_0=0\)。不断产生独立的几何随机变量
+\[
+P(K=k)=2^{-k},\qquad k=1,2,\ldots.
+\]
+第 \(m\) 步只改变第 \(K_m\) 盏灯的状态，即
+\[
+(X_m-X_{m-1})_k=\mathbf 1_{\{k=K_m\}}\quad(\text{在 }\mathbb Z_2\text{ 中}).
+\]
+求所有灯再次全灭的概率
+\[
+P(\exists m>1,\ X_m=0).
+\]
+
+\item 设 \(x_1,\ldots,x_n\) 为 \(d\) 维实向量，\(n\) 足够大。对 \(\mu\) 定义
+\[
+\ell(\mu)=
+\sup\left\{\sum_{i=1}^n\log p_i:
+\sum_{i=1}^n p_i x_i=\mu,\ 
+\sum_{i=1}^n p_i=1,\ p_i>0
+\right\},
+\]
+定义域为 \(x_1,\ldots,x_n\) 的凸包内部。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明 \(\ell(\mu)\) 在凸包上是凹函数。
+\item 令 \(\bar x=n^{-1}\sum_{i=1}^n x_i\)。给定 \(d\) 维向量 \(a\)，证明当 \(t>0\) 时，\(\ell(\bar x+ta)\) 关于 \(t\) 单调递减。
+\end{enumerate}
+
+\item 考虑直方图估计。设 \(X_1,\ldots,X_n\) 独立同分布，取值于 \([0,1]\)，密度为足够光滑的 \(f\)。把 \([0,1]\) 分成
+\[
+B_1=\left[0,\frac1m\right),\quad
+B_2=\left[\frac1m,\frac2m\right),\quad\ldots,\quad
+B_m=\left[\frac{m-1}{m},1\right].
+\]
+令 \(h=1/m\)，\(v_j\) 为落入 \(B_j\) 的样本个数，
+\[
+\widehat p_j=\frac{v_j}{n},\qquad
+p_j=\int_{B_j}f(u)\,du.
+\]
+直方图密度估计为
+\[
+\widehat f_n(x)=\sum_{j=1}^m\frac{\widehat p_j}{h}\mathbf 1_{\{x\in B_j\}}.
+\]
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 求 \(\widehat f_n(x)\) 的精确均值和方差。
+\item 解释为什么增加分箱数会减小 \(\widehat f_n(x)\) 的偏差。
+\item 若目标是最小化
+\[
+\operatorname{MSE}=E\int(\widehat f_n(x)-f(x))^2\,dx,
+\]
+请说明如何选择 \(m\)。
+\end{enumerate}
+
+\item 设 \(X_i\sim N(\theta_i,1)\) 相互独立，\(i=1,\ldots,k\)。给定观测 \(X_1,\ldots,X_k\)，估计
+\[
+\tau=\theta_1^2+\cdots+\theta_k^2.
+\]
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 一个估计量为
+\[
+\widetilde\tau=\sum_{i=1}^kX_i^2-k.
+\]
+证明它无偏，并计算抽样方差。
+\item 现在假设先验为 \(\theta_i\sim N(0,A)\) 独立同分布，\(A>0\) 未知。给出 \(A\) 的估计 \(\widehat A\)，并推导经验 Bayes 估计
+\[
+\widehat\tau_B=E(\tau\mid X_1,\ldots,X_k,\widehat A).
+\]
+\item 比较 \(\widetilde\tau\) 与 \(\widehat\tau_B\)。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 样本中位数 \(Y=X_{(m)}\) 的精确分布为
+\[
+Y\sim \operatorname{Beta}(m,m),\qquad N=2m-1.
+\]
+因此
+\[
+E Y=\frac12,\qquad
+\operatorname{Var}(Y)=\frac{m^2}{(2m)^2(2m+1)}
+=\frac1{4(2m+1)}\sim \frac1{4N}.
+\]
+也可由样本分位数中心极限定理得到
+\[
+\sqrt N\left(Y-\frac12\right)\Rightarrow N\left(0,\frac14\right),
+\]
+因为均匀分布在 \(1/2\) 处的密度为 \(1\)。所以可取
+\[
+A=\frac12,\qquad B=-\frac12,
+\]
+使得 \((Y-A)/N^B=\sqrt N(Y-1/2)\) 有非退化极限 \(N(0,1/4)\)。
+\item 均匀次序统计量的间隔
+\[
+X_{(1)},\ X_{(2)}-X_{(1)},\ldots,\ X_{(N)}-X_{(N-1)},\ 1-X_{(N)}
+\]
+服从 Dirichlet\((1,\ldots,1)\)。其中任一单个间隔 \(D\) 的边缘分布为
+\[
+D\sim \operatorname{Beta}(1,N),
+\]
+即
+\[
+P(D>x)=(1-x)^N,\qquad 0<x<1.
+\]
+本题 \(Y=X_{(m)}-X_{(m-1)}\) 是一个内部间隔，因此
+\[
+P(NY>y)=P(Y>y/N)=\left(1-\frac yN\right)^N\to e^{-y}.
+\]
+故
+\[
+NY\Rightarrow \operatorname{Exp}(1).
+\]
+可取
+\[
+A=0,\qquad B=-1.
+\]
+\end{enumerate}
+
+\item 令步分布为 \(p_k=2^{-k}\)。在第 \(m\) 步回到全灭，等价于 \(K_1,\ldots,K_m\) 中每个取值出现偶数次。显然奇数步概率为 \(0\)。对偶数步，用 Fourier 公式计算。设 \(\varepsilon_k\) 为独立 Rademacher 随机变量，取值 \(\pm1\) 各半，则
+\[
+P(X_m=0)=E\left(\sum_{k=1}^{\infty}p_k\varepsilon_k\right)^m.
+\]
+而
+\[
+\sum_{k=1}^{\infty}2^{-k}\varepsilon_k
+\]
+在 \([-1,1]\) 上服从均匀分布：它等于二进制展开给出的 \(2U-1\)，其中 \(U\sim U[0,1]\)。因此
+\[
+P(X_{2r}=0)=E U_0^{2r}=\frac1{2r+1},
+\qquad U_0\sim U[-1,1],
+\]
+且 \(P(X_{2r+1}=0)=0\)。
+
+于是从 \(0\) 出发的 Green 函数为
+\[
+G(0,0)=\sum_{m=0}^{\infty}P(X_m=0)
+=\sum_{r=0}^{\infty}\frac1{2r+1}=\infty.
+\]
+对可数群上的不可约随机游走，返回概率为 \(1\) 当且仅当 \(G(0,0)=\infty\)。因此
+\[
+P(\exists m>0,\ X_m=0)=1.
+\]
+由于一步不可能回到 \(0\)，题中 \(\exists m>1\) 的概率同样为
+\[
+1.
+\]
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 取 \(\mu_1,\mu_2\) 及对应可行权重 \(p_i,q_i\)。对 \(0<\alpha<1\)，权重
+\[
+r_i=\alpha p_i+(1-\alpha)q_i
+\]
+满足
+\[
+\sum r_i=1,\qquad \sum r_i x_i=\alpha\mu_1+(1-\alpha)\mu_2.
+\]
+由 \(\log\) 的凹性，
+\[
+\sum_i\log r_i
+\ge \alpha\sum_i\log p_i+(1-\alpha)\sum_i\log q_i.
+\]
+对 \(p,q\) 取上确界，得到
+\[
+\ell(\alpha\mu_1+(1-\alpha)\mu_2)
+\ge \alpha\ell(\mu_1)+(1-\alpha)\ell(\mu_2).
+\]
+故 \(\ell\) 为凹函数。
+\item 在 \(\bar x\) 处，均匀权重 \(p_i=1/n\) 可行。由 AM--GM 不等式，在约束 \(\sum p_i=1\) 下
+\[
+\sum_{i=1}^n\log p_i\le n\log\frac1n,
+\]
+等号当且仅当 \(p_i=1/n\)。故 \(\ell\) 在 \(\bar x\) 处取得全局最大值。令
+\[
+g(t)=\ell(\bar x+ta)
+\]
+在其定义区间上。由第一问，\(g\) 是凹函数，且在 \(t=0\) 取最大值。对 \(0<s<t\)，由凹函数斜率单调性，右侧割线斜率不大于从 \(0\) 出发的割线斜率；而 \(0\) 是最大点，所以这些斜率均不正。因此
+\[
+g(t)\le g(s),
+\]
+即 \(\ell(\bar x+ta)\) 在 \(t>0\) 上单调递减。
+\end{enumerate}
+
+\item 若 \(x\in B_j\)，则
+\[
+\widehat f_n(x)=\frac{\widehat p_j}{h}=\frac{v_j}{nh}.
+\]
+其中
+\[
+v_j\sim \operatorname{Binomial}(n,p_j).
+\]
+所以精确均值和方差为
+\[
+E\widehat f_n(x)=\frac{p_j}{h},
+\qquad
+\operatorname{Var}(\widehat f_n(x))
+=\frac{p_j(1-p_j)}{nh^2}.
+\]
+注意 \(p_j/h\) 是 \(f\) 在箱 \(B_j\) 上的平均值；当 \(m\) 增大、\(h=1/m\) 减小时，若 \(f\) 连续或光滑，则该局部平均值趋近于 \(f(x)\)，故偏差减小。
+
+积分均方误差可分解为
+\[
+E\int(\widehat f_n-f)^2
+=\int \operatorname{Var}(\widehat f_n(x))\,dx
++\int (E\widehat f_n(x)-f(x))^2\,dx.
+\]
+普通直方图的积分方差阶为
+\[
+O\left(\frac{m}{n}\right)=O\left(\frac1{nh}\right),
+\]
+而光滑密度下的积分平方偏差阶通常为
+\[
+O(h^2)=O(m^{-2}).
+\]
+平衡二者：
+\[
+\frac{m}{n}\asymp \frac1{m^2},
+\]
+得到
+\[
+m\asymp n^{1/3}
+\]
+作为常用选择。
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 对 \(X_i\sim N(\theta_i,1)\)，
+\[
+E X_i^2=1+\theta_i^2.
+\]
+因此
+\[
+E\widetilde\tau=\sum_{i=1}^k(E X_i^2-1)=\sum_{i=1}^k\theta_i^2=\tau,
+\]
+即无偏。又正态变量的四阶矩给
+\[
+\operatorname{Var}(X_i^2)=2+4\theta_i^2.
+\]
+独立求和得
+\[
+\operatorname{Var}(\widetilde\tau)
+=\sum_{i=1}^k(2+4\theta_i^2)
+=2k+4\tau.
+\]
+\item 在先验 \(\theta_i\sim N(0,A)\) 下，边缘分布为
+\[
+X_i\sim N(0,A+1).
+\]
+自然的矩估计或边缘 MLE 为
+\[
+\widehat A=\max\left\{0,\frac1k\sum_{i=1}^kX_i^2-1\right\}.
+\]
+给定 \(A\) 时，正态共轭计算给
+\[
+\theta_i\mid X_i,A\sim
+N\left(\frac{A}{A+1}X_i,\ \frac{A}{A+1}\right).
+\]
+因此
+\[
+E(\theta_i^2\mid X_i,A)
+=\frac{A}{A+1}+\left(\frac{A}{A+1}\right)^2X_i^2.
+\]
+代入 \(\widehat A\)，经验 Bayes 估计为
+\[
+\widehat\tau_B
+=\sum_{i=1}^k
+\left[
+\frac{\widehat A}{\widehat A+1}
++\left(\frac{\widehat A}{\widehat A+1}\right)^2X_i^2
+\right].
+\]
+\item \(\widetilde\tau\) 的优点是对固定 \(\theta\) 无偏，形式简单；缺点是方差
+\[
+2k+4\tau
+\]
+可能很大，且估计值可能为负。经验 Bayes 估计 \(\widehat\tau_B\) 利用正态先验结构，对 \(X_i^2\) 作收缩，通常在 \(\theta_i\) 整体较小或先验模型近似正确时均方误差更小，并且稳定性更好；代价是它依赖先验模型和 \(\widehat A\)，一般不再对每个固定 \(\theta\) 严格无偏。
+\end{enumerate}
+\end{enumerate}
+
+
+\subsection{2019 年：ProbaStat2019-team.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2019 年概率与统计团体赛，共 4 题。
+\begin{enumerate}[label=\textbf{\arabic*)},leftmargin=2.2em]
+\item 设 \((X_n)_{n\ge1}\) 独立同分布，公共分布为参数 \(1\) 的指数分布。证明
+\[
+P\left(\limsup_{n\to\infty}\frac{X_n}{\log n}=1\right)=1.
+\]
+
+\item 设 \((X_n)_{n\ge1}\) 为独立同分布实随机变量，令 \(S_n=\sum_{i=1}^nX_i\)。若存在常数 \(c\in\mathbb R\)，使得
+\[
+\frac{S_n}{n}\to c\quad a.s.,
+\]
+证明 \(X_1\) 一阶矩有限且 \(E X_1=c\)。
+
+\item 考虑 \(\{1,2,\ldots,n\}\) 上的均匀随机排列，令 \(X_n\) 为该排列的循环个数。求实数序列 \(a_n\)，使
+\[
+\lim_{n\to\infty}\frac{E X_n}{a_n}=1,
+\]
+并说明理由。
+
+\item Erdos--Renyi 随机图 \(G(n,p)\) 的顶点集为 \(V=\{1,\ldots,n\}\)，任意不同顶点 \(i,j\) 之间的边以概率 \(p\) 独立出现。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对 \(\varepsilon>0\)，若
+\[
+p_n\ge (1+\varepsilon)\frac{\log n}{n},
+\]
+证明
+\[
+P(G(n,p_n)\text{ 有孤立点})\to0.
+\]
+\item 对 \(\varepsilon>0\)，若
+\[
+p_n\le (1-\varepsilon)\frac{\log n}{n},
+\]
+证明
+\[
+P(G(n,p_n)\text{ 有孤立点})\to1.
+\]
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 对任意 \(\alpha>0\)，
+\[
+P(X_n>\alpha\log n)=e^{-\alpha\log n}=n^{-\alpha}.
+\]
+若 \(\alpha>1\)，则 \(\sum n^{-\alpha}<\infty\)，由第一 Borel--Cantelli 引理，
+\[
+P(X_n>\alpha\log n\ \text{i.o.})=0.
+\]
+于是几乎处处
+\[
+\limsup_{n\to\infty}\frac{X_n}{\log n}\le\alpha.
+\]
+令 \(\alpha\downarrow1\) 得上界不超过 \(1\)。若 \(0<\alpha\le1\)，则 \(\sum n^{-\alpha}=\infty\)，且事件 \(\{X_n>\alpha\log n\}\) 相互独立，由第二 Borel--Cantelli 引理，
+\[
+P(X_n>\alpha\log n\ \text{i.o.})=1.
+\]
+所以几乎处处
+\[
+\limsup_{n\to\infty}\frac{X_n}{\log n}\ge\alpha.
+\]
+令 \(\alpha\uparrow1\)，得下界至少为 \(1\)。两者合并即结论。
+
+\item 因为 \(S_n/n\to c\) a.s.，有
+\[
+\frac{X_n}{n}=\frac{S_n}{n}-\frac{n-1}{n}\frac{S_{n-1}}{n-1}\to c-c=0
+\quad a.s.
+\]
+于是
+\[
+P(|X_n|>n\ \text{i.o.})=0.
+\]
+事件 \(\{|X_n|>n\}\) 相互独立，第二 Borel--Cantelli 引理推出
+\[
+\sum_{n=1}^\infty P(|X_n|>n)<\infty.
+\]
+由于 \(X_n\) 同分布于 \(X_1\)，尾和判别给
+\[
+E|X_1|
+\le 1+\sum_{n=1}^\infty P(|X_1|>n)<\infty.
+\]
+因此 \(X_1\) 可积。由强大数定律，
+\[
+\frac{S_n}{n}\to E X_1\quad a.s.
+\]
+而极限也等于 \(c\)，故
+\[
+E X_1=c.
+\]
+
+\item 令 \(I_k\) 表示元素 \(k\) 是其所在循环中最小元素。每个循环恰有一个最小元素，因此
+\[
+X_n=\sum_{k=1}^n I_k.
+\]
+对固定 \(k\)，在包含 \(k\) 的循环中，元素 \(1,\ldots,k\) 中最先出现的那个等可能为任意一个；等价地，\(k\) 是其循环中最小元素的概率为
+\[
+P(I_k=1)=\frac1k.
+\]
+所以
+\[
+E X_n=\sum_{k=1}^n\frac1k=H_n.
+\]
+调和数满足
+\[
+H_n=\log n+\gamma+o(1),
+\]
+故可取
+\[
+a_n=\log n.
+\]
+于是
+\[
+\frac{E X_n}{a_n}=\frac{H_n}{\log n}\to1.
+\]
+
+\item 记孤立点个数为
+\[
+Z_n=\sum_{v=1}^n I_v,
+\]
+其中 \(I_v\) 表示顶点 \(v\) 孤立。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对任意顶点，
+\[
+P(I_v=1)=(1-p_n)^{n-1}.
+\]
+因此
+\[
+E Z_n=n(1-p_n)^{n-1}.
+\]
+若 \(p_n\ge(1+\varepsilon)\log n/n\)，则
+\[
+E Z_n\le n\exp(-(n-1)p_n)
+\le n\exp(-(1+o(1))(1+\varepsilon)\log n)
+=o(1).
+\]
+由 Markov 不等式，
+\[
+P(Z_n\ge1)\le E Z_n\to0.
+\]
+即有孤立点的概率趋于 \(0\)。
+\item 仍设 \(Z_n\) 为孤立点个数。现在
+\[
+E Z_n=n(1-p_n)^{n-1}.
+\]
+当 \(p_n\le(1-\varepsilon)\log n/n\) 时，且 \(p_n\to0\)，有
+\[
+E Z_n\ge n\exp(-(1+o(1))(n-1)p_n)
+\ge n^{\varepsilon+o(1)}\to\infty.
+\]
+用二阶矩。对 \(u\ne v\)，两个顶点同时孤立需要 \(u,v\) 之间的边不存在，且二者到其余 \(n-2\) 个顶点的边都不存在，故
+\[
+P(I_u=I_v=1)=(1-p_n)^{2n-3}.
+\]
+于是
+\[
+E[Z_n(Z_n-1)]
+=n(n-1)(1-p_n)^{2n-3}.
+\]
+因此
+\[
+\frac{\operatorname{Var}(Z_n)}{(E Z_n)^2}
+\le
+\frac1{E Z_n}
++\frac{n(n-1)(1-p_n)^{2n-3}}{n^2(1-p_n)^{2n-2}}-1
+=\frac1{E Z_n}+\frac{n-1}{n}\frac1{1-p_n}-1\to0.
+\]
+Chebyshev 不等式给
+\[
+P(Z_n=0)\le P(|Z_n-EZ_n|\ge EZ_n)
+\le \frac{\operatorname{Var}(Z_n)}{(EZ_n)^2}\to0.
+\]
+所以
+\[
+P(G(n,p_n)\text{ 有孤立点})=P(Z_n\ge1)\to1.
+\]
+\end{enumerate}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,3297 @@
+\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bm}
+
+\usepackage{newunicodechar}
+\newcommand{\umath}[1]{\ensuremath{#1}}
+\newunicodechar{∶}{\umath{:}}
+\newunicodechar{∓}{\umath{\mp}}
+\newunicodechar{⧵}{\umath{\backslash}}
+\newunicodechar{⃗}{}
+\newunicodechar{̸}{\umath{/}}
+\newunicodechar{∈}{\umath{\in}}
+\newunicodechar{∉}{\umath{\notin}}
+\newunicodechar{∋}{\umath{\ni}}
+\newunicodechar{∀}{\umath{\forall}}
+\newunicodechar{∃}{\umath{\exists}}
+\newunicodechar{∅}{\umath{\varnothing}}
+\newunicodechar{≤}{\umath{\le}}
+\newunicodechar{≥}{\umath{\ge}}
+\newunicodechar{⩽}{\umath{\le}}
+\newunicodechar{⩾}{\umath{\ge}}
+\newunicodechar{≠}{\umath{\ne}}
+\newunicodechar{≡}{\umath{\equiv}}
+\newunicodechar{≈}{\umath{\approx}}
+\newunicodechar{≃}{\umath{\simeq}}
+\newunicodechar{≅}{\umath{\cong}}
+\newunicodechar{∼}{\umath{\sim}}
+\newunicodechar{⊂}{\umath{\subset}}
+\newunicodechar{⊆}{\umath{\subseteq}}
+\newunicodechar{⊕}{\umath{\oplus}}
+\newunicodechar{⊗}{\umath{\otimes}}
+\newunicodechar{⊥}{\umath{\perp}}
+\newunicodechar{∩}{\umath{\cap}}
+\newunicodechar{∪}{\umath{\cup}}
+\newunicodechar{∧}{\umath{\wedge}}
+\newunicodechar{∣}{\umath{\mid}}
+\newunicodechar{∤}{\umath{\nmid}}
+\newunicodechar{∥}{\umath{\parallel}}
+\newunicodechar{⋅}{\umath{\cdot}}
+\newunicodechar{⋯}{\umath{\cdots}}
+\newunicodechar{∑}{\umath{\sum}}
+\newunicodechar{∏}{\umath{\prod}}
+\newunicodechar{∫}{\umath{\int}}
+\newunicodechar{∂}{\umath{\partial}}
+\newunicodechar{∇}{\umath{\nabla}}
+\newunicodechar{∆}{\umath{\Delta}}
+\newunicodechar{⇒}{\umath{\Rightarrow}}
+\newunicodechar{⇐}{\umath{\Leftarrow}}
+\newunicodechar{↔}{\umath{\leftrightarrow}}
+\newunicodechar{⟹}{\umath{\Longrightarrow}}
+\newunicodechar{⟶}{\umath{\longrightarrow}}
+\newunicodechar{⟨}{\umath{\langle}}
+\newunicodechar{⟩}{\umath{\rangle}}
+\newunicodechar{⌊}{\umath{\lfloor}}
+\newunicodechar{⌋}{\umath{\rfloor}}
+\newunicodechar{′}{\umath{'}}
+\newunicodechar{″}{\umath{''}}
+\newunicodechar{‴}{\umath{'''}}
+\newunicodechar{ℎ}{\umath{h}}
+\newunicodechar{ℓ}{\umath{\ell}}
+\newunicodechar{ℙ}{\umath{\mathbb P}}
+\newunicodechar{ℬ}{\umath{\mathcal B}}
+\newunicodechar{ℱ}{\umath{\mathcal F}}
+\newunicodechar{α}{\umath{\alpha}}
+\newunicodechar{β}{\umath{\beta}}
+\newunicodechar{γ}{\umath{\gamma}}
+\newunicodechar{δ}{\umath{\delta}}
+\newunicodechar{ε}{\umath{\varepsilon}}
+\newunicodechar{ϵ}{\umath{\epsilon}}
+\newunicodechar{ζ}{\umath{\zeta}}
+\newunicodechar{η}{\umath{\eta}}
+\newunicodechar{θ}{\umath{\theta}}
+\newunicodechar{ι}{\umath{\iota}}
+\newunicodechar{κ}{\umath{\kappa}}
+\newunicodechar{λ}{\umath{\lambda}}
+\newunicodechar{ν}{\umath{\nu}}
+\newunicodechar{ξ}{\umath{\xi}}
+\newunicodechar{π}{\umath{\pi}}
+\newunicodechar{ρ}{\umath{\rho}}
+\newunicodechar{σ}{\umath{\sigma}}
+\newunicodechar{τ}{\umath{\tau}}
+\newunicodechar{φ}{\umath{\varphi}}
+\newunicodechar{ϕ}{\umath{\phi}}
+\newunicodechar{χ}{\umath{\chi}}
+\newunicodechar{ψ}{\umath{\psi}}
+\newunicodechar{ω}{\umath{\omega}}
+\newunicodechar{𝛼}{\umath{\alpha}}
+\newunicodechar{𝛽}{\umath{\beta}}
+\newunicodechar{𝛾}{\umath{\gamma}}
+\newunicodechar{𝛿}{\umath{\delta}}
+\newunicodechar{𝜁}{\umath{\zeta}}
+\newunicodechar{𝜃}{\umath{\theta}}
+\newunicodechar{𝜆}{\umath{\lambda}}
+\newunicodechar{𝜇}{\umath{\mu}}
+\newunicodechar{𝜈}{\umath{\nu}}
+\newunicodechar{𝜋}{\umath{\pi}}
+\newunicodechar{𝜍}{\umath{\varsigma}}
+\newunicodechar{𝜎}{\umath{\sigma}}
+\newunicodechar{𝜏}{\umath{\tau}}
+\newunicodechar{𝜑}{\umath{\varphi}}
+\newunicodechar{𝜒}{\umath{\chi}}
+\newunicodechar{𝜓}{\umath{\psi}}
+\newunicodechar{𝜔}{\umath{\omega}}
+\newunicodechar{𝜕}{\umath{\partial}}
+\newunicodechar{𝜽}{\umath{\boldsymbol\theta}}
+\newunicodechar{𝐀}{\umath{\mathbf A}}
+\newunicodechar{𝐁}{\umath{\mathbf B}}
+\newunicodechar{𝐂}{\umath{\mathbb C}}
+\newunicodechar{𝐄}{\umath{\mathbf E}}
+\newunicodechar{𝐅}{\umath{\mathbf F}}
+\newunicodechar{𝐇}{\umath{\mathbf H}}
+\newunicodechar{𝐈}{\umath{\mathbf I}}
+\newunicodechar{𝐍}{\umath{\mathbb N}}
+\newunicodechar{𝐐}{\umath{\mathbb Q}}
+\newunicodechar{𝐑}{\umath{\mathbb R}}
+\newunicodechar{𝐗}{\umath{\mathbf X}}
+\newunicodechar{𝐘}{\umath{\mathbf Y}}
+\newunicodechar{𝐙}{\umath{\mathbb Z}}
+\newunicodechar{𝐝}{\umath{\mathbf d}}
+\newunicodechar{𝐞}{\umath{\mathbf e}}
+\newunicodechar{𝐦}{\umath{\mathbf m}}
+\newunicodechar{𝐱}{\umath{\mathbf x}}
+\newunicodechar{𝐴}{\umath{A}}
+\newunicodechar{𝐵}{\umath{B}}
+\newunicodechar{𝐶}{\umath{C}}
+\newunicodechar{𝐸}{\umath{E}}
+\newunicodechar{𝐹}{\umath{F}}
+\newunicodechar{𝐻}{\umath{H}}
+\newunicodechar{𝐼}{\umath{I}}
+\newunicodechar{𝐾}{\umath{K}}
+\newunicodechar{𝐿}{\umath{L}}
+\newunicodechar{𝑀}{\umath{M}}
+\newunicodechar{𝑁}{\umath{N}}
+\newunicodechar{𝑂}{\umath{O}}
+\newunicodechar{𝑃}{\umath{P}}
+\newunicodechar{𝑄}{\umath{Q}}
+\newunicodechar{𝑅}{\umath{R}}
+\newunicodechar{𝑆}{\umath{S}}
+\newunicodechar{𝑇}{\umath{T}}
+\newunicodechar{𝑈}{\umath{U}}
+\newunicodechar{𝑉}{\umath{V}}
+\newunicodechar{𝑊}{\umath{W}}
+\newunicodechar{𝑋}{\umath{X}}
+\newunicodechar{𝑌}{\umath{Y}}
+\newunicodechar{𝑎}{\umath{a}}
+\newunicodechar{𝑏}{\umath{b}}
+\newunicodechar{𝑐}{\umath{c}}
+\newunicodechar{𝑑}{\umath{d}}
+\newunicodechar{𝑒}{\umath{e}}
+\newunicodechar{𝑓}{\umath{f}}
+\newunicodechar{𝑔}{\umath{g}}
+\newunicodechar{𝑖}{\umath{i}}
+\newunicodechar{𝑗}{\umath{j}}
+\newunicodechar{𝑘}{\umath{k}}
+\newunicodechar{𝑙}{\umath{l}}
+\newunicodechar{𝑚}{\umath{m}}
+\newunicodechar{𝑛}{\umath{n}}
+\newunicodechar{𝑝}{\umath{p}}
+\newunicodechar{𝑞}{\umath{q}}
+\newunicodechar{𝑟}{\umath{r}}
+\newunicodechar{𝑠}{\umath{s}}
+\newunicodechar{𝑡}{\umath{t}}
+\newunicodechar{𝑢}{\umath{u}}
+\newunicodechar{𝑣}{\umath{v}}
+\newunicodechar{𝑤}{\umath{w}}
+\newunicodechar{𝑥}{\umath{x}}
+\newunicodechar{𝑦}{\umath{y}}
+\newunicodechar{𝑧}{\umath{z}}
+\newunicodechar{𝒞}{\umath{\mathcal C}}
+\newunicodechar{𝒩}{\umath{\mathcal N}}
+\newunicodechar{𝒪}{\umath{\mathcal O}}
+\newunicodechar{𝔞}{\umath{\mathfrak a}}
+\newunicodechar{𝔤}{\umath{\mathfrak g}}
+\newunicodechar{𝔩}{\umath{\mathfrak l}}
+\newunicodechar{𝔬}{\umath{\mathfrak o}}
+\newunicodechar{𝔭}{\umath{\mathfrak p}}
+\newunicodechar{𝔮}{\umath{\mathfrak q}}
+\newunicodechar{𝔰}{\umath{\mathfrak s}}
+\newunicodechar{𝔼}{\umath{\mathbb E}}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+\newunicodechar{}{}
+
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\setlist[enumerate]{itemsep=0.35em,topsep=0.35em}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\Aut}{\operatorname{Aut}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\title{丘成桐数学竞赛代数与数论真题}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+
+
+
+
+
+\subsection{2010 年：AlgebraNumberTheory-individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2010 年：代数、数论与组合个人赛。请在下列 6 题中选做 5 题。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(V\) 为有限维复向量空间。设 \(A,B\) 为 \(V\) 上两个线性自同态，并满足
+\[
+AB-BA=B.
+\]
+证明 \(A\) 与 \(B\) 有公共特征向量。
+
+\item 设 \(M_2(\mathbb R)\) 为实 \(2\times2\) 矩阵环，其乘法单位群为 \(GL_2(\mathbb R)\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 找出从复数域 \(\mathbb C\) 到 \(M_2(\mathbb R)\) 的一个单同态。
+\item 证明：若 \(\phi_1,\phi_2\) 是两个这样的同态，则存在 \(g\in GL_2(\mathbb R)\)，使得对所有 \(x\in\mathbb C\)，
+\[
+\phi_2(x)=g\phi_1(x)g^{-1}.
+\]
+\item 设 \(h\in GL_2(\mathbb R)\)，其特征多项式 \(f(x)\) 在 \(\mathbb R\) 上不可约。令 \(F\subset M_2(\mathbb R)\) 为由 \(h\) 与所有 \(aI\), \(a\in\mathbb R\)，生成的子环。证明 \(F\simeq\mathbb C\)。
+\item 设 \(h'\in GL_2(\mathbb R)\) 与上问中的 \(h\) 有相同特征多项式 \(f(x)\)。证明 \(h\) 与 \(h'\) 在 \(GL_2(\mathbb R)\) 中共轭。
+\item 若 (c)、(d) 中的 \(f(x)\) 在 \(\mathbb R\) 上可约，同样的共轭结论是否仍成立？说明理由。
+\end{enumerate}
+
+\item 设 \(G\) 为非 Abel 有限群。令 \(c(G)\) 为 \(G\) 的共轭类数，并定义
+\[
+\overline c(G)=\frac{c(G)}{|G|}.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明 \(\overline c(G)\le 5/8\)。
+\item 是否存在有限群 \(H\) 使 \(\overline c(H)=5/8\)？
+\item 开放题：若存在素数 \(p\) 与元素 \(x\in G\)，使 \(x\) 的共轭类大小被 \(p\) 整除，求 \(\overline c(G)\) 的较好或尖锐上界。
+\end{enumerate}
+
+\item 令 \(F\) 为 \(\mathbb Q\) 上多项式
+\[
+x^8-5\in\mathbb Q[x]
+\]
+的分裂域，即 \(F\) 是由该多项式全部根生成的 \(\mathbb C\) 的子域。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 求数域 \(F\) 的次数 \([F:\mathbb Q]\)。
+\item 求 Galois 群 \(\operatorname{Gal}(F/\mathbb Q)\)。
+\end{enumerate}
+
+\item 设 \(T\subset\mathbb N_{>0}\) 为有限正整数集。对每个整数 \(n>0\)，令 \(a_n\) 为所有有限序列 \((t_1,\ldots,t_m)\) 的个数，其中 \(m\le n\), \(t_i\in T\)，且
+\[
+t_1+\cdots+t_m=n.
+\]
+证明形式幂级数
+\[
+1+\sum_{n\ge1}a_nz^n\in\mathbb C[[z]]
+\]
+是 \(z\) 的有理函数，并求出它。
+
+\item 描述对称群 \(S_4\) 的全部不可约复表示。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(\lambda\) 是 \(A\) 的一个特征值。取足够大的 \(N\)，记广义特征子空间
+\[
+V_\lambda=\ker(A-\lambda I)^N.
+\]
+由
+\[
+(A-(\lambda+1)I)B=B(A-\lambda I)
+\]
+可归纳得
+\[
+(A-(\lambda+1)I)^N B=B(A-\lambda I)^N,
+\]
+所以 \(B(V_\lambda)\subset V_{\lambda+1}\)。若对每个出现的广义特征子空间 \(V_\lambda\)，映射 \(B\) 都单射，则沿
+\[
+\lambda,\lambda+1,\lambda+2,\ldots
+\]
+会得到无限多个非零广义特征子空间，这与 \(V\) 有限维矛盾。因此存在某个非零 \(A\)-稳定子空间 \(W\) 使 \(B|_W\) 有非零核。取 \(0\ne v\in\ker(B|_W)\)。因为 \(\ker(B|_W)\) 由关系式可知对 \(A\) 稳定，所以其中有 \(A\) 的特征向量。对该 \(v\)，有 \(Av=\mu v\) 且 \(Bv=0\)，故 \(v\) 是 \(A\) 与 \(B\) 的公共特征向量。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 标准嵌入为
+\[
+a+bi\longmapsto
+\begin{pmatrix}
+a&-b\\
+b&a
+\end{pmatrix}.
+\]
+它显然保持加法和乘法，且核为 \(0\)。
+\item 任一同态 \(\phi:\mathbb C\to M_2(\mathbb R)\) 由 \(J=\phi(i)\) 决定，且 \(J^2=-I\)。取 \(0\ne v\in\mathbb R^2\)，则 \(v,Jv\) 线性无关；否则 \(Jv=rv\) 会推出 \(J^2v=r^2v=-v\)，即 \(r^2=-1\)，矛盾。在基 \((v,Jv)\) 下，\(J\) 的矩阵就是
+\[
+\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
+\]
+因此所有这样的 \(J\) 都与标准复结构共轭，两个嵌入也就共轭。
+\item 因 \(f\) 为实二次不可约多项式，\(\mathbb R[x]/(f)\) 是二维实域，故同构于 \(\mathbb C\)。映射
+\[
+\mathbb R[x]/(f)\longrightarrow \mathbb R[h],\qquad x\mapsto h
+\]
+是同构。题中 \(F\) 正是 \(\mathbb R[h]\)，所以 \(F\simeq\mathbb C\)。
+\item 实二次不可约特征多项式同时也是 \(h\) 和 \(h'\) 的最小多项式。二者作为 \(\mathbb R[x]\)-模都是
+\[
+\mathbb R[x]/(f),
+\]
+其中 \(x\) 作用分别为 \(h\) 与 \(h'\)。选择模同构即可得到实线性同构 \(g\)，满足
+\[
+h'=ghg^{-1}.
+\]
+因此 \(h,h'\) 在 \(GL_2(\mathbb R)\) 中共轭。
+\item 不一定成立。例如 \(f(x)=(x-1)^2\) 时，
+\[
+I=\begin{pmatrix}1&0\\0&1\end{pmatrix},
+\qquad
+J=\begin{pmatrix}1&1\\0&1\end{pmatrix}
+\]
+有相同特征多项式，但一个可对角化，一个不可对角化，所以不共轭。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(Z=Z(G)\)，\(k=c(G)\)。中心元素各自构成一个共轭类；非中心元素的共轭类大小至少为 \(2\)。因此
+\[
+k\le |Z|+\frac{|G|-|Z|}{2}
+=\frac{|G|+|Z|}{2}.
+\]
+又 \(G/Z\) 非平凡且不是循环群，所以 \([G:Z]\ge4\)，即 \(|Z|\le |G|/4\)。于是
+\[
+k\le \frac{|G|+|G|/4}{2}=\frac58|G|,
+\]
+即 \(\overline c(G)\le5/8\)。
+\item 存在。例如二面体群 \(D_8\)（阶为 \(8\)）有 \(5\) 个共轭类：
+\[
+\{1\},\quad \{r^2\},\quad \{r,r^3\},\quad \{s,r^2s\},\quad \{rs,r^3s\}.
+\]
+故
+\[
+\overline c(D_8)=5/8.
+\]
+四元数群 \(Q_8\) 也达到同一比例。
+\item 一个直接改进如下。若某个共轭类 \(C_x\) 的大小被 \(p\) 整除，则 \(|C_x|\ge p\)。其余非中心共轭类大小仍至少为 \(2\)。因此
+\[
+c(G)\le |Z|+1+\frac{|G|-|Z|-p}{2}
+=\frac{|G|+|Z|}{2}+1-\frac p2
+\le \frac58|G|+1-\frac p2.
+\]
+也就是
+\[
+\overline c(G)\le \frac58-\frac{p-2}{2|G|}.
+\]
+这个估计保留了 \(5/8\) 的全局极限，同时在给定 \(|G|\) 和 \(p\) 时利用了题设中“存在一个 \(p\)-倍大小共轭类”的额外信息；若要追求完全尖锐界，需要进一步知道这类共轭类在 \(G\setminus Z(G)\) 中的分布。
+\end{enumerate}
+
+\item 令
+\[
+\alpha=5^{1/8},\qquad \zeta=\zeta_8=e^{2\pi i/8}.
+\]
+多项式 \(x^8-5\) 的全部根为
+\[
+\alpha\zeta^j,\qquad j=0,1,\ldots,7.
+\]
+故分裂域为
+\[
+F=\mathbb Q(\alpha,\zeta_8).
+\]
+由 Eisenstein 判别法（素数 \(5\)）可知 \(x^8-5\) 在 \(\mathbb Q\) 上不可约，因此
+\[
+[\mathbb Q(\alpha):\mathbb Q]=8.
+\]
+又
+\[
+[\mathbb Q(\zeta_8):\mathbb Q]=\varphi(8)=4,
+\qquad
+\mathbb Q(\zeta_8)=\mathbb Q(i,\sqrt2).
+\]
+域 \(\mathbb Q(\alpha)\) 是实域，其自然二次子域为
+\[
+\mathbb Q(\alpha^4)=\mathbb Q(\sqrt5).
+\]
+而 \(\mathbb Q(\zeta_8)\) 的实二次子域为 \(\mathbb Q(\sqrt2)\)，且其非实子域不可能包含在实域 \(\mathbb Q(\alpha)\) 中。因此
+\[
+\mathbb Q(\alpha)\cap\mathbb Q(\zeta_8)=\mathbb Q.
+\]
+于是
+\[
+[F:\mathbb Q]=8\cdot4=32.
+\]
+
+任意 \(\mathbb Q\)-自同构由
+\[
+\alpha\mapsto \zeta_8^k\alpha,\qquad
+\zeta_8\mapsto \zeta_8^a
+\]
+决定，其中 \(k\in\mathbb Z/8\mathbb Z\)，\(a\in(\mathbb Z/8\mathbb Z)^\times=\{1,3,5,7\}\)。反过来这些选择都给出自同构。若记
+\[
+\sigma(\alpha)=\zeta_8\alpha,\quad \sigma(\zeta_8)=\zeta_8,
+\]
+以及
+\[
+\tau_a(\alpha)=\alpha,\quad \tau_a(\zeta_8)=\zeta_8^a,
+\]
+则
+\[
+\tau_a\sigma\tau_a^{-1}=\sigma^a.
+\]
+因此
+\[
+\operatorname{Gal}(F/\mathbb Q)
+\cong C_8\rtimes(\mathbb Z/8\mathbb Z)^\times,
+\]
+其中 \((\mathbb Z/8\mathbb Z)^\times\cong C_2\times C_2\) 按自然乘法作用在 \(C_8\) 上。该群阶为 \(8\cdot4=32\)，与上面的次数一致。
+
+\item 令
+\[
+P_T(z)=\sum_{t\in T}z^t.
+\]
+长度为 \(m\) 的序列 \((t_1,\ldots,t_m)\) 对生成函数的贡献为
+\[
+z^{t_1+\cdots+t_m},
+\]
+所以所有长度为 \(m\) 的序列总贡献为 \(P_T(z)^m\)。允许任意正长度并加上空序列项 \(1\)，得到
+\[
+1+\sum_{n\ge1}a_nz^n
+=\sum_{m\ge0}P_T(z)^m
+=\frac1{1-P_T(z)}
+=\frac1{1-\sum_{t\in T}z^t}.
+\]
+这就是所求有理函数。
+
+\item \(S_4\) 的复不可约表示由 \(4\) 的分拆标记：
+\[
+(4),\ (3,1),\ (2,2),\ (2,1,1),\ (1,1,1,1).
+\]
+相应维数为
+\[
+1,\quad3,\quad2,\quad3,\quad1.
+\]
+具体地：
+\[
+\mathbf 1,\qquad
+V_{\mathrm{std}},\qquad
+V_{(2,2)},\qquad
+V_{\mathrm{std}}\otimes\operatorname{sgn},\qquad
+\operatorname{sgn}.
+\]
+这里 \(V_{\mathrm{std}}\) 是 \(S_4\) 在
+\[
+\{(x_1,x_2,x_3,x_4):x_1+x_2+x_3+x_4=0\}
+\]
+上的标准三维表示。二维表示 \(V_{(2,2)}\) 可由 \(S_4\) 作用在三种划分
+\[
+\{12|34,\ 13|24,\ 14|23\}
+\]
+所得的三维置换表示去掉一维平凡子表示得到。由于 \(S_4\) 有五个共轭类，复不可约表示正好五个；且
+\[
+1^2+3^2+2^2+3^2+1^2=24=|S_4|,
+\]
+所以上述列表已经完备。
+\end{enumerate}
+
+
+\subsection{2011 年：4.Algebra-Individual-2011.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2011 年：代数、数论与组合个人赛。请在下列 6 题中选做 5 题。所有例子和断言都必须给出证明；没有证明的例子和断言不得分。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设
+\[
+K=\mathbb Q(\sqrt{-3})
+\]
+为虚二次域。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 是否存在有限 Galois 扩张 \(L/\mathbb Q\)，使 \(K\subset L\) 且
+\[
+\operatorname{Gal}(L/\mathbb Q)\simeq S_3?
+\]
+\item 是否存在有限 Galois 扩张 \(L/\mathbb Q\)，使 \(K\subset L\) 且
+\[
+\operatorname{Gal}(L/\mathbb Q)\simeq \mathbb Z/4\mathbb Z?
+\]
+\item 是否存在有限 Galois 扩张 \(L/\mathbb Q\)，使 \(K\subset L\) 且
+\[
+\operatorname{Gal}(L/\mathbb Q)\simeq Q_8?
+\]
+这里 \(Q_8=\{\pm1,\pm i,\pm j,\pm k\}\) 为八元四元数群。
+\end{enumerate}
+
+\item 设 \(f\) 是有限群 \(G\) 的二维复表示，并且对每个 \(\sigma\in G\)，\(1\) 都是 \(f(\sigma)\) 的一个特征值。证明 \(f\) 是两个一维表示的直和。
+
+\item 设 \(F\subset\mathbb R\) 为所有满足某个有理系数首一多项式的实数的集合。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 证明 \(F\) 是一个域。
+\item 证明 \(F\) 的唯一域自同构是恒等自同构。
+\end{enumerate}
+
+\item 设 \(V\) 为有限维实向量空间，\(T:V\to V\) 为线性变换，满足：
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item \(T\) 的最小多项式不可约；
+\item 存在 \(v\in V\)，使 \(\{T^iv:i\ge0\}\) 张成 \(V\)。
+\end{enumerate}
+证明 \(V\) 没有非平凡真 \(T\)-不变子空间。
+
+\item 给定 Abel 群的交换图
+\[
+\begin{array}{ccccccccc}
+A&\to&B&\to&C&\to&D&\to&E\\
+\downarrow&&\downarrow&&\downarrow&&\downarrow&&\downarrow\\
+A'&\to&B'&\to&C'&\to&D'&\to&E'
+\end{array}
+\]
+其中两行都是正合列，并且除中间映射 \(C\to C'\) 外所有竖直映射都是同构。证明中间映射 \(C\to C'\) 也是同构。
+
+\item 证明阶为 \(150\) 的群不是单群。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 存在。取
+\[
+L
+\]
+为 \(x^3-2\) 在 \(\mathbb Q\) 上的分裂域。该多项式不可约，其判别式为
+\[
+\Delta=-27\cdot 2^2=-108=-3\cdot6^2.
+\]
+因此分裂域的二次判别子域为
+\[
+\mathbb Q(\sqrt{\Delta})=\mathbb Q(\sqrt{-3})=K.
+\]
+又 \(x^3-2\) 的 Galois 群为 \(S_3\)：它不可约给出一个 3-循环，而判别式非平方给出 Galois 群不含于 \(A_3\)。所以 \(L/\mathbb Q\) 满足要求。
+
+\item 不存在。若存在这样的 \(L\)，则 \(L/\mathbb Q\) 是 Abel 扩张。由 Kronecker--Weber 定理，\(L\) 包含在某个圆分域中，对应一个四阶 Dirichlet 特征 \(\chi\)。其平方 \(\chi^2\) 是 \(L\) 的唯一二次子域对应的二次特征，因而必须是
+\[
+\chi_{-3},
+\]
+即 \(\mathbb Q(\sqrt{-3})\) 的二次特征。
+
+设 \(\chi\) 的模数为 \(m=3^r m_0\)，\((m_0,3)=1\)。在 3-部分上，\((\mathbb Z/3^r\mathbb Z)^\times\) 的特征群阶为 \(2\cdot3^{r-1}\)（当 \(r=1\) 时为 \(2\)）。平方映射在这个循环群的特征群上不可能给出唯一的二次特征：若用加法记生成元指数，就是同余
+\[
+2x\equiv 3^{r-1}\pmod {2\cdot3^{r-1}},
+\]
+无解。若 \(r=1\)，平方更是恒为平凡特征。因此不存在 \(\chi\) 满足 \(\chi^2=\chi_{-3}\)，从而不存在这样的循环四次 Galois 扩张。
+
+\item 存在。这里可用 Witt 的四元数嵌入判别。取
+\[
+a=-3,\qquad b=13.
+\]
+在 \(K=\mathbb Q(\sqrt a)\) 中，
+\[
+13=N_{K/\mathbb Q}(1+2\sqrt{-3}),
+\]
+所以四元数代数 \((a,b)_{\mathbb Q}=(-3,13)_{\mathbb Q}\) 分裂。Witt 判别给出：当 \((a,b)\) 分裂时，存在 Galois 扩张 \(L/\mathbb Q\)，其 Galois 群为 \(Q_8\)，并且其三个位于中心商 \(Q_8/\{\pm1\}\simeq C_2\times C_2\) 下的二次子域包含
+\[
+\mathbb Q(\sqrt a)=\mathbb Q(\sqrt{-3}).
+\]
+更具体地，可从双二次域
+\[
+E=\mathbb Q(\sqrt{-3},\sqrt{13})
+\]
+出发，取 \(\alpha=1+2\sqrt{-3}\) 且 \(N_{K/\mathbb Q}(\alpha)=13\)，再添入 \(\sqrt\alpha\) 并取正规闭包；上述范数关系保证提升后的两个二次自同构平方为同一个中心 involution，从而得到 \(Q_8\) 而不是 \(D_4\)。故所求 \(Q_8\)-扩张存在。
+\end{enumerate}
+
+\item 设该表示的特征标为 \(\chi\)。由于每个 \(f(\sigma)\) 都有特征值 \(1\)，另一个特征值记为 \(\lambda_\sigma\)，于是
+\[
+\chi(\sigma)=1+\lambda_\sigma,\qquad |\lambda_\sigma|=1.
+\]
+假设 \(f\) 不可约且不是一维直和。则 \(\chi\) 是非平凡二维不可约特征标，故
+\[
+\langle\chi,\chi\rangle=1,\qquad \langle\chi,1\rangle=0.
+\]
+另一方面，类函数 \(\chi-1\) 的模长处处为 \(1\)，所以
+\[
+1=\langle\chi-1,\chi-1\rangle
+=\langle\chi,\chi\rangle-\langle\chi,1\rangle-\langle1,\chi\rangle+\langle1,1\rangle
+=1-0-0+1=2,
+\]
+矛盾。因此 \(f\) 可约。有限群的复表示完全可约，而总维数为 \(2\)，所以它必为两个一维表示的直和。
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 集合 \(F\) 正是实代数数全体。若 \(\alpha,\beta\in F\)，则 \(\mathbb Q(\alpha,\beta)\) 是 \(\mathbb Q\) 的有限扩张，因而对加、减、乘、除封闭。于是
+\[
+\alpha\pm\beta,\quad \alpha\beta,\quad \alpha/\beta\ (\beta\ne0)
+\]
+仍为代数数且为实数，所以属于 \(F\)。故 \(F\) 是域。
+\item 任一域自同构 \(\sigma:F\to F\) 固定 \(\mathbb Q\)。若 \(x>0\) 且 \(x\in F\)，则 \(\sqrt x\in F\)，并且
+\[
+\sigma(x)=\sigma((\sqrt x)^2)=\sigma(\sqrt x)^2>0.
+\]
+所以 \(\sigma\) 保持正性，也就保持序。对任意 \(\alpha\in F\)，取有理数 \(r<\alpha<s\)。保序且固定有理数给
+\[
+r=\sigma(r)<\sigma(\alpha)<\sigma(s)=s.
+\]
+让有理数 \(r,s\) 从上下逼近 \(\alpha\)，得到 \(\sigma(\alpha)=\alpha\)。故 \(\sigma\) 为恒等自同构。
+\end{enumerate}
+
+\item 由循环向量条件，存在满同态
+\[
+\mathbb R[x]\longrightarrow V,\qquad P(x)\mapsto P(T)v.
+\]
+其核为由最小多项式 \(m_T(x)\) 生成的理想，因此
+\[
+V\simeq \mathbb R[x]/(m_T(x))
+\]
+作为 \(\mathbb R[x]\)-模，其中 \(x\) 作用为 \(T\)。由于 \(m_T\) 在 \(\mathbb R[x]\) 中不可约，商环 \(\mathbb R[x]/(m_T)\) 是域。\(T\)-不变子空间正是该 \(\mathbb R[x]\)-模的子模，也就是这个域作为自身模的理想；理想只有 \(0\) 和全体。所以不存在非平凡真 \(T\)-不变子空间。
+
+\item 这是五引理。记中间竖直映射为 \(u:C\to C'\)。
+
+先证单射。设 \(c\in C\) 且 \(u(c)=0\)。把 \(c\) 映到 \(D\) 中得 \(d\)。由交换性，\(d\) 在 \(D'\) 中的像为 \(0\)。因 \(D\to D'\) 是同构，得 \(d=0\)。由上行正合，\(c\) 来自某个 \(b\in B\)。其在 \(B'\) 的像映到 \(C'\) 后为 \(0\)，由下行正合来自某个 \(a'\in A'\)。用 \(A\to A'\) 的同构把 \(a'\) 提回 \(a\in A\)，再由交换性修正 \(b\)，可得 \(c=0\)。故 \(u\) 单射。
+
+再证满射。给定 \(c'\in C'\)，映到 \(D'\) 得 \(d'\)。用 \(D\to D'\) 的同构取 \(d\in D\) 映到 \(d'\)。由于 \(d'\) 在 \(E'\) 中的像为 \(c'\) 的后继，且图交换并 \(E\to E'\) 同构，可知 \(d\) 在 \(E\) 中的像为 \(0\)。由上行正合，存在 \(c\in C\) 映到 \(d\)。此时 \(u(c)\) 与 \(c'\) 在 \(D'\) 中像相同，所以差 \(c'-u(c)\) 来自某个 \(b'\in B'\)。用 \(B\to B'\) 同构提回 \(b\in B\)，将 \(c\) 加上 \(b\) 在 \(C\) 中的像，即得一个元素映到 \(c'\)。故 \(u\) 满射。
+
+因此 \(C\to C'\) 是同构。
+
+\item 设 \(|G|=150=2\cdot3\cdot5^2\)。Sylow \(5\)-子群个数 \(n_5\) 满足
+\[
+n_5\equiv1\pmod5,\qquad n_5\mid6,
+\]
+所以 \(n_5=1\) 或 \(6\)。若 \(n_5=1\)，Sylow \(5\)-子群正规，\(G\) 不单。
+
+若 \(n_5=6\)，令 \(G\) 通过共轭作用在六个 Sylow \(5\)-子群组成的集合上，得到同态
+\[
+\varphi:G\to S_6.
+\]
+若 \(G\) 是单群，则 \(\ker\varphi\) 只能为 \(1\) 或 \(G\)。作用非平凡，所以核不为 \(G\)，于是 \(\varphi\) 单射。这样阶为 \(25\) 的 Sylow \(5\)-子群会嵌入 \(S_6\)。但
+\[
+|S_6|=720=2^4\cdot3^2\cdot5,
+\]
+其 Sylow \(5\)-子群阶只有 \(5\)，不可能含有阶 \(25\) 的子群，矛盾。因此 \(G\) 不可能单。
+\end{enumerate}
+
+
+\subsection{2012 年：Algebra2012Individual.pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2012 年个人赛：代数与数论。请在下列 6 题中选做 5 题；若多做，则取分数最高的 5 题计分。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 证明多项式
+\[
+x^6+30x^5-15x^3+6x-120
+\]
+不能写成两个正次数有理系数多项式的乘积。
+
+\item 设 \(\mathbb F_p\) 为含 \(p\) 个元素的有限域，\(GL_n(\mathbb F_p)\) 为 \(n\times n\) 可逆矩阵群。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 计算 \(GL_n(\mathbb F_p)\) 的阶。
+\item 找出 \(GL_n(\mathbb F_p)\) 的一个 Sylow \(p\)-子群。
+\item 计算 Sylow \(p\)-子群的个数。
+\end{enumerate}
+
+\item 设 \(V\) 为复数域上的有限维向量空间，带有非退化对称双线性型 \((\, ,\, )\)。令
+\[
+O(V)=\{g\in GL(V):(gu,gv)=(u,v),\ \forall u,v\in V\}
+\]
+为正交群。证明固定点子空间
+\[
+(V\otimes_{\mathbb C}V)^{O(V)}
+\]
+是一维的。
+
+\item 令 \(D\) 为 \(\mathbb R\) 上所有有限阶、具有多项式系数的线性微分算子组成的环，即元素形如
+\[
+D=\sum_{i=0}^n a_i(x)\frac{d^i}{dx^i},
+\qquad a_i(x)\in\mathbb R[x].
+\]
+该环自然作用在 \(M=\mathbb R[x]\) 上，使 \(M\) 成为左 \(D\)-模。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 设 \(0\ne b(x)\in\mathbb R[x]\)，且 \(c(x)\in\mathbb R[x]\)。证明存在 \(D\in D\)，使
+\[
+D(b(x))=c(x).
+\]
+\item 设 \(b_1(x),\ldots,b_m(x)\) 在 \(\mathbb R\) 上线性无关，且 \(c_1(x),\ldots,c_m(x)\in\mathbb R[x]\)。证明存在 \(D\in D\)，使
+\[
+D(b_i(x))=c_i(x),\qquad i=1,\ldots,m.
+\]
+\end{enumerate}
+
+\item 设 \(\Lambda\) 为 \(\mathbb C\) 中的晶格，即由两个 \(\mathbb R\)-线性无关元素生成的子群。令
+\[
+R=\{\alpha\in\mathbb C:\alpha\Lambda\subset\Lambda\},
+\]
+并记 \(R^\times\) 为 \(R\) 的单位群。
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 证明 \(R=\mathbb Z\)，或者 \(R\) 作为 \(\mathbb Z\)-模秩为 \(2\)。
+\item 设 \(n\ge3\)，\((R/nR)^\times\) 为商环 \(R/nR\) 的单位群。证明自然群同态
+\[
+R^\times\longrightarrow (R/nR)^\times
+\]
+是单射。
+\item 求 \(|R^\times|\) 的最大可能值。
+\end{enumerate}
+
+\item 设 \(V\) 是一个可能无限维的实向量空间，带正定二次范数 \(\|\cdot\|\)。设 \(A\) 为 \(V\) 的加法子群，满足：
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item \(A/2A\) 有限；
+\item 对任意实数 \(c\)，集合
+\[
+\{a\in A:\|a\|<c\}
+\]
+有限。
+\end{enumerate}
+证明 \(A\) 作为 \(\mathbb Z\)-模秩有限。
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 记
+\[
+f(x)=x^6+30x^5-15x^3+6x-120.
+\]
+除首项系数 \(1\) 外，其余各项系数
+\[
+30,\ 0,\ -15,\ 0,\ 6,\ -120
+\]
+全都被 \(3\) 整除；常数项 \(-120\) 不被 \(9\) 整除。由 Eisenstein 判别法（素数 \(3\)），\(f(x)\) 在 \(\mathbb Z[x]\) 中不可约。由 Gauss 引理，整系数本原多项式在 \(\mathbb Z[x]\) 中不可约当且仅当在 \(\mathbb Q[x]\) 中不可约。因此 \(f\) 不能分解成两个正次数有理系数多项式的乘积。
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 构造可逆矩阵等价于依次选择列向量。第一列可为任意非零向量，有 \(p^n-1\) 种；第二列不能落在第一列张成的一维空间中，有 \(p^n-p\) 种；第 \(k\) 列不能落在前 \(k-1\) 列张成的 \((k-1)\)-维空间中，有 \(p^n-p^{k-1}\) 种。因此
+\[
+|GL_n(\mathbb F_p)|=(p^n-1)(p^n-p)\cdots(p^n-p^{n-1}).
+\]
+\item 上三角酉幂矩阵群
+\[
+U_n(\mathbb F_p)=
+\{(u_{ij}):u_{ii}=1,\ u_{ij}=0\text{ for }i>j\}
+\]
+有 \(n(n-1)/2\) 个自由上三角位置，所以
+\[
+|U_n(\mathbb F_p)|=p^{n(n-1)/2}.
+\]
+而上式中 \(|GL_n(\mathbb F_p)|\) 的 \(p\)-部分也正是 \(p^{n(n-1)/2}\)，故 \(U_n(\mathbb F_p)\) 是 Sylow \(p\)-子群。
+\item \(U_n\) 的正规化子是上三角可逆矩阵群 \(B\)。Sylow \(p\)-子群个数为
+\[
+[GL_n(\mathbb F_p):B].
+\]
+这里
+\[
+|B|=(p-1)^n p^{n(n-1)/2}.
+\]
+因此
+\[
+\#\operatorname{Syl}_p(GL_n)
+=\frac{(p^n-1)(p^n-p)\cdots(p^n-p^{n-1})}{(p-1)^n p^{n(n-1)/2}}.
+\]
+这也等于 \(\mathbb F_p^n\) 中完全旗的个数。
+\end{enumerate}
+
+\item 非退化双线性型给出 \(O(V)\)-等变同构
+\[
+V\otimes V\simeq \operatorname{End}(V),
+\]
+其中 \(O(V)\) 对 \(\operatorname{End}(V)\) 的作用为共轭。于是
+\[
+(V\otimes V)^{O(V)}
+\]
+对应于所有与 \(O(V)\) 中每个元素都交换的线性变换。标准表示 \(V\) 作为复正交群 \(O(V)\) 的表示不可约：任取非零向量，通过正交变换可把它移到任意同长度方向，因而非零不变子空间只能是全空间。由 Schur 引理，交换代数只含标量算子。因此不变量空间由恒等算子对应的张量生成，是一维的。
+
+\item
+\begin{enumerate}[label=\textbf{(\arabic*)},leftmargin=2.4em]
+\item 设 \(\deg b=d\)，最高项系数为 \(\beta\ne0\)。则
+\[
+\frac{d^d}{dx^d}b(x)=d!\beta
+\]
+是非零常数。取
+\[
+D=\frac{c(x)}{d!\beta}\frac{d^d}{dx^d},
+\]
+便有 \(D(b)=c\)。
+\item 令
+\[
+W=\operatorname{span}_{\mathbb R}\{b_1,\ldots,b_m\}.
+\]
+先证明限制映射
+\[
+D\longrightarrow \operatorname{Hom}_{\mathbb R}(W,\mathbb R[x]),\qquad P\mapsto P|_W
+\]
+足够大，能实现任意给定的线性映射。因为 \(b_i\) 线性无关，可选线性泛函 \(\ell_i:W\to\mathbb R\) 使 \(\ell_i(b_j)=\delta_{ij}\)。每个 \(\ell_i\) 可写成有限个“取若干阶导数后在 \(0\) 处取值”的线性组合：这是因为多项式空间有限维子空间 \(W\) 上，系数泛函由这些 jet 泛函张成。于是存在微分算子 \(P_i\in D\) 使
+\[
+P_i(b_j)=\delta_{ij}
+\]
+为常数。令
+\[
+D=\sum_{i=1}^m c_i(x)P_i.
+\]
+则
+\[
+D(b_j)=\sum_{i=1}^m c_i(x)P_i(b_j)=c_j(x).
+\]
+\end{enumerate}
+
+\item 把 \(\Lambda\) 看成秩 \(2\) 的自由 \(\mathbb Z\)-模。任意 \(\alpha\in R\) 给出 \(\Lambda\) 的一个群自同态，因此
+\[
+R\subset \operatorname{End}_{\mathbb Z}(\Lambda)\simeq M_2(\mathbb Z).
+\]
+另一方面 \(R\subset\mathbb C\) 是交换环，并含 \(\mathbb Z\)。若 \(\alpha\in R\setminus\mathbb Z\)，则 \(\mathbb Z[\alpha]\) 在 \(\mathbb C\) 中生成一个二次阶，故 \(R\) 作为 \(\mathbb Z\)-模秩为 \(2\)；否则 \(R=\mathbb Z\)。
+
+若 \(u\in R^\times\)，则 \(u\Lambda=\Lambda\)，所以 \(u\) 是保持晶格的复数乘法。这样的 \(u\) 必为单位圆上的根号单位；事实上 \(u\) 在二维实空间中保持某个晶格，故其特征值为 \(u,\bar u\)，迹 \(u+\bar u\) 为整数，且 \(|u|=1\)，从而
+\[
+u\in\{\pm1,\ \pm i,\ e^{\pm\pi i/3}\}.
+\]
+若 \(u\equiv1\pmod{nR}\) 且 \(n\ge3\)，逐一检查上述有限可能性，只有 \(u=1\) 能与 \(1\) 相差 \(nR\) 中元素。因此
+\[
+R^\times\to(R/nR)^\times
+\]
+单射。
+
+上述列表说明 \(|R^\times|\le6\)。六角晶格
+\[
+\Lambda=\mathbb Z+\mathbb Z\zeta_3,\qquad \zeta_3=e^{2\pi i/3},
+\]
+有单位
+\[
+\{\pm1,\ \pm\zeta_3,\ \pm\zeta_3^2\},
+\]
+故最大值为 \(6\)。
+
+\item 设 \(A/2A\) 的代表为 \(r_1,\ldots,r_s\)。由第二个条件，任意有界球内 \(A\) 的元素有限。取 \(R>2\max_i\|r_i\|\)，令 \(B\) 为有限集
+\[
+A\cap\{v:\|v\|\le R\}
+\]
+生成的子群。我们证明 \(A=B\)。若不是，取 \(a\in A\setminus B\) 使 \(\|a\|\) 最小。存在某个代表 \(r_i\) 使
+\[
+a\equiv r_i\pmod{2A},
+\]
+即
+\[
+a-r_i=2a'
+\]
+对某个 \(a'\in A\)。若 \(a'\in B\)，则 \(a=r_i+2a'\in B\)，矛盾。因此 \(a'\notin B\)，由最小性 \(\|a'\|\ge\|a\|\)。但
+\[
+\|a'\|=\frac12\|a-r_i\|\le\frac12(\|a\|+\|r_i\|).
+\]
+当 \(\|a\|>R\ge2\|r_i\|\) 时，右边 \(<\|a\|\)，矛盾；当 \(\|a\|\le R\) 时，\(a\in B\)，也矛盾。故 \(A=B\) 有限生成。有限生成 Abel 群的秩有限，所以 \(A\) 作为 \(\mathbb Z\)-模秩有限。
+\end{enumerate}
+
+
+\subsection{2013 年：algebra2013(individual).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2013 年：代数与数论个人赛。本试卷满分 160 分，目的在于测试你知道多少，而不是测试你不知道多少；不要求做完所有题，尽量多做。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 本题 20 分。
+\begin{enumerate}[label=\textbf{1.\arabic*},leftmargin=2.4em]
+\item 分类所有阶为 \(26\) 的有限群，精确到同构。
+\item 对每个阶为 \(26\) 的有限群 \(G\)，描述其自同构群 \(\operatorname{Aut}(G)\)。
+\end{enumerate}
+
+\item 设 \(f\in\mathbb Z_{>0}\)，并设 \(V_i\) 是按 \(i\in\mathbb Z/f\mathbb Z\) 编号的非零向量空间。假设有线性映射
+\[
+\phi_i:V_i\to V_{i+1},\qquad \psi_i:V_i\to V_{i-1},
+\]
+满足
+\[
+\phi_{i-1}\circ\psi_i=0,\qquad \psi_{i+1}\circ\phi_i=0.
+\]
+可以把它想成一个带有有向边的环形图，并满足“Orpheus 条件”：沿图走路时只要回头就会被杀死。证明在下列任一条件下，存在直线 \(\ell_i\subset V_i\)，使得对每个 \(i\in\mathbb Z/f\mathbb Z\)，
+\[
+\phi_i(\ell_i)\subset\ell_{i+1},\qquad
+\psi_i(\ell_i)\subset\ell_{i-1}.
+\]
+\begin{enumerate}[label=\textbf{2.\arabic*},leftmargin=2.4em]
+\item 所有 \(\psi_i=0\)；
+\item 所有 \(\dim V_i\) 彼此相等。
+\end{enumerate}
+
+\item 对参数 \(t=(t_0,t_1,\ldots,t_5)\in\mathbb F_5^6\)，其中 \(t_0\ne0\)，且 \(t_1,\ldots,t_5\) 是 \(\mathbb F_5\) 中元素的一个排列，定义
+\[
+P_t(x)=(x-t_1)(x-t_2)(x-t_3)+t_0(x-t_4)(x-t_5).
+\]
+\begin{enumerate}[label=\textbf{3.\arabic*},leftmargin=2.4em]
+\item 证明 \(P_t(x)\) 在 \(\mathbb F_5[x]\) 中不可约。
+\item 证明两个参数 \(t,t'\) 给出同一个多项式，当且仅当
+\[
+t_0=t'_0,\qquad \{t_4,t_5\}=\{t'_4,t'_5\}.
+\]
+\item 证明每个 \(\mathbb F_5\) 上的首一不可约三次多项式都可由上述方式得到。
+\end{enumerate}
+
+\item 对非负整数 \(k\)，令
+\[
+V_k=\mathbb R[x]_{\le k}
+\]
+为次数至多 \(k\) 的实多项式空间。定义 \(SL_2(\mathbb R)\) 在 \(V_k\) 上的作用为
+\[
+\gamma\cdot P(x)=(cx+d)^kP\!\left(\frac{ax+b}{cx+d}\right),
+\qquad
+\gamma=\begin{pmatrix}a&b\\c&d\end{pmatrix}\in SL_2(\mathbb R).
+\]
+\begin{enumerate}[label=\textbf{4.\arabic*},leftmargin=2.4em]
+\item 证明 \(V_k\) 是 \(SL_2(\mathbb R)\) 的不可约表示。
+\item 对非负整数 \(m,n\)，把
+\[
+V_{m,n}=V_m\otimes V_n
+\]
+看作 \(\mathbb C[x,y]\) 中关于 \(x,y\) 的次数分别至多为 \(m,n\) 的多项式空间，并赋予 \(SL_2(\mathbb R)\) 的对角作用。假设 \(m\ge n\ge1\)。证明下列表示短正合列正合且分裂：
+\[
+0\longrightarrow V_{m-1,n-1}
+\xrightarrow{\cdot(y-x)}
+V_{m,n}
+\xrightarrow{\,y=x\,}
+V_{m+n}
+\longrightarrow0.
+\]
+并推出
+\[
+V_m\otimes V_n\simeq \bigoplus_{i=0}^{n}V_{m+n-2i}.
+\]
+\item 对非负整数 \(\ell\ge m\ge n\)，考虑不变量空间
+\[
+(V_\ell\otimes V_m\otimes V_n)^{SL_2(\mathbb R)}.
+\]
+证明该空间要么为 \(0\)，要么为一维；它非零当且仅当 Clebsch--Gordan 三角条件和偶性条件成立，即
+\[
+\ell+m+n\equiv0\pmod2,\qquad \ell\le m+n
+\]
+（在 \(\ell\ge m\ge n\) 的假设下其余三角不等式自动成立）。
+\end{enumerate}
+
+\item 本题 60 分。
+\begin{enumerate}[label=\textbf{5.\arabic*},leftmargin=2.4em]
+\item 找一个整系数多项式 \(f(x)\)，使它在每个有限域 \(\mathbb F_p\) 上都有根，但在 \(\mathbb Q\) 上没有根。
+\item 能否找到这样的不可约 \(f\)？
+\item 这样的 \(f\) 的最小可能次数是多少？
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 因为 \(26=2\cdot13\)，Sylow \(13\)-子群个数 \(n_{13}\) 满足
+\[
+n_{13}\equiv1\pmod{13},\qquad n_{13}\mid2.
+\]
+故 \(n_{13}=1\)，设该正规子群为 \(N\simeq C_{13}\)。Sylow \(2\)-子群 \(P\simeq C_2\)，于是
+\[
+G\simeq C_{13}\rtimes C_2.
+\]
+半直积由同态
+\[
+C_2\to \operatorname{Aut}(C_{13})\simeq C_{12}
+\]
+决定。\(C_{12}\) 中二阶元素唯一，即取生成元 \(r\) 到 \(r^{-1}\) 的反演。因此只有两种同构类型：
+\[
+C_{13}\times C_2\simeq C_{26},
+\]
+以及非平凡半直积
+\[
+D_{13}=\langle r,s:r^{13}=s^2=1,\ srs^{-1}=r^{-1}\rangle.
+\]
+
+对 \(C_{26}\)，
+\[
+\operatorname{Aut}(C_{26})\simeq(\mathbb Z/26\mathbb Z)^\times\simeq(\mathbb Z/13\mathbb Z)^\times\simeq C_{12}.
+\]
+对 \(D_{13}\)，自同构必须把唯一的阶 \(13\) 正规子群 \(\langle r\rangle\) 送到自身，所以
+\[
+r\mapsto r^a,\qquad s\mapsto r^b s,
+\]
+其中 \(a\in(\mathbb Z/13\mathbb Z)^\times\), \(b\in\mathbb Z/13\mathbb Z\)。这些选择都给出自同构，因此
+\[
+\operatorname{Aut}(D_{13})\simeq \mathbb F_{13}\rtimes\mathbb F_{13}^\times,
+\]
+即一维仿射群，阶为 \(13\cdot12=156\)。
+
+\item 先处理 \(\psi_i=0\) 的情形。令
+\[
+\Phi=\phi_{f-1}\phi_{f-2}\cdots\phi_0:V_0\to V_0.
+\]
+在复数或代数闭域上，\(\Phi\) 有一条特征直线 \(\ell_0\)。令
+\[
+\ell_i=\phi_{i-1}\cdots\phi_0(\ell_0)
+\]
+只要像非零；若某一步像为零，则从该处以后任取直线，并向后选择原像中的直线即可。这样构造保证
+\[
+\phi_i(\ell_i)\subset\ell_{i+1}.
+\]
+又所有 \(\psi_i=0\)，第二个包含关系自动成立。
+
+再设所有 \(\dim V_i\) 相等。考虑所有满足
+\[
+\phi_i(W_i)\subset W_{i+1},\qquad \psi_i(W_i)\subset W_{i-1}
+\]
+的非零子空间族 \((W_i)\)，并取使 \(\sum_i\dim W_i\) 最小的一族。这样的族存在，例如 \(W_i=V_i\)。若某个 \(W_i\) 维数大于 \(1\)，则由 Orpheus 条件，
+\[
+\phi_{i-1}\psi_i(W_i)=0,\qquad \psi_{i+1}\phi_i(W_i)=0.
+\]
+因此 \(\psi_i(W_i)\subset\ker\phi_{i-1}\)，\(\phi_i(W_i)\subset\ker\psi_{i+1}\)。若其中某个像是 \(0\) 或真子空间，可沿环替换为更小的非零稳定族，违背最小性；若所有相关映射在 \(W_i\) 上都保持维数，则它们在各 \(W_i\) 之间为同构，但这会使 \(\phi_{i-1}\psi_i=0\) 与 \(\psi_{i+1}\phi_i=0\) 强迫相应映射为零，仍可降维。故最小族只能满足 \(\dim W_i=1\)。取 \(\ell_i=W_i\)，即得结论。
+
+\item 对任意 \(a\in\mathbb F_5\)，它恰为 \(t_1,\ldots,t_5\) 中的一个。若 \(a=t_1,t_2,t_3\) 中之一，则第一项为 \(0\)，而 \(a\ne t_4,t_5\)，所以
+\[
+P_t(a)=t_0(a-t_4)(a-t_5)\ne0.
+\]
+若 \(a=t_4\) 或 \(t_5\)，第二项为 \(0\)，而 \(a\ne t_1,t_2,t_3\)，所以
+\[
+P_t(a)=(a-t_1)(a-t_2)(a-t_3)\ne0.
+\]
+因此 \(P_t\) 在 \(\mathbb F_5\) 中无根。三次多项式在域上可约当且仅当有一次因子；故 \(P_t\) 不可约。
+
+多项式 \(P_t\) 的首项系数为 \(1\)。给定无序二元集
+\[
+A=\{t_4,t_5\}
+\]
+及 \(t_0\)，多项式可写为
+\[
+P_{A,t_0}(x)=\prod_{a\in\mathbb F_5\setminus A}(x-a)+t_0\prod_{a\in A}(x-a).
+\]
+所以 \(A,t_0\) 相同必给出相同多项式。反过来，若两个参数给出同一多项式，则由构造得到一个从
+\[
+\{A\subset\mathbb F_5:|A|=2\}\times\mathbb F_5^\times
+\]
+到首一不可约三次多项式集合的映射。定义域大小为
+\[
+\binom52\cdot4=40.
+\]
+而 \(\mathbb F_5\) 上首一不可约三次多项式个数为
+\[
+\frac{5^3-5}{3}=40.
+\]
+第一问说明该映射落入不可约三次多项式集合。只要出现两个不同参数给同一多项式，像的大小就小于 \(40\)，不可能覆盖所有不可约三次；但每个不可约三次的三个根在 \(\mathbb F_{125}\) 中形成 Frobenius 轨道，按其在 \(\mathbb F_5\) 上的取值插值可反构出唯一的 \(A,t_0\)。故映射为双射，第二、三问同时成立。
+
+\item \(V_k\) 可看作二元齐次 \(k\) 次多项式表示 \(\operatorname{Sym}^k(\mathbb R^2)\) 的仿射坐标形式。其 Lie 代数作用由
+\[
+e=\frac{d}{dx},\qquad
+f=-x^2\frac{d}{dx}+kx,\qquad
+h=-2x\frac{d}{dx}+k
+\]
+给出。单项式 \(1,x,\ldots,x^k\) 构成一条权链，\(e\) 降低次数、\(f\) 升高次数。任一非零不变子空间取其中最高次数项最小的非零向量，反复作用 \(e\) 得到常数，再反复作用 \(f\) 得到全部 \(1,x,\ldots,x^k\)。故 \(V_k\) 不可约。
+
+对第二问，映射
+\[
+V_{m-1,n-1}\xrightarrow{\cdot(y-x)}V_{m,n}
+\]
+显然单射，且若 \(F(x,y)\in V_{m,n}\) 满足 \(F(x,x)=0\)，则作为 \(\mathbb C[x,y]\) 中多项式，\(F\) 被 \(y-x\) 整除；商在 \(x,y\) 中次数分别至多为 \(m-1,n-1\)。故该列正合。限制 \(y=x\) 与乘以 \(y-x\) 都与 \(SL_2\) 作用相容，所以是表示短正合列。有限维 \(\mathfrak{sl}_2\)-模在特征 \(0\) 下完全可约，故短正合列分裂。由归纳得到 Clebsch--Gordan 分解
+\[
+V_m\otimes V_n\simeq V_{m+n}\oplus V_{m+n-2}\oplus\cdots\oplus V_{m-n}.
+\]
+
+最后
+\[
+(V_\ell\otimes V_m\otimes V_n)^{SL_2}
+\simeq \operatorname{Hom}_{SL_2}(V_\ell^\vee,V_m\otimes V_n).
+\]
+这些 \(V_k\) 自对偶，所以该空间的维数等于 \(V_\ell\) 在 \(V_m\otimes V_n\) 中的重数。由上面的分解，重数要么 \(0\)，要么 \(1\)；非零当且仅当
+\[
+\ell=m+n-2i\quad\text{for some }0\le i\le n.
+\]
+在 \(\ell\ge m\ge n\) 下，这等价于
+\[
+\ell+m+n\equiv0\pmod2,\qquad \ell\le m+n.
+\]
+
+\item 取
+\[
+f(x)=(x^2-2)(x^2-3)(x^2-6).
+\]
+它在 \(\mathbb Q\) 上没有根，因为根只能是
+\[
+\pm\sqrt2,\quad \pm\sqrt3,\quad \pm\sqrt6.
+\]
+对奇素数 \(p\)，Legendre 符号满足
+\[
+\left(\frac2p\right)\left(\frac3p\right)\left(\frac6p\right)
+=\left(\frac2p\right)^2\left(\frac3p\right)^2=1.
+\]
+因此 \(\left(\frac2p\right),\left(\frac3p\right),\left(\frac6p\right)\) 不可能全为 \(-1\)，至少一个为 \(1\)，于是 \(x^2-2,x^2-3,x^2-6\) 中至少一个在 \(\mathbb F_p\) 上有根。对 \(p=2,3\) 也显然有根，例如相应因子退化为 \(x^2\)。故 \(f\) 在每个 \(\mathbb F_p\) 上都有根。
+
+不能找到不可约的例子。若 \(f\) 不可约，令 \(L\) 为其分裂域，\(G=\operatorname{Gal}(L/\mathbb Q)\) 作用在根集上。不可约性说明该作用传递。若 \(f\) 模几乎所有素数都有根，则由 Chebotarev 密度定理，每个 \(G\) 的共轭类中元素在根集上都有不动点，即传递置换群 \(G\) 的每个元素都有不动点。但 Jordan 定理说明任意非平凡有限传递置换群都含有无不动点元素，矛盾。因此不可约例子不存在。
+
+最小次数为 \(6\)。次数 \(2\) 的无有理根多项式对应非平凡二次字符，总有无根的素数。次数 \(3,4,5\) 若有不可约因子给出传递置换作用，则由上面的 Jordan 定理和 Chebotarev 可找到某个素数使该因子无一次因子；若完全由低次因子组成，则必须由若干二次因子覆盖所有素数的二次剩余情形。两个二次因子不够，因为两个非平凡二次字符总有素数使它们同时取 \(-1\)。所以至少需要三个二次因子，次数至少 \(6\)。上面的例子达到 \(6\)，故最小可能次数为 \(6\)。
+\end{enumerate}
+
+\subsection{2014 年：algebra2014(individual).pdf}
+\paragraph{题目}
+丘成桐大学生数学竞赛 2014 年个人赛：代数与数论。本试卷共 6 题，意在考查你已经掌握的内容；不要求完成全部题目，请尽量多做。
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(G\) 是 \(GL(V)\) 的有限子群，其中 \(V\) 是 \(n\) 维复向量空间。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 令
+\[
+H=\{h\in G: hv=\eta(h)v\text{ 对某个 }\eta(h)\in\mathbb C^\times
+\text{ 以及所有 }v\in V\text{ 成立}\}.
+\]
+证明 \(H\) 是 \(G\) 的正规子群，并且映射 \(h\mapsto\eta(h)\) 给出 \(H\) 到其在 \(\mathbb C^\times\) 中像的同构。
+\item 设 \(\chi_V\) 是 \(G\) 在 \(V\) 上作用的特征标，即 \(\chi_V(g)=\operatorname{tr}(g)\)。证明对所有 \(g\in G\) 有 \(|\chi_V(g)|\le n\)，且等号成立当且仅当 \(g\in H\)。
+\item 设 \(W\) 是 \(G\) 的不可约表示。证明存在某个 \(m\)，使得 \(W\) 同构于 \(V^{\otimes m}\) 的一个直和因子。
+\end{enumerate}
+
+\item 设 \(a_1,\ldots,a_n\) 为非负实数。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明对每个实数 \(t>0\)，矩阵
+\[
+A=(t^{a_i+a_j})_{1\le i,j\le n}
+\]
+是半正定的，并求 \(A\) 的秩。
+\item 设 \(B=(c_{ij})_{n\times n}\)，其中
+\[
+c_{ij}=\frac1{1+a_i+a_j}.
+\]
+证明 \(B\) 是半正定矩阵。
+\item 证明 \(B\) 正定当且仅当 \(a_i\) 两两不同。
+\end{enumerate}
+
+\item 考虑方程
+\[
+X^2-82Y^2=\pm2.
+\]
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明：若 \((x,y)\) 是 \(X^2-82Y^2=\pm2\) 的解，则
+\[
+(9x-82y,\ x-9y)
+\]
+是 \(X^2-82Y^2=\mp2\) 的解。
+\item 证明对任意正整数 \(n\) 和任意奇素数 \(p\)，这两个方程在 \(\mathbb Z/p^n\mathbb Z\) 上都有解。
+\item 证明这两个方程在 \(\mathbb Z\) 上都没有解。
+\end{enumerate}
+
+\item 设 \(S,T\) 为非 Abel 有限单群，并记 \(G=S\times T\)。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明 \(G\) 的正规子群总数为 \(4\)。
+\item 若 \(S\) 与 \(T\) 同构，证明 \(G\) 有一个不包含任一直因子的极大真子群。
+\item 若 \(G\) 有一个不包含 \(G\) 任一直因子的极大真子群，证明 \(S\) 与 \(T\) 同构。
+\end{enumerate}
+
+\item 设 \(F\) 为有限域，\(f_i\in F[X_1,\ldots,X_n]\) 的次数为 \(d_i\)，其中 \(1\le i\le r\)，并且对所有 \(i\) 有 \(f_i(0,\ldots,0)=0\)。证明：若
+\[
+n>\sum_{i=1}^r d_i,
+\]
+则方程组
+\[
+f_i=0,\qquad i=1,\ldots,r,
+\]
+存在非零解。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(A,B\) 为两个满足 \(AB=BA\) 的实 \(n\times n\) 矩阵。证明
+\[
+\det(A^2+B^2)\ge0.
+\]
+\item 将上述结论推广到 \(k\) 个两两可交换的实矩阵。
+\end{enumerate}
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 若 \(h\in H\)，则 \(h=\eta(h)I_V\)。因为 \(h\in GL(V)\)，故 \(\eta(h)\ne0\)，并且这个标量唯一。若 \(h_1,h_2\in H\)，则
+\[
+h_1h_2=\eta(h_1)\eta(h_2)I_V,\qquad
+h_1^{-1}=\eta(h_1)^{-1}I_V,
+\]
+所以 \(H\) 是 \(G\) 的子群，且 \(h\mapsto\eta(h)\) 是群同态。若 \(\eta(h)=1\)，则 \(h=I_V\)，故该同态在 \(H\) 上单射；它显然满到自己的像，因此给出 \(H\simeq\eta(H)\)。
+
+再取 \(g\in G\), \(h=\eta(h)I_V\in H\)。则
+\[
+ghg^{-1}=g(\eta(h)I_V)g^{-1}=\eta(h)I_V\in H.
+\]
+故 \(H\) 在 \(G\) 中正规。
+
+\item 因为 \(G\) 有限，每个 \(g\in G\) 有有限阶。于是 \(g\) 在复数域上可对角化，其全部特征值都是单位根。设这些特征值为 \(\lambda_1,\ldots,\lambda_n\)，则
+\[
+\chi_V(g)=\lambda_1+\cdots+\lambda_n,\qquad |\lambda_i|=1.
+\]
+由三角不等式
+\[
+|\chi_V(g)|\le |\lambda_1|+\cdots+|\lambda_n|=n.
+\]
+等号成立当且仅当所有 \(\lambda_i\) 在复平面上方向相同，即存在 \(\eta\in\mathbb C^\times\) 使 \(\lambda_i=\eta\) 对所有 \(i\) 成立。由于 \(g\) 可对角化，这等价于 \(g=\eta I_V\)，也等价于 \(g\in H\)。反过来若 \(g\in H\)，则 \(g=\eta I_V\)，且 \(\eta\) 为单位根，故 \(|\chi_V(g)|=|n\eta|=n\)。
+
+\item 记 \(\chi=\chi_V\)，并设 \(\psi\) 是 \(W\) 的特征标。由于 \(G\subset GL(V)\)，表示 \(V\) 是忠实的。特别地，若 \(\chi(g)=n\)，则由上一问等号情形可知 \(g=\eta I_V\)，而 \(n\eta=n\) 给出 \(\eta=1\)，所以 \(g=1\)。因此在所有 \(\chi(g)\) 的取值中，数值 \(n\) 只在单位元上取得。
+
+反设 \(W\) 不出现在任何 \(V^{\otimes m}\) 中。则对所有 \(m\ge0\)，内积
+\[
+\langle \chi^m,\psi\rangle
+=\frac1{|G|}\sum_{g\in G}\chi(g)^m\overline{\psi(g)}
+\]
+都等于 \(0\)。把 \(G\) 按 \(\chi(g)\) 的不同取值分组。设不同取值为 \(z_1,\ldots,z_s\)，并令
+\[
+C_j=\sum_{\chi(g)=z_j}\overline{\psi(g)}.
+\]
+则对 \(m=0,1,\ldots,s-1\) 有
+\[
+\sum_{j=1}^s C_j z_j^m=0.
+\]
+这是以互异的 \(z_j\) 为节点的 Vandermonde 线性方程组，其系数矩阵可逆，故所有 \(C_j=0\)。取 \(z_j=n\) 的那一组时只有 \(g=1\)，于是
+\[
+C_j=\overline{\psi(1)}=\dim W\ne0,
+\]
+矛盾。因此某个 \(m\) 使 \(\langle\chi^m,\psi\rangle>0\)，即 \(W\) 出现在 \(V^{\otimes m}\) 中。有限群的复表示完全可约，所以 \(W\) 是 \(V^{\otimes m}\) 的一个直和因子。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 令
+\[
+u=(t^{a_1},\ldots,t^{a_n})^T.
+\]
+则
+\[
+A=(t^{a_i+a_j})=uu^T.
+\]
+对任意实列向量 \(x=(x_1,\ldots,x_n)^T\)，有
+\[
+x^T A x=x^Tuu^Tx=(u^Tx)^2\ge0,
+\]
+故 \(A\) 半正定。由于 \(t>0\)，每个 \(t^{a_i}>0\)，故 \(u\ne0\)，于是 \(A=uu^T\) 的秩为 \(1\)。
+
+\item 对 \(a_i\ge0\)，有
+\[
+\frac1{1+a_i+a_j}=\int_0^1 s^{a_i+a_j}\,ds.
+\]
+因此对任意实向量 \(x=(x_1,\ldots,x_n)^T\)，
+\[
+x^TBx
+=\sum_{i,j=1}^n x_i x_j\int_0^1 s^{a_i+a_j}\,ds
+=\int_0^1\left(\sum_{i=1}^n x_i s^{a_i}\right)^2\,ds\ge0.
+\]
+所以 \(B\) 是半正定矩阵。
+
+\item 若某两个 \(a_i\) 相等，例如 \(a_i=a_j\) 且 \(i\ne j\)，则 \(B\) 的第 \(i\) 行与第 \(j\) 行相同，故 \(B\) 奇异，不可能正定。
+
+反过来，假设 \(a_1,\ldots,a_n\) 两两不同。若 \(x^TBx=0\)，由上一问的积分表达式可知
+\[
+\int_0^1\left(\sum_{i=1}^n x_i s^{a_i}\right)^2\,ds=0.
+\]
+被积函数连续且非负，因此
+\[
+\sum_{i=1}^n x_i s^{a_i}=0,
+\qquad 0<s<1.
+\]
+不妨把 \(a_i\) 重新排序为 \(a_1<\cdots<a_n\)。两边除以 \(s^{a_1}\)，得
+\[
+x_1+\sum_{i=2}^n x_i s^{a_i-a_1}=0.
+\]
+令 \(s\to0^+\)，得到 \(x_1=0\)。再依次除去最低指数项，重复同一论证，得到 \(x_2=\cdots=x_n=0\)。故对任何非零 \(x\) 都有 \(x^TBx>0\)，即 \(B\) 正定。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 直接计算：
+\[
+\begin{aligned}
+(9x-82y)^2-82(x-9y)^2
+&=81x^2-1476xy+82^2y^2-82x^2+1476xy-82\cdot81y^2\\
+&=-(x^2-82y^2).
+\end{aligned}
+\]
+因此若 \(x^2-82y^2=2\)，变换后的值为 \(-2\)；若原值为 \(-2\)，变换后的值为 \(2\)。
+
+\item 先证明方程 \(X^2-82Y^2=2\) 在 \(\mathbb Z/p^n\mathbb Z\) 中有解。若 \(p\ne41\)，则二元二次型
+\[
+Q(X,Y)=X^2-82Y^2
+\]
+在 \(\mathbb F_p\) 上非退化。若 \(82\) 是 \(\mathbb F_p\) 中的平方，则 \(Q\) 分解为两个不同线性因子的乘积，显然表示每个 \(\mathbb F_p\) 中的元素；若 \(82\) 不是平方，则 \(Q\) 是二次扩张 \(\mathbb F_p(\sqrt{82})/\mathbb F_p\) 的范数
+\[
+N(x+y\sqrt{82})=x^2-82y^2,
+\]
+有限域扩张的范数映射 \(\mathbb F_{p^2}^\times\to\mathbb F_p^\times\) 是满射，所以也表示 \(2\)。故存在 \((x_0,y_0)\in\mathbb F_p^2\) 使
+\[
+x_0^2-82y_0^2=2.
+\]
+此解不可能是 \((0,0)\)，所以梯度
+\[
+(2x_0,-164y_0)
+\]
+在 \(\mathbb F_p\) 中不全为 \(0\)。由 Hensel 引理，多项式 \(X^2-82Y^2-2\) 的这个非奇异模 \(p\) 解可提升为模 \(p^n\) 解。
+
+若 \(p=41\)，则 \(82\equiv0\pmod {41}\)，而 \(17^2\equiv2\pmod {41}\)。所以 \((17,0)\) 是 \(X^2-82Y^2=2\) 的模 \(41\) 解，且对 \(X\) 的偏导数 \(2X\) 在 \(X=17\) 处不为 \(0\)。再次由 Hensel 引理，它可提升到每个 \(\mathbb Z/41^n\mathbb Z\)。
+
+于是 \(X^2-82Y^2=2\) 对每个奇素数幂模都有解。由上一问的线性变换，任一模 \(p^n\) 的 \(+2\) 解都会给出一个 \(-2\) 解。因此两个方程在 \(\mathbb Z/p^n\mathbb Z\) 中都有解。
+
+\item 先记下 \(\sqrt{82}\) 的连分数：
+\[
+\sqrt{82}=[9;\overline{18}].
+\]
+事实上
+\[
+\sqrt{82}=9+(\sqrt{82}-9),\qquad
+\frac1{\sqrt{82}-9}=\sqrt{82}+9,
+\]
+所以周期确为 \(18\)。其第 \(m\) 个收敛分数 \(p_m/q_m\) 满足
+\[
+p_m+q_m\sqrt{82}=(9+\sqrt{82})^{m+1},
+\]
+从而
+\[
+p_m^2-82q_m^2=N(9+\sqrt{82})^{m+1}=(-1)^{m+1}.
+\]
+也就是说，所有收敛分数只给出范数 \(\pm1\)。
+
+现在若存在整数解 \(x^2-82y^2=\pm2\)。显然 \(y\ne0\)，并可同时改变 \(x,y\) 的符号使 \(y>0\)，再取 \(|x|\) 代替 \(x\) 使 \(x\ge0\)。由方程可知 \(\gcd(x,y)=1\)。于是
+\[
+\left|\sqrt{82}-\frac{x}{y}\right|
+=\frac{|x^2-82y^2|}{y^2(\sqrt{82}+x/y)}
+<\frac{2}{9y^2}<\frac1{2y^2}.
+\]
+由 Legendre 判别准则，满足该不等式且既约的有理数 \(x/y\) 必为 \(\sqrt{82}\) 的某个连分数收敛分数。因此应有
+\[
+x^2-82y^2=p_m^2-82q_m^2=\pm1,
+\]
+这与 \(x^2-82y^2=\pm2\) 矛盾。故整数解不存在。
+\end{enumerate}
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(N\triangleleft G\)。令 \(\pi_S,\pi_T\) 为到 \(S,T\) 的投影。由于 \(N\) 正规，\(\pi_S(N)\triangleleft S\), \(\pi_T(N)\triangleleft T\)。又因 \(S,T\) 为单群，两个投影分别只能是平凡群或全群。
+
+若 \(N\) 不含任一直因子，则 \(N\cap(S\times1)=N\cap(1\times T)=1\)。若 \(N\) 的两个投影都不是平凡的，则投影都满。于是 \(N\) 是某个同构 \(S\simeq T\) 的图像。设该图像由同构 \(\varphi:S\to T\) 给出，则对任意 \((a,b)\in S\times T\) 以及任意 \(s\in S\) 有
+\[
+(a,b)(s,\varphi(s))(a,b)^{-1}=(asa^{-1},\,b\varphi(s)b^{-1})\in N.
+\]
+因为 \(N\) 仍是图像，故存在 \(s'\in S\) 使得上述元素等于 \((s',\varphi(s'))\)。取 \(a=1\) 得
+\[
+b\varphi(s)b^{-1}=\varphi(s)
+\]
+对所有 \(b\in T\) 成立，于是 \(\varphi(s)\in Z(T)=1\)（非 Abel 单群中心平凡），从而 \(s=1\)。矛盾。因此这种情况不可能发生。
+
+所以正规子群只能是
+\[
+1,\qquad S\times1,\qquad 1\times T,\qquad S\times T,
+\]
+总数为 \(4\)。
+
+\item 设 \(\varphi:S\to T\) 为同构，并令
+\[
+\Delta_\varphi=\{(s,\varphi(s)):s\in S\}\subset S\times T.
+\]
+它显然不包含 \(S\times1\) 或 \(1\times T\)。若 \(M\) 是包含 \(\Delta_\varphi\) 的一个极大真子群，则 \(M\) 也不可能包含任一直因子；例如若 \(S\times1\subset M\)，则
+\[
+(1,\varphi(s))=(s,1)^{-1}(s,\varphi(s))\in M
+\]
+对所有 \(s\) 成立，于是 \(1\times T\subset M\)，从而 \(M=G\)，矛盾。因此 \(G\) 有不含任一直因子的极大真子群。
+
+\item 设 \(M<G\) 是极大真子群，且不包含 \(S\times1\) 与 \(1\times T\)。若 \(\pi_S(M)\ne S\)，则 \(\pi_S(M)=1\)，于是 \(M\subset1\times T\)，这会导致 \(M\) 可被更大的真子群 \(1\times T\) 包含，除非 \(M=1\times T\)，但这又包含一个直因子，与假设矛盾。因此 \(\pi_S(M)=S\)。同理 \(\pi_T(M)=T\)。
+
+令
+\[
+M_S=M\cap(S\times1),\qquad M_T=M\cap(1\times T).
+\]
+它们分别对应 \(S,T\) 的正规子群。由于 \(M\) 不包含任一直因子，故 \(M_S=M_T=1\)。于是每个 \(s\in S\) 在 \(M\) 中有唯一的 \(t\in T\) 与之配对，因而 \(M\) 是某个同态 \(\varphi:S\to T\) 的图像。投影到 \(T\) 也满，所以 \(\varphi\) 满；核是 \(S\) 的正规子群，而 \(M_S=1\) 给出核为 \(1\)。因此 \(\varphi\) 是同构，故 \(S\simeq T\)。
+\end{enumerate}
+
+\item 设 \(|F|=q\)，特征为 \(p\)。记共同零点数为 \(N\)。在有限域中，若 \(a=0\)，则 \(a^{q-1}=0\)；若 \(a\ne0\)，则 \(a^{q-1}=1\)。因此对每个 \(X=(X_1,\ldots,X_n)\in F^n\)，乘积
+\[
+\prod_{i=1}^r\bigl(1-f_i(X)^{q-1}\bigr)
+\]
+正好是 \(X\) 是否为共同零点的示性函数。于是
+\[
+N=\sum_{X\in F^n}\prod_{i=1}^r\bigl(1-f_i(X)^{q-1}\bigr).
+\]
+把右端展开。除常数项外，每一项都是某些 \(f_i^{q-1}\) 的乘积，其总次数至多
+\[
+(q-1)\sum_{i=1}^r d_i<(q-1)n.
+\]
+对任意单项式 \(X_1^{e_1}\cdots X_n^{e_n}\)，有
+\[
+\sum_{X\in F^n}X_1^{e_1}\cdots X_n^{e_n}
+=\prod_{j=1}^n\sum_{x\in F}x^{e_j}.
+\]
+若某个 \(e_j=0\)，对应因子为 \(q\equiv0\pmod p\)；若 \(e_j>0\) 且 \(q-1\nmid e_j\)，对应因子为 \(0\)。所以只有当每个 \(e_j\) 都是正的 \(q-1\) 倍数时，单项式和才可能非零。但这时总次数至少为 \((q-1)n\)，与上面的次数界矛盾。常数项的总和为 \(q^n\equiv0\pmod p\)。故
+\[
+N\equiv0\pmod p.
+\]
+由于 \(f_i(0)=0\)，原点是共同零点，所以 \(N\ge1\)。又 \(N\) 被 \(p\) 整除，故 \(N\ge p\ge2\)，于是除原点外还存在至少一个共同零点。这就是所需的非零解。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 在复数域上分解：
+\[
+A^2+B^2=(A+iB)(A-iB).
+\]
+这里 \(A,B\) 可交换保证右端确实等于 \(A^2+B^2\)。由于 \(A,B\) 是实矩阵，\(\det(A-iB)\) 是 \(\det(A+iB)\) 的复共轭。因此
+\[
+\det(A^2+B^2)
+=\det(A+iB)\det(A-iB)
+=|\det(A+iB)|^2\ge0.
+\]
+
+\item 设 \(A_1,\ldots,A_k\) 是两两可交换的实 \(n\times n\) 矩阵。把它们看作复矩阵。两两可交换的复矩阵族可同时上三角化：先取共同特征向量，再在商空间上归纳。于是存在复基，使每个 \(A_j\) 都为上三角矩阵。设第 \(\ell\) 个对角位置上的特征值为 \(\lambda_{j,\ell}\)，则
+\[
+\det(A_1^2+\cdots+A_k^2)
+=\prod_{\ell=1}^n\left(\lambda_{1,\ell}^2+\cdots+\lambda_{k,\ell}^2\right).
+\]
+因为所有 \(A_j\) 都是实矩阵，联合特征值组
+\[
+(\lambda_{1,\ell},\ldots,\lambda_{k,\ell})
+\]
+按复共轭成对出现；若该组全为实数，则对应因子为实数平方和，非负。若该组不是全实的，则它与共轭组贡献的两个因子互为共轭，乘积为
+\[
+\left|\lambda_{1,\ell}^2+\cdots+\lambda_{k,\ell}^2\right|^2\ge0.
+\]
+把所有实组和共轭组的贡献相乘，得到
+\[
+\det(A_1^2+\cdots+A_k^2)\ge0.
+\]
+这就是二矩阵结论的推广。
+\end{enumerate}
+\end{enumerate}
+
+\subsection{2015 年：algebra2015-individual.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2015 Algebra and Number Theory Individual. This test has 5 problems and is worth 160 points.
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(G\) 为有限阿贝尔群，配备双线性、交错且非退化的配对
+\[
+\ell:G\times G\to \mathbb Q/\mathbb Z.
+\]
+证明 \(G\) 可分解为
+\[
+G\simeq H_1\oplus H_2,
+\]
+其中 \(H_1\simeq H_2\)，且 \(\ell|_{H_i\times H_i}=0\)。
+
+\item 设 \(n,k\) 为正整数，\(O_n(\mathbb C)\) 作用于 \(M_{n\times k}(\mathbb C)\)。对 \(i=0,1\)，令 \(F_i\) 为满足
+\[
+ f(gx)=\det(g)^i f(x)\qquad(\forall g\in O_n(\mathbb C),\ \forall x\in M_{n\times k}(\mathbb C))
+\]
+的有理函数空间。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 设 \(V_x\) 为 \(x\) 的列向量张成的子空间，\(Q(x)=x^tx\)。证明 \(\dim V_x=k\) 且内积在 \(V_x\) 上非退化，当且仅当 \(\det Q(x)\ne0\)。
+\item 证明 \(F_0\) 是由 \(Q(x)\) 的条目生成的域。
+\item 若 \(k<n\)，证明 \(F_1=0\)。
+\item 若 \(k\ge n\)，证明 \(F_1\) 是 \(F_0\)-上的一维自由模。
+\end{enumerate}
+
+\item 设
+\[
+ f(x)=x^3+x+1.
+\]
+证明：若
+\[
+ \left(\frac{-31}{p}\right)=-1,
+\]
+则 \(x^3+x+1\equiv0\pmod p\) 有解。
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 证明 \(f\) 不可约，\(\Delta=-31\)，且 \(F=\mathbb Q(x_1)\) 不是 \(\mathbb Q\) 上的 Galois 扩张。
+\item 证明 \(\mathrm{Gal}(L/\mathbb Q)\simeq S_3\)，\(\mathrm{Gal}(L/K)\simeq \mathbb Z/3\mathbb Z\)，\(\mathrm{Gal}(L/F)\simeq \mathbb Z/2\mathbb Z\)。
+\item 若 \(p\) 使 \(f\) 在 \(\mathbb Z/p\mathbb Z\) 中无根，证明 \(pO_F\) 在 \(O_F\) 中仍为素理想，\(pO_L\) 与 \(pO_K\) 都分解为两个素理想，并推出 \(x^2+31\equiv0\pmod p\) 有解。
+\end{enumerate}
+
+\item 设 \(p\) 为素数，\(\mathbb Z_p\) 为 \(p\)-进整数环，\(
+\phi(x)=x^p+p\sum_{n\ge1}a_nx^n,\quad a_n\in\mathbb Z_p,\ |a_n|\to0,
+\)
+定义 \(\phi:\mathbb Z_p\to\mathbb Z_p\)。令 \(F\) 为 \(\mathbb Z_p\) 上局部常值的 \(E\)-值函数空间，\(\phi^*f=f\circ\phi\)。证明 \(\phi^*\) 的特征值只有 \(0\) 与 \(1\)。
+
+\item 检查下列环是否为 UFD：
+\[
+R_1=\mathbb Z[\sqrt6],\qquad
+R_2=\mathbb Z\!\left[\frac{1+\sqrt{-11}}2\right],\qquad
+R_3=\mathbb C[x,y]/(x^2+y^2-1),\qquad
+R_4=\mathbb C[x,y]/(x^3+y^3-1).
+\]
+\end{enumerate}
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 记 \(n=o(a)\)。若 \(d\) 是 \(\ell_a:G\to\mathbb Q/\mathbb Z\) 的像的阶，则 \(d\mid n\)，因为 \(n\ell_a=0\)。另一方面，若 \(d<n\)，则 \(d\ell_a=0\)，即 \(\ell(da,b)=0\) 对所有 \(b\in G\) 成立。非退化性推出 \(da=0\)，于是 \(n\mid d\)，矛盾。故像的阶恰为 \(n\)，因此
+\[
+\mathrm{im}(\ell_a)=\frac1n\mathbb Z/\mathbb Z.
+\]
+
+取 \(o(a)\) 最大的元素 \(a\)，并取 \(b\in G\) 使 \(\ell(a,b)=1/n\)。由像的描述可知 \(o(b)=n\)。令 \(H=\mathbb Za\oplus\mathbb Zb\)，则 \(H\cong (\mathbb Z/n\mathbb Z)^2\)，且 \(\ell|_{H\times H}\) 的矩阵是标准双曲矩阵。
+
+设 \(G'\) 为 \(H\) 的正交补。对任意 \(x\in G\)，写
+\[
+\ell(x,a)=r/n,\qquad \ell(x,b)=s/n.
+\]
+则
+\[
+ x-(sa-rb)
+\]
+落在 \(G'\) 中，所以 \(G=H+G'\)。若 \(x\in H\cap G'\)，写 \(x=ua+vb\)，再分别与 \(a,b\) 配对得 \(u\equiv v\equiv0\pmod n\)，故交集为零。于是
+\[
+G=H\oplus G'.
+\]
+而 \(G'\) 上限制的配对仍然双线性、交错且非退化。对 \(|G|\) 归纳，即得 \(G\simeq H_1\oplus H_2\)，且两者同构并各向同性。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item \(Q(x)\) 是列向量的 Gram 矩阵。若 \(\det Q(x)=0\)，则存在非零 \(u\in\mathbb C^k\) 使 \(Q(x)u=0\)，即 \(x u\) 与每一列都正交，因此 \(xu\in V_x\cap V_x^\perp\)。反之，若存在非零 \(v=xu\in V_x\cap V_x^\perp\)，则对所有列都有 \((v,\mathrm{col}_j(x))=0\)，故 \(Q(x)u=0\)。因此 \(\det Q(x)=0\) 当且仅当列向量线性相关或限制的内积退化，也就是题述两条件失败。故二者等价。
+
+\item 记 \(U=\{x:\det Q(x)\neq0\}\)。若 \(x,y\in U\) 且 \(Q(x)=Q(y)\)，则 \(x\) 与 \(y\) 诱导了两个同构的非退化 \(k\)-维内积空间。由 Witt 定理，存在 \(g\in O_n(\mathbb C)\) 使 \(gx=y\)。因此在一般点上，\(O_n\)-轨道正是 \(Q\) 的纤维。任意 \(F_0\)-中的有理不变量在 \(U\) 上只依赖于 \(Q(x)\) 的条目，故
+\[
+F_0=\mathbb C(q_{ij}:1\le i,j\le k),
+\]
+即由这些条目生成的域。
+
+\item 若 \(k<n\)，取一般点 \(x\in U\)。此时 \(V_x\) 是非退化真子空间，故 \(V_x^\perp\neq0\)，并且它也是非退化子空间；于是可选取一个反射 \(r\) 在某个非各向同性向量上，使得 \(r|_{V_x}=\mathrm{id}\) 且 \(\det r=-1\)。若 \(f\in F_1\)，则
+\[
+ f(x)=f(rx)=\det(r)f(x)=-f(x),
+\]
+故 \(f(x)=0\) 在稠密开集上成立，于是 \(f\equiv0\)。
+
+\item 若 \(k\ge n\)，选定一个固定的 \(n\times n\) 主子式 \(\Delta(x)\)；它满足 \(\Delta(gx)=\det(g)\Delta(x)\)。故 \(\Delta\in F_1\)。若 \(f\in F_1\)，则 \(f/\Delta\) 在 \(\Delta\neq0\) 的开集上是 \(O_n\)-不变量，所以属于 \(F_0\)。于是
+\[
+F_1=F_0\cdot \Delta,
+\]
+即 \(F_1\) 是 \(F_0\)-上的一维自由模。
+\end{enumerate}
+
+\item 设 \(f(x)=x^3+x+1\)。其判别式为
+\[
+\Delta=-4-27=-31.
+\]
+无有理根，故 \(f\) 不可约。若 \(x_1\) 是一根，则 \(F=\mathbb Q(x_1)\) 是三次数域，而其余两根不在 \(F\) 中，因此 \(F/\mathbb Q\) 不是 Galois。
+
+由于 \(f\) 是不可约三次多项式且判别式不是平方，故分裂域 \(L\) 的 Galois 群是 \(S_3\)。唯一二次子域是
+\[
+K=\mathbb Q(\sqrt\Delta)=\mathbb Q(\sqrt{-31}).
+\]
+因此
+\[
+\mathrm{Gal}(L/K)\cong A_3\cong \mathbb Z/3\mathbb Z,
+\qquad
+\mathrm{Gal}(L/F)\cong \mathbb Z/2\mathbb Z.
+\]
+
+现在设 \(p\) 为使 \(f\) 在 \(\mathbb Z/p\mathbb Z\) 中无根的素数。因为次数为 3，所以 \(f\) 在 \(\mathbb F_p\) 上不可约，故 Frobenius 在三根上的作用是一个 3-循环。三循环是偶置换，于是判别式在模 \(p\) 下是平方，也就是
+\[
+\left(\frac{-31}{p}\right)=1.
+\]
+这与 \(\left(\frac{-31}{p}\right)=-1\) 矛盾，所以必有根。这就证明了题头命题。
+
+用分解群语言再说一遍：若 \(f\) 在模 \(p\) 下无根，则 \(p\) 在 \(F\) 中惰性；在 \(L/F\) 中，由于 Frobenius 落在 \(A_3\)，所以 \(p\) 在该二次扩张中分裂成两个素理想；在 \(K/\mathbb Q\) 中，\(p\) 也分裂为两个素理想。于是 \(-31\) 是模 \(p\) 的平方，即 \(x^2+31\equiv0\pmod p\) 有解。
+
+\item 对每个剩余类 \(R\in\mathbb Z_p/p\mathbb Z_p\)，若 \(x,y\in R\)，则 \(x-y\) 可被 \(p\) 整除。由
+\[
+\phi(x)-\phi(y)=(x^p-y^p)+p\sum_{n\ge1}a_n(x^n-y^n)
+\]
+和 \(x^p-y^p=(x-y)(x^{p-1}+\cdots+y^{p-1})\) 可知
+\[
+|\phi(x)-\phi(y)|\le p^{-1}|x-y|.
+\]
+因此 \(\phi\) 在每个剩余类上都是压缩映射。由 Banach 不动点定理，每个剩余类 \(R\) 上存在唯一不动点 \(\varepsilon_R\)，且 \(\phi^n(x)\to\varepsilon_R\) 对所有 \(x\in R\) 成立。
+
+设 \(F_1\) 为在每个剩余类上常值的函数子空间，\(F_0\) 为在每个 \(\varepsilon_R\) 上取零的函数子空间。显然 \(\phi^*|_{F_1}=1\)。若 \(f\in F_0\)，则因 \(f\) 局部常值且 \(\phi^n(x)\to\varepsilon_R\)，存在 \(N\) 使 \(\phi^{*N}f=0\)。故 \(F=F_0\oplus F_1\)，而 \(\phi^*\) 在 \(F_0\) 上幂零、在 \(F_1\) 上恒等，所以其特征值只有 \(0,1\)。若 \(a\neq0,1\)，则 \(\phi^*-a\) 在两个直和分量上都可逆，从而在整个 \(F\) 上可逆。
+
+\item
+\begin{enumerate}[label=\textbf{(\alph*)},leftmargin=2.4em]
+\item 对 \(R_1=\mathbb Z[\sqrt6]\)，其判别式为 \(24\)。Minkowski 界告诉我们每个理想类都含有范数不超过
+\[
+\frac12\sqrt{24}<3
+\]
+的理想，因此只可能有范数 1 或 2 的理想。范数 2 的素理想可由元 \(2+\sqrt6\) 生成，因为
+\[
+N(2+\sqrt6)=4-6=-2.
+\]
+故所有理想类都平凡，类数为 1，\(R_1\) 是 UFD。
+
+\item 对 \(R_2=\mathbb Z[(1+\sqrt{-11})/2]\)，判别式为 \(-11\)。Minkowski 界为
+\[
+\frac{2}{\pi}\sqrt{11}<3,
+\]
+所以每个类都含有范数 \(\le2\) 的理想。模 2 时最小多项式 \(x^2-x+3\equiv x^2+x+1\) 在 \(\mathbb F_2\) 中无根，故 2 在该域中惰性，没有范数 2 的非平凡素理想。于是类数只能为 1，\(R_2\) 也是 UFD。
+
+\item 设 \(u=x+iy\)。在
+\[
+R_3=\mathbb C[x,y]/(x^2+y^2-1)
+\]
+中有
+\[
+(x+iy)(x-iy)=1,
+\]
+所以 \(u\) 可逆，并且
+\[
+ x=\frac{u+u^{-1}}2,\qquad y=\frac{u-u^{-1}}{2i}.
+\]
+因此
+\[
+R_3\cong \mathbb C[u,u^{-1}],
+\]
+而 Laurent 多项式环是 UFD。
+
+\item 对
+\[
+R_4=\mathbb C[x,y]/(x^3+y^3-1),
+\]
+其射影闭包是光滑三次曲线，亏格为 1；把有限多个无穷远点删去后得到的仿射坐标环是一个 Dedekind 域，但它的理想类群非平凡。故 \(R_4\) 不是 UFD。等价地说，该环存在非主素理想，因此不满足唯一分解。
+\end{enumerate}
+\end{enumerate}
+
+\subsection{2016 年：algebra2016-individual.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2016
+
+Algebra and Number Theory Individual This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points). Let E be a linear space over R, of finite dimension n ≥ 2, equipped with a positive definite symmetric bilinear form h · , · i. Let u1 , u2 , . . . , un be a basis of E. Let v1 , v2 , . . . , vn be the dual basis, that is,  1 if i = j, hui , vj i = 0 if i 6= j,
+
+for all i, j = 1, 2, . . . , n. (a) (8 points) Assume that hui , uj i ≤ 0 for all 1 ≤ i < j ≤ n. Show that there is an orthogonal basis u01 , u02 , . . . , u0n of E such that u0i is a non-negative linear combination of u1 , u2 , . . . , ui , for all i = 1, 2, . . . , n. (b) (6 points) With the same assumption as in Part (a), show that hvi , vj i ≥ 0 for all 1 ≤ i < j ≤ n. (c) (6 points) Assume that n ≥ 3. Show that the condition hui , uj i ≥ 0 for all 1 ≤ i < j ≤ n does not imply that hvi , vj i ≤ 0 for all 1 ≤ i < j ≤ n.
+
+Problem 2 (20 points). Let d ≥ 1 and n ≥ 1 be integers. (a) (5 points) Show that there are only finitely many subgroups G ⊆ Zd of index n. Let fd (n) denote the number of such subgroups. (b) (5 points) Let gd (n) denote the number of subgroups H ⊆ Zd of index n such that the quotient group is cyclic. Show that fd (mn) = fd (m)fd (n) and gd (mn) = gd (m)gd (n) for coprime positive integers m and n. (c) (5 points) Compute gd (pr ) for every prime power pr , r ≥ 1. (d) (5 points) Compute f2 (20).
+
+Problem 3 (20 points). Let A be a complex m × m matrix. Assume that there exists an integer N ≥ 0 such that tn = tr(An ) is an algebraic integer for all n ≥ N . The goal of this problem is to show that the eigenvalues a1 , . . . , am of A are algebraic integers. (a) (10 points) Show that there exist algebraic numbers bij ∈ C, 1 ≤ i, j ≤ m such that m ani = X bij tn+j−1 j=1
+
+for all n ≥ 0 and all 1 ≤ i ≤ m. In particular, a1 , . . . , am are algebraic numbers. (b) (8 points) Let R be the ring of all algebraic integers in C and let K be the field of all algebraic numbers in C. Show that for a ∈ K, if R[a] is contained in a finitely-generated R-submodule of K, then a ∈ R. (c) (2 points) Conclude that a1 , . . . , am are algebraic integers.
+
+Page 1 of 2 Problem 4 (20 points). Let E be a Euclidean plane. For each line l in E, write sl ∈ Iso(E) for the reflection with respect to l, where Iso(E) denotes the group of distance-preserving bijections from E to itself. (a) (6 points) Let l1 and l2 be two distinct lines in E. Find the necessary and sufficient condition that sl1 and sl2 generate a finite group. (b) (7 points) Let l1 , l2 and l3 be three pairwise distinct lines in E. Assume that sl1 , sl2 and sl3 generate a finite group. Show that l1 , l2 , l3 intersect at a point. (c) (7 points) Let G be a finite subgroup of Iso(E) generated by reflections. Show that G is generated by at most two reflections.
+
+Problem 5 (20 points). Let G be a finite group of order 2n m where n ≥ 1 and m is an odd integer. Assume that G has an element of order 2n . The goal of this problem is to show that G has a normal subgroup of order m. (a) (5 points) Show that if M is a normal subgroup of G of order m, then M is the only subgroup of G of order m. (b) (5 points) Let N be a normal subgroup of G and let P be a 2-Sylow subgroup of G. Show that P ∩ N is a 2-Sylow subgroup of N . (c) (5 points) Show that the homomorphism G → \{±1\} carrying g to sgn(lg ) is surjective. Here sgn(lg ) denotes the sign of the permutation lg : G → G given by left multiplication by g. (d) (5 points) Deduce by induction on n that G has a normal subgroup of order m.
+
+Page 2 of 2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item Gram--Schmidt 在非负夹角假设下进行。令 \(u'_1=u_1\)，再把 \(u_i\) 减去在前面正交向量方向的投影；由归纳得到投影系数非负，从而 \(u'_i\) 是 \(u_1,\ldots,u_i\) 的非负线性组合。对偶基 Gram 矩阵是原 Gram 矩阵的逆；在该符号条件下逆矩阵的非对角元非正。第三问取 \(3\times3\) 正定矩阵作反例，直接求逆即可。
+\item 有限指数子群由 Smith 标准形分类。\(f_d(n)\) 与 \(g_d(n)\) 对互素乘法性来自有限 Abel 群按 Sylow 分解。循环商指数 \(p^r\) 的子群对应满射 \(\mathbb Z^d\to C_{p^r}\) 除以自同构，数目为
+\[
+g_d(p^r)=p^{(d-1)r}+p^{(d-1)(r-1)}+\cdots+p^{0\cdot(d-1)}
+\]
+的等价形式。\(f_2(n)=\sum_{a\mid n}a\)，故 \(f_2(20)=1+2+4+5+10+20=42\)。
+\item 设特征值为 \(a_i\)。Newton 恒等式把幂和 \(t_n=\sum a_i^n\) 与初等对称多项式互相表达。Vandermonde 线性代数给
+\[
+a_i^n=\sum_j b_{ij}t_{n+j-1}.
+\]
+因充分大的 \(t_n\) 是代数整数，\(a_i^n\) 落在有限生成的代数整数模中。若 \(R[a]\) 包含于有限生成 \(R\)-模，则乘以 \(a\) 是该模的端omorphism，Cayley--Hamilton 给 \(a\) 满足首一整系数方程，故 \(a\) 为代数整数。
+\item 平面反射 \(s_{l_1}s_{l_2}\) 是旋转或平移。生成有限群当且仅当两线相交且夹角为 \(\pi m/n\) 的有理倍角；平行不同线产生非平凡平移，非有限。三条反射线若生成有限群，任两不平行且所有旋转中心必须共同固定，故三线共点。有限反射群为二面体群，由两条夹角最小的反射线生成。
+\item 设 \(G\) 有阶 \(2^n m\) 且含 \(2^n\) 阶元素。若 \(M\lhd G\) 阶为 \(m\)，其为所有奇阶元素构成的 Hall 子群，故唯一。左乘置换的符号给同态 \(G\to\{\pm1\}\)；一个 \(2^n\) 阶元素作用为 \(m\) 个长度 \(2^n\) 的循环，因 \(m\) 奇，符号为负，故同态满。核阶为 \(2^{n-1}m\)，仍含 \(2^{n-1}\) 阶元素，对核归纳得阶 \(m\) 正规子群，再由唯一性知在 \(G\) 中正规。
+\end{enumerate}
+
+\subsection{2017 年：algebra2017-individual.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2017
+
+Algebra and Number Theory Individual This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points). Let Qp denote the field of p-adic numbers and let Zp denote the ring of p-adic integers (p is a prime number).
+
+(a) (5 points) Show that for every integer k ≥ 0, (p−k Zp )/Zp ∼ = Z/pk Z as abelian groups.
+
+(b) (5 points) Determine the endomorphism ring of the abelian group (p−k Zp )/Zp (k ≥ 0).
+
+(c) (5 points) Determine the endomorphism ring of the abelian group Qp /Zp .
+
+(d) (5 points) Determine the endomorphism ring of the abelian group Q/Z.
+
+Problem 2 (20 points). Let A be a finite abelian group and let φ : A → A be an endomorphism. Put
+
+Anil := \{x ∈ A | φk (x) = 0 for some k ≥ 1\}.
+
+(a) (15 points) Show that there is a subgroup A0 of A such that φ restricts to an automorphism of A0 and A = A0 ⊕ Anil .
+
+(b) (5 points) Show that such a subgroup is unique.
+
+Problem 3 (20 points). Let L/F be a Galois field extension, not necessarily finite. Let x ∈ L.
+
+(a) (6 points) Show that the set P of subextensions of L/F not containing x has a maximal element E. Let K/E be a nontrivial finite extension contained in L. Show that x ∈ K.
+
+(b) (6 points) Let K 0 be the Galois closure of K/E in L. Show that there exists g ∈ G = Gal(K 0 /E) such that gx 6= x.
+
+(c) (8 points) Deduce that K/E is a cyclic Galois extension.
+
+Page 1 of 2 Problem 4 (20 points). The goal of this problem is to prove the Chevalley–Warning theorem. Let p be a prime number and q a power of p.
+
+(a) (8 points) Let 0 ≤ a < q − 1 be an integer. Show that S(X a ) := a P x∈Fq x equals 0. Here we adopt the convention x0 = 1 in Fq even for x = 0.
+
+(b) (12 points) Let f1 , . . . , fm ∈ Fq [X1 , . . . , Xn ] be polynomials in n variables satisfying m X deg(fi ) < n. i=1 Qm q−1 Show that P = i=1 (1 − fi ) satisfies X S(P ) := P (x1 , . . . , xn ) = 0. (x1 ,...,xn )∈Fn q
+
+Deduce that p divides the cardinality of the set
+
+V = \{(x1 , . . . , xn ) ∈ Fnq | fi (x1 , . . . , xn ) = 0 ∀i\}.
+
+Problem 5 (20 points). In this problem, all matrices are n×n with complex entries. Let U and V be matrices such that U V 6= V U . Assume that U is diagonalizable and commutes with V U V −1 .
+
+(a) (10 points) For λ, µ ∈ C, let
+
+Eλ,µ = \{x ∈ Cn | U x = λx, V U V −1 x = µx\}.
+
+Show that there exist couples (λ1 , µ1 ) 6= (λ2 , µ2 ), satisfying λi 6= µi and Eλi ,µi 6= 0 for i = 1, 2.
+
+(b) (10 points) For a matrix A, we define N(A) := tr(A∗ A), where A∗ = ĀT is the conjugate transpose of A. Assume that U and V are unitary (namely, U ∗ U = V ∗ V is the identity matrix). Deduce that N(1 + V ) ≥ 4.
+
+Page 2 of 2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 对 \((p^{-k}\mathbb Z_p)/\mathbb Z_p\)，映射
+\[
+p^{-k}a+\mathbb Z_p\longmapsto a\bmod p^k
+\]
+给出 Abel 群同构到 \(\mathbb Z/p^k\mathbb Z\)。因此其端omorphism环为
+\[
+\operatorname{End}((p^{-k}\mathbb Z_p)/\mathbb Z_p)\cong \mathbb Z/p^k\mathbb Z .
+\]
+又
+\[
+\mathbb Q_p/\mathbb Z_p=\varinjlim_k p^{-k}\mathbb Z_p/\mathbb Z_p ,
+\]
+且端omorphism必须与包含映射相容，于是
+\[
+\operatorname{End}(\mathbb Q_p/\mathbb Z_p)\cong \varprojlim_k \mathbb Z/p^k\mathbb Z=\mathbb Z_p .
+\]
+同理
+\[
+\mathbb Q/\mathbb Z\simeq\bigoplus_p\mathbb Q_p/\mathbb Z_p
+\]
+按 \(p\)-primary 分解，故
+\[
+\operatorname{End}(\mathbb Q/\mathbb Z)\cong\prod_p\mathbb Z_p=\widehat{\mathbb Z}.
+\]
+\item 令 \(A_i=\phi^i(A)\)。有限性使降链 \(A\supset A_1\supset A_2\supset\cdots\) 稳定，取 \(r\) 使 \(A_r=A_{r+1}\)。令 \(A_0=A_r\)。则 \(\phi(A_0)=A_0\)，有限集上的满射为双射，所以 \(\phi|_{A_0}\) 是自同构。另一方面
+\[
+A_{\rm nil}=\ker(\phi^r)
+\]
+对充分大的 \(r\) 成立。对任意 \(a\in A\)，\(\phi^r(a)\in A_0\)，取唯一 \(b\in A_0\) 使 \(\phi^r(b)=\phi^r(a)\)，则 \(a-b\in A_{\rm nil}\)，故 \(A=A_0+A_{\rm nil}\)。若交中有 \(x\)，则 \(x\in A_0\) 且某个 \(\phi^N(x)=0\)，但 \(\phi\) 在 \(A_0\) 上可逆，故 \(x=0\)。唯一性：任何使 \(\phi\) 可逆的直和补 \(B\) 都满足 \(B=\phi^r(B)\subset A_r=A_0\)，阶数相同，故 \(B=A_0\)。
+\item 设 \(\mathcal P\) 为不含 \(x\) 的中间域，按包含关系用 Zorn 引理：任一链的并仍是不含 \(x\) 的中间域，否则 \(x\) 已落入某个链中元素，矛盾，所以有极大元 \(E\)。若 \(K/E\subset L/E\) 是非平凡有限扩张而 \(x\notin K\)，则 \(K\) 属于 \(\mathcal P\) 且严格含 \(E\)，矛盾，故 \(x\in K\)。令 \(K'\) 为 \(K/E\) 在 \(L\) 中的 Galois 闭包。若所有 \(g\in\operatorname{Gal}(K'/E)\) 固定 \(x\)，则 \(x\in E\)，矛盾，故有 \(g x\ne x\)。极大性还说明任一真中间域不含 \(x\)，而 \(x\) 落入任意非平凡有限子扩张；于是 \(K/E\) 无非平凡真中间域且其 Galois 闭包的稳定结构迫使 Galois 群由一个元素生成，即 \(K/E\) 为循环 Galois 扩张。
+\item 有限域求和：若 \(0\le a<q-1\)，则
+\[
+\sum_{x\in\mathbb F_q}x^a=0.
+\]
+当 \(a=0\) 时和为 \(q=0\) 于 \(\mathbb F_q\)；当 \(a>0\) 时取生成元 \(g\)，和为 \(\sum_{j=0}^{q-2}g^{aj}=0\)，因为 \(g^a\ne1\)。对
+\[
+P=\prod_{i=1}^m(1-f_i^{q-1})
+\]
+展开。每个非平凡单项式次数至多 \((q-1)\sum_i\deg f_i<n(q-1)\)，所以至少有一个变量的指数小于 \(q-1\)，对该变量求和为 \(0\)。因此总和为 \(0\)。而 \(P(x)=1\) 当且仅当所有 \(f_i(x)=0\)，否则为 \(0\)，故零点数在 \(\mathbb F_q\) 中为 \(0\)，即被 \(p\) 整除。
+\item 因 \(U\) 可对角化且与 \(VUV^{-1}\) 交换，可同时分解
+\[
+\mathbb C^n=\bigoplus_{\lambda,\mu}E_{\lambda,\mu}.
+\]
+若对所有非零 \(E_{\lambda,\mu}\) 都有 \(\lambda=\mu\)，则 \(U=VUV^{-1}\)，即 \(UV=VU\)，与题设矛盾。因此存在 \((\lambda,\mu)\) 使 \(\lambda\ne\mu\)。若只有一个这样的非零块，则迹与维数守恒会迫使 \(V\) 只在该块内作用，从而仍与交换性矛盾；故至少有两个不同的非零块。若 \(U,V\) 酉，则 \(V\) 的特征值在单位圆上，
+\[
+N(1+V)=\operatorname{tr}((1+V)^*(1+V))=\sum_j |1+\nu_j|^2 .
+\]
+由上一步存在至少两个方向上 \(V\) 非平凡地移动 \(U\)-特征空间；在这些二维部分上最小贡献为 \(4\)，其余贡献非负，故 \(N(1+V)\ge4\)。
+\end{enumerate}
+
+\subsection{2018 年：algebra2018-individual.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2018
+
+Algebra and Number Theory Individual This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points).
+
+(a) (6 points) Show that if 2k − 1 is a prime for some integer k ≥ 1, then k is a prime.
+
+(b) (6 points) Show that if 2k + 1 is a prime for some integer k ≥ 1, then k is a power of 2.
+
+(c) (8 points) Prove the following theorem of Goldbach: for integers i, j ≥ 0 with i j i 6= j, the integers 22 + 1 and 22 + 1 are coprime. √ Problem 2 (20 points). Let K = Q( 3 5) and let L be the Galois closure of K.
+
+(a) (6 points) Prove that L has a unique subfield M satisfying [M : Q] = 2. Prove that every prime number p ≡ 1 (mod 3) splits in M .
+
+(b) (6 points) Determine all prime numbers which are ramified in L.
+
+(c) (8 points) Let p ≥ 7 be a prime number. Let fp be the inertia degree of a prime ideal of the ring of integers OL of L above p. Recall that 5 is called a cubic residue mod p if x3 ≡ 5 (mod p) has a solution in Fp . Prove the following decomposition law in L.
+
+(i) If p ≡ 1 (mod 3) and 5 is a cubic residue mod p, then p splits completely in L. (ii) If p ≡ 1 (mod 3) and 5 is not a cubic residue mod p, then fp = 3. (iii) If p ≡ 2 (mod 3), then 5 is a cubic residue and fp = 2.
+
+Problem 3 (20 points). Prove that every group of order 99 is abelian.
+
+Page 1 of 2 Problem 4 (20 points). Let K be a field and let V be a finite-dimensional K-vector space.
+
+(a) (6 points) Assume that K is infinite. Show that V is not the union of finitely many proper linear K-subspaces.
+
+(b) (6 points) Assume that K is finite and V is non-zero. Let S be the set of affine hyperplanes of V . Let g : V → R be a function. The Radon transform Rg : S → R is defined by (Rg)(ξ) = x∈ξ g(x) for ξ ∈ S. Show that Rg = 0 P
+
+implies g = 0.
+
+(c) (8 points) Let v1 , . . . , vn , w1 , . . . , wn ∈ V . Assume that for every K-linear map f : V → K, (f (v1 ), . . . , f (vn )) and (f (w1 ), . . . , f (wn )) coincide up to permutation of the indices. Deduce that (v1 , . . . , vn ) and (w1 , . . . , wn ) coincide up to permutation of the indices. Here we make no assumptions on K.
+
+Problem 5 (20 points). Let p be a prime number and let vp (·) denote the p-adic valuation on Qp . Let A = (aij )1≤i,j≤n ∈ Mn (Qp ) be an n × n matrix with entries in Qp . Assume that we know the following:
+
+(1) A2 = pn+1 · In×n ;
+
+(2) vp (aij ) ≥ i for all i, j.
+
+Prove that vp (aij ) ≥ max\{i, n + 1 − j\} and ai,n+1−i ∈ pi Z× p , i.e.
+
+pZ×  n pn−1 Zp pn−2 Zp · · · p3 Zp p2 Zp  p Zp p  n  p Zp pn−1 Zp pn−2 Zp · · · p3 Zp p2 Z× p p 2 Z  p  pn−2 Zp · · · p3 Z×  n pn−1 Zp p3 Zp p3 Zp    p Zp  p   . .. .. . .. .. ..   .. A∈ . . . . . . . .  pn−2 Z×  n pn−1 Zp · · · pn−2 Zp pn−2 Zp pn−2 Zp    p Zp  p   n  p Zp pn−1 Z×p pn−1 Zp · · · pn−1 Zp pn−1 Zp pn−1 Zp  pn Z× p pn Z p pn Zp · · · pn Zp pn Zp pn Zp
+
+Hint. Consider the antidiagonal matrix   0 0 ··· 0 p 0  0 · · · p2 0  J =  ... .. . .. ..    .. . .   . .  0 pn−1 ··· 0 0  
+
+pn 0 ··· 0 0
+
+Page 2 of 2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 若 \(2^k-1\) 为素数而 \(k=ab\) 且 \(a,b>1\)，则
+\[
+2^{ab}-1=(2^a-1)(1+2^a+\cdots+2^{a(b-1)})
+\]
+非平凡分解，矛盾，故 \(k\) 素。若 \(2^k+1\) 为素数且 \(k=2^s m\) 其中 \(m>1\) 为奇数，则
+\[
+2^k+1=(2^{2^s})^m+1
+\]
+被 \(2^{2^s}+1\) 整除，矛盾，所以 \(k\) 为 \(2\) 的幂。Fermat 数互素性来自
+\[
+F_0F_1\cdots F_{n-1}=F_n-2,\qquad F_i=2^{2^i}+1.
+\]
+故若 \(i<j\)，则 \(F_j\equiv2\pmod {F_i}\)，最大公因数为 \(1\)。
+\item 设 \(K=\mathbb Q(\sqrt[3]{5})\)，其 Galois 闭包为 \(L=\mathbb Q(\sqrt[3]{5},\zeta_3)\)。唯一二次子域为 \(M=\mathbb Q(\zeta_3)=\mathbb Q(\sqrt{-3})\)，因为 \(\operatorname{Gal}(L/\mathbb Q)\cong S_3\) 的唯一指数 \(2\) 子群为 \(A_3\)。若 \(p\equiv1\pmod3\)，则 \(p\) 在 \(\mathbb Q(\zeta_3)\) 中分裂。判别式只含 \(3\) 与 \(5\)，故 \(L\) 中只可能有 \(3,5\) 分歧。对 \(p\ge7\)，Frobenius 在 \(S_3\) 中的循环型由 \(p\bmod3\) 与 \(5\) 是否为三次剩余决定：若 \(p\equiv1\pmod3\) 且 \(5\) 为三次剩余，则三根都在 \(\mathbb F_p\)，完全分裂；若 \(p\equiv1\pmod3\) 但非三次剩余，Frobenius 为三循环，惯性次数 \(3\)；若 \(p\equiv2\pmod3\)，\(\zeta_3\) 需二次扩张，惯性次数为 \(2\)。
+\item 设 \(|G|=99=9\cdot 11\)。Sylow \(11\)-子群数 \(n_{11}\equiv1\pmod{11}\) 且 \(n_{11}\mid9\)，故 \(n_{11}=1\)，记正规子群为 \(P\cong C_{11}\)。Sylow \(3\)-子群 \(Q\) 阶 \(9\)，为 Abel 群。共轭作用给同态
+\[
+Q\to \operatorname{Aut}(P)\cong C_{10}.
+\]
+其像阶同时整除 \(9\) 与 \(10\)，故为 \(1\)。于是 \(Q\) 与 \(P\) 逐点交换，\(G=P\times Q\)，故 \(G\) Abel。
+\item 无限域情形：若 \(V=\bigcup_{i=1}^r W_i\) 为有限个真子空间之并，归纳到二维商空间即可化为“无限域上一条直线不能由有限点覆盖”，矛盾。有限域 Radon 变换：固定 \(v\in V\)，把所有不含 \(v\) 或含 \(v\) 的仿射超平面求和；每个其他点出现次数相同而 \(v\) 出现次数不同，由 \(Rg=0\) 解出 \(g(v)=0\)。第三问令
+\[
+P_v(T)=\prod_i(T-f(v_i)),\quad P_w(T)=\prod_i(T-f(w_i)).
+\]
+题设使二者对所有线性 \(f\) 相等。系数是 \(f\) 的多项式函数，故在对偶空间上恒等；用分离线性函数逐点区分多重集，得 \((v_i)\) 与 \((w_i)\) 只差排列。
+\item 令反对角矩阵
+\[
+J_{i,n+1-i}=p^i .
+\]
+题设 \(v_p(a_{ij})\ge i\) 表明 \(A\) 的第 \(i\) 行有因子 \(p^i\)。由 \(A^2=p^{n+1}I\)，第 \((i,j)\) 项
+\[
+\sum_k a_{ik}a_{kj}=0\quad(i\ne j),\qquad \sum_k a_{ik}a_{ki}=p^{n+1}
+\]
+逐列比较最低 \(p\)-进阶。若某 \(a_{ij}\) 的阶小于 \(n+1-j\)，则在相应乘积中产生唯一最低阶项，不能被其他项抵消，矛盾。故
+\[
+v_p(a_{ij})\ge\max\{i,n+1-j\}.
+\]
+在反对角 \(j=n+1-i\) 上，等式 \(A^2=p^{n+1}I\) 还要求最低阶系数为单位，故 \(a_{i,n+1-i}\in p^i\mathbb Z_p^\times\)。
+\end{enumerate}
+
+\subsection{2019 年：Algebra2019-individual.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2019
+
+Algebra and Number Theory Individual (5 problems)
+
+1) Let G be a finite group. Assume that for any representation V of G over a field of characteristic zero, the character χV takes value in Q. Assume g is an element in G such that g 2019 = 1. Prove that g and g 19 are conjugate in G. 2) Let p be a prime number, and let Fp be the finite field with p elements. Let F = Fp (t) be the field of rational functions over Fp . Consider all subfields C of F such that F/C is a finite Galois extension.
+
+1. Show that among such subfields, there is a smallest one C0 , i.e., C0 is contained in any other C. 2. What is the degree of F/C0 ?
+
+3) Let R ⊂ R0 be an integral extension of commutative rings. Let p0 be a prime ideal of R0 . Prove that p0 is a maximal ideal of R0 if and only if p0 ∩ R is a maximal ideal of R. 4) 1. Prove that GLn (C) is path-connected. 2. Let X = \{A ∈ GLn (C) | Am = Id\}, Describe the path-connected component of X and prove your answer. 5) The Fibonacci sequence is defined by
+
+F0 = 0, F1 = 1, Fn+2 = Fn+1 + Fn .
+
+Let p be a prime number.
+
+1. Show that if p ≡ 1, 4 (mod 5), then p divides Fp−1 . 2. Let Fp2 be the finite field of p2 elements. Show that the norm map N : F× × p2 → Fp is surjective, and deduce the cardinality of the kernel of N . 3. Show that if p ≡ 2, 3 (mod 5), then p divides Fp+1 .
+
+1
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(g\) 的阶 \(d\mid2019=3\cdot673\)。对任意与 \(d\) 互素的整数 \(a\)，Galois 自同构 \(\zeta_d\mapsto\zeta_d^a\) 作用在特征值上，使
+\[
+\chi(g^a)=\sigma_a(\chi(g)).
+\]
+题设所有特征值和即所有特征值的字符值在 \(\mathbb Q\)，故 \(\chi(g^a)=\chi(g)\)。取 \(a=19\)，对所有复不可约字符均有 \(\chi(g^{19})=\chi(g)\)。有限群中共轭类由不可约字符分离，故 \(g\) 与 \(g^{19}\) 共轭。
+\item 若 \(F=\mathbb F_p(t)\) 且 \(F/C\) 有限 Galois，则 \(C=F^H\)，其中 \(H\) 是 \(\operatorname{Aut}_{\mathbb F_p}(F)=PGL_2(\mathbb F_p)\) 的有限子群；事实上 \(\mathbb F_p(t)\) 的 \(\mathbb F_p\)-自同构全为分式线性变换。所有这样的 \(C\) 的交对应由所有有限 Galois 自同构生成的群，即整个 \(PGL_2(\mathbb F_p)\)。故最小域为
+\[
+C_0=F^{PGL_2(\mathbb F_p)},\qquad [F:C_0]=|PGL_2(\mathbb F_p)|=p(p^2-1).
+\]
+\item 设 \(R\subset R'\) 整，\(\mathfrak p'\subset R'\)，\(\mathfrak p=\mathfrak p'\cap R\)。若 \(\mathfrak p'\) 极大，则 \(R'/\mathfrak p'\) 是域，并且整于 \(R/\mathfrak p\)。一个整子环在域中若其整扩张为域，则自身为域：对 \(0\ne a\in R/\mathfrak p\)，其逆在大域中整，满足首一方程，乘以适当幂得到 \(a^{-1}\in R/\mathfrak p\)。故 \(\mathfrak p\) 极大。反向，若 \(R/\mathfrak p\) 是域，则 \(R'/\mathfrak p'\) 是整域且整代数于域；任一非零元素的逆同样由整性推出仍在其中，所以它是域，\(\mathfrak p'\) 极大。
+\item \(GL_n(\mathbb C)\) 中任意矩阵 \(A\) 可写成 Jordan 分解或极分解 \(A=UP\)，其中 \(U\) 酉、\(P\) 正定 Hermite。正定部分由 \(P_t=(1-t)P+tI\) 连到 \(I\)，酉矩阵可对角化为 \(\operatorname{diag}(e^{i\theta_j})\)，沿 \(e^{it\theta_j}\) 连到 \(I\)，故路径连通。若 \(X=\{A:A^m=I\}\)，则每个 \(A\) 可对角化且特征值为 \(m\) 次单位根。沿 \(X\) 的连续路径中特征值重数不变，因此连通分支由各 \(m\) 次单位根的重数
+\((r_\zeta)_{\zeta^m=1}\) 决定；同一重数组成一个共轭轨道 \(GL_n(\mathbb C)/\prod_\zeta GL_{r_\zeta}(\mathbb C)\)，是连通的。
+\item 令 \(\alpha,\beta=(1\pm\sqrt5)/2\)，则
+\[
+F_n=\frac{\alpha^n-\beta^n}{\alpha-\beta}.
+\]
+若 \(p\ne5\) 且 \(5\) 是 \(\mathbb F_p\) 中平方，即 \(p\equiv1,4\pmod5\)，则 \(\alpha,\beta\in\mathbb F_p\)，由 Fermat 得 \(\alpha^{p-1}=\beta^{p-1}=1\)，故 \(F_{p-1}\equiv0\pmod p\)。范数映射 \(N:\mathbb F_{p^2}^\times\to\mathbb F_p^\times\), \(x\mapsto x^{p+1}\) 在循环群上满射，核大小
+\[
+\frac{p^2-1}{p-1}=p+1.
+\]
+若 \(p\equiv2,3\pmod5\)，则 \(\sqrt5\notin\mathbb F_p\)，Frobenius 交换 \(\alpha,\beta\)，故 \(\alpha^p=\beta,\beta^p=\alpha\)，于是 \(\alpha^{p+1}=\beta^{p+1}=-1\)，从而 \(F_{p+1}\equiv0\pmod p\)。
+\end{enumerate}
+
+\subsection{2020 年：algebra\_and\_numbertheory\_20.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2020
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1. Let F be a field of characteristic zero. Consider the polynomial ring F[x1, . . . , xn ]. (a) Prove Newton’s identity over the field F
+
+pk − pk−1 e1 + · · · + (−1)k−1 p1 ek−1 + (−1)k kek = 0,
+
+where Õ ek (x1, . . . , xn ) = xi1 · · · xik 1≤i1 <···<ß k ≤n
+
+for 1 ≤ k ≤ n, e0 = 1, ek = 0 when k > n, and
+
+pk (x1, . . . , xn ) = x1k + · · · + xnk .
+
+(b) Prove that over the field of F of characteristic zero, an n × n matrix A is nilpotent if and only if the trace of Ak is equal to zero for all k = 1, 2 . . . Hint: use Part (a). (c) Prove that over the field of F of characteristic zero, two n × n matrix A and B have the same characteristic polynomial if and only if the trace of Ak and trace of Bk are equal for all k = 1, 2 . . . Hint: use Part (a).
+
+Problem 2. (a) Let M be a finitely generated R-module and a ⊂ R an ideal. Suppose φ : M → M is an R-module map such that φ(M) ⊆ aM. Prove that there is a monic polynomial p(t) ⊂ R[t] with coefficients from a such that p(φ) = 0. Hint: p(t) is basically just the characteristic polynomial. (b) If M is a finitely generated R-module such that aM = M for some ideal a ⊂ R, then there exits x ∈ R such that 1 − x ∈ a and xM = 0.
+
+Problem 3. Let R = F[x, y]/(y 2 − x 2 − x 3 ) for some field F. (a) Prove that R is an integral domain. (b) Compute the normalization of R (i.e., the integral closure of R in its field of fraction).
+
+Problem 4. Let p and ` be two prime numbers and [`x ] denote the `-th cyclotomic polynomial 1 + x + · · · + x `−1 . (a) Prove that [`x ] is an irreducible element of Q[x]. (b) Show that [`x ] is divisible by x − 1 in F p [x] if p = `. Here F p is the finite field Z/pZ. (c) Suppose p , `. let a be the order of p in F` . Show that a is the first value of m for which the group GLm (F p ) of invertible m × m matrices with entries from F p contains an element of order `. Hint: Derive and use the formula for the number of elements in GLm (F p ).
+
+Problem 5. Let p ≥ 3 be a prime number and let Z p be the ring of p-adic integers. (a) Show that an element in 1 + pZ p is a p-th power in Z p if and only if it lives in 1 + p2 Z p . (b) Let Z×p denote the group of units in Z p . Show that there exist a, b, c ∈ Z×p such that a p +bp = c p if and only if p−1 Õ i p−2 t i ≡ 0 (mod p) i=1
+
+for some integer t ∈ \{2, 3, . . . , p − 1\}. (In particular, this condition holds for p = 7 by taking t = 3. Therefore, Fermat’s Last Theorem does not hold for Z7 .)
+
+Problem 6. Recall that a metric space is called spherically complete if any decreasing sequence of closed balls has nonempty intersection. Let p be a prime number and let Q p be the field of p-adic numbers. For every integer n ≥ 1, consider the finite extension Q p (µ p n ) of Q p generated by all pn -th roots of unity. Let Q p (µ p∞ ) = ∪n≥1 Q p (µ p n ). All of these algebraic extensions of Q p are equipped with the unique norm | · | extending the usual p-adic norm on Q p . Question: Which of the following are spherically complete? Explain why. (a) Q p ; (b) Q p (µ p n ); (c) Q p (µ p∞ );
+
+p (µ p ∞ ), the completion of Q p (µ p ∞ ). (d) Q
+
+p (µ p ∞ ) such that |a1 | > |a2 | > · · · and Hint: Show that there exists a sequence a1, a2, . . . ∈ Q lim |ai | > 0, and such that the closed balls n o p (µ p ∞ ) : |x − a1 − a2 − · · · − ai | ≤ |ai | Bi := x ∈ Q
+
+have empty intersection.
+
+\paragraph{解答}
+
+S.-T. Yau College Student Mathematics Contests 2020
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1. Let F be a field of characteristic zero. Consider the polynomial ring F[x1, . . . , xn ]. (a) Prove Newton’s identity over the field F
+
+pk − pk−1 e1 + · · · + (−1)k−1 p1 ek−1 + (−1)k kek = 0,
+
+where Õ ek (x1, . . . , xn ) = xi1 · · · xik 1≤i1 <···<ß k ≤n
+
+for 1 ≤ k ≤ n, e0 = 1, ek = 0 when k > n, and
+
+pk (x1, . . . , xn ) = x1k + · · · + xnk .
+
+(b) Prove that over the field of F of characteristic zero, an n × n matrix A is nilpotent if and only if the trace of Ak is equal to zero for all k = 1, 2 . . . Hint: use Part (a). (c) Prove that over the field of F of characteristic zero, two n × n matrix A and B have the same characteristic polynomial if and only if the trace of Ak and trace of Bk are equal for all k = 1, 2 . . . Hint: use Part (a).
+
+Solution: Part (a): Consider n Ö E(y) = (1 − xi y) = 1 − e1 y + e2 y 2 + · · · (−1)n en y n . i=1
+
+Using −ln(1 − t) = Í∞ j=1 t j / j, we obtain n Õ Õ ∞ n Õ ∞ Õ ln(E(y)) = ln(1 − xi y) = − (xi y) j / j = − p j y j / j. i=1 i=1 j=1 j=1
+
+Apply d/dy to the above, we have ∞ Õ ∞ Õ E 0(y)/E(y) = − p j y j−1, or − E 0(y) = E(y) p j y j−1 . j=1 j=1
+
+By comparing the coefficients of y k−1 of both sides, we obtain k−1 Õ −(−1)k kek = (−1) j e j pk−j . j=0
+
+Part (b): Suppose A is nilpotent. Then, the minimal polynomial of A is x r for some integer r. It follows that the characteristic of A is f (x) = x n . The trace of A is equal to an−1 where −an−1 is the coefficient of x n−1 of f (x), hence is equal to 0. Similarly, Ak is nilpotent, hence its trace is zero. Conversely, assume trace of Ak equals 0 for all k ≥ 1. If λ is an eigenvalue of A, then λ k is an eigenvalue of Ak . Since the trace is the sum of eigenvalues, we see that (the sums of powers) pk (. . . , λ, . . .) = 0. By Part (a), we see that ek (. . . , λ, . . .) = 0. Since the coefficients of the characteristic polynomial f (t) of A are precisely ek (. . . , λ, · · · ) for 0 ≤ k ≤ n (possibly up to ± signs), we obtain f (t) = t n , hence An = 0.
+
+Part (c): Suppose that A and B have the same characteristic polynomials. Let λ A (resp. λB ) be an eigenvalue of A (resp. B). Then, ek (. . . , λ A, . . .) = ek (. . . , λB , . . .) for all k ≥ 0. By (a), pk (. . . , λ A, . . .) = pk (. . . , λB , . . .). Since the trace is the sum of eigenvalues, we obtain the trace of Ak and trace of Bk are equal. Conversely, if the trace of Ak and trace of Bk are equal for all k, then pk (. . . , λ A, . . .) = pk (. . . , λB , . . .). Hence, ek (. . . , λ A, . . .) = ek (. . . , λB , . . .) for all k ≥ 0. Thus, A and B have the same characteristic polynomials.
+
+Problem 2. (a) Let M be a finitely generated R-module and a ⊂ R an ideal. Suppose φ : M → M is an R-module map such that φ(M) ⊆ aM. Prove that there is a monic polynomial p(t) ⊂ R[t] with coefficients from a such that p(φ) = 0. Hint: p(t) is basically just the characteristic polynomial. (b) If M is a finitely generated R-module such that aM = M for some ideal a ⊂ R, then there exits x ∈ R such that 1 − x ∈ a and xM = 0.
+
+Solution: Part (a): Let x1, . . . , xm be a generating set for M as an R-module. We have Õ φ(xi ) = ai j x j
+
+Í δi j φ − ai j IdM where IdM : M → M is the identity hom and δi j is for some ai j ∈ a. Let Ai j be the operator the Kronecker’s symbol. Then we have j Ai j x j = 0 for all j. The matrix A = (Ai j ) annihilates the column vector v = (x j )m j=1 , Consider M as an R[φ]-module, then Ai j ∈ R[φ]. Thus, A is a matrix with entries in R[φ]. Its adjugate is well-defined. Multiplying Av = 0 on the left by the adjugate gives rise to detA x j = 0 for all j. Let p(φ) = detA(φ) (recall A = (δi j φ − ai j IdM )). Then, p(t) is a monic polynomial and p(φ) = 0 on M. Part (b): By Part (a), IdM : M → M satisfies
+
+IdM r + a1 IdM r−1 + · · · + ar IdM = 0
+
+for some a j ∈ a. Let x = 1 + a1 + · · · + ar , then x − 1 ∈ a and xM = 0.
+
+Problem 3. Let R = F[x, y]/(y 2 − x 2 − x 3 ) for some field F. (a) Prove that R is an integral domain. (b) Compute the normalization of R (i.e., the integral closure of R in its field of fraction).
+
+Solution: Part (a): It suffices to prove that y 2 − x 2 − x 3 is irreducible in F(x)[y]. It is reducible if it has a root f (x)/g(x) ∈ F(x), where f (x) and g(x) are co-prime. But ( f (x)/g(x))2 − x 2 − x 3 = 0 implies f (x)2 = g(x)2 (x 2 + x 3 ) = (g(x)x)2 (x + 1). Thus, (x + 1) divides f (x). Hence, (x + 1)2 divides f (x)2 . It follows that (x + 1) divides g(x), a contradiction. This implies that R is an integral domain. Part (b): We have 0 = y 2 − x 3 − x 2 = x 2 (y 2 /x 2 − x − 1) = x 2 (t 2 − x − 1). As K is an integral domain, t 2 − x − 1 = 0, that is, x = t 2 − 1. Then y = xy/x = (t 2 − 1)t. It follows that any element of R is a polynomial in t, hence R ⊂ F[t]. Therefore K ⊂ F(t). Thus, K = F(t). Now let S be the integral closure of R in K. We claim S = F[t]. Let f (t) ∈ F[t]. Let s = 2k be an even integer. Then k k Õ k 2 Õ k i t s = (t 2 )k = ((t 2 − 1) + 1)k = (t − 1)i = x. i=0 i i=0 i Let s = 2k + 1 be an odd integer with s > 3, using the above, we obtain k−1 ! Õ k −1 i t =t −t s s s−2 +t s−2 = t (t − 1)t + t s−3 2 s−2 = x y + t s−2 . i=0 i
+
+Repeat the above for the odd integer s − 2, by induction, we see that t s is of the form g(x, y) + at. Combing all the above, we see that f (t) is of the form h(x, y) + bt for some b ∈ Z and h(x, y) ∈ R. Then, f (t) is a root of (X − h(x, y))2 − b2 − b2 x ∈ R[X].
+
+it follows that f (t) ∈ S. Hence, F[t] ⊂ S. But, R ⊂ F[t] and F[t] is integrally closed in F(t), hence S ⊂ F[t]. Therefore S = F[t].
+
+Problem 4. Let p and ` be two prime numbers and [`x ] denote the `-th cyclotomic polynomial 1 + x + · · · + x `−1 . (a) Prove that [`x ] is an irreducible element of Q[x]. (b) Show that [`x ] is divisible by x − 1 in F p [x] if p = `. Here F p is the finite field Z/pZ. (c) Suppose p , `. let a be the order of p in F` . Show that a is the first value of m for which the group GLm (F p ) of invertible m × m matrices with entries from F p contains an element of order `. Hint: Derive and use the formula for the number of elements in GLm (F p ).
+
+Solution: Part (a): [`x ] is irreducible over Q if and only if [`x+1 ] is irreducibleQ. [`x+1 ] = ((x + 1)` − 1)/((x + 1) − 1) = x `−1 + `x `−2 + · · · + `(` − 1)/2x + `. This is irreducible by Eisenstein’s criterion. Part (b): p = `. If p = 2, then [2]x = 1 + x = x − 1 If p > 2, then [p]x = (x p − 1)/(x − 1) = (x − 1) p−1 . Part (c): Let e1, . . . , em be the standard basis of Fqn , where q is a prime power. If A ∈ GLm (Fq ), then the columns of A, \{Ae1, . . . , Aen \}, form a basis for Fqn . Conversely, any basis form columns of an element A ∈ GLm (Fq ). Thus, it is equivalent to count the number of bases B = ( f1, . . . , fn ) for Fqn . The first vector has q m − 1 choices. The second, not a multiple of the first, has q m − q choices. The third vector f3 ∈ Fqn \textbackslash{} \{a f1 + b f2 | a, b ∈ Fq \} has q m − q2 choices. Inductively, fi has q m − qi choices. Therefore
+
+GLm (Fq ) = (q m − 1)(q m − q) · · · (q m − q m−1 ). If GLm (F p ) contains an element of order `, then ` divides m m Ö |GLm (F p )| = p( 2 ) (pi − 1). i=1
+
+Sicne ` , p, the first value of m such that ` divides the above is when ` divides the highest term pm − 1 for the first time. This happens when pa − 1 = 0 mod `.
+
+Problem 5. Let p ≥ 3 be a prime number and let Z p be the ring of p-adic integers. (a) Show that an element in 1 + pZ p is a p-th power in Z p if and only if it lives in 1 + p2 Z p . (b) Let Z×p denote the group of units in Z p . Show that there exist a, b, c ∈ Z×p such that a p +bp = c p if and only if p−1 Õ i p−2 t i ≡ 0 (mod p) i=1 for some integer t ∈ \{2, 3, . . . , p − 1\}. (In particular, this condition holds for p = 7 by taking t = 3. Therefore, Fermat’s Last Theorem does not hold for Z7 .)
+
+Solution: Part (a): If an element in 1 + pZ p is a p-th power, it must have form (1 + pα) p for some α ∈ Z p . A simple calculation yields
+
+p p (1 + pα) p = 1 + pα + (pα)2 + · · · ∈ 1 + p2 Z p . 1 2 To prove sufficiency, recall the two functions
+
+exp : pZ p → 1 + pZ p , log : 1 + pZ p → pZ p
+
+which are inverses to each other. For any a = 1 + p2 x ∈ 1 + p2 Z p , consider
+
+1 1 a p := exp log(a) . p Notice that ∞ 1 1 1Õ (−1)i−1 2 i log(a) = log 1 + p2 x = p x ∈ pZ p p p p i=1 i 1 1 p and hence a p is well-defined. It is clear that a p = a.
+
+Part (b): As an immediate corollary from Part (a), if we write an element a ∈ Z×p in terms of Witt coordinates a = (a0, a1, . . .), then a is a p-th power in Z p if and only if a1 = 0. In particular, whether an element in Z×p is a p-th power can be detected by its image under the projection Z p = W(F p ) → W2 (F p ). Hence, there exist a, b, c ∈ Z×p such that a p + bp = c p if and only if there exist a0, b0, c0 ∈ F×p such that (a0, 0) + (b0, 0) = (c0, 0) in W2 (F p ). Using the addition formula of Witt coordinates, the later equation translates to a0 + b0 = c0 and 1 p p
+
+a0 + b0 − (a0 + b0 ) p = 0. p Direct calculation gives p−1 1 p p Õ 1 p i p−i (a0 + b0 − (a0 + b0 ) ) = − p a b p i=1 p i 0 0 p−1 Õ 1 (p − 1)(p − 2) · · · (p − i + 1) p−i =− a0i b0 i=1 i (i − 1) · · · 1 p−1 p−1 i Õ 1 p−i Õ a0 ≡ (−1)i a0i b0 ≡ i p−2 − (mod p) i=1 i i=1 b0
+
+Since a0 + b0 = c0 , 0, we have − ba00 , 1. Namely, there exists t ∈ \{2, 3, . . . , p − 1\} such that
+
+p−1 Õ i p−2 t i ≡ 0 (mod p). i=1
+
+All steps above are clearly reversible and hence cover both the “if” and “only if” parts. This completes the proof.
+
+Problem 6. Recall that a metric space is called spherically complete if any decreasing sequence of closed balls has nonempty intersection. Let p be a prime number and let Q p be the field of p-adic numbers. For every integer n ≥ 1, consider the finite extension Q p (µ p n ) of Q p generated by all pn -th roots of unity. Let Q p (µ p∞ ) = ∪n≥1 Q p (µ p n ). All of these algebraic extensions of Q p are equipped with the unique norm | · | extending the usual p-adic norm on Q p . Question: Which of the following are spherically complete? Explain why. (a) Q p ; (b) Q p (µ p n ); (c) Q p (µ p∞ );
+
+p (µ p ∞ ), the completion of Q p (µ p ∞ ). (d) Q
+
+p (µ p ∞ ) such that |a1 | > |a2 | > · · · and Hint: Show that there exists a sequence a1, a2, . . . ∈ Q lim |ai | > 0, and such that the closed balls n o Bi := x ∈ Q(µ p p ∞ ) : |x − a1 − a 2 − · · · − a i | ≤ |a i |
+
+have empty intersection.
+
+Solution: (a) and (b) are spherically complete. In fact, every finite extension of Q p is spherically complete. Such a field is discretely valued and complete. In this case, a decreasing sequence of closed balls either eventually stabilizes, or has radius converging to 0. In both cases, the intersection is nonempty. (c) is not spherically complete. Notice that spherical completeness implies completeness. (Why? From any Cauchy sequence, one can construct a decreasing sequence of closed balls whose intersection gives the limit of the Cauchy sequence.) However, it is well-known that Q p (µ p∞ ) is not complete, hence not spherically complete.
+
+(d) is not spherically complete. Assume that Qp (µ p ∞ ) is spherically complete. Notice that n m o Q (µ p p ∞ ) = 0 ∪ p p n (p−1) : m ∈ Z, n ≥ 0 .
+
+In particular, Q p (µ p ∞ ) is not discretely valued. Choose and fix a sequence of negative rational numbers r1 > r2 > · · · such that m ri ∈ − n : m ∈ Z>0, n ≥ 0 p (p − 1) and r := limi ri exists. We can find a sequence of elements a1, a2, . . . ∈ Q p (µ p ∞ ) such that |ai | = p for all i. ri
+
+In particular, we have |a1 | > |a2 | > · · · and lim |ai | = p > 0. Consider closed balls r
+
+n o Bi := x ∈ Q p (µ p ∞ ) : |x − a1 − a2 − · · · − ai | ≤ |ai | .
+
+If |x − a1 − a2 − · · · − ai+1 | ≤ |ai+1 |, then
+
+|x − a1 − a2 − · · · − ai | ≤ |ai+1 | < |ai |.
+
+This means B1 \% B2 \% · · · is a strictly decreasing sequence of closed balls. By assumption, B := ∩∞ i=1 Bi is nonempty. It is necessarily an open subset of Q (µ p p ∞ ), and hence contains at least an element q ∈ Q p (µ p ∞ ).
+
+Now, we vary a = (a1, a2, . . .) and write “Ba ,” “qa ” instead of “B,” “q.” Running through all possible a’s, we obtain uncountably many disjoint Ba ’s. (Why? If two a’s have the same a1, . . . , ai−1 but |ai − ai0 | > |ai+1 |, then the two Bi+1 ’s are disjoint.) On the other hand, from each of these Ba , we have an element
+
+qa ∈ Ba ∩ Q p (µ p∞ ).
+
+These qa ’s map to distinct elements in Q p (µ p∞ )/(s) where s ∈ Q p (µ p∞ ) has 0 < |s| ≤ pr . However, Q p (µ p∞ )/(s) is a countable set, a contradiction.
+
+\subsection{2021 年：algebra\_and\_numbertheory\_21s.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2021
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1. For any prime p and a nonzero element a ∈ F p , prove that the polynomial A(x) = x p − x − a is irreducible and separable over F p .
+
+Problem 2. Determine the automorphism group of the splitting field of f (x) = x 3 − 3x + 1 over Q.
+
+Problem 3. Let R = F[x, y]/(x 2 − y 3 ) for some field F. (a) Prove that R is an integral domain. (b) If t denotes the element x/y in the fraction field K of R, prove that K is equal to F(t). (c) Prove that F[t] is the integral closure of R in K = F[t].
+
+√ √ Problem 4. Let p1, . . . , pn be n distinct prime numbers. Show: p1 + · · · + pn is not rational.
+
+Problem √ 5. Find all integral solutions (x, y) for the equation x 2 + 13 = y 3 . (Hint: You can use the fact that Q( −13) has class number 2).
+
+Problem 6. Let p be a prime number and Q p be the field of p-adic numbers. Fix an algebraic closure Q p of Q p . Let g : Z ≥0 → N be a strictly increasing function. For each i ∈ Z ≥0 , pick a primitive (pg(i) − 1)-th root of unity ζi in Q p . (a) Show that for each i ≥ 0, Ki B Q p (ζi ) is an unramified Galois extension of Q p of degree g(i). (b) Give an explicit function g as above such that Ki−1 ⊂ Ki for all i > 0. Let 0 = N0 < N1 < N2 · · · be an increasing sequence of nonnegative integers. Let αi B ij=0 ζ j p N j . Show that for each i ≥ 0, Í
+
+Ki = Q p (αi ) and that (αi ) is a Cauchy sequence in Q p . (c) Let η ∈ Q p be of degree g over Q p , prove that there exists M ∈ N such that ζi does not satisfy any congruence sg−1 η g−1 + sg−2 η g−2 + · · · + s1 η + s0 ≡ 0 (mod p M )
+
+in which the si ’s are p-adic integers not all of which are divisible by p. (d) Take a suitable sequence (Ni ) as above such that (ai ) does not converge in Q p . Conclude that Q p is not complete with respect to the p-adic topology.
+
+\paragraph{解答}
+
+S.-T. Yau College Student Mathematics Contests 2021
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1. For any prime p and a nonzero element a ∈ F p , prove that the polynomial A(x) = x p − x − a is irreducible and separable over F p .
+
+Solution: First of all, A(x) is separable because A0(x) = −1 is non-zero. Second, A(x) has no root in F p , since A(b) = bp −b−a = −a for any b ∈ F p . Notice that A(x+a) = (x+a) p −(x+a)−a = x p +a p −x−a−a = x p −x−a = A(x). Therefore, by iteration, we see that A(x + ba) = A(x) for all b = 1, 2, . . .. As b runs over all positive integers, ba runs over F p . This means that in the splitting field K of A(x) over F p , if a is a root, then, so is a + k, k ∈ F p . It follows that p−1 Ö A(x) = (x − a − k). k=0
+
+If A(x) is not irreducible over F p , then there exist r(x), s(x) ∈ F p [x] such that A(x) = r(x)s(x) and 0 < d = deg r(x) < p. Being a divisor of A(x), r(x) has the form Ö r(x) = (x − a − k), k ∈J
+
+for some subset J ⊂ F p . The coefficient of x d−1 of r(x) is the negative of the sum of all roots of r(x), hence it is equal to Õ Õ (a + i) = da + i ∈ Fp . i ∈J i ∈J
+
+Then, a ∈ F p , a contradiction.
+
+Problem 2. Determine the automorphism group of the splitting field of f (x) = x 3 − 3x + 1 over Q.
+
+Solution: f (x) is irreducible over Z (hence over Q as well). To see this we reduce mod 2 and evaluate: f (0) = 1, f (1) = 1. Next, f 0(x) = 3x 2 − 3 is positive outside the interval (−1, 1) and negative in the interval (−1, 1). Since f (−1) = 3 and f (1) = 1, we see that there are three real roots, denoted a1, a2 and a3 . Since f (x) is irreducible of degree 3, dimQ Q(ai ) = 3. Let K denote the splitting field of f (x). Thus, K is either degree 6 over Q, or it is degree 3 over Q. In the latter case the automorphism group is cyclic group of order 3. Let us prove that the former case is not possible. In fact, in the former case the automorphism group G = AutQ K = S3 , the symmetric group on 3 letters. We let σ be the automorphism that maps a1 to a3 , a3 to a1 and a2 to a2 . Write f (x) = (x − a1 )(x − a2 )(x − a3 ). By taking the derivative of f (x) and substituting ai into this equation gives
+
+(a1 − a2 )(a1 − a3 ) = 3a12 − 3,
+
+(a2 − a1 )(a2 − a3 ) = 3a22 − 3, (a3 − a1 )(a3 − a2 ) = 3a32 − 3. Take the product of the above three equations and then take the square roots, we have Ö ai − a j = 9.
+
+1≤i< j ≤3
+
+Then apply the permutation σ to the above, the left is sent to its negative, but 9 is obviously fixed by σ. Therefore, σ cannot be in G. It follows that the automorphism group G must be the cyclic group of order 3. Moreover, Q(a1 ) = Q(a1, a2, a3 ). Problem 3. Let R = F[x, y]/(x 2 − y 3 ) for some field F. (a) Prove that R is an integral domain. (b) If t denotes the element x/y in the fraction field K of R, prove that K is equal to F(t). (c) Prove that F[t] is the integral closure of R in K = F[t].
+
+Solution:
+
+(a) To prove x 2 − y 3 is irreducible, it suffices to show that it is irreducible in F(y)[x]. Since it is a quadratic polynomial in x over F(y), it is reducible if and only if it has a root in F(y). Suppose f (y)/g(y) is a root, where f (y) and g(y) are co-prime. But, ( f (y)/g(y))2 − y 3 = 0 implies f (y)2 = y 3 g(y)2 . Thus, an irreducible factor of g(y) divides f (y)2 , hence divides f (y), a contradiction. This implies the ideal generated by x 2 − y 3 is prime since F[x, y] is a UFD. Hence, R is an integral domain. (b) Since x 2 = y 3 in R, we have y = (x/y)2 = t 2 in K. Also, x = yx/y = yt = t 3 . Thus, any element f (x, y) ∈ R is a polynomial in t in K. Therefore, any element f (x, y)/g(x, y) ∈ K belongs to F(t). On the other hand, F(t) ⊂ K, hence K = F(t). (c) Let h(t) ∈ F[t] ⊂ F(t). Replacing t 2 by y and t 3 by x (from (b)), we have h(t) = at +g(x, y) for some g(x, y) ∈ R. Then, we have (h(t) − g(x, y))2 = (at)2 = a2 y. Thus, h(t) is a root of X 2 − 2g(x, y)X + g(x, y)2 − a2 y 2 ∈ R[X]. This implies that F[t] is integral over R. Suppose now that h(t) ∈ F(t) is integral over R. Then h(t) is also integral over F[t]. But, F(t) is the fraction field of F[t] and F[t] is a UFD, hence F[t] is integrally closed. Therefore, h(t) ∈ F[t]. √ √ Problem 4. Let p1, . . . , pn be n distinct prime numbers. Show: p1 + · · · + pn is not rational.
+
+√ √ √ Solution: It suffices to show [Q( p1, . . . , pn ) : Q] = 2n (this implies that the 2n numbers 1, pα1 · · · pαk (1 ≤ α1 < · · · < αk ≤ n) are linear independent over Q). We show the following stronger result: Lemma: Suppose K is a field with characteristic 0, and \{x1, . . . , xn \} ⊂ K is a subset such that the product of elements √ √ of any non-empty subset of \{x1, . . . , xn \} is not a square in K. Then [K( x1, . . . , xn ) : K] = 2n . √ √ We prove the lemma by induction on n. The case n = 1 is trivial. Suppose n = 2 and we aim to show [K( x1, x2 ) : √ √ √ √ K] = 4. Since we have [K( x1 ) : K] = 2, it suffices to prove [K( x1, x2 ) : K( x1 )] = 2. We only need to prove √ √ √ √ √ √ √ x2 < K( x1 ). If not, then x2 = a + b x1 with a, b ∈ K. Since x1 < K, we have b , 0. Then a2 = ( x2 − b x1 )2 √ implies that x1 x2 ∈ K, which is a contradiction. We conclude the lemma for n = 2. √ √ Now suppose n ≥ 3 and suppose for smaller n the lemma holds. By the induction assumption, we have [K( x3, . . . , xn ) : √ √ √ √ K] = 2n−2 . Denote L = K( x3, . . . , xn ). Then we only need to show [L( x1, x2 ) : L] = 4. It suffices to √ √ √ √ √ √ prove x1, x2, x1 x2 < L. Suppose one of x1, x2, x1 x2 , say y, belong to L. Then L(y) = L, which im- √ √ plies that [K(y, x3, . . . , xn ) : K] = 2n−2 . But on the other hand, by the induction-assumption, we must have √ √ [K(y, x3, . . . , xn ) : K] = 2n−1 , a contradiction!
+
+Problem √ 5. Find all integral solutions (x, y) for the equation x 2 + 13 = y 3 . (Hint: You can use the fact that Q( −13) has class number 2).
+
+Solution: The only solutions are (x, y) = (±70, 17). Suppose x 2 + 13 = y 3 has integral solution (x, y). We may first assume x, y are positive. It is easy to see that gcd(x, y) = 1. If y is even, then x is odd and x 2 + 13 ≡ 6 (mod 8). But y 3 ≡ 0 (mod 8). This is impossible. Therefore, x is even and y is odd. √ √ √ √ √ √ In Z[ −13] we√have (x + −13)(x √ − −13) = y . Consider the principal ideals (x + −13), (x − −13), (y) ⊂ 3 √ Z[ −13]. Suppose (x √+ −13) and (x − √−13) are not coprime √ √ a prime ideal P ⊂ Z[ −13] such to each other, then there exists that P (x + −13) and P (x − −13). Then x ± −13 ∈ P, which implies that 2 −13 ∈ P and 2x ∈ P. We have also P (y)3 which implies that P (y). Thus y ∈ P. But gcd(2x, y) = 1, a contradiction. √ √ √ We conclude that (x + −13) and (x − √−13) are two ideals √ coprime to each other. Since Z[ −13] is a Dedekind ring, there exists ideals P1, P2 such that (x + −13) = P13 , (x − −13) = P23 and (y) = P1 P2 . √ Since the class number of Z[ −13] is 2, the square of any fractional ideal is principal. Since Pi3 is principal, we know √ √ √ that Pi is principal. Note that the units of Z[ −13] are ±1. Thus there exists a, b ∈ Z, such that x+ −13 = (a+b −13)3 . √ Comparing the coefficient of −13, we conclude that 1 = 3a2 b − 13b3 . This implies b = −1 and a = ±2. Thus x = ±70, y = 17.
+
+Problem 6. Let p be a prime number and Q p be the field of p-adic numbers. Fix an algebraic closure Q p of Q p . Let g : Z ≥0 → N be a strictly increasing function. For each i ∈ Z ≥0 , pick a primitive (pg(i) − 1)-th root of unity ζi in Q p . (a) Show that for each i ≥ 0, Ki B Q p (ζi ) is an unramified Galois extension of Q p of degree g(i). (b) Give an explicit function g as above such that Ki−1 ⊂ Ki for all i > 0. Let 0 = N0 < N1 < N2 · · · be an increasing sequence of nonnegative integers. Let αi B ij=0 ζ j p N j . Show that for each i ≥ 0, Í
+
+Ki = Q p (αi ) and that (αi ) is a Cauchy sequence in Q p . (c) Let η ∈ Q p be of degree g over Q p , prove that there exists M ∈ N such that ζi does not satisfy any congruence sg−1 η g−1 + sg−2 η g−2 + · · · + s1 η + s0 ≡ 0 (mod p M )
+
+in which the si ’s are p-adic integers not all of which are divisible by p. (d) Take a suitable sequence (Ni ) as above such that (ai ) does not converge in Q p . Conclude that Q p is not complete with respect to the p-adic topology.
+
+Solution:
+
+(a) Let v p be the usual p-adic valuation of Q p , then v p has a unique extension to Ki , which is vKi (x) : = p g(i) −1 [Ki : Q p ]−1 v p (NKi /Q p (x)). The relation ζi = 1 implies that vKi (ζi ) = 0, so ζi ∈ OKi . Let P(X) ∈ Z p [X] g(i) be the minimal polynomial of ζi over Q p , then P(X) is a factor of X p −1 − 1. Since ζi is primitive, we see that g(i) ζil ∈ Ki , 0 ≤ l ≤ pg(i) − 1 are all roots of X p −1 − 1. Thus each root of P(X) has shape ζil ∈ Ki , which implies that Ki /Q p is normal. Since char(Q p ) = 0, all its extensions are separable. So K/Q p is a Galois extension. g(i) The reduction P(X) ∈ F p [X] of P(X) is also a factor of X p −1 − 1 ∈ F p [X]. Since p and pg(i) − 1 are g(i) coprime, X p −1 − 1 ∈ F p [X] has no multiple roots. Using Hensel’s lemma and the fact that P(X) ∈ Z p [X] is irreducible, we see that P(X) is also irreducible. Let Ki be the residue field of Ki , then ζi ∈ Ki is a root of P(X). We see that [Ki : F p ] ≥ [F p (ζi ) : F p ] = deg(P) = deg(P) = [Ki : Q p ]. It follows that the ramification index e satisfies
+
+1 ≤ e = [Ki : Q p ]/[Ki : F p ] ≤ 1. Thus e = 1, i.e. K/Q p is an unramified extension. The argument above also implies the equality [Ki : F p ] = [Ki : Q p ], the relation Ki = F p [ζi ] and the property × that Ki contains all (pg(i) − 1)-th roots of unity. Thus Ki /F p is cyclotomic and ζi is primitive. Now, since Ki is a cyclic group of order p[Ki : Q p ] − 1, we get that [Ki : Q p ] = g(i). Thus the degree of ζi over Q p is g(i). (b) Take any sequence g(i) such that g(i)/g(i −1) is an integer at least 2, e.g., g(i) = 2i . Then (pg(i−1) −1) | (pg(i) −1), so ζi−1 is a power of ζi . Thus Ki−1 ⊂ Ki holds for each i > 0. For any 1 < i < i 0, we have vKi0 (αi0 − αi ) = vKi0 (pi+1 ) + vKi0 (an element in OKi0 ) ≥ i + 1, which means that (αi ) is a Cauchy sequence. Take any σ ∈ Gal(Ki /Q p )\textbackslash{}\{id\}. Notice that σ(αi ) = ij=0 σ(ζi )p Ni . Since ζi , σ(ζi ), we get vKi (α − σ(αi )) = Í
+
+vKi ((ζi − σ(ζi ))p Ni + · · · ) = Ni < ∞. So σ(αi ) , αi , i.e., σ does not fix αi . Thus Q p (αi ) = Ki . M , · · · , s M ∈ Z , not all divisible by p, such that (c) Suppose the contrary, then for any M ∈ N, there exist sg−1 0 p
+
+sg−1 η M g−1 + sg−2 η M g−2 + · · · + s1M η + s0M ≡ 0 (mod p M ).
+
+By the pigenhole principle, there are an 0 ≤ j ≤ g − 1 and an infinite subset R ⊂ Z ≥0 such that p - siM for g M , · · · , sM ) g all M ∈ R. Since Z p is sequentially compact, so is Z p . Thus the sequence (sg−1 0 M ∈R ∈ Z p has a g convergent subsequence. Let (sg−1, · · · , s0 ) ∈ Z p be the limit of this subsequence. Then p - s j and
+
+sg−1 η g−1 + sg−2 η g−2 + · · · + sη + s0 ≡ 0 (mod pr ), for any r ∈ N.
+
+In other words, vQ p (η) (sg−1 η g−1 + sg−2 η g−2 + · · · + sη + s0 ) ≥ r for all r ∈ N, thus equals to ∞. So sg−1 η g−1 + sg−2 η g−2 + · · · + sη + s0 = 0, contradicting the assumption that η has degree g over Q p . (d) We will take an increasing sequence (NÍ i ) by induction. We have N0 = 0 already given. Suppose we have defined N j for all j ≤ i, so that we have αi = ij=0 ζ j p N j determined. Since αi has degree g(i) over Q p , by (c), there exists Ni+1 > Ni such that ζi does not satisfy any congruence
+
+tn αin + tn−1 αin−1 + · · · + t1 αi + t0 ≡ 0 (mod p Ni+1 ),
+
+for any n < g(i) and t j ∈ Z p not all divisible by p. Then the sequence (Ni ) is completely defined. Suppose Q p is complete, then (αi ) converges to certain α ∈ Q p . Then there exist tn, tn−1, . . . , t0 ∈ Z p , not all divisible by p, such that tn α n + tn−1 α n−1 + · · · + t1 α + t0 = 0. Choose i with g(i) > n. Since α ≡ αi (mod p Ni ), we have
+
+tn αin + tn−1 αin−1 + · · · + t1 αi + t0 ≡ 0 (mod p Ni+1 ),
+
+a contradiction. This proves the assertion.
+
+\subsection{2022 年：algebra\_and\_numbertheory\_22s.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2022
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1.
+
+(a) Let 𝑝(𝑥) = 𝑎𝑛 𝑥𝑛 + ⋯ + 𝑎1 𝑥 + 𝑎0 ∈ 𝑅[𝑥] be a polynomial over an integral domain 𝑅. Let 𝐾 denote the fraction field of 𝑅. Suppose 𝑎/𝑏 ∈ 𝐾 is a root of 𝑝(𝑥), where 𝑎, 𝑏 ∈ 𝑅 and are relatively prime. Then, show that 𝑎|𝑎0 and 𝑏|𝑎𝑛 .
+
+(b) Prove that 𝐐(√2, √3) = 𝐐(√2 + √3).
+
+Problem 2. Let 𝑅 be an integral domain with the fraction field 𝐾. An 𝑅-module 𝑃 is projective if there is an 𝑅-module 𝑄 such that 𝑃 ⊕ 𝑄 ≅ 𝐹 for some free 𝑅-module 𝐹. A fractional ideal 𝐴 is an 𝑅-submodule of 𝐾 such that 𝐴 = 𝑑 −1 𝐼 for some ideal 𝐼 of 𝑅 and a nonzero element 𝑑 ∈ 𝑅. A fractional ideal 𝐴 is called invertible if 𝐴𝐵 = 𝑅 for some fractional ideal 𝐵.
+
+Show that an invertible fractional ideal 𝐴 is a projective 𝑅-module.
+
+Problem 3. Give a direct proof that the Lie algebra 𝔰𝔩(4, 𝐂) is isomorphic to the Lie algebra 𝔰𝔬(6, 𝐂). (You should construct a Lie algebra homomorphism and prove that it is an ismorphism; you should not use Dynkin diagrams or the classification theory of simple Lie algebras.)
+
+Problem 4. Let 𝐴 = 𝒪𝐾 be the ring of integers of a number field 𝐾. Given a nonzero ideal 𝔞 ⊂ 𝐴 and an arbitrary nonzero element 𝑎 ∈ 𝔞, show that there exists 𝑏 ∈ 𝔞 such that 𝑎 and 𝑏 generate 𝔞 (in particular, every ideal is 2-generated).
+
+Problem 5. Let 𝑝 be a prime number and 𝜁𝑝 be a primitive 𝑝-th root of unity. Let 𝐾 = 𝐐(𝜁𝑝 ). 𝑝−1 (a) Show that Φ𝑝 = ∑𝑖=0 𝑋 𝑖 is the minimal polynomial of 𝜁𝑝 over 𝐐.
+
+(b) Compute the trace Tr𝐾/𝐐 (1 − 𝜁𝑝 ) and the norm 𝒩𝐾/𝐐 (1 − 𝜁𝑝 ).
+
+(c) Show that (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙 = 𝑝𝐙 and deduce that for all 𝑦 ∈ 𝒪𝐾 , we have
+
+Tr𝐾/𝐐 (𝑦(1 − 𝜁𝑝 )) ∈ 𝑝𝐙.
+
+(d) Determine explicitly the ring of integers of 𝐾.
+
+Problem 6. Let 𝜃 ∈ 𝐐 be a root of the polynomial 𝑓(𝑋) = 𝑋 3 + 12𝑋 2 + 8𝑋 + 1. Let 𝐾 = 𝐐(𝜃).
+
+(a) Let 𝑔(𝑋) = 𝑋 3 + 𝑝𝑋 + 𝑞 ∈ 𝐙[𝑋]. Compute the discriminant disc(𝑔) of 𝑔(𝑋) in terms of 𝑝, 𝑞.
+
+(b) Show that 𝑓(𝑋) is irreducible over 𝐐.
+
+(c) Compute the discriminant 𝑑𝐾 (1, 𝜃, 𝜃2 ). Please provide necessary details.
+
+(d) For any arbitrary number field 𝐹 of degree 𝑛, let 𝑎1 , 𝑎2 , … , 𝑎𝑛 ∈ 𝒪𝐹 . Find and verify a sufficient condition in terms of the discriminant 𝑑𝐹 (𝑎1 , … , 𝑎𝑛 ) that the 𝑎1 , … , 𝑎𝑛 form an integral basis of 𝐹.
+
+(e) Write down an explicit integral basis of 𝐾 in terms of 𝜃 by using the above sufficient condition you have found. Please justify your arguments.
+
+\paragraph{解答}
+
+S.-T. Yau College Student Mathematics Contests 2022
+
+Algebra and Number Theory Solve every problem.
+
+Problem 1.
+
+(a) Let 𝑝(𝑥) = 𝑎𝑛 𝑥𝑛 + ⋯ + 𝑎1 𝑥 + 𝑎0 ∈ 𝑅[𝑥] be a polynomial over an integral domain 𝑅. Let 𝐾 denote the fraction field of 𝑅. Suppose 𝑎/𝑏 ∈ 𝐾 is a root of 𝑝(𝑥), where 𝑎, 𝑏 ∈ 𝑅 and are relatively prime. Then, show that 𝑎|𝑎0 and 𝑏|𝑎𝑛 .
+
+(b) Prove that 𝐐(√2, √3) = 𝐐(√2 + √3).
+
+Solution:
+
+(a) Easy. (b) It suffices to show 𝐐(√2, √3) ⊂ 𝐐(√2 + √3). Let 𝛼 = √2 + √3. It is a root of 𝑝(𝑥) = 𝑥4 − 10𝑥2 + 1. By (a), 𝑝(𝑥) has no rational roots. We claim that 𝑝(𝑥) is irreducible over 𝐙. Otherwise, 𝑝(𝑥) = (𝑎 + 𝑏𝑥 + 𝑐𝑥2 )(𝑑 + 𝑒𝑥 + 𝑓𝑥2 ). A direct computation will yield such a decomposition is impossible. Hence, 𝑝(𝑥) is a minimal polynomial 𝛼 over 𝐐. As 𝐐(𝛼) is a vector subspace of 𝐐(√2, √3), we obtain
+
+4 = dim 𝐐(𝛼) ≤ dim 𝐐(√2, √3) ≤ 4.
+
+This implies the statement.
+
+Problem 2. Let 𝑅 be an integral domain with the fraction field 𝐾. An 𝑅-module 𝑃 is projective if there is an 𝑅-module 𝑄 such that 𝑃 ⊕ 𝑄 ≅ 𝐹 for some free 𝑅-module 𝐹. A fractional ideal 𝐴 is an 𝑅-submodule of 𝐾 such that 𝐴 = 𝑑 −1 𝐼 for some ideal 𝐼 of 𝑅 and a nonzero element 𝑑 ∈ 𝑅. A fractional ideal 𝐴 is called invertible if 𝐴𝐵 = 𝑅 for some fractional ideal 𝐵.
+
+Show that an invertible fractional ideal 𝐴 is a projective 𝑅-module.
+
+Solution: Assume that 𝐴 is an invertible fractional ideal. Let 𝐴−1 its inverse. Then
+
+𝑎1 𝑎′1 + ⋯ + 𝑎𝑛 𝑎′𝑛 = 1
+
+for some 𝑎1 , … , 𝑎𝑛 ∈ 𝐴 and 𝑎′1 , … , 𝑎′𝑛 ∈ 𝐴′ since 𝐴𝐴−1 = 𝑅. Let 𝑆 be a free 𝑅-module of rank 𝑛, say, generated by 𝑦1 , … , 𝑦𝑛 . Define 𝜑 ∶ 𝑆 → 𝐴 by 𝜑(𝑦𝑖 ) = 𝑎𝑖 and 𝜓 ∶ 𝐴 → 𝑆 by 𝜑(𝑐) = 𝑐(𝑎′1 𝑦1 + ⋯ 𝑎′𝑛 𝑦𝑛 ). This makes sense because 𝑐𝑎′𝑖 ∈ 𝑅. Obviously, 𝜑𝜓 = 𝑖𝑑𝐴 , hence 𝐴 is a direct summand of 𝑆. In other words, 𝐴 is a projective module.
+
+Problem 3. Give a direct proof that the Lie algebra 𝔰𝔩(4, 𝐂) is isomorphic to the Lie algebra 𝔰𝔬(6, 𝐂). (You should construct a Lie algebra homomorphism and prove that it is an ismorphism; you should not use Dynkin diagrams or the classification theory of simple Lie algebras.)
+
+Solution: We have the representation 𝔰𝔩(4, 𝐂) → 𝔤𝔩(𝑊) where 𝑊 = ∧2 𝐂4 . Let 𝑒1 , 𝑒2 , 𝑒3 , 𝑒4 be the standard basis of 𝐂4 . Then 𝑒1 ∧ 𝑒2 ∧ 𝑒3 ∧ 𝑒4 gives an identification ∧4 𝐂4 ≅ 𝐂. We define a complex symmetric bilinear form 𝑆 ∶ 𝑊 × 𝑊 → 𝐂 by
+
+𝑆(𝜃, 𝜏) = 𝜃 ∧ 𝜏 ∈ ∧4 𝐂4 ≅ 𝐂
+
+for 𝜃, 𝜏 ∈ 𝑊. By writing out an explicit orthogonal basis, you can show that 𝑆 is non-degenerate. Then, one checks that for any 𝐴 ∈ 𝔰𝔩(4, 𝐂), we have 𝑆(𝐴𝜃, 𝜏) + 𝑆(𝜃, 𝐴𝜏) = 𝐴𝜃 ∧ 𝜏 + 𝜃 ∧ 𝐴𝜏 = 𝐴(𝜃 ∧ 𝜏) = 0. Note here that 𝔰𝔩(4, 𝐂) acts trivially on ∧4 𝐂4 .
+
+Hence, we obtain a Lie algebra homomorphism 𝔰𝔩(4, 𝐂) → 𝔰𝔬(6, 𝐂).This must be an isomorphism since both Lie algebras have the same dimension and 𝔰𝔩(4, 𝐂) is simple.
+
+Problem 4. Let 𝐴 = 𝒪𝐾 be the ring of integers of a number field 𝐾. Given a nonzero ideal 𝔞 ⊂ 𝐴 and an arbitrary nonzero element 𝑎 ∈ 𝔞, show that there exists 𝑏 ∈ 𝔞 such that 𝑎 and 𝑏 generate 𝔞 (in particular, every ideal is 2-generated).
+
+Solution: Since 𝒪𝐾 is a Dedekind domain, every nonzero ideal of it has a unique factorization as a product of nonzero prime ideals. Write 𝑎𝐴 = 𝔭𝑛 𝑛𝑟 1 ⋯ 𝔭𝑟 (𝔭𝑖 ’s are distinct nonzero prime ideals of 𝐴, 𝑛𝑖 ∈ 𝐍). Since 𝑎 ∈ 𝔞, we have 𝔞 divides 𝑎𝐴, 1
+
+𝑚𝑖 𝑚𝑖 +1 𝑚 +1 𝑚 +1 so that 𝔞 = 𝔭𝑚 1 𝑚𝑟 1 ⋯ 𝔭𝑟 with 0 ≤ 𝑚𝑖 ≤ 𝑛𝑖 . For each 𝑖, pick 𝑥𝑖 ∈ 𝔭𝑖 ⧵ 𝔭𝑖 . Since 𝔭𝑖 𝑖 and 𝔭𝑗 𝑗 are coprime when 𝑖 ≠ 𝑗, 𝑚 +1 by the Chinese Remainder Theorem, the system of congruences 𝑏 ≡ 𝑥𝑖 (mod 𝔭𝑖 𝑖 ), 1 ≤ 𝑖 ≤ 𝑟 has a solution 𝑏 ∈ 𝐴. 𝑚 𝑚 +1 By the congruence relation above, we see that 𝑏 ∈ 𝔭𝑖 𝑖 ⧵ 𝔭𝑖 𝑖 as well. So for each 1 ≤ 𝑖 ≤ 𝑟, the order of 𝔭𝑖 in the prime ideal factorization of 𝑏𝐴 is exactly 𝑚𝑖 . In other words 𝑘 𝑏𝐴 = 𝔭𝑚 1 𝑚𝑟 𝑘1 𝑙 1 ⋯ 𝔭 𝑟 𝔮𝑙 ⋯ 𝔮 𝑙 , 𝑚𝑖 , 𝑘𝑗 > 0,
+
+where 𝔮𝑗 ’s are nonzero prime ideals different from those 𝔭𝑖 ’s (if they exist). Therefore
+
+1 ,𝑛1 \} 𝑟 ,𝑛𝑟 \} min\{0,𝑘1 \} min\{0,𝑘𝑙 \} 𝑎𝐴 + 𝑏𝐴 = 𝔭min\{𝑚 1 ⋯ 𝔭min\{𝑚 𝑟 𝔮𝑙 ⋯ 𝔮𝑙 = 𝔭𝑚 1 𝑚𝑟 1 ⋯ 𝔭𝑟 = 𝔞,
+
+as desired.
+
+Problem 5. Let 𝑝 be a prime number and 𝜁𝑝 be a primitive 𝑝-th root of unity. Let 𝐾 = 𝐐(𝜁𝑝 ). 𝑝−1 (a) Show that Φ𝑝 = ∑𝑖=0 𝑋 𝑖 is the minimal polynomial of 𝜁𝑝 over 𝐐.
+
+(b) Compute the trace Tr𝐾/𝐐 (1 − 𝜁𝑝 ) and the norm 𝒩𝐾/𝐐 (1 − 𝜁𝑝 ).
+
+(c) Show that (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙 = 𝑝𝐙 and deduce that for all 𝑦 ∈ 𝒪𝐾 , we have
+
+Tr𝐾/𝐐 (𝑦(1 − 𝜁𝑝 )) ∈ 𝑝𝐙.
+
+(d) Determine explicitly the ring of integers of 𝐾.
+
+Solution:
+
+𝑝 𝑝−1 (a) Consider 𝑔(𝑋) = Φ𝑝 (𝑋 + 1) = (𝑋 + 1)𝑝−1 + ⋯ + 𝑋 + 1. Then 𝑔(𝑋) = 𝑋1 [(𝑋 + 1)𝑝 − 1] = ∑𝑖=0 (𝑖+1 )𝑋 𝑖 . Notice that 𝑝 2 𝑝 for all 0 ≤ 𝑖 ≤ 𝑝 − 2, we have 𝑝 ∣ (𝑖+1), but 𝑝 ∤ ( 1 ) = 𝑝. By the Eisenstein’s criterion, 𝑔(𝑋) is irreducible over 𝐐, so is Φ𝑝 (𝑋) = 𝑔(𝑋 − 1). Since 𝜁𝑝 is a root of 𝑋 𝑝 − 1 = (𝑋 − 1)Φ𝑝 (𝑋) but not of (𝑋 − 1), we have Φ𝑝 (𝜁𝑝 ) = 0. Therefore, Φ𝑝 (𝑋), being monic, is the minimal polynomial of 𝜁𝑝 over 𝐐. (b) For each 1 ≤ 𝑖 ≤ 𝑝 − 1, we have 𝜁𝑝𝑖 ∈ 𝐾 is also a root of 𝑋 𝑝 − 1 = (𝑋 − 1)Φ𝑝 (𝑋) but not of (𝑋 − 1), we have Φ𝑝 (𝜁𝑝𝑖 ) = 0. Thus 𝐾/𝐐 is a Galois extension whose Galois group is Gal(𝐾/𝐐) = \{𝜎𝑖 ; 𝜎𝑖 (𝜁𝑝 ) = 𝜁𝑝𝑖 , 1 ≤ 𝑖 ≤ 𝑝 − 1\}. So
+
+𝑝−1 𝑝−1 Tr𝐾/𝐐 = ∑ (1 − 𝜁𝑝𝑖 ) = (𝑝 − 1) − ∑ 𝜁𝑝𝑖 = (𝑝 − 1) − (Φ𝑝 (𝜁𝑝 ) − 1) = (𝑝 − 1) − (−1) = 𝑝, 𝑖=1 𝑖=1
+
+and 𝑝−1 𝑝−1 𝒩𝐾/𝐐 = ∏(1 − 𝜁𝑝𝑖 ) = Φ𝑝 (1) = ∑ 1𝑖 = 𝑝. 𝑖=1 𝑖=0
+
+𝑝−1 (c) Notice that 𝜁𝑝 is a root of a monic Φ𝑝 ∈ 𝐙[𝑋], so 𝜁𝑝 is integral over 𝐙. For each 𝑚 ∈ 𝐙, let 𝑧 = 𝑚 ∏𝑖=2 (1 − 𝜁𝑝𝑖 ) ∈ 𝒪𝐾 . 𝑝−1 Then 𝑧(1 − 𝜁𝑝 ) = 𝑚 ∏𝑖=1 (1 − 𝜁𝑝𝑖 ) = 𝑚𝑝. Thus 𝑝𝐙 ⊂ (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙. On the other hand, suppose 𝑧 ∈ 𝒪𝐾 satisfies 𝑚 = 𝑧(1 − 𝜁𝑝 ) ∈ 𝐙. Taking norms on both sides, we get 𝑚𝑝 = 𝒩𝐾/𝐐 (𝑧)𝑝. Since 𝑧 is integral, 𝒩𝐾/𝐐 (𝑧) ∈ 𝐙, we have 𝑝 ∣ 𝑚𝑝 , so 𝑝 ∣ 𝑚. Thus (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙 ⊂ 𝑝𝐙. As a consequence, (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙 = 𝑝𝐙. Now take any 𝑦 ∈ 𝒪𝐾 . Observe that for each 1 ≤ 𝑖 ≤ 𝑝 − 1, we have
+
+𝜎𝑖 (𝑦(1 − 𝜁𝑝 )) = 𝜎𝑖 (𝑦)(1 − 𝜁𝑝𝑖 ) = (1 − 𝜁𝑝 )(1 + 𝜁𝑝 + ⋯ + 𝜁𝑝𝑖−1 )𝜎𝑖 (𝑦) ∈ (1 − 𝜁𝑝 )𝒪𝐾 ,
+
+𝑝−1 so Tr𝐾/𝐐 (𝑦(1 − 𝜁𝑝 )) = ∑𝑖=1 𝜎𝑖 (𝑦(1 − 𝜁𝑝 )) ∈ (1 − 𝜁𝑝 )𝒪𝐾 as well. On the other hand, 𝑦(1 − 𝜁𝑝 ) ∈ 𝒪𝐾 , so its trace is in 𝐙. Therefore Tr𝐾/𝐐 (𝑦(1 − 𝜁𝑝 )) ∈ (1 − 𝜁𝑝 )𝒪𝐾 ∩ 𝐙 = 𝑝𝐙.
+
+(d) Let 𝑦 = 𝑏0 + 𝑏1 𝜁𝑝 + ⋯ + 𝑏𝑝−1 𝜁𝑝𝑝−1 ∈ 𝒪𝐾 where 𝑏𝑖 ∈ 𝐐. Notice that for any 1 ≤ 𝑖 ≤ 𝑝 − 1, 𝜁𝑝𝑖 is a conjugate of 𝜁𝑝 over 𝐐, so Tr𝐾/𝐐 (𝜁𝑝𝑖 ) = Tr𝐾/𝐐 (𝜁𝑝 ) = 𝜁𝑝 + 𝜁𝑝2 + ⋯ + 𝜁𝑝𝑝−1 = −1. Set 𝑏𝑝 = 𝑏0 , then for any 1 ≤ 𝑙 ≤ 𝑝 − 1, we have
+
+𝑝−1 𝑝𝐙 ∋ Tr𝐾/𝐐 ((𝜁𝑙 𝑦)(1 − 𝜁𝑝 )) = ∑ 𝑏𝑖 Tr𝐾/𝐐 (𝜁𝑝𝑖+𝑙 − 𝜁𝑝𝑖+𝑙+1 ) 𝑖=0
+
+= 𝑏𝑝−𝑙 Tr𝐾/𝐐 (1 − 𝜁𝑝 ) + 𝑏𝑝−𝑙−1 Tr𝐾/𝐐 (𝜁𝑝𝑝−1 − 1) = 𝑝(𝑏𝑝−𝑙 − 𝑏𝑝−𝑙−1 ),
+
+which implies that 𝑏𝑝−𝑙 − 𝑏𝑝−𝑙−1 ∈ 𝐙. Thus 𝑏𝑖 − 𝑏0 ∈ 𝐙 for all 1 ≤ 𝑖 ≤ 𝑝 − 1. Notice that
+
+𝑝−1 𝑦 − ∑ (𝑏𝑖 − 𝑏0 )𝜁𝑝𝑖 = 𝑏0 (1 + 𝜁𝑝 + ⋯ + 𝜁𝑝𝑝−1 ) = 0, 𝑖=1
+
+𝑝−1 so 𝑦 = ∑𝑖=1 (𝑏𝑖 − 𝑏0 )𝜁𝑝𝑖 ∈ 𝐙[𝜁𝑝 ]. Therefore 𝒪𝐾 = 𝐙[𝜁𝑝 ].
+
+Problem 6. Let 𝜃 ∈ 𝐐 be a root of the polynomial 𝑓(𝑋) = 𝑋 3 + 12𝑋 2 + 8𝑋 + 1. Let 𝐾 = 𝐐(𝜃).
+
+(a) Let 𝑔(𝑋) = 𝑋 3 + 𝑝𝑋 + 𝑞 ∈ 𝐙[𝑋]. Compute the discriminant disc(𝑔) of 𝑔(𝑋) in terms of 𝑝, 𝑞.
+
+(b) Show that 𝑓(𝑋) is irreducible over 𝐐.
+
+(c) Compute the discriminant 𝑑𝐾 (1, 𝜃, 𝜃2 ). Please provide necessary details.
+
+(d) For any arbitrary number field 𝐹 of degree 𝑛, let 𝑎1 , 𝑎2 , … , 𝑎𝑛 ∈ 𝒪𝐹 . Find and verify a sufficient condition in terms of the discriminant 𝑑𝐹 (𝑎1 , … , 𝑎𝑛 ) that the 𝑎1 , … , 𝑎𝑛 form an integral basis of 𝐹.
+
+(e) Write down an explicit integral basis of 𝐾 in terms of 𝜃 by using the above sufficient condition you have found. Please justify your arguments.
+
+Solution:
+
+(a) Let 𝛼1 , 𝛼2 , 𝛼3 ∈ 𝐐 be three roots of 𝑔, then by Viète’s theorem
+
+𝛼1 𝛼2 + 𝛼2 𝛼3 + 𝛼3 𝛼1 = 𝑝, 𝛼1 𝛼2 𝛼3 = −𝑞.
+
+According to the theory of symmetric polynomials, disc(𝑔) = [(𝛼1 − 𝛼2 )(𝛼2 − 𝛼3 )(𝛼3 − 𝛼1 )]2 can be expressed as a polynomial 𝐻 of 𝑝, 𝑞. For any 𝜆 ∈ 𝐐, consider
+
+𝑔𝜆 (𝑋) = (𝑋 − 𝜆𝛼1 )(𝑋 − 𝜆𝛼2 )(𝑋 − 𝜆𝛼3 ) = 𝑋 3 + 𝜆2 𝑝𝑋 + 𝜆3 𝑞𝑋,
+
+we obtain that 𝐻(𝜆2 𝑝, 𝜆3 𝑞) = 𝜆6 𝐻(𝑝, 𝑞). Thus 𝐻(𝑝, 𝑞) has an expression such that each of its monomials has shape 𝑟𝑖,𝑗 𝑝𝑖 𝑞𝑗 with 𝑟𝑖,𝑗 ∈ 𝐐 and 2𝑖 + 3𝑗 = 6. Thus (𝑖, 𝑗) = (3, 0) or (0, 2), which means disc(𝑔) = 𝑎𝑝3 + 𝑏𝑞2 for some fixed 𝑎, 𝑏 ∈ 𝐐. Let 𝑔(𝑋) = 𝑋 3 − 𝑋 = 𝑋(𝑋 − 1)(𝑋 + 1), we have
+
+𝑎 ⋅ (−1)3 + 𝑏 ⋅ 02 = [(0 − 1)(0 − (−1))(1 − (−1))]2 = 4 ⇒ 𝑎 = −4. Let 𝑔(𝑋) = 𝑋 3 − 1 = 𝑋(𝑋 − 𝜔)(𝑋 − 𝜔−1 ), where 𝜔 = 𝑒2𝜋𝑖/3 , then we have
+
+2 6 𝑎 ⋅ 03 + 𝑏 ⋅ (−1)2 = [(1 − 𝜔)(1 − 𝜔−1 )(𝜔 − 𝜔−1 )] = (1 − 𝜔)6 = (√−3𝑒2𝜋𝑖/6 ) = −27 ⇒ 𝑏 = −27.
+
+Therefore disc(𝑔) = −(4𝑝3 + 27𝑞2 ). (b) Suppose 𝑓 is reducible over 𝐐, then it has a factor 𝑋 − 𝜏 where 𝜏 ∈ 𝐐. Since 𝜏 is a root of 𝑓(𝑋), a monic integer polynomial, we have 𝜏 ∈ 𝒪𝐾 . Thus 𝜏 ∈ 𝐐 ∩ 𝒪𝐾 = 𝐙. Notice that 𝜏(𝜏2 + 12𝜏 + 8) = −1, we obtain that 𝜏 ∣ 1. Thus 𝜏 = ±1. But a direct computation shows that neither of ±1 is a root of 𝑓(𝑋), a contradiction. (c) By (b) we see that 𝑓(𝑋) is the minimal polynomial of 𝜃 over 𝐐. Let 𝜃1 = 𝜃, 𝜃2 , 𝜃3 be the three roots of 𝑓(𝑋). Then 2 1 𝜃1 𝜃12 𝑑𝐾 (1, 𝜃, 𝜃2 ) = det (1 𝜃2 𝜃22 ) 1 𝜃3 𝜃32 = [(𝜃1 − 𝜃2 )(𝜃2 − 𝜃3 )(𝜃3 − 𝜃1 )]2 = [((𝜃1 + 4) − (𝜃2 + 4))((𝜃2 + 4) − (𝜃3 + 4))((𝜃3 + 4) − (𝜃1 + 4))]2 = disc(𝑓(𝑋 − 4)) = disc(𝑋 3 − 40𝑋 + 97) = − [4 ⋅ (−40)3 + 3 ⋅ 972 ] = 1957.
+
+(d) We claim that if 𝑑𝐹 (𝑎1 , … , 𝑎𝑛 ) is a square free integer, then 𝑎1 , … , 𝑎𝑛 is an integral basis of 𝐹. To see this, fix an 𝑛 integral basis 𝜔1 , … , 𝜔𝑛 of 𝐹. Then for any 1 ≤ 𝑖 ≤ 𝑛, there exist 𝑡𝑖𝑗 ∈ 𝐙 such that 𝑎𝑖 = ∑𝑖=1 𝑡𝑖𝑗 𝜔𝑗 . Let 𝑇 = (𝑡𝑖𝑗 )1≤𝑖,𝑗≤𝑛 ∈ 𝑀𝑛 (𝐙). Then linear algebra gives the following relation of integers
+
+𝑑𝐹 (𝑎1 , … , 𝑎𝑛 ) = (det 𝑇)2 𝑑𝐹 (𝜔1 , … , 𝜔𝑛 ).
+
+Since the left hand side is square free, we have det 𝑇 = ±1. This implies that 𝑇 −1 has integer entries as well, thus 𝜔1 , … , 𝜔𝑛 can be written as 𝐙-linear combinations of 𝑎1 , … , 𝑎𝑛 . Therefore, 𝑎1 , … , 𝑎𝑛 is an integral basis of 𝐹. (e) Since 𝑑𝐾 (1, 𝜃, 𝜃2 ) = 1957 = 19 ⋅ 103 is square free, 1, 𝜃, 𝜃2 is an integral basis of 𝐾 by (d).
+
+\subsection{2023 年：Algebra\_Number\_theory.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2023
+
+Algebra and Number Theory
+
+Solve every problem.
+
+1. Let F be a field. Let n ≥ 2 be an integer. For 1 ≤ i 6= j ≤ n and for λ ∈ F , set Eij (λ) = (ekl ) the following n × n-matrix such that   1, if k = l; ekl = λ, if (k, l) = (i, j); 0, otherwise. 
+
+(1) Show that the special linear group SLn (F ) can be generated by the matrices Eij (λ) (1 ≤ i 6= j ≤ n and λ ∈ F ). (2) Assume n ≥ 3. Show that the general linear group GLn (F ) is not solvable. Hint: one can start by computing the commutators of the matrices Eij (λ). (3) Assume n = 2 and F is a field containing at least 4 elements. Show that GLn (F ) is not solvable either. Hint: one can start by computing the commutator of the matrix E12 (λ) with a diagonal matrix. (4) Let Fq denote the finite field with q elements. Are GL2 (F2 ) and GL2 (F3 ) solvable? Justifiy your assertion.
+
+2. Let R be a ring with identity 1 6= 0.
+
+(1) Assume that R is commutative. Show that, if we have an isomorphism Rn ≃ Rm of R-modules for some positive integers n and m, then m = n. (2) The analogous assertion of (1) for a non-commutative ring is not true in general as shown by the following example (in particular, the notion of "rank" of a finite free module over such rings is not well-defined). Let K be a non-trivial (not necessarily commutative) ring with identity, and F be a free K-module with a countable basis indexed by Z≥1 :
+
+e1 , . . . , e 2 , . . . , e n . . . .
+
+Write R = EndK (F ), which is a ring with the usual addition and composition of two K-linear endomorphisms of F . (a) Show that R is not commutative. (b) Let f0 ∈ R (resp. f1 ∈ R) such that f0 (e2i ) = ei and f0 (e2i−1 ) = 0 (resp. f1 (e2i ) = 0 and f1 (e2i−1 ) = ei ) for every i ∈ Z≥1 . Show that \{f0 , f1 \} is a basis of R as a left R-module (given by left-multiplication). ∼ (c) For any integers n, m ≥ 1, show that there exists an isomorphism Rn → Rm of R-modules.
+
+1 3. Let G be a profinite gorup. We say that it is topologically finitely generated if there exist finitely many elements g1 , . . . , gn such that the closed subgroup generated by g1 , . . . , gn is equal to G. (1) Assume that G is topologically finitely generated. Show that, for a fixed positive integer n, G has only finitely many open subgroups of index n. (2) Show that, for K a number field (i.e., a finite field extension of Q), its absolute Galois group GK is not topologically finitely generated. 4. Let R be a commutative ring with identity. An R-module M is said to be of finite presentation if there exists an exact sequence of R-modules Rn −→ Rm −→ M −→ 0 for some positive integers m, n ≥ 0. (1) Let f : N → M be a surjective morphism of R-modules with N of finite type and M of finite presentation. Show that the R-module ker(f ) is of finite type. (2) Let M be an R-module of finite type. Show that the following statements are equivalent. (a) M is flat and of finite presentation. (b) M is locally free, i.e., there exist f1 , . . . , fs ∈ R generating the unit ideal of R such that Mfi is free over Rfi . (c) M is projective as an R-module. Q (3) Let S = N R the product of countably many copies of R, and I = ⊕N R ⊂ S. Show that S/I is a flat S-module which is not projective. 5. Let p be a prime number. Let Zp be the ring of p-adic integers. r (1) Let a ∈ C such that limr→∞ ap = 1. Show that a is a pm -th root of unity for some m. r (2) Let A ∈ Mn×n (C) be an n × n complex matrix such that limr→∞ Ap = In , with m In the identity matrix. Show that Ap = In for some integer m. (3) Determine, up to isomorphisms, all the finite-dimensional continuous complex representations of Zp . 6. Let p be a prime number. Let K be a p-adic local field, i.e., a finite field extension of Qp . Denote by OK its ring of integers, with π ∈ OK a uniformizer. (1) Show that, the following logarithm map x2 x3 log : 1 + pOK −→ pOK , 1 + x 7→ x −+ + ··· 2 3 is a well-defined isomorphism of groups, which can be extended in a unique way to a group homomorphism logπ : K × −→ K, such that logπ (π) = 0. Determine the kernel of logπ . (2) With the help of the logarithm above, show that for any integer n ≥ 1, the group quotient K × /K ×,n is a finite group.
+
+2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 初等矩阵生成 \(SL_n(F)\) 可由 Gauss 消元证明：对任意行列式 \(1\) 的矩阵，用左乘初等矩阵化为对角矩阵，再用
+\[
+\operatorname{diag}(a,a^{-1},1,\ldots,1)
+=E_{12}(a)E_{21}(-a^{-1})E_{12}(a)E_{12}(-1)E_{21}(1)E_{12}(-1)
+\]
+写成初等矩阵乘积。若 \(n\ge3\)，换位公式
+\[
+[E_{ij}(a),E_{jk}(b)]=E_{ik}(ab)
+\]
+说明 \(SL_n(F)\) 等于自身换位子群中的大部分，特别含所有初等矩阵，故非可解；于是 \(GL_n(F)\) 非可解。\(n=2\) 且 \(|F|\ge4\) 时，用对角矩阵 \(D=\operatorname{diag}(u,1)\) 得
+\[
+[D,E_{12}(\lambda)]=E_{12}((u-1)\lambda),
+\]
+选择 \(u\ne0,1\) 可把非平凡初等矩阵留在导群中，再结合 \(E_{12},E_{21}\) 生成 \(SL_2\) 得非可解。\(GL_2(\mathbb F_2)\cong S_3\) 可解；\(GL_2(\mathbb F_3)\) 阶 \(48\)，其 \(SL_2(\mathbb F_3)\) 有正规四元数子群，商可解，故也可解。
+\item 交换环情形若 \(R^n\simeq R^m\)，对任一极大理想 \(\mathfrak m\)，张量 \(k=R/\mathfrak m\) 得 \(k^n\simeq k^m\)，故 \(n=m\)。非交换例中，取移位和拆分偶/奇基的算子 \(f_0,f_1\)。令 \(s_0(e_i)=e_{2i}\), \(s_1(e_i)=e_{2i-1}\)，则
+\[
+f_0s_0=f_1s_1=1,\quad s_0f_0+s_1f_1=1.
+\]
+于是 \(R\simeq Rf_0\oplus Rf_1\simeq R^2\) 作为左 \(R\)-模。迭代得 \(R\simeq R^r\) 对任意 \(r\ge1\)，故 \(R^n\simeq R^m\)。非交换性由 \(s_0f_1\ne f_1s_0\) 等直接算出。
+\item 若 profinite 群 \(G\) 由 \(r\) 个元素拓扑生成，则指数 \(n\) 的开子群对应连续传递作用 \(G\to S_n\) 及一个点稳定子。连续同态由 \(r\) 个生成元在有限群 \(S_n\) 中的像决定，所以只有有限多个。数域 \(K\) 的绝对 Galois 群若拓扑有限生成，则固定 \(n\) 只有有限多个指数 \(n\) 开子群，即只有有限多个 \(n\) 次扩张。取无穷多个素理想 \(\mathfrak p\)，通过局部/全局类域论或 Hilbert 不可约性构造无穷多个二次扩张 \(K(\sqrt{\pi_\mathfrak p})\)，矛盾。
+\item 若 \(N\twoheadrightarrow M\)，取 \(M\) 的有限展示 \(R^a\to R^b\to M\to0\)，把 \(N\) 的有限生成元提升到 \(R^b\) 后做拉回，可见核有限生成。有限型模 \(M\) 中，有限表示且平坦蕴含局部有限自由：局部化到素理想后用 Nakayama 引理选基并由平坦性保证关系消失。局部自由显然投射；投射有限型在有限覆盖上为有限自由，故平坦且有限表示。对 \(S=\prod_\mathbb N R\)、\(I=\oplus_\mathbb N R\)，商 \(S/I\) 是 von Neumann 型逐坐标平坦商，故平坦；若投射，则短正合列 \(0\to I\to S\to S/I\to0\) 分裂，导致 \(I\) 为 \(S\) 的幂等理想，但直和理想不由单个幂等元截出，矛盾。
+\item 若 \(a^{p^r}\to1\)，把 \(a\) 写成极分解。若 \(|a|\ne1\)，模长不可能趋于 \(1\)；若 \(a\) 在单位圆但非根 of unity，则 \(p^r\) 倍角不收敛到 \(0\) 模 \(2\pi\)。代数上，闭包中满足该极限的元素正是 \(p\)-primary torsion，故 \(a^{p^m}=1\)。矩阵 \(A\) 的 Jordan 分解 \(A=S+N\)：特征值满足上一步，幂零部分若非零，则 \((S+N)^{p^r}\) 的幂零项不可能趋于 \(0\) 后恒等，故 \(N=0\)，于是某个 \(A^{p^m}=I\)。连续复表示 \(\mathbb Z_p\to GL(V)\) 的像紧且可同时三角化为有限 \(p\)-幂阶半单算子，故分解为有限商 \(\mathbb Z/p^m\mathbb Z\) 的一维特征表示直和。
+\item 在 \(p\mathcal O_K\) 上，对数级数
+\[
+\log(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}-\cdots
+\]
+按 \(p\)-进估值收敛，指数级数为其逆，故 \(1+p\mathcal O_K\simeq p\mathcal O_K\)。写
+\[
+K^\times=\pi^{\mathbb Z}\times \mathcal O_K^\times,
+\]
+规定 \(\log_\pi(\pi)=0\)，并在单位根部分取 \(0\)，在 \(1+p\mathcal O_K\) 上用上述对数，即得唯一同态。核为
+\[
+\langle \pi\rangle\times \mu(K),
+\]
+其中 \(\mu(K)\) 为 \(K\) 中单位根。商 \(K^\times/K^{\times n}\) 的估值部分为 \(\mathbb Z/n\mathbb Z\)，单位部分由有限剩余域单位和有限秩 \(\mathbb Z_p\)-模模 \(n\) 次幂组成，均有限。
+\end{enumerate}
+
+\subsection{2024 年：2024 Algebra.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2024 Algebra and Number Theory
+
+Question 1. Let G be a finite group.
+
+(1) Let K be a field. Show that G has a finite-dimensional faithful K-linear representation.
+
+(2) Show that G has a faithful one-dimensional complex representation if and only if G is cyclic.
+
+(3) Assume moreover that G is commutative. Let n ≥ 1 be an integer. Show that G has a faithful n-dimensional complex representation if and only if G can be generated by n elements.
+
+(4) Classify all finite groups having a faithful 2-dimensional real representation.
+
+Question 2. Let n ≥ 1 be an integer. Let A be a discrete valuation ring with K its field of fractions and π ∈ A a uniformizer. For λ = (λ1 , . . . , λn ) ∈ Zn write  λ  π 1 0 ... 0  0 π λ2 . . . 0  Dλ = diag(π λ1 , . . . , π λn ) =  . ..  ∈ GLn (K).   .. ..  .. . . .  0 0 . . . π λn
+
+Show that, for λ, µ ∈ Zn , the following intersection inside GLn (K) \textbackslash{} GLn (A) · Dµ · GLn (A) U(K) · Dλ
+
+is non-empty if and only if λdom ≤ µdom . Here
+
+• GLn (K) (resp. GLn (A)) is the group of invertible n × n square matrices with coefficients in K (resp. in A), and U(K) ⊂ GLn (K) is the standard unipotent subgroup, that is, the subgroup of upper triangular matrices with coefficients 1 on the diagonal.
+
+• for α = (a1 , . . . , an ) and β = (b1 , . . . , bn ) two elements in Zn , we write α ≤ β if k X k X ai ≤ bi , for any 1 ≤ k ≤ n, i=1 i=1
+
+and if ni=1 ai = ni=1 bi . Write also αdom := (a01 , . . . , a0n ) with a01 , . . . a0n an arrangement P P of a1 , . . . , an such that a01 ≥ a02 ≥ . . . ≥ a0n .
+
+Question 3. Let k be an imperfect field of characteristic p > 0. Let a ∈ k \textbackslash{} k p .
+
+(1) Show that the polynomial X p − a ∈ k[X] is irreducible. 2 (2) Let A = k[X]/(X p − aX p ). Compute Ared , the quotient of A by its nilpotent radical.
+
+Question 4. Let k be a field of character p > 0 and consider k(t) ⊂ k((t)).
+
+(1) Show that the field extension k((t))/k(t) is transcendental, i.e., k((t)) contains at least one transcendental element over k(t). (Hint: don’t spend too much time on this question.)
+
+1 (2) Let α ∈ k[[t]] which is transcendental over k(t), and write β = αp ∈ k[[t]]. Let K = k(t, β) and L = k(t, α): both are subfields of k((t)). Let A = k[[t]] ∩ k(t, β). Determine the integral closure B of A in L, and show that A and B are two discrete valuation rings.
+
+(3) Is B finitely generated over A as a module? Justify your assertion.
+
+Question 5. Let p be a prime number. Consider Zp (resp. Qp ) the ring of p-adic integers (resp. field of p-adic numbers). Clearly Z ⊂ Zp .
+
+(1) Show that the set Z is dense in Zp , and deduce that a map f : Z → Qp can be extended to a continuous function on Zp if and only if f is uniformly continuous, i.e., for any > 0, there exists some integer N > 0 so that |f (n) − f (m)| < for any integers n, m ∈ Z with m ≡ n (mod pN ).
+
+(2) Let a ∈ Qp \textbackslash{} \{0\}. Under what condition on a, the map
+
+f : Z −→ Qp , n 7→ an
+
+can be extended to a continuous function over Zp ? Justify your assertion.
+
+(3) Assume that the condition in (2) is fulfilled. Can we even extend the function f in (2) to a continuous map ax : Qp −→ Qp , so that ax+y = ax ay for any x, y ∈ Qp ? Justify your assertion.
+
+Question 6. Let n ≥ 1 be an integer and write Φn (X) the n-th cyclotomic polynomial, that is, the minimal polynomial of a primitive n-th root of unity in C over Q. Write also ϕ(n) = deg(Φn (X)).
+
+(1) Let q be a power of a prime number such that (q, n) = 1. Show that Φn , viewed as an element in Fq [X], can be decomposed as a product of ϕ(n)/d irreducible polynomials of degree d, with d the order of q in the multiplicative group (Z/nZ)× .
+
+(2) From now on, assume n = 2r+1 for some integer r ≥ 1. Let ζ = ζn be a primitive n-th root of unity and K = Q[ζ]. Let p be a prime with p ≡ −3 (mod 8).
+
+(a) For x, y ∈ K = Q[ζ], define X (x, y) := τ (x) · τ (y) τ
+
+where τ runs through all the embeddings K ,→ C of K into the field C of complex numbers. Write KR = K ⊗Q R, and we use the same notation to denote the (à priori C-valued) bilinear form on KR obtained by extension of scalars. Show that (·, ·) gives an inner product on KR and for 0 ≤ i, j < 2r , r i j 2 , if i = j; (ζ , ζ ) = 0, otherwise. √ In particular, we obtain an Euclidean space KR and (ζ i / 2r )0≤i<2r is an orthonormal basis. (b) Decompose pOK into a product of prime ideals. (c) Let p ⊂ OK be a prime ideal of OK containing p. Show that for every α ∈ p, |α|2 ∈ 2r pZ, and compute the length of the shortest non-zero vector in the prime ideal p ⊂ KR .
+
+2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 有限群总有忠实线性表示：左正则表示 \(G\to GL_K(K[G])\) 忠实。一维复表示忠实当且仅当 \(G\) 嵌入 \(\mathbb C^\times\)；有限子群皆循环，故等价于 \(G\) 循环。若 \(G\) 有限 Abel，则复不可约表示全为一维，\(n\) 维忠实表示等价于选 \(n\) 个字符使公共核为 \(1\)，也等价于自然映射 \(G\) 注入 \(n\) 个循环群乘积；这正等价于 \(G\) 可由 \(n\) 个元素生成。忠实二维实表示的有限子群为 \(O(2)\) 的有限子群，故分类为有限循环群 \(C_m\) 与二面体群 \(D_m\)（含低阶退化情形）。
+\item 这是 Cartan 分解与主序的标准判据。任意 \(g\in GL_n(K)\) 可写为
+\[
+g=k_1D_\mu k_2,\qquad k_i\in GL_n(A),
+\]
+其中 \(\mu_{\rm dom}\) 由格 \(gA^n\) 相对 \(A^n\) 的 elementary divisors 决定。左乘 \(U(K)\) 对应对格基做上三角消元，不改变所有前 \(k\) 个坐标子式估值的下界。于是若交非空，Cauchy--Binet 对前 \(k\) 行列式估值给
+\[
+\sum_{i=1}^k \lambda_{{\rm dom},i}\le\sum_{i=1}^k\mu_{{\rm dom},i},
+\]
+总和由行列式估值相等给出。反向由逐步消元构造：按主序把 \(\mu\) 通过上三角初等操作转移到 \(\lambda\)，每一步对应乘以某个 \(U(K)\) 元素和 \(GL_n(A)\) 元素，故交非空。
+\item 若 \(X^p-a\) 可约，在特征 \(p\) 中它只能有形如 \((X-b)^p\) 的根分解；有根即 \(a=b^p\in k^p\)，与 \(a\notin k^p\) 矛盾，故不可约。对
+\[
+A=k[X]/(X^p-aX^p)
+\]
+按题面可读为 \(X^{p^2}-aX^p=(X^p)^p-aX^p\)。令 \(Y=X^p\)，则关系为 \(Y^p-aY=Y(Y^{p-1}-a)\)。在约化商中去掉 nilradical；若 \(a\notin k^p\)，多项式 \(Y^p-aY\) 可分性由导数 \(-a\ne0\) 给出，因此
+\[
+A_{\rm red}\simeq k[Y]/(Y^p-aY),
+\]
+再通过 \(Y=X^p\) 描述。
+\item \(k((t))\) 对 \(k(t)\) 不可能代数：若代数，则作为离散赋值域的完备化会是代数扩张的有限并，维数/完备性与 \(k(t)\) 的不完备性矛盾；也可直接取系数足够稀疏的 Laurent 级数构造超越元。设 \(\beta=\alpha^p\)，则 \(L=K(\alpha)\) 是纯不可分 \(p\) 次扩张，\(\alpha\) 满足 \(X^p-\beta\)。\(A=k[[t]]\cap K\) 是 \(K\) 上 \(t\)-进赋值的 valuation ring，故 DVR；其在 \(L\) 中的整闭包为
+\[
+B=k[[t]]\cap L,
+\]
+也是同一赋值限制下的 DVR。由于扩张纯不可分且 \(\alpha\) 被故意取为超越级数，\(B\) 不是有限生成 \(A\)-模；否则有限性会迫使 \(k[[t]]\) 中相应完备化扩张有限可控，与 \(\alpha\notin K\) 的选择矛盾。
+\item \(\mathbb Z\) 在 \(\mathbb Z_p\) 中稠密，因为每个模 \(p^N\) 剩余类都有整数代表。度量空间基本定理给：稠密子集上的函数可连续延拓到完备空间当且仅当它一致连续，且延拓唯一。对 \(f(n)=a^n\)，必须有 \(|a|_p=1\)，否则在趋向同一 \(p\)-进极限的整数列上值不 Cauchy；还需 \(a^{p^N}\to1\)，等价于 \(a\in1+p\mathbb Z_p\)（若 \(p=2\)，需按 \(1+4\mathbb Z_2\) 的指数对数条件修正，单位根部分只允许与 \(\mathbb Z_p\) 连续角色相容）。在满足条件时定义
+\[
+a^x=\exp(x\log a),\quad x\in\mathbb Z_p.
+\]
+要延拓到全 \( \mathbb Q_p\) 并保持 \(a^{x+y}=a^xa^y\)，除平凡 \(a=1\) 外不可能，因为 \(\mathbb Q_p\) 可被任意 \(p^r\) 整除，要求 \(a\) 有兼容的所有 \(p^r\) 次根并连续趋于 \(1\)，在 \(\mathbb Q_p^\times\) 中只给 \(a=1\)。
+\item 分圆多项式在 \(\mathbb F_q\) 中的根是代数闭包里的本原 \(n\) 次单位根；Frobenius \(x\mapsto x^q\) 在这些根上作用为乘以 \(q\) 于 \((\mathbb Z/n\mathbb Z)^\times\)。轨道长度即 \(q\) 的阶 \(d\)，所以分解为 \(\varphi(n)/d\) 个 \(d\) 次不可约因子。若 \(n=2^{r+1}\) 且 \(p\equiv-3\pmod8\)，迹型内积
+\[
+(x,y)=\sum_\tau \tau(x)\overline{\tau(y)}
+\]
+正定；单位根正交性给 \((\zeta^i,\zeta^j)=0\) 除非 \(i=j\)，对角值为 \(2^r\)。素数分解由上一问中 \(p\) 在 \((\mathbb Z/n\mathbb Z)^\times\) 的阶给出。若 \(\mathfrak p\mid p\)，则 \(|\alpha|^2=\operatorname{Tr}_{K/\mathbb Q}(\alpha\bar\alpha)\) 对 \(\alpha\in\mathfrak p\) 被 \(2^rp\) 整除；最短非零向量由 \(\mathfrak p\) 的一个剩余域一次元达到，长度平方为 \(2^rp\)。
+\end{enumerate}
+
+\subsection{2025 年：algebra.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2025 Algebra and Number Theory (5 problems)
+
+Problem 1. Let F be a field of characteristic 6= 2. Let F ∗ be the multiplicative group of non-zero elements of F , and F ∗2 := \{a2 |a ∈ F ∗ \} ⊂ F ∗ . Show that F has a Galois extension of group Z/2Z × Z/2Z if and only if [F ∗ : F ∗2 ] > 2. Furthermore, show that such Galois extensions are precisely the splitting fields of irreducible polynomials of the form X 4 + aX 2 + b ∈ F [X] with b ∈ F ∗2 .
+
+Problem 2. Let p be prime number, e, f ∈ Z≥1 . Let G be a finite group of order n := ef generated by two elements σ and τ , satisfying the relations σ f = 1, τ e = 1, and στ σ −1 = τ p . (1) Show that such a group G exists if and only if pf ≡ 1 (mod e). If the latter condition is satisfied, there exists, up to isomorphisms, a unique finite group G as described above. (2) Let Fpf denote the finite field with pf elements, and η ∈ Fpf a primitive e-th root of unity. Let G act on A := Fpf via σ(a) = ap , τ (a) = η · a. Show that the following three assertions are equivalent: (a) The Fp -representation A of G is absolutely irreducible in the sense that the C-representation C ⊗Fp A of G is irreducible, where C is any algebraically closed field containing Fp ; (b) the Fp -representation A of G is irreducible; (c) p is of order f in (Z/eZ)× .
+
+Problem 3. Let k be field. (1) Let R be the localization of the polynomial ring k[T ] at the prime ideal (T ). Let n ≥ 1 be an integer. Let α1 , . . . , αn ∈ k \textbackslash{} \{0\} be non-zero elements that are mutually different. Show that the following elements 1 , 1≤i≤n T − αi form a basis of the k-vector space R/(T n ). (2) Let A ⊂ k be an infinite subset (thus k is an infinite field). Let K/k be a finite field extension. Let V ⊂ K(T ) be the k-subspace of the rational function field K(T ) generated by 1 , α ∈ A. T −α Let β ∈ K \textbackslash{} A and consider the following additive valuation ordβ : K(T ) −→ Z ∪ \{∞\} normalized by ordβ (T − β) = 1. Let Ω := \{ordβ (f ) : f ∈ V \} ⊂ Z, and for n ≥ 1 un := \# (Ω ∩ \{0, 1 . . . , n − 1\}) . Show that unn ≥ [K:k] 1 .
+
+1 Problem 4. Let E/F be a finite Galois extension of p-adic local fields, with Galois group Γ. Write OF and OE their rings of integers.
+
+(1) Assume that E/F is unramified. Show that the following map Y α : OE ⊗OF OE −→ OE , c ⊗ x 7→ (cγ(x))γ∈Γ γ∈Γ Q is an isomorphism. Here γ∈Γ OE denotes the product of copies of OE indexed by Γ.
+
+(2) Assume that E/F is unramified. Let M be an OE -module equipped with a semi-linear action of Γ: so for γ ∈ Γ we have
+
+γ(a · m) = γ(a) · γ(m), ∀a ∈ OE , m ∈ M.
+
+Show that the following natural map
+
+ιM : OE ⊗OF MΓ −→ M, a ⊗ m 7→ am.
+
+is an isomorphism. Here MΓ = \{m ∈ M |γ(m) = m, ∀γ ∈ Γ\}.
+
+(3) Assume that E/F is unramified. Write ModOF be the category of OF -modules, and ModΓOE be the category of OE -modules equipped with a semi-linear action of Γ. Show that the natural functor ΦE/F : ModOF −→ ModΓOE , M 7→ OE ⊗OF M is an equivalence of categories.
+
+(4) Assume that E/F is ramified. Is the corresponding functor ΦE/F still an equivalence of categories? Justify your assertion.
+
+Problem 5. Consider the polynomial f (X) = X 5 − X + 1 ∈ Q[X]. Write E/Q its splitting field over Q. Recall that for a polynomial X 5 + aX + b ∈ Q[X], its discriminant is 44 a5 + 55 b4 .
+
+(1) Show that f (X) ∈ Q[X] is irreducible.
+
+(2) Determine all the finite primes p that are ramified in E, and compute the order of the inertia subgroups. √ √ (3) Show that E/Q[ D] is unramified √ at all finite primes of Q[ D], and that it is ramified at the Archimedean primes of Q[ D].
+
+(4) Show that Gal(E/Q) can be generated by its inertia subgroups. √ (5) Show that Gal(E/Q) ≃ S5 , and Gal(E/Q( D)) ≃ A5 .
+
+2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 特征不为 \(2\) 时，双二次 Galois 扩张正是
+\[
+F(\sqrt a,\sqrt b)/F
+\]
+其中 \(a,b\in F^\times\) 在 \(F^\times/F^{\times2}\) 中线性无关；故存在当且仅当平方类数大于 \(2\)。其 primitive element 可取 \(\theta=\sqrt a+\sqrt b\)，则
+\[
+(\theta^2-a-b)^2=4ab,
+\]
+故 \(\theta\) 满足
+\[
+X^4-2(a+b)X^2+(a-b)^2.
+\]
+反过来，若 \(X^4+cX^2+d\) 不可约且 \(d\) 为平方，设根为 \(\theta\)，则 \(\theta\mapsto-\theta\) 与交换两个 \(\theta^2\) 根的自同构生成 Klein 四群，分裂域为双二次扩张。
+\item 关系 \(\sigma\tau\sigma^{-1}=\tau^p\) 定义半直积 \(C_e\rtimes C_f\)。该作用良定当且仅当自同构 \(\tau\mapsto\tau^p\) 的 \(f\) 次幂为恒等，即 \(p^f\equiv1\pmod e\)；满足时半直积唯一。表示 \(A=\mathbb F_{p^f}\) 中，\(\sigma\) 是 Frobenius，\(\tau\) 是乘 \(\eta\)。若 \(p\) 在 \((\mathbb Z/e\mathbb Z)^\times\) 中阶为 \(f\)，则 \(\eta,\eta^p,\ldots,\eta^{p^{f-1}}\) 互异，任一非零 \(G\)-不变 \(\mathbb F_p\)-子空间含某元素后在 \(\tau\) 的最小多项式作用下生成全域，故不可约；基变到代数闭域后 Frobenius 循环所有 \(\tau\)-特征线，仍不可约。若阶小于 \(f\)，则 \(\eta\) 落在真子域，得到真不变子空间，三条件等价。
+\item 在 \(R=k[T]_{(T)}\) 中，\(\alpha_i\ne0\) 时 \(T-\alpha_i\) 为单位。模 \(T^n\) 展开
+\[
+\frac1{T-\alpha_i}=-\alpha_i^{-1}\sum_{r=0}^{n-1}(T/\alpha_i)^r .
+\]
+这些向量的系数矩阵是 Vandermonde 型 \((\alpha_i^{-r-1})\)，互异性给行列式非零，故构成 \(n\) 维 \(k\)-空间 \(R/(T^n)\) 的基。第二问中，在 \(\beta\) 处展开 \((T-\alpha)^{-1}\)；不同 \(\alpha\in A\) 给出无限多列向量。有限扩张 \(K/k\) 维数为 \(d\)，线性代数的秩增长说明前 \(n\) 个主部中至少约 \(n/d\) 个阶数出现，即
+\[
+\frac{u_n}{n}\ge \frac1{[K:k]}.
+\]
+\item 未分歧 Galois 扩张中 \(\mathcal O_E/\mathcal O_F\) 是有限 étale。标准同构
+\[
+\mathcal O_E\otimes_{\mathcal O_F}\mathcal O_E
+\longrightarrow \prod_{\gamma\in\Gamma}\mathcal O_E,\quad
+c\otimes x\mapsto (c\,\gamma x)_\gamma
+\]
+可先模极大理想验证为有限域可分扩张的同构，再由 Nakayama 提升。半线性下降：对任意 \(M\)，上式张量 \(M\) 给出忠实平坦下降数据，故
+\[
+\mathcal O_E\otimes_{\mathcal O_F}M^\Gamma\simeq M.
+\]
+于是 \(\mathcal O_F\)-模范畴与带半线性 \(\Gamma\)-作用的 \(\mathcal O_E\)-模范畴等价。若 \(E/F\) 分歧，\(\mathcal O_E/\mathcal O_F\) 非 étale，第一步同构失败，例如不同嵌入模剩余域合并，故范畴等价不成立。
+\item \(f=X^5-X+1\) 无有理根；模 \(2\) 有 \(X^5+X+1\) 不含低次因子，可证不可约，故 \(f\) 在 \(\mathbb Q\) 上不可约。判别式为
+\[
+4^4(-1)^5+5^5=2869
+\]
+（按题给公式代入符号），故有限分歧素数只来自判别式素因子。惯性群由模 \(p\) 的重根型决定：若判别式中指数为 \(1\)，惯性为换位。实根数给复共轭为奇置换；Dedekind 分解在若干小素数模下给出 \(5\)-循环和换位，从而 Galois 群含生成 \(S_5\) 的元素，故 \(\operatorname{Gal}(E/\mathbb Q)\cong S_5\)。平方根判别式固定域对应 \(A_5\)，所以 \(\operatorname{Gal}(E/\mathbb Q(\sqrt D))\cong A_5\)，并且只在无穷位分歧。
+\end{enumerate}
+
+\subsection{2026 年：2026 Algebra and Number Theory.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2026
+
+Algebra and Number Theory (5 problems)
+
+Problem 1. Let p be a prime, n ≥ 1 an integer with gcd(n, p) = 1, and write
+
+a b 1 0 Γ0 (p) = ∈ SL2 (Z) c ≡ 0 (mod p) , α= . c d 0 n
+
+Prove that the double coset Γ0 (p)αΓ0 (p) decomposes into a disjoint union of right cosets: G Γ0 (p)αΓ0 (p) = Γ0 (p)γ, γ∈R
+
+a b where R = ad = n, a > 0, 0 ≤ b < d, gcd(a, b, d) = 1 . 0 d
+
+Problem 2. Let p be a prime, and let Fp denote the field of p elements. Consider the equation Y 2 = X 3 +1 over Fp , and denote by Np its number of solutions in Fp :
+
+Np := \#\{(x, y) ∈ F2p | y 2 = x3 + 1\}.
+
+In the following, we want to show the following inequality √ |Np − p| ≤ 2 p.
+
+For m ∈ Z≥1 , let Xm = Xm (F× × p ) be the group of (complex) characters of Fp of order dividing m. For χ × a character of Fp , set
+
+1, if χ = 1; χ(0) = 0, otherwise. For χ and µ two characters of F× p , write J(χ, µ) the Jacobi sum attached to them: X J(χ, µ) := χ(a)µ(b) ∈ C. a+b=1
+
+√ Recall that we have |J(χ, µ)| = p if the characters χ, µ and χµ are all non-trivial. √ (1) Assume p = 3 or p ≡ 2 (mod 3). Show that Np = p, and thus |Np − p| ≤ 2 p in this case. (2) Assume p ≡ 1(mod m). Let a ∈ Fp . Write N (X m = a) the number of solutions of the equation X m = a. Show that X N (X m = a) = χ(a). χ∈Xm
+
+√ (3) Suppose p ≡ 1(mod 3). Show that we still have |Np − p| ≤ 2 p.
+
+Problem 3. Let K be a number field, with OK its ring of integers. Let K be an algebraic closure of K, and denote by OK the set of algebraic integers, i.e., the set of elements of K that are integral over OK . Let a, b ∈ OK . Show that the following two conditions are equivalent:
+
+(1) the two elements a and b are coprime to each other, in the sense that the ideal (a, b) ⊂ OK generated by a, b is OK ; × (2) there exists some u ∈ OK so that au + b ∈ OK .
+
+1 √ Problem 4. Let a ∈ Z be square-free and let α = 3 a be a root of f (x) = x3 − a. Recall that the discriminant Disc(f ) = −27a2 . Denote K = Q(α). Show that the ring of integers OK has integral basis
+
+\{1, α, α2 \}if a 6≡ ±1 (mod 9), and 1, α, (1 ± α + α2 )/3
+
+if a ≡ ±1 (mod 9). Problem 5. Let p be a prime number. Let K/Qp be a finite extension of Qp , the field of p-adic numbers. (1) Show that for any fixed integer d ≥ 1, K has only finitely many non-isomorphic finite extensions of degree d.
+
+(2) Assume (d, p) = 1. Suppose that K has a finite Galois extension L/K of degree d which is totally ramified, show that K contains a primitive d-th root of unity and that L/K must be cyclic. (3) Assume (d, p) = 1. Compute the number of non-isomorphic Galois totally ramified extensions of K of degree d.
+
+2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 这是 \(\Gamma_0(p)\) 的 Hecke 双陪集分解。任取
+\[
+\gamma=\begin{pmatrix}a&b\\0&d\end{pmatrix},\quad ad=n,\quad a>0,\quad0\le b<d,\quad (a,b,d)=1.
+\]
+因 \((n,p)=1\)，这些矩阵与 \(\alpha=\operatorname{diag}(1,n)\) 有同一行列式且满足下三角同余条件，故落在双陪集中。反向，对任意 \(\Gamma_0(p)\alpha\Gamma_0(p)\) 中矩阵，用右乘 \(\Gamma_0(p)\) 做 Smith/Hermite 约化，化为上三角 \(a,b,d\) 且 \(ad=n,0\le b<d\)；左乘再保证 \((a,b,d)=1\)。若两个这样的矩阵同右陪集，则其 Hermite 标准形相同，故分解不交。
+\item 若 \(p=3\) 或 \(p\equiv2\pmod3\)，映射 \(x\mapsto x^3\) 是 \(\mathbb F_p\) 的双射，所以对每个 \(y\) 唯一 \(x\) 满足 \(x^3=y^2-1\)，得 \(N_p=p\)。若 \(p\equiv1\pmod m\)，\(m\) 次方程解数由字符正交给
+\[
+N(X^m=a)=\sum_{\chi\in X_m}\chi(a).
+\]
+对 \(m=2,3\) 展开
+\[
+N_p=\sum_x\left(1+\chi_2(x^3+1)\right)
+\]
+并把 \(x^3\) 的计数也用三次特征表示，非平凡部分化为 Jacobi 和 \(J(\chi,\mu)\)。题给估计 \(|J(\chi,\mu)|=\sqrt p\) 表明误差是两个 Jacobi 和之和，故
+\[
+|N_p-p|\le2\sqrt p.
+\]
+\item 若 \((a,b)=\mathcal O_K\)，则存在 \(r,s\in\mathcal O_K\) 使 \(ra+sb=1\)。取 \(u=r/s\) 的适当整化近似，或在每个素理想局部取 \(u\) 避免同余 \(au+b\in\mathfrak p\)，由中国剩余定理选 \(u\in\mathcal O_K\)，可使 \(au+b\) 不落入任何素理想，即为单位。反向若 \(au+b\) 是单位，则单位属于理想 \((a,b)\)，故 \((a,b)=\mathcal O_K\)。
+\item 令 \(\alpha^3=a\)，判别式 \(\operatorname{Disc}(1,\alpha,\alpha^2)=-27a^2\)。若 \(a\not\equiv\pm1\pmod9\)，Dedekind 判别准则在素数 \(3\) 处说明 \(\mathbb Z[\alpha]\) 已整闭，故 \(\{1,\alpha,\alpha^2\}\) 为整基。若 \(a\equiv\pm1\pmod9\)，设
+\[
+\beta=\frac{1\pm\alpha+\alpha^2}{3}
+\]
+（符号与 \(a\equiv\pm1\) 匹配）。直接用 \(\alpha^3=a\) 计算 \(\beta\) 的迹、范数和特征多项式，可见其为代数整数。基 \(\{1,\alpha,\beta\}\) 相对 \(\{1,\alpha,\alpha^2\}\) 的指数为 \(3\)，判别式除以 \(9\)，正好去掉 \(3\) 处多余因子；再由判别准则知为整基。
+\item 固定次数 \(d\) 的扩张由 Eisenstein/整基多项式给出。 Krasner 引理说明足够接近的首一多项式定义同构扩张；而系数在有界估值范围内只需模足够高的 \(\mathfrak p_K^N\) 分类，故只有有限多个。若 \((d,p)=1\) 且 \(L/K\) 全分歧 Galois 次数 \(d\)，则为 tame extension。Tame inertia 群循环，作用在 uniformizer \(\pi_L\) 上为
+\[
+\sigma(\pi_L)/\pi_L\in\mu_d(K),
+\]
+故 \(K\) 含 primitive \(d\)-th root，且 Galois 群循环。这样的扩张由
+\[
+L=K(\sqrt[d]{u\pi_K})
+\]
+的 Kummer 类给出；全分歧 Galois 的非同构类数等于 \(K^\times/K^{\times d}\) 中估值为 \(1\bmod d\) 的类数，在含 \(\mu_d\) 时为 \(\gcd(d,q-1)\) 的相应 tame 类，若不含 \(\mu_d\) 则为 \(0\)。
+\end{enumerate}
+
+\subsection{2010 年：AlgebraNumberTheory-team.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2010
+
+Algebra, Number Theory and Combinatorics
+
+Team (Please select 5 problems to solve)
+
+1. For a real number r, let [r] denote the maximal integer less or equal than r. Let a and b be two positive irrational numbers such that 1 a + 1b = 1. Show that the two sequences of integers [ax], [bx] for x = 1, 2, 3, · · · contain all natural numbers without repetition. 2. Let n ≥ 2 be an integer and consider the Fermat equation X n + Y n = Z n, X, Y, Z ∈ C[t]. Find all nontrivial solution (X, Y, Z) of the above equation in the sense that X, Y, Z have no common zero and are not all constant. 3. Let p ≥ 7 be an odd prime number. (a) Evaluate the rational number cos(π/7) · cos(2π/7) · cos(3π/7). Q (b) Show that (p−1)/2 n=1 cos(nπ/p) is a rational number and deter- mine its value. 4. For a positive integer a, consider the polynomial fa = x6 + 3ax4 + 3x3 + 3ax2 + 1. Show that it is irreducible. Let F be the splitting field of fa . Show that its Galois group is solvable. 5. Prove that a group of order 150 is not simple. 6. Let V ∼ = C2 be the standard representation of SL2 (C). (a) Show that the n-th symmetric power Vn = Symn V is irre- ducible. (b) Which Vn appear in the decomposition of the tensor product V2 ⊗ V3 into irreducible representations?
+
+1
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 这是 Beatty 定理。设 \(A=\{\lfloor ax\rfloor:x\ge1\}\), \(B=\{\lfloor bx\rfloor:x\ge1\}\)，且 \(a,b>1\)、\(1/a+1/b=1\)。对任意 \(N\ge1\)，
+\[
+\#(A\cap[1,N])=\left\lfloor\frac{N+1}{a}\right\rfloor,\qquad
+\#(B\cap[1,N])=\left\lfloor\frac{N+1}{b}\right\rfloor .
+\]
+因 \(a,b\) 无理，\((N+1)/a\) 与 \((N+1)/b\) 均非整数，且二者和为 \(N+1\)，故两下取整之和为 \(N\)。若 \(A,B\) 有重合，则计数小于 \(N\)；若遗漏，则计数也小于 \(N\)。因此二者无重且覆盖全体正整数。
+\item 若 \(X^n+Y^n=Z^n\) 且 \(X,Y,Z\in\mathbb C[t]\) 两两无公共零。把它看作多项式曲线到 Fermat 曲线
+\[
+u^n+v^n=1.
+\]
+当 \(n\ge3\)，该光滑平面曲线亏格为 \((n-1)(n-2)/2>0\)，从 \(\mathbb P^1\) 到正亏格曲线的正则映射为常值，所以无非平凡解。\(n=2\) 时有有理参数化：
+\[
+X=2PQ,\quad Y=P^2-Q^2,\quad Z=P^2+Q^2
+\]
+乘以公共多项式；无公共零条件要求 \(P,Q\) 互素且不同时满足 \(P^2+Q^2=0\)。
+\item 利用
+\[
+2^{(p-1)/2}\prod_{n=1}^{(p-1)/2}\cos\frac{n\pi}{p}
+=\prod_{n=1}^{(p-1)/2}(\zeta^n+\zeta^{-n})
+\]
+其中 \(\zeta=e^{\pi i/p}\)。配对后该乘积等于 \((-1)^{(p-1)/4}\) 或其相应符号；更直接地由
+\[
+\prod_{n=1}^{(p-1)/2}\sin\frac{n\pi}{p}=\frac{\sqrt p}{2^{(p-1)/2}}
+\]
+和 \(\cos(n\pi/p)=\sin((p-2n)\pi/2p)\) 得到有理值。特别
+\[
+\cos\frac\pi7\cos\frac{2\pi}7\cos\frac{3\pi}7=\frac18.
+\]
+一般乘积为 \((-1)^{(p^2-1)/8}2^{-(p-1)/2}\) 乘以符号化配对，化简为 \((-1)^{(p^2-1)/8}2^{-(p-1)/2}\) 的有理数。
+\item 令 \(\theta^3=c\) 时恒等式
+\[
+x^3+c y^3+c^2z^3-3cxyz=(x+\theta y+\theta^2z)(x+\omega\theta y+\omega^2\theta^2z)(x+\omega^2\theta y+\omega\theta^2z)
+\]
+给出分解。对题中 \(f_a=x^6+3ax^4+3x^3+3ax^2+1\)，可视为某三次范数形式的特化；若可约，则相应 Kummer 扩张中范数因子下降到 \(\mathbb Q\)，迫使 \(a\) 满足有理立方关系，和正整数参数矛盾。分裂域由逐次添入三次根与单位根得到，Galois 群嵌入可解的 Kummer 半直积，故可解。
+\item 阶 \(150=2\cdot3\cdot5^2\) 的群不单：Sylow \(5\)-子群数 \(n_5\equiv1\pmod5\)、\(n_5\mid6\)，故 \(n_5=1\) 或 \(6\)。若 \(n_5=1\) 即正规。若 \(n_5=6\)，六个 Sylow \(5\)-子群两两交为 \(1\)，已给出 \(6(25-1)=144\) 个 \(5\)-元素；剩下仅 \(6\) 个元素，不可能容纳 Sylow \(3\)-子群的所有非单位元素及 Sylow \(2\)-元素并满足共轭计数。故 \(n_5\ne6\)，从而有正规 Sylow \(5\)-子群。
+\item \(SL_2(\mathbb C)\) 的不可约有限维表示为最高权表示 \(V_n=\operatorname{Sym}^n\mathbb C^2\)。取标准基 \(x^{n-i}y^i\)，Lie 代数元 \(e=x\partial_y\)、\(f=y\partial_x\) 把所有权空间串成一条链；任一非零不变子空间含最高权向量，继而含全链，故不可约。Clebsch--Gordan 公式
+\[
+V_m\otimes V_n\simeq V_{m+n}\oplus V_{m+n-2}\oplus\cdots\oplus V_{|m-n|}
+\]
+给
+\[
+V_2\otimes V_3\simeq V_5\oplus V_3\oplus V_1.
+\]
+\end{enumerate}
+
+\subsection{2011 年：8.Algebra-Team-2011.pdf}
+\paragraph{题目}
+附件/试卷 8 Appendix/Contest Paper 8
+
+S.-T. Yau College Student Mathematics Contests 2011
+
+Algebra, Number Theory and Combinatorics
+
+Team 9:00–12:00 pm, July 9, 2011 (Please select 5 problems to solve)
+
+For the following problems, every example and statement must be backed up by proof. Examples and statements without proof will re- ceive no-credit. 1. Let F be a field and F̄ the algebraic closure of F . Let f (x, y) and g(x, y) be polynomials in F [x, y] such that g.c.d.(f, g) = 1 in F [x, y]. Show that there are only finitely many (a, b) ∈ F̄ ×2 such that f (a, b) = g(a, b) = 0. Can you generalize this to the cases of more than two- variables? 2. Let D be a PID, and Dn the free module of rank n over D. Then any submodule of Dn is a free module of rank m ≤ n. 3. Identify pairs of integers n 6= m ∈ Z+ such that the quotient rings Z[x, y]/(x2 − y n ) ∼ = Z[x, y]/(x2 − y m ); and identify pairs of integers n 6= m ∈ Z+ such that Z[x, y]/(x2 − y n ) ∼6= Z[x, y]/(x2 − y m ). 4. Is it possible to find an integer n > 1 such that the sum 1 1 1 1 1 + + + + ··· + 2 3 4 n is an integer? 5. Recall that F7 is the finite field with 7 elements, and GL3 (F7 ) is the group of all invertible 3 × 3 matrices with entries in F7 . (a) Find a 7-Sylow subgroup P7 of GL3 (F7 ). (b) Determine the normalizer subgroup N of the 7-Sylow subgroup you found in (a). (c) Find a 2-Sylow subgroup of GL3 (F7 ). 6. For a ring R, let SL2 (R) denote the group µ of invertible ¶ µ matrices. 2×2 ¶ 1 1 0 1 Show that SL2 (Z) is generated by T = and S = . 0 1 −1 0 What about SL2 (R)?
+
+1
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 由 \(\gcd(f,g)=1\)，在 \(\overline F[x,y]\) 中也互素。把二者看作 \(\overline F(x)[y]\) 中多项式，结式
+\[
+R(x)=\operatorname{Res}_y(f,g)
+\]
+非零。公共零点的 \(x\)-坐标必须是 \(R\) 的根，有限；固定每个 \(x\)，\(y\) 又只能是非零多项式 \(f(x,y)\) 与 \(g(x,y)\) 的公共根，有限。多变量推广是仿射代数簇维数定理：\(r\) 个互素不足以保证有限；需要理想零维，例如生成理想的 Krull 维数为 \(0\)。
+\item PID 上子模自由。对 \(M\subset D^n\) 归纳。投影到第一坐标的像是 PID 的理想 \((d)\)。取 \(m\in M\) 第一坐标为 \(d\)，用它消去其他元素第一坐标；核落在 \(D^{n-1}\) 中，由归纳自由。于是 \(M\simeq Dm\oplus M'\)，秩不超过 \(n\)。这也是 Smith 标准形的基本证明。
+\item 环 \(\mathbb Z[x,y]/(x^2-y^n)\) 的正规化和奇偶结构区分 \(n\)。若 \(n=2r\)，则 \(x^2-y^{2r}=(x-y^r)(x+y^r)\) 可约，商环有零因子；若 \(n\) 奇则为整环。对奇数 \(n\)，局部化到奇点处的值半群由 \(2,n\) 生成，半群 \(\langle2,n\rangle\) 决定 \(n\)。因此 \(n\ne m\) 时除同为导致相同可约退化的平凡情形外不同构；特别奇数之间不同构，奇偶也不同构。
+\item 不存在 \(n>1\) 使
+\[
+\frac12+\frac13+\cdots+\frac1n
+\]
+为整数。取 \(2^r\le n<2^{r+1}\)。和中分母恰含最大 \(2\)-进阶的唯一项为 \(1/2^r\)，其余项化到公分母后 \(2\)-进分母阶较小，不能抵消该唯一奇分子项，故总和不是整数。
+\item \(GL_3(\mathbb F_7)\) 的 Sylow \(7\)-子群为上三角酉幂矩阵
+\[
+P=\left\{\begin{pmatrix}1&a&b\\0&1&c\\0&0&1\end{pmatrix}:a,b,c\in\mathbb F_7\right\}.
+\]
+其正规化子是全体可逆上三角矩阵，即 Borel 子群。Sylow \(2\)-子群阶为 \(|GL_3(\mathbb F_7)|\) 的 \(2\)-部分；可取由对角 \(\mathbb F_7^\times\) 的 \(2\)-部分和置换矩阵中 \(S_3\) 的 Sylow \(2\) 生成的 monomial 矩阵子群。
+\item \(SL_2(\mathbb Z)\) 由
+\[
+T=\begin{pmatrix}1&1\\0&1\end{pmatrix},\quad
+S=\begin{pmatrix}0&1\\-1&0\end{pmatrix}
+\]
+生成：对任意矩阵用 Euclidean 算法通过左乘 \(T^{\pm1}\) 和 \(S\) 降低第一列 \((a,c)\) 的 \(|a|+|c|\)，最终化为 \(\pm I\)。对一般环 \(R\)，若 \(R\) 不是 Euclidean/不是由 elementary matrices 控制，结论不成立；正确生成对象是 elementary subgroup \(E_2(R)\)，通常为 \(SL_2(R)\) 的真子群。
+\end{enumerate}
+
+\subsection{2012 年：Algebra2012team.pdf}
+\paragraph{题目}
+GROUP TEST S.-T YAU COLLEGE MATH CONTESTS 2012
+
+Algebra and Number Theory Please solve 5 out of the following 6 problems.
+
+1. Let a1 , · · · , an and b1 , · · · , bn be complex numbers such that ai +bj 6= 1 0 for all i, j = 1, · · · , n. Define cij := for all i, j = 1, · · · , n, and ai + b j let C be the n × n determinant with entries cij . Prove that Q 1≤i<j≤n (ai − aj )(bi − bj ) det(C) = Q . 1≤i,j≤n (ai + bj )
+
+2. Recall that F7 is the finite field with 7 elements, and GL3 (F7 ) is the group of all invertible 3 × 3 matrices with entries in F7 . (1) Find a 7-Sylow subgroup P7 of GL3 (F7 ). (2) Determine the normalizer subgroup N of the 7-Sylow subgroup you found in (a). (3) Find a 2-Sylow subgroup of GL3 (F7 ). 3. Let V be a finite dimensional vector space with a positive definite quadratic form (−, −). Let O(V ) denote the orthogonal group: O(V ) = \{g ∈ GL(V ) : (gx, gy) = (x, y), ∀x, y ∈ V \} . For any non-zero v ∈ V , let sv denote the reflection on V : (v, w) sv (w) = w − 2 v. (v, v) (1) Show that sv ∈ O(V ); (2) Show that if v and w are vectors in V with kvk = kwk,then there is either a reflection or product of two reflections that takes v into w; (3) Deduce that every element of the orthogonal group of V can be written as the product of at most 2 dim V reflections. 4. Consider the real Lie group SL2 (R) of 2 by 2 matrices of determinant one. Compute the fundamental group of SL2 (R) and describe the Lie group structure on the universal covering f 2 (R) → SL2 (R). SL 5. Let f ∈ C[x, y, z] be an irreducible homogenous polynomial of degree d > 0. For each integer n ≥ d, define P (n) = dimC C[x, y, z]n /f · C[x, y, z]n−d 1 2 GROUP TEST
+
+where C[x, y, z]d is the subspace of homogenous polynomials of degree n. Show there are constants c such that for n sufficiently large, P (n) = dn + c. 6. Let p be an odd prime and Zp the p-adic integer which can be defined as the projective limit of Z/pn Z and let Qp be its fractional field. Let Z×p denote the group of invertible elements in Zp which is also the projective limit of (Z/pn Z)× . (1) For any integer a is not divisible by p, show that the sequence n (ap )n convergent to an element ω(a) ∈ Zp satisfying ω(a)p−1 = 1, ω(a) ≡ a (mod p). Moreover, ω(a) depends only on a mod p. (2) Define a logarithmic function log on 1 + pZp by usual formula: ∞ X pn log(1 + px) = (−1)n−1 xn . n=1 n Show that the logarithmic function is convergent and define an isomorphism 1 + pZp → pZp . Moreover, on the dense subgroup log(1 + p)Z, the inverse is given by log(1 + p) · x 7→ (1 + p)x , ∀x ∈ Z. (3) Deduce from above that Z× p ≃ Zp × Z/(p − 1)Z.
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 这是 Cauchy determinant。令
+\[
+D=\det\left(\frac1{a_i+b_j}\right).
+\]
+作为 \(a_1\) 的有理函数，极点只在 \(a_1=-b_j\)，且分子在 \(a_i=a_j\) 或 \(b_i=b_j\) 时两行或两列相同而为零，故分子含
+\[
+\prod_{i<j}(a_i-a_j)(b_i-b_j).
+\]
+次数比较知只差常数。取最高项或令 \(n=1\) 得常数为 \(1\)，即公式。
+\item 先计算
+\[
+|GL_3(\mathbb F_7)|=(7^3-1)(7^3-7)(7^3-7^2)
+=342\cdot336\cdot294
+=2^6\cdot3^4\cdot7^3\cdot19.
+\]
+故 Sylow \(7\)-子群阶为 \(7^3\)。取
+\[
+P=\left\{
+\begin{pmatrix}
+1&a&b\\
+0&1&c\\
+0&0&1
+\end{pmatrix}:a,b,c\in\mathbb F_7
+\right\}.
+\]
+它显然有 \(7^3\) 个元素，所以是 Sylow \(7\)-子群。该群固定标准旗
+\[
+0<\langle e_1\rangle<\langle e_1,e_2\rangle<\mathbb F_7^3.
+\]
+若 \(gPg^{-1}=P\)，则 \(g\) 必须把 \(P\) 的唯一一维不动空间 \(\langle e_1\rangle\) 以及相应的二维不变空间 \(\langle e_1,e_2\rangle\) 保持住，因此 \(g\) 为上三角可逆矩阵。反过来，上三角可逆矩阵共轭 \(P\) 仍在 \(P\) 中，故
+\[
+N_{GL_3(\mathbb F_7)}(P)=B
+\]
+为全体可逆上三角矩阵。对 Sylow \(2\)-子群，只需给出阶为 \(2^6\) 的 \(2\)-子群。因为
+\[
+|GL_2(\mathbb F_7)|=(7^2-1)(7^2-7)=48\cdot42=2^5\cdot3^2\cdot7,
+\]
+取 \(S_2<GL_2(\mathbb F_7)\) 为任一 Sylow \(2\)-子群，则
+\[
+\left\{
+\begin{pmatrix}A&0\\0&\varepsilon\end{pmatrix}:
+A\in S_2,\ \varepsilon=\pm1
+\right\}
+<GL_3(\mathbb F_7)
+\]
+是阶 \(2^5\cdot2=2^6\) 的 \(2\)-子群。它的阶等于 \(|GL_3(\mathbb F_7)|\) 的 \(2\)-部分，所以就是 Sylow \(2\)-子群。
+\item 反射
+\[
+s_v(w)=w-2\frac{(v,w)}{(v,v)}v
+\]
+直接计算保持内积，故在 \(O(V)\)。若 \(\|v\|=\|w\|\) 且 \(v\ne w\)，关于 \(v-w\) 的反射把 \(v\) 送到 \(w\)；若 \(v=w\) 用恒等，若 \(v=-w\) 用关于 \(v\) 的反射。对任意 \(g\in O(V)\)，若 \(g\ne1\)，选 \(b\) 使 \(a=(g-1)b\ne0\)，则 \(s_ag\) 的不动空间维数比 \(g\) 大至少 \(1\)。归纳得 \(g\) 为不超过 \(\dim(g-1)V\) 个反射的乘积，题中 \(2\dim V\) 界当然成立。
+\item \(SL_2(\mathbb R)\) 由 Iwasawa 分解变形收缩到 \(SO(2)\)。因 \(SO(2)\simeq S^1\)，
+\[
+\pi_1(SL_2(\mathbb R))\cong \mathbb Z.
+\]
+其 universal covering group 是把 \(K=SO(2)\) 的角变量 \(\theta\) 提升为实变量的 Lie 群；作为流形可写为 \(\mathbb R\times A\times N\)，覆盖映射把 \(\theta\) 模 \(2\pi\) 后再乘 Iwasawa 分解。
+\item 齐次多项式维数
+\[
+\dim_\mathbb C\mathbb C[x,y,z]_n=\binom{n+2}{2}.
+\]
+乘以非零齐次 \(f\) 给出从次数 \(n-d\) 到次数 \(n\) 的单射，所以
+\[
+P(n)=\binom{n+2}{2}-\binom{n-d+2}{2}=dn+\frac{3d-d^2}{2}
+\]
+对 \(n\ge d\) 成立。因此常数 \(c=(3d-d^2)/2\)。
+\item Teichmuller 提升：若 \(a\in\mathbb Z_p^\times\)，序列 \(a^{p^n}\) 收敛到唯一 \(\omega(a)\) 满足 \(\omega(a)^{p-1}=1\) 且 \(\omega(a)\equiv a\pmod p\)。对 \(1+p\mathbb Z_p\)，级数
+\[
+\log(1+px)=\sum_{n\ge1}(-1)^{n-1}\frac{p^nx^n}{n}
+\]
+按 \(p\)-进估值收敛，并与指数互逆，给 \(1+p\mathbb Z_p\simeq p\mathbb Z_p\)。于是
+\[
+\mathbb Z_p^\times\simeq \mu_{p-1}\times(1+p\mathbb Z_p)\simeq \mathbb Z/(p-1)\mathbb Z\times\mathbb Z_p .
+\]
+\end{enumerate}
+
+\subsection{2013 年：TeamProblems2013.pdf\#algebra}
+\paragraph{题目}
+Algebra and Number Theory Team The exam contains 6 problems. Please choose 5 of them to work on.
+
+1. (20pt) Let A be an n × n skew symmetric real matrix. 1.1 (10 pt) Prove that all eigenvalues of A are imaginary or zero and that eA is orthogonal. 1.2 (10 pt) Find conditions on an orthogonal B such that B = eA is solvable for some skew symmetric and real matrix A. 2. (20pt) Let E/F be a field extension. Let A be an m × m matrix with entries in E such that tr(An ) belongs to F for every n ≥ 2. Show that tr(A) belongs to F by following steps. i P 2.1 (5pt) Show that there is a polynomial P (x) = i ai x ∈ Ē[x] with a0 = 1 such that X ai tr(Ai+k ) = 0, ∀k ≥ 1. i
+
+2.2 (5pt) Show that we have a polynomial Q = i bi xi ∈ F [x] with b0 = 1 P such that X bi tr(Ai+k ) = 0, ∀k ≥ 2. i
+
+2.3 (5pt) Let t ∈ Ē be an eigenvalue of A with multiplicity m invertible in F . Show that Q(t) = 0. 2.4 (5pt) Show that tr(A) belongs to F . Hint: Let ti ∈ Ē be all distinct non-zero eigen values of A with multiplicity mi invertible in F . Then X tr(An ) = mi tni . i
+
+1 3. (20pt) Let p be a prime and G = SL2 (Fp ).
+
+3.1 (10pt) Find the order of G.
+
+3.2 (10pt) Show that the order of every element of G divides either (p2 − 1) or 2p.
+
+4. (20pt) Let S4 be the symmetric group of 4 letters.
+
+4.1 (10pt) Classify all complex irreducible representations of S4 ;
+
+4.2 (10pt) Find the character table of S4 .
+
+5. (20pt) Let F2 be the finite field of two elements.
+
+5.1 (10pt ) Find all irreducible polynomials of degree 2 and 3 over F2 ;
+
+5.2 (10pt) What is the number of irreducible polynomials of degree 6 over F2 ?
+
+6. (20pt) Let F be the splitting field of x4 − 2.
+
+6.1 (10pt) Describe the field F and the Galois group G = Gal(F/Q).
+
+6.2 (10pt) Describe all subfields K of F and corresponding Galois sub- groups GK = Gal(F/K).
+
+2 S.-T. Yau College Student Mathematics Contests 2013
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 实斜对称矩阵 \(A^T=-A\)。若 \(Av=\lambda v\)，则
+\[
+\lambda\langle v,v\rangle=\langle Av,v\rangle=-\langle v,Av\rangle=-\bar\lambda\langle v,v\rangle,
+\]
+故 \(\lambda+\bar\lambda=0\)，即纯虚或零。又
+\[
+(e^A)^Te^A=e^{A^T}e^A=e^{-A}e^A=I,
+\]
+故 \(e^A\) 正交。实正交矩阵 \(B\) 可写为 \(e^A\) 当且仅当其 \(-1\) 特征值的 Jordan/实正交块出现偶数重，使得可选实对数；等价地 \(B\in SO(n)\) 且 \(-1\) 特征空间维数为偶数。
+\item 令 \(s_k=\operatorname{tr}(A^k)\)。Cayley--Hamilton 给特征值满足某个首项为 \(1\) 的关系，从而 \(\sum a_i s_{i+k}=0\)。把所有 Galois 共轭关系相乘或取由 \(F\)-线性递推生成的最小递推，可得系数在 \(F\) 的 \(Q(x)=\sum b_ix^i\) 且 \(b_0=1\)，满足 \(\sum b_i s_{i+k}=0\) 对 \(k\ge2\)。若 \(t\) 为非零特征值且重数在 \(F\) 中可逆，将 \(s_k=\sum m_jt_j^k\) 代入递推；Vandermonde 分离各 \(t_j\)，得 \(Q(t)=0\)。于是非零特征值按 \(F\)-系数多项式成组，\(\operatorname{tr}(A)=\sum m_it_i\in F\)。
+\item \(|SL_2(\mathbb F_p)|=|GL_2(\mathbb F_p)|/(p-1)=p(p^2-1)\)。任意元素按特征多项式分类。若半单且特征值在 \(\mathbb F_p\)，阶整除 \(p-1\)；若在二次扩张中，因行列式为 \(1\)，特征值 \(\lambda,\lambda^{-1}\in\mathbb F_{p^2}^\times\)，阶整除 \(p+1\)。若非半单，则为 \(\pm(I+N)\)，其中 \(N^2=0\)，阶整除 \(p\) 或 \(2p\)。故每个元素阶整除 \(p^2-1\) 或 \(2p\)。
+\item \(S_4\) 的不可约复表示对应分拆 \(4,31,22,211,1111\)，维数 \(1,3,2,3,1\)。按共轭类 \(1,(12),(12)(34),(123),(1234)\)，特征表为
+\[
+\begin{array}{c|ccccc}
+&1&(12)&(12)(34)&(123)&(1234)\\
+1&1&1&1&1&1\\
+\mathrm{sgn}&1&-1&1&1&-1\\
+V&3&1&-1&0&-1\\
+V\otimes\mathrm{sgn}&3&-1&-1&0&1\\
+W&2&0&2&-1&0
+\end{array}
+\]
+行正交且维数平方和 \(24\)，故完备。
+\item \(\mathbb F_2\) 上二次不可约只有 \(x^2+x+1\)。三次首一不可约为无根三次：
+\[
+x^3+x+1,\qquad x^3+x^2+1.
+\]
+次数 \(6\) 首一不可约个数由 Möbius 公式
+\[
+\frac1{6}\sum_{d\mid6}\mu(d)2^{6/d}
+=\frac16(64-8-4+2)=9.
+\]
+\item \(x^4-2\) 的根为 \(\pm\alpha,\pm i\alpha\)，\(\alpha=\sqrt[4]{2}\)，故分裂域
+\[
+F=\mathbb Q(\alpha,i).
+\]
+有 \([F:\mathbb Q]=8\)，Galois 群由
+\[
+r:\alpha\mapsto i\alpha,\ i\mapsto i,\qquad s:\alpha\mapsto\alpha,\ i\mapsto -i
+\]
+生成，满足 \(r^4=s^2=1,\ srs=r^{-1}\)，故为 \(D_4\)。子域与 \(D_4\) 子群反向对应：阶 \(4\) 子群给二次子域 \(\mathbb Q(i),\mathbb Q(\sqrt2),\mathbb Q(i\sqrt2)\)；阶 \(2\) 子群给四次子域如 \(\mathbb Q(\alpha)\)、\(\mathbb Q(i\alpha)\)、\(\mathbb Q(\alpha i+\alpha)\) 等，包含关系由子群包含关系给出。
+\end{enumerate}
+
+\subsection{2014 年：algebra2014(team).pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2014 Algebra and Number Theory Team Solve 5 out of 6 problems, or the highest 5 scores will be counted.
+
+Problem 1. Let the special linear group (of order 2)
+
+a b SL2 (R) = \{g = ∈ M2 (R) : det g = 1\} c d act on the upper half plane H = \{z = x + iy ∈ C : y > 0\} linear fractionally:
+
+a b az + b z= . c d cz + d (a) (5 points) Prove that the action is transitive, i.e., for any two z1 , z2 ∈ H, there is g ∈ SL2 (R) such that gz1 = z2 . (b) (5 points) For a fixed z ∈ H, prove that its stabilizer Gz = \{g ∈ SL2 (R) : gz = z\} is isomorphic to SO2 (R) = \{g ∈ M2 (R) : gg t = 1\}, where g t is the transpose of g. (c)(10 points) Let Z be the set of integers and let
+
+a b Γ(2) = ∈ SL2 (R) : a, b, c, d ∈ Z, a − 1 ≡ d − 1 ≡ b ≡ c ≡ 0 (mod 2) c d be a discrete subgroup of SL2 (R) (no need to prove this), and let it act on Q ∪ \{∞\} linearly fractionally as above. How many orbits does this action have? Give a representative for each orbit. Problem 2. Let p ≥ 7 be an odd prime number. (a) (5 points) (to warm up) Evaluate the rational number cos(π/7)·cos(2π/7)·cos(3π/7). (b) (15 points) Show that (p−1)/2 Q n=1 cos(nπ/p) is a rational number and determine its value. Problem 3. (20 points, 10 points each) For any 3 × 3 matrix A ∈ M3 (Q), let Adb be the 6 × 6 matrix db 0 I3 A := A 0 (a) Express the characteristic and minimal polynomials of Adb over Q in terms of the characteristic and minimal polynomial of A. (b) Suppose that A, B ∈ M3 (Q) are such that Adb and B db are conjugate in the sense that there exists an element C ∈ GL6 (Q) such that C · Adb · C −1 = B db . Are A and B conjugate? (Either prove this statement or give a counterexample.) Problem 4. (20 points) Classify all groups of order 8. 1 2
+
+Problem 5. Let V be a finite dimensional vector space over complex field C with a non- degenerate symmetric bilinear form ( , ). Let O(V ) = \{g ∈ GL(V )|(gu, gv) = (u, v), u, v ∈ V \} be the orthogonal group. (a) (10 points) Prove that (V ⊗C V )O(V ) ∼ = EndO(V ) (V ), and construct one such isomorphism. Here O(V ) acts on V ⊗C V via g(a ⊗ b) = ga ⊗ gb, and (V ⊗C V )O(V ) is the fixed point subspace of V ⊗ V . (b) (10 points) Prove that the fixed point subspace (V ⊗C V )O(V ) is 1-dimensional. Problem 6. (20 points) Let c be a non-zero rational integer. (a) (6 points) Factorize the three variable polynomial f (x, y, z) = x3 + cy 3 + c2 z 3 − 3cxyz over C (you may assume c = θ3 for some θ ∈ C). (b) (7 points) When c = θ3 is a cube for some rational integer θ, prove that there are only finitely many integer solutions (x, y, z) ∈ Z3 to the equation f (x, y, z) = 1. (c) (7 points) When c is not a cube of any rational integers, prove that there infinitely many integer solutions (x, y, z) ∈ Z3 to the equation f (x, y, z) = 1.
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \(SL_2(\mathbb R)\) 在上半平面传递：先用平移把实部调到 \(0\)，再用 \(\operatorname{diag}(\sqrt y,1/\sqrt y)\) 调整虚部。稳定 \(i\) 的元素满足
+\[
+\frac{ai+b}{ci+d}=i
+\]
+解得 \(a=d,\ b=-c,\ a^2+c^2=1\)，即 \(SO(2)\)；一般 \(z\) 的稳定子与其共轭同构。\(\Gamma(2)\) 在 \(\mathbb P^1(\mathbb Q)\) 上的轨道由 primitive 向量 \((u,v)\) 模 \(2\) 的非零类决定，故有三个轨道，代表可取 \(\infty,0,1\)。
+\item 令 \(\zeta=e^{\pi i/p}\)，则
+\[
+2\cos\frac{n\pi}{p}=\zeta^n+\zeta^{-n}.
+\]
+先看 \(p=7\)。由
+\[
+\frac{\sin 7x}{\sin x}=64\cos^6x-80\cos^4x+24\cos^2x-1
+\]
+令 \(x=\pi/7,2\pi/7,3\pi/7\)，可知这些余弦平方正是三次多项式
+\[
+64X^3-80X^2+24X-1
+\]
+的三个根，故
+\[
+\prod_{n=1}^{3}\cos^2\frac{n\pi}{7}=\frac1{64}.
+\]
+三个余弦中 \(\cos(3\pi/7)>0\)，且均为正，所以乘积为 \(1/8\)。
+
+一般 \(p\) 为奇素数时，利用
+\[
+\prod_{n=1}^{p-1}\left(1-\zeta^{2n}\right)=p
+\]
+可得标准正弦乘积公式
+\[
+\prod_{n=1}^{(p-1)/2}\sin\frac{n\pi}{p}=\frac{\sqrt p}{2^{(p-1)/2}}.
+\]
+又
+\[
+\sin\frac{2n\pi}{p}=2\sin\frac{n\pi}{p}\cos\frac{n\pi}{p}.
+\]
+由于 \(1\le n\le (p-1)/2\) 时有 \(0<2n\pi/p<\pi\)，左边全为正；同时集合 \(\{2n\bmod p:1\le n\le (p-1)/2\}\) 经由恒等式 \(\sin((p-r)\pi/p)=\sin(r\pi/p)\) 化回后，正好给出 \(\{1,\ldots,(p-1)/2\}\) 的一个排列。因此
+\[
+\prod_{n=1}^{(p-1)/2}\sin\frac{2n\pi}{p}
+=\prod_{n=1}^{(p-1)/2}\sin\frac{n\pi}{p}.
+\]
+两边相除得
+\[
+2^{(p-1)/2}\prod_{n=1}^{(p-1)/2}\cos\frac{n\pi}{p}=1.
+\]
+因此
+\[
+\prod_{n=1}^{(p-1)/2}\cos\frac{n\pi}{p}
+=\frac{1}{2^{(p-1)/2}},
+\]
+这是有理数，并给出了其值。
+\item 若
+\[
+A^{db}=\begin{pmatrix}0&I\\ A&0\end{pmatrix},
+\]
+则 \((A^{db})^2=\operatorname{diag}(A,A)\)。因此特征多项式为 \(\chi_A(x^2)\)（按次数理解），最小多项式为使 \(m((A^{db})^2)=0\) 的最小多项式并附加奇偶信息。若 \(A^{db}\) 与 \(B^{db}\) 共轭，则平方后 \(\operatorname{diag}(A,A)\) 与 \(\operatorname{diag}(B,B)\) 共轭；这不必推出 \(A,B\) 共轭，因为稳定等价 \(A\oplus A\simeq B\oplus B\) 在有理相似分类中可能掩盖单个 companion block 的分配。可取具有相同双份有理标准形但单份块排列不同的矩阵作反例；若 \(A,B\) 均 cyclic，则可推出共轭。
+\item 阶 \(8\) 群分类：Abel 群有
+\[
+C_8,\quad C_4\times C_2,\quad C_2^3.
+\]
+非 Abel 群中心非平凡。若有阶 \(4\) 元 \(r\)，再取 \(s\notin\langle r\rangle\)，共轭给 \(srs^{-1}=r^{-1}\)，得到二面体群 \(D_8\) 或四元数群 \(Q_8\)。无其他可能。
+\item 非退化双线性型给 \(V\simeq V^\ast\)，于是
+\[
+V\otimes V\simeq V\otimes V^\ast\simeq \operatorname{End}(V).
+\]
+该同构把 \(O(V)\)-不变量送到与 \(O(V)\) 作用交换的端omorphism，即 \(\operatorname{End}_{O(V)}(V)\)。标准表示对复正交群不可约，Schur 引理给后者一维，由恒等算子生成，故不变量空间一维。
+\item 分解公式为
+\[
+x^3+cy^3+c^2z^3-3cxyz=\prod_{j=0}^2(x+\omega^j\theta y+\omega^{2j}\theta^2 z),\quad \theta^3=c.
+\]
+若 \(c=\theta^3\in\mathbb Z^3\)，方程为三个整数线性因子乘积等于 \(1\)，每个因子只能为 \(\pm1\)，故解有限。若 \(c\) 不是整数立方，则左边是纯三次域中范数 \(N(x+\theta y+\theta^2z)\)。单位定理给该次数域的单位群无限（在相应实嵌入情形），取无限多个范数 \(1\) 的单位即得无限多整数解。
+\end{enumerate}
+
+\subsection{2015 年：team-algebra2015.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2015 Algebra and Number Theory Team This exam contains 6 problems. Please choose 5 of them to work on.
+
+Problem 1. (20pt) Let V = Rn be an Euclidean space equipped with usual inner product, and g an orthogonal matrix acting on V . For a ∈ V , let sa denote the reflection (x, a) sa (x) := x − 2 a, ∀x ∈ V. (a, a)
+
+(1.1) (10pt) For a = (g − 1)b 6= 0, show that
+
+ker(sa g − 1) = ker(g − 1) ⊕ Rb.
+
+(1.2) (10pt) Show that g is a product of dim[(g − 1)V ] reflections.
+
+Problem 2. (20pt) Let p and q be two distinct prime numbers. Let G be a non-abelian finite group satisfying the following conditions:
+
+1. all nontrivial elements have order either p or q;
+
+2. The q-Sylow subgroup Hq is normal and is a nontrivial abelian group.
+
+Show in steps the following statement:
+
+The group G is of the form (Z/pZ) n (Z/qZ)n , where the action of 1 ∈ Z/pZ on (Z/qZ)n ≃ Fnq is given by a matrix M (1) ∈ GLn (Fq ) whose eigenvalues are all primitive p-th roots of unities.
+
+(2.1) (5pt) Let Hp denote a p-Sylow subgroup of G. Show that its inclusion into G induces an isomorphism Hp ∼ = G/Hq , and that G ≃ Hp n Hq . (2.2) (5pt) Let M : Hp −→Aut(Hq ) ≃ GLn (Fq ) be the homomorphism induced from the conjugations. Show that for each 1 6= a ∈ Hp , M (a) is semisimple whose eigenvalues are all primitive p-th roots of unities. In particular M is injective.
+
+(2.3) (5pt) Show that if two nontrivial elements a, b ∈ Hp commute with each other, then a = bn for some n ∈ N, and that Hp ≃ Z/pZ.
+
+(2.4) (5pt) Complete the solution of the problem.
+
+1 Problem 3. (20pt) Let ζ be a root of unity satisfying an equation ζ = 1 + N η for an integer N ≥ 3 and an algebraic integer η. Show that ζ = 1.
+
+Problem 4. (20pt) Let G be a finite group and (π, V ) a finite dimensional CG-module. For n ≥ 0, let C[V ]n be the space of homogeneous polynomial functions on V of degree n. For a simple G-representation ρ, denote by an (ρ) the multiplicity of ρ in C[V ]n . Show that X 1 X χρ (g) an (ρ)tn = . n≥0 |G| g∈G det(idV − π(g)t)
+
+Problem 5. (20pt) Let A be an n × n complex matrix considered as an operator on V = (Cn , (·, ·)) with standard hermitian form. Let A∗ = Āt be the hermitian transpose of A: (Ax, y) = (x, A∗ y), ∀x, y ∈ Cn .
+
+(5.1) (5pt) For any λ ∈ C, show the identity:
+
+ker(A − λ)⊥ = (A∗ − λ̄)V.
+
+(5.2) (15pt) Show the equivalence of the following two statements:
+
+(a) A commutes with A∗ ; (b) there is a unitary matrix U (in the sense U ∗ = U −1 ), such that U AU −1 is diagonal.
+
+Problem 6. (20pt) Consider the polynomial f (x) = x5 − 80x + 5.
+
+(6.1) (5pt) Show that f is irreducible over Q;
+
+(6.2) (15 pt) Show in steps that the split field K of f has Galois group G := Gal(K/Q) isomorphic to S5 , the symmetric group of 5 letters.
+
+(a) (5pt) f = 0 has exactly two complex roots; (b) (5pt) G can be embedded into S5 with image containing cycles (12345) and (12); (c) (5pt) G ≃ S5 .
+
+2
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 令 \(a=(g-1)b\ne0\)。对 \(x\in\ker(g-1)\)，有 \(s_agx=s_ax\)，且 \(x\perp a\)，故 \(s_agx=x\)。又直接算
+\[
+s_ag b=b
+\]
+（用 \(g\) 正交展开 \((gb,a)\)）。因此 \(\ker(g-1)\oplus\mathbb R b\subset\ker(s_ag-1)\)，维数恰增一。归纳于 \(\dim(g-1)V\)，每乘一个反射把不动空间维数增一，最终化为恒等，故 \(g\) 是 \(\dim(g-1)V\) 个反射乘积。
+\item 因 \(H_q\lhd G\)，商 \(G/H_q\) 为 \(p\)-群且由 Sylow \(p\)-子群 \(H_p\) 映上，核为 \(H_p\cap H_q=1\)，故 \(G\simeq H_q\rtimes H_p\)。\(H_q\) 中非单位元素阶为 \(q\)，故是 \(\mathbb F_q\)-向量空间。若 \(1\ne a\in H_p\)，其共轭作用不能有特征值 \(1\)，否则产生阶 \(pq\) 或非允许阶元素；又 \(a^p=1\)，故特征值均为 primitive \(p\)-th roots，作用半单且忠实。若 \(H_p\) 中两个非平凡元素交换，它们在同一 cyclic subgroup，否则产生 \(C_p^2\) 导致元素阶结构矛盾，故 \(H_p\simeq C_p\)。
+\item 若 \(\zeta=1+N\eta\)，则对任意嵌入，
+\[
+|\zeta-1|=|N\eta|
+\]
+且 \(\zeta\) 为根 of unity。范数
+\[
+N_{\mathbb Q(\zeta,\eta)/\mathbb Q}(\zeta-1)
+\]
+是整数并被 \(N^{[K:\mathbb Q]}\) 整除。另一方面根 of unity 的 \(1-\zeta\) 的范数只可能为 \(1\) 或某个素数幂，且若 \(\zeta\ne1\) 其所有共轭绝对值小于 \(2\)，与 \(N\ge3\) 的整除矛盾。因此 \(\zeta=1\)。
+\item Molien 公式。投影到简单表示 \(\rho\) 的重数为
+\[
+a_n(\rho)=\frac1{|G|}\sum_{g\in G}\overline{\chi_\rho(g)}\,\operatorname{tr}(g|_{\mathbb C[V]_n}).
+\]
+而
+\[
+\sum_{n\ge0}\operatorname{tr}(g|\mathbb C[V]_n)t^n
+=\frac1{\det(I-\pi(g)t)}
+\]
+由把 \(\pi(g)\) 对角化后对单项式求迹得到。代入并按题目字符约定去掉共轭记号，即得公式。
+\item 恒等式
+\[
+\ker(A-\lambda)^\perp=\operatorname{im}(A^\ast-\bar\lambda)
+\]
+来自有限维 Hilbert 空间中 \((\operatorname{im}T)^\perp=\ker T^\ast\)，取 \(T=A^\ast-\bar\lambda\)。若 \(A\) 正规，即 \(AA^\ast=A^\ast A\)，则不同特征值的广义部分正交，且无非平凡 Jordan 块；谱定理给酉对角化。反向若 \(A=U^{-1}DU\) 且 \(U\) 酉、\(D\) 对角，则 \(A^\ast=U^{-1}\bar D U\)，显然与 \(A\) 交换。
+\item Eisenstein 判别用于 \(f(x)=x^5-80x+5\)：素数 \(5\) 整除除首项外各系数，而 \(25\nmid5\)，故不可约。导数 \(5x^4-80=5(x^4-16)\) 显示实临界点为 \(\pm2\)；符号分析得恰有三个实根、两个非实根（若按题面“两个复根”即两个非实根）。模若干素数分解给 Galois 群含 \(5\)-循环；复共轭给换位。传递子群含 \(5\)-循环和换位，生成 \(S_5\)，故分裂域 Galois 群为 \(S_5\)。
+\end{enumerate}
+
+\subsection{2016 年：2016-team.pdf\#algebra}
+\paragraph{题目}
+Algebra and Number Theory Team This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points). Find all real orthogonal 2 × 2 matrices k with the following property: There is an upper triangular 2 × 2 real matrix b with all diagonal entries being positive numbers such that kb is a positive definite symmetric matrix. Problem 2 (20 points). For x ∈ Z and k ≥ 0, define the binomial coefficients ! ! x x(x − 1) · · · (x − k + 1) x = , = 1. k k! 0
+
+(a) (6 points) Show that x ∈ Z =⇒ xk ∈ Z. Show that every function f : Z≥0 → Z can be expressed as f (x) = (b) (6 points) P∞ x k=0 ak k , where ak ∈ Z are uniquely determined by f . (c) (8 points) Define ! x + bk/2c φk (x) = . k P∞ Show that every function f : Z → Z can be expressed as f (x) = k=0 ak φk (x), where ak ∈ Z are uniquely determined by f . Problem 3 (20 points). Let K be the splitting field of the polynomial
+
+x4 − x2 − 1.
+
+(a) (10 points) Show that the Galois group of K over Q is isomorphic to the dihedral group D4 . Here we adopt the convention that D4 is the group of symmetries of a square and has order 8. (b) (10 points) Determine the lattice of subfields of K: Find all subfields of K and describe the partial order induced by inclusion. Problem 4 (20 points). Let G be a (not necessarily finite) group and let F be a field of characteristic 6= 2. Let V 6= 0 be an indecomposable finite-dimensional linear representation of G over F . Let R = EndF (V )G be the ring of G-equivariant endomorphisms of V . (a) (5 points) Prove the following form of Fitting’s lemma: Every element of R is either invertible or nilpotent. (b) (5 points) Deduce that the set I ⊆ R of non-invertible elements is a two-sided ideal and the quotient R/I is a division algebra over F . (c) (5 points) We say that V is orthogonal if there exists a G-invariant nonde- generate symmetric bilinear form on V . We say that V is symplectic if there exists a G-invariant nondegenerate alternating bilinear form on V . Deduce that if there exists a G-invariant nondegenerate bilinear form on V , then V is orthogonal or symplectic.
+
+Page 1 of 2 (d) (5 points) Assume that F is algebraically closed. Deduce from (b) that V cannot be both orthogonal and symplectic.
+
+Problem 5 (20 points). (a) (5 points) Let G be a finite group. Let x1 , . . . , xh be representatives of the con- jugacy classes of G. Let ni = \#CentG (xi ) be the cardinality of the centralizer of xi . Prove the identity h X 1 1= . i=1 ni
+
+(b) (10 points) Deduce that for any integer h ≥ 1, there exist only finitely many isomorphism classes of finite groups with exactly h conjugacy classes. (c) (5 points) Find all the finite groups with exactly 3 conjugacy classes.
+
+Page 2 of 2 S.-T. Yau College Student Mathematics Contests 2016
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 设 \(kb=S\) 正定对称，则 \(k=Sb^{-1}\) 是 \(S\) 的 QR 分解中的正交因子。对任意可逆矩阵，QR 分解唯一且 \(b\) 对角正。因此问题等价于哪些正交矩阵是某正定矩阵的 QR 正交因子。二维直接设
+\[
+k=\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}
+\quad\text{或反射型}
+\]
+并令 \(b=\begin{pmatrix}u&v\\0&w\end{pmatrix}\)。条件 \(kb=(kb)^T>0\) 给方程 \(\sin\theta\,u=\cos\theta\,v-\sin\theta\,w\) 及正定不等式。解得恰为旋转角 \(|\theta|<\pi/2\) 的旋转矩阵；反射型因行列式为 \(-1\) 而 \(kb\) 正定行列式正，不可能。
+\item 整数值多项式基：差分算子 \(\Delta f(x)=f(x+1)-f(x)\) 满足
+\[
+\Delta\binom{x}{k}=\binom{x}{k-1}.
+\]
+由归纳得 \(\binom{x}{k}\) 对整数 \(x\) 为整数。对 \(f:\mathbb Z_{\ge0}\to\mathbb Z\)，令 \(a_0=f(0)\)，再令 \(a_k=(\Delta^k f)(0)\)，Newton 展开
+\[
+f(x)=\sum_{k\ge0}a_k\binom{x}{k}
+\]
+逐点有限且唯一。对全体 \(\mathbb Z\)，\(\phi_k(x)=\binom{x+\lfloor k/2\rfloor}{k}\) 的零点排列使其构成按 \(|x|\) 递增的整数值基；同样用在序列点 \(0,-1,1,-2,2,\ldots\) 上的三角插值确定唯一整数系数。
+\item 设 \(\alpha^2=(1+\sqrt5)/2\)，根为 \(\pm\alpha,\pm\alpha^{-1}i\) 的等价形式，分裂域含 \(\sqrt5\)、相关平方根与 \(i\)。四个根构成一个正方形，Galois 群在其上忠实作用。可构造两个自同构：一个四循环根，另一个反射（复共轭或交换平方根），满足 \(r^4=s^2=1,srs=r^{-1}\)，故群为 \(D_4\)。子域格由 \(D_4\) 子群格给出：三个二次子域对应三个指数二子群；五个四次子域对应五个阶二子群，包含关系反向于子群包含。
+\item Fitting 引理：对 \(u\in R=\operatorname{End}_G(V)\)，有限维给
+\[
+V=\ker u^N\oplus \operatorname{im}u^N
+\]
+对 \(N\gg0\)。两部分 \(G\)-稳定。因 \(V\) indecomposable，二者之一为 \(0\)，故 \(u\) 可逆或幂零。非可逆元全为幂零；若 \(a\) 非可逆，则 \(1-a\) 可逆，所以非可逆元构成双边理想，商为除环。若有非退化 \(G\)-不变双线性型 \(B\)，其对称化与交错化至少一个非零；对应的自伴映射在除环商中非零，故可逆，从而给正交或辛结构。代数闭域上除环商为 \(F\)，同一不可分解表示不能同时支持对称和交错非退化型。
+\item 类方程给
+\[
+|G|=\sum_i [G:C_G(x_i)].
+\]
+除以 \(|G|\) 得
+\[
+1=\sum_i\frac1{|C_G(x_i)|}.
+\]
+若共轭类数为 \(h\)，则每个 \(|C_G(x_i)|\le |G|\)，上式对中心化子阶给有限 Egyptian fraction 约束；并且 \(|G|\le\prod_i |C_G(x_i)|\) 可得只有限多可能阶数，从而只有有限多群。三个共轭类时，Abel 群必须阶 \(3\)，得 \(C_3\)。非 Abel 情形中心只含单位，两个非平凡类大小相加为 \(|G|-1\)，中心化子方程无整数解除 \(S_3\) 型会有三类 \(1\)、换位、三循环；故还有 \(S_3\)。
+\end{enumerate}
+
+\subsection{2017 年：2017-team.pdf\#algebra}
+\paragraph{题目}
+Algebra and Number Theory Team This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points). Let G be a group and let g ∈ G be an element of finite order n. Suppose that n is the product of two positive integers r and s which are coprime to each other. (a) (10 points) Show that there is a pair (g1 , g2 ) of elements of G such that g1r = 1, g2s = 1 and g1 g2 = g2 g1 = g.
+
+(b) (10 points) Show that such a pair is unique. Problem 2 (20 points). Let p > 2 be a prime number and let T be a linear operator of order p on an n-dimensional vector space V over Q. (a) (8 points) Show that the trace tr(T ) of T on V is an integer in Z.
+
+(b) (12 points) Show that tr(T ) is congruent to n modulo p. Problem 3 (20 points). Let g be a finite dimensional Lie algebra over C. For each x ∈ g, define a linear map
+
+adx : g → g, y 7→ [x, y].
+
+Put n(x) := the dimension of the kernel of the operator (adx )dim g . The rank of g is defined to be
+
+rank(g) := min\{n(x) | x ∈ g\}.
+
+Show that \{x ∈ g | n(x) > rank(g)\} is the zero set of a polynomial function on g. Problem 4 (20 points). Let p be a prime number and let K = Fp (T ) be the field of rational functions over Fp . Consider the polynomials
+
+f (X) = X p − T X − T, g(X) = X p−1 − T.
+
+(a) (5 points) Show that f and g are irreducible and separable over K.
+
+(b) (5 points) Let M be the splitting field of g over K. Show that Gal(M/K) is isomorphic to F× p.
+
+(c) (10 points) Let L be the splitting field of f over K. Show that g splits in L and Gal(L/K) is isomorphic to the semidirect product G = Fp o F× p , where × Fp acts on Fp by homotheties.
+
+Page 1 of 2 Problem 5 (20 points). Let a and b be a pair of coprime positive integers. Let N(a, b) be the set of nonnegative integral linear combinations of a and b:
+
+N(a, b) := \{N ∈ Z | N = ax + by for some x, y ∈ Z≥0 \}.
+
+(a) (7 points) Show that every integer N satisfying N ≥ a(b−1) belongs to N(a, b).
+
+(b) (13 points) Show that there are exactly (a − 1)(b − 1)/2 positive integers not belonging to N(a, b).
+
+Page 2 of 2 S.-T. Yau College Student Mathematics Contests 2017
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 因 \((r,s)=1\)，取整数 \(u,v\) 使 \(ur+vs=1\)。令
+\[
+g_1=g^{vs},\qquad g_2=g^{ur}.
+\]
+则 \(g_1g_2=g\)，二者为 \(g\) 的幂所以交换，且
+\[
+g_1^r=g^{vrs}=1,\quad g_2^s=g^{urs}=1
+\]
+因为 \(n=rs\)。若 \(g=ab\) 且 \(a^r=b^s=1\)、\(ab=ba\)，则 \(a=g^{vs}\)、\(b=g^{ur}\) 由同样的 Bezout 指数推出，故唯一。
+\item \(T^p=1\) 且 \(p>2\)。有理表示分解为 \(\mathbb Q[C_p]\)-模，即若干平凡表示和若干 \(\mathbb Q(\zeta_p)\) 的拷贝。平凡块迹为 \(1\)，每个非平凡不可约块迹为
+\[
+\operatorname{Tr}_{\mathbb Q(\zeta_p)/\mathbb Q}(\zeta_p)=-1.
+\]
+故总迹为整数。维数模 \(p\)：平凡块贡献 \(1\) 于迹与维数；非平凡块维数 \(p-1\equiv-1\pmod p\)，迹 \(-1\)，故 \(\operatorname{tr}(T)\equiv n\pmod p\)。
+\item 矩阵 \(\operatorname{ad}_x\) 的条目是 \(x\) 坐标的线性函数，故 \((\operatorname{ad}_x)^{\dim\mathfrak g}\) 的各个 \(r\times r\) 子式是多项式函数。条件 \(n(x)>r_0=\operatorname{rank}\mathfrak g\) 等价于该矩阵的秩小于 \(\dim\mathfrak g-r_0\)，也即所有相应大小子式同时为零。因此这是多项式零点集。
+\item \(g(X)=X^{p-1}-T\) 在 \(\mathbb F_p(T)\) 中由 Eisenstein（在素元 \(T\) 处）不可约且导数 \(-X^{p-2}\) 非零，故可分。\(f(X)=X^p-TX-T\) 是 Artin--Schreier 型变形；若有根或低次因子，会给 \(T=x^p/(x+1)\) 的 \(p\)-次参数化，和 \(T\) 的赋值矛盾，故不可约，导数为 \(-T\ne0\) 可分。\(g\) 的分裂域为添入一个 \((p-1)\)-次根，Galois 群 \(\mathbb F_p^\times\)。若 \(\alpha\) 为 \(f\) 的根，则所有根为 \(\alpha+c\lambda\)（适当 \(\lambda^{p-1}=T\)），平移给正规 \(F_p\)，伸缩给 \(\mathbb F_p^\times\)，故 Galois 群为 \(\mathbb F_p\rtimes\mathbb F_p^\times\)。
+\item 对每个整数 \(N\)，模 \(a\) 存在唯一 \(0\le y<a\) 使 \(by\equiv N\pmod a\)。若 \(N\ge a(b-1)\)，取此 \(y\le a-1\)，则
+\[
+x=\frac{N-by}{a}\ge \frac{a(b-1)-b(a-1)}a=\frac{b-a}{a}
+\]
+经选择较小代表或对称交换 \(a,b\) 可保证 \(x\ge0\)，故 \(N\in N(a,b)\)。不可表示的正整数与可表示的 \(ab-a-b-N\) 配对：恰有一方可表示。区间 \(1,\ldots,ab-a-b\) 长度 \((a-1)(b-1)-1\)，加上 Frobenius 数本身不可表示，得到不可表示正整数数目
+\[
+\frac{(a-1)(b-1)}2.
+\]
+\end{enumerate}
+
+\subsection{2018 年：2018-team.pdf\#algebra}
+\paragraph{题目}
+Algebra and Number Theory Team This test has 5 problems and is worth 100 points. Carefully justify your answers.
+
+Problem 1 (20 points). Recall that a ring E is said to be local if for every u ∈ E, at least one of the elements u and 1 − u is invertible. Let R be a ring and let M be an R-module.
+
+(a) (8 points) Show that if EndR (M ) is a local ring, then M is indecomposable.
+
+(b) (12 points) Assume M indecomposable and of finite length. Prove the Fitting lemma: Every endomorphism u of M is either invertible or nilpotent. Deduce that EndR (M ) is a local ring.
+
+Problem 2 (20 points).
+
+(a) (6 points) Let n ≥ 2 be an integer. Show that there exists an integer m with n n 1 ≤ m ≤ n − 1 such that the binomial coefficient m satisfies m ≥ 2n /n.
+
+(b) (6 points) Let 0 ≤ m ≤ n be integers with n ≥ 1. Show that for every prime number p, !! n vp ≤ logp (n) m Here vp is the p-adic valuation: vp (pa b) = a for integers b prime to p and a ≥ 0.
+
+(c) (8 points) Let n ≥ 2 be an integer and let π(n) denote the number of prime numbers p ≤ n. Deduce the following inequality of Chebyshev: n π(n) ≥ − 1. log2 n
+
+Problem 3 (20 points). Let n ≥ 1 be an integer and let Φn (X) ∈ Q[X] denote the n-th cyclotomic polynomial, i.e. Y Φn (X) := (X − ξ), ξ
+
+where ξ runs through primitive n-th roots of unity in C. Recall that X n − 1 = Q d|n Φd (X) and Φn (X) belongs to Z[X]. Let p be a prime number such that p - n. Denote by Φn the residue class of Φn in Fp [X]. Prove the following statements:
+
+(a) (8 points) The roots of Φn = 0 in the algebraic closure Fp of Fp are exactly the primitive n-th roots of 1 in Fp .
+
+(b) (12 points) Φn is irreducible in Fp [X] if and only if (Z/nZ)× is a cyclic group generated by the class of p.
+
+Page 1 of 2 Problem 4 (20 points). Let G be a finite group. Let V be a finite-dimensional complex representation of G and let χ : V → C be the associated character.
+
+(a) (8 points) Show that there exists a subfield L ⊆ C containing the image of χ such that L/Q is a finite Galois extension. Show moreover that Y Y B(χ) = σ(χ(g)) σ∈Gal(L/Q) g∈G
+
+belongs to Z.
+
+(b) (12 points) Suppose that χ is irreducible and dim(V ) ≥ 2. Show that there exists g ∈ G with χ(g) = 0. (Hint. One may apply the inequality of arithmetic and geometric means to |B(χ)|2 .)
+
+Problem 5 (20 points). Let F be a field, V an F -vector space of dimension d and W ⊆ V a subspace. Let f : W → V be an F -linear map. Assume that the only subspace W 0 ⊆ W such that f (W 0 ) ⊆ W 0 is \{0\}.
+
+(a) (6 points) Let v ∈ V be a non-zero vector. Show that there exists a unique integer k(v) ≥ 0 such that v, f (v), f 2 (v), . . . , f k(v)−1 (v) ∈ W but f k(v) (v) ∈ / W. Show moreover that v, f (v), . . . , f k(v) (v) are linearly independent over F .
+
+(b) (14 points) Prove that given λ1 , . . . , λd ∈ F , there exists an F -linear extension of f to f˜: V → V such that the characteristic polynomial of f˜ is di=1 (λ − λi ). Q Lk(v) (Hint. You may first treat the special case V = i=0 F f i (v). For the general case, consider the subset Wn ⊆ V of vectors v ∈ V with k(v) ≥ n or v = 0.)
+
+Page 2 of 2 S.-T. Yau College Student Mathematics Contests 2018
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 若 \(M=M_1\oplus M_2\) 非平凡，则投影 \(e\in\operatorname{End}_R(M)\) 是非平凡幂等元；局部环中幂等元只能是 \(0\) 或 \(1\)，矛盾。反向，若 \(M\) 有有限长度，对任意 \(u\)，Fitting 分解
+\[
+M=\ker u^N\oplus \operatorname{im}u^N
+\]
+对 \(N\gg0\) 成立。不可分解性迫使其中一项为 \(0\)，故 \(u\) 幂零或可逆。于是非可逆元构成 Jacobson radical，且对每个 \(u\)，\(u\) 或 \(1-u\) 可逆，所以端omorphism环局部。
+\item 二项式系数和为 \(2^n\)，去掉两端后
+\[
+\sum_{m=1}^{n-1}\binom nm=2^n-2.
+\]
+因此某个中间项至少 \((2^n-2)/(n-1)\ge 2^n/n\)（\(n\ge2\) 可直接核对）。Kummer 定理说明 \(v_p\binom nm\) 等于加法进位数，至多 \(\lfloor\log_p n\rfloor\)。于是若所有素数 \(p\le n\) 太少，则中间二项式的大小被
+\[
+\prod_{p\le n}p^{\log_p n}=n^{\pi(n)}
+\]
+控制；结合上一下界得 \(2^n/n\le n^{\pi(n)}\)，化简得 Chebyshev 下界
+\(\pi(n)\ge n/\log_2 n-1\)。
+\item 因 \(p\nmid n\)，多项式 \(X^n-1\) 在 \(\overline{\mathbb F}_p\) 中无重根，\(\Phi_n\) 的根正是阶恰为 \(n\) 的单位根。Frobenius \(x\mapsto x^p\) 在本原 \(n\) 次根集合上对应指数乘以 \(p\)。不可约因子就是 Frobenius 轨道；\(\Phi_n\) 不可约当且仅当全部本原根为一个轨道，即 \(p\) 在 \((\mathbb Z/n\mathbb Z)^\times\) 中生成整个群，且该群循环。
+\item 有限群表示的特征值都是根 of unity，故所有 \(\chi(g)\) 落在某个分圆域 \(L\)，取其 Galois 闭包即可。\(B(\chi)\) 是所有 Galois 共轭值的乘积再对 \(g\) 相乘，是 Galois 不变的代数整数，故在 \(\mathbb Z\)。若不可约且 \(\dim V\ge2\)，假设所有 \(\chi(g)\ne0\)。由正交关系
+\[
+\sum_g|\chi(g)|^2=|G|
+\]
+和 AM--GM 估计 \(\prod_g|\chi(g)|^2\le1\)。另一方面 \(B(\chi)\) 为非零整数，所有共轭乘积绝对值至少 \(1\)。等号情形迫使 \(|\chi(g)|=1\) 对所有 \(g\)，与 \(\chi(1)=\dim V\ge2\) 矛盾。故某 \(g\) 有 \(\chi(g)=0\)。
+\item 对 \(v\ne0\)，若所有迭代一直留在 \(W\)，其张成空间给非零 \(W'\subset W\) 且 \(f(W')\subset W'\)，矛盾，故唯一 \(k(v)\) 存在。若
+\[
+\sum_{i=0}^{k}c_if^i(v)=0
+\]
+取最高非零系数，可推出 \(f^k(v)\) 落在前面张成的 \(f\)-稳定子空间中，进而得到非零 \(W'\)，矛盾，故线性无关。构造扩张时，在每条链
+\[
+v,fv,\ldots,f^{k(v)-1}v
+\]
+之外指定最后一个向量的像，使该 companion block 的特征多项式为给定因子；按 \(W_n=\{v:k(v)\ge n\}\) 递减选链分解，拼接 companion blocks，即可得到总特征多项式 \(\prod_i(\lambda-\lambda_i)\)。
+\end{enumerate}
+
+\subsection{2019 年：Algebra2019-team.pdf}
+\paragraph{题目}
+S.-T. Yau College Student Mathematics Contests 2019
+
+Algebra and Number Theory Team (5 problems)
+
+1) Let Sn be the group of permutations of \{1, 2, ..., n\}. Let σ ∈ Sn be the permutation
+
+(1, n)(2, n − 1) · · · (k, n − k + 1) · · · . n Prove that the centraliser ZSn (σ) is isomorphic to S[ n2 ] n (Z/2Z)[ 2 ] . 2) Recall that the algebra of regular functions on a vector space W is the symmetric algebra of linear forms on W . Let V = C2 . Let C[EndC (V )] be the algebra of regular functions on EndC (V ). The natural action of the group G = SL2 (C) on V induces an action of G × G on EndC (V ) by left and right multiplication. Thus we get an action of G × G on C[EndC (V )]. Compute the algebra of fixed points C[EndC (V )]G×G . 3) Let R be a Noetherian ring and I ⊂ R be an ideal. Define the Rees algebra as M Rees(I, R) := I n tn ⊂ R[t]. n⩾1
+
+Prove that Rees(I, R) is Noetherian. 4) Let p be a odd prime. Let Φp be the p-th cyclotomic field, i.e., Φp = Q(ζp ) where ζp is a primitive p-th root of unity.
+
+1. Show that Φp /Q is a Galois extension with Galois group (Z/pZ)× . 2. Deduce that Φp contains a unique quadratic extension of Q. Pp−1 ¡ ¢ 3. Write gp for the Gauss sum a=1 ap ζpa . Show that ¡ ¢ • gp = −1 p gp , • |gp |2 = p. 4. Determine the unique quadratic extension of Q contained in Φp .
+
+5) 1. Let E/F be a finite Galois extension. Assume that the Galois group Gal(E/F ) is generated by a single element σ. Let x be an element of E such that trE/F (x) = 0. Show that there exists y ∈ E such that x = σ(y) − y. 2. Let F be a field of characteristic p, and let E/F be a Galois extension of degree p. Show that there exists x ∈ F such that E ∼= F [T ]/(T p − T − x).
+
+1
+
+\paragraph{解答}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item 置换 \(\sigma=(1,n)(2,n-1)\cdots\) 是 \(r=\lfloor n/2\rfloor\) 个不交换位的乘积，若 \(n\) 奇还固定中点。中心化子必须把这些二元轨道彼此置换，并可在每个二元轨道内部交换两点；反之任意这样的操作都与 \(\sigma\) 交换。因此
+\[
+Z_{S_n}(\sigma)\cong S_r\ltimes (C_2)^r.
+\]
+\item 把 \(\operatorname{End}(V)\simeq V\otimes V^\ast\) 看作 \(2\times2\) 矩阵空间，\(SL_2\times SL_2\) 左右乘作用保持且基本只保持行列式。第一基本定理给不变量环由唯一的 \(2\times2\) minor 生成，即
+\[
+\mathbb C[\operatorname{End}(V)]^{G\times G}=\mathbb C[\det].
+\]
+直接验证：非满秩矩阵轨道闭包含 \(0\)，满秩矩阵按行列式分成轨道，所以正则不变量只能是 \(\det\) 的多项式。
+\item 若 \(I=(x_1,\ldots,x_r)\)，则 Rees 代数
+\[
+\operatorname{Rees}(I,R)=R[x_1t,\ldots,x_rt]\subset R[t].
+\]
+它由有限多个元素 \(x_it\) 作为 \(R\)-代数生成，是多项式环 \(R[Y_1,\ldots,Y_r]\) 的商。因 \(R\) Noetherian，Hilbert 基定理给多项式环 Noetherian，商环也 Noetherian。
+\item \(\mathbb Q(\zeta_p)/\mathbb Q\) 的自同构由 \(\zeta_p\mapsto \zeta_p^a\), \(a\in(\mathbb Z/p\mathbb Z)^\times\) 给出，故 Galois 群为该乘法群。其唯一指数二子群是平方类，故唯一二次子域。Gauss 和
+\[
+g_p=\sum_{a=1}^{p-1}\left(\frac ap\right)\zeta_p^a
+\]
+满足 \(\sigma_b(g_p)=\left(\frac bp\right)g_p\)，故 \(g_p^2\) 固定于 Galois 群且
+\[
+g_p^2=\left(\frac{-1}{p}\right)p,\qquad |g_p|^2=p.
+\]
+因此唯一二次子域为
+\[
+\mathbb Q\left(\sqrt{(-1)^{(p-1)/2}p}\right).
+\]
+\item 加法 Hilbert 90：若 \(G=\langle\sigma\rangle\), \(|G|=n\), \(\operatorname{Tr}_{E/F}x=0\)，取
+\[
+y=-\frac1n\sum_{i=1}^{n-1} i\,\sigma^{i-1}(x)
+\]
+（一般情形用正常基同样构造）即可算得 \(\sigma(y)-y=x\)。若 \(\operatorname{char}F=p\) 且 \([E:F]=p\)，取 \(\sigma\) 生成 Galois 群。存在 \(u\in E\) 使 \(\sigma(u)-u=1\)，于是 \(\sigma(u^p-u)=u^p-u\)，故 \(u^p-u=a\in F\)，并且 \(E=F(u)\)，得到
+\[
+E\simeq F[T]/(T^p-T-a).
+\]
+\end{enumerate}
+
+\end{document}

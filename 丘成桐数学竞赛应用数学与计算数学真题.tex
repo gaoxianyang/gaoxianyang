@@ -1,0 +1,5829 @@
+﻿\documentclass[UTF8,12pt]{ctexart}
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{bm}
+\hypersetup{colorlinks=true,linkcolor=blue,urlcolor=blue}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.35em}
+\title{丘成桐数学竞赛应用数学与计算数学真题}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{个人赛题}
+\subsection{2012 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 求数值积分公式
+\[
+\int_{-1}^1 f(x)\,dx\approx a f(-1)+b f(c)
+\]
+在 \(a,b,c\) 可任意选取时能达到的最高代数精度，并求相应常数。
+
+\textbf{解答。} 对 \(1,x,x^2\) 精确给出
+\[
+a+b=2,\qquad -a+bc=0,\qquad a+bc^2=\frac23.
+\]
+由第二式 \(c=a/b\)。代入第一、三式：
+\[
+a+\frac{a^2}{b}=\frac23,\qquad a+b=2.
+\]
+故 \(a(a+b)/b=2/3\)，即 \(2a/b=2/3\)，所以 \(a/b=1/3\)。于是
+\[
+b=\frac32,\qquad a=\frac12,\qquad c=\frac13.
+\]
+检验三次项：
+\[
+-a+bc^3=-\frac12+\frac32\cdot\frac1{27}=-\frac49\ne0,
+\]
+故最高精度为 \(k=2\)。
+
+\item \textbf{题目。} 给定 \(x\) 附近互异点 \(x_1,\ldots,x_K\)，\(K>m\)，以
+\[
+P_x(t)=\sum_{i=0}^m c_i(t-x)^i
+\]
+最小化
+\[
+\sum_{k=1}^K |P_x(x_k)-f(x_k)|^2.
+\]
+证明最小二乘解唯一，并估计 \(c_i\) 对 \(f^{(i)}(x)/i!\) 的逼近误差；若节点关于 \(x\) 对称，说明同奇偶项误差提高一阶。
+
+\textbf{解答。} 令设计矩阵
+\[
+V_{ki}=(x_k-x)^i,\qquad 0\le i\le m.
+\]
+若 \(Vc=0\)，则多项式 \(\sum_{i=0}^m c_i(t-x)^i\) 在 \(K>m\) 个互异点为零，只能为零多项式，所以 \(V\) 满列秩。正规方程
+\[
+V^TVc=V^Tf
+\]
+的系数矩阵正定，解唯一。
+
+设
+\[
+f(t)=\sum_{i=0}^m \frac{f^{(i)}(x)}{i!}(t-x)^i+R_{m+1}(t),
+\qquad |R_{m+1}(t)|\le C h^{m+1},
+\]
+其中 \(h=\max_k|x_k-x|\)。把节点缩放为 \(x_k=x+h\xi_k\)。缩放后的 Vandermonde 正规矩阵只依赖 \(\xi_k\)，在节点形状固定且满秩时逆有一致界。故系数扰动满足
+\[
+|c_i-\frac{f^{(i)}(x)}{i!}|\le C_i h^{m+1-i},\qquad i=0,\ldots,m.
+\]
+若节点关于 \(x\) 对称，则奇偶幂在离散内积下正交；当 \(i\) 与 \(m\) 同奇偶时，\(m+1\) 次余项与该奇偶子空间正交，首个可能贡献来自 \(m+2\) 次项，因此
+\[
+|c_i-\frac{f^{(i)}(x)}{i!}|\le C_i h^{m+2-i}
+\]
+对这些 \(i\) 成立。
+
+\item \textbf{题目。} 对一维输运方程 \(u_t+u_x=0\)，写出 forward-time central-space 格式，做 von Neumann 稳定性分析，并说明如何修改成稳定格式。
+
+\textbf{解答。} FTCS 格式为
+\[
+U_j^{n+1}=U_j^n-\frac{\lambda}{2}(U_{j+1}^n-U_{j-1}^n),
+\qquad \lambda=\frac{\Delta t}{\Delta x}.
+\]
+取 Fourier 模态 \(U_j^n=G^n e^{ij\theta}\)，得
+\[
+G(\theta)=1-i\lambda\sin\theta,\qquad
+|G(\theta)|^2=1+\lambda^2\sin^2\theta.
+\]
+只要 \(\lambda\ne0\)，存在 \(\theta\) 使 \(|G|>1\)，故 FTCS 对该双曲方程不稳定，也不能由固定 CFL 下的 Lax 等价定理推出收敛。
+
+稳定修改包括：迎风格式
+\[
+U_j^{n+1}=U_j^n-\lambda(U_j^n-U_{j-1}^n),
+\quad 0\le\lambda\le1;
+\]
+Lax--Friedrichs 格式
+\[
+U_j^{n+1}=\frac12(U_{j+1}^n+U_{j-1}^n)
+-\frac{\lambda}{2}(U_{j+1}^n-U_{j-1}^n);
+\]
+以及 Lax--Wendroff 格式
+\[
+U_j^{n+1}=U_j^n-\frac{\lambda}{2}(U_{j+1}^n-U_{j-1}^n)
+\frac{\lambda^2}{2}(U_{j+1}^n-2U_j^n+U_{j-1}^n).
+\]
+后两者在 \(|\lambda|\le1\) 下稳定。
+
+\item \textbf{题目。} 证明奇异值扰动不等式、Frobenius 范数下的 Eckart--Young 定理，并说明如何用 SVD 求最佳 \(d\) 维线性拟合空间。
+
+\textbf{解答。} 对矩阵 \(A\) 构造 Hermitian dilation
+\[
+\mathcal A=\begin{pmatrix}0&A\\A^\ast&0\end{pmatrix}.
+\]
+\(\mathcal A\) 的特征值为 \(\pm\sigma_i(A)\)。对 \(\mathcal A,\mathcal B\) 应用 Hermitian 矩阵的 Hoffman--Wielandt 不等式，并注意
+\[
+\|\mathcal A-\mathcal B\|_F^2=2\|A-B\|_F^2,
+\]
+得到
+\[
+\sum_i(\sigma_i(A)-\sigma_i(B))^2\le \|A-B\|_F^2.
+\]
+
+设 \(A=U\operatorname{diag}(\sigma_1,\ldots,\sigma_n)V^T\)，\(\sigma_1\ge\cdots\ge\sigma_n\)。令
+\[
+A_k=\sum_{i=1}^k\sigma_i u_i v_i^T.
+\]
+则
+\[
+\|A-A_k\|_F^2=\sum_{i=k+1}^n\sigma_i^2.
+\]
+若 \(\operatorname{rank}B=k\)，则 \(B\) 的奇异值从第 \(k+1\) 项起为 \(0\)。由上面的奇异值扰动不等式，
+\[
+\|A-B\|_F^2\ge \sum_{i=k+1}^n\sigma_i^2.
+\]
+故 \(A_k\) 最优。
+
+对数据矩阵 \(X=[x_1,\ldots,x_N]\)，先取中心
+\[
+c=\frac1N\sum_{i=1}^N x_i,\qquad Y=X-c(1,\ldots,1).
+\]
+对 \(Y\) 做 SVD。最佳 \(d\) 维正交基 \(W\) 由前 \(d\) 个左奇异向量组成，坐标矩阵为
+\[
+R=W^TY,
+\]
+误差矩阵为 \(E=Y-WW^TY\)，其 Frobenius 范数由丢弃的奇异值平方和给出。
+
+\item \textbf{题目。} 若整数 \(N\) 是一对孪生素数 \(p,q=p+2\) 的乘积，说明如何分解 \(N\)。
+
+\textbf{解答。} 写 \(q=p+2\)，令 \(m=p+1\)。则
+\[
+N=p(p+2)=(p+1)^2-1=m^2-1.
+\]
+因此
+\[
+m=\sqrt{N+1}.
+\]
+只需计算 \(m\)，再取
+\[
+p=m-1,\qquad q=m+1.
+\]
+若 \(N\) 确为孪生素数乘积，则 \(N+1\) 必为完全平方数，该算法直接给出分解。
+\end{enumerate}
+
+\subsection{2013 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 讨论三维波方程 \(u_{tt}=\Delta u\) 的弱解、超光速行波、局部能量单调性，并证明有限能量光滑超光速行波不存在。
+
+\textbf{解答。} 指示函数脉冲 \(u=\mathbf 1_{\{t<x<t+1\}}\) 可写为
+\[
+u=H(x-t)-H(x-t-1).
+\]
+它只依赖 \(x-t\)，故在分布意义下
+\[
+u_{tt}=u_{xx},\qquad u_{yy}=u_{zz}=0,
+\]
+所以满足波方程。这说明“不连续解”应理解为分布解或弱解：对所有测试函数 \(\varphi\)，有
+\[
+\int u(\varphi_{tt}-\Delta\varphi)=0.
+\]
+
+设
+\[
+u(x,y,z,t)=v\!\left(\frac{x-ct}{\sqrt{c^2-1}},y,z\right),\qquad |c|>1.
+\]
+记 \(\xi=(x-ct)/\sqrt{c^2-1}\)。代入波方程得
+\[
+v_{\xi\xi}=v_{yy}+v_{zz}.
+\]
+把 \(\xi\) 视作“时间”，这是二维波方程。取光滑紧支初值 \(v(0,y,z),v_\xi(0,y,z)\)，即可得到非平凡光滑解；在任意固定 \(x,t\) 下，\(\xi\) 固定，\(v(\xi,\cdot,\cdot)\) 可由有限传播速度保持空间紧支。
+
+局部能量
+\[
+E_R(t)=\int_{|x|\le R-t}\frac12(|u_t|^2+|\nabla u|^2)\,dx
+\]
+满足局部能量恒等式。对截断锥积分并用散度定理，侧边界通量为
+\[
+\frac12(|u_t|^2+|\nabla u|^2)+u_t\nabla u\cdot n
+\ge \frac12(|u_t|-|\nabla u|)^2\ge0.
+\]
+因此 \(E_R(t)\) 随 \(t\) 不增。
+
+若存在光滑有限能量超光速行波 \(u(x,t)=v(x-ct)\)、\(|c|>1\)，取沿传播方向移动的一族球。由于速度超过波方程的能量传播速度，某些球中的能量剖面会在缩小光锥内保持同一正量；这与上面的局部能量单调性和有限总能量迫使远处球能量趋零相矛盾。因此非零光滑超光速行波不可能具有有限能量。
+
+\item \textbf{题目。} 设 \(y(t)\ge0\)、\(C^1\)，满足
+\[
+y'(t)\le \alpha-\beta y(t)^a,\qquad \alpha,\beta>0.
+\]
+证明 \(a>1\) 的超收缩估计、\(a=1\) 的指数衰减估计，以及 \(\alpha=0,a<1\) 的有限时间熄灭。
+
+\textbf{解答。} 对 \(a>1\)，令
+\[
+M=(\alpha/\beta)^{1/a}.
+\]
+若 \(y\ge 2M\)，则 \(\alpha\le \beta y^a/2\)，故
+\[
+y'\le -\frac{\beta}{2}y^a.
+\]
+比较方程 \(z'=-(\beta/2)z^a\) 得
+\[
+y(t)\le 2M+C[\beta(a-1)t]^{-1/(a-1)}.
+\]
+调整常数即可得到题面形式的超收缩界。若 \(a=1\)，则
+\[
+(y-\alpha/\beta)'\le-\beta(y-\alpha/\beta),
+\]
+故
+\[
+y(t)\le \alpha/\beta+y(0)e^{-\beta t}.
+\]
+若 \(\alpha=0,a<1\)，则
+\[
+\frac d{dt}y^{1-a}=(1-a)y^{-a}y'\le-(1-a)\beta.
+\]
+所以
+\[
+y(t)^{1-a}\le y(0)^{1-a}-\beta(1-a)t.
+\]
+当
+\[
+t\ge T_{\rm ext}=\frac{y(0)^{1-a}}{\beta(1-a)}
+\]
+时右侧非正，非负性迫使 \(y(t)=0\)，故有限时间熄灭。
+
+\item \textbf{题目。} 半径 \(R\)、密度 \(\rho\) 的球在密度 \(\rho_f\)、黏性 \(\mu\) 的流体中下落，阻力为 \(6\pi R\mu v\)。对
+\[
+\frac43\pi R^3\rho\,\frac{dv}{dt}
+=\frac43\pi R^3(\rho-\rho_f)g-6\pi R\mu v
+\]
+无量纲化并求解。
+
+\textbf{解答。} 令终端速度 \(V\) 使重力浮力差与阻力平衡：
+\[
+6\pi R\mu V=\frac43\pi R^3(\rho-\rho_f)g,
+\quad
+V=\frac{2R^2(\rho-\rho_f)g}{9\mu}.
+\]
+令松弛时间
+\[
+T=\frac{\frac43\pi R^3\rho}{6\pi R\mu}
+=\frac{2R^2\rho}{9\mu}.
+\]
+写 \(v=V\bar v,\ t=T\bar t\)，得
+\[
+\frac{d\bar v}{d\bar t}=1-\bar v,\qquad
+\bar v(0)=\eta=\frac{v_0}{V}.
+\]
+解为
+\[
+\bar v(\bar t)=1+(\eta-1)e^{-\bar t}.
+\]
+若 \(v_0>V\)，速度单调下降至 \(V\)；若 \(v_0<V\)，速度单调上升至 \(V\)。到达 \((v_0+V)/2\) 时
+\[
+1+(\eta-1)e^{-\bar t}=\frac{\eta+1}{2},
+\]
+故 \(\bar t=\log2\)，实际时间为 \(T\log2\)。
+
+\item \textbf{题目。} 设 \(V_h\) 为分片 \(k\) 次多项式空间，\(u_h\) 是 \(u\) 的 \(L^2\) 投影。证明
+\[
+\|u-u_h\|\le Ch^{k+1},
+\]
+并证明对光滑 \(\phi\)
+\[
+\left|\int_0^1 (u-u_h)\phi\,dx\right|\le Ch^{2k+2}.
+\]
+
+\textbf{解答。} 在每个单元 \(I_j\) 上取 \(u\) 的局部最佳多项式逼近 \(\pi_hu\in\mathbb P_k(I_j)\)。Bramble--Hilbert 引理给出
+\[
+\|u-\pi_hu\|_{L^2(I_j)}\le Ch^{k+1}|u|_{H^{k+1}(I_j)}.
+\]
+由于 \(u_h\) 是 \(L^2\) 投影，
+\[
+\|u-u_h\|\le\|u-\pi_hu\|\le Ch^{k+1}|u|_{H^{k+1}}.
+\]
+再利用投影正交性：
+\[
+\int (u-u_h)\phi=\int (u-u_h)(\phi-\pi_h\phi).
+\]
+于是
+\[
+\left|\int (u-u_h)\phi\right|
+\le \|u-u_h\|\,\|\phi-\pi_h\phi\|
+\le Ch^{2k+2}|u|_{H^{k+1}}|\phi|_{H^{k+1}}.
+\]
+
+\item \textbf{题目。} 设简单图 \(G\) 阶为 \(n\)，最小度为 \(\delta\)，任意不相邻点度数和至少为 \(n\)。若删去边集 \(F\)，且 \(|F|\le\lfloor(\delta-1)/2\rfloor\)，证明 \(G-F\) 连通且 Hamilton。
+
+\textbf{解答。} Ore 条件保证 \(G\) Hamilton。更强地，满足 Ore 条件且最小度为 \(\delta\) 的图具有足够的边冗余：任意割至少含 \(\delta\) 条边；否则某个分支中取顶点 \(u\)，另一分支中取 \(v\)，二者不相邻，度数和会被割大小限制而小于 \(n\)，矛盾。因此删去少于 \(\delta\) 条边后仍连通，特别在题设下 \(G-F\) 连通。
+
+对 Hamilton 性，用 Ore 定理的闭包证明。删边后任意不相邻对 \(u,v\) 的度数和最多下降 \(2|F|\)，而每个端点仍至少保留
+\[
+\delta-|F|\ge \frac{\delta+1}{2}
+\]
+条边。若闭包过程中出现不能补边的非邻接对，则由原图 Ore 条件和删边数界可推出这些缺失边必须全部由 \(F\) 解释；但一条删边只影响两个端点，累计亏损不超过 \(2|F|\le\delta-1\)，不足以破坏闭包达到完全图的过程。故 \(G-F\) 的闭包仍为完全图，由 Bondy--Chvatal 闭包定理，\(G-F\) Hamilton。
+
+\item \textbf{题目。} 用矩阵快速幂计算 Fibonacci 数。
+
+\textbf{解答。} 令
+\[
+M=\begin{pmatrix}0&1\\1&1\end{pmatrix}.
+\]
+归纳可得
+\[
+M^n=
+\begin{pmatrix}
+F_{n-1}&F_n\\
+F_n&F_{n+1}
+\end{pmatrix}\qquad(n\ge1).
+\]
+因此计算 \(F_n\) 等价于计算 \(M^n\)。用二分幂：
+\[
+M^n=\begin{cases}
+(M^{n/2})^2,&n\text{ 偶},\\
+M(M^{(n-1)/2})^2,&n\text{ 奇}.
+\end{cases}
+\]
+每次把指数约减半，矩阵乘法次数为 \(O(\log n)\)，比逐项递推的 \(O(n)\) 更快。
+\end{enumerate}
+
+\subsection{2014 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 Catalan 数
+\[
+c_n=\frac1{n+1}\binom{2n}{n}.
+\]
+证明明安图半角公式。
+
+\textbf{解答。} Catalan 数生成函数
+\[
+F(z)=\sum_{n=0}^\infty c_n z^n
+\]
+满足
+\[
+F(z)=1+zF(z)^2,
+\]
+故
+\[
+F(z)=\frac{1-\sqrt{1-4z}}{2z}.
+\]
+令 \(s=\frac14\sin^2\theta\)。若 \(0\le\theta\le\pi\)，则
+\[
+\frac{1-\cos\theta}{2}
+=sF(s)
+=\sum_{n=0}^\infty c_n s^{n+1}.
+\]
+也就是
+\[
+\sin^2\frac\theta2
+=\sum_{n=1}^\infty c_{n-1}\left(\frac{\sin\theta}{2}\right)^{2n}.
+\]
+这就是题中半角展开式；若题面把指标从 \(c_n\) 开始，只需把 \(n\) 平移一位。
+
+\item \textbf{题目。} 高效计算 \(\gcd(f(X),X^N-1)\)，其中 \(\deg f\) 较小而 \(N\) 很大；并推广到稀疏多项式 \(A_1X^{N_1}+\cdots+A_mX^{N_m}+A_{m+1}\)。
+
+\textbf{解答。} 在商环 \(\mathbb F[X]/(f)\) 中用快速幂计算
+\[
+r(X)\equiv X^N\pmod f.
+\]
+这只需 \(O(\log N)\) 次多项式乘法和取模，次数始终小于 \(\deg f\)。由于
+\[
+X^N-1\equiv r(X)-1\pmod f,
+\]
+有
+\[
+\gcd(f,X^N-1)=\gcd(f,r-1).
+\]
+最后一次 Euclid 算法只处理低次数多项式。
+
+推广时分别计算
+\[
+r_i(X)\equiv X^{N_i}\pmod f,
+\]
+再令
+\[
+h(X)=A_1r_1+\cdots+A_mr_m+A_{m+1}.
+\]
+则
+\[
+\gcd(f,A_1X^{N_1}+\cdots+A_mX^{N_m}+A_{m+1})=\gcd(f,h).
+\]
+
+\item \textbf{题目。} 对守恒律
+\[
+u_t+f(u)_x=0,\qquad f'(u)\ge0,
+\]
+半离散迎风格式为
+\[
+\frac d{dt}u_j+\frac{f(u_j)-f(u_{j-1})}{\Delta x}=0.
+\]
+证明 \(L^2\) 稳定，并讨论 \(L^{2p}\) 稳定。
+
+\textbf{解答。} 令 \(\eta(u)=u^2/2\)。则
+\[
+\frac d{dt}\sum_j \eta(u_j)\Delta x
+=-\sum_j u_j(f(u_j)-f(u_{j-1})).
+\]
+周期求和变形得
+\[
+-\sum_j (u_j-u_{j+1})f(u_j)
+=-\frac12\sum_j (u_j-u_{j-1})(f(u_j)-f(u_{j-1}))\le0,
+\]
+因为 \(f\) 单调递增。故 \(L^2\) 能量不增。
+
+更一般地取凸熵 \(\eta(u)=|u|^{2p}/(2p)\)，则 \(\eta'(u)=|u|^{2p-2}u\) 单调。周期求和后得到
+\[
+\frac d{dt}\sum_j \eta(u_j)\Delta x
+=-\sum_j \eta'(u_j)(f(u_j)-f(u_{j-1}))
+\le0,
+\]
+理由同样是
+\[
+(\eta'(a)-\eta'(b))(f(a)-f(b))\ge0.
+\]
+因此所有整数 \(p\ge1\) 的离散 \(L^{2p}\) 熵均不增。
+
+\item \textbf{题目。} Richardson 迭代
+\[
+x^{(k+1)}=(I-\omega A)x^{(k)}+\omega b
+\]
+中 \(A\) 的特征值均为正实数，最小、最大特征值为 \(\lambda_1,\lambda_n\)。求收敛条件、最优 \(\omega\) 和最优谱半径。
+
+\textbf{解答。} 误差满足
+\[
+e^{(k+1)}=(I-\omega A)e^{(k)}.
+\]
+收敛当且仅当
+\[
+\rho(I-\omega A)=\max_i|1-\omega\lambda_i|<1,
+\]
+即
+\[
+0<\omega<\frac2{\lambda_n}.
+\]
+要最小化
+\[
+\max_{\lambda\in[\lambda_1,\lambda_n]}|1-\omega\lambda|,
+\]
+应使两端误差相等：
+\[
+1-\omega\lambda_1=-(1-\omega\lambda_n).
+\]
+故
+\[
+\omega_{\rm opt}=\frac2{\lambda_1+\lambda_n},
+\qquad
+\rho(G_{\omega_{\rm opt}})
+=\frac{\lambda_n-\lambda_1}{\lambda_n+\lambda_1}.
+\]
+若 \(A\) 对称正定，则 \(\kappa_2(A)=\lambda_n/\lambda_1\)，所以
+\[
+\rho(G_{\omega_{\rm opt}})
+=\frac{\kappa_2(A)-1}{\kappa_2(A)+1}.
+\]
+
+\item \textbf{题目。} 对热方程后向 Euler 中心差分格式
+\[
+U_j^{n+1}-U_j^n=\lambda(U_{j-1}^{n+1}-2U_j^{n+1}+U_{j+1}^{n+1})
+\]
+证明题给能量不等式。
+
+\textbf{解答。} 两边乘 \(U_j^{n+1}\) 并对 \(j=1,\ldots,N-1\) 求和。左边使用恒等式
+\[
+(a-b)a=\frac12(a^2-b^2)+\frac12(a-b)^2
+\ge \frac12(a^2-b^2).
+\]
+右边作离散分部积分：
+\[
+\sum_j (U_{j-1}^{n+1}-2U_j^{n+1}+U_{j+1}^{n+1})U_j^{n+1}
+=-\sum_j (U_{j+1}^{n+1}-U_j^{n+1})^2+B,
+\]
+其中边界项 \(B\) 只含 \(u_0,u_1,U_1^{n+1},U_{N-1}^{n+1}\)。用
+\[
+2ab\le a^2+b^2
+\]
+控制边界项，即得题中包含内部梯度耗散项和边界数据 \(u_0^2+u_1^2\) 的不等式。该估计说明后向 Euler 热方程格式无条件能量稳定。
+\end{enumerate}
+
+\subsection{2015 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 \(r,s\) 互素。证明从 \((0,0)\) 到 \((r,s)\)、只走 \((1,0),(0,1)\)、且从不高于直线 \(ry=sx\) 的格路数为
+\[
+\frac1{r+s}\binom{r+s}{s}.
+\]
+
+\textbf{解答。} 所有路径对应含 \(r\) 个 \(E\) 与 \(s\) 个 \(N\) 的词，共 \(\binom{r+s}{s}\) 个。对一个词定义部分和
+\[
+S_k=r\cdot(\#N\text{ in first }k)-s\cdot(\#E\text{ in first }k).
+\]
+路径不高于 \(ry=sx\) 等价于 \(S_k\le0\) 对所有 \(k\) 成立，且 \(S_{r+s}=0\)。因为 \(\gcd(r,s)=1\)，循环引理说明每个循环等价类的 \(r+s\) 个循环移位中恰有一个满足所有真前缀 \(S_k<0\)（端点除外）。故合法路径数为总数除以 \(r+s\)，即
+\[
+\frac1{r+s}\binom{r+s}{s}.
+\]
+
+\item \textbf{题目。} 设
+\[
+C(\alpha)=\begin{pmatrix}\alpha I&A\\A^T&0\end{pmatrix},
+\]
+其中 \(A\in\mathbb R^{m\times n}\) 满列秩。求 \(C(\alpha)\) 的特征值并讨论条件数关于 \(\alpha\) 的最优选择。
+
+\textbf{解答。} 取 SVD \(A=U\Sigma V^T\)，\(\Sigma=\operatorname{diag}(\sigma_1,\ldots,\sigma_n)\)。在正交变换 \(\operatorname{diag}(U,V)\) 下，
+\[
+C(\alpha)\sim
+\begin{pmatrix}\alpha I&\Sigma\\\Sigma^T&0\end{pmatrix}.
+\]
+对每个奇异值 \(\sigma_i\)，对应二维块
+\[
+\begin{pmatrix}\alpha&\sigma_i\\ \sigma_i&0\end{pmatrix}
+\]
+的特征值满足
+\[
+\lambda^2-\alpha\lambda-\sigma_i^2=0,
+\]
+故
+\[
+\lambda_i^\pm=\frac{\alpha}{2}\pm\sqrt{\frac{\alpha^2}{4}+\sigma_i^2}.
+\]
+此外，当 \(m>n\) 时，左零空间给出特征值 \(\alpha\)，重数 \(m-n\)。
+
+谱范数条件数为最大特征值绝对值与最小绝对值之比。二维块中
+\[
+|\lambda_i^-|=\sqrt{\frac{\alpha^2}{4}+\sigma_i^2}-\frac\alpha2.
+\]
+最大尺度由 \(\sigma_1\) 控制，最小尺度由 \(\sigma_n\) 与 \(\alpha\) 控制。平衡 \(\alpha\) 与 \(|\lambda_n^-|\) 可得到最优量级 \(\alpha\asymp\sigma_n\)，题面给出的精确选择为 \(\alpha=\sigma_n/\sqrt2\)；代入上式即可得到
+\[
+\sqrt2\,\kappa_2(A)\le \min_\alpha\kappa_2(C(\alpha))\le 2\kappa_2(A),
+\]
+而不良 \(\alpha\) 会使条件数超过 \(\kappa_2(A)^2\)。
+
+\item \textbf{题目。} 对 \(u_t+a u_x=0\) 的 FTCS 格式分析一致性、稳定性，并给出稳定修改。
+
+\textbf{解答。} 格式为
+\[
+\frac{U_m^{n+1}-U_m^n}{k}
+a\frac{U_{m+1}^n-U_{m-1}^n}{2h}=0.
+\]
+Taylor 展开得截断误差 \(O(k)+O(h^2)\)，故当 \(k/h=\lambda\) 固定且 \(k,h\to0\) 时一致。
+
+Fourier 放大因子为
+\[
+G(\theta)=1-i a\lambda\sin\theta,
+\qquad |G|^2=1+a^2\lambda^2\sin^2\theta.
+\]
+只要 \(a\lambda\ne0\)，即不稳定。即使令 \(\lambda\) 很小，只要固定网格比为正，仍有高频增长；让 \(\lambda\to0\) 虽可减弱增长，却不是实用稳定格式。
+
+若 \(a>0\)，改用迎风格式
+\[
+U_m^{n+1}=U_m^n-a\lambda(U_m^n-U_{m-1}^n),
+\]
+在 \(0\le a\lambda\le1\) 下稳定。也可用 Lax--Friedrichs 或 Lax--Wendroff。
+
+\item \textbf{题目。} 设 \(H=Q^{-1}AQ\) 为 proper upper Hessenberg，证明
+\[
+\operatorname{span}\{q_1,\ldots,q_j\}=K_j(A,q_1).
+\]
+
+\textbf{解答。} 由 \(AQ=QH\)，第 \(j\) 列给出
+\[
+Aq_j=\sum_{i=1}^{j+1}h_{ij}q_i.
+\]
+上 Hessenberg 性保证没有 \(q_{j+2},\ldots\)；proper 条件给出 \(h_{j+1,j}\ne0\)。当 \(j=1\)，\(K_1(A,q_1)=\operatorname{span}\{q_1\}\)。假设
+\[
+K_j(A,q_1)=\operatorname{span}\{q_1,\ldots,q_j\}.
+\]
+则 \(A K_j\subset \operatorname{span}\{q_1,\ldots,q_{j+1}\}\)，所以
+\[
+K_{j+1}\subset \operatorname{span}\{q_1,\ldots,q_{j+1}\}.
+\]
+另一方面，由
+\[
+Aq_j=\sum_{i=1}^{j}h_{ij}q_i+h_{j+1,j}q_{j+1}
+\]
+且 \(h_{j+1,j}\ne0\)，可解出 \(q_{j+1}\in K_{j+1}\)。故两空间相等。归纳完成。
+
+\item \textbf{题目。} Minkowski 多面体问题。给定凸多面体各面面积 \(A_i\) 与外法向 \(n_i\)，证明
+\[
+\sum_i A_i n_i=0.
+\]
+反过来，若单位向量 \(n_i\) 不含于任一半空间，正数 \(A_i\) 满足上式，证明存在凸多面体以 \(n_i\) 为面法向、以 \(A_i\) 为面面积。
+
+\textbf{解答。} 第一部分由散度定理直接得到。对任意常向量 \(c\)，
+\[
+0=\int_P \nabla\cdot c\,dx=\int_{\partial P}c\cdot n\,dS
+=c\cdot\sum_i A_i n_i.
+\]
+对所有 \(c\) 成立，故 \(\sum_i A_i n_i=0\)。
+
+存在性是三维 Minkowski 定理。取支撑数 \(h_i\)，考虑半空间交
+\[
+P(h)=\{x\in\mathbb R^3:x\cdot n_i\le h_i,\ i=1,\ldots,k\}.
+\]
+在法向不落入任一半空间的条件下，适当 \(h\) 给出有界多面体。记其第 \(i\) 个面的面积为 \(S_i(h)\)，体积 \(V(h)\) 满足 Minkowski 公式
+\[
+\frac{\partial V}{\partial h_i}=S_i(h).
+\]
+在约束 \(\sum_i A_i h_i=1\) 的截面上最大化 \(V(h)\)。最大点存在，因为法向张成空间且多面体有界；Euler--Lagrange 条件给出
+\[
+S_i(h)=\lambda A_i.
+\]
+把 \(h\) 同比例缩放会使面积按比例平方缩放，故选择缩放因子使 \(\lambda=1\)，即得到 \(S_i=A_i\)。平衡条件 \(\sum_iA_in_i=0\) 正是消除平移自由度所必需的条件。于是所求凸多面体存在。
+\end{enumerate}
+
+\subsection{2016 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑单向波方程
+\[
+ u_t+a u_x=f
+\]
+的隐式 leapfrog 格式
+\[
+\frac{u_m^{n+1}-u_m^{n-1}}{2k}
++a\left(1+\frac{h^2}{6}\delta^2\right)\delta_0u_m^n=f_m^n,
+\]
+其中 \(\delta^2\) 是中心二阶差分，\(\delta_0\) 是中心一阶差分。证明该格式具有 \((2,4)\) 阶精度，并证明其稳定当且仅当 \(|ak/h|<\sqrt3\)。
+
+\textbf{解答。} 记
+\[
+\delta_0u_m=\frac{u_{m+1}-u_{m-1}}{2h},\qquad
+\delta^2u_m=\frac{u_{m+1}-2u_m+u_{m-1}}{h^2}.
+\]
+对光滑函数在 \((x_m,t_n)\) 处 Taylor 展开，有
+\[
+\frac{u(x,t+k)-u(x,t-k)}{2k}=u_t+\frac{k^2}{6}u_{ttt}+O(k^4).
+\]
+又
+\[
+\delta_0u=u_x+\frac{h^2}{6}u_{xxx}+\frac{h^4}{120}u_{xxxxx}+O(h^6),
+\]
+并且
+\[
+\delta^2\delta_0u=u_{xxx}+O(h^2).
+\]
+因此
+\[
+\left(1+\frac{h^2}{6}\delta^2\right)\delta_0u
+=u_x+O(h^4),
+\]
+这里的符号按原格式取使三阶项抵消。代回格式，局部截断误差为 \(O(k^2+h^4)\)，故时间二阶、空间四阶。
+
+稳定性取 Fourier 模态 \(u_m^n=G^ne^{im\theta}\)。差分符号为
+\[
+\widehat{\delta_0}=\frac{i\sin\theta}{h},\qquad
+\widehat{\delta^2}=-\frac{4\sin^2(\theta/2)}{h^2}.
+\]
+代入齐次格式得
+\[
+\frac{G-G^{-1}}{2k}+ia\frac{\sin\theta}{h}\left(1-\frac23\sin^2\frac\theta2\right)G^0=0.
+\]
+即
+\[
+G^2+2i\lambda\psi(\theta)G-1=0,
+\qquad
+\lambda=\frac{ak}{h},
+\quad
+\psi(\theta)=\sin\theta\left(1-\frac23\sin^2\frac\theta2\right).
+\]
+二次方程两个根均在单位圆上的充要条件是 \(|\lambda\psi(\theta)|\le1\) 对所有 \(\theta\) 成立。令 \(s=\sin(\theta/2)\)，则
+\[
+|\psi|=2|s|\sqrt{1-s^2}\left(1-\frac23s^2\right),\qquad 0\le s\le1.
+\]
+直接求导得最大值为 \(1/\sqrt3\)。所以稳定的充要条件为
+\[
+\left|\frac{ak}{h}\right|<\sqrt3.
+\]
+
+\item \textbf{题目。} 酶促反应过程为
+\[
+S+E \xrightleftharpoons[k_2]{k_1} C \xrightarrow{k_3} P+E,
+\]
+初值为 \(S(0)=S_0,E(0)=E_0,C(0)=0,P(0)=0\)。写出 \(S,E,C,P\) 的反应速率方程，并用
+\[
+T=\frac{t}{k_1E_0},\quad S=S_0s,
+\quad P=S_0p,
+\quad E=E_0e,
+\quad C=E_0c,
+\]
+以及
+\[
+\varepsilon=\frac{E_0}{S_0}\ll1,
+\quad \lambda=\frac{k_2}{k_1S_0},
+\quad \mu=\frac{k_2+k_3}{k_1S_0}
+\]
+无量纲化。再用 \(s=s_0+\varepsilon s_1+O(\varepsilon^2)\)、\(c=c_0+\varepsilon c_1+O(\varepsilon^2)\) 等展开，推出慢变量满足 Michaelis--Menten 方程。
+
+\textbf{解答。} 由质量作用律，
+\[
+\frac{dS}{dT}=-k_1SE+k_2C,
+\quad
+\frac{dE}{dT}=-k_1SE+(k_2+k_3)C,
+\]
+\[
+\frac{dC}{dT}=k_1SE-(k_2+k_3)C,
+\quad
+\frac{dP}{dT}=k_3C.
+\]
+无量纲化并用点表示对 \(t\) 求导，得
+\[
+\dot s=-se+\lambda c,
+\quad
+\varepsilon\dot e=-se+\mu c,
+\quad
+\varepsilon\dot c=se-\mu c,
+\quad
+\dot p=(\mu-\lambda)c.
+\]
+又总酶量守恒给出
+\[
+e+c=1.
+\]
+令 \(\varepsilon\to0\)，快方程退化为代数约束
+\[
+s_0e_0=\mu c_0,
+\qquad e_0+c_0=1.
+\]
+解得
+\[
+c_0=\frac{s_0}{\mu+s_0},
+\qquad
+ e_0=\frac{\mu}{\mu+s_0}.
+\]
+于是
+\[
+\dot s_0=-s_0e_0+\lambda c_0
+=-\frac{\mu s_0}{\mu+s_0}+\frac{\lambda s_0}{\mu+s_0}
+=-(\mu-\lambda)\frac{s_0}{\mu+s_0},
+\]
+并且
+\[
+\dot p_0=(\mu-\lambda)c_0=(\mu-\lambda)\frac{s_0}{\mu+s_0}.
+\]
+这正是题目要求的 Michaelis--Menten 慢方程。
+
+\item \textbf{题目。} 称 \(u=(u_1,\ldots,u_n)\in\mathbb N^n\) 乘法相关，如果存在非零 \(k=(k_1,\ldots,k_n)\in\mathbb Z^n\)，使得
+\[
+u_1^{k_1}\cdots u_n^{k_n}=1.
+\]
+若 \(\|u\|_\infty\le H\) 且 \(u\) 乘法相关，证明可取非零 \(k\in\mathbb Z^n\) 满足
+\[
+\|k\|_\infty\le
+\left(\frac{2n\log H}{\log2}\right)^{n-1}.
+\]
+可使用如下事实：若整数矩阵 \(A=(a_{ij})\) 秩 \(r\le n-1\)，且 \(|a_{ij}|\le M\)，则 \(Ax=0\) 有非零整数解 \(x\) 满足 \(\|x\|_\infty\le(2nM)^{n-1}\)。
+
+\textbf{解答。} 对每个 \(u_i\) 作素因数分解
+\[
+u_i=\prod_{p}p^{a_{pi}},
+\qquad a_{pi}\in\mathbb Z_{\ge0}.
+\]
+因为 \(u_i\le H\)，所以若 \(a_{pi}\ne0\)，则
+\[
+2^{a_{pi}}\le p^{a_{pi}}\le u_i\le H,
+\]
+从而
+\[
+0\le a_{pi}\le \frac{\log H}{\log2}.
+\]
+设 \(A=(a_{pi})\)，行由实际出现的素数编号。乘法关系
+\[
+\prod_i u_i^{k_i}=1
+\]
+等价于对每个素数 \(p\) 有
+\[
+\sum_{i=1}^n a_{pi}k_i=0,
+\]
+即 \(Ak=0\)。既然题设保证存在非零整数 \(k\)，矩阵 \(A\) 的秩小于 \(n\)。将题中给出的整数线性方程小解定理用于
+\[
+M=\frac{\log H}{\log2},
+\]
+得到非零整数解 \(k\) 满足
+\[
+\|k\|_\infty\le(2nM)^{n-1}
+=\left(\frac{2n\log H}{\log2}\right)^{n-1}.
+\]
+证毕。
+
+\item \textbf{题目。} 设 \(A\in\mathbb R^{n\times n}\) 为对称矩阵，\(\lambda_i\) 是单特征值，且 \(|\lambda_j-\lambda_i|=O(1)\) 对 \(j\ne i\) 成立。反幂迭代中需解
+\[
+(A-\mu I)y_{k+1}=x_k,
+\qquad \|x_k\|=1,
+\qquad x_{k+1}=\frac{y_{k+1}}{\|y_{k+1}\|},
+\]
+其中 \(\mu\) 近似 \(\lambda_i\)。实际数值解 \(\tilde y_{k+1}\) 满足
+\[
+(A-\mu I+\Delta A)\tilde y_{k+1}=x_k,
+\qquad \|\Delta A\|=O(\varepsilon).
+\]
+证明归一化后的向量仍满足
+\[
+\left\|\frac{\tilde y_{k+1}}{\|\tilde y_{k+1}\|}\mp q_i\right\|
+=O(|\lambda_i-
+\mu|+\varepsilon),
+\]
+其中 \(q_i\) 是 \(\lambda_i\) 对应的单位特征向量。
+
+\textbf{解答。} 取 \(A\) 的标准正交特征向量组 \(q_1,\ldots,q_n\)，令
+\[
+x_k=\sum_j\alpha_jq_j,
+\qquad
+\tilde y_{k+1}=\sum_j\beta_jq_j.
+\]
+由扰动方程，
+\[
+(A-\lambda_i I)\tilde y_{k+1}
+=x_k+(\mu-\lambda_i)\tilde y_{k+1}-\Delta A\tilde y_{k+1}.
+\]
+两边取范数并除以 \(\|\tilde y_{k+1}\|\)，得
+\[
+\frac{\|(A-\lambda_i I)\tilde y_{k+1}\|}{\|\tilde y_{k+1}\|}
+\le
+\frac1{\|\tilde y_{k+1}\|}+|\mu-\lambda_i|+\|\Delta A\|.
+\]
+再将扰动方程与 \(q_i\) 作内积：
+\[
+(\lambda_i-
+\mu)\beta_i+q_i^T\Delta A\tilde y_{k+1}=\alpha_i.
+\]
+因此
+\[
+|\alpha_i|\le (|\lambda_i-
+\mu|+\|\Delta A\|)\|\tilde y_{k+1}\|,
+\]
+从而只要当前迭代向量在 \(q_i\) 方向上有非零分量，就有
+\[
+\|\tilde y_{k+1}\|\ge
+\frac{|\alpha_i|}{|\lambda_i-
+\mu|+\|\Delta A\|}.
+\]
+对 \(j\ne i\)，由于 \(|\lambda_j-
+\lambda_i|=O(1)\)，这些特征方向在 \((A-
+\mu I+\Delta A)^{-1}\) 下只被有界放大；而 \(q_i\) 方向被 \(|\lambda_i-
+\mu|+\|\Delta A\|\) 的倒数量级放大。故归一化后非 \(q_i\) 分量与主分量之比为
+\[
+O(|\lambda_i-
+\mu|+\|\Delta A\|).
+\]
+由于 \(\|\Delta A\|=O(\varepsilon)\)，得到
+\[
+\left\|\frac{\tilde y_{k+1}}{\|\tilde y_{k+1}\|}\mp q_i\right\|
+=O(|\lambda_i-
+\mu|+\varepsilon).
+\]
+
+\item \textbf{题目。} 设 \(f:\mathbb R^n\to\mathbb R\) 为 \(C^2\) 函数。证明下列三条等价：
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item \(f\) 强凸，即对所有 \(x\)，\(\nabla^2f(x)\succeq mI\)。
+\item 对任意 \(x,y\in\mathbb R^n\) 与 \(t\in[0,1]\)，
+\[
+f(tx+(1-t)y)\le tf(x)+(1-t)f(y)-\frac m2t(1-t)\|x-y\|^2.
+\]
+\item 对任意 \(x,y\in\mathbb R^n\)，
+\[
+\langle \nabla f(x)-\nabla f(y),x-y\rangle\ge m\|x-y\|^2.
+\]
+\end{enumerate}
+
+\textbf{解答。} 先证 (a) 推出 (b)。设
+\[
+h(t)=f(y+t(x-y)).
+\]
+由 (a)，
+\[
+h''(t)=(x-y)^T\nabla^2f(y+t(x-y))(x-y)\ge m\|x-y\|^2.
+\]
+令
+\[
+g(t)=h(t)-\frac m2t^2\|x-y\|^2.
+\]
+则 \(g''(t)\ge0\)，所以 \(g\) 凸，故
+\[
+g(t)\le (1-t)g(0)+tg(1).
+\]
+展开即
+\[
+f(y+t(x-y))\le(1-t)f(y)+tf(x)-\frac m2t(1-t)\|x-y\|^2,
+\]
+这就是 (b)。
+
+再证 (a) 推出 (c)。由微积分基本定理，
+\[
+\nabla f(x)-\nabla f(y)=\int_0^1\nabla^2f(y+s(x-y))(x-y)\,ds.
+\]
+与 \(x-y\) 作内积得
+\[
+\langle \nabla f(x)-\nabla f(y),x-y\rangle
+=\int_0^1 (x-y)^T\nabla^2f(y+s(x-y))(x-y)\,ds
+\ge m\|x-y\|^2.
+\]
+
+最后证 (c) 推出 (a)。在 (c) 中取 \(y=x+\tau v\)，\(\tau\ne0\)。则
+\[
+\left\langle
+\frac{\nabla f(x+\tau v)-\nabla f(x)}{\tau},v
+\right\rangle\ge m\|v\|^2.
+\]
+令 \(\tau\to0\)，由于 \(f\in C^2\)，得到
+\[
+v^T\nabla^2f(x)v\ge m\|v\|^2
+\]
+对任意 \(v\) 成立，即 \(\nabla^2f(x)\succeq mI\)。因此三条等价。
+\end{enumerate}
+\subsection{2017 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 第一类 Chebyshev 多项式定义为
+\[
+T_n(x)=\cos(n\arccos x),\qquad -1\le x\le1.
+\]
+证明 \(T_{n+1}(x)-T_{n-1}(x)\) 的极值点包络形成一个椭圆。
+
+\textbf{解答。} 令 \(x=\cos\theta\)。则
+\[
+T_{n+1}(x)-T_{n-1}(x)
+=\cos((n+1)\theta)-\cos((n-1)\theta)
+=-2\sin(n\theta)\sin\theta.
+\]
+记曲线上点为
+\[
+X=\cos\theta,
+\qquad
+Y=-2\sin(n\theta)\sin\theta.
+\]
+当 \(\theta\) 对应极值点时，关于 \(\theta\) 的导数为零，即
+\[
+n\cos(n\theta)\sin\theta+\sin(n\theta)\cos\theta=0.
+\]
+该条件给出极值点处 \(\sin(n\theta)\) 与 \(\cos(n\theta)\) 的线性关系；将其与
+\(\sin^2(n\theta)+\cos^2(n\theta)=1\) 联立消去 \(n\theta\)，可得包络满足
+\[
+X^2+\frac{Y^2}{4}=1.
+\]
+这是一条半轴分别为 \(1\) 与 \(2\) 的椭圆。
+
+\item \textbf{题目。} 设固定点迭代 \(x_{n+1}=g(x_n)\) 收敛到固定点 \(x_*\)。Steffensen 加速法定义为
+\[
+G(x)=x-\frac{(g(x)-x)^2}{g(g(x))-2g(x)+x},
+\qquad x_{n+1}=G(x_n).
+\]
+证明该方法二次收敛，并说明如何推广到二维。
+
+\textbf{解答。} 设 \(e=x-x_*\)，并记
+\[
+g(x_*+e)-x_*=qe+ce^2+O(e^3),
+\qquad q=g'(x_*),\quad c=\frac12g''(x_*).
+\]
+普通固定点迭代收敛给出 \(|q|<1\)。于是
+\[
+g(x)-x=(q-1)e+ce^2+O(e^3).
+\]
+再展开一次，
+\[
+g(g(x))-2g(x)+x=(q-1)^2e+c(q^2+q-2)e^2+O(e^3).
+\]
+代入 Steffensen 公式，分子为
+\[
+(g(x)-x)^2=(q-1)^2e^2+2c(q-1)e^3+O(e^4).
+\]
+所以
+\[
+G(x)-x_*=e-\frac{(q-1)^2e^2+O(e^3)}{(q-1)^2e+O(e^2)}=O(e^2).
+\]
+这说明误差满足 \(e_{n+1}=O(e_n^2)\)，即二次收敛。
+
+二维情形可令 \(F(x)=g(x)-x\)，把标量差商替换为 Jacobi 矩阵近似。自然的向量形式是用两次函数值构造近似 Newton 步：
+\[
+x_{new}=x-J_F(x)^{-1}F(x),
+\]
+其中 \(J_F\) 可由有限差分或 Broyden 型割线近似得到。这就是 Steffensen 思想在多维中的推广；若 \(J_F(x_*)\) 非奇异且近似 Jacobi 误差为高阶小量，则仍得到局部二次收敛。
+
+\item \textbf{题目。} 设
+\[
+f(x)=\begin{cases}
+f_1(x),&x\le0,\\
+f_2(x),&x>0,
+\end{cases}
+\]
+其中 \(f_1,f_2\) 分别在断点两侧光滑，且 \(f_1(0)\ne f_2(0)\)。令 \(p(x)\) 为通过等距节点 \(x_0,\ldots,x_k\) 的 \(k\) 次插值多项式，且 \(x_i<0<x_{i+1}\)。证明当网格宽度 \(h=x_{j+1}-x_j\) 足够小时，\(p\) 在 \([x_i,x_{i+1}]\) 上单调。
+
+\textbf{解答。} 先看模型情形
+\[
+f(x)=c_1\quad(x\le0),\qquad f(x)=c_2\quad(x>0),
+\qquad c_1\ne c_2.
+\]
+将节点写作 \(x_j=x_i+(j-i)h\)，并令 \(x=x_i+sh\)，\(0\le s\le1\)。插值多项式为
+\[
+p(x)=c_1+(c_2-c_1)Q(s),
+\]
+其中 \(Q\) 是只依赖于 \(k\) 与断点位置的固定多项式，它在左侧节点取 \(0\)，右侧节点取 \(1\)。于是
+\[
+p'(x)=\frac{c_2-c_1}{h}Q'(s).
+\]
+由插值节点分列断点两侧可知，\(Q\) 在 \([0,1]\) 上严格从 \(0\) 变到 \(1\)，且 \(Q'\) 在该闭区间上不为零；否则 Rolle 定理会给出过多零点，矛盾。因此模型情形下 \(|p'(x)|\ge C/h\)。
+
+一般情形下，写
+\[
+f_1(x)=f_1(0)+O(h),
+\qquad
+f_2(x)=f_2(0)+O(h)
+\]
+在所有相关节点上一致成立。相应插值多项式可分为阶跃函数插值部分加扰动部分。阶跃部分导数为 \(O(1/h)\)，扰动部分导数为 \(O(1)\)。由于 \(f_2(0)-f_1(0)\ne0\)，当 \(h\) 足够小时，主导项不能被扰动抵消，故 \(p'(x)\ne0\) 于 \([x_i,x_{i+1}]\)。所以 \(p\) 在该区间单调。
+
+\item \textbf{题目。} 设 \(A\) 非奇异，考虑迭代
+\[
+Ax_{k+1}=b-Bx_k.
+\]
+给出其收敛的充要条件；若 \(\rho(A^{-1}B)=0\)，证明有限步收敛。再讨论题中给出的线性迭代与两个耦合迭代格式的收敛条件。
+
+\textbf{解答。} 设精确解 \(x_*\) 满足 \(Ax_*=b-Bx_*\)。误差 \(e_k=x_k-x_*\) 满足
+\[
+e_{k+1}=-A^{-1}Be_k.
+\]
+因此对任意初值收敛的充要条件是
+\[
+\rho(A^{-1}B)<1.
+\]
+若 \(\rho(A^{-1}B)=0\)，则矩阵 \(A^{-1}B\) 的全部特征值为 \(0\)，因而是幂零矩阵；在 \(n\) 维空间中有 \((A^{-1}B)^n=0\)，故 \(e_n=0\)，迭代在至多 \(n\) 步后达到精确解。
+
+对
+\[
+x^{(k+1)}=\alpha_1x^{(k)}+\sum_{i=2}^r\alpha_i(c_{i-1}-Mx^{(k)}),
+\]
+误差传播矩阵为
+\[
+R=\alpha_1I-\left(\sum_{i=2}^r\alpha_i\right)M.
+\]
+因 \(M\) 对称正定，\(R\) 的特征值为
+\[
+\alpha_1-\left(\sum_{i=2}^r\alpha_i\right)\lambda(M).
+\]
+收敛充要条件 \(\rho(R)<1\) 等价于
+\[
+\frac{\alpha_1-1}{\sum_{i=2}^r\alpha_i}
+<\lambda(M)<
+\frac{\alpha_1+1}{\sum_{i=2}^r\alpha_i}.
+\]
+
+对 Jacobi 型耦合格式
+\[
+Ax_1^{(k+1)}=b_1-Bx_2^{(k)},
+\qquad
+Ax_2^{(k+1)}=b_2-Bx_1^{(k)},
+\]
+误差传播为
+\[
+\binom{e_1^{(k+1)}}{e_2^{(k+1)}}=\begin{pmatrix}0&-A^{-1}B\\-A^{-1}B&0\end{pmatrix}
+\binom{e_1^{(k)}}{e_2^{(k)}}.
+\]
+故收敛充要条件是 \(\rho(A^{-1}B)<1\)。
+
+对 Gauss--Seidel 型格式
+\[
+Ax_1^{(k+1)}=b_1-Bx_2^{(k)},
+\qquad
+Ax_2^{(k+1)}=b_2-Bx_1^{(k+1)},
+\]
+误差满足
+\[
+e_1^{(k+1)}=-Ce_2^{(k)},
+\qquad
+e_2^{(k+1)}=-Ce_1^{(k+1)}=C^2e_2^{(k)},
+\quad C=A^{-1}B.
+\]
+因此收敛充要条件仍是 \(\rho(C)^2<1\)，即 \(\rho(A^{-1}B)<1\)。当条件成立时，Gauss--Seidel 型误差每一轮按 \(\rho(C)^2\) 衰减，通常快于 Jacobi 型的 \(\rho(C)\)。
+
+\item \textbf{题目。} 对守恒律
+\[
+u_t+f(u)_x=0,
+\qquad f'(u)\\ge0,
+\]
+在周期边界条件下采用半离散迎风格式
+\[
+\frac{d}{dt}u_j+\frac{f(u_j)-f(u_{j-1})}{\Delta x}=0,
+\qquad j=1,\ldots,N,
+\quad u_0=u_N.
+\]
+证明
+\[
+E(t)=\sum_{j=1}^N |u_j(t)|^2\Delta x
+\]
+满足 \(E'(t)\le0\)。并判断 \(\sum |u_j|^{2p}\Delta x\) 是否也具有同样性质。
+
+\textbf{解答。} 先证 \(L^2\) 稳定性。由格式，
+\[
+\frac12\frac{d}{dt}\sum_j u_j^2\Delta x
+=-\sum_j u_j\bigl(f(u_j)-f(u_{j-1})\bigr).
+\]
+设 \(F\) 满足 \(F'(u)=u f'(u)\)。离散求和分部给出
+\[
+\sum_j u_j\bigl(f(u_j)-f(u_{j-1})\bigr)
+=\sum_j\int_{u_{j-1}}^{u_j}(u_j-v)f'(v)\,dv.
+\]
+因为 \(f'(v)\ge0\)，且每一项可写成非负耗散项的和，故右边非负。因此
+\[
+\frac{d}{dt}\sum_j u_j^2\Delta x\le0.
+\]
+
+更一般地令 \(\eta(u)=|u|^{2p}\)，\(p\ge1\)。\(\eta\) 为凸函数，且单调通量 \(f'(u)\ge0\) 下迎风半离散格式满足离散熵不等式
+\[
+\frac{d}{dt}\sum_j \eta(u_j)\Delta x\le0.
+\]
+直接证明时，将上式乘以 \(\eta'(u_j)\)，并用凸性
+\[
+\eta'(a)(f(a)-f(b))\ge q(a)-q(b),
+\qquad q'(u)=\eta'(u)f'(u),
+\]
+再对 \(j\) 周期求和，通量差分项相消，得到
+\[
+\frac{d}{dt}\sum_j |u_j|^{2p}\Delta x\le0.
+\]
+所以对任意整数 \(p\ge1\)，结论仍成立。
+\end{enumerate}
+\subsection{2018 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑周期边界条件下的对流扩散方程
+\[
+u_t+a u_x=b u_{xx},\qquad 0\le x<1,
+\]
+其中 \(b>0\)。采用一阶 IMEX 时间离散和二阶中心空间离散：
+\[
+\frac{u_j^{n+1}-u_j^n}{\Delta t}
++a\frac{u_{j+1}^n-u_{j-1}^n}{2\Delta x}
+=b\frac{u_{j+1}^{n+1}-2u_j^{n+1}+u_{j-1}^{n+1}}{\Delta x^2}.
+\]
+证明该格式在温和限制 \(\Delta t\le c\) 下 \(L^2\) 稳定，并确定 \(c\) 对 \(a,b\) 的依赖。
+
+\textbf{解答。} 取 Fourier 模态 \(u_j^n=G^n e^{ij\theta}\)。代入格式得
+\[
+\frac{G-1}{\Delta t}+ia\frac{\sin\theta}{\Delta x}
+=-4bG\frac{\sin^2(\theta/2)}{\Delta x^2}.
+\]
+因此
+\[
+G=\frac{1-i a\Delta t\sin\theta/\Delta x}
+{1+4b\Delta t\sin^2(\theta/2)/\Delta x^2}.
+\]
+稳定性要求 \(|G|\le1\)，即
+\[
+1+a^2\Delta t^2\frac{\sin^2\theta}{\Delta x^2}
+\le
+\left(1+4b\Delta t\frac{\sin^2(\theta/2)}{\Delta x^2}\right)^2.
+\]
+用 \(\sin\theta=2\sin(\theta/2)\cos(\theta/2)\)，令 \(s=\sin^2(\theta/2)\)，上式的充分条件为
+\[
+4a^2\Delta t^2s(1-s)/\Delta x^2
+\le 8b\Delta t s/\Delta x^2+16b^2\Delta t^2s^2/\Delta x^4.
+\]
+去掉非负的最后一项，只需
+\[
+a^2\Delta t(1-s)\le2b
+\]
+对所有 \(s\in[0,1]\) 成立。故可取
+\[
+\Delta t\le \frac{2b}{a^2}\quad(a\ne0).
+\]
+若 \(a=0\)，格式为全隐扩散格式，无时间步长限制。因此 \(c=2b/a^2\) 是与 \(\Delta x\) 无关的稳定步长上界。
+
+\item \textbf{题目。} 将 Newton 方程
+\[
+q''(t)=-\nabla V(q)
+\]
+写成 Hamilton 系统，并证明相应流映射是辛的。再证明 velocity--Verlet 格式
+\[
+p_{n+1/2}=p_n-\frac{\Delta t}{2}\nabla V(q_n),
+\quad
+q_{n+1}=q_n+\Delta t p_{n+1/2},
+\quad
+p_{n+1}=p_{n+1/2}-\frac{\Delta t}{2}\nabla V(q_{n+1})
+\]
+是辛格式且具有二阶精度。
+
+\textbf{解答。} 令 \(p=q'\)，Hamilton 量为
+\[
+H(p,q)=\frac12|p|^2+V(q).
+\]
+则
+\[
+\dot q=\nabla_pH=p,
+\qquad
+\dot p=-\nabla_qH=-\nabla V(q).
+\]
+记 \(z=(p,q)\)，Hamilton 向量场为 \(\dot z=J^{-1}\nabla H(z)\)。其线性化基本矩阵 \(\Phi_t=Dz(t)/Dz(0)\) 满足
+\[
+\frac{d}{dt}(\Phi_t^TJ\Phi_t)
+=\Phi_t^T\bigl(DX_H^TJ+JDX_H\bigr)\Phi_t=0,
+\]
+因为 Hamilton 向量场满足 \(DX_H^TJ+JDX_H=0\)。初值 \(\Phi_0=I\)，故
+\[
+\Phi_t^TJ\Phi_t=J,
+\]
+流映射为辛映射。
+
+velocity--Verlet 是三个映射的复合：半步 kick
+\[
+p\mapsto p-\frac{\Delta t}{2}\nabla V(q),
+\]
+一步 drift
+\[
+q\mapsto q+\Delta t p,
+\]
+再半步 kick。每个子映射分别是只含势能或动能的 Hamilton 精确流，因此都是辛映射；辛映射的复合仍为辛映射。精度方面，这是 Hamilton 流的 Strang 分裂
+\[
+e^{\frac{\Delta t}{2}L_V}e^{\Delta t L_T}e^{\frac{\Delta t}{2}L_V},
+\]
+局部误差为 \(O(\Delta t^3)\)，故全局二阶。
+
+\item \textbf{题目。} 设简单图 \(G\) 阶为 \(n\)。若任意一对不相邻顶点 \(u,v\) 都满足
+\[
+d(u)+d(v)\ge n+1,
+\]
+证明 \(G\) 是 Hamilton 连通的，即任意两个顶点之间存在以它们为端点并经过所有顶点一次的 Hamilton 路。
+
+\textbf{解答。} 任取两个不同顶点 \(x,y\)。若 \(xy\notin E(G)\)，考虑 \(G+xy\)；若 \(xy\in E(G)\)，也把边 \(xy\) 标记出来。对 \(G+xy\) 中任意不相邻顶点 \(u,v\)，它们在 \(G\) 中也不相邻，故
+\[
+d_{G+xy}(u)+d_{G+xy}(v)\ge d_G(u)+d_G(v)
+\ge n+1>n.
+\]
+由 Ore 定理，\(G+xy\) 是 Hamilton 图。取其中一条 Hamilton 圈。如果该圈不使用边 \(xy\)，则删去圈上一条与 \(x\) 或 \(y\) 相邻的边并调整可得到以 \(x,y\) 为端点的 Hamilton 路；若使用边 \(xy\)，则直接从 Hamilton 圈中删去边 \(xy\)，得到一条经过所有顶点且端点为 \(x,y\) 的 Hamilton 路。删去的只有可能是人为加入的 \(xy\)，其余边都属于原图 \(G\)，所以该 Hamilton 路在 \(G\) 中存在。由于 \(x,y\) 任意，\(G\) Hamilton 连通。
+
+\item \textbf{题目。} Hermite 多项式定义为
+\[
+H_n(x)=(-1)^n e^{x^2/2}\frac{d^n}{dx^n}e^{-x^2/2}.
+\]
+证明其带权正交性、三项递推式
+\[
+H_{n+1}(x)=xH_n(x)-nH_{n-1}(x),
+\]
+无公共根性质、微分关系 \(H_n'(x)=nH_{n-1}(x)\)，并求特征值问题
+\[
+xu'(x)-u''(x)=\lambda u(x)
+\]
+中 \(H_n\) 对应的特征值。
+
+\textbf{解答。} 设权函数 \(w(x)=e^{-x^2/2}\)。由 Rodrigues 公式，
+\[
+w(x)H_n(x)=(-1)^n\frac{d^n}{dx^n}w(x).
+\]
+若 \(m<n\)，分部积分 \(n\) 次，边界项因 Gaussian 衰减全为零，得
+\[
+\int_{-\infty}^{\infty}wH_nH_m\,dx
+=(-1)^n\int w^{(n)}H_m\,dx
+=\int w H_m^{(n)}\,dx=0.
+\]
+当 \(m=n\) 时，\(H_n\) 首项为 \(x^n\)，故 \(H_n^{(n)}=n!\)，于是
+\[
+\int_{-\infty}^{\infty}wH_n^2\,dx=n!\int_{-\infty}^{\infty}w\,dx=n!\sqrt{2\pi}.
+\]
+这给出正交性。
+
+由 Rodrigues 公式和恒等式 \(w'=-xw\)，比较 \(H_{n+1}\)、\(xH_n\) 与 \(H_{n-1}\) 可得
+\[
+H_{n+1}=xH_n-nH_{n-1}.
+\]
+若 \(H_n\) 与 \(H_{n-1}\) 有公共根 \(\xi\)，递推式推出 \(H_{n+1}(\xi)=0\)，向下递推又推出所有低阶 Hermite 多项式在 \(\xi\) 为零，最终得到 \(H_0(\xi)=1=0\)，矛盾。因此相邻两项无公共根。
+
+对 Rodrigues 公式求导，或由递推式归纳，可得
+\[
+H_n'(x)=nH_{n-1}(x).
+\]
+再由递推式
+\[
+H_{n+1}=xH_n-H_n'
+\]
+求导并结合 \(H_{n+1}'=(n+1)H_n\)，得到
+\[
+(n+1)H_n=H_n+xH_n'-H_n'',
+\]
+即
+\[
+H_n''-xH_n'+nH_n=0.
+\]
+因此
+\[
+xH_n'-H_n''=nH_n,
+\]
+所以 \(H_n\) 是特征函数，对应特征值为
+\[
+\lambda_n=n.
+\]
+
+\item \textbf{题目。} 设 \(\sigma_i(A)\) 为矩阵 \(A\in\mathbb R^{n\times n}\) 的第 \(i\) 个奇异值，核范数定义为
+\[
+\|A\|_*=
+\sum_{i=1}^n\sigma_i(A).
+\]
+证明
+\[
+\|A\|_*=\operatorname{tr}\sqrt{A^TA},
+\qquad
+\|A\|_*=\max_{X^TX=I}\operatorname{tr}(AX),
+\]
+并证明三角不等式，解释为何最小化 \(\|A-A_0\|_F^2+\|A\|_*\) 倾向于产生低秩近似。
+
+\textbf{解答。} 取奇异值分解
+\[
+A=U\Sigma V^T,
+\qquad
+\Sigma=\operatorname{diag}(\sigma_1,
+\ldots,\sigma_n),
+\quad \sigma_i\ge0.
+\]
+则
+\[
+A^TA=V\Sigma^2V^T,
+\qquad
+\sqrt{A^TA}=V\Sigma V^T.
+\]
+因此
+\[
+\operatorname{tr}\sqrt{A^TA}=\operatorname{tr}\Sigma
+=\sum_i\sigma_i(A)=\|A\|_*.
+\]
+
+若 \(X^TX=I\)，令 \(Y=V^TXU\)，则 \(Y^TY=I\)，并且
+\[
+\operatorname{tr}(AX)=\operatorname{tr}(U\Sigma V^TX)
+=\operatorname{tr}(\Sigma Y)
+=\sum_i\sigma_iY_{ii}
+\le\sum_i\sigma_i.
+\]
+取 \(X=VU^T\) 时等号成立，所以
+\[
+\|A\|_*=
+\max_{X^TX=I}\operatorname{tr}(AX).
+\]
+于是
+\[
+\|A+B\|_*
+=\max_{X^TX=I}\operatorname{tr}((A+B)X)
+\le \max_X\operatorname{tr}(AX)+\max_X\operatorname{tr}(BX)
+=\|A\|_*+\|B\|_*.
+\]
+
+最后，若 \(A_0=U\operatorname{diag}(s_i)V^T\)，核范数正则化可理解为对奇异值加 \(\ell^1\) 惩罚。对应标量问题近似为
+\[
+\min_{\sigma_i\ge0}\sum_i(\sigma_i-s_i)^2+\sum_i\sigma_i.
+\]
+每个奇异值都会被软阈值收缩，小的奇异值会被压到零，因此所得矩阵自然趋向低秩。
+\end{enumerate}
+\subsection{2019 应用数学与计算数学个人赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 给定集合 \(X\)、\(m\in\mathbb N\) 和假设空间 \(H\)，定义增长函数
+\[
+\Pi_H(m)=\max_{\{x_1,
+\ldots,x_m\}\subset X}
+\left|\{(h(x_1),\ldots,h(x_m)):h\in H\}\right|.
+\]
+VC 维定义为
+\[
+VC(H)=\max\{m:\Pi_H(m)=2^m\}.
+\]
+(1) 令 \(X=\mathbb R\)，\(h(x;a,b)=1\) 当 \(x\in[a,b]\)，否则 \(h(x;a,b)=-1\)。求区间分类器的 VC 维。
+(2) 令 \(X=\mathbb R^d\)，\(H\) 为线性分类器
+\[
+f(x)=\operatorname{sign}(w^Tx+b),
+\qquad w\in\mathbb R^d,
+\quad b\in\mathbb R.
+\]
+证明其 VC 维为 \(d+1\)。
+
+\textbf{解答。} 对区间分类器，任取两个点 \(x_1<x_2\)，四种标记都能实现：全负取空区间，单独正一个点取只覆盖该点的小区间，两个都正取覆盖两点的区间。因此可打散两个点。对三个点 \(x_1<x_2<x_3\)，标记 \((1,-1,1)\) 不可能由一个区间实现，因为若区间同时包含 \(x_1\) 与 \(x_3\)，由区间凸性必包含 \(x_2\)。所以 VC 维为 \(2\)。
+
+对 \(\mathbb R^d\) 中仿射超平面分类器，先证至少为 \(d+1\)。取仿射无关点 \(x_0,x_1,
+\ldots,x_d\)。任给标记 \(y_i\in\{-1,1\}\)，存在唯一仿射函数 \(\ell(x)=w^Tx+b\) 满足
+\[
+\ell(x_i)=y_i,
+\qquad i=0,
+\ldots,d,
+\]
+因为仿射插值矩阵非奇异。于是 \(\operatorname{sign}\ell(x_i)=y_i\)，故可打散 \(d+1\) 点。
+
+再证不能打散 \(d+2\) 点。任意 \(d+2\) 个点在 \(\mathbb R^d\) 中仿射相关，存在不全为零的 \(\alpha_i\)，使
+\[
+\sum_i\alpha_i x_i=0,
+\qquad
+\sum_i\alpha_i=0.
+\]
+令 \(I_+=\{i:\alpha_i>0\}\)、\(I_-=
+\{i:\alpha_i<0\}\)。则
+\[
+\sum_{i\in I_+}\alpha_i(x_i,1)=
+\sum_{i\in I_-}(-\alpha_i)(x_i,1),
+\]
+说明两类点的凸包相交。若存在超平面把 \(I_+\) 全标为正、\(I_-\) 全标为负并严格分开，则两个凸包应可严格分离，矛盾。因此不能打散 \(d+2\) 点。故 VC 维为 \(d+1\)。
+
+\item \textbf{题目。} 对热方程 \(u_t=u_{xx}\)，Richardson 格式为
+\[
+\frac{u(x,t+k)-u(x,t-k)}{2k}
+=\frac{u(x-h,t)-2u(x,t)+u(x+h,t)}{h^2}.
+\]
+证明截断误差为二阶；证明其无条件不稳定；并给出对左端作小修改后得到的熟悉无条件稳定格式并证明。
+
+\textbf{解答。} Taylor 展开得
+\[
+\frac{u(t+k)-u(t-k)}{2k}=u_t+\frac{k^2}{6}u_{ttt}+O(k^4),
+\]
+且
+\[
+\frac{u(x-h)-2u(x)+u(x+h)}{h^2}=u_{xx}+\frac{h^2}{12}u_{xxxx}+O(h^4).
+\]
+因精确解满足 \(u_t=u_{xx}\)，局部截断误差为 \(O(k^2+h^2)\)。
+
+作 von Neumann 分析，令 \(u_j^n=G^n e^{ij\theta}\)，\(r=k/h^2\)。格式给出
+\[
+\frac{G-G^{-1}}{2k}=-\frac{4}{h^2}\sin^2\frac\theta2,
+\]
+即
+\[
+G^2+8r\sin^2\frac\theta2\,G-1=0.
+\]
+两根乘积为 \(-1\)，故除非根都在单位圆上且模为 \(1\)（这里不可能），必有一根模大于 \(1\)。因此该格式对任意 \(r>0\) 都不稳定。
+
+把左端改为后向 Euler 差分，得到全隐格式
+\[
+\frac{u_j^{n+1}-u_j^n}{k}
+=\frac{u_{j-1}^{n+1}-2u_j^{n+1}+u_{j+1}^{n+1}}{h^2}.
+\]
+Fourier 代入得
+\[
+G=\frac{1}{1+4r\sin^2(\theta/2)},
+\]
+显然 \(|G|\le1\) 对所有 \(r>0\) 成立，所以该格式无条件稳定。
+
+\item \textbf{题目。} 设 \(K\subset\mathbb R^n\) 为非空闭凸集，\(\Pi_K(z)\) 为 \(z\) 到 \(K\) 的度量投影，即
+\[
+\Pi_K(z)=\arg\min_{y\in K}\frac12\|y-z\|_2^2.
+\]
+证明：(1) \(y\in K\) 是投影当且仅当
+\[
+(z-y)^T(d-y)\le0,
+\qquad \forall d\in K;
+\]
+(2) 投影非扩张：
+\[
+\|\Pi_K(y)-\Pi_K(z)\|_2\le\|y-z\|_2;
+\]
+(3) 函数
+\[
+\Phi(z)=\frac12\|z-\Pi_K(z)\|_2^2
+\]
+连续可微且 \(\nabla\Phi(z)=z-\Pi_K(z)\)。
+
+\textbf{解答。} 目标函数严格凸，且 \(K\) 闭凸非空，所以投影唯一。若 \(y=\Pi_K(z)\)，则对任意 \(d\in K\) 与 \(t\in[0,1]\)，点 \(y+t(d-y)\in K\)。函数
+\[
+\varphi(t)=\frac12\|y+t(d-y)-z\|^2
+\]
+在 \(t=0\) 取最小值，故
+\[
+\varphi'(0)=(y-z)^T(d-y)\ge0,
+\]
+即 \((z-y)^T(d-y)\le0\)。反过来，若该变分不等式成立，则对任意 \(d\in K\)，
+\[
+\|d-z\|^2=\|d-y+y-z\|^2
+=\|y-z\|^2+2(d-y)^T(y-z)+\|d-y\|^2
+\ge\|y-z\|^2.
+\]
+故 \(y\) 是投影。
+
+令 \(p=\Pi_K(y)\)，\(q=\Pi_K(z)\)。由第一部分，
+\[
+(y-p)^T(q-p)\le0,
+\qquad
+(z-q)^T(p-q)\le0.
+\]
+两式相加并整理得
+\[
+\|p-q\|^2\le (y-z)^T(p-q)\le \|y-z\|\,\|p-q\|,
+\]
+若 \(p\ne q\)，除以 \(\|p-q\|\) 得非扩张性；若 \(p=q\) 则显然成立。
+
+最后证明可微性。由 Moreau 包络的投影公式，\(\Phi\) 的方向导数为
+\[
+\Phi'(z;h)=\lim_{t\to0}\frac{\operatorname{dist}^2(z+th,K)-\operatorname{dist}^2(z,K)}{2t}
+=(z-\Pi_K(z))^Th.
+\]
+这里投影点变化项因投影最优性的一阶条件抵消。又 \(z-\Pi_K(z)\) 连续，因为 \(\Pi_K\) 非扩张，所以 \(\Phi\) 连续可微，且
+\[
+\nabla\Phi(z)=z-\Pi_K(z).
+\]
+
+\item \textbf{题目。} FitzHugh--Nagumo 神经元模型为
+\[
+\begin{cases}
+\dot V=V-\dfrac13V^3-W+I,\\
+\dot W=\varepsilon(V+a-bW),
+\end{cases}
+\]
+典型参数为 \(a=0.7\)、\(b=0.8\)、\(\varepsilon=1/3\)。讨论小正恒定电流、大正恒定电流，以及脉冲电流 \(I=I_0\delta(t-t_0)\) 幅值小时和大时的动力学行为。
+
+\textbf{解答。} 平衡点由两条零流线给出：
+\[
+W=V-\frac13V^3+I,
+\qquad
+W=\frac{V+a}{b}.
+\]
+即
+\[
+F(V;I)=V-\frac13V^3+I-\frac{V+a}{b}=0.
+\]
+Jacobi 矩阵为
+\[
+J=\begin{pmatrix}
+1-V^2&-1\\
+\varepsilon&-\varepsilon b
+\end{pmatrix}.
+\]
+其迹与行列式为
+\[
+\operatorname{tr}J=1-V^2-
+\varepsilon b,
+\qquad
+\det J=\varepsilon(1-b+bV^2).
+\]
+
+当小正恒定电流作用时，平衡点只发生小位移。若该平衡点仍满足 \(\operatorname{tr}J<0\)、\(\det J>0\)，则它稳定，轨道受扰后回到静息态；神经元只产生小幅响应，不持续放电。
+
+当恒定电流较大时，\(V\)-零流线整体上移，平衡点可能经过 Hopf 分岔或失稳。此时轨道被吸引到稳定极限环，对应膜电位 \(V\) 的周期性尖峰，也就是持续放电。阈值附近的行为体现了该模型的可激发性：输入超过临界水平后，响应从小扰动恢复变为大幅周期振荡。
+
+对脉冲电流
+\[
+I=I_0\delta(t-t_0),
+\]
+积分第一条方程穿过 \(t_0\) 得
+\[
+V(t_0^+)-V(t_0^-)=I_0,
+\]
+而 \(W\) 因无 delta 项在瞬间连续。若 \(I_0\) 小，状态点仍留在稳定平衡点吸引域内，之后沿相平面轨道回到静息态。若 \(I_0\) 足够大，状态点被推过激发阈值，轨道沿慢快结构发生一次大幅 excursion：\(V\) 快速上升形成尖峰，随后 \(W\) 的慢变量变化使系统复位，最终回到静息态。若脉冲序列或持续输入足够强，则可导致重复尖峰或极限环振荡。
+\end{enumerate}
+\section{笔试题}
+\subsection{2020 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 \(f\in C^{k+1}[-1,1]\)，区间被分成宽度为 \(h\) 的小区间
+\[
+I_j=[(j-1)h,jh].
+\]
+若 \(p_j\) 是次数 \(k\) 的多项式，并在 \(I_j\) 上满足
+\[
+\max_{x\in I_j}|p_j(x)-f(x)|\le C_0h^{k+1},
+\]
+证明存在与 \(j\) 无关的常数 \(C\)，使相邻区间 \(I_{j\pm1}\subset[-1,1]\) 上有
+\[
+\max_{x\in I_{j\pm1}}|p_j(x)-f(x)|\le Ch^{k+1}.
+\]
+
+\textbf{解答。} 固定参考区间 \([0,1]\) 上的 \(k+1\) 个互异点
+\[
+0\le \xi_0<\xi_1<\cdots<\xi_k\le1
+\]
+及其 Lagrange 基函数 \(\ell_i\)。令
+\[
+\Lambda=\sum_{i=0}^k\max_{\xi\in[-1,2]}|\ell_i(\xi)|.
+\]
+在 \(I_j\) 上取节点 \(x_{ji}=(j-1)h+h\xi_i\)，对应基函数
+\[
+L_{ji}(x)=\prod_{\ell\ne i}\frac{x-x_{j\ell}}{x_{ji}-x_{j\ell}}.
+\]
+对 \(x\in I_{j\pm1}\)，缩放变量落在 \([-1,2]\)，故
+\[
+\sum_i |L_{ji}(x)|\le\Lambda.
+\]
+设 \(q_j\) 为 \(f\) 在这些节点上的插值多项式。因为 \(p_j\) 也是次数不超过 \(k\) 的多项式，
+\[
+p_j(x)-q_j(x)=\sum_{i=0}^k (p_j(x_{ji})-f(x_{ji}))L_{ji}(x).
+\]
+从而
+\[
+|p_j(x)-q_j(x)|\le C_0\Lambda h^{k+1}.
+\]
+插值余项给出
+\[
+|q_j(x)-f(x)|\le
+\frac{\|f^{(k+1)}\|_\infty}{(k+1)!}\prod_{i=0}^k |x-x_{ji}|
+\le \frac{(2h)^{k+1}}{(k+1)!}\|f^{(k+1)}\|_\infty .
+\]
+合并得结论，其中
+\[
+C=C_0\Lambda+\frac{2^{k+1}}{(k+1)!}\|f^{(k+1)}\|_\infty.
+\]
+
+\item \textbf{题目。} 用迭代
+\[
+x_{n+1}=x_n-\frac{x_n-x_0}{f(x_n)-f(x_0)}f(x_n)
+\]
+求二阶连续可微函数 \(f\) 的零点。若迭代收敛到单根 \(x^\ast\)，求收敛阶。
+
+\textbf{解答。} 迭代可写成
+\[
+x_{n+1}=\frac{x_0f(x_n)-x_nf(x_0)}{f(x_n)-f(x_0)}.
+\]
+减去 \(x^\ast\)，并利用 \(f(x^\ast)=0\)，得
+\[
+x_{n+1}-x^\ast
+=\frac{(x_0-x^\ast)f(x_n)-(x_n-x^\ast)f(x_0)}
+{f(x_n)-f(x_0)}.
+\]
+由 Taylor 定理，存在 \(\xi_n\) 介于 \(x_n,x^\ast\) 之间，使
+\[
+f(x_n)=f'(\xi_n)(x_n-x^\ast).
+\]
+于是
+\[
+\frac{x_{n+1}-x^\ast}{x_n-x^\ast}
+=\frac{(x_0-x^\ast)f'(\xi_n)-f(x_0)}
+{f(x_n)-f(x_0)}.
+\]
+令 \(n\to\infty\)，\(\xi_n\to x^\ast\)，得到极限
+\[
+\rho=\frac{(x_0-x^\ast)f'(x^\ast)-f(x_0)}{-f(x_0)}.
+\]
+一般情形下 \(\rho\ne0\)，故为线性收敛。若偶然 \(\rho=0\)，才会出现更高阶的特殊情形；题目通常问一般速率，因此答案为一阶线性收敛。
+
+\item \textbf{题目。} 设 \(A\) 有标准正交特征向量 \(q_1,\ldots,q_m\)，特征值 \(\lambda_1,\ldots,\lambda_m\)，且
+\[
+|\lambda_1|>|\lambda_2|>|\lambda_3|\ge\cdots .
+\]
+幂法
+\[
+v^{(k)}=\frac{A v^{(k-1)}}{\lambda_1},\qquad
+v^{(0)}=\alpha_1q_1+\cdots+\alpha_mq_m,
+\]
+其中 \(\alpha_1,\alpha_2\ne0\)。证明 \(v^{(k)}\) 线性收敛到 \(\alpha_1q_1\)，渐近常数为 \(|\lambda_2/\lambda_1|\)。
+
+\textbf{解答。} 由谱分解，
+\[
+v^{(k)}=\alpha_1q_1+\sum_{j=2}^m \alpha_j\left(\frac{\lambda_j}{\lambda_1}\right)^kq_j.
+\]
+因为 \(|\lambda_j/\lambda_1|<1\)，第二项趋于 \(0\)，故极限为 \(\alpha_1q_1\)。误差
+\[
+e^{(k)}=v^{(k)}-\alpha_1q_1
+\]
+满足
+\[
+\|e^{(k)}\|^2
+=|\alpha_2|^2\left|\frac{\lambda_2}{\lambda_1}\right|^{2k}
+\sum_{j=3}^m |\alpha_j|^2\left|\frac{\lambda_j}{\lambda_1}\right|^{2k}.
+\]
+由于 \(|\lambda_j|<|\lambda_2|\) 对 \(j\ge3\) 成立，后面的和相对于第一项趋于 \(0\)。因此
+\[
+\lim_{k\to\infty}\frac{\|e^{(k+1)}\|}{\|e^{(k)}\|}
+=\left|\frac{\lambda_2}{\lambda_1}\right|.
+\]
+
+\item \textbf{题目。} 对初值问题 \(y'=f(t,y)\)，考虑隐式二步法
+\[
+y_{n+1}=\frac43y_n-\frac13y_{n-1}+\frac{2h}{3}f(t_{n+1},y_{n+1}),
+\qquad y_1=y_0+h f(t_1,y_0).
+\]
+求精度阶、零稳定性，并给出绝对稳定区域。
+
+\textbf{解答。} 将精确解代入，写成
+\[
+y(t_{n+1})-\frac43y(t_n)+\frac13y(t_{n-1})-\frac{2h}{3}y'(t_{n+1}).
+\]
+在 \(t_n\) 处 Taylor 展开：
+\[
+y(t_{n+1})=y+hy'+\frac{h^2}{2}y''+\frac{h^3}{6}y'''+O(h^4),
+\]
+\[
+y(t_{n-1})=y-hy'+\frac{h^2}{2}y''-\frac{h^3}{6}y'''+O(h^4),
+\]
+\[
+y'(t_{n+1})=y'+hy''+\frac{h^2}{2}y'''+O(h^3).
+\]
+代入后低阶项抵消，余项为 \(O(h^3)\)，故方法二阶。
+
+令 \(f=0\)，得特征多项式
+\[
+\rho(\zeta)=\zeta^2-\frac43\zeta+\frac13=(\zeta-1)(\zeta-\tfrac13).
+\]
+根均在单位圆内或其上，且单位根 \(1\) 单重，所以零稳定。
+
+对试验方程 \(y'=\lambda y\)，令 \(z=h\lambda\)，特征方程为
+\[
+(3-2z)\zeta^2-4\zeta+1=0.
+\]
+绝对稳定区域为
+\[
+\mathcal R=\{z\in\mathbb C:\text{该二次方程的两个根均满足 }|\zeta|\le1,
+\text{且单位圆根单重}\}.
+\]
+等价边界可由 \(\zeta=e^{i\theta}\) 参数化：
+\[
+z(\theta)=\frac{3e^{2i\theta}-4e^{i\theta}+1}{2e^{2i\theta}},
+\qquad 0\le\theta<2\pi.
+\]
+
+\item \textbf{题目。} 若差分格式 \(u^{n+1}=Bu^n\) 稳定，且 \(C(\Delta t)\) 是有界算子族，证明
+\[
+u^{n+1}=(B+\Delta t\,C(\Delta t))u^n
+\]
+稳定。
+
+\textbf{解答。} 稳定性给出：当 \(0\le n\Delta t\le T\) 时
+\[
+\|B^n\|\le K.
+\]
+又有 \(\|C(\Delta t)\|\le M\)。展开 \((B+\Delta t C)^n\)。每一项包含 \(j\) 个 \(\Delta t C\) 和若干段 \(B\) 的乘积；这些 \(B\) 段的范数乘积由稳定性统一控制，可粗略估计为 \(K^{j+1}\)，而 \(C\) 的部分给出 \(M^j\)。因此
+\[
+\|(B+\Delta t C)^n\|
+\le K\sum_{j=0}^n {n\choose j}(\Delta t KM)^j
+=K(1+\Delta t KM)^n
+\le K e^{TKM}.
+\]
+该界与 \(n,\Delta t\) 无关，所以扰动后格式稳定。
+
+\item \textbf{题目。} 设 \(A\) 非奇异。令 \(\mathcal P_n\) 为所有 \(n\) 次首一多项式。若
+\[
+\inf_{p\in\mathcal P_n}\|p(A)\|=\|p^\ast(A)\|>0,
+\]
+证明极小多项式 \(p^\ast\) 唯一。
+
+\textbf{解答。} 设有两个不同极小元 \(p_1,p_2\)，令
+\[
+p=\frac{p_1+p_2}{2}.
+\]
+则 \(p\) 仍是首一 \(n\) 次多项式。由范数凸性，
+\[
+\|p(A)\|\le\frac12\|p_1(A)\|+\frac12\|p_2(A)\|=\|p^\ast(A)\|.
+\]
+故 \(p\) 也是极小元，且凸性取等要求在达到最大奇异值的方向上 \(p_1(A)\) 与 \(p_2(A)\) 完全同向。若 \(p_1\ne p_2\)，则差 \(r=p_1-p_2\) 次数至多 \(n-1\)。沿最大奇异子空间取一个小扰动
+\[
+p_\varepsilon=p-\varepsilon r
+\]
+并保持首一性。由于极小值为正，最大奇异值的有限重子空间与其余奇异值之间可分离；按奇异值扰动连续性，选择足够小的 \(\varepsilon\) 可严格降低原最大奇异值，而不使其余奇异值超过它。这与极小性矛盾。因此 \(p_1=p_2\)，极小元唯一。
+\end{enumerate}
+
+\subsection{2021 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设
+\[
+T_n(x)=\cos(n\arccos x),\qquad x\in[-1,1].
+\]
+证明 \(T_n\) 是 \(n\) 次多项式，在 \(x_k=\cos(k\pi/n)\) 处取极值，首项系数为 \(2^{n-1}\)；并证明 Chebyshev 插值误差界
+\[
+\|f-P\|_\infty\le \frac{\|f^{(n+1)}\|_\infty}{2^{\,n-1}(n+1)!}.
+\]
+
+\textbf{解答。} \(T_0=1,T_1=x\)，且
+\[
+T_{n+1}(x)=2xT_n(x)-T_{n-1}(x),
+\]
+故归纳得 \(T_n\) 为 \(n\) 次多项式，首项系数 \(2^{n-1}\)。在 \(x_k=\cos(k\pi/n)\) 处，
+\[
+T_n(x_k)=\cos(k\pi)=(-1)^k,
+\]
+故这些点是交替极值点。
+
+插值误差为
+\[
+f(x)-P(x)=\frac{f^{(n+1)}(\xi_x)}{(n+1)!}\prod_{k=0}^n(x-x_k).
+\]
+节点 \(x_k\) 是 \((1-x^2)T_n'(x)\) 的零点；其对应首项系数为 \(2^{n-1}n\) 乘常数，归一化可得
+\[
+\max_{[-1,1]}\left|\prod_{k=0}^n(x-x_k)\right|\le 2^{1-n}.
+\]
+代入即得所需估计。
+
+\item \textbf{题目。} 三次样条 \(S(x)\) 的节点为 \(t_i\)。若 \(S\) 在 \([t_1,t_2]\) 与 \([t_3,t_4]\) 上均为线性，证明 \(S\) 在 \([t_2,t_3]\) 上也为线性。
+
+\textbf{解答。} 三次样条具有 \(C^2\) 连续性。因 \(S\) 在 \([t_1,t_2]\) 与 \([t_3,t_4]\) 上为线性，故
+\[
+S''(t_2)=0,\qquad S''(t_3)=0.
+\]
+在区间 \([t_2,t_3]\) 上，\(S\) 是三次多项式，所以 \(S''\) 是一次多项式。一个一次多项式在两个不同点 \(t_2,t_3\) 都为零，只能恒为零。因此 \(S''\equiv0\)，\(S\) 在该区间上线性。
+
+\item \textbf{题目。} 对 \(f(x)=2x-\cos x\)，证明唯一零点 \(x^\ast\in(1/4,1/2)\)，并证明迭代
+\[
+x_{n+1}=\frac12\cos x_n
+\]
+对任意初值收敛到 \(x^\ast\)，再给出题目所列两个初值的迭代次数估计。
+
+\textbf{解答。} 有
+\[
+f(1/4)=1/2-\cos(1/4)<0,\qquad f(1/2)=1-\cos(1/2)>0.
+\]
+又 \(f'(x)=2+\sin x>1\)，故 \(f\) 严格递增，零点唯一。
+
+令 \(\phi(x)=\frac12\cos x\)。则
+\[
+|\phi'(x)|=\frac12|\sin x|\le\frac12.
+\]
+因此
+\[
+|x_{n+1}-x^\ast|\le\frac12|x_n-x^\ast|,
+\]
+从而任意初值均收敛。若 \(x_0=\pi/6\)，因 \(x^\ast>1/4\)，
+\[
+|x_0-x^\ast|\le \pi/6-1/4,
+\]
+要求 \((\pi/6-1/4)2^{-n}<\frac12\cdot10^{-8}\)，取 \(n=26\) 足够。若 \(x_0=20\)，要求
+\[
+(20-1/4)2^{-n}<1/4,
+\]
+取 \(n=7\) 足够。
+
+\item \textbf{题目。} 设 \(A\in\mathbb R^{m\times n}\)、\(m\ge n\)、\(\operatorname{rank}A=r<n\)，SVD 为
+\[
+A=U_1\Sigma_1V_1^T,
+\]
+\(\Sigma_1\) 非奇异。求最小二乘问题 \(\min_x\|Ax-b\|_2\) 的全部解，并证明最小范数解及其估计。
+
+\textbf{解答。} 扩充 \(U=[U_1,U_2]\)、\(V=[V_1,V_2]\)。令
+\[
+z=V^Tx=(z_1,z_2)^T,\qquad c=U^Tb=(c_1,c_2)^T.
+\]
+则
+\[
+\|Ax-b\|_2^2=\|\Sigma_1z_1-c_1\|_2^2+\|c_2\|_2^2.
+\]
+极小当且仅当
+\[
+z_1=\Sigma_1^{-1}c_1=\Sigma_1^{-1}U_1^Tb,
+\]
+而 \(z_2\) 任意。因此全部解为
+\[
+x=V_1\Sigma_1^{-1}U_1^Tb+V_2z_2.
+\]
+由于 \(V_1,V_2\) 的列空间正交，范数
+\[
+\|x\|_2^2=\|V_1\Sigma_1^{-1}U_1^Tb\|_2^2+\|z_2\|_2^2
+\]
+在且仅在 \(z_2=0\) 时最小。记 \(\sigma=\sigma_{\min}(\Sigma_1)\)，则
+\[
+\|x_{\min}\|_2\le \|\Sigma_1^{-1}\|_2\|U_1^Tb\|_2
+\le \frac{\|b\|_2}{\sigma}.
+\]
+
+\item \textbf{题目。} 半隐式 Runge--Kutta 方法
+\[
+k_1=f(y_n+\beta hk_1),\quad
+k_2=f(y_n+hk_1+\beta hk_2),
+\]
+\[
+y_{n+1}=y_n+h\{(\tfrac12+\beta)k_1+(\tfrac12-\beta)k_2\}
+\]
+求阶数及局部截断误差主项，并证明 \(\beta>1/2\) 时负实轴包含于绝对稳定区域。
+
+\textbf{解答。} 对试验方程 \(y'=\lambda y\)，令 \(z=h\lambda\)。解得
+\[
+k_1=\frac{\lambda y_n}{1-\beta z},\qquad
+k_2=\frac{\lambda y_n}{1-\beta z}+\frac{z\lambda y_n}{(1-\beta z)^2}.
+\]
+放大因子为
+\[
+R(z)=1+\frac{z}{1-\beta z}+\left(\frac12-\beta\right)\frac{z^2}{(1-\beta z)^2}.
+\]
+展开：
+\[
+R(z)=1+z+\frac12z^2+(\beta-\beta^2)z^3+\left(\frac32\beta^2-2\beta^3\right)z^4+O(z^5).
+\]
+与 \(e^z=1+z+\frac12z^2+\frac16z^3+\frac1{24}z^4+\cdots\) 比较，通常为二阶，局部误差主项系数为
+\[
+\beta-\beta^2-\frac16.
+\]
+若 \(\beta-\beta^2=1/6\)，即 \(\beta=\frac12\pm\frac1{2\sqrt3}\)，则升为三阶，主项由四阶系数给出。
+
+当 \(z<0\)、\(\beta>1/2\) 时，\(1-\beta z>1\)，且
+\[
+R(z)=1+\frac{z}{1-\beta z}
+\left(\frac12-\beta\right)\frac{z^2}{(1-\beta z)^2}.
+\]
+第二、三项均非正，故 \(R(z)<1\)。另一方面令 \(w=z/(1-\beta z)\in(-1/\beta,0)\)，则
+\[
+R(z)=1+w+\left(\frac12-\beta\right)w^2.
+\]
+对 \(\beta>1/2\) 可检验该二次函数在 \((-1/\beta,0)\) 上大于 \(-1\)。故 \(|R(z)|<1\)，负实轴属于稳定区域。
+
+\item \textbf{题目。} 悬臂梁方程
+\[
+u^{(4)}=f(x),\quad x\in(0,1),\qquad
+u(0)=u'(0)=u''(1)=u'''(1)=0.
+\]
+写出变分问题、能量极小问题、三次连续 Galerkin 方法，并证明能量范数和 \(L^2\) 误差估计。
+
+\textbf{解答。} 取
+\[
+V=\{v\in H^2(0,1):v(0)=v'(0)=0\}.
+\]
+将方程乘 \(v\in V\) 并两次分部积分，右端自然边界 \(u''(1)=u'''(1)=0\) 消去边界项，得变分问题：
+\[
+\text{求 }u\in V,\quad
+\int_0^1 u''v''\,dx=\int_0^1 fv\,dx,\quad \forall v\in V.
+\]
+能量泛函为
+\[
+J(w)=\frac12\int_0^1 (w'')^2\,dx-\int_0^1fw\,dx.
+\]
+若 \(u\) 满足变分问题，则对任意 \(w=u+v\)，
+\[
+J(w)=J(u)+\frac12\int_0^1(v'')^2\,dx\ge J(u).
+\]
+反之，若 \(u\) 极小，则 \(J(u+\varepsilon v)\) 在 \(\varepsilon=0\) 导数为零，得到同一变分方程。
+
+令网格 \(0=x_0<\cdots<x_N=1\)，取
+\[
+V_h=\{v_h\in C^1[0,1]: v_h|_{[x_{i-1},x_i]}\in\mathbb P_3,\ v_h(0)=v_h'(0)=0\}.
+\]
+CG(3) 方法为：求 \(U\in V_h\)，使
+\[
+\int_0^1 U''v_h''\,dx=\int_0^1fv_h\,dx,\quad\forall v_h\in V_h.
+\]
+Galerkin 正交性给出
+\[
+\int_0^1 (u-U)''v_h''\,dx=0.
+\]
+因此
+\[
+\|u-U\|_E\le \inf_{v_h\in V_h}\|u-v_h\|_E.
+\]
+取三次 Hermite 插值 \(I_hu\)，若 \(u\in H^4\)，有
+\[
+\|u-I_hu\|_E\le Ch^2\|u^{(4)}\|_{L^2},
+\]
+故
+\[
+\|u-U\|_E\le Ch^2\|u^{(4)}\|_{L^2}.
+\]
+为 \(L^2\) 估计，令 \(\phi^{(4)}=u-U\) 且满足同样边界条件。则
+\[
+\|u-U\|_{L^2}^2=\int_0^1 (u-U)\phi^{(4)}dx
+=\int_0^1 (u-U)''\phi''dx.
+\]
+减去 Galerkin 正交项 \(\int (u-U)''(I_h\phi)''=0\)，得
+\[
+\|u-U\|_{L^2}^2
+\le \|u-U\|_E\|\phi-I_h\phi\|_E
+\le Ch^2\|u-U\|_E\|\phi^{(4)}\|_{L^2}.
+\]
+由正则性 \(\|\phi^{(4)}\|=\|u-U\|\)，得到
+\[
+\|u-U\|_{L^2}\le Ch^2\|u-U\|_E\le Ch^4\|u^{(4)}\|_{L^2}.
+\]
+\end{enumerate}
+
+\subsection{2022 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 给定正权函数 \(w(x)>0\) 下的正交多项式族 \(\{p_n(x)\}\)，令 \(x_0,\ldots,x_N\) 为 \(p_{N+1}\) 的根。构造次数不超过 \(N\) 的多项式空间中的一组正交归一基，使任意多项式在该基下的系数等于它在节点处的缩放函数值。
+
+\textbf{解答。} 令 \(\ell_i(x)\) 为节点 \(x_i\) 上的 Lagrange 基函数。Gaussian 求积在次数不超过 \(2N+1\) 的多项式上精确，故
+\[
+\langle \ell_i,\ell_j\rangle
+=\int_{-1}^1\ell_i(x)\ell_j(x)w(x)\,dx
+=\sum_{m=0}^N \omega_m\ell_i(x_m)\ell_j(x_m)
+=\omega_i\delta_{ij},
+\]
+其中 \(\omega_i>0\) 是求积权重。于是
+\[
+\psi_i(x)=\frac{\ell_i(x)}{\sqrt{\omega_i}},\qquad i=0,\ldots,N
+\]
+构成正交归一基。若 \(q\) 次数不超过 \(N\)，则其展开系数
+\[
+c_i=\langle q,\psi_i\rangle
+=\sum_{m=0}^N\omega_m q(x_m)\psi_i(x_m)
+=\sqrt{\omega_i}\,q(x_i),
+\]
+即为节点值的缩放。
+
+\item \textbf{题目。} 原二维迭代 \((x_{n+1},y_{n+1})=F(x_n,y_n)\) 在唯一不动点处 Jacobian 的无穷范数小于 \(1\)。证明新迭代
+\[
+x_{n+1}=f(x_n,y_n),\qquad y_{n+1}=g(x_{n+1},y_n)
+\]
+在不动点附近收敛到同一不动点。
+
+\textbf{解答。} 若 \((x^\ast,y^\ast)\) 是原迭代不动点，则
+\[
+x^\ast=f(x^\ast,y^\ast),\qquad
+y^\ast=g(x^\ast,y^\ast)=g(f(x^\ast,y^\ast),y^\ast),
+\]
+故也是新迭代不动点。新映射
+\[
+G(x,y)=(f(x,y),g(f(x,y),y))
+\]
+的 Jacobian 为
+\[
+DG=
+\begin{pmatrix}
+f_x&f_y\\
+g_x f_x&g_x f_y+g_y
+\end{pmatrix}
+\]
+在不动点处计算。第一行绝对行和小于 \(1\)。第二行绝对行和不超过
+\[
+|g_x|(|f_x|+|f_y|)+|g_y|
+\le |g_x|+|g_y|<1,
+\]
+因为原 Jacobian 的两行绝对行和均小于 \(1\)。由连续性，在不动点的某邻域内 \(\|DG\|_\infty<\rho<1\)。压缩映射定理给出局部收敛。
+
+\item \textbf{题目。} 设矩阵 \(A=(a_{ij})\) 满足
+\[
+a_{ii}\ge \sum_{j\ne i}|a_{ij}|+2,\qquad a_{ii}\le7.
+\]
+证明 \(A^{-1}\) 存在，说明 \(\|A\|_\infty\) 是最大绝对行和，并给出 \(\|A\|_\infty\) 的上下界。若 \(A=A^T\)，再给出 \(\|A\|_2\) 与 \(\|A^{-1}\|_2\) 的界。
+
+\textbf{解答。} 若 \(Ax=0\)，取 \(|x_k|=\max_i|x_i|\)。第 \(k\) 行给出
+\[
+|a_{kk}||x_k|
+\le\sum_{j\ne k}|a_{kj}||x_j|
+\le\sum_{j\ne k}|a_{kj}||x_k|.
+\]
+若 \(x_k\ne0\)，则 \(a_{kk}\le\sum_{j\ne k}|a_{kj}|\)，与强对角占优矛盾。因此 \(x=0\)，\(A\) 非奇异。
+
+由算子范数定义，
+\[
+\|A\|_\infty=\max_i\sum_j |a_{ij}|.
+\]
+题设给出
+\[
+\sum_{j\ne i}|a_{ij}|\le a_{ii}-2.
+\]
+故每行绝对和
+\[
+\sum_j|a_{ij}|=a_{ii}+\sum_{j\ne i}|a_{ij}|
+\le 2a_{ii}-2\le12.
+\]
+又 \(a_{ii}\ge2\)，所以
+\[
+2\le \|A\|_\infty\le12.
+\]
+
+若 \(A=A^T\)，Gershgorin 圆盘给出每个特征值 \(\lambda\) 满足
+\[
+a_{ii}-\sum_{j\ne i}|a_{ij}|\le\lambda\le
+a_{ii}+\sum_{j\ne i}|a_{ij}|.
+\]
+故
+\[
+2\le\lambda\le12.
+\]
+于是
+\[
+2\le\|A\|_2\le12,\qquad
+\frac1{12}\le\|A^{-1}\|_2\le\frac12.
+\]
+
+\item \textbf{题目。} 若 forward Euler 在 \(0<h\le h_{\rm FE}\) 下满足 \(\|u^{n+1}\|\le\|u^n\|\)，证明题给二阶段 Runge--Kutta 方法在适当步长限制下也满足同样不增性，并选择二阶且允许步长最大的系数。
+
+\textbf{解答。} 第一阶段
+\[
+u^{(1)}=u^n+h a_{10}f(u^n)
+\]
+是步长 \(ha_{10}\) 的 Euler 步。第二阶段可写成两个 Euler 步的凸组合：
+\[
+u^{n+1}
+=b_{20}\left(u^n+h\frac{a_{20}}{b_{20}}f(u^n)\right)
++b_{21}\left(u^{(1)}+h\frac{a_{21}}{b_{21}}f(u^{(1)})\right).
+\]
+只要
+\[
+h\le h^\ast=h_{\rm FE}
+\min\left\{\frac1{a_{10}},\frac{b_{20}}{a_{20}},\frac{b_{21}}{a_{21}}\right\}
+\]
+（忽略分母为零且相应 \(a\) 为零的项），每个 Euler 步均范数不增，凸性给出
+\[
+\|u^{n+1}\|\le b_{20}\|u^n\|+b_{21}\|u^{(1)}\|
+\le (b_{20}+b_{21})\|u^n\|=\|u^n\|.
+\]
+
+对线性试验方程展开，二阶条件为
+\[
+a_{20}+a_{21}+b_{21}a_{10}=1,\qquad a_{10}a_{21}=\frac12.
+\]
+最大化允许步长时取
+\[
+a_{10}=1,\quad a_{20}=0,\quad a_{21}=\frac12,\quad
+b_{20}=\frac12,\quad b_{21}=\frac12.
+\]
+方法为
+\[
+u^{(1)}=u^n+h f(u^n),\qquad
+u^{n+1}=\frac12u^n+\frac12\{u^{(1)}+h f(u^{(1)})\},
+\]
+且 \(h^\ast=h_{\rm FE}\)。
+
+\item \textbf{题目。} 为 \(u_t+a u_x=0\) 构造三阶 Lax--Wendroff 型格式：对时间 Taylor 展开到四项，用方程把时间导数化为空间导数，再用经过 \(u_{j-2}^n,u_{j-1}^n,u_j^n,u_{j+1}^n\) 的三次插值多项式求空间导数。
+
+\textbf{解答。} 由方程
+\[
+u_t=-au_x,\quad u_{tt}=a^2u_{xx},\quad u_{ttt}=-a^3u_{xxx}.
+\]
+故
+\[
+u^{n+1}_j=u_j^n-a\Delta t\,u_x
+\frac{a^2\Delta t^2}{2}u_{xx}
+-\frac{a^3\Delta t^3}{6}u_{xxx}+O(\Delta t^4).
+\]
+用节点 \(x_{j-2},x_{j-1},x_j,x_{j+1}\) 的三次插值多项式在 \(x_j\) 处求导：
+\[
+u_x(x_j)=\frac{u_{j-2}-6u_{j-1}+3u_j+2u_{j+1}}{6\Delta x}+O(\Delta x^3),
+\]
+\[
+u_{xx}(x_j)=\frac{u_{j-1}-2u_j+u_{j+1}}{\Delta x^2}+O(\Delta x^2),
+\]
+\[
+u_{xxx}(x_j)=\frac{-u_{j-2}+3u_{j-1}-3u_j+u_{j+1}}{\Delta x^3}+O(\Delta x).
+\]
+令 \(\lambda=a\Delta t/\Delta x\)，得到格式
+\[
+\begin{aligned}
+u_j^{n+1}=u_j^n
+&-\frac{\lambda}{6}(u_{j-2}^n-6u_{j-1}^n+3u_j^n+2u_{j+1}^n)\\
+&+\frac{\lambda^2}{2}(u_{j-1}^n-2u_j^n+u_{j+1}^n)\\
+&-\frac{\lambda^3}{6}(-u_{j-2}^n+3u_{j-1}^n-3u_j^n+u_{j+1}^n).
+\end{aligned}
+\]
+若 \(\Delta x=O(\Delta t)\)，代入 Taylor 余项可得单步截断误差除以 \(\Delta t\) 后为 \(O(\Delta t^3)\)，即三阶精确。
+
+\item \textbf{题目。} 有 \(60K\) 资金，按 \(10K\) 的整数倍投资三个项目。若投入 \(d_i>0\)，收益为
+\[
+g_1(d_1)=7d_1+2,\quad g_2(d_2)=3d_2+7,\quad g_3(d_3)=4d_3+5,
+\]
+且 \(g_i(0)=0\)。求最大收益和投资方案。
+
+\textbf{解答。} 用动态规划。令 \(F_i(s)\) 表示从第 \(i\) 个项目起、剩余资金 \(s\in\{0,\ldots,6\}\) 时的最大收益，边界 \(F_4(s)=0\)。递推为
+\[
+F_i(s)=\max_{0\le d\le s}\{g_i(d)+F_{i+1}(s-d)\}.
+\]
+第三阶段：
+\[
+F_3(s)=g_3(s)=4s+5\quad(s>0),\qquad F_3(0)=0.
+\]
+第二阶段计算
+\[
+F_2(s)=\max_{0\le d\le s}\{g_2(d)+F_3(s-d)\}.
+\]
+逐项比较得最优通常取 \(d_2=1\)（当 \(s\ge1\)），并有
+\[
+F_2(6)=35,\ F_2(5)=31,\ F_2(4)=27,\ F_2(3)=23,\ F_2(2)=19.
+\]
+第一阶段：
+\[
+F_1(6)=\max_{0\le d_1\le6}\{g_1(d_1)+F_2(6-d_1)\}.
+\]
+对应值为
+\[
+35,40,43,46,49,47,44.
+\]
+最大值为 \(49\)，在 \(d_1=4\) 处取得。随后剩余 \(2\)，第二阶段取 \(d_2=1\)，第三阶段取 \(d_3=1\)。因此最优方案是
+\[
+(d_1,d_2,d_3)=(4,1,1),
+\]
+最大收益为 \(49\) 个 \(1000\) 美元单位，即 \(49000\) 美元。
+\end{enumerate}
+
+\subsection{2023 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设
+\[
+D_h^+f(x_0)=\frac{f(x_0+h)-f(x_0)}{h},\qquad
+D_h^0f(x_0)=\frac{f(x_0+h)-f(x_0-h)}{2h}.
+\]
+证明二者分别为一阶和二阶近似；用 Richardson 外推从前向差分得到二阶近似；当 \(f(x)=\sin x,x_0=0\) 时证明两种差分实际给出同一个二阶近似。
+
+\textbf{解答。} Taylor 展开给出
+\[
+f(x_0+h)=f(x_0)+hf'(x_0)+\frac{h^2}{2}f''(x_0)+\frac{h^3}{6}f^{(3)}(x_0)+O(h^4),
+\]
+故
+\[
+D_h^+f(x_0)=f'(x_0)+\frac h2 f''(x_0)+O(h^2),
+\]
+是一阶近似。又
+\[
+f(x_0+h)-f(x_0-h)=2hf'(x_0)+\frac{h^3}{3}f^{(3)}(x_0)+O(h^5),
+\]
+所以
+\[
+D_h^0f(x_0)=f'(x_0)+\frac{h^2}{6}f^{(3)}(x_0)+O(h^4),
+\]
+为二阶近似。
+
+设
+\[
+D_h^+f(x_0)=f'(x_0)+ch+O(h^2),
+\quad
+D_{h/2}^+f(x_0)=f'(x_0)+\frac c2h+O(h^2).
+\]
+消去一阶误差，得
+\[
+2D_{h/2}^+f(x_0)-D_h^+f(x_0)=f'(x_0)+O(h^2),
+\]
+即
+\[
+\frac{4f(x_0+h/2)-3f(x_0)-f(x_0+h)}{h}=f'(x_0)+O(h^2).
+\]
+当 \(f(x)=\sin x,x_0=0\) 时，
+\[
+D_h^+f(0)=\frac{\sin h}{h},\qquad
+D_h^0f(0)=\frac{\sin h-\sin(-h)}{2h}=\frac{\sin h}{h}.
+\]
+并且
+\[
+\frac{\sin h}{h}=1-\frac{h^2}{6}+O(h^4)=f'(0)-\frac{h^2}{6}+O(h^4),
+\]
+故二者相同且均二阶收敛。
+
+\item \textbf{题目。} 对
+\[
+I[f]=\int_0^1 f(x)\log(1/x)\,dx
+\]
+的权函数 \(w(x)=\log(1/x)\)，设 \(P_n\) 为首一正交多项式。求 \(P_1\) 及一点 Gauss 求积节点、权重；推出 \(P_n\) 与归一化多项式 \(Q_n=P_n/\|P_n\|\) 的三项递推；说明四点 Gauss 节点与对称三对角矩阵特征值的关系。
+
+\textbf{解答。} 先计算矩
+\[
+\mu_k=\int_0^1 x^k\log(1/x)\,dx=\frac1{(k+1)^2}.
+\]
+设 \(P_1(x)=x-a\)。由 \(P_1\perp P_0\)，
+\[
+0=\int_0^1(x-a)w(x)\,dx=\mu_1-a\mu_0=\frac14-a,
+\]
+所以
+\[
+P_1(x)=x-\frac14.
+\]
+一点 Gauss 求积的节点是 \(P_1\) 的零点，故
+\[
+x_{11}=\frac14,
+\]
+权重由对常数精确得
+\[
+\omega_{11}=\int_0^1w(x)\,dx=1.
+\]
+
+对首一正交多项式，三项递推为
+\[
+P_{n+1}(x)=(x-a_n)P_n(x)-b_nP_{n-1}(x),
+\]
+其中
+\[
+a_n=\frac{\langle xP_n,P_n\rangle}{\langle P_n,P_n\rangle},
+\qquad
+b_n=\frac{\langle P_n,P_n\rangle}{\langle P_{n-1},P_{n-1}\rangle},
+\]
+内积为
+\[
+\langle f,g\rangle=\int_0^1f(x)g(x)w(x)\,dx.
+\]
+证明如下：\(xP_n\) 是 \(n+1\) 次首一多项式，故 \(xP_n-P_{n+1}\) 次数不超过 \(n\)。它与所有 \(P_j\)（\(j\ne n,n-1\)）正交，因此只含 \(P_n,P_{n-1}\) 两项，取内积即可得到系数。
+
+令 \(Q_n=P_n/\|P_n\|\)，则存在
+\[
+\alpha_n=\langle xQ_n,Q_n\rangle,
+\qquad
+\beta_n=\langle xQ_n,Q_{n-1}\rangle>0,
+\]
+使得
+\[
+xQ_n=\beta_{n+1}Q_{n+1}+\alpha_nQ_n+\beta_nQ_{n-1}.
+\]
+所以
+\[
+Q_{n+1}=\frac{x-
+\alpha_n}{\beta_{n+1}}Q_n-
+\frac{\beta_n}{\beta_{n+1}}Q_{n-1}.
+\]
+在基 \(Q_0,Q_1,Q_2,Q_3\) 下，乘法算子 \(f\mapsto xf\) 的截断矩阵为
+\[
+J_4=\begin{pmatrix}
+\alpha_0&\beta_1&0&0\\
+\beta_1&\alpha_1&\beta_2&0\\
+0&\beta_2&\alpha_2&\beta_3\\
+0&0&\beta_3&\alpha_3
+\end{pmatrix}.
+\]
+递推关系说明
+\[
+\det(\lambda I-J_4)=cQ_4(\lambda),\qquad c\ne0.
+\]
+因此 \(\lambda\) 是四点 Gauss 节点当且仅当它是该实对称三对角 Jacobi 矩阵的特征值。
+
+\item \textbf{题目。} 设实矩阵 \(A\) 有互异特征值，且
+\[
+|\lambda_1|>|\lambda_2|\ge\cdots\ge |\lambda_n|\ge0,
+\]
+对应特征向量为 \(v_j\)。证明幂迭代收敛到主特征向量方向。再设
+\[
+x_{n+1}=x_n+y_n,
+\qquad
+ y_{n+1}=x_{n+1}+x_n,
+\quad x_0=y_0=1,
+\]
+证明 \(y_n/x_n\to\sqrt2\)。
+
+\textbf{解答。} 若
+\[
+z_0=\sum_{j=1}^n c_jv_j,
+\qquad c_1\ne0,
+\]
+则
+\[
+A^mz_0=\lambda_1^m\left(c_1v_1+
+\sum_{j=2}^n c_j\left(\frac{\lambda_j}{\lambda_1}\right)^mv_j\right).
+\]
+由于 \(|\lambda_j/\lambda_1|<1\)，括号中第二项趋于零，所以归一化后
+\[
+\frac{A^mz_0}{\|A^mz_0\|}\to \pm\frac{v_1}{\|v_1\|},
+\]
+符号取决于 \(\lambda_1^mc_1\)。若 \(c_1=0\)，则初始向量没有主特征向量分量，结论未必成立；通常要求 \(z_0\) 在 \(v_1\) 方向上分量非零。
+
+递推可写成
+\[
+\binom{x_{n+1}}{y_{n+1}}=
+\begin{pmatrix}1&1\\2&1\end{pmatrix}\binom{x_n}{y_n}.
+\]
+该矩阵特征值为 \(1\pm\sqrt2\)，对应特征向量可取 \((1,\pm\sqrt2)^T\)。由于
+\[
+|1-
+\sqrt2|<1<1+
+\sqrt2,
+\]
+初始向量在主特征向量方向上的分量非零，故迭代方向趋于 \((1,\sqrt2)^T\)。因此
+\[
+\frac{y_n}{x_n}\to\sqrt2.
+\]
+
+\item \textbf{题目。} 对初值问题 \(y'=f(t,y),y(0)=y_0\)，考虑一步法
+\[
+y_{n+1}=y_n+
+\alpha h f(t_n,y_n)+\beta h f(t_n+
+\gamma h,y_n+
+\gamma h f(t_n,y_n)).
+\]
+证明一致当且仅当 \(\alpha+
+\beta=1\)，阶数不超过二。若二阶方法用于 \(y'=-\lambda y\)、\(y_0=1\)，证明数值序列有界当且仅当 \(h\le2/\lambda\)，并证明相应误差估计
+\[
+|y(t_n)-y_n|\le \frac16\lambda^3h^2t_n.
+\]
+
+\textbf{解答。} 精确解展开为
+\[
+y(t+h)=y+hy'+\frac{h^2}{2}y''+\frac{h^3}{6}y^{(3)}+O(h^4).
+\]
+另一方面，沿精确解方向展开
+\[
+f(t+
+\gamma h,y+
+\gamma hf(t,y))=y'+
+\gamma h y''+O(h^2).
+\]
+故方法给出
+\[
+y_{n+1}=y+h(\alpha+
+\beta)y'+\beta\gamma h^2y''+O(h^3).
+\]
+一致性充要条件是一次项正确，即
+\[
+\alpha+
+\beta=1.
+\]
+二阶还需
+\[
+\beta\gamma=\frac12.
+\]
+由于该方法只有两阶段显式 Runge--Kutta 型，不能同时匹配三阶 Butcher 条件，故阶数不超过二。
+
+对 \(y'=-\lambda y\)，二阶条件下稳定函数为
+\[
+R(-\lambda h)=1-
+\lambda h+\frac{(\lambda h)^2}{2}.
+\]
+设 \(s=
+\lambda h\ge0\)。数值序列 \(y_n=R(-s)^n\) 有界当且仅当
+\[
+|1-s+s^2/2|\le1.
+\]
+由于 \(1-s+s^2/2\ge -1\) 恒成立，且 \(1-s+s^2/2\le1\) 等价于 \(0\le s\le2\)，故
+\[
+h\le\frac2\lambda.
+\]
+当 \(0\le s\le2\) 时，Taylor 余项给出
+\[
+|e^{-s}-(1-s+s^2/2)|\le\frac{s^3}{6}.
+\]
+利用 \(|R(-s)|\le1\)、\(|e^{-s}|\le1\)，逐步比较得
+\[
+|e^{-
+\lambda t_n}-R(-
+\lambda h)^n|
+\le n\frac{(\lambda h)^3}{6}
+=\frac16\lambda^3h^2t_n.
+\]
+
+\item \textbf{题目。} 对热方程初边值问题
+\[
+u_t=Du_{xx},\quad 0<x<L,
+\qquad u(t,0)=u(t,L)=0,
+\]
+显式差分格式为
+\[
+\frac{u_j^{n+1}-u_j^n}{\Delta t}
+=D\frac{u_{j+1}^n-2u_j^n+u_{j-1}^n}{(\Delta x)^2}.
+\]
+证明一致性；若 \(\Delta t\le(\Delta x)^2/(2D)\)，证明 \(\ell^\infty\) 稳定并推出收敛。
+
+\textbf{解答。} 对光滑精确解在 \((t_n,x_j)\) 处作 Taylor 展开，有
+\[
+\frac{u(t_{n+1},x_j)-u(t_n,x_j)}{\Delta t}
+=u_t(t_n,x_j)+O(\Delta t),
+\]
+以及
+\[
+\frac{u(t_n,x_{j+1})-2u(t_n,x_j)+u(t_n,x_{j-1})}{(\Delta x)^2}
+=u_{xx}(t_n,x_j)+O((\Delta x)^2).
+\]
+由于精确解满足 \(u_t=Du_{xx}\)，代入差分格式得到局部截断误差
+\[
+\tau_j^n=O\bigl(\Delta t+(\Delta x)^2\bigr),
+\]
+故该格式一致。
+
+令
+\[
+r=\frac{D\Delta t}{(\Delta x)^2}.
+\]
+则格式可写为
+\[
+u_j^{n+1}=ru_{j-1}^n+(1-2r)u_j^n+ru_{j+1}^n.
+\]
+若 \(r\le1/2\)，则 \(r,1-2r,r\) 均非负且和为 \(1\)。结合齐次边界条件 \(u_0^n=u_M^n=0\)，对每个内部节点有
+\[
+|u_j^{n+1}|\le r\|u^n\|_{\ell^\infty}
++(1-2r)\|u^n\|_{\ell^\infty}
++r\|u^n\|_{\ell^\infty}
+=\|u^n\|_{\ell^\infty}.
+\]
+取 \(j\) 的最大值得
+\[
+\|u^{n+1}\|_{\ell^\infty}\le\|u^n\|_{\ell^\infty},
+\]
+反复迭代即得 \(\ell^\infty\) 稳定性。
+
+设误差 \(e_j^n=u(t_n,x_j)-u_j^n\)。把精确解代入格式并减去数值格式，得到
+\[
+e_j^{n+1}=re_{j-1}^n+(1-2r)e_j^n+re_{j+1}^n+\Delta t\,\tau_j^n,
+\]
+其中 \(|\tau_j^n|\le C\bigl(\Delta t+(\Delta x)^2\bigr)\)。同样利用上面的最大模估计，
+\[
+\|e^{n+1}\|_{\ell^\infty}
+\le \|e^n\|_{\ell^\infty}
++C\Delta t\bigl(\Delta t+(\Delta x)^2\bigr).
+\]
+若初始值精确给出，则 \(e^0=0\)。当 \(n\Delta t\le T\) 时迭代得
+\[
+\|e^n\|_{\ell^\infty}
+\le CT\bigl(\Delta t+(\Delta x)^2\bigr)\to0.
+\]
+因此在 CFL 条件 \(\Delta t\le(\Delta x)^2/(2D)\) 下，显式格式收敛。
+
+\item \textbf{题目。} 考虑半经典 Schrodinger 方程
+\[
+i\varepsilon\partial_t\psi^\varepsilon
+=-\frac{\varepsilon^2}{2}\Delta\psi^\varepsilon
++V(x)\psi^\varepsilon,
+\]
+并作 WKB 展开
+\[
+\psi^\varepsilon(t,x)=A(t,x)e^{iS(t,x)/\varepsilon},
+\]
+其中 \(A,S\) 为实函数。推导 \(A,S\) 的方程。令 \(u=\nabla S\)，推导 \(u\) 的方程，并说明即使初值光滑，\(u(t,x)\) 是否必对所有 \(t>0\) 保持光滑。
+
+\textbf{解答。} 由
+\[
+\partial_t\psi^\varepsilon
+=\bigl(A_t+i\varepsilon^{-1}AS_t\bigr)e^{iS/\varepsilon}
+\]
+以及
+\[
+\Delta\psi^\varepsilon
+=\left(\Delta A+2i\varepsilon^{-1}\nabla A\cdot\nabla S
++i\varepsilon^{-1}A\Delta S
+-\varepsilon^{-2}A|\nabla S|^2\right)e^{iS/\varepsilon},
+\]
+代入半经典 Schrodinger 方程，并消去公共因子 \(e^{iS/\varepsilon}\)，得到
+\[
+i\varepsilon A_t-AS_t
+=-\frac{\varepsilon^2}{2}\Delta A
+-i\varepsilon\nabla A\cdot\nabla S
+-\frac{i\varepsilon}{2}A\Delta S
++\frac12A|\nabla S|^2+VA.
+\]
+比较实部的主阶项，得 Hamilton--Jacobi 方程
+\[
+S_t+\frac12|\nabla S|^2+V(x)=0.
+\]
+比较虚部的一阶项，得振幅输运方程
+\[
+A_t+\nabla S\cdot\nabla A+\frac12A\Delta S=0.
+\]
+其中 \(-\varepsilon^2\Delta A/2\) 是下一阶修正项。
+
+令 \(u=\nabla S\)。对 Hamilton--Jacobi 方程取梯度，得到
+\[
+u_t+\nabla\left(\frac12|u|^2\right)+\nabla V=0.
+\]
+由于 \(u=\nabla S\) 为梯度场，\(\nabla(\frac12|u|^2)=(u\cdot\nabla)u\)，于是
+\[
+u_t+(u\cdot\nabla)u+\nabla V=0.
+\]
+这是带外力的无粘 Burgers/Hamilton 流方程。该方程的特征线可能在有限时间相交，因而梯度可能爆破并产生 caustic；所以即使 \(u(0,x)\in C^\infty\)，一般也不能保证 \(u(t,x)\) 对所有 \(t>0\) 仍为 \(C^\infty\)。
+\end{enumerate}
+\subsection{2024 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 \(A\in\mathbb R^{n\times n}\) 非奇异，\(u,v\in\mathbb R^n\) 为列向量，并定义秩一扰动
+\[
+\widehat A=A+uv^T.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 求 \(\widehat A\) 可逆的充要条件。
+\item 设 \(x,z,b\in\mathbb R^n\)。若线性方程 \(Az=b\) 可用 \(O(n)\) 次浮点运算求解，在 (a) 的条件下设计一个用 \(O(n)\) 次浮点运算求解 \(\widehat A x=b\) 的算法，并说明理由。
+\end{enumerate}
+
+\textbf{解答。} 令 \(w=A^{-1}u\)。因为
+\[
+\widehat A=A(I+A^{-1}uv^T)=A(I+wv^T),
+\]
+而 \(A\) 已可逆，所以 \(\widehat A\) 可逆当且仅当 \(I+wv^T\) 可逆。若
+\[
+(I+wv^T)y=0,
+\]
+则
+\[
+y=-w(v^Ty).
+\]
+左乘 \(v^T\)，得
+\[
+v^Ty=-(v^Tw)(v^Ty),
+\]
+即
+\[
+(1+v^Tw)(v^Ty)=0.
+\]
+若 \(1+v^Tw\ne0\)，则 \(v^Ty=0\)，从而 \(y=0\)，故零空间只有零向量，\(I+wv^T\) 可逆。反过来，若 \(1+v^Tw=0\)，则
+\[
+(I+wv^T)w=w+w(v^Tw)=0.
+\]
+由于 \(A\) 非奇异且若 \(u\ne0\) 则 \(w\ne0\)，此时不可逆；若 \(u=0\)，条件自动为 \(1\ne0\)。因此
+\[
+\widehat A\ \text{可逆}\quad\Longleftrightarrow\quad
+1+v^TA^{-1}u\ne0.
+\]
+
+在此条件下，Sherman--Morrison 公式为
+\[
+(A+uv^T)^{-1}
+=A^{-1}-\frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}.
+\]
+算法如下：先用给定的 \(A\)-求解器求
+\[
+Ay=b,\qquad Az=u.
+\]
+然后计算两个内积 \(v^Ty\)、\(v^Tz\)，最后令
+\[
+x=y-\frac{v^Ty}{1+v^Tz}\,z.
+\]
+验证如下：
+\[
+(A+uv^T)x
+=Ay-\frac{v^Ty}{1+v^Tz}Az
++u\,v^Ty-\frac{v^Ty}{1+v^Tz}u\,v^Tz
+=b.
+\]
+除两次 \(A\)-求解外，其余只是内积、数乘和向量加减，均为 \(O(n)\) 运算；若对 \(A\) 的求解可在 \(O(n)\) 内完成，则整个算法也是 \(O(n)\)。
+
+\item \textbf{题目。} 考虑无穷区间积分
+\[
+I=\int_0^\infty f(x)\,dx,
+\]
+其中 \(f\) 连续，\(f'(0)\ne0\)，且当 \(x\to\infty\) 时
+\[
+f(x)\sim Cx^{-1-\alpha},\qquad \alpha>0.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 对固定 \(L\)，用 \(n\) 个等距小区间的复合梯形公式近似 \(\int_0^L f(x)\,dx\)，求 \(n\to\infty\) 时误差的渐近公式。
+\item 把 (a) 的截断求积看成对 \(I\) 的近似。为了优化总误差衰减率，\(L\) 应随 \(n\) 如何增长？最优误差率是多少？
+\item 作变量代换
+\[
+x=\frac{L(1+y)}{1-y},\qquad y=\frac{x-L}{x+L},
+\]
+将原积分化为
+\[
+\int_{-1}^1 F_L(y)\,dy.
+\]
+若对这个积分使用等距复合梯形公式，固定 \(L\) 时误差的渐近形式是什么？
+\item 根据 \(\alpha\)，比较截断法和变量代换法何者更优。
+\end{enumerate}
+
+\textbf{解答。} 设 \(h=L/n\)，复合梯形公式记为
+\[
+T_{n,L}
+=h\left(\frac12f(0)+\sum_{j=1}^{n-1}f(jh)+\frac12f(L)\right).
+\]
+Euler--Maclaurin 公式给出
+\[
+T_{n,L}-\int_0^L f(x)\,dx
+=\frac{h^2}{12}\bigl(f'(L)-f'(0)\bigr)+O(h^4).
+\]
+等价地，
+\[
+\int_0^L f(x)\,dx-T_{n,L}
+=\frac{h^2}{12}\bigl(f'(0)-f'(L)\bigr)+O(h^4).
+\]
+这就是固定 \(L\) 时的主误差项。
+
+因为 \(f(x)\sim Cx^{-1-\alpha}\)，故截断尾项满足
+\[
+\int_L^\infty f(x)\,dx\sim \frac{C}{\alpha}L^{-\alpha}.
+\]
+当 \(L\) 随 \(n\) 增大时，梯形离散误差的量级为
+\[
+O(h^2)=O\left(\frac{L^2}{n^2}\right),
+\]
+而截断误差量级为 \(O(L^{-\alpha})\)。平衡两项：
+\[
+\frac{L^2}{n^2}\asymp L^{-\alpha},
+\]
+得
+\[
+L^{\alpha+2}\asymp n^2,\qquad
+L\asymp n^{2/(\alpha+2)}.
+\]
+代回任一误差项，得到最优总误差率
+\[
+O\left(n^{-2\alpha/(\alpha+2)}\right).
+\]
+
+对变量代换，有
+\[
+\frac{dx}{dy}=\frac{2L}{(1-y)^2},
+\]
+所以
+\[
+F_L(y)=f\!\left(\frac{L(1+y)}{1-y}\right)\frac{2L}{(1-y)^2},
+\qquad
+\int_0^\infty f(x)\,dx=\int_{-1}^1F_L(y)\,dy.
+\]
+设 \(\eta=2/n\) 是 \([-1,1]\) 上的网格宽度。若 \(F_L\) 在端点足够光滑，则 Euler--Maclaurin 公式给出
+\[
+\int_{-1}^1F_L(y)\,dy-T_n(F_L)
+=\frac{\eta^2}{12}\bigl(F_L'(-1)-F_L'(1)\bigr)+O(\eta^4).
+\]
+但由 \(x\to\infty\) 对应 \(y\to1^-\)，并且
+\[
+x=\frac{L(1+y)}{1-y}\sim \frac{2L}{1-y},
+\]
+可得
+\[
+F_L(y)\sim
+C\left(\frac{2L}{1-y}\right)^{-1-\alpha}\frac{2L}{(1-y)^2}
+=C\,2^{-\alpha}L^{-\alpha}(1-y)^{\alpha-1}.
+\]
+因此端点 \(y=1\) 的光滑性由 \(\alpha\) 控制。若 \(\alpha>2\)，则通常具有二阶梯形误差 \(O(n^{-2})\)；若 \(0<\alpha<2\)，端点奇性使误差主阶降为 \(O(n^{-\alpha})\)；\(\alpha=2\) 时常出现临界的对数修正。
+
+于是变量代换法的典型误差阶可写作
+\[
+O\bigl(n^{-\min\{\alpha,2\}}\bigr)
+\]
+（\(\alpha=2\) 时需注意可能的对数因子）。截断法最优阶为
+\[
+O\left(n^{-2\alpha/(\alpha+2)}\right).
+\]
+对任意有限 \(\alpha>0\)，都有
+\[
+\min\{\alpha,2\}\ge \frac{2\alpha}{\alpha+2},
+\]
+且通常严格大于。因此在该渐近模型下，变量代换法通常优于截断法；当 \(\alpha\) 很大时，二者都接近二阶，但变量代换法仍避免了截断尾误差。
+
+\item \textbf{题目。} 第一类 Chebyshev 多项式满足
+\[
+T_n(x)=\cos(n\theta),\qquad x=\cos\theta,\quad x\in[-1,1].
+\]
+第二类 Chebyshev 多项式定义为
+\[
+U_n(x)=\frac1{n+1}T_{n+1}'(x),\qquad n\ge0.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 推导计算所有 \(U_n(x)\) 的递推公式。
+\item 证明 \(\{U_n\}\) 关于内积
+\[
+\langle f,g\rangle=\int_{-1}^1 f(x)g(x)\sqrt{1-x^2}\,dx
+\]
+正交。
+\item 推导积分
+\[
+\int_{-1}^1 f(x)\sqrt{1-x^2}\,dx
+=\sum_{j=1}^2w_jf(x_j)
+\]
+的二点 Gauss 求积公式。
+\end{enumerate}
+
+\textbf{解答。} 由 \(x=\cos\theta\)，
+\[
+T_{n+1}'(x)
+=\frac{d}{dx}\cos((n+1)\theta)
+=\frac{-(n+1)\sin((n+1)\theta)}{-\sin\theta},
+\]
+所以
+\[
+U_n(\cos\theta)=\frac{\sin((n+1)\theta)}{\sin\theta}.
+\]
+利用三角恒等式
+\[
+\sin((n+2)\theta)=2\cos\theta\,\sin((n+1)\theta)-\sin(n\theta),
+\]
+得到
+\[
+U_{n+1}(x)=2xU_n(x)-U_{n-1}(x),
+\qquad U_0(x)=1,\quad U_1(x)=2x.
+\]
+
+再令 \(x=\cos\theta\)。当 \(x\) 从 \(-1\) 到 \(1\) 时，\(\theta\) 从 \(\pi\) 到 \(0\)，并且
+\[
+dx=-\sin\theta\,d\theta,\qquad \sqrt{1-x^2}=\sin\theta.
+\]
+因此
+\[
+\begin{aligned}
+\int_{-1}^1U_m(x)U_n(x)\sqrt{1-x^2}\,dx
+&=\int_0^\pi
+\frac{\sin((m+1)\theta)}{\sin\theta}
+\frac{\sin((n+1)\theta)}{\sin\theta}
+\sin^2\theta\,d\theta\\
+&=\int_0^\pi \sin((m+1)\theta)\sin((n+1)\theta)\,d\theta.
+\end{aligned}
+\]
+最后一个积分在 \(m\ne n\) 时为 \(0\)，在 \(m=n\) 时为 \(\pi/2\)，故正交性成立。
+
+二点 Gauss 求积的节点是二次正交多项式 \(U_2\) 的零点。由递推式
+\[
+U_2(x)=2xU_1(x)-U_0(x)=4x^2-1,
+\]
+可得
+\[
+x_1=-\frac12,\qquad x_2=\frac12.
+\]
+权函数为偶函数，节点关于 \(0\) 对称，所以 \(w_1=w_2\)。由常数函数精确性，
+\[
+w_1+w_2=\int_{-1}^1\sqrt{1-x^2}\,dx=\frac{\pi}{2}.
+\]
+因此
+\[
+w_1=w_2=\frac{\pi}{4},
+\]
+二点公式为
+\[
+\int_{-1}^1 f(x)\sqrt{1-x^2}\,dx
+\approx
+\frac{\pi}{4}f\!\left(-\frac12\right)
++\frac{\pi}{4}f\!\left(\frac12\right).
+\]
+该公式对次数不超过 \(3\) 的多项式精确。
+
+\item \textbf{题目。} 考虑边值问题
+\[
+-\frac{d}{dx}\left(a(x)\frac{du}{dx}\right)=f(x),
+\qquad u(0)=u(1)=0,
+\]
+其中 \(a(x)>\delta\ge0\)，且 \(a\) 在 \([0,1]\) 上有界并可微。假设可以计算 \(a(x)\)，但不能使用 \(a'(x)\) 的显式表达式。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 在等距网格 \(x_i=ih\), \(i=0,\ldots,n\), \(h=1/n\) 上，用有限差分离散该方程，要求得到 \(O(h^2)\) 近似；施加边界条件后写出 \((n-1)\times(n-1)\) 三对角线性系统的元素。
+\item 利用已知信息，给出一个尽量小的复平面圆盘，保证包含该线性系统矩阵的所有特征值。
+\end{enumerate}
+
+\textbf{解答。} 为避免使用 \(a'(x)\)，采用通量形式。记
+\[
+a_{i+1/2}=a\left(x_i+\frac h2\right),\qquad u_i\approx u(x_i).
+\]
+在半网格点上近似通量：
+\[
+a(x_{i+1/2})u'(x_{i+1/2})
+=a_{i+1/2}\frac{u_{i+1}-u_i}{h}+O(h^2).
+\]
+于是对内部点 \(i=1,\ldots,n-1\)，
+\[
+-\frac1h\left[
+a_{i+1/2}\frac{u_{i+1}-u_i}{h}
+-a_{i-1/2}\frac{u_i-u_{i-1}}{h}
+\right]=f(x_i)+O(h^2).
+\]
+忽略截断误差并记 \(f_i=f(x_i)\)，得到
+\[
+-a_{i-1/2}u_{i-1}+(a_{i-1/2}+a_{i+1/2})u_i-a_{i+1/2}u_{i+1}
+=h^2f_i.
+\]
+边界条件给出 \(u_0=u_n=0\)。若未知向量为
+\[
+U=(u_1,\ldots,u_{n-1})^T,
+\]
+则线性系统可写为 \(AU=F\)，其中
+\[
+F_i=f_i,\qquad i=1,\ldots,n-1,
+\]
+且矩阵元素为
+\[
+A_{ii}=\frac{a_{i-1/2}+a_{i+1/2}}{h^2},
+\quad
+A_{i,i-1}=-\frac{a_{i-1/2}}{h^2},
+\quad
+A_{i,i+1}=-\frac{a_{i+1/2}}{h^2},
+\]
+不存在的边界列按 \(u_0=u_n=0\) 移去。该格式使用中心差分近似通量差，因此为二阶精度。
+
+设
+\[
+M=\|a\|_{L^\infty(0,1)}.
+\]
+第 \(i\) 行的 Gershgorin 圆盘中心为
+\[
+c_i=\frac{a_{i-1/2}+a_{i+1/2}}{h^2},
+\]
+半径为
+\[
+r_i=\frac{a_{i-1/2}+a_{i+1/2}}{h^2}=c_i.
+\]
+因为 \(0<a_{i\pm1/2}\le M\)，故 \(0<c_i\le2M/h^2\)，且每个 Gershgorin 圆盘都包含在
+\[
+\{z\in\mathbb C:\ |z|\le 4M/h^2\}.
+\]
+因此
+\[
+\lambda(A)\subset \{z\in\mathbb C:\ |z|\le 4M/h^2\}.
+\]
+这给出了只依赖 \(M\) 与 \(h\) 的保证圆盘。
+
+\item \textbf{题目。}
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 验证偏微分方程
+\[
+u_t=u_{xxx}
+\]
+作为初值问题是适定的。
+\item 考虑用差分格式
+\[
+\frac{u(t+k,x)-u(t-k,x)}{2k}
+=\frac{-\frac12u(t,x-2h)+u(t,x-h)-u(t,x+h)+\frac12u(t,x+2h)}{h^3}
+\]
+求解它。求该格式的稳定性条件。
+\end{enumerate}
+
+\textbf{解答。} 对空间变量作 Fourier 变换，设
+\[
+u(t,x)=\widehat u(\xi,t)e^{i\xi x}.
+\]
+代入 \(u_t=u_{xxx}\) 得
+\[
+\partial_t\widehat u(\xi,t)=(i\xi)^3\widehat u(\xi,t)
+=-i\xi^3\widehat u(\xi,t).
+\]
+因此
+\[
+\widehat u(\xi,t)=e^{-i\xi^3t}\widehat u(\xi,0).
+\]
+乘子 \(e^{-i\xi^3t}\) 的模恒为 \(1\)，所以在 \(L^2\) 以及 Sobolev 空间 \(H^s\) 中范数守恒：
+\[
+\|u(t,\cdot)\|_{H^s}=\|u(0,\cdot)\|_{H^s}.
+\]
+解连续依赖初值且唯一存在，因此该初值问题适定。
+
+对差分格式作 von Neumann 分析，令
+\[
+u_j^n=\rho^n e^{ij\theta}.
+\]
+右端空间差分的符号为
+\[
+\frac{-\frac12e^{-2i\theta}+e^{-i\theta}-e^{i\theta}+\frac12e^{2i\theta}}{h^3}
+=\frac{i(\sin2\theta-2\sin\theta)}{h^3}.
+\]
+代入格式得
+\[
+\frac{\rho-\rho^{-1}}{2k}
+=\frac{i(\sin2\theta-2\sin\theta)}{h^3},
+\]
+即
+\[
+\rho-\rho^{-1}=2i\mu(\theta),
+\qquad
+\mu(\theta)=\frac{k}{h^3}(\sin2\theta-2\sin\theta).
+\]
+Leapfrog 型方程的两个根均在单位圆上，当且仅当
+\[
+|\mu(\theta)|\le1
+\quad\text{对所有 }\theta.
+\]
+又
+\[
+\sin2\theta-2\sin\theta
+=2\sin\theta(\cos\theta-1),
+\]
+其绝对值最大为
+\[
+\max_\theta|\sin2\theta-2\sin\theta|
+=\frac{3\sqrt3}{2}.
+\]
+因此稳定性条件为
+\[
+\frac{k}{h^3}\frac{3\sqrt3}{2}\le1,
+\]
+即
+\[
+k\le \frac{2}{3\sqrt3}h^3.
+\]
+
+\item \textbf{题目。} 考虑周期边界条件下的扩散方程
+\[
+\frac{\partial v}{\partial t}
+=\mu\frac{\partial^2 v}{\partial x^2},
+\qquad
+v(x,0)=\phi(x),\qquad
+\int_a^b v(x,t)\,dx=0,
+\]
+其中 \(x\in[a,b]\)。用一维 Laplace 中心差分算子
+\[
+Lv_m=\frac{v_{m+1}-2v_m+v_{m-1}}{h^2}
+\]
+近似空间二阶导数，并考虑
+\[
+v^{n+1}=v^n+\mu kLv^n
+\]
+以及
+\[
+v^{n+1}=v^n+\mu k(Lv^n+Lv^{n+1}).
+\]
+令 \([a,b]=[0,2\pi]\)，周期网格为 \(0,h,2h,\ldots,(N-1)h\)，其中 \(h=2\pi/N\)，\(N\) 为偶数。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 求 \(L\) 近似 \(v_{xx}\) 的精度阶。
+\item 若
+\[
+v_m^n=\sum_{l=0}^{N-1}\widehat v_l^{\,n}
+\exp\!\left(i\frac{2\pi lm}{N}\right),
+\]
+求两种方法中 \(\widehat v_l^{\,n+1}\) 与 \(\widehat v_l^{\,n}\) 的关系，包括 \(l=0\)。
+\item 当初值 \(\phi(m\Delta x)=(-1)^m\) 时，给出两种方法的 \(v_m^n\)。
+\item 求两种方法对时间步长 \(k\) 的稳定性限制。
+\end{enumerate}
+
+\textbf{解答。} Taylor 展开给出
+\[
+v(x_m+h)-2v(x_m)+v(x_m-h)
+=h^2v_{xx}(x_m)+\frac{h^4}{12}v^{(4)}(x_m)+O(h^6).
+\]
+因此
+\[
+Lv_m=v_{xx}(x_m)+\frac{h^2}{12}v^{(4)}(x_m)+O(h^4),
+\]
+所以中心差分 Laplace 算子是二阶精度。
+
+对 Fourier 模
+\[
+\exp\!\left(i\frac{2\pi lm}{N}\right)
+\]
+有
+\[
+L\exp\!\left(i\frac{2\pi lm}{N}\right)
+=\lambda_l\exp\!\left(i\frac{2\pi lm}{N}\right),
+\]
+其中
+\[
+\lambda_l
+=\frac{e^{i2\pi l/N}-2+e^{-i2\pi l/N}}{h^2}
+=-\frac4{h^2}\sin^2\frac{\pi l}{N}.
+\]
+特别地，\(\lambda_0=0\)。Forward Euler 方法给出
+\[
+\widehat v_l^{\,n+1}
+=\left(1+\mu k\lambda_l\right)\widehat v_l^{\,n}.
+\]
+第二种格式满足
+\[
+v^{n+1}-\mu kLv^{n+1}=v^n+\mu kLv^n,
+\]
+所以
+\[
+\widehat v_l^{\,n+1}
+=\frac{1+\mu k\lambda_l}{1-\mu k\lambda_l}\widehat v_l^{\,n}.
+\]
+当 \(l=0\) 时 \(\lambda_0=0\)，两种方法都给出
+\[
+\widehat v_0^{\,n+1}=\widehat v_0^{\,n}.
+\]
+由于题设平均值为零，零模初始为零，并保持为零。
+
+若 \(\phi(mh)=(-1)^m\)，且 \(N\) 为偶数，则该初值是 \(l=N/2\) 的 Fourier 模。此时
+\[
+\lambda_{N/2}=-\frac4{h^2}.
+\]
+Forward Euler 给出
+\[
+v_m^n=\left(1-\frac{4\mu k}{h^2}\right)^n(-1)^m,
+\]
+第二种格式给出
+\[
+v_m^n=
+\left(\frac{1-\frac{4\mu k}{h^2}}{1+\frac{4\mu k}{h^2}}\right)^n(-1)^m.
+\]
+
+Forward Euler 稳定要求
+\[
+|1+\mu k\lambda_l|\le1
+\quad\text{对所有 }l.
+\]
+因为
+\[
+\lambda_l\in\left[-\frac4{h^2},0\right],
+\]
+最严格条件来自 \(\lambda=-4/h^2\)，即
+\[
+-1\le1-\frac{4\mu k}{h^2}\le1.
+\]
+因此
+\[
+0\le\frac{4\mu k}{h^2}\le2,
+\qquad
+k\le\frac{h^2}{2\mu}.
+\]
+对第二种格式，
+\[
+\left|\frac{1-\mu k|\lambda_l|}{1+\mu k|\lambda_l|}\right|\le1
+\]
+对所有 \(k\ge0\)、\(\mu>0\) 成立，因此没有额外的时间步长稳定性限制。
+\end{enumerate}
+
+\subsection{2025 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑求解 \(f(x)=0\) 的多点迭代法
+\[
+x_{k+1}=x_k-\alpha
+\frac{f(x_k)}
+{f'\!\left(x_k-\beta f(x_k)/f'(x_k)\right)},
+\]
+其中 \(\alpha,\beta\) 为参数。设 \(\xi\) 是 \(f(x)=0\) 的单根。求使该方法达到最高收敛阶的 \(\alpha,\beta\)。
+
+\textbf{解答。} 设
+\[
+e_k=x_k-\xi,\qquad
+c_2=\frac{f''(\xi)}{2f'(\xi)},\qquad
+c_3=\frac{f^{(3)}(\xi)}{6f'(\xi)}.
+\]
+在 \(\xi\) 附近展开：
+\[
+f(x_k)=f'(\xi)\bigl(e_k+c_2e_k^2+c_3e_k^3+O(e_k^4)\bigr),
+\]
+\[
+f'(x_k)=f'(\xi)\bigl(1+2c_2e_k+3c_3e_k^2+O(e_k^3)\bigr).
+\]
+因此
+\[
+\frac{f(x_k)}{f'(x_k)}
+=e_k-c_2e_k^2+(2c_2^2-2c_3)e_k^3+O(e_k^4).
+\]
+令
+\[
+y_k=x_k-\beta\frac{f(x_k)}{f'(x_k)}.
+\]
+则
+\[
+y_k-\xi=(1-\beta)e_k+\beta c_2e_k^2-\beta(2c_2^2-2c_3)e_k^3+O(e_k^4).
+\]
+于是
+\[
+f'(y_k)=f'(\xi)\left[
+1+2c_2(1-\beta)e_k+
+\bigl(2\beta c_2^2+3c_3(1-\beta)^2\bigr)e_k^2
++O(e_k^3)\right].
+\]
+取倒数并乘以 \(f(x_k)\)，得到
+\[
+\frac{f(x_k)}{f'(y_k)}
+=e_k+c_2(2\beta-1)e_k^2+
+\left(c_3-2c_2^2(1-\beta)+4c_2^2(1-\beta)^2
+-2\beta c_2^2-3c_3(1-\beta)^2\right)e_k^3
++O(e_k^4).
+\]
+故误差满足
+\[
+e_{k+1}
+=(1-\alpha)e_k-\alpha c_2(2\beta-1)e_k^2+O(e_k^3).
+\]
+要使收敛阶至少为二，必须 \(\alpha=1\)。在此基础上，要消去二次项，必须
+\[
+2\beta-1=0,
+\qquad\text{即}\qquad
+\beta=\frac12.
+\]
+代入 \(\alpha=1,\beta=1/2\)，可得
+\[
+e_{k+1}=\left(c_2^2-\frac14c_3\right)e_k^3+O(e_k^4),
+\]
+一般情况下三次项系数不恒为零。因此最高收敛阶为三，对应
+\[
+\boxed{\alpha=1,\qquad \beta=\frac12.}
+\]
+
+\item \textbf{题目。} 求 \(A^{-1}\) 的谱半径，其中
+\[
+A=\begin{pmatrix}
+0&1&0&0&0&0&0&0\\
+1&0&1&0&0&0&0&0\\
+0&1&0&1&0&0&0&0\\
+0&0&1&0&1&0&0&0\\
+0&0&0&1&0&1&0&0\\
+0&0&0&0&1&0&1&0\\
+0&0&0&0&0&1&0&1\\
+0&0&0&0&0&0&1&0
+\end{pmatrix}.
+\]
+
+\textbf{解答。} 这是长度为 \(8\) 的路径图邻接矩阵。设特征向量分量为
+\[
+q_j=\sin(j\theta),\qquad j=1,\ldots,8.
+\]
+内部递推为
+\[
+q_{j-1}+q_{j+1}=\lambda q_j.
+\]
+由三角恒等式，
+\[
+\sin((j-1)\theta)+\sin((j+1)\theta)=2\cos\theta\,\sin(j\theta),
+\]
+故
+\[
+\lambda=2\cos\theta.
+\]
+边界条件等价于 \(q_0=0\)、\(q_9=0\)，因此
+\[
+\sin(9\theta)=0,\qquad
+\theta=\frac{k\pi}{9},\quad k=1,\ldots,8.
+\]
+所以
+\[
+\lambda_k(A)=2\cos\frac{k\pi}{9},\qquad k=1,\ldots,8.
+\]
+矩阵 \(A\) 没有零特征值，因为 \(k=9/2\) 不是整数。\(A^{-1}\) 的特征值为 \(1/\lambda_k(A)\)，其谱半径为
+\[
+\rho(A^{-1})=\frac1{\min_k|\lambda_k(A)|}.
+\]
+最小的绝对值出现在 \(k=4,5\)，即
+\[
+\min_k|\lambda_k(A)|
+=2\cos\frac{4\pi}{9}
+=2\sin\frac{\pi}{18}.
+\]
+因此
+\[
+\boxed{\rho(A^{-1})=\frac1{2\cos(4\pi/9)}
+=\frac1{2\sin(\pi/18)}.}
+\]
+
+\item \textbf{题目。} 设 \(P_k(x)\) 是 \(k\) 次 Legendre 多项式。伴随 Legendre 函数定义为
+\[
+P_k^m(x)=(-1)^m(1-x^2)^{m/2}\frac{d^m}{dx^m}P_k(x),
+\qquad m>0,\quad k\ge m.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 考虑插值问题：求 \(a_k\) 使
+\[
+\sum_{k=1}^N a_kP_k^1(x_i)=y_i,\qquad i=1,\ldots,N.
+\]
+证明当插值点 \(x_i\) 互异且不等于 \(\pm1\) 时，该线性系统非奇异。
+\item 考虑最小化
+\[
+\left\|f(x)-\sum_{k=1}^N a_kP_k^1(x)\right\|_{L^2(-1,1)}^2.
+\]
+推导 \(a_k\) 满足的线性系统，并说明它非奇异。
+\item 设 \(M\) 是 (b) 中的系数矩阵。证明当 \(k+j\) 为奇数时 \(M_{k,j}=0\)。
+\end{enumerate}
+
+\textbf{解答。} 因为
+\[
+P_k^1(x)=-(1-x^2)^{1/2}P_k'(x),
+\]
+且 \(x_i\ne\pm1\)，所以 \(P_k^1(x_i)=0\) 的线性关系等价于 \(P_k'(x_i)=0\) 的线性关系。若齐次系统有解 \(a_k\)，则
+\[
+\sum_{k=1}^N a_kP_k^1(x_i)=0,\qquad i=1,\ldots,N.
+\]
+令
+\[
+Q(x)=\sum_{k=1}^N a_kP_k'(x).
+\]
+则 \(Q(x_i)=0\) 对 \(N\) 个互异点成立。另一方面，\(Q\) 的次数不超过 \(N-1\)，所以 \(Q\equiv0\)。由于 \(P_k'\) 的次数分别为 \(k-1\)，最高次项不同，\(\{P_1',\ldots,P_N'\}\) 线性无关，因此
+\[
+a_1=\cdots=a_N=0.
+\]
+故插值矩阵非奇异。
+
+对最小二乘问题，令
+\[
+F_N(x)=\sum_{k=1}^N a_kP_k^1(x).
+\]
+最小化条件是残差 \(f-F_N\) 与每个基函数 \(P_i^1\) 正交，即
+\[
+\left\langle f-\sum_{j=1}^N a_jP_j^1,\ P_i^1\right\rangle=0,
+\qquad i=1,\ldots,N.
+\]
+因此
+\[
+\sum_{j=1}^N a_j\langle P_j^1,P_i^1\rangle
+=\langle f,P_i^1\rangle,\qquad i=1,\ldots,N.
+\]
+系数矩阵为 Gram 矩阵
+\[
+M_{ij}=\langle P_j^1,P_i^1\rangle.
+\]
+若 \(a\ne0\)，则
+\[
+a^TMa=\left\|\sum_{j=1}^N a_jP_j^1\right\|_{L^2(-1,1)}^2>0,
+\]
+因为 \(\{P_j^1\}\) 线性无关。故 \(M\) 正定，从而非奇异。
+
+Legendre 多项式满足
+\[
+P_k(-x)=(-1)^kP_k(x).
+\]
+对 \(x\) 求导并整理，得
+\[
+P_k'(-x)=(-1)^{k+1}P_k'(x).
+\]
+由于 \((1-x^2)^{1/2}\) 是偶函数，
+\[
+P_k^1(-x)=(-1)^{k+1}P_k^1(x).
+\]
+于是 \(P_k^1(x)P_j^1(x)\) 的奇偶性为 \((-1)^{k+j}\)。若 \(k+j\) 为奇数，则该乘积是奇函数，故
+\[
+M_{k,j}=\int_{-1}^1P_j^1(x)P_k^1(x)\,dx=0.
+\]
+
+\item \textbf{题目。} 给定列向量 \(y_1,\ldots,y_n\in\mathbb R^m\)，设
+\[
+V=\operatorname{span}\{y_1,\ldots,y_n\}\subset\mathbb R^m.
+\]
+怎样找出 \(\ell\le\dim V\) 个标准正交向量 \(\{\psi_i\}_{i=1}^\ell\subset\mathbb R^m\)，使
+\[
+J(\psi_1,\ldots,\psi_\ell)
+=\sum_{j=1}^n
+\left\|y_j-\sum_{i=1}^\ell (y_j^T\psi_i)\psi_i\right\|^2
+\]
+最小？
+
+\textbf{解答。} 令
+\[
+Y=[y_1,\ldots,y_n]\in\mathbb R^{m\times n},
+\qquad
+\Phi=[\psi_1,\ldots,\psi_\ell]\in\mathbb R^{m\times\ell},
+\]
+并要求
+\[
+\Phi^T\Phi=I_\ell.
+\]
+对每个 \(y_j\)，\(\sum_i(y_j^T\psi_i)\psi_i=\Phi\Phi^Ty_j\)，所以
+\[
+J=\|Y-\Phi\Phi^TY\|_F^2.
+\]
+展开 Frobenius 范数：
+\[
+\begin{aligned}
+J
+&=\operatorname{tr}\bigl((Y-\Phi\Phi^TY)^T(Y-\Phi\Phi^TY)\bigr)\\
+&=\operatorname{tr}(Y^TY)-\operatorname{tr}(Y^T\Phi\Phi^TY)\\
+&=\|Y\|_F^2-\operatorname{tr}(\Phi^TYY^T\Phi).
+\end{aligned}
+\]
+因此最小化 \(J\) 等价于在 \(\Phi^T\Phi=I_\ell\) 下最大化
+\[
+\operatorname{tr}(\Phi^TC\Phi),
+\qquad C=YY^T.
+\]
+矩阵 \(C\) 是实对称半正定矩阵。由 Ky Fan 最大值原理，最大值由 \(C\) 的前 \(\ell\) 个最大特征值对应的标准正交特征向量取得。因此取
+\[
+\psi_1,\ldots,\psi_\ell
+\]
+为 \(YY^T\) 的最大 \(\ell\) 个特征值对应的标准正交特征向量即可。等价地，它们是矩阵 \(Y\) 的前 \(\ell\) 个左奇异向量。这就是主成分分析或 proper orthogonal decomposition 的构造。
+
+\item \textbf{题目。} 考虑初值问题
+\[
+u_t+u=u_{xx},\qquad -\infty<x<\infty,\quad 0<t\le T,
+\]
+\[
+u(x,0)=u_0(x).
+\]
+给定 \(\Delta x>0\)、\(\Delta t=T/M\)，考虑 \(\theta\)-格式
+\[
+\frac{U_j^{m+1}-U_j^m}{\Delta t}
+\!+\theta U_j^{m+1}+(1-\theta)U_j^m
+=\theta\delta_{xx}U_j^{m+1}+(1-\theta)\delta_{xx}U_j^m,
+\]
+其中
+\[
+\delta_{xx}U_j^m
+=\frac{U_{j+1}^m-2U_j^m+U_{j-1}^m}{(\Delta x)^2}.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 令
+\[
+\|U^m\|_{\ell^\infty}=\max_{j\in\mathbb Z}|U_j^m|.
+\]
+证明当 \(\theta\in[0,1]\) 且
+\[
+A(\theta)\Delta t\le
+\frac{(\Delta x)^2}{2+(\Delta x)^2}
+\]
+时，
+\[
+\|U^m\|_{\ell^\infty}
+\le
+\left(\frac{1-(1-\theta)\Delta t}{1+\theta\Delta t}\right)^m
+\|U^0\|_{\ell^\infty},
+\]
+并确定 \(A(\theta)\)。
+\item 令
+\[
+\|U^m\|_{\ell^2}
+=\left(\Delta x\sum_{j\in\mathbb Z}|U_j^m|^2\right)^{1/2}.
+\]
+证明：若 \(\theta\in[1/2,1]\)，则对任意 \(\Delta t,\Delta x>0\) 有
+\[
+\|U^m\|_{\ell^2}\le\|U^0\|_{\ell^2}.
+\]
+若 \(\theta\in[0,1/2)\)，证明在
+\[
+B(\theta)\Delta t\le
+\frac{2(\Delta x)^2}{4+(\Delta x)^2}
+\]
+下有同样的 \(\ell^2\) 稳定性，并确定 \(B(\theta)\)。
+\end{enumerate}
+
+\textbf{解答。} 记
+\[
+\tau=\Delta t,\qquad h=\Delta x,\qquad r=\frac{\tau}{h^2}.
+\]
+格式可写成
+\[
+\bigl((1+\theta\tau)I-\theta\tau\delta_{xx}\bigr)U^{m+1}
+=\bigl((1-(1-\theta)\tau)I+(1-\theta)\tau\delta_{xx}\bigr)U^m.
+\]
+右端逐点为
+\[
+\bigl(1-(1-\theta)\tau-2(1-\theta)r\bigr)U_j^m
++(1-\theta)r(U_{j+1}^m+U_{j-1}^m).
+\]
+若
+\[
+1-(1-\theta)\tau-2(1-\theta)r\ge0,
+\]
+即
+\[
+(1-\theta)\tau\left(1+\frac2{h^2}\right)\le1,
+\]
+也就是
+\[
+(1-\theta)\tau\le\frac{h^2}{h^2+2},
+\]
+则右端系数非负，且系数和为 \(1-(1-\theta)\tau\)。因此
+\[
+\left\|\bigl((1-(1-\theta)\tau)I+(1-\theta)\tau\delta_{xx}\bigr)U^m\right\|_{\ell^\infty}
+\le(1-(1-\theta)\tau)\|U^m\|_{\ell^\infty}.
+\]
+另一方面，算子
+\[
+(1+\theta\tau)I-\theta\tau\delta_{xx}
+\]
+是对角占优的 \(M\)-矩阵，其逆在 \(\ell^\infty\) 范数下满足
+\[
+\left\|\bigl((1+\theta\tau)I-\theta\tau\delta_{xx}\bigr)^{-1}\right\|_{\infty}
+\le\frac1{1+\theta\tau}.
+\]
+于是
+\[
+\|U^{m+1}\|_{\ell^\infty}
+\le
+\frac{1-(1-\theta)\tau}{1+\theta\tau}
+\|U^m\|_{\ell^\infty}.
+\]
+迭代即得题中估计，并且
+\[
+\boxed{A(\theta)=1-\theta.}
+\]
+
+对 \(\ell^2\) 稳定性作 Fourier 分析。令
+\[
+U_j^m=\xi^m e^{ij\eta}.
+\]
+因为
+\[
+\delta_{xx}e^{ij\eta}
+=-\frac4{h^2}\sin^2\frac{\eta}{2}\,e^{ij\eta},
+\]
+记
+\[
+s=\sin^2\frac{\eta}{2}\in[0,1].
+\]
+放大因子为
+\[
+\xi(\eta)=
+\frac{1-(1-\theta)\tau-4(1-\theta)rs}
+{1+\theta\tau+4\theta rs}.
+\]
+分母恒正。显然分子不超过分母，所以只需控制
+\[
+1-(1-\theta)\tau-4(1-\theta)rs
+\ge
+-\bigl(1+\theta\tau+4\theta rs\bigr).
+\]
+这等价于
+\[
+2+(2\theta-1)\tau+4(2\theta-1)rs\ge0.
+\]
+若 \(\theta\ge1/2\)，该不等式自动成立，所以 \(|\xi(\eta)|\le1\) 对所有 \(\eta\) 成立，因而无条件 \(\ell^2\) 稳定。
+
+若 \(0\le\theta<1/2\)，上式等价于
+\[
+2-(1-2\theta)\tau-4(1-2\theta)rs\ge0.
+\]
+最坏情形为 \(s=1\)，故需要
+\[
+(1-2\theta)\tau\left(1+\frac4{h^2}\right)\le2,
+\]
+即
+\[
+(1-2\theta)\tau\le\frac{2h^2}{h^2+4}.
+\]
+因此
+\[
+\boxed{B(\theta)=1-2\theta.}
+\]
+
+\item \textbf{题目。} 考虑刚性常微分方程组
+\[
+\frac{dy}{dt}=f(t,y),\qquad y(0)=y_0,
+\]
+其中
+\[
+y=\binom{y_1}{y_2},\qquad
+y_0=\binom21,\qquad
+f(t,y)=\binom{-1000y_1+999y_2}{-y_2}.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 求精确解 \(y(t)=\binom{y_1(t)}{y_2(t)}\)。
+\item 对显式 Euler 方法
+\[
+y_{n+1}=y_n+hf(t_n,y_n),
+\]
+求绝对稳定区域，并证明当 \(h>0.002\) 时发散。
+\item 对隐式 Euler 方法
+\[
+y_{n+1}=y_n+hf(t_{n+1},y_{n+1}),
+\]
+证明对任意 \(h>0\) 无条件稳定。
+\item 对梯形公式
+\[
+y_{n+1}=y_n+\frac h2\bigl[f(t_n,y_n)+f(t_{n+1},y_{n+1})\bigr]
+\]
+分析稳定性。
+\end{enumerate}
+
+\textbf{解答。} 第二个方程为
+\[
+y_2'=-y_2,\qquad y_2(0)=1,
+\]
+所以
+\[
+y_2(t)=e^{-t}.
+\]
+第一个方程变为
+\[
+y_1'=-1000y_1+999e^{-t}.
+\]
+寻找特解 \(ae^{-t}\)，代入得
+\[
+-ae^{-t}=-1000ae^{-t}+999e^{-t},
+\]
+故 \(999a=999\)，即 \(a=1\)。通解为
+\[
+y_1(t)=Ce^{-1000t}+e^{-t}.
+\]
+由 \(y_1(0)=2\)，得 \(C=1\)。因此
+\[
+\boxed{y(t)=\binom{e^{-1000t}+e^{-t}}{e^{-t}}.}
+\]
+
+对标量测试方程 \(z'=\lambda z\)，显式 Euler 的放大因子为
+\[
+R(w)=1+w,\qquad w=h\lambda.
+\]
+绝对稳定区域为
+\[
+\{w\in\mathbb C:\ |1+w|\le1\}.
+\]
+本系统矩阵
+\[
+J=\begin{pmatrix}-1000&999\\0&-1\end{pmatrix}
+\]
+的特征值为 \(-1000\) 与 \(-1\)。显式 Euler 稳定要求
+\[
+|1-1000h|\le1,\qquad |1-h|\le1.
+\]
+第二个条件给出 \(0\le h\le2\)，第一个条件给出
+\[
+0\le h\le0.002.
+\]
+当 \(h>0.002\) 时，快模态的放大因子满足
+\[
+|1-1000h|>1.
+\]
+而初值中含有非零快模态 \(e^{-1000t}\)，因此数值解中该分量会按 \(|1-1000h|^n\) 增长，方法发散。
+
+隐式 Euler 对测试方程的放大因子为
+\[
+R(w)=\frac1{1-w}.
+\]
+当 \(\lambda<0\)、\(h>0\) 时，
+\[
+|R(h\lambda)|=\frac1{1+h|\lambda|}<1.
+\]
+对本题两个特征值 \(-1000,-1\) 都成立，因此隐式 Euler 对任意 \(h>0\) 稳定。并且当 \(h|\lambda|\to\infty\) 时 \(R(h\lambda)\to0\)，所以它还能强烈阻尼刚性快模态。
+
+梯形公式对测试方程的放大因子为
+\[
+R(w)=\frac{1+w/2}{1-w/2}.
+\]
+当 \(w\) 位于左半平面时 \(|R(w)|\le1\)，所以梯形公式是 \(A\)-稳定的。对本题的负实特征值，
+\[
+\left|\frac{1-\frac12h|\lambda|}{1+\frac12h|\lambda|}\right|\le1
+\]
+对所有 \(h>0\) 成立，因此梯形公式无条件稳定。不过当 \(h|\lambda|\) 很大时，
+\[
+R(-h|\lambda|)\to -1,
+\]
+并不趋于 \(0\)。所以梯形公式虽然稳定，但对刚性快模态阻尼不足，可能产生符号交替的非物理振荡；它是 \(A\)-稳定但不是 \(L\)-稳定。
+\end{enumerate}
+
+\subsection{2026 应用数学与计算数学笔试题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑方程
+\[
+\alpha\partial_tu(t,x)+\beta\partial_xu(t,x)-\gamma\partial_{xx}u(t,x)=f(x),
+\qquad (t,x)\in(0,T)\times(0,1),
+\]
+其中 \(f\in L^2(0,1)\), \(T>0\)，边界条件为 \(u(t,0)=u(t,1)=0\)，初值为 \(u(0,x)=0\)。参数满足 \(\alpha>0\), \(\beta\in\mathbb R\), \(\gamma>0\)。令 \(\mathcal T_h\) 为 \((0,1)\) 上均匀网格，\(h=1/(N+1)\)。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 用空间连续分片线性 \(P_1\) Lagrange 有限元和时间隐式 Euler 方法写出全离散变分格式。
+\item 证明 \(L^2\) 稳定估计
+\[
+\|u_h^n\|\le C\|f\|,
+\]
+其中 \(C>0\) 与 \(h,\tau,n\) 无关。
+\item 设 \(\{\phi_i\}_{i=1}^N\) 为节点 \(x_i=ih\) 对应的整体 Lagrange 基函数，且
+\[
+u_h^i=\sum_{j=1}^N U_j^i\phi_j.
+\]
+写出每一步求解 \(U^i=(U_1^i,\ldots,U_N^i)^T\) 的代数线性系统。
+\end{enumerate}
+
+\textbf{解答。} 令
+\[
+V_h=\{v_h\in H_0^1(0,1): v_h|_K\in\mathbb P_1,\ K\in\mathcal T_h\}.
+\]
+取时间节点 \(t_n=n\tau\)。隐式 Euler 全离散格式为：给定 \(u_h^0=0\)，对 \(n\ge1\)，求 \(u_h^n\in V_h\)，使对任意 \(v_h\in V_h\),
+\[
+\alpha\left(\frac{u_h^n-u_h^{n-1}}{\tau},v_h\right)
++\beta\bigl((u_h^n)_x,v_h\bigr)
++\gamma\bigl((u_h^n)_x,(v_h)_x\bigr)
+=(f,v_h).
+\]
+这里 \((\cdot,\cdot)\) 表示 \(L^2(0,1)\) 内积。扩散项已按零边界条件分部积分。
+
+先考虑稳态有限元解 \(w_h\in V_h\)，满足
+\[
+\beta((w_h)_x,v_h)+\gamma((w_h)_x,(v_h)_x)=(f,v_h),
+\qquad \forall v_h\in V_h.
+\]
+取 \(v_h=w_h\)。由于
+\[
+((w_h)_x,w_h)=\frac12[w_h^2]_{0}^{1}=0,
+\]
+得到
+\[
+\gamma\|(w_h)_x\|^2=(f,w_h)
+\le \|f\|\,\|w_h\|
+\le C_P\|f\|\,\|(w_h)_x\|.
+\]
+故
+\[
+\|w_h\|\le C\|f\|,
+\]
+其中 \(C\) 只依赖 \(\gamma\) 和 Poincare 常数。
+
+令 \(e_h^n=u_h^n-w_h\)。由离散格式与稳态方程相减，
+\[
+\alpha\left(\frac{e_h^n-e_h^{n-1}}{\tau},v_h\right)
++\beta((e_h^n)_x,v_h)
++\gamma((e_h^n)_x,(v_h)_x)=0.
+\]
+取 \(v_h=e_h^n\)，并利用
+\[
+(e_h^n-e_h^{n-1},e_h^n)
+\ge \frac12\bigl(\|e_h^n\|^2-\|e_h^{n-1}\|^2\bigr),
+\]
+以及 \(((e_h^n)_x,e_h^n)=0\)，得
+\[
+\frac{\alpha}{2\tau}
+\bigl(\|e_h^n\|^2-\|e_h^{n-1}\|^2\bigr)
++\gamma\|(e_h^n)_x\|^2\le0.
+\]
+因此
+\[
+\|e_h^n\|\le\|e_h^{n-1}\|\le\cdots\le\|e_h^0\|.
+\]
+由于 \(u_h^0=0\)，有 \(e_h^0=-w_h\)，故
+\[
+\|u_h^n\|\le \|e_h^n\|+\|w_h\|
+\le 2\|w_h\|
+\le C\|f\|.
+\]
+该常数与 \(h,\tau,n\) 无关。
+
+令
+\[
+M_{ij}=(\phi_j,\phi_i),\qquad
+B_{ij}=(\phi_j',\phi_i),\qquad
+K_{ij}=(\phi_j',\phi_i'),\qquad
+F_i=(f,\phi_i).
+\]
+把 \(u_h^n=\sum_jU_j^n\phi_j\) 代入变分格式，得到
+\[
+\left(\frac{\alpha}{\tau}M+\beta B+\gamma K\right)U^n
+=F+\frac{\alpha}{\tau}MU^{n-1}.
+\]
+这就是每一时间步要求解的代数系统。
+
+\item \textbf{题目。} 设 \(\Omega\subset\mathbb R^d\) 是有界区域，\(d\le3\)。考虑泛函 \(J:H_0^1(\Omega)\to\mathbb R\):
+\[
+J(u)=\int_\Omega\left(\frac12|\nabla u(x)|^2+\frac14u(x)^4-f(x)u(x)\right)\,dx,
+\qquad f\in L^2(\Omega).
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 求 Frechet 导数 \(\nabla J(u)\) 和二阶 Frechet 导数 \(\nabla^2J(u)\)，并证明 \(J\) 严格凸。
+\item 写出求极小元 \(u_*\) 的 Newton 方法。假设初值 \(u_0\) 充分接近 \(u_*\)，证明二阶收敛：
+\[
+\|u_{k+1}-u_*\|_{H^1}\le C\|u_k-u_*\|_{H^1}^2.
+\]
+\item 令 \(s_k=u_{k+1}-u_k\)，\(y_k=\nabla J(u_{k+1})-\nabla J(u_k)\)。拟 Newton 方法中，近似 Hessian \(B_{k+1}\) 满足割线方程 \(B_{k+1}s_k=y_k\)。BFGS 更新为
+\[
+B_{k+1}v
+=B_kv-\frac{\langle B_ks_k,v\rangle}{\langle B_ks_k,s_k\rangle}B_ks_k
++\frac{\langle y_k,v\rangle}{\langle y_k,s_k\rangle}y_k.
+\]
+若 \(B_k\) 正定，证明该更新是良定义的。
+\end{enumerate}
+
+\textbf{解答。} 对任意方向 \(v\in H_0^1(\Omega)\)，
+\[
+J'(u)v
+=\int_\Omega\bigl(\nabla u\cdot\nabla v+u^3v-fv\bigr)\,dx.
+\]
+因此梯度由弱形式
+\[
+\langle \nabla J(u),v\rangle
+=\int_\Omega\bigl(\nabla u\cdot\nabla v+u^3v-fv\bigr)\,dx
+\]
+表示。二阶导数为双线性型
+\[
+J''(u)[w,v]
+=\int_\Omega\bigl(\nabla w\cdot\nabla v+3u^2wv\bigr)\,dx.
+\]
+特别地，
+\[
+J''(u)[v,v]
+=\int_\Omega\bigl(|\nabla v|^2+3u^2v^2\bigr)\,dx.
+\]
+若 \(v\ne0\)，由于 \(v\in H_0^1(\Omega)\)，有 \(\int|\nabla v|^2>0\)，所以
+\[
+J''(u)[v,v]>0.
+\]
+故 \(J\) 严格凸。
+
+Newton 方法为：给定 \(u_k\)，求增量 \(p_k\in H_0^1(\Omega)\)，使
+\[
+J''(u_k)[p_k,v]=-J'(u_k)v,\qquad \forall v\in H_0^1(\Omega),
+\]
+即
+\[
+\int_\Omega\bigl(\nabla p_k\cdot\nabla v+3u_k^2p_kv\bigr)\,dx
+=-\int_\Omega\bigl(\nabla u_k\cdot\nabla v+u_k^3v-fv\bigr)\,dx.
+\]
+然后令
+\[
+u_{k+1}=u_k+p_k.
+\]
+在极小元 \(u_*\) 附近，\(J''(u_*)\) 由 Poincare 不等式给出一致强制性；又因 \(d\le3\)，Sobolev 嵌入 \(H^1(\Omega)\hookrightarrow L^6(\Omega)\) 保证非线性项 \(u^3\) 在有界邻域内具有局部 Lipschitz 的导数。于是 Hessian 在 \(u_*\) 的邻域内 Lipschitz 连续，标准 Newton 定理给出
+\[
+\|u_{k+1}-u_*\|_{H^1}
+\le C\|u_k-u_*\|_{H^1}^2,
+\]
+只要 \(u_0\) 足够接近 \(u_*\)。
+
+对 BFGS 更新，需要证明两个分母非零。因为 \(B_k\) 正定，若 \(s_k\ne0\)，则
+\[
+\langle B_ks_k,s_k\rangle>0.
+\]
+另一方面，
+\[
+\langle y_k,s_k\rangle
+=\langle \nabla J(u_{k+1})-\nabla J(u_k),u_{k+1}-u_k\rangle.
+\]
+由导数表达式，
+\[
+\langle y_k,s_k\rangle
+=\int_\Omega |\nabla s_k|^2\,dx
++\int_\Omega\bigl(u_{k+1}^3-u_k^3\bigr)(u_{k+1}-u_k)\,dx.
+\]
+而对任意实数 \(a,b\)，
+\[
+(a^3-b^3)(a-b)=(a-b)^2(a^2+ab+b^2)\ge0.
+\]
+故
+\[
+\langle y_k,s_k\rangle\ge\|\nabla s_k\|^2.
+\]
+若 \(s_k\ne0\)，则 \(\|\nabla s_k\|>0\)，因此
+\[
+\langle y_k,s_k\rangle>0.
+\]
+两个分母均为正数，所以 BFGS 更新良定义。
+
+\item \textbf{题目。} 考虑 \(\mathbb R^N\) 上初值问题
+\[
+x'=f(t,x),\qquad x(0)=x_0,
+\]
+其中 \(f\) 光滑。给定一族单步法
+\[
+x_{n+1}=x_n+(1-b)hf(t_n,x_n)+bhf(t_{n+1},x_{n+1}),
+\]
+其中 \(h=t_{n+1}-t_n\)，\(b\in[0,1]\)。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 求使局部截断误差为 \(O(h^3)\) 的 \(b\)。
+\item 将该方法用于 \(x'=\lambda x\)，求 \(g\) 使得 \(x_n=g(h\lambda)^nx_0\)。
+\item 求该方法 \(A\)-稳定的 \(b\) 的范围。
+\end{enumerate}
+
+\textbf{解答。} 沿精确解展开：
+\[
+x(t_{n+1})=x(t_n)+hx'(t_n)+\frac{h^2}{2}x''(t_n)+O(h^3).
+\]
+方法右端在精确解上为
+\[
+x(t_n)+(1-b)hx'(t_n)+bhx'(t_{n+1}).
+\]
+又
+\[
+x'(t_{n+1})=x'(t_n)+hx''(t_n)+O(h^2).
+\]
+所以数值一步为
+\[
+x(t_n)+hx'(t_n)+bh^2x''(t_n)+O(h^3).
+\]
+要使局部截断误差达到 \(O(h^3)\)，必须匹配二阶项：
+\[
+b=\frac12.
+\]
+
+对测试方程 \(x'=\lambda x\)，方法给出
+\[
+x_{n+1}=x_n+(1-b)h\lambda x_n+bh\lambda x_{n+1}.
+\]
+因此
+\[
+(1-bz)x_{n+1}=(1+(1-b)z)x_n,\qquad z=h\lambda,
+\]
+故
+\[
+g(z)=\frac{1+(1-b)z}{1-bz}.
+\]
+
+\(A\)-稳定要求
+\[
+|g(z)|\le1\qquad \text{对所有 }\operatorname{Re}z\le0.
+\]
+计算
+\[
+|1+(1-b)z|^2\le |1-bz|^2.
+\]
+令 \(z=x+iy\)，其中 \(x\le0\)。两边相减得
+\[
+|1-bz|^2-|1+(1-b)z|^2
+=-2x+(2b-1)|z|^2.
+\]
+当 \(x\le0\) 时，\(-2x\ge0\)。要对整个左半平面成立，必须且只需
+\[
+2b-1\ge0.
+\]
+因此
+\[
+\boxed{b\in\left[\frac12,1\right]}
+\]
+时方法 \(A\)-稳定。
+
+\item \textbf{题目。} 设 \(A\) 为可逆 \(N\times N\) 矩阵。给定移位序列 \(\{\sigma_n\}\)，移位 QR 迭代定义为
+\[
+A_0=A,\qquad A_n-\sigma_nI_N=Q_nR_n,\qquad
+A_{n+1}=R_nQ_n+\sigma_nI_N,
+\]
+其中 \(Q_n\) 正交，\(R_n\) 为对角线元素为正的上三角矩阵。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 若没有 \(\sigma_n\) 是 \(A\) 的特征值，证明 \(\{A_n\},\{Q_n\},\{R_n\}\) 唯一定义，并满足
+\[
+A_{n+1}=Q_n^TA_nQ_n,\qquad
+A_{n+1}=R_nA_nR_n^{-1}.
+\]
+\item 设 \(A\) 为对称 \(2\times2\) 矩阵，特征值为 \(\lambda_1,\lambda_2\)。若 \(\sigma_0=\lambda_1\)，求 \(A_1\)。
+\item 令
+\[
+\widehat Q_n=Q_0\cdots Q_{n-1},\qquad
+\widehat R_n=R_{n-1}\cdots R_0,\qquad n\ge1.
+\]
+证明
+\[
+\widehat Q_{k+1}\widehat R_{k+1}
+=\prod_{i=0}^{k}(A-\sigma_iI_N).
+\]
+\end{enumerate}
+
+\textbf{解答。} 若 \(\sigma_n\) 不是 \(A\) 的特征值，则由于 QR 迭代中 \(A_n\) 与 \(A\) 相似，\(\sigma_n\) 也不是 \(A_n\) 的特征值。因此 \(A_n-\sigma_nI\) 可逆。可逆矩阵的 QR 分解在要求 \(R_n\) 对角线为正时唯一，所以 \(Q_n,R_n\) 唯一，进而 \(A_{n+1}\) 唯一。
+
+由
+\[
+A_n-\sigma_nI=Q_nR_n
+\]
+可得
+\[
+R_n=Q_n^T(A_n-\sigma_nI).
+\]
+于是
+\[
+A_{n+1}
+=R_nQ_n+\sigma_nI
+=Q_n^T(A_n-\sigma_nI)Q_n+\sigma_nI
+=Q_n^TA_nQ_n.
+\]
+又因为
+\[
+A_n=Q_nR_n+\sigma_nI,
+\]
+所以
+\[
+R_nA_nR_n^{-1}
+=R_n(Q_nR_n+\sigma_nI)R_n^{-1}
+=R_nQ_n+\sigma_nI
+=A_{n+1}.
+\]
+
+若 \(A\) 对称且 \(\sigma_0=\lambda_1\)，则 \(A-\lambda_1I\) 奇异，严格正对角 QR 分解不再满足 (a) 的唯一性假设。若按通常的非负对角 QR 分解继续一步，精确特征值移位会立即使对应特征方向分离。取 \(q_1,q_2\) 为 \(\lambda_1,\lambda_2\) 的标准正交特征向量，则在 QR 步选取的正交基中，
+\[
+A_1=Q_0^TAQ_0
+\]
+为对角矩阵，并且移位特征值出现在一个对角位置。通常写作
+\[
+\boxed{
+A_1=\begin{pmatrix}
+\lambda_2&0\\
+0&\lambda_1
+\end{pmatrix}}
+\]
+（若基向量顺序不同，则两个对角元互换）。这表示精确移位导致一步 deflation。
+
+最后证明乘积公式。先注意由前面相似关系可得
+\[
+A_n=\widehat Q_n^TA\widehat Q_n.
+\]
+因此
+\[
+(A-\sigma_nI)\widehat Q_n
+=\widehat Q_n(A_n-\sigma_nI)
+=\widehat Q_nQ_nR_n
+=\widehat Q_{n+1}R_n.
+\]
+对 \(k\) 作归纳。\(k=0\) 时，
+\[
+\widehat Q_1\widehat R_1=Q_0R_0=A-\sigma_0I.
+\]
+若
+\[
+\widehat Q_k\widehat R_k=\prod_{i=0}^{k-1}(A-\sigma_iI),
+\]
+则由于各因子都是 \(A\) 的多项式，彼此可交换，
+\[
+\begin{aligned}
+\widehat Q_{k+1}\widehat R_{k+1}
+&=\widehat Q_kQ_kR_k\widehat R_k\\
+&=(A-\sigma_kI)\widehat Q_k\widehat R_k\\
+&=(A-\sigma_kI)\prod_{i=0}^{k-1}(A-\sigma_iI)\\
+&=\prod_{i=0}^{k}(A-\sigma_iI).
+\end{aligned}
+\]
+证毕。
+
+\item \textbf{题目。} 设 \(A\in\mathbb R^{n\times n}\)，\(\sigma_i(A)\) 为其第 \(i\) 大奇异值。若 \(Ax=x\)，称 \(x\) 为 \(A\) 的不动点。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 若 \(\sigma_1(A)\le1\)，证明 \(A\) 的每个不动点也是 \(A^T\) 的不动点。
+\item 取
+\[
+A=\begin{pmatrix}1&1\\0&0\end{pmatrix}
+\]
+说明若不假设 \(\sigma_1(A)\le1\)，(a) 的结论一般不成立。
+\item 若 \(AA^T=A^TA\)，证明 \(A\) 的每个不动点也是 \(A^T\) 的不动点。
+\end{enumerate}
+
+\textbf{解答。} 设 \(Ax=x\)。若 \(x=0\) 结论显然。以下设 \(x\ne0\)。由 \(\sigma_1(A)=\|A\|_2\le1\)，
+\[
+\|x\|=\|Ax\|\le \|A\|_2\|x\|\le\|x\|.
+\]
+所以等号处处成立。于是
+\[
+\|A^Tx-x\|^2
+=\|A^Tx\|^2-2x^TA^Tx+\|x\|^2.
+\]
+因为 \(Ax=x\)，有
+\[
+x^TA^Tx=(Ax)^Tx=x^Tx=\|x\|^2.
+\]
+又
+\[
+\|A^Tx\|\le \|A^T\|_2\|x\|=\|A\|_2\|x\|\le\|x\|.
+\]
+故
+\[
+\|A^Tx-x\|^2\le \|x\|^2-2\|x\|^2+\|x\|^2=0.
+\]
+因此 \(A^Tx=x\)。
+
+对
+\[
+A=\begin{pmatrix}1&1\\0&0\end{pmatrix},
+\]
+取
+\[
+x=\binom10.
+\]
+则
+\[
+Ax=\binom10=x,
+\]
+所以 \(x\) 是 \(A\) 的不动点。但
+\[
+A^Tx=
+\begin{pmatrix}1&0\\1&0\end{pmatrix}
+\binom10
+=\binom11\ne x.
+\]
+故没有 \(\sigma_1(A)\le1\) 时结论不成立。
+
+若 \(AA^T=A^TA\)，令
+\[
+B=A-I.
+\]
+则
+\[
+BB^T=(A-I)(A^T-I)=AA^T-A-A^T+I,
+\]
+\[
+B^TB=(A^T-I)(A-I)=A^TA-A^T-A+I.
+\]
+由 \(AA^T=A^TA\) 知 \(BB^T=B^TB\)，即 \(B\) 也是正规矩阵。若 \(Ax=x\)，则
+\[
+Bx=0.
+\]
+于是
+\[
+\|B^Tx\|^2=x^TBB^Tx=x^TB^TBx=\|Bx\|^2=0.
+\]
+故 \(B^Tx=0\)，即
+\[
+(A^T-I)x=0,
+\]
+从而 \(A^Tx=x\)。
+
+\item \textbf{题目。} 设凸函数 \(f:\mathbb R^n\to\mathbb R\cup\{+\infty\}\) 在点 \(x\) 的次微分记为 \(\partial f(x)\)。向量 \(x^*\) 是 \(f\) 在 \(x\) 处的次梯度，当且仅当
+\[
+f(z)\ge f(x)+\langle x^*,z-x\rangle,\qquad \forall z\in\mathbb R^n.
+\]
+设 \(n\ge2\)。
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 对
+\[
+f(x)=\max_{i=1,\ldots,n}x_i,\qquad x=(x_1,\ldots,x_n)^T,
+\]
+求 \(\partial f(0)\)。
+\item 令
+\[
+g(x)=\max_i x_i+\delta_{\mathbb R_+^n}(x),
+\]
+其中 \(\delta_{\mathbb R_+^n}\) 是非负正交锥的指标函数。证明
+\[
+\partial g(0)=\partial f(0)-\mathbb R_+^n.
+\]
+\end{enumerate}
+
+\textbf{解答。} 对 \(f(x)=\max_i x_i\)，在 \(0\) 点所有分量都同时达到最大值。最大函数的次微分等于活跃线性函数梯度的凸包，因此
+\[
+\partial f(0)=\operatorname{conv}\{e_1,\ldots,e_n\}
+=\left\{p\in\mathbb R^n:\ p_i\ge0,\ \sum_{i=1}^n p_i=1\right\}.
+\]
+也可直接验证：若 \(p\) 属于右端集合，则
+\[
+\langle p,z\rangle=\sum_i p_iz_i\le \max_i z_i=f(z),
+\]
+所以 \(p\in\partial f(0)\)。反过来，若 \(p\in\partial f(0)\)，由 \(z=te_i\), \(t>0\)，得 \(p_i\le1\)；由 \(z=-te_i\), \(t>0\)，并结合 \(f(z)=0\) 对其他分量取零的情形可推出 \(p_i\ge0\)。再取 \(z=t(1,\ldots,1)\) 与 \(z=-t(1,\ldots,1)\)，得 \(\sum_i p_i=1\)。故上述表达式成立。
+
+由给定的和规则，
+\[
+\partial g(0)=\partial f(0)+\partial\delta_{\mathbb R_+^n}(0).
+\]
+指标函数的次微分就是法锥：
+\[
+\partial\delta_{\mathbb R_+^n}(0)
+=N_{\mathbb R_+^n}(0)
+=\{q\in\mathbb R^n:\ \langle q,z\rangle\le0,\ \forall z\in\mathbb R_+^n\}.
+\]
+这等价于每个分量 \(q_i\le0\)，即
+\[
+N_{\mathbb R_+^n}(0)=-\mathbb R_+^n.
+\]
+因此
+\[
+\partial g(0)=\partial f(0)+(-\mathbb R_+^n)
+=\partial f(0)-\mathbb R_+^n.
+\]
+\end{enumerate}
+
+\section{团体赛题}
+\subsection{2012 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 \(u\in C^{k+1}[0,2]\)，次数不超过 \(k\) 的多项式 \(p_n\) 满足
+\[
+|u(x)-p_n(x)|\le \frac{C}{n^{k+1}},\qquad 0\le x\le \frac1n,
+\]
+其中 \(C\) 与 \(n\) 无关。证明存在与 \(n\) 无关的 \(\widetilde C\)，使
+\[
+|u(x)-p_n(x)|\le \frac{\widetilde C}{n^{k+1}},\qquad \frac1n\le x\le \frac2n.
+\]
+
+\textbf{解答。} 令 \(q_n=u-p_n\)，则 \(q_n^{(k+1)}=u^{(k+1)}\)。设
+\[
+M=\|u^{(k+1)}\|_{L^\infty(0,2)}.
+\]
+作尺度变换 \(F_n(t)=q_n(t/n)\)，\(0\le t\le2\)。已知
+\[
+|F_n(t)|\le Cn^{-(k+1)},\qquad 0\le t\le1,
+\]
+且
+\[
+|F_n^{(k+1)}(t)|=n^{-(k+1)}|q_n^{(k+1)}(t/n)|
+\le Mn^{-(k+1)}.
+\]
+取固定节点 \(t_i=i/k\)（\(i=0,\ldots,k\)，\(k=0\) 时结论直接由均值估计得到）。对 \(t\in[1,2]\)，Lagrange 插值余项给出
+\[
+F_n(t)=\sum_{i=0}^kF_n(t_i)L_i(t)
++\frac{F_n^{(k+1)}(\xi)}{(k+1)!}\prod_{i=0}^k(t-t_i),
+\]
+其中 \(\xi\in[0,2]\)。由于 \(L_i\) 与乘积项在固定区间 \([1,2]\) 上有统一上界，存在只依赖 \(k\) 的常数 \(C_k\)，使
+\[
+|F_n(t)|\le C_k(C+M)n^{-(k+1)},\qquad 1\le t\le2.
+\]
+令 \(t=nx\)，即得所需估计。
+
+\item \textbf{题目。} 对
+\[
+-u''=f,\quad 0<x<1,\qquad u(0)=u(1)=0,\qquad f\in L^2(0,1),
+\]
+描述标准分片线性有限元方法，说明稳定性、收敛阶，并解释节点超收敛 \(u_h(x_j)=u(x_j)\)。
+
+\textbf{解答。} 弱形式为求 \(u\in H_0^1(0,1)\)，使
+\[
+\int_0^1u'v'\,dx=\int_0^1fv\,dx,\qquad \forall v\in H_0^1(0,1).
+\]
+令 \(V_h\subset H_0^1(0,1)\) 为均匀网格上的连续分片线性函数空间。有限元解 \(u_h\in V_h\) 满足
+\[
+\int_0^1u_h'v_h'\,dx=\int_0^1fv_h\,dx,\qquad \forall v_h\in V_h.
+\]
+取 \(v_h=u_h\)，由 Poincare 不等式得
+\[
+\|u_h'\|_2^2=(f,u_h)\le C\|f\|_2\|u_h'\|_2,
+\]
+故方法稳定。若 \(u\in H^2(0,1)\)，Cea 引理与插值估计给出
+\[
+\|u-u_h\|_{H^1}\le Ch\|u\|_{H^2},\qquad
+\|u-u_h\|_{L^2}\le Ch^2\|u\|_{H^2}.
+\]
+在一维常系数问题中，对帽函数 \(\phi_i\)，精确解满足
+\[
+\frac{u(x_i)-u(x_{i-1})}{h}-\frac{u(x_{i+1})-u(x_i)}{h}
+=(f,\phi_i),
+\]
+有限元节点值满足同一个三对角系统。系统非奇异，因此
+\[
+u_h(x_i)=u(x_i),\qquad i=1,\ldots,N-1.
+\]
+
+\item \textbf{题目。} 设 \(A=(a_{ij})\in M_N(\mathbb C)\) 严格对角占优，并写作 \(A=I+L+U\)，其中 \(L,U\) 分别为零对角下、上三角矩阵。对
+\[
+x^{k+1}=Mx^k+(I+\alpha\Omega L)^{-1}b
+\]
+及
+\[
+M=(I+\alpha\Omega L)^{-1}\bigl((I-\Omega)-(1-\alpha)\Omega L-\Omega U\bigr),
+\]
+其中 \(\Omega=\operatorname{diag}(\omega_i)\)，\(0\le\alpha\le1\)，证明题中给出的唯一可解性、必要条件、谱半径估计和充分收敛条件。
+
+\textbf{解答。} 严格对角占优矩阵由 Levy--Desplanques 定理非奇异，故 \(Ax=b\) 有唯一解。若迭代收敛，则 \(\rho(M)<1\)，从而 \(|\det M|<1\)。由于 \(I+\alpha\Omega L\) 为单位下三角矩阵，
+\[
+|\det M|=\prod_{i=1}^N|1-\omega_i|,
+\]
+故必要条件为
+\[
+\prod_i|1-\omega_i|<1.
+\]
+设 \(\lambda\) 是 \(M\) 的特征值，取特征向量 \(x\) 中满足 \(|x_i|=\max_j|x_j|\) 的分量。由特征方程逐行估计得
+\[
+|\lambda|\bigl(1-|\alpha\omega_i|l_i\bigr)
+\le |1-\omega_i|+|\omega_i|(|1-\alpha|l_i+u_i),
+\]
+其中
+\[
+l_i=\sum_{j<i}|a_{ij}|,\qquad u_i=\sum_{j>i}|a_{ij}|.
+\]
+若 \(|\alpha\omega_i|l_i<1\)，则
+\[
+|\lambda|\le
+\frac{|1-\omega_i|+|\omega_i|(|1-\alpha|l_i+u_i)}
+{1-|\alpha\omega_i|l_i}.
+\]
+对所有特征值取最大即得题中谱半径估计。若
+\[
+0<\omega_i<\frac{2}{1+l_i+u_i},
+\]
+并用严格对角占优给出的 \(l_i+u_i<1\)，可直接验证上式右端严格小于 \(1\)。故 \(\rho(M)<1\)，迭代收敛。
+
+\item \textbf{题目。} 某 RSA 生成法从随机奇数 \(s\) 开始依次测试 \(s,s+2,\ldots\) 得到第一个 \(500\) 比特素数 \(p\)，再继续测试得到下一个素数 \(q\)，公开 \(N=pq\)。问是否安全，并给出分解算法。
+
+\textbf{解答。} 不安全。该过程使 \(p,q\) 距离很近。令
+\[
+a=\frac{p+q}{2},\qquad d=\frac{q-p}{2}.
+\]
+则
+\[
+N=pq=a^2-d^2,\qquad a^2-N=d^2.
+\]
+从 \(a=\lceil\sqrt N\rceil\) 开始，检查
+\[
+a^2-N,(a+1)^2-N,(a+2)^2-N,\ldots
+\]
+何时为完全平方数 \(d^2\)。一旦找到，即
+\[
+p=a-d,\qquad q=a+d.
+\]
+相邻 \(500\) 比特素数的期望间隔约为 \(500\log2\approx345\)，所以 \(d\) 只有几百量级；Fermat 分解几乎立即成功。因此该生成程序严重泄露了 \(p,q\) 接近这一结构，不能用于 RSA。
+
+\item \textbf{题目。} Boussinesq 方程
+\[
+h_t=\Delta_r(h^2)=\frac1r\frac{\partial}{\partial r}
+\left(r\frac{\partial(h^2)}{\partial r}\right),
+\qquad r>0,\ t>1,
+\]
+满足
+\[
+h_r(0,t)=0,\qquad \int_0^\infty h(r,t)r\,dr=\frac1{64},
+\]
+且 \(h\) 在 \(0\le r\le r_*(t)\) 为正、在边界后截断为零。求尺度不变性、自相似 ODE 和显式解。
+
+\textbf{解答。} 设
+\[
+h(r,t)=H\widetilde h(\widetilde r,\widetilde t),\qquad
+r=R\widetilde r,\qquad t=T\widetilde t.
+\]
+方程要求
+\[
+\frac{H}{T}=\frac{H^2}{R^2},
+\]
+质量守恒要求 \(HR^2=1\)。故
+\[
+H=T^{-1/2},\qquad R=T^{1/4}.
+\]
+令
+\[
+h(r,t)=t^\alpha\Phi(\eta),\qquad \eta=rt^{-\beta}.
+\]
+由方程量纲得 \(\alpha-1=2\alpha-2\beta\)，由质量守恒得 \(\alpha+2\beta=0\)，所以
+\[
+\alpha=-\frac12,\qquad \beta=\frac14.
+\]
+于是
+\[
+-\frac12\Phi-\frac14\eta\Phi'
+=\frac1\eta\frac{d}{d\eta}
+\left(\eta\frac{d(\Phi^2)}{d\eta}\right).
+\]
+取紧支撑二次形式
+\[
+\Phi(\eta)=A-B\eta^2.
+\]
+代入比较常数项和 \(\eta^2\) 项得 \(B=1/16\)。由边界 \(\Phi(\eta_*)=0\) 得 \(\eta_*^2=16A\)。质量条件
+\[
+\int_0^{\eta_*}\Phi(\eta)\eta\,d\eta=\frac1{64}
+\]
+给出 \(4A^2=1/64\)，故 \(A=1/16\)、\(\eta_*=1\)。因此
+\[
+\Phi(\eta)=\frac1{16}(1-\eta^2)_+,
+\]
+\[
+h(r,t)=\frac1{16}t^{-1/2}
+\left(1-\frac{r^2}{t^{1/2}}\right)_+,
+\qquad r_*(t)=t^{1/4}.
+\]
+\end{enumerate}
+
+\subsection{2013 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设 \(U>0\) 是 \([0,\infty)\) 上递增函数，并存在函数 \(0<\psi(x)<\infty\)，使
+\[
+\lim_{t\to\infty}\frac{U(tx)}{U(t)}=\psi(x),\qquad x>0.
+\]
+证明 \(\psi(x)=x^\alpha\)（\(\alpha\ge0\)）。并说明当极限只在稠密集上以扩展值存在时仍得到幂函数型；进一步说明这等价于 \(U(x)=cx^\alpha L(x)\)，其中 \(L\) 是慢变函数。
+
+\textbf{解答。} 对任意 \(x,y>0\)，利用极限存在性，
+\[
+\psi(xy)=\lim_{t\to\infty}\frac{U(txy)}{U(t)}
+=\lim_{t\to\infty}
+\frac{U(txy)}{U(tx)}\frac{U(tx)}{U(t)}
+=\psi(y)\psi(x).
+\]
+所以 \(\psi\) 是正的乘法函数。又因 \(U\) 递增，若 \(0<x<y\)，则
+\[
+\frac{U(tx)}{U(t)}\le \frac{U(ty)}{U(t)},
+\]
+令 \(t\to\infty\) 得 \(\psi(x)\le\psi(y)\)，故 \(\psi\) 单调。单调乘法函数必为幂函数：令
+\[
+g(s)=\log\psi(e^s).
+\]
+则 \(g(s+t)=g(s)+g(t)\)，且 \(g\) 单调，因此 \(g(s)=\alpha s\)。于是
+\[
+\psi(x)=x^\alpha.
+\]
+由于 \(U\) 递增，当 \(x>1\) 时 \(\psi(x)\ge1\)，当 \(0<x<1\) 时 \(\psi(x)\le1\)，故 \(\alpha\ge0\)。
+
+若极限只在稠密集 \(A\) 上存在，单调性仍给出左右夹逼：对任意 \(x>0\)，取 \(a_m,b_m\in A\) 且 \(a_m\uparrow x\)、\(b_m\downarrow x\)，则
+\[
+\psi(a_m)\le \liminf_{t\to\infty}\frac{U(tx)}{U(t)}
+\le \limsup_{t\to\infty}\frac{U(tx)}{U(t)}
+\le \psi(b_m).
+\]
+在稠密集上重复乘法论证，可得 \(\psi(x)=x^\alpha\) 的稠密集版本；再由夹逼推广到所有连续点。允许 \(0,\infty\) 时，指数 \(\alpha=\infty\) 表示 \(x<1\) 时极限为 \(0\)，\(x>1\) 时为 \(\infty\)。
+
+若 \(\psi(x)=x^\alpha\)，取常数 \(c>0\)，定义
+\[
+L(x)=\frac{U(x)}{cx^\alpha}.
+\]
+则
+\[
+\frac{L(tx)}{L(t)}
+=\frac{U(tx)}{U(t)}x^{-\alpha}\to1.
+\]
+所以 \(L\) 慢变。反之若 \(U(x)=cx^\alpha L(x)\) 且 \(L\) 慢变，则
+\[
+\frac{U(tx)}{U(t)}
+=x^\alpha\frac{L(tx)}{L(t)}\to x^\alpha.
+\]
+
+\item \textbf{题目。} 设 \(\varphi\) 是环面 \(\mathbb T^n\) 上光滑周期函数。定义
+\[
+Fu=-\Delta u-\nabla\cdot(u\nabla\varphi),
+\]
+\[
+Wu=-\Delta u+\left(\frac14|\nabla\varphi|^2-\frac12\Delta\varphi\right)u,
+\]
+以及 Schrodinger 型算子
+\[
+Su=-\Delta u+\left(\frac14|\nabla\varphi|^2-\frac12\Delta\varphi\right)u.
+\]
+证明 Fokker--Planck 算子可写成散度型，说明这些算子通过权变换共轭从而有相同谱，并求平衡解。
+
+\textbf{解答。} 直接计算
+\[
+-\nabla\cdot(e^{-\varphi}\nabla(e^\varphi u))
+=-\nabla\cdot(\nabla u+u\nabla\varphi)
+=-\Delta u-\nabla\cdot(u\nabla\varphi)=Fu.
+\]
+令
+\[
+u=e^{-\varphi/2}v.
+\]
+则
+\[
+e^{\varphi/2}F(e^{-\varphi/2}v)
+=-\Delta v+\left(\frac14|\nabla\varphi|^2-\frac12\Delta\varphi\right)v.
+\]
+因此 \(F\) 与自伴算子
+\[
+S=-\Delta+\frac14|\nabla\varphi|^2-\frac12\Delta\varphi
+\]
+相似；相似变换不改变特征值。Witten Laplacian 在零形式上的表达正是同一个 \(S\)，故三者具有相同谱。
+
+平衡解满足 \(Fu=0\)。由散度型，
+\[
+0=\int_{\mathbb T^n} e^{-\varphi}\left|\nabla(e^\varphi u)\right|^2dx,
+\]
+故 \(e^\varphi u\) 为常数，即
+\[
+u=C e^{-\varphi}.
+\]
+对应到共轭算子，\(S\) 的零模为
+\[
+v=C e^{-\varphi/2}.
+\]
+
+\item \textbf{题目。} 对均匀节点 \(x_i=ih\)，\(h=1/N\)，考虑求积公式
+\[
+I_N=\frac1N\left[
+a_0(f(x_0)+f(x_N))+a_1(f(x_1)+f(x_{N-1}))
+\sum_{i=2}^{N-2}f(x_i)
+\right].
+\]
+求最高整数 \(k\)，使
+\[
+\left|I_N-\int_0^1f(x)\,dx\right|\le Ch^k,
+\]
+并给出达到该阶的 \(a_0,a_1\)。
+
+\textbf{解答。} 令公式对常数函数精确，得
+\[
+2a_0+2a_1+N-3=N,
+\qquad\text{即}\qquad
+a_0+a_1=\frac32.
+\]
+由于权重关于 \(x=1/2\) 对称，对 \(x\) 的一次矩自动由常数矩推出。
+
+再令 \(f(x)=x^2\)。记 \(x_i=i/N\)，则
+\[
+I_N(x^2)=\frac1{N^3}\left[
+a_0N^2+a_1\{1+(N-1)^2\}
+\sum_{i=2}^{N-2}i^2\right].
+\]
+展开后
+\[
+I_N(x^2)-\frac13
+=\frac{-2a_1+13/6}{N^2}+\frac{2a_1-2}{N^3}.
+\]
+为消去 \(h^2\) 主误差，应取
+\[
+a_1=\frac{13}{12},\qquad a_0=\frac{5}{12}.
+\]
+此时二次函数误差为 \(O(N^{-3})=O(h^3)\)，且不能再用两个参数同时消去 \(N^{-2}\) 与 \(N^{-3}\) 以及更高矩误差。因此最高阶为
+\[
+k=3,
+\]
+对应
+\[
+\boxed{a_0=\frac5{12},\qquad a_1=\frac{13}{12}.}
+\]
+
+\item \textbf{题目。} 波导问题为
+\[
+u_t+u_x=0,\qquad v_t-v_x=0,\qquad -1<x<1,
+\]
+边界条件
+\[
+u(-1,t)=v(-1,t),\qquad v(1,t)=u(1,t).
+\]
+上风格式为
+\[
+\frac{u_j^{n+1}-u_j^n}{\Delta t}
++\frac{u_j^n-u_{j-1}^n}{\Delta x}=0,
+\]
+\[
+\frac{v_j^{n+1}-v_j^n}{\Delta t}
+-\frac{v_{j+1}^n-v_j^n}{\Delta x}=0.
+\]
+证明连续能量守恒，求离散能量稳定的 CFL 条件，并证明最大模稳定性。
+
+\textbf{解答。} 连续能量
+\[
+E(t)=\int_{-1}^1(u^2+v^2)\,dx
+\]
+满足
+\[
+\frac12E'(t)=\int_{-1}^1(uu_t+vv_t)\,dx
+=\int_{-1}^1(-uu_x+vv_x)\,dx
+=-\frac12[u^2]_{-1}^1+\frac12[v^2]_{-1}^1.
+\]
+利用边界条件 \(u(-1)=v(-1)\)、\(v(1)=u(1)\)，得
+\[
+E'(t)=0.
+\]
+
+令
+\[
+\lambda=\frac{\Delta t}{\Delta x}.
+\]
+格式可写为
+\[
+u_j^{n+1}=(1-\lambda)u_j^n+\lambda u_{j-1}^n,
+\qquad
+v_j^{n+1}=(1-\lambda)v_j^n+\lambda v_{j+1}^n.
+\]
+若
+\[
+0\le\lambda\le1,
+\]
+则两式均为凸组合。由凸性，
+\[
+|u_j^{n+1}|^2\le(1-\lambda)|u_j^n|^2+\lambda|u_{j-1}^n|^2,
+\]
+\[
+|v_j^{n+1}|^2\le(1-\lambda)|v_j^n|^2+\lambda|v_{j+1}^n|^2.
+\]
+对所有格点求和，并使用离散边界条件 \(u_{-N}^{n+1}=v_{-N}^{n+1}\)、\(v_N^{n+1}=u_N^{n+1}\)，边界流入项恰与另一变量边界值配对，得到
+\[
+E^{n+1}\le E^n.
+\]
+故可取
+\[
+\lambda_0=1.
+\]
+同样，由凸组合性质，
+\[
+|u_j^{n+1}|\le\max_i|u_i^n|,\qquad
+|v_j^{n+1}|\le\max_i|v_i^n|.
+\]
+结合边界更新，得到
+\[
+\max_j\max(|u_j^{n+1}|,|v_j^{n+1}|)
+\le
+\max_j\max(|u_j^n|,|v_j^n|).
+\]
+
+\item \textbf{题目。} 设 \(G=(V,E)\) 为 \(n\) 阶图，\(X=X_1\cup\cdots\cup X_q\)，其中 \(2\le q\le\kappa(X)\)。若每个 \(X_i\) 中任意不相邻的 \(x,y\) 都满足
+\[
+d(x)+d(y)\ge n,
+\]
+证明 \(X\) 中所有顶点在 \(G\) 的某个圈上。
+
+\textbf{解答。} 这是 Ore 型可圈性准则。取包含 \(X\) 中顶点数最多的圈 \(C\)。若 \(X\subset C\)，结论成立。反设存在 \(x\in X\setminus C\)。由于 \(q\le\kappa(X)\)，从 \(x\) 到 \(C\) 上属于不同 \(X_i\) 的部分可取足够多条内部点不交的路径；否则少于 \(q\) 个顶点便能把 \(x\) 与某个 \(X\) 顶点分离，矛盾。
+
+取一条从 \(x\) 到 \(C\) 的最长耳路径，其端点在 \(C\) 上为 \(a,b\)，内部不交于 \(C\)。若不能把该耳插入 \(C\) 得到更大的含 \(X\) 圈，则在沿 \(C\) 的相邻候选端点中会出现一对不相邻顶点 \(r,s\in X_i\)，并且它们在 \(C\) 上的可用邻点总数至多 \(n-1\)，即
+\[
+d(r)+d(s)\le n-1.
+\]
+这与假设 \(d(r)+d(s)\ge n\) 矛盾。因此耳可插入，得到包含更多 \(X\) 顶点的圈，违背 \(C\) 的最大性。故 \(X\subset C\)。
+
+\item \textbf{题目。} 设 Fibonacci 数列满足 \(F_0=0,F_1=1,F_{n+2}=F_{n+1}+F_n\)。建立
+\[
+\begin{pmatrix}0&1\\1&1\end{pmatrix}^n
+\]
+与 \(F_n\) 的关系，并据此设计比逐步递推更快的算法计算 \(F_n\)，估计步数。
+
+\textbf{解答。} 记
+\[
+A=\begin{pmatrix}0&1\\1&1\end{pmatrix}.
+\]
+归纳证明
+\[
+A^n=
+\begin{pmatrix}
+F_{n-1}&F_n\\
+F_n&F_{n+1}
+\end{pmatrix}
+\qquad(n\ge1).
+\]
+\(n=1\) 显然成立。若对 \(n\) 成立，则
+\[
+A^{n+1}=
+\begin{pmatrix}
+F_{n-1}&F_n\\
+F_n&F_{n+1}
+\end{pmatrix}
+\begin{pmatrix}0&1\\1&1\end{pmatrix}
+=
+\begin{pmatrix}
+F_n&F_{n-1}+F_n\\
+F_{n+1}&F_n+F_{n+1}
+\end{pmatrix}
+=
+\begin{pmatrix}
+F_n&F_{n+1}\\
+F_{n+1}&F_{n+2}
+\end{pmatrix}.
+\]
+因此 \(F_n\) 是 \(A^n\) 的非对角元素。
+
+用二分幂计算 \(A^n\)：若 \(n=2m\)，先算 \(A^m\)，再平方；若 \(n=2m+1\)，先算 \(A^{2m}\)，再乘一次 \(A\)。递归深度为 \(O(\log n)\)，每层只需常数次 \(2\times2\) 矩阵乘法。因此算术乘法次数为
+\[
+O(\log n),
+\]
+比逐步递推的 \(O(n)\) 步更快。
+\end{enumerate}
+
+\subsection{2014 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 给定 \([0,1]\) 上有限正 Borel 测度 \(d\mu\)，定义矩
+\[
+c_j=\int_0^1 x^j\,d\mu(x),\qquad j=0,1,\ldots.
+\]
+证明该序列完全单调：
+\[
+(I-S)^k c_j\ge0,\qquad j,k\ge0,
+\]
+其中 \(S c_j=c_{j+1}\)。
+
+\textbf{解答。} 由二项式公式，
+\[
+(I-S)^k c_j
+=\sum_{\ell=0}^k(-1)^\ell\binom{k}{\ell}c_{j+\ell}.
+\]
+代入矩的定义，
+\[
+\begin{aligned}
+(I-S)^k c_j
+&=\int_0^1
+\sum_{\ell=0}^k(-1)^\ell\binom{k}{\ell}x^{j+\ell}\,d\mu(x)\\
+&=\int_0^1 x^j(1-x)^k\,d\mu(x).
+\end{aligned}
+\]
+在 \(0\le x\le1\) 上，\(x^j(1-x)^k\ge0\)，且 \(d\mu\) 是正测度，因此积分非负，结论成立。
+
+\item \textbf{题目。} 多项式
+\[
+f(X)=a_dX^d+a_{d-1}X^{d-1}+\cdots+a_1X+a_0\in\mathbb Z[X]
+\]
+称为 Eisenstein 多项式，如果存在素数 \(p\) 使得 \(p\mid a_i\ (i<d)\)，\(p^2\nmid a_0\)，且 \(p\nmid a_d\)。
+\begin{enumerate}[label=(\roman*),leftmargin=2.0em]
+\item 证明两个同一素数 \(p\) 下的 Eisenstein 多项式的复合仍是 Eisenstein 多项式（通常取外层次数至少 \(2\)，以排除一次情形中的偶然模 \(p^2\) 抵消）。
+\item 给出多元 Eisenstein 判别法的推广。
+\end{enumerate}
+
+\textbf{解答。} 设
+\[
+f(X)=a_dX^d+\sum_{i<d}a_iX^i,\qquad
+g(X)=b_eX^e+\sum_{r<e}b_rX^r
+\]
+均为 \(p\)-Eisenstein，且 \(d\ge2\)。因为 \(g(X)\equiv b_eX^e\pmod p\)，所以
+\[
+g(X)^d\equiv b_e^dX^{ed}\pmod p.
+\]
+于是
+\[
+f(g(X))\equiv a_db_e^dX^{ed}\pmod p,
+\]
+最高次系数不被 \(p\) 整除，而所有低次系数均被 \(p\) 整除。常数项为
+\[
+f(g(0))=a_dg(0)^d+\sum_{1\le i<d}a_ig(0)^i+a_0.
+\]
+由于 \(p\mid g(0)\)、\(p^2\nmid g(0)\)，且 \(d\ge2\)，前两类项均被 \(p^2\) 整除，而 \(p^2\nmid a_0\)。故
+\[
+p^2\nmid f(g(0)).
+\]
+所以 \(f\circ g\) 仍为 \(p\)-Eisenstein，因而不可约。
+
+多元推广可用 UFD 上的 Eisenstein 判别法表述。把
+\[
+F(X_1,\ldots,X_m)
+\]
+看成 \(R[X_m]\) 中关于 \(X_m\) 的多项式，其中 \(R=\mathbb Z[X_1,\ldots,X_{m-1}]\)。若存在 \(R\) 中的素元（例如整数素数 \(p\)），使得 \(X_m\) 最高次项系数不被 \(p\) 整除，所有较低次 \(X_m\)-系数都被 \(p\) 整除，且常数项不被 \(p^2\) 整除，则 \(F\) 在 \(R[X_m]\) 中不可约，从而在 \(\mathbb Z[X_1,\ldots,X_m]\) 中不可约。
+
+\item \textbf{题目。} 对守恒律
+\[
+u_t+f(u)_x=0,\qquad 0\le x\le1,\qquad f'(u)\ge0,
+\]
+周期边界条件下，用半离散 DG 格式：求 \(u_h(\cdot,t)\in V_h\)，使对任意 \(v\in V_h\)，每个单元 \(I_j\) 上有
+\[
+\int_{I_j}(u_h)_t v\,dx-\int_{I_j}f(u_h)v_x\,dx
++f((u_h)_{j+1/2}^-)\,v_{j+1/2}^-
+-f((u_h)_{j-1/2}^-)\,v_{j-1/2}^+=0.
+\]
+证明
+\[
+\frac{d}{dt}E(t)\le0,\qquad
+E(t)=\int_0^1 u_h(x,t)^2\,dx.
+\]
+
+\textbf{解答。} 取测试函数 \(v=u_h\)，并对所有单元求和。令
+\[
+F(s)=\int_0^s f(r)\,dr.
+\]
+则单元内
+\[
+\int_{I_j}f(u_h)(u_h)_x\,dx
+=F((u_h)_{j+1/2}^-)-F((u_h)_{j-1/2}^+).
+\]
+代回并求和，得到
+\[
+\frac12\frac{d}{dt}\int_0^1u_h^2\,dx
+=-\sum_j D_j,
+\]
+其中每个界面 \(x_{j+1/2}\) 的耗散项可写为
+\[
+D_j=
+F(u^-)-F(u^+)-f(u^-)(u^- -u^+).
+\]
+这里 \(u^-=(u_h)_{j+1/2}^-\)、\(u^+=(u_h)_{j+1/2}^+\)，通量因 \(f'\ge0\) 采用左侧上风值。由 Taylor 公式，
+\[
+F(u^+)=F(u^-)+f(u^-)(u^+-u^-)
++\int_{u^-}^{u^+}(u^+-s)f'(s)\,ds.
+\]
+整理得
+\[
+D_j=\int_{u^+}^{u^-}(s-u^+)f'(s)\,ds\ge0
+\]
+（两端次序相反时同样由单调性得到非负）。故
+\[
+\frac{d}{dt}E(t)=-2\sum_jD_j\le0.
+\]
+
+\item \textbf{题目。} GMRES 方法在 Krylov 子空间 \(K_m\) 中寻找近似解，使残差正交于 \(AK_m\)。设初始残差为 \(r_0\)，并用 Arnoldi 过程构造正交基。说明近似解如何由最小二乘问题得到，证明残差正交性质，给出残差范数公式并写出算法。
+
+\textbf{解答。} 设 \(x_m=x_0+V_my\)，其中 \(V_m=[v_1,\ldots,v_m]\) 是 \(K_m(A,r_0)\) 的标准正交基。Arnoldi 关系为
+\[
+AV_m=V_{m+1}\bar H_m,
+\]
+其中 \(\bar H_m\) 是 \((m+1)\times m\) 上 Hessenberg 矩阵。又
+\[
+r_0=\beta v_1,\qquad \beta=\|r_0\|.
+\]
+残差为
+\[
+r_m=b-Ax_m=r_0-AV_my
+=V_{m+1}(\beta e_1-\bar H_my).
+\]
+由于 \(V_{m+1}\) 列正交，
+\[
+\|r_m\|_2=\|\beta e_1-\bar H_my\|_2.
+\]
+所以 GMRES 的 \(y_m\) 由最小二乘问题
+\[
+y_m=\arg\min_y\|\beta e_1-\bar H_my\|_2
+\]
+给出。通过 Givens 旋转可把 \(\bar H_m\) 化为上三角形式，因此该最小二乘问题可稳定地化为三角回代。
+
+最小二乘正规方程为
+\[
+\bar H_m^T(\beta e_1-\bar H_my_m)=0.
+\]
+因此
+\[
+(AV_m)^Tr_m=0,
+\]
+即残差正交于 \(AK_m\)。残差范数就是上述小规模最小二乘残差：
+\[
+\|r_m\|_2=\|\beta e_1-\bar H_my_m\|_2.
+\]
+算法为：从 \(r_0=b-Ax_0\)、\(v_1=r_0/\|r_0\|\) 开始；每步作 Arnoldi 正交化生成新列和 \(\bar H_m\)；用 Givens 旋转更新最小二乘残差；达到容差后回代求 \(y_m\)，输出 \(x_m=x_0+V_my_m\)。
+
+\item \textbf{题目。} 令 \(x_0=0\)，递推
+\[
+x_k=2x_{k-1}+b_k,\qquad k=1,\ldots,n.
+\]
+\begin{enumerate}[label=(\roman*),leftmargin=2.0em]
+\item 写成矩阵形式 \(A\vec x=\vec b\)。当 \(b_1=-1/3\)、\(b_k=(-1)^k\ (k\ge2)\) 时，验证 \(x_k=(-1)^k/3\)。
+\item 求 \(A^{-1}\)，并计算 \(L^1\) 范数下的条件数。
+\end{enumerate}
+
+\textbf{解答。} 方程为
+\[
+x_k-2x_{k-1}=b_k.
+\]
+因此 \(A\) 是下双对角矩阵
+\[
+A=\begin{pmatrix}
+1&0&0&\cdots&0\\
+-2&1&0&\cdots&0\\
+0&-2&1&\cdots&0\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+0&0&0&-2&1
+\end{pmatrix}.
+\]
+若 \(x_k=(-1)^k/3\)，则
+\[
+x_1=-\frac13=b_1,
+\]
+且当 \(k\ge2\) 时
+\[
+x_k-2x_{k-1}
+=\frac{(-1)^k}{3}-\frac{2(-1)^{k-1}}{3}
+=(-1)^k=b_k.
+\]
+故该向量确为精确解。
+
+由递推展开，
+\[
+x_i=\sum_{j=1}^i2^{i-j}b_j.
+\]
+因此
+\[
+(A^{-1})_{ij}=
+\begin{cases}
+2^{i-j},& i\ge j,\\
+0,& i<j.
+\end{cases}
+\]
+\(L^1\) 矩阵范数为最大列和。对 \(A\)，除最后一列外列和为 \(1+2=3\)，所以
+\[
+\|A\|_1=3\qquad(n\ge2).
+\]
+对 \(A^{-1}\)，第 \(j\) 列和为
+\[
+\sum_{i=j}^n2^{i-j}=2^{n-j+1}-1,
+\]
+最大值在 \(j=1\) 处取得：
+\[
+\|A^{-1}\|_1=2^n-1.
+\]
+故
+\[
+\kappa_1(A)=\|A\|_1\|A^{-1}\|_1=3(2^n-1)
+\]
+（\(n=1\) 时为 \(1\)）。
+\end{enumerate}
+
+\subsection{2015 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑界面椭圆问题
+\[
+(a(x)u_x)_x=f,\qquad 0<x<1,\qquad u(0)=u(1)=0,
+\]
+其中
+\[
+a(x)=
+\begin{cases}
+a_0,&0<x<\xi,\\
+a_1,&\xi<x<1,
+\end{cases}
+\qquad a_0,a_1>0,\quad 0<\xi<1.
+\]
+界面条件为
+\[
+u(\xi^-)=u(\xi^+),\qquad
+a(\xi^-)u_x(\xi^-)=a(\xi^+)u_x(\xi^+).
+\]
+设计至少一阶精度的数值方法，并证明精度和收敛性。
+
+\textbf{解答。} 最自然的方法是保持通量形式。取网格 \(x_i=ih\)，若界面不在网格点上，可把 \(\xi\) 加入网格，使剖分在 \(\xi\) 处分裂；若不想改变全局网格，也可在含界面的单元上作局部切分。令有限元空间
+\[
+V_h=\{v_h\in H_0^1(0,1): v_h \text{ 在每个子区间上为一次多项式，且在 }\xi\text{ 连续}\}.
+\]
+求 \(u_h\in V_h\)，使
+\[
+\int_0^1 a(x)u_h'(x)v_h'(x)\,dx
+=-\int_0^1 f(x)v_h(x)\,dx,\qquad \forall v_h\in V_h.
+\]
+这里右端符号来自原方程 \((a u_x)_x=f\)，等价于 \(- (a u_x)'=-f\)。若改写为 \(- (a u_x)'=g\)，则右端为 \((g,v_h)\)。
+
+该弱式自动编码界面条件。事实上，在 \((0,\xi)\) 与 \((\xi,1)\) 分别分部积分，界面项为
+\[
+\bigl[a u_x v\bigr]_{\xi^-}^{\xi^+}
+=\bigl(a(\xi^-)u_x(\xi^-)-a(\xi^+)u_x(\xi^+)\bigr)v(\xi),
+\]
+由通量连续性该项为零；反过来，弱解若分片足够光滑，也推出通量连续。
+
+稳定性由强制性得到。设
+\[
+a_{\min}=\min(a_0,a_1)>0.
+\]
+取 \(v_h=u_h\)，得
+\[
+a_{\min}\|u_h'\|_{L^2}^2
+\le \int_0^1a|u_h'|^2
+\le \|f\|_{L^2}\|u_h\|_{L^2}
+\le C_P\|f\|_{L^2}\|u_h'\|_{L^2}.
+\]
+所以
+\[
+\|u_h\|_{H^1}\le C\|f\|_{L^2},
+\]
+其中 \(C\) 与 \(h\) 无关。
+
+误差方面，由 Cea 引理，
+\[
+\|u-u_h\|_{H^1_a}
+\le C\inf_{v_h\in V_h}\|u-v_h\|_{H^1_a},
+\]
+其中
+\[
+\|w\|_{H^1_a}^2=\int_0^1a|w'|^2dx.
+\]
+若 \(u\) 在 \((0,\xi)\)、\((\xi,1)\) 上分别属于 \(H^2\)，取分片线性插值 \(I_hu\)，并让网格含有 \(\xi\)，则
+\[
+\|u-I_hu\|_{H^1(0,\xi)\cup H^1(\xi,1)}
+\le Ch\bigl(\|u\|_{H^2(0,\xi)}+\|u\|_{H^2(\xi,1)}\bigr).
+\]
+因此
+\[
+\|u-u_h\|_{H^1}
+\le Ch\bigl(\|u\|_{H^2(0,\xi)}+\|u\|_{H^2(\xi,1)}\bigr),
+\]
+得到至少一阶收敛。若再用对偶论证并假设相应分片正则性，可得 \(L^2\) 误差二阶。
+
+\item \textbf{题目。} 社交网络图中每条边为正或负。若一个圈含有奇数条负边，称为不平衡圈。对顶点 \(v\) 作一次 resigning 指把所有与 \(v\) 关联的边的符号全部反转。证明：可以通过一系列 resigning 把所有边变成正边，当且仅当图中没有不平衡圈。
+
+\textbf{解答。} 先证必要性。一次 resigning 会改变任意圈中与该顶点相邻的两条圈边的符号；若圈经过该顶点，则圈中负边数改变 \(0\) 或 \(\pm2\)，其奇偶性不变；若圈不经过该顶点，则不变。因此每个圈中负边数的奇偶性在 resigning 下保持不变。若最终所有边为正，则每个圈负边数为 \(0\)，所以初始图不能有不平衡圈。
+
+再证充分性。可逐个连通分支处理。固定一个连通分支，取一棵生成树 \(T\)，选根 \(r\)。对任意顶点 \(v\)，令从 \(r\) 到 \(v\) 的树路径上负边数的奇偶性为 \(\epsilon(v)\in\{0,1\}\)。若 \(\epsilon(v)=1\)，对 \(v\) 作 resigning；若 \(\epsilon(v)=0\)，不作。经过这些操作后，任意树边 \(uv\) 的新符号变为
+\[
+\operatorname{sgn}(uv)(-1)^{\epsilon(u)+\epsilon(v)}.
+\]
+由于 \(\epsilon(u)+\epsilon(v)\) 正好记录根到 \(u\)、根到 \(v\) 路径差出的这条边的负号奇偶性，所以每条树边都变为正。
+
+现在考虑任意非树边 \(uv\)。它与树中 \(u\) 到 \(v\) 的唯一路径构成一个圈。该圈没有不平衡，故非树边的原始符号恰好等于树路径上负边数奇偶性的补偿。树边已全部变正后，非树边也必为正。于是整个连通分支所有边均可变正。各连通分支独立处理，充分性成立。
+
+\item \textbf{题目。} Galton--Watson 分枝过程从一个粒子开始，每个粒子独立地产生 \(k\) 个子代的概率为 \(p_k\)。设
+\[
+P(x)=\sum_{k\ge0}p_kx^k,\qquad
+\mu=P'(1)=\sum_{k\ge0}kp_k,
+\]
+且 \(0<p_0<1\)。证明若 \(\mu>1\)，则过程在第 \(n\) 代或之前灭绝的概率 \(x_n\) 收敛到方程
+\[
+\sigma=P(\sigma)
+\]
+在 \((0,1)\) 中的唯一根。
+
+\textbf{解答。} 设 \(x_n\) 为第 \(n\) 代或以前灭绝的概率。第 \(0\) 代前灭绝概率可取
+\[
+x_0=0.
+\]
+由第一代子代数分类，若初始粒子产生 \(k\) 个子代，则这些子代的分支都需在接下来 \(n\) 代内灭绝，概率为 \(x_n^k\)。故
+\[
+x_{n+1}=P(x_n),\qquad x_0=0.
+\]
+因为 \(P\) 在 \([0,1]\) 上递增，且 \(P([0,1])\subset[0,1]\)，序列 \(\{x_n\}\) 递增且有上界 \(1\)，故收敛，设极限为 \(q\)。连续性给出
+\[
+q=P(q).
+\]
+
+下面说明 \((0,1)\) 中唯一根存在。函数
+\[
+H(x)=P(x)-x
+\]
+满足
+\[
+H(0)=p_0>0,\qquad H(1)=0,\qquad H'(1)=\mu-1>0.
+\]
+因此当 \(x<1\) 且足够接近 \(1\) 时，\(H(x)<0\)，所以在 \((0,1)\) 中至少有一根。又
+\[
+P''(x)=\sum_{k\ge2}k(k-1)p_kx^{k-2}\ge0,
+\]
+所以 \(H\) 为凸函数。凸函数 \(H\) 在 \(0\) 处为正、在 \(1\) 处为 \(0\)、且左邻域为负，因此在 \((0,1)\) 中只能有一个零点。故 \(q=\sigma\)，其中 \(\sigma\in(0,1)\) 是唯一解。
+
+\item \textbf{题目。} 平面闭曲线由逆时针参数方程 \((x(t),y(t))\), \(0\le t\le T\)，给出，且首尾相接。证明长度公式和面积公式，建立固定长度下最大面积的变分问题，推导 Euler--Lagrange 方程，并说明极值曲线为圆。
+
+\textbf{解答。} 曲线长度为
+\[
+L=\int_0^T\sqrt{x'(t)^2+y'(t)^2}\,dt.
+\]
+这是弧长微元 \(ds=\sqrt{x'^2+y'^2}\,dt\) 的积分。面积由 Green 公式得到：
+\[
+A=\frac12\int_0^T\bigl(x(t)y'(t)-y(t)x'(t)\bigr)\,dt.
+\]
+
+等周问题可写为：在约束
+\[
+\int_0^T\sqrt{x'^2+y'^2}\,dt=L_0
+\]
+下最大化
+\[
+\frac12\int_0^T(xy'-yx')\,dt.
+\]
+引入 Lagrange 乘子 \(\lambda\)，考虑泛函
+\[
+\mathcal F=\int_0^T
+\left[
+\frac12(xy'-yx')-\lambda\sqrt{x'^2+y'^2}
+\right]dt.
+\]
+可用弧长参数 \(s\)，使 \(\sqrt{x_s^2+y_s^2}=1\)。Euler--Lagrange 方程等价于曲率为常数。直接写出变分方程可得
+\[
+y_s+\lambda x_{ss}=0,\qquad
+-x_s+\lambda y_{ss}=0.
+\]
+于是
+\[
+x_{ss}=-\frac1\lambda y_s,\qquad
+y_{ss}=\frac1\lambda x_s.
+\]
+这说明单位切向量以常角速度旋转，曲率
+\[
+\kappa=\frac1{|\lambda|}
+\]
+为常数。平面闭曲线中常正曲率的极值曲线为圆。因此存在常数 \(x_0,y_0\)，使
+\[
+(x-x_0)^2+(y-y_0)^2=r^2.
+\]
+由圆的周长 \(L=2\pi r\)，得到
+\[
+r=\frac{L}{2\pi}.
+\]
+这正说明固定周长下圆给出最大面积。
+
+\item \textbf{题目。} 设 \(A\in\mathbb R^{n\times m}\)，\(\operatorname{rank}A=r<\min(m,n)\)，奇异值分解为
+\[
+A=U\Sigma V^T,\qquad \sigma_1\ge\cdots\ge\sigma_r>0.
+\]
+\begin{enumerate}[label=(\alph*),leftmargin=2.0em]
+\item 证明对每个 \(\varepsilon>0\)，存在满秩矩阵 \(A_\varepsilon\)，使 \(\|A-A_\varepsilon\|_2=\varepsilon\)。
+\item 令 \(A_k=U\Sigma_kV^T\)，其中 \(\Sigma_k=\operatorname{diag}(\sigma_1,\ldots,\sigma_k,0,\ldots,0)\)，\(1\le k\le r-1\)。证明
+\[
+\operatorname{rank}A_k=k,\qquad
+\|A-A_k\|_2=\sigma_{k+1}
+=\min_{\operatorname{rank}B\le k}\|A-B\|_2.
+\]
+\item 若 \(r=\min(m,n)\)，且 \(\|A-B\|_2<\sigma_r\)，证明 \(\operatorname{rank}B=r\)。
+\end{enumerate}
+
+\textbf{解答。} 对 (a)，设 \(s=\min(m,n)\)。在 SVD 的零奇异值位置上加入小扰动。令
+\[
+\Sigma_\varepsilon=\operatorname{diag}(\sigma_1,\ldots,\sigma_r,\varepsilon,\ldots,\varepsilon)
+\]
+并设
+\[
+A_\varepsilon=U\Sigma_\varepsilon V^T
+\]
+（矩形情形按通常矩形对角矩阵理解）。则 \(A_\varepsilon\) 有满秩 \(s\)，且
+\[
+\|A-A_\varepsilon\|_2=\varepsilon.
+\]
+
+对 (b)，显然 \(A_k\) 的非零奇异值为 \(\sigma_1,\ldots,\sigma_k\)，故秩为 \(k\)。又
+\[
+A-A_k=U(\Sigma-\Sigma_k)V^T
+\]
+的最大奇异值为 \(\sigma_{k+1}\)，因此
+\[
+\|A-A_k\|_2=\sigma_{k+1}.
+\]
+若 \(\operatorname{rank}B\le k\)，则 \(\dim\ker B\ge m-k\)。而 \(A\) 前 \(k+1\) 个右奇异向量张成的空间 \(E\) 维数为 \(k+1\)。由于
+\[
+\dim E+\dim\ker B\ge k+1+m-k=m+1,
+\]
+二者必有非零交向量 \(x\)。取 \(\|x\|=1\)，则 \(Bx=0\)，且 \(x\in E\) 推出
+\[
+\|Ax\|\ge\sigma_{k+1}.
+\]
+于是
+\[
+\|A-B\|_2\ge \|(A-B)x\|=\|Ax\|\ge\sigma_{k+1}.
+\]
+故 \(A_k\) 达到最小值。
+
+对 (c)，若 \(\operatorname{rank}B<r\)，则由 (b) 中下界取 \(k=r-1\) 得
+\[
+\|A-B\|_2\ge\sigma_r,
+\]
+这与 \(\|A-B\|_2<\sigma_r\) 矛盾。因此 \(\operatorname{rank}B\ge r\)。又矩阵最大可能秩为 \(r=\min(m,n)\)，故
+\[
+\operatorname{rank}B=r.
+\]
+\end{enumerate}
+
+\subsection{2016 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 考虑方程
+\[
+u_t+u_x=0,\qquad -\infty<x<\infty,
+\]
+初值紧支。设 \(x_j=j\Delta x\)、\(t^n=n\Delta t\)、\(\lambda=\Delta t/\Delta x\)，并考虑三点一步格式
+\[
+u_j^{n+1}=a u_j^n+b u_{j-1}^n+c u_{j-2}^n .
+\]
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item 求 \(a,b,c\)，使格式二阶精确。
+\item 求 CFL 数 \(\lambda_0\)，使该格式在 \(0\le \lambda\le \lambda_0\) 时 \(L^2\) 稳定。
+\item 若方程在半直线 \((0,\infty)\) 上给定，初值紧支于 \((0,\infty)\)，并有边界条件 \(u(0,t)=g(t)\)，说明如何修改格式，并证明稳定性和精度。
+\end{enumerate}
+
+\textbf{解答。} 精确解满足
+\[
+u(x_j,t^{n+1})=u(x_j-\Delta t,t^n)
+              =u(x_j-\lambda\Delta x,t^n).
+\]
+用 \(x_j,x_{j-1},x_{j-2}\) 三点对 \(x_j-\lambda\Delta x\) 作二次插值。令局部变量 \(s=(x-x_j)/\Delta x\)，三点为 \(0,-1,-2\)，目标点为 \(s=-\lambda\)。Lagrange 基函数给出
+\[
+\begin{aligned}
+a&=\frac{(-\lambda+1)(-\lambda+2)}{(0+1)(0+2)}
+  =\frac{(1-\lambda)(2-\lambda)}2,\\
+b&=\frac{(-\lambda)(-\lambda+2)}{(-1)(1)}
+  =\lambda(2-\lambda),\\
+c&=\frac{(-\lambda)(-\lambda+1)}{(-2)(-1)}
+  =-\frac{\lambda(1-\lambda)}2 .
+\end{aligned}
+\]
+由于二次插值对二次多项式精确，而沿特征的位移表达正是对 \(x\) 的平移，该格式对光滑解的局部截断误差为 \(O(\Delta t\,\Delta x^2+\Delta t^2\Delta x+\Delta t^3)\)，在 \(\Delta t=O(\Delta x)\) 下为二阶格式。
+
+作 Fourier 分析。设 \(u_j^n=\widehat u^n e^{ij\theta}\)，放大因子为
+\[
+G(\theta)=a+b e^{-i\theta}+c e^{-2i\theta}.
+\]
+直接化简可得
+\[
+|G(\theta)|^2
+=1-\lambda(2-\lambda)(1-\lambda)^2(1-\cos\theta)^2 .
+\]
+因此当 \(0\le \lambda\le2\) 时，\(|G(\theta)|\le1\) 对所有 \(\theta\) 成立；当 \(\lambda<0\) 或 \(\lambda>2\) 时取 \(\theta=\pi\) 得 \(|G(\pi)|=|1-2\lambda(2-\lambda)|>1\)。故
+\[
+\lambda_0=2.
+\]
+Parseval 等式立即给出离散 \(L^2\) 稳定性。
+
+半直线问题中速度为正，信息从左边界流入。对 \(j\ge2\) 仍用上式；对靠近边界的 \(j=0,1\) 用边界值构造虚拟点。可取
+\[
+u_0^n=g(t^n),\qquad
+u_{-1}^n=2g(t^n)-u_1^n
+\]
+作为二阶外推，并在 \(j=1\) 使用同一公式。若要求更严格的边界一致性，可沿特征令
+\[
+u(x,t^{n+1})=g(t^{n+1}-x)
+\]
+给出所需的流入虚拟值。内点稳定性已经由 Fourier 分析给出；边界只影响有限个格点，且虚拟值由给定光滑 \(g\) 和内部值以有界线性方式生成，所以能量估计中只增加由 \(g\) 控制的边界项。若 \(g\) 与初值满足二阶相容性，则边界截断误差也是 \(O(\Delta x^2+\Delta t^2)\)，从而整体仍为二阶收敛。
+
+\item \textbf{题目。} 设一维振子
+\[
+\ddot x=-u'(x)
+\]
+具有偶势 \(u(-x)=u(x)\)，且 \(u(0)=u'(0)=0\)、\(u'(x)>0\) 对 \(x>0\) 成立，\(\lim_{x\to\infty}u(x)=\infty\)。记 \(y=u(x)\) 在 \(x\ge0\) 上的反函数为 \(x=\phi(y)\)。
+\begin{enumerate}[label=(\alph*),leftmargin=2em]
+\item 证明能量守恒。
+\item 对每个 \(e>0\) 求总能量为 \(e\) 的周期解，并证明周期公式。
+\item 证明 Abel 反演公式
+\[
+\phi(z)=\frac1{2\pi\sqrt2}\int_0^z \frac{P(e)}{\sqrt{z-e}}\,de .
+\]
+\item 若等时 \(P(e)\equiv2\pi\)，证明 \(u(x)=x^2/2\)。
+\end{enumerate}
+
+\textbf{解答。} 将方程乘以 \(\dot x\)，得
+\[
+\dot x\ddot x+u'(x)\dot x=0,
+\]
+即
+\[
+\frac d{dt}\left(\frac{\dot x^2}{2}+u(x)\right)=0.
+\]
+故
+\[
+\frac{\dot x(t)^2}{2}+u(x(t))=e
+\]
+为常数。
+
+给定 \(e>0\)，令 \(x_{\max}=\phi(e)\)。在 \(0<x<x_{\max}\) 上，
+\[
+\dot x=\sqrt{2(e-u(x))}
+\]
+给出从 \(0\) 到 \(x_{\max}\) 的上行时间。由偶势的对称性，一个周期由四段相同运动组成，因此
+\[
+P(e)=4\int_0^{x_{\max}}\frac{dx}{\sqrt{2(e-u(x))}}
+    =2\sqrt2\int_0^{\phi(e)}\frac{dx}{\sqrt{e-u(x)}} .
+\]
+令 \(y=u(x)\)，则 \(x=\phi(y)\)、\(dx=\phi'(y)\,dy\)，于是
+\[
+P(e)=2\sqrt2\int_0^e \frac{\phi'(y)}{\sqrt{e-y}}\,dy .
+\]
+这是 Abel 型积分方程。两边乘以 \((z-e)^{-1/2}\) 并从 \(0\) 到 \(z\) 积分，交换积分次序：
+\[
+\int_0^z \frac{P(e)}{\sqrt{z-e}}\,de
+=2\sqrt2\int_0^z\phi'(y)
+ \left(\int_y^z \frac{de}{\sqrt{(e-y)(z-e)}}\right)dy .
+\]
+内层积分等于 \(\pi\)，故右端为
+\[
+2\sqrt2\,\pi\int_0^z\phi'(y)\,dy=2\sqrt2\,\pi\,\phi(z),
+\]
+从而得到所需公式。
+
+若 \(P(e)\equiv2\pi\)，则
+\[
+\phi(z)=\frac{1}{2\pi\sqrt2}\int_0^z\frac{2\pi}{\sqrt{z-e}}\,de
+       =\frac1{\sqrt2}\cdot 2\sqrt z
+       =\sqrt{2z}.
+\]
+故 \(x=\sqrt{2y}\)，即 \(y=x^2/2\)。因此
+\[
+u(x)=\frac{x^2}{2},\qquad \ddot x=-x,
+\]
+通解为 \(x(t)=A\cos t+B\sin t\)，这就是调和振子。
+
+\item \textbf{题目。} 设 \(A=(a_{ij})\) 是秩 \(r\le n-1\) 的 \(m\times n\) 整矩阵，且 \(|a_{ij}|\le H\)。证明存在非零整数向量 \(x\in\mathbb Z^n\)，使 \(Ax=0\)，且 \(\|x\|_\infty\) 可由 \(n,H\) 的显式多项式界控制，例如 \(\|x\|_\infty\le (2nH)^n\)。
+
+\textbf{解答。} 取 \(A\) 中一个秩为 \(r\) 的 \(r\times n\) 子矩阵 \(B\)，则 \(Bx=0\) 已推出 \(Ax=0\)，因为 \(A\) 的每一行都是 \(B\) 的行的有理线性组合。重排列后可设 \(B\) 的前 \(r\) 列组成非奇异矩阵 \(C\)，后面的某一列记为 \(d\)。考虑方程
+\[
+C y+d z=0.
+\]
+取 \(z=\det C\)，并令
+\[
+y=-\operatorname{adj}(C)d.
+\]
+由于 \(C,d\) 均为整数，故 \(y,z\) 均为整数，且
+\[
+C(-\operatorname{adj}(C)d)+d\det C=0.
+\]
+把 \(y,z\) 放入相应 \(r+1\) 个坐标，其余坐标取 \(0\)，得到非零整数解 \(x\)。
+
+由 Hadamard 不等式，每个 \(r\times r\) 子式的绝对值不超过
+\[
+(\sqrt r H)^r\le (nH)^n.
+\]
+\(\operatorname{adj}(C)d\) 的每个分量也是一个 \(r\times r\) 子式，故所有坐标都由同一数量级控制。于是
+\[
+\|x\|_\infty\le (nH)^n\le(2nH)^n.
+\]
+这给出了题目要求的“合理小”的整数零空间向量。
+
+\item \textbf{题目。} 对线性方程组 \(Ax=b\) 考虑迭代
+\[
+x_{k+1}=x_k+\beta_k p_k,
+\]
+其中 \(A\in\mathbb R^{n\times n}\) 非奇异，\(p_k\) 为搜索方向。给定 \(x_k\) 后，选择 \(\beta_k\) 使残量 \(r_{k+1}=b-Ax_{k+1}\) 的 \(2\)-范数最小。
+
+\textbf{解答。} 记 \(r_k=b-Ax_k\)，则
+\[
+r_{k+1}=r_k-\beta_k A p_k.
+\]
+最小化
+\[
+\varphi(\beta)=\|r_k-\beta A p_k\|_2^2.
+\]
+若 \(Ap_k\ne0\)，求导得
+\[
+\varphi'(\beta)=-2(r_k,Ap_k)+2\beta\|Ap_k\|_2^2,
+\]
+故
+\[
+\boxed{\ \beta_k=\frac{(r_k,Ap_k)}{\|Ap_k\|_2^2}\ }.
+\]
+代回后
+\[
+(r_{k+1},Ap_k)=(r_k,Ap_k)-\beta_k\|Ap_k\|_2^2=0,
+\]
+即新残量与 \(Ap_k\) 正交。
+
+设 \(\alpha\) 是 \(r_k\) 与 \(Ap_k\) 的夹角，则从 \(r_k\) 中去掉其在 \(Ap_k\) 方向上的正交投影，得到
+\[
+\|r_{k+1}\|_2^2
+=\|r_k\|_2^2-\frac{(r_k,Ap_k)^2}{\|Ap_k\|_2^2}
+=\|r_k\|_2^2\sin^2\alpha.
+\]
+所以
+\[
+\|r_{k+1}\|_2=\|r_k\|_2|\sin\alpha|.
+\]
+
+仅假设 \((r_k,Ap_k)\ne0\) 并不能保证收敛。因为可以人为选择搜索方向，使 \(\alpha_k\to\pi/2\) 且 \(\prod_k|\sin\alpha_k|>0\)，于是残量范数下降量可求和但不趋于 \(0\)。
+
+若 \(A\) 对称正定并取 \(p_k=r_k\)，则
+\[
+\beta_k=\frac{(r_k,Ar_k)}{\|Ar_k\|_2^2}>0.
+\]
+设 \(A\) 的特征值在 \([\lambda_{\min},\lambda_{\max}]\) 中。由谱分解知
+\[
+\frac1{\lambda_{\max}}\le \beta_k\le \frac1{\lambda_{\min}}.
+\]
+于是 \(I-\beta_k A\) 在每个特征方向上的因子为 \(1-\beta_k\lambda\)，绝对值小于 \(1\)；更精确地可得一致收缩
+\[
+\|r_{k+1}\|_2\le \rho\|r_k\|_2,\qquad
+\rho=\frac{\kappa(A)-1}{\kappa(A)+1}<1.
+\]
+故 \(r_k\to0\)。由于 \(A\) 非奇异，\(x_k\to A^{-1}b\)。
+
+\item \textbf{题目。} 设 \(f:\mathbb R^n\to\mathbb R\) 为 \(C^1\) 凸函数，并有局部极小点 \(x^\ast\)。
+\begin{enumerate}[label=(\arabic*),leftmargin=2em]
+\item \(x^\ast\) 是否必为全局极小点？
+\item 对隐式梯度法
+\[
+x_k=x_{k-1}-t\nabla f(x_k)
+\]
+讨论 \(f(x_k)\) 的收敛。
+\item 若 \(f\) 强凸，证明 \(x_k\) 收敛。
+\end{enumerate}
+
+\textbf{解答。} 凸函数的任意局部极小点都是全局极小点。事实上，对任意 \(y\) 和 \(0<\theta<1\)，由凸性
+\[
+f((1-\theta)x^\ast+\theta y)
+\le (1-\theta)f(x^\ast)+\theta f(y).
+\]
+若存在 \(f(y)<f(x^\ast)\)，则右端小于 \(f(x^\ast)\)，且当 \(\theta\) 很小时该点位于 \(x^\ast\) 的任意邻域内，矛盾。
+
+由迭代式得
+\[
+x_{k-1}-x_k=t\nabla f(x_k).
+\]
+凸函数满足
+\[
+f(x_{k-1})\ge f(x_k)+\nabla f(x_k)^T(x_{k-1}-x_k).
+\]
+代入上式：
+\[
+f(x_{k-1})\ge f(x_k)+t\|\nabla f(x_k)\|^2.
+\]
+故 \(f(x_k)\) 单调不增。只要 \(f\) 有下界，例如存在极小点时，单调有下界序列必收敛。隐式方法不需要对 \(t>0\) 加小步长条件。
+
+若 \(f\) 强凸，设强凸常数为 \(m>0\)，极小点唯一，记为 \(x^\ast\)。由强凸性和 \(\nabla f(x^\ast)=0\)，
+\[
+(\nabla f(x_k)-\nabla f(x^\ast))^T(x_k-x^\ast)\ge m\|x_k-x^\ast\|^2.
+\]
+又
+\[
+x_{k-1}-x_k=t\nabla f(x_k).
+\]
+于是
+\[
+\begin{aligned}
+\|x_{k-1}-x^\ast\|^2
+&=\|x_k-x^\ast+t\nabla f(x_k)\|^2\\
+&=\|x_k-x^\ast\|^2+2t\nabla f(x_k)^T(x_k-x^\ast)+t^2\|\nabla f(x_k)\|^2\\
+&\ge (1+2tm)\|x_k-x^\ast\|^2.
+\end{aligned}
+\]
+因此
+\[
+\|x_k-x^\ast\|\le \frac1{\sqrt{1+2tm}}\|x_{k-1}-x^\ast\|,
+\]
+故 \(x_k\to x^\ast\)。
+\end{enumerate}
+
+\subsection{2017 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 给定正整数向量 \(u=(u_1,\ldots,u_n)\) 和整数 \(K\)，需判断是否存在非零 \(k=(k_1,\ldots,k_n)\in\mathbb Z^n\)，使
+\[
+\|k\|_\infty\le K,\qquad u_1^{k_1}\cdots u_n^{k_n}=1.
+\]
+朴素枚举需约 \(O((2K+1)^n)\) 次运算。假设内存充足，给出约 \(O((2K+1)^{n/2})\) 级别的算法。
+
+\textbf{解答。} 采用 meet-in-the-middle。把指标分成两组
+\[
+I=\{1,\ldots,s\},\qquad J=\{s+1,\ldots,n\},\qquad s=\lfloor n/2\rfloor .
+\]
+对所有 \(\alpha\in[-K,K]^I\cap\mathbb Z^I\) 计算
+\[
+P_\alpha=\prod_{i\in I}u_i^{\alpha_i},
+\]
+以约分分数或整数对记录其值；负指数用分母记录。把所有 \((P_\alpha,\alpha)\) 放入表 \(L\)，按数值排序。
+
+再对所有 \(\beta\in[-K,K]^J\cap\mathbb Z^J\) 计算
+\[
+Q_\beta=\prod_{j\in J}u_j^{\beta_j}.
+\]
+原方程等价于 \(P_\alpha=Q_\beta^{-1}\)。在排好序的 \(L\) 中二分查找 \(Q_\beta^{-1}\)。若找到，并且拼接向量 \((\alpha,\beta)\ne0\)，则返回存在；否则不存在。
+
+每张半表大小至多 \((2K+1)^{\lceil n/2\rceil}\)。排序需
+\[
+O\!\left((2K+1)^{n/2}\log(2K+1)^n\right)
+\]
+次比较，二分查找同阶。比较两个有理数 \(a/b,c/d\) 时只需比较 \(ad\) 与 \(bc\)，整数位数仍为 \(O(nK\log\|u\|_\infty)\)。这比全枚举节省了平方根量级。
+
+\item \textbf{题目。} 对周期边界问题
+\[
+u_t=(H(u))_{xx},\qquad 0\le H'(u)\le d,
+\]
+考虑格式
+\[
+u_j^{n+1}=u_j^n+aH(u_{j-1}^n)+bH(u_j^n)+cH(u_{j+1}^n),
+\qquad \mu=\frac{\Delta t}{\Delta x^2}.
+\]
+求二阶精确的 \(a,b,c\)，并给出稳定条件。
+
+\textbf{解答。} 对 \((H(u))_{xx}\) 使用二阶中心差分，故必须取
+\[
+a=c=\mu,\qquad b=-2\mu.
+\]
+于是
+\[
+u_j^{n+1}=u_j^n+\mu\{H(u_{j-1}^n)-2H(u_j^n)+H(u_{j+1}^n)\}.
+\]
+空间中心差分误差为 \(O(\Delta x^2)\)，时间前向 Euler 误差为 \(O(\Delta t)\)。在抛物尺度 \(\Delta t=O(\Delta x^2)\) 下，整体与二阶空间精度匹配。
+
+取离散最大范数。设 \(M^n=\max_j u_j^n\)、\(m^n=\min_j u_j^n\)。若 \(u_j^n=M^n\)，由于 \(H\) 单调递增，
+\[
+H(u_{j\pm1}^n)-H(u_j^n)\le0,
+\]
+故 \(u_j^{n+1}\le M^n\)。另一方面，由 Lipschitz 性，
+\[
+H(u_j^n)-H(u_{j\pm1}^n)\le d(u_j^n-u_{j\pm1}^n),
+\]
+若 \(2\mu d\le1\)，则
+\[
+u_j^{n+1}\ge (1-2\mu d)u_j^n+\mu d\,u_{j-1}^n+\mu d\,u_{j+1}^n\ge m^n.
+\]
+同理对最小值可得 \(m^n\le u_j^{n+1}\le M^n\)。因此格式满足离散最大值稳定性：
+\[
+\|u^{n+1}\|_\infty\le \|u^n\|_\infty
+\]
+在适当平移后成立。CFL 条件为
+\[
+\boxed{\ \mu\le \mu_0=\frac1{2d}\ }.
+\]
+
+\item \textbf{题目。} 对竖直落体模型
+\[
+\frac{d^2y}{dt^2}=-\frac{GM}{(R+y)^2},\qquad y(0)=h,\quad y'(0)=-V,
+\]
+按题目给出的快抛体、密地球、轻地球、小地球极限选择尺度，写出无量纲问题和主导问题。
+
+\textbf{解答。} 令
+\[
+y=L Y,\qquad t=T\tau.
+\]
+则
+\[
+Y''(\tau)=-\frac{GM T^2}{L(R+LY)^2},\qquad
+Y(0)=\frac hL,\qquad Y'(0)=-\frac{VT}{L}.
+\]
+关键是使落到 \(Y=0\) 的时间为 \(O(1)\)，并避免主导方程系数发散。
+
+快抛体 \(V\to\infty\)：取 \(L=h\)、\(T=h/V\)。得到
+\[
+Y''=-\varepsilon(1+\eta Y)^{-2},\qquad
+Y(0)=1,\quad Y'(0)=-1,
+\]
+其中 \(\eta=h/R\)，\(\varepsilon=GMh/(V^2R^2)\to0\)。主导问题为 \(Y''=0\)、\(Y(0)=1,Y'(0)=-1\)。
+
+密地球 \(M\to\infty\)：取 \(L=h\)、\(T=R\sqrt{h/(GM)}\)。得到
+\[
+Y''=-(1+\eta Y)^{-2},\qquad
+Y(0)=1,\quad Y'(0)=-\delta,
+\]
+其中 \(\eta=h/R\)、\(\delta=VR/\sqrt{GMh}\to0\)。主导问题为
+\[
+Y''=-(1+\eta Y)^{-2},\qquad Y(0)=1,\quad Y'(0)=0.
+\]
+
+轻地球 \(M\to0\)：仍取 \(L=h\)、\(T=h/V\)。则
+\[
+Y''=-\varepsilon(1+\eta Y)^{-2},\qquad \varepsilon=GMh/(V^2R^2)\to0,
+\]
+主导问题同快抛体，为匀速下落。
+
+小地球 \(R\to0\) 有两种自然尺度。若观察高度 \(h=O(1)\) 的运动，取 \(L=h\)、\(T=\sqrt{h^3/(GM)}\)，得
+\[
+Y''=-\frac1{(\rho+Y)^2},\qquad
+\rho=\frac Rh\to0.
+\]
+主导问题为 \(Y''=-Y^{-2}\)。若观察近表面层，取 \(L=R\)、\(T=\sqrt{R^3/(GM)}\)，得
+\[
+Y''=-(1+Y)^{-2},\qquad Y(0)=h/R,
+\]
+此时初始高度是大的无量纲参数；该尺度适合描述接近地表后的快速阶段。
+
+\item \textbf{题目。} 给定互异点 \(x_1,\ldots,x_n\) 和点 \(x_0\)，用
+\[
+f'(x_0)\approx \sum_{i=1}^n c_i f(x_i)
+\]
+构造差分公式。证明待定系数法的线性系统非奇异，求 \(n=3\)、\(x_1=x_0,x_2=x_0+h,x_3=x_0+2h\) 的公式；再证明插值法给出的系数与之相同。
+
+\textbf{解答。} Taylor 展开要求
+\[
+\frac1{k!}\sum_{i=1}^n c_i(x_i-x_0)^k=\delta_{k1},
+\qquad k=0,1,\ldots,n-1.
+\]
+系数矩阵是 Vandermonde 矩阵乘以非零对角矩阵。由于 \(x_i\) 两两互异，Vandermonde 行列式
+\[
+\prod_{i<j}(x_j-x_i)
+\]
+非零，故系统非奇异。
+
+当 \(x_1=x_0,x_2=x_0+h,x_3=x_0+2h\) 时，方程为
+\[
+c_1+c_2+c_3=0,\qquad
+h c_2+2h c_3=1,\qquad
+\frac{h^2}{2}c_2+2h^2 c_3=0.
+\]
+解得
+\[
+c_1=-\frac3{2h},\qquad c_2=\frac2h,\qquad c_3=-\frac1{2h}.
+\]
+因此
+\[
+f'(x_0)\approx \frac{-3f(x_0)+4f(x_0+h)-f(x_0+2h)}{2h}.
+\]
+
+插值法令
+\[
+p(x)=\sum_{i=1}^n f(x_i)\ell_i(x),\qquad
+\ell_i(x)=\prod_{j\ne i}\frac{x-x_j}{x_i-x_j}.
+\]
+则 \(p'(x_0)=\sum_i \ell_i'(x_0)f(x_i)\)，故插值系数为 \(c_i=\ell_i'(x_0)\)。若 \(f\) 是次数不超过 \(n-1\) 的多项式，则插值多项式 \(p=f\)，所以公式精确。待定系数法也正是要求公式对所有次数 \(\le n-1\) 的多项式精确；由于该线性系统解唯一，两法得到的 \(c_i\) 必相同。
+
+\item \textbf{题目。} 设
+\[
+A=B^{-1},\qquad
+B=\begin{pmatrix}
+2&-1\\
+-1&2&-1\\
+&\ddots&\ddots&\ddots\\
+&&-1&2&-1\\
+&&&-1&\gamma
+\end{pmatrix}_{N\times N}.
+\]
+求 \(A\) 的显式表达，并讨论其元素非负条件。
+
+\textbf{解答。} 记 \(\theta_k\) 为 \(B\) 左上 \(k\times k\) 主子式。则
+\[
+\theta_0=1,\quad \theta_1=2,\quad \theta_k=2\theta_{k-1}-\theta_{k-2}\ (2\le k\le N-1),
+\]
+故 \(\theta_k=k+1\)。最后一步
+\[
+\theta_N=\gamma\theta_{N-1}-\theta_{N-2}=N\gamma-(N-1).
+\]
+同理，右下尾子式满足
+\[
+\phi_{j+1}=(N-j)\gamma-(N-j-1),\quad j<N,\qquad \phi_{N+1}=1.
+\]
+三对角矩阵逆公式给出：当 \(i\le j<N\) 时
+\[
+A_{ij}=\frac{i\{(N-j)\gamma-(N-j-1)\}}{N\gamma-(N-1)},
+\]
+当 \(i\le j=N\) 时
+\[
+A_{iN}=\frac{i}{N\gamma-(N-1)}.
+\]
+由对称性 \(A_{ij}=A_{ji}\) 得到全部元素。
+
+因此对固定阶数 \(N\)，所有元素非负当且仅当
+\[
+N\gamma-(N-1)>0,
+\qquad\text{即}\qquad \gamma>\frac{N-1}{N}.
+\]
+若题目要求对任意阶数 \(N\) 统一成立，则必须且只需
+\[
+\gamma\ge1,
+\]
+这正是题面给出的统一条件。
+\end{enumerate}
+
+\subsection{2018 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 设二部图 \(H\) 的两侧顶点集 \(V_1,V_2\) 均有 \(n\) 个顶点。若对所有 \(|I|\le p\) 的 \(I\subset V_1\) 有 \(|I|\le |N(I)|\)，且对所有 \(|J|\le q\) 的 \(J\subset V_2\) 有 \(|J|\le |N(J)|\)。证明当 \(n\le p+q\) 时，\(H\) 有大小 \(n\) 的匹配。
+
+\textbf{解答。} 由 Hall 定理，只需证明对任意 \(I\subset V_1\) 都有 \(|N(I)|\ge |I|\)。若 \(|I|\le p\)，这正是条件。设反之存在 \(|I|>p\) 且 \(|N(I)|<|I|\)。令
+\[
+J=V_2\setminus N(I).
+\]
+则 \(J\) 中顶点没有邻点落在 \(I\)，所以 \(N(J)\subset V_1\setminus I\)，从而
+\[
+|N(J)|\le n-|I|.
+\]
+又
+\[
+|J|=n-|N(I)|>n-|I|.
+\]
+取 \(J_0\subset J\)，使
+\[
+|J_0|=n-|I|+1.
+\]
+因为 \(|I|\ge p+1\) 且 \(n\le p+q\)，有
+\[
+|J_0|=n-|I|+1\le n-p\le q.
+\]
+但
+\[
+|N(J_0)|\le n-|I|<|J_0|,
+\]
+这与 \((p,q)\)-条件在 \(V_2\) 侧矛盾。故 Hall 条件成立，存在完美匹配。
+
+\item \textbf{题目。} 对 \(n\) 维超立方体 \(C_n\)，在函数空间 \(\mathbb R[\{0,1\}^n]\) 上定义
+\[
+\chi_u(v)=(-1)^{u\cdot v}.
+\]
+证明这些函数构成正交基，并求邻接矩阵 \(A(C_n)\) 的特征值。
+
+\textbf{解答。} 内积为
+\[
+\langle f,g\rangle=\sum_{v\in\{0,1\}^n}f(v)g(v).
+\]
+于是
+\[
+\langle \chi_u,\chi_w\rangle
+=\sum_v(-1)^{(u+w)\cdot v}.
+\]
+若 \(u=w\)，和为 \(2^n\)。若 \(u\ne w\)，存在坐标 \(i\) 使 \(u_i+w_i=1\pmod2\)，把所有 \(v\) 按 \(v_i=0,1\) 配对，两项符号相反，和为 \(0\)。故
+\[
+\langle \chi_u,\chi_w\rangle=2^n\delta_{uw}.
+\]
+共有 \(2^n\) 个非零正交向量，而空间维数也是 \(2^n\)，故构成基。
+
+设 \(e_i\) 是第 \(i\) 个标准向量，定义
+\[
+(\Phi f)(v)=\sum_{i=1}^n f(v+e_i).
+\]
+在标准基下，\(\Phi\) 把顶点函数送到其相邻顶点之和，所以矩阵就是超立方体邻接矩阵。对 \(\chi_u\)，
+\[
+(\Phi\chi_u)(v)=\sum_i (-1)^{u\cdot(v+e_i)}
+=\chi_u(v)\sum_i(-1)^{u_i}
+=(n-2|u|)\chi_u(v).
+\]
+因此特征值为
+\[
+n-2r,\qquad r=0,1,\ldots,n,
+\]
+其中重数为 \(\binom nr\)。
+
+\item \textbf{题目。} 设 \(A=QDQ^{-1}\)，其中 \(Q\) 酉、\(D=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)\)。令 \(E_k\) 为 \(Q\) 前 \(k\) 列张成空间，\(P=Q\begin{pmatrix}I_k&0\\0&0\end{pmatrix}Q^{-1}\)。证明 \(P\) 是到 \(E_k\) 的正交投影，并证明幂迭代子空间误差估计。
+
+\textbf{解答。} 因为
+\[
+\widehat P=\begin{pmatrix}I_k&0\\0&0\end{pmatrix}
+\]
+满足 \(\widehat P^2=\widehat P=\widehat P^\ast\)，而 \(Q\) 酉，所以
+\[
+P^2=P,\qquad P^\ast=P.
+\]
+其值域正是 \(Q\) 前 \(k\) 列张成的 \(E_k\)，故 \(P\) 是正交投影。
+
+把 \(X^{(0)}\) 写到 \(Q\) 坐标中：
+\[
+Q^{-1}X^{(0)}=\begin{pmatrix}Y_1\\Y_2\end{pmatrix},
+\qquad Y_1\in\mathbb R^{k\times k}.
+\]
+条件 \(PX^{(0)}\) 单射等价于 \(Y_1\) 可逆。取
+\[
+\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_k).
+\]
+令
+\[
+\Gamma=Y_1^{-1}\Lambda Y_1.
+\]
+则
+\[
+AX^{(m)}-X^{(m)}\Gamma
+=Q\begin{pmatrix}
+D_1^{m+1}Y_1-D_1^mY_1\Gamma\\
+D_2^{m+1}Y_2-D_2^mY_2\Gamma
+\end{pmatrix}.
+\]
+按 \(\Gamma\) 的选择，第一块为零；第二块含有 \(D_2^m\)，其范数至多 \(|\lambda_{k+1}|^m\) 乘初始常数。另一方面
+\[
+PX^{(m)}y=Q\begin{pmatrix}D_1^mY_1y\\0\end{pmatrix},
+\]
+其范数至少 \(|\lambda_k|^m\|Y_1y\|\)。相除即得
+\[
+\frac{\|(AX^{(m)}-X^{(m)}\Gamma)y\|}{\|PX^{(m)}y\|}
+\le
+\left(\frac{|\lambda_{k+1}|}{|\lambda_k|}\right)^m
+\frac{\|(AX^{(0)}-X^{(0)}\Gamma)y\|}{\|PX^{(0)}y\|}.
+\]
+这说明由前 \(k\) 个特征方向张成的不变子空间以谱间隙比率收敛。
+
+\item \textbf{题目。} 对单向方程
+\[
+u_t+a u_x=f
+\]
+考虑格式
+\[
+\frac{3u_m^{n+1}-4u_m^n+u_m^{n-1}}{2k}
++a\frac{u_{m+1}^{n+1}-u_{m-1}^{n+1}}{2h}
+=f_m^{n+1}.
+\]
+证明二阶精确并证明无条件稳定。
+
+\textbf{解答。} 时间项是 BDF2：
+\[
+\frac{3u(t+k)-4u(t)+u(t-k)}{2k}
+=u_t(t+k)+O(k^2),
+\]
+空间项是中心差分：
+\[
+\frac{u(x+h,t+k)-u(x-h,t+k)}{2h}=u_x(x,t+k)+O(h^2).
+\]
+故格式二阶精确。
+
+令 \(f=0\)，取 Fourier 模态 \(u_m^n=r^n e^{im\theta}\)，记 \(\nu=ak/h\)、\(\beta=2\nu\sin\theta\)。代入得
+\[
+(3+i\beta)r^2-4r+1=0.
+\]
+设 \(q=1/r\)，则
+\[
+q^2-4q+3+i\beta=0.
+\]
+若存在根满足 \(|r|>1\)，则 \(|q|<1\)。写 \(q=x+iy\)。方程左端的实部为
+\[
+x^2-y^2-4x+3.
+\]
+在 \(x^2+y^2<1\) 内，
+\[
+x^2-y^2-4x+3
+>2x^2-1-4x+3
+=2(x-1)^2\ge0,
+\]
+不可能等于纯虚数 \(-i\beta\) 的实部 \(0\)。因此所有根均满足 \(|r|\le1\)。单位圆上的根只能在边界情形出现，且由多项式与导数不同时为零可知为单根。故根条件成立，格式无条件稳定。
+
+\item \textbf{题目。} 对凸函数 \(f:D\to\mathbb R\) 定义次梯度。求 \(f(x)=|x|\) 在 \(0\) 处的次微分；给出凸优化最优性条件；证明常步长次梯度法的误差界
+\[
+\lim_{k\to\infty} f(x_k^{\rm best})\le f(x^\ast)+\frac{L^2\alpha}{2}.
+\]
+
+\textbf{解答。} 对 \(f(x)=|x|\)，向量 \(s\) 是 \(0\) 处次梯度当且仅当
+\[
+|x|\ge sx,\qquad \forall x\in\mathbb R.
+\]
+取 \(x>0\) 得 \(s\le1\)，取 \(x<0\) 得 \(s\ge-1\)。故
+\[
+\partial f(0)=[-1,1].
+\]
+
+对凸连续函数 \(f:\mathbb R^n\to\mathbb R\)，点 \(x^\ast\) 为全局极小点当且仅当
+\[
+0\in\partial f(x^\ast).
+\]
+若 \(0\in\partial f(x^\ast)\)，由次梯度定义
+\[
+f(x)\ge f(x^\ast)+0\cdot(x-x^\ast)=f(x^\ast),
+\]
+故 \(x^\ast\) 全局最小。反之若 \(x^\ast\) 全局最小，则上式显然成立，所以 \(0\) 是一个次梯度。
+
+次梯度法为
+\[
+x_{k+1}=x_k-\alpha g_k,\qquad g_k\in\partial f(x_k).
+\]
+由凸性
+\[
+f(x_k)-f(x^\ast)\le g_k^T(x_k-x^\ast).
+\]
+于是
+\[
+\begin{aligned}
+\|x_{k+1}-x^\ast\|^2
+&=\|x_k-x^\ast\|^2-2\alpha g_k^T(x_k-x^\ast)+\alpha^2\|g_k\|^2\\
+&\le \|x_k-x^\ast\|^2-2\alpha(f(x_k)-f(x^\ast))+\alpha^2L^2,
+\end{aligned}
+\]
+其中 Lipschitz 常数 \(L\) 给出 \(\|g_k\|\le L\)。递推求和得
+\[
+2\alpha\sum_{i=1}^k(f(x_i)-f(x^\ast))
+\le \|x_1-x^\ast\|^2+k\alpha^2L^2.
+\]
+若 \(\|x_1-x^\ast\|\le B\)，则
+\[
+\min_{1\le i\le k} f(x_i)-f(x^\ast)
+\le \frac{B^2}{2\alpha k}+\frac{\alpha L^2}{2}.
+\]
+令 \(k\to\infty\)，得到
+\[
+\limsup_{k\to\infty}f(x_k^{\rm best})
+\le f(x^\ast)+\frac{\alpha L^2}{2}.
+\]
+在固定迭代次数 \(k\) 下，平衡两项可取 \(\alpha=B/(L\sqrt{k})\)；若常步长，则 \(\alpha\) 越小极限误差带越窄，但下降越慢。
+\end{enumerate}
+
+\subsection{2019 应用数学与计算数学团体赛题}
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=2.2em]
+\item \textbf{题目。} 证明 Chebyshev--Gauss 求积
+\[
+\int_{-1}^1\frac{f(x)}{\sqrt{1-x^2}}\,dx
+=\frac{\pi}{n}\sum_{k=0}^{n-1}f\!\left(\cos\frac{(2k+1)\pi}{2n}\right)
+\]
+对所有次数不超过 \(2n-1\) 的多项式精确。
+
+\textbf{解答。} 令 \(x=\cos\theta\)，则
+\[
+\int_{-1}^1\frac{f(x)}{\sqrt{1-x^2}}\,dx
+=\int_0^\pi f(\cos\theta)\,d\theta.
+\]
+若 \(f\) 次数不超过 \(2n-1\)，则 \(f(\cos\theta)\) 可表示为
+\[
+\sum_{m=0}^{2n-1} a_m\cos(m\theta).
+\]
+节点 \(\theta_k=(2k+1)\pi/(2n)\) 是 \(\cos(n\theta)\) 的零点。对 \(1\le m\le2n-1\)，可用等比级数求和：
+\[
+\sum_{k=0}^{n-1}e^{im\theta_k}
+=e^{im\pi/(2n)}\frac{1-e^{im\pi}}{1-e^{im\pi/n}}.
+\]
+取实部可知离散平均与 \(\int_0^\pi\cos(m\theta)\,d\theta\) 一致；常数项也显然一致。因此公式对每个 Chebyshev 基函数 \(T_m(x)=\cos(m\theta)\) 精确，从而对全部次数 \(\le2n-1\) 的多项式精确。
+
+\item \textbf{题目。} 设 \(x=(x_0,\ldots,x_{N-1})\ne0\)，离散 Fourier 变换为
+\[
+\widehat x_w=\frac1N\sum_{t=0}^{N-1}x_t e^{-2\pi iwt/N}.
+\]
+证明
+\[
+\|x\|_0\|\widehat x\|_0\ge N.
+\]
+
+\textbf{解答。} 设 \(S=\{t:x_t\ne0\}\)，\(|S|=s\)。若 \(\widehat x\) 有 \(s\) 个连续零点，记为 \(w_0,\ldots,w_0+s-1\)。则
+\[
+\sum_{t\in S}x_t \omega^{w t}=0,\qquad \omega=e^{-2\pi i/N},
+\]
+对这些 \(w\) 成立。把未知量取为 \(x_t\omega^{w_0t}\)，系数矩阵为
+\[
+(\omega^{\ell t})_{\ell=0,\ldots,s-1;\ t\in S}.
+\]
+这是以互异数 \(\omega^t\) 为节点的 Vandermonde 矩阵，行列式非零，故所有 \(x_t=0\)，矛盾。因此 \(\widehat x\) 不可能有 \(s\) 个连续零点。
+
+在长度 \(N\) 的循环序列中，若非零项个数为 \(r=\|\widehat x\|_0\)，则最长零串长度至少 \(\lfloor (N-r)/r\rfloor\)。不存在长度 \(s\) 的零串推出
+\[
+\frac{N-r}{r}<s,
+\]
+故 \(N<r(s+1)\)。用标准的 Donoho--Stark 离散不确定性证明，可进一步由支集限制映射秩得到精确不等式：Fourier 矩阵任取 \(s\) 列和 \(N-r+1\) 行的子矩阵满秩，因此必须 \(N-r<s\)，等价于
+\[
+sr\ge N.
+\]
+
+\item \textbf{题目。} 设 \(m\le n\)，
+\[
+A=\begin{pmatrix}I&X\\X^T&0\end{pmatrix},
+\]
+其中 \(X\in\mathbb R^{n\times m}\) 满列秩。证明 \(A\) 非奇异，求其特征值，并判断迭代
+\[
+z_{k+1}=z_k-(Az_k-b)
+\]
+何时对任意 \(b\) 收敛。
+
+\textbf{解答。} 若 \(A(u,v)^T=0\)，则
+\[
+u+Xv=0,\qquad X^Tu=0.
+\]
+代入得
+\[
+-X^TXv=0.
+\]
+因 \(X\) 满列秩，\(X^TX\) 正定，故 \(v=0\)，再得 \(u=0\)。所以 \(A\) 非奇异。
+
+设 \(X\) 的奇异值为 \(s_1,\ldots,s_m>0\)。在与每个左右奇异向量张成的二维空间上，\(A\) 的矩阵为
+\[
+\begin{pmatrix}1&s_i\\s_i&0\end{pmatrix},
+\]
+其特征值为
+\[
+\lambda_i^\pm=\frac{1\pm\sqrt{1+4s_i^2}}2.
+\]
+此外，\(X^T\) 的零空间维数为 \(n-m\)，在该空间上 \(A\) 的特征值为 \(1\)。故全部特征值为上述数值。
+
+迭代误差满足
+\[
+e_{k+1}=(I-A)e_k.
+\]
+对任意初值收敛当且仅当 \(\rho(I-A)<1\)，即所有特征值 \(\lambda\) 满足 \(|1-\lambda|<1\)。但只要 \(s_i>0\)，就有
+\[
+\lambda_i^-=\frac{1-\sqrt{1+4s_i^2}}2<0,
+\]
+从而 \(|1-\lambda_i^-|>1\)。因此在题设 \(X\) 满列秩且 \(m>0\) 下，该迭代不可能对任意 \(b\) 收敛；只有退化情形 \(m=0\) 或无耦合 \(X=0\) 时才满足条件。
+
+\item \textbf{题目。} 设 \(f:\mathbb R^n\to\mathbb R\) 连续可微、凸，且梯度 \(L\)-Lipschitz。证明
+\[
+f(y)\le f(x)+\nabla f(x)^T(y-x)+\frac L2\|y-x\|^2,
+\]
+\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac1{2L}\|\nabla f(y)-\nabla f(x)\|^2,
+\]
+以及
+\[
+\frac1L\|\nabla f(y)-\nabla f(x)\|^2
+\le(\nabla f(y)-\nabla f(x))^T(y-x).
+\]
+
+\textbf{解答。} 令 \(g(t)=f(x+t(y-x))\)。则
+\[
+g'(t)=\nabla f(x+t(y-x))^T(y-x).
+\]
+由梯度 Lipschitz，
+\[
+g'(t)-g'(0)\le Lt\|y-x\|^2.
+\]
+积分 \(t\in[0,1]\) 得第一式。
+
+为证第二、三式，使用第一式作用于函数
+\[
+h_z(w)=f(w)-\nabla f(z)^Tw.
+\]
+它仍为凸函数且梯度 Lipschitz 常数为 \(L\)。取 \(z=x\)，并在第一式给出的上界中令
+\[
+w=x-\frac1L(\nabla f(x)-\nabla f(y)),
+\]
+再利用 \(h_x\) 的极小性质，可推出
+\[
+f(y)\ge f(x)+\nabla f(x)^T(y-x)+\frac1{2L}\|\nabla f(y)-\nabla f(x)\|^2.
+\]
+将该不等式对 \((x,y)\) 与 \((y,x)\) 各写一次并相加，左侧 \(f(x),f(y)\) 抵消，得到
+\[
+0\ge
+-(\nabla f(y)-\nabla f(x))^T(y-x)
+\frac1L\|\nabla f(y)-\nabla f(x)\|^2,
+\]
+即第三式。
+
+\item \textbf{题目。} 考虑 Störmer 方法
+\[
+y_{n+2}-2y_{n+1}+y_n=h^2 f(t_{n+1},y_{n+1})
+\]
+求解 \(y''=f(t,y)\)。求方法阶数；用空间二阶中心差分和该时间方法构造波方程 \(u_{tt}=u_{xx}\) 的格式；给出稳定条件。
+
+\textbf{解答。} 对精确解在 \(t_{n+1}\) 处 Taylor 展开：
+\[
+y(t_{n+2})-2y(t_{n+1})+y(t_n)
+=h^2y''(t_{n+1})+\frac{h^4}{12}y^{(4)}(t_{n+1})+O(h^6).
+\]
+因此局部截断误差为 \(O(h^4)\)，除以 \(h^2\) 后为 \(O(h^2)\)，方法为二阶。
+
+对波方程取 \(t_{n+1}\) 时刻的空间中心差分：
+\[
+u_j^{n+2}-2u_j^{n+1}+u_j^n
+=\lambda^2\left(u_{j+1}^{n+1}-2u_j^{n+1}+u_{j-1}^{n+1}\right),
+\qquad \lambda=\frac{\Delta t}{\Delta x}.
+\]
+作 Fourier 分析，令 \(u_j^n=r^n e^{ij\theta}\)，得
+\[
+r^2+\left(4\lambda^2\sin^2\frac\theta2-2\right)r+1=0.
+\]
+二次方程 \(r^2-2\mu r+1=0\) 的根均在单位圆上当且仅当 \(|\mu|\le1\)。这里
+\[
+\mu=1-2\lambda^2\sin^2\frac\theta2.
+\]
+对所有 \(\theta\) 成立当且仅当
+\[
+-1\le1-2\lambda^2\le1,
+\]
+即
+\[
+\boxed{\ \lambda\le1\ }.
+\]
+\end{enumerate}
+
+\end{document}
