@@ -1,0 +1,118 @@
+\documentclass[11pt,a4paper,openany]{ctexbook}
+\usepackage[a4paper,margin=28mm,headheight=15pt,footskip=12mm]{geometry}
+\usepackage{setspace,microtype}
+\setstretch{1.12}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\numberwithin{equation}{chapter}
+\allowdisplaybreaks[2]
+\usepackage{enumitem,array,booktabs,xcolor}
+\usepackage{tikz,tikz-cd,pgfplots}
+\usetikzlibrary{arrows.meta,calc,matrix,positioning,graphs}
+\pgfplotsset{compat=1.18}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=teal!60!black,urlcolor=blue!60!black}
+\pdfstringdefDisableCommands{%
+  \def\C{C}%
+  \def\Q{Q}%
+  \def\Z{Z}%
+  \def\F{F}%
+  \def\varphi{phi}%
+  \def\Gamma{Gamma}%
+  \def\ell{l}%
+  \def\Sha{Sha}%
+  \def\GL{GL}%
+  \def\Cp{Cp}%
+  \def\mu{mu}%
+}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\OK}{\mathcal{O}_K}
+\newcommand{\OF}{\mathcal{O}_F}
+\newcommand{\OL}{\mathcal{O}_L}
+\newcommand{\Gal}{\operatorname{Gal}}
+\newcommand{\GL}{\operatorname{GL}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Nm}{\operatorname{N}}
+\newcommand{\Cl}{\operatorname{Cl}}
+\newcommand{\Pic}{\operatorname{Pic}}
+\newcommand{\Br}{\operatorname{Br}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\Cok}{\operatorname{Cok}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\Fil}{\operatorname{Fil}}
+\newcommand{\vol}{\operatorname{vol}}
+\newcommand{\Sh}{\operatorname{Sh}}
+\newcommand{\Sha}{\mathsf{Sha}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{construction}[theorem]{构造}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{习题}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注记}
+\newtheorem{notation}[theorem]{记号}
+\renewcommand{\proofname}{证明}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[LO]{\nouppercase{\leftmark}}
+\fancyhead[RE]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+\frontmatter
+\tableofcontents
+
+\mainmatter
+\setcounter{chapter}{-1}
+\input{chapters/ch00}
+\input{chapters/ch01}
+\input{chapters/ch02}
+\input{chapters/ch03}
+\input{chapters/ch04}
+\input{chapters/ch05}
+\input{chapters/ch06}
+\input{chapters/ch07}
+\input{chapters/ch08}
+\input{chapters/ch09}
+\input{chapters/ch10}
+\input{chapters/ch11}
+\input{chapters/ch12}
+
+\backmatter
+\chapter*{参考文献}
+\addcontentsline{toc}{chapter}{参考文献}
+\begin{thebibliography}{9}
+\bibitem{Li} 黎景辉，《代数数论》。
+\bibitem{Neukirch} J. Neukirch, \emph{Algebraic Number Theory}.
+\bibitem{CasselsFrohlich} J. W. S. Cassels and A. Fröhlich (eds.), \emph{Algebraic Number Theory}.
+\bibitem{SerreLocal} J.-P. Serre, \emph{Local Fields}.
+\bibitem{SerreCohom} J.-P. Serre, \emph{Galois Cohomology}.
+\bibitem{MilneCFT} J. S. Milne, \emph{Class Field Theory}.
+\bibitem{Washington} L. C. Washington, \emph{Introduction to Cyclotomic Fields}.
+\end{thebibliography}
+\end{document}
