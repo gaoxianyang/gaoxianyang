@@ -1,0 +1,5297 @@
+\documentclass[11pt,a4paper,openany]{ctexbook}
+\usepackage[a4paper,margin=28mm,headheight=15pt,footskip=12mm]{geometry}
+\usepackage{setspace,microtype}
+\setstretch{1.12}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm,mathrsfs}
+\numberwithin{equation}{chapter}
+\allowdisplaybreaks[2]
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem,array,booktabs,graphicx,caption}
+\usepackage{tikz,tikz-cd,pgfplots}
+\usetikzlibrary{arrows.meta,calc,matrix,positioning,graphs}
+\pgfplotsset{compat=1.18}
+\usepackage[most]{tcolorbox}
+\usepackage{thmtools}
+\usepackage{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\usepackage{fancyhdr}
+
+\declaretheoremstyle[headfont=\bfseries\color{MidnightBlue},bodyfont=\itshape]{seminarplain}
+\declaretheoremstyle[headfont=\bfseries\color{ForestGreen!60!black},bodyfont=\normalfont]{seminardef}
+\declaretheoremstyle[headfont=\bfseries\color{BrickRed},bodyfont=\normalfont]{seminarexample}
+\declaretheoremstyle[headfont=\bfseries\color{black!70},bodyfont=\normalfont]{seminarremark}
+
+\declaretheorem[name=定理,numberwithin=chapter,style=seminarplain]{theorem}
+\declaretheorem[name=命题,sibling=theorem,style=seminarplain]{proposition}
+\declaretheorem[name=引理,sibling=theorem,style=seminarplain]{lemma}
+\declaretheorem[name=推论,sibling=theorem,style=seminarplain]{corollary}
+\declaretheorem[name=定义,sibling=theorem,style=seminardef]{definition}
+\declaretheorem[name=构造,sibling=theorem,style=seminardef]{construction}
+\declaretheorem[name=例,sibling=theorem,style=seminarexample]{example}
+\declaretheorem[name=题目,sibling=theorem,style=seminarexample]{problem}
+\declaretheorem[name=习题,sibling=theorem,style=seminarexample]{exercise}
+\declaretheorem[name=注记,sibling=theorem,style=seminarremark]{remark}
+\declaretheorem[name=记号,sibling=theorem,style=seminarremark]{notation}
+\renewcommand{\proofname}{证明}
+
+\tcbset{seminarblock/.style={enhanced,breakable,frame hidden,boxrule=0pt,sharp corners,left=2.2mm,right=1.2mm,top=1mm,bottom=1mm,before skip=0.75em,after skip=0.85em}}
+\newtcolorbox{sourceblock}[1][]{seminarblock,title={原文陈述 / Source statement},colback=blue!2,colframe=blue!45!black,#1}
+\newtcolorbox{motivationblock}[1][]{seminarblock,title={动机与说明 / Motivation and commentary},colback=orange!2,colframe=orange!55!black,#1}
+\newtcolorbox{strategyblock}[1][]{seminarblock,title={证明策略 / Proof strategy},colback=violet!2,colframe=violet!45!black,#1}
+\newtcolorbox{detailblock}[1][]{seminarblock,title={详细证明或解答 / Detailed proof or solution},colback=green!2,colframe=green!40!black,#1}
+
+\begin{document}
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\chapter{黎曼度量}
+
+\section{黎曼流形与黎曼映射}
+
+\begin{problem}
+给出黎曼度量的基本判别：设 \(g_p\) 是每个切空间 \(T_pM\) 上的内积。证明 \(g\) 是光滑黎曼度量，当且仅当对任意局部光滑向量场 \(X,Y\)，函数 \(p\mapsto g_p(X_p,Y_p)\) 光滑。
+\end{problem}
+\begin{proof}
+这个判别的用处在于：度量本身是一个 \((0,2)\)-张量场，光滑性不能只在单点检查，而要在局部场上检查。取一组局部坐标 \((x^1,\ldots,x^n)\)，记 \(g_{ij}=g(\partial_i,\partial_j)\)。若 \(g\) 是光滑张量场，则 \(g_{ij}\) 光滑，任意 \(X=X^i\partial_i\)、\(Y=Y^j\partial_j\) 有
+\[
+g(X,Y)=X^iY^jg_{ij},
+\]
+右端是光滑函数。反过来，若对任意 \(X,Y\) 都光滑，特别取 \(X=\partial_i,Y=\partial_j\)，便知所有 \(g_{ij}\) 光滑。由于在坐标中一个 \((0,2)\)-张量场由这些分量决定，所以 \(g\) 是光滑黎曼度量。
+\end{proof}
+
+\begin{problem}
+设 \(F\colon (M,g_M)\to (N,g_N)\) 为浸入。证明拉回式
+\[
+g_M(v,w)=g_N(dF(v),dF(w))
+\]
+给出 \(M\) 上的黎曼度量，并说明为什么这种黎曼浸入一般不保持两点距离。
+\end{problem}
+\begin{proof}
+因为 \(F\) 是浸入，\(dF_p\colon T_pM\to T_{F(p)}N\) 单射。于是当 \(v\ne0\) 时 \(dF_p(v)\ne0\)，从而
+\[
+g_M(v,v)=g_N(dF_pv,dF_pv)>0.
+\]
+双线性、对称性和光滑性都从 \(g_N\) 与 \(dF\) 的光滑性继承而来，所以得到黎曼度量。
+
+要区分的是“无穷小长度”和“全局距离”。黎曼浸入保持每条曲线的速度长度，因此保持给定曲线的弧长；但目标空间中两点之间可能存在离开 \(F(M)\) 的更短曲线。例如圆 \(S^1\subset\mathbb R^2\) 的包含映射保持切向长度，可是圆上两点的内在距离是弧长，而在平面中的距离是弦长，通常更短。
+\end{proof}
+
+\begin{problem}
+设 \(F\colon (M,g_M)\to (N,g_N)\) 是黎曼子沉浸。证明对任意 \(p\in M\)，若把 \(T_pM\) 分解为竖直部分 \(\ker dF_p\) 与水平部分 \((\ker dF_p)^\perp\)，则 \(dF_p\) 在水平部分上是线性等距同构。
+\end{problem}
+\begin{proof}
+子沉浸保证 \(dF_p\) 满射，故维数满足
+\[
+\dim(\ker dF_p)^\perp=\dim M-\dim\ker dF_p=\dim N.
+\]
+按定义，黎曼子沉浸要求 \(dF_p\) 在水平空间上保持内积。又若水平向量 \(v\) 满足 \(dF_pv=0\)，则 \(v\in \ker dF_p\cap(\ker dF_p)^\perp\)，所以 \(v=0\)。因此该限制既单又满，且保持内积，是线性等距同构。解题时要记住：黎曼子沉浸不是说整个 \(dF\) 保长，而是说“去掉沿纤维方向的速度以后”保长。
+\end{proof}
+
+\begin{problem}
+验证双曲空间模型
+\[
+H^n(R)=\{x\in \mathbb R^{n,1}: (x^1)^2+\cdots+(x^n)^2-(x^{n+1})^2=-R^2,\ x^{n+1}>0\}
+\]
+上的诱导 Minkowski 度量是正定的。
+\end{problem}
+\begin{proof}
+设 \(p\in H^n(R)\)，切向量 \(v\in T_pH^n(R)\)。由约束函数求导可得
+\[
+v^1p^1+\cdots+v^np^n-v^{n+1}p^{n+1}=0,
+\]
+因此
+\[
+v^{n+1}=\frac{\sum_{\alpha=1}^n v^\alpha p^\alpha}{p^{n+1}}.
+\]
+Minkowski 长度为
+\[
+\langle v,v\rangle_{n,1}=\sum_{\alpha=1}^n (v^\alpha)^2-(v^{n+1})^2.
+\]
+用 Cauchy--Schwarz，
+\[
+\left(\sum_{\alpha=1}^n v^\alpha p^\alpha\right)^2
+\le \left(\sum_{\alpha=1}^n (v^\alpha)^2\right)
+\left(\sum_{\alpha=1}^n (p^\alpha)^2\right).
+\]
+又由 \(p\in H^n(R)\) 得 \(\sum_{\alpha}(p^\alpha)^2=(p^{n+1})^2-R^2<(p^{n+1})^2\)。若 \(v\ne0\)，便得到 \((v^{n+1})^2<\sum_\alpha(v^\alpha)^2\)，所以 \(\langle v,v\rangle_{n,1}>0\)。这说明双曲面虽然嵌在不定度量空间中，切空间上诱导出的度量却是黎曼的。
+\end{proof}
+
+\section{体积形式与坐标表达}
+
+\begin{problem}
+设 \(E_1,\ldots,E_n\) 是有向正交标架，\(\theta^1,\ldots,\theta^n\) 为对偶余标架。证明体积形式为
+\[
+\operatorname{vol}=\theta^1\wedge\cdots\wedge\theta^n.
+\]
+若改变标架的取向，体积形式如何变化？
+\end{problem}
+\begin{proof}
+体积形式的定义是：它在有向正交基上的取值为 \(1\)。把 \(E_1,\ldots,E_n\) 代入右端，
+\[
+(\theta^1\wedge\cdots\wedge\theta^n)(E_1,\ldots,E_n)=\det(\theta^i(E_j))=\det I=1.
+\]
+因此右端就是体积形式。若换成另一个正交标架 \(\widetilde E_i=A_i{}^jE_j\)，则 \(\det A=\pm1\)。取向保持时楔积不变；取向反转时楔积变号。所以在非定向情形下常写成带符号的局部表达，而积分体积时取对应密度。
+\end{proof}
+
+\begin{problem}
+在局部坐标 \(x^1,\ldots,x^n\) 中，证明
+\[
+\operatorname{vol}=\sqrt{\det(g_{ij})}\,dx^1\wedge\cdots\wedge dx^n
+\]
+在取向相容时成立。
+\end{problem}
+\begin{proof}
+坐标基 \(\partial_i\) 一般不是正交基，它们张成的平行多面体体积等于 Gram 矩阵 \((g_{ij})\) 行列式的平方根。具体说，若 \(A\) 是把标准正交基变到坐标基的矩阵，则
+\[
+(g_{ij})=A^TA,\qquad \det(g_{ij})=(\det A)^2.
+\]
+因此坐标平行多面体的体积是 \(|\det A|=\sqrt{\det(g_{ij})}\)。体积形式在 \((\partial_1,\ldots,\partial_n)\) 上的取值正是这个数，于是得到公式。若坐标取向相反，整体多一个负号；体积密度仍是 \(\sqrt{\det(g_{ij})}\,dx^1\cdots dx^n\)。
+\end{proof}
+
+\begin{problem}
+对扭曲积 \(I\times N\) 上的度量
+\[
+g=dr^2+\phi(r)^2g_N,\qquad \dim N=n-1,
+\]
+证明体积形式为
+\[
+\operatorname{vol}_g=\phi(r)^{n-1}\,dr\wedge \operatorname{vol}_{N}.
+\]
+\end{problem}
+\begin{proof}
+取 \(N\) 上的局部正交标架 \(E_2,\ldots,E_n\)。在 \(g\) 下，
+\[
+\partial_r,\quad \phi^{-1}E_2,\ldots,\phi^{-1}E_n
+\]
+构成正交标架。其对偶余标架是
+\[
+dr,\quad \phi\,\theta^2,\ldots,\phi\,\theta^n,
+\]
+其中 \(\theta^2\wedge\cdots\wedge\theta^n=\operatorname{vol}_N\)。把这些余标架楔起来，就得到
+\[
+dr\wedge(\phi\theta^2)\wedge\cdots\wedge(\phi\theta^n)
+=\phi^{n-1}dr\wedge\operatorname{vol}_N.
+\]
+关键理解是：径向方向不缩放，而每一个 \(N\) 的方向都被长度因子 \(\phi\) 缩放，总共出现 \(n-1\) 次。
+\end{proof}
+
+\section{群作用、覆盖与张量}
+
+\begin{problem}
+设 \(G\) 等距作用在 \((M,g)\) 上，商空间 \(M/G\) 是光滑流形且投影 \(\pi\colon M\to M/G\) 为子沉浸。证明商空间上存在唯一黎曼度量，使 \(\pi\) 成为黎曼子沉浸。
+\end{problem}
+\begin{proof}
+定义商度量时只能用水平向量。给定 \(\bar p=\pi(p)\) 与 \(\bar v,\bar w\in T_{\bar p}(M/G)\)，取唯一水平提升 \(v,w\in(\ker d\pi_p)^\perp\)，令
+\[
+\bar g_{\bar p}(\bar v,\bar w)=g_p(v,w).
+\]
+需要检查与代表点 \(p\) 无关。若 \(p'=a\cdot p\)，其中 \(a\in G\)，因为作用等距，\(da\) 保持 \(g\)，并把纤维方向送到纤维方向，所以也把水平空间送到水平空间；同时 \(d\pi_{p'}\circ da=d\pi_p\)。故水平提升的内积不变。
+
+这样定义后，\(\pi\) 在水平空间上按构造保持内积，所以是黎曼子沉浸。唯一性也来自这一点：若某个度量使 \(\pi\) 为黎曼子沉浸，那么商空间任意两个切向量的内积都必须等于其水平提升的内积，无法再自由选择。
+\end{proof}
+
+\begin{problem}
+设 \(\pi\colon M\to N\) 是 \(k\)-重黎曼覆盖。证明
+\[
+\operatorname{vol}(M)=k\,\operatorname{vol}(N)
+\]
+在体积有限时成立。
+\end{problem}
+\begin{proof}
+覆盖映射局部是微分同胚；黎曼覆盖还要求这些局部分支是局部等距，因此体积形式满足
+\[
+\pi^*\operatorname{vol}_N=\operatorname{vol}_M.
+\]
+把 \(N\) 分成足够小的可测片，使每片的原像由 \(k\) 个互不相交的等距副本组成。每个副本的体积等于原片体积，因此原像总体积是 \(k\) 倍。对这些小片求和并取极限，得到公式。直观地说，黎曼覆盖没有拉伸体积，只是把底空间复制了 \(k\) 层。
+\end{proof}
+
+\begin{problem}
+设 \(T\) 是 \((1,1)\)-张量，\(E_1,\ldots,E_n\) 为正交标架。证明
+\[
+|T|^2=\sum_{i=1}^n |T(E_i)|^2.
+\]
+\end{problem}
+\begin{proof}
+写
+\[
+T(E_i)=T_i{}^jE_j.
+\]
+张量内积把基张量 \(E_j\otimes\theta^i\) 视为正交标准基，因此
+\[
+|T|^2=\sum_{i,j}(T_i{}^j)^2.
+\]
+另一方面
+\[
+\sum_i |T(E_i)|^2=\sum_i g(T_i{}^jE_j,T_i{}^kE_k)
+=\sum_{i,j}(T_i{}^j)^2.
+\]
+两个表达相同。这个公式常用来把抽象张量范数转化为“看它作用在一组正交基上以后长度平方相加”。
+\end{proof}
+
+\begin{problem}
+若 \((1,1)\)-张量 \(S\) 对称、\(T\) 斜对称，证明 \(g(S,T)=0\)。
+\end{problem}
+\begin{proof}
+取正交标架，在该标架下 \(S_{ij}=S_{ji}\)，\(T_{ij}=-T_{ji}\)。张量内积为
+\[
+g(S,T)=\sum_{i,j}S_{ij}T_{ij}.
+\]
+交换指标得
+\[
+\sum_{i,j}S_{ij}T_{ij}
+=\sum_{i,j}S_{ji}T_{ji}
+=\sum_{i,j}S_{ij}(-T_{ij})
+=-g(S,T).
+\]
+所以 \(g(S,T)=0\)。动机上，这是矩阵空间中“对称矩阵与反对称矩阵在迹内积下正交”的黎曼版。
+\end{proof}
+
+\section{章末原习题选解}
+
+\begin{problem}
+在乘积 \(M\times N\) 上取度量 \(g=g_M+g_N\)。证明欧氏空间、平坦方环面以及映射
+\[
+F(\theta_1,\theta_2)=\frac1{\sqrt2}(\cos\theta_1,\sin\theta_1,\cos\theta_2,\sin\theta_2)
+\]
+给出的 Clifford 环面嵌入都与这个乘积度量相容。
+\end{problem}
+\begin{proof}
+乘积切空间分解为 \(T_{(p,q)}(M\times N)=T_pM\oplus T_qN\)，乘积度量定义为
+\[
+g((u_1,u_2),(v_1,v_2))=g_M(u_1,v_1)+g_N(u_2,v_2).
+\]
+于是 \(\mathbb R^n\) 可看成 \(n\) 个带度量 \(dt^2\) 的直线乘积。平坦环面 \(\mathbb R^2/\mathbb Z^2\) 的坐标圆长度为 \(1\)，等价于半径 \(1/(2\pi)\) 的圆，所以每个圆因子度量为 \((1/2\pi)^2d\theta^2\)。
+
+对 \(F\)，有
+\[
+F_{\theta_1}=\frac1{\sqrt2}(-\sin\theta_1,\cos\theta_1,0,0),\quad
+F_{\theta_2}=\frac1{\sqrt2}(0,0,-\sin\theta_2,\cos\theta_2).
+\]
+二者正交，长度平方都是 \(1/2\)。因此诱导度量为
+\[
+\frac12d\theta_1^2+\frac12d\theta_2^2,
+\]
+正是两个半径 \(1/\sqrt2\) 的圆的乘积度量；所以 \(F\) 是黎曼嵌入。
+\end{proof}
+
+\begin{problem}
+证明弧长
+\[
+L(c)=\int_a^b|\dot c(t)|\,dt
+\]
+与正则重参数无关，并且处处速度非零的曲线可重参数化为单位速度。
+\end{problem}
+\begin{proof}
+设 \(s=\varphi(t)\) 是单调光滑重参数，\(\tilde c(t)=c(\varphi(t))\)。链式法则给出
+\[
+|\dot{\tilde c}(t)|=|\dot c(\varphi(t))|\,|\varphi'(t)|.
+\]
+变量替换后积分不变。若 \(|\dot c|>0\)，定义弧长参数
+\[
+s(t)=\int_{t_0}^t|\dot c(\tau)|\,d\tau.
+\]
+则 \(ds/dt=|\dot c(t)|>0\)，所以局部可反解 \(t=t(s)\)。新曲线 \(\gamma(s)=c(t(s))\) 满足
+\[
+|\gamma'(s)|=|\dot c(t)|\,\left|\frac{dt}{ds}\right|=1.
+\]
+这说明单位速度不是额外几何条件，而是对正则曲线选择了最自然的参数。
+\end{proof}
+
+\begin{problem}
+证明黎曼浸入保持曲线弧长；黎曼子沉浸 \(F\colon M\to N\) 满足 \(L(F\circ c)\le L(c)\)，等号当且仅当 \(\dot c\) 处处水平。
+\end{problem}
+\begin{proof}
+若 \(F\) 是黎曼浸入，则
+\[
+|(F\circ c)'|=|dF(\dot c)|=|\dot c|,
+\]
+积分即得弧长相等。
+
+若 \(F\) 是黎曼子沉浸，把 \(\dot c=H+V\) 分成水平与竖直部分。因为 \(dF(V)=0\)，且 \(dF\) 在水平空间上等距，
+\[
+|(F\circ c)'|=|dF(H)|=|H|\le \sqrt{|H|^2+|V|^2}=|\dot c|.
+\]
+积分得到 \(L(F\circ c)\le L(c)\)。若等号成立，连续情形下必须几乎处处 \(|V|=0\)；光滑曲线则处处 \(V=0\)。反过来若 \(\dot c\) 处处水平，每一点速度长度相等，弧长也相等。
+\end{proof}
+
+\begin{problem}
+证明欧氏空间中任意连接 \(p,q\) 的曲线长度不小于 \(|q-p|\)，且等号只在曲线沿直线段单调前进时成立。
+\end{problem}
+\begin{proof}
+令 \(v=(q-p)/|q-p|\)。对曲线 \(c\)，有
+\[
+|c'|\ge \langle c',v\rangle.
+\]
+积分得到
+\[
+L(c)\ge \int_a^b\langle c'(t),v\rangle\,dt
+=\langle q-p,v\rangle=|q-p|.
+\]
+等号要求每一点 \(c'(t)\) 都是非负倍数的 \(v\)，即曲线不能偏离直线方向，也不能反向折返。于是 \(c(t)\) 落在连接 \(p,q\) 的直线上并按一个单调参数走过线段。
+\end{proof}
+
+\begin{problem}
+在单位球面 \(S^n\subset\mathbb R^{n+1}\) 中，证明大圆
+\[
+\gamma(t)=p\cos t+v\sin t,\qquad v\in T_pS^n,\ |v|=1,
+\]
+为单位速度曲线，并说明从 \(p\) 到 \(q=p\cos r_0+v_0\sin r_0\) 的任意曲线长度至少为 \(r_0\)。
+\end{problem}
+\begin{proof}
+首先 \(|\gamma(t)|^2=\cos^2t+\sin^2t=1\)，故曲线在球面上。其速度
+\[
+\dot\gamma(t)=-p\sin t+v\cos t
+\]
+长度为 \(1\)，且 \(\gamma(0)=p,\dot\gamma(0)=v\)。
+
+在去掉 \(\pm p\) 后可写极坐标 \(q=p\cos r+v\sin r\)。径向单位场为 \(\partial_r=-p\sin r+v\cos r\)。任意曲线 \(c(t)=p\cos r(t)+v(t)\sin r(t)\) 满足
+\[
+\frac{dr}{dt}=\langle c'(t),\partial_r\rangle\le |c'(t)|.
+\]
+积分得
+\[
+L(c)\ge \int dr=r_0.
+\]
+等号要求速度始终平行于 \(\partial_r\)，即 \(v(t)\) 不变，曲线就是相应大圆弧。这道题的核心思想是：距离下界来自把速度投影到径向方向。
+\end{proof}
+
+\begin{problem}
+在双曲模型 \(H^n\subset\mathbb R^{n,1}\) 中，证明
+\[
+\gamma(t)=p\cosh t+v\sinh t
+\]
+是从 \(p\) 出发、初速度 \(v\) 的单位速度曲线，并推出双曲径向距离的同类最短性。
+\end{problem}
+\begin{proof}
+由 \(\langle p,p\rangle=-1\)、\(\langle v,v\rangle=1\)、\(\langle p,v\rangle=0\)，有
+\[
+\langle \gamma,\gamma\rangle=-\cosh^2t+\sinh^2t=-1,
+\]
+所以曲线在 \(H^n\) 上。速度为
+\[
+\dot\gamma=p\sinh t+v\cosh t,
+\]
+其 Minkowski 长度平方为 \(-\sinh^2t+\cosh^2t=1\)，故单位速度。
+
+对极坐标 \(q=p\cosh r+v\sinh r\)，径向场 \(\partial_r=p\sinh r+v\cosh r\) 是单位向量。任意曲线写成 \(c(t)=p\cosh r(t)+v(t)\sinh r(t)\)，同样有
+\[
+\frac{dr}{dt}=\langle c'(t),\partial_r\rangle\le |c'(t)|.
+\]
+积分得到从 \(p\) 到径向距离 \(r_0\) 处点的曲线长度至少为 \(r_0\)，等号只沿双曲线径向段取得。
+\end{proof}
+
+\begin{problem}
+设 \(V\) 是带非退化对称双线性型 \(g\) 的有限维实向量空间，指标为 \(p\)。证明存在基使
+\[
+g=\operatorname{diag}(1,\ldots,1,-1,\ldots,-1),
+\]
+并在此基下给出向量展开与迹公式。
+\end{problem}
+\begin{proof}
+这是 Sylvester 惯性定理。用 Gram--Schmidt 的不定型版本：先取非零 \(e\) 使 \(g(e,e)\ne0\)，归一化到 \(1\) 或 \(-1\)，再在其正交补上递归。非退化性保证递归不会卡住。最后得到正交基 \(e_1,\ldots,e_n\)，其中前 \(n-p\) 个长度平方为 \(1\)，后 \(p\) 个为 \(-1\)。
+
+对任意 \(v\)，由正交性，
+\[
+v=\sum_{i=1}^n\frac{g(v,e_i)}{g(e_i,e_i)}e_i
+=\sum_{i=1}^{n-p}g(v,e_i)e_i-\sum_{i=n-p+1}^n g(v,e_i)e_i.
+\]
+若 \(L\colon V\to V\) 线性，则迹是矩阵对角元之和；在上述正交基中第 \(i\) 个对角元为 \(g(L e_i,e_i)/g(e_i,e_i)\)，所以
+\[
+\operatorname{tr}L=\sum_{i=1}^n\frac{g(Le_i,e_i)}{g(e_i,e_i)}.
+\]
+这个公式在伪黎曼情形中特别常用，因为负方向必须带上符号。
+\end{proof}
+
+\begin{problem}
+设 \(G\) 是紧群并光滑作用在流形 \(M\) 上。证明存在某个黎曼度量使 \(G\) 的作用成为等距作用。
+\end{problem}
+\begin{proof}
+先取任意黎曼度量 \(g_0\)。任意光滑流形都可用局部欧氏度量和单位分解拼出这样的 \(g_0\)。紧群上有归一化 Haar 测度 \(d\mu\)。定义平均度量
+\[
+g_p(u,w)=\int_G (a^*g_0)_p(u,w)\,d\mu(a)
+=\int_G g_{0,a\cdot p}(da_pu,da_pw)\,d\mu(a).
+\]
+积分保持双线性、对称和光滑；正定性来自每个 integrand 都正定，非零 \(u\) 时 integrand 处处正。对 \(h\in G\)，
+\[
+h^*g=\int_G h^*a^*g_0\,d\mu(a)=\int_G (ah)^*g_0\,d\mu(a)=g,
+\]
+其中用到 Haar 测度的右不变性。因此所有群元素都是等距变换。
+\end{proof}
+
+\begin{problem}
+设 \(G\) 为 Lie 群，Killing 型定义为
+\[
+B(X,Y)=\operatorname{tr}(\operatorname{ad}_X\circ\operatorname{ad}_Y).
+\]
+证明 \(B\) 对称双线性，并满足
+\[
+B([Z,X],Y)=-B(X,[Z,Y]).
+\]
+\end{problem}
+\begin{proof}
+双线性来自 \(\operatorname{ad}_X\) 对 \(X\) 的线性以及迹的线性。对称性使用 \(\operatorname{tr}(AB)=\operatorname{tr}(BA)\)：
+\[
+B(Y,X)=\operatorname{tr}(\operatorname{ad}_Y\operatorname{ad}_X)
+=\operatorname{tr}(\operatorname{ad}_X\operatorname{ad}_Y)=B(X,Y).
+\]
+对不变性，用 Jacobi 恒等式写成算子形式
+\[
+\operatorname{ad}_{[Z,X]}=[\operatorname{ad}_Z,\operatorname{ad}_X].
+\]
+于是
+\[
+B([Z,X],Y)=\operatorname{tr}([\operatorname{ad}_Z,\operatorname{ad}_X]\operatorname{ad}_Y).
+\]
+展开并循环移动迹：
+\[
+\operatorname{tr}(\operatorname{ad}_Z\operatorname{ad}_X\operatorname{ad}_Y-\operatorname{ad}_X\operatorname{ad}_Z\operatorname{ad}_Y)
+=-\operatorname{tr}(\operatorname{ad}_X[\operatorname{ad}_Z,\operatorname{ad}_Y])
+=-B(X,[Z,Y]).
+\]
+这正是 Killing 型的 \(\operatorname{ad}\)-不变性。
+\end{proof}
+
+\begin{problem}
+证明 \(SL(n,\mathbb R)\) 上的双线性型
+\[
+(X,Y)=\operatorname{tr}(XY),\qquad X,Y\in\mathfrak{sl}(n,\mathbb R),
+\]
+给出一个双不变伪黎曼度量。
+\end{problem}
+\begin{proof}
+先看非退化性。若 \(\operatorname{tr}(XY)=0\) 对所有迹零矩阵 \(Y\) 成立，则 \(X\) 与所有迹零矩阵在迹配对下正交。矩阵空间中迹零子空间的正交补是标量矩阵；而 \(X\) 自身迹零，所以只能 \(X=0\)。
+
+再看 \(\operatorname{Ad}\)-不变性：
+\[
+(\operatorname{Ad}_hX,\operatorname{Ad}_hY)
+=\operatorname{tr}(hXh^{-1}hYh^{-1})
+=\operatorname{tr}(hXYh^{-1})
+=\operatorname{tr}(XY).
+\]
+在 Lie 群上，由单位元处的非退化双线性型左平移得到左不变伪黎曼度量；若该型 \(\operatorname{Ad}\)-不变，则右平移也保持它。因此得到双不变伪黎曼度量。它一般不正定，所以是伪黎曼而不是黎曼度量。
+\end{proof}
+
+
+\section{第一章原习题补遗}
+
+\begin{problem}
+研究二维扭曲积 \(dt^2+a^2t^2d\theta^2\)。当 \(a<1\)、\(a=1\)、\(a>1\) 时，它的纸模型分别是什么形状？
+\end{problem}
+\begin{proof}
+半径为 \(t\) 的圆在这个度量下周长是 \(2\pi at\)。若 \(a=1\)，这正是欧氏平面。若 \(0<a<1\)，周长不足，相当于从平面剪去角度 \(2\pi(1-a)\) 后粘合，所以是普通圆锥。若 \(a>1\)，周长过多，相当于插入额外角度 \(2\pi(a-1)\)，纸面模型会形成带负曲率感觉的起皱或鞍状锥点。数学上它是锥角 \(2\pi a>2\pi\) 的锥奇点。
+\end{proof}
+
+\begin{problem}
+设旋转对称度量 \(dr^2+\rho(r)^2g_{S^{n-1}(R)}\) 在 \(r=0\) 附近平滑，且 \(\rho(0)=0\)。证明必须有 \(\rho'(0)=1/R\)，并且 \(\rho^{(2k)}(0)=0\)。
+\end{problem}
+\begin{proof}
+光滑极点附近应与欧氏极坐标的一阶模型一致：
+\[
+dr^2+r^2g_{S^{n-1}(1)}.
+\]
+因为 \(g_{S^{n-1}(R)}=R^2g_{S^{n-1}(1)}\)，角向系数 \((R\rho(r))^2\) 的主项必须是 \(r^2\)，故 \(R\rho'(0)=1\)。更高阶光滑性要求 \(R\rho(r)=r\psi(r^2)\)，其中 \(\psi\) 光滑，因此 \(\rho\) 的 Taylor 展开只含奇次幂，所有偶阶导数在 \(0\) 处消失。
+\end{proof}
+
+\begin{problem}
+把 \(\mathbb R^n\) 视为 \(\mathbb R^{n+1}\) 中超平面 \(x^{n+1}=R\)。证明欧氏等距群可表示为
+\[
+\begin{pmatrix}O&v\\0&1\end{pmatrix},\qquad O\in O(n),\ v\in\mathbb R^n,
+\]
+并且它们正是保持该超平面和退化双线性型 \(x^1y^1+\cdots+x^ny^n\) 的线性变换。
+\end{problem}
+\begin{proof}
+欧氏等距变换都形如 \(x\mapsto Ox+v\)。在齐次坐标 \((x,R)\) 中，这正由上面的分块矩阵实现。反过来，保持超平面迫使最后坐标固定，保持退化双线性型迫使前 \(n\) 个坐标的线性部分为正交矩阵，剩下自由度正是平移向量 \(v\)。所以两种描述完全一致。
+\end{proof}
+
+\begin{problem}
+设 \(F\colon \mathbb F^{n+1}\setminus\{0\}\to\mathbb FP^n\)，\(F(x)=\operatorname{span}_{\mathbb F}\{x\}\)，其中 \(\mathbb F=\mathbb R\) 或 \(\mathbb C\)。证明 \(F\) 是子沉浸，但相对于标准欧氏度量不是黎曼子沉浸；并说明可否换度量使它成为黎曼子沉浸。
+\end{problem}
+\begin{proof}
+在 \(x_0\ne0\) 的坐标片中，射影点由比值坐标描述，改变 \(x\) 的横向分量可任意改变比值坐标，所以 \(dF\) 满射。
+
+它不是标准欧氏度量下的黎曼子沉浸，因为径向缩放 \(x\mapsto \lambda x\) 不改变射影点，但水平向量的欧氏长度会随 \(|x|\) 缩放；底空间同一切向量的长度不能依赖代表元半径。
+
+可以换度量。把切空间分成径向方向、射影纤维方向和水平分布，在水平分布上定义为 \(F\) 拉回的射影度量，在竖直方向任取正定度量并令二者正交。这样 \(F\) 按构造就是黎曼子沉浸。
+\end{proof}
+
+\begin{problem}
+用四元数构造 Hopf 映射 \(S^7(1)\to S^4(1/2)\)，并说明左右四元数乘法得到的两个版本都是黎曼子沉浸。
+\end{problem}
+\begin{proof}
+把四元数写成 \(q=z+wj\)，并表示为矩阵
+\[
+\begin{pmatrix}z&w\\-\bar w&\bar z\end{pmatrix}.
+\]
+行列式给出 \(|q|^2\)，所以 \(|pq|=|p||q|\)。定义
+\[
+H_l(p,q)=\left(\frac{|p|^2-|q|^2}{2},\bar p q\right),\qquad
+H_r(p,q)=\left(\frac{|p|^2-|q|^2}{2},p\bar q\right).
+\]
+若 \(|p|^2+|q|^2=1\)，则
+\[
+\left(\frac{|p|^2-|q|^2}{2}\right)^2+|\bar pq|^2=\frac14,
+\]
+故像在 \(S^4(1/2)\)。左版本的纤维是单位四元数左乘轨道，右版本是右乘轨道。单位四元数乘法保持 \(\mathbb H^2\) 的欧氏内积；在与纤维正交的水平空间上，微分保持长度。这与复 Hopf 映射的验证完全平行，只是 \(S^1\) 换成了 \(S^3\)。
+\end{proof}
+
+\begin{problem}
+设 \(G\) 是紧 Lie 群。证明 \(G\) 存在双不变黎曼度量。
+\end{problem}
+\begin{proof}
+先任取左不变度量 \(g_L\)。用归一化 Haar 测度对右平移平均：
+\[
+g(v,w)=\int_G g_L(dR_xv,dR_xw)\,d\mu(x).
+\]
+积分保持正定性和光滑性。左不变性来自 \(g_L\) 的左不变性，右不变性来自 Haar 测度的右不变性。因此得到双不变黎曼度量。
+\end{proof}
+
+\begin{problem}
+证明 Lie 代数 \(\mathfrak g\) 上的非退化对称双线性型给出双不变伪黎曼度量，当且仅当它被所有 \(\operatorname{Ad}_h\) 保持。
+\end{problem}
+\begin{proof}
+左不变度量由单位元处的双线性型唯一决定。右平移在单位元处对左不变向量的作用等价于 \(\operatorname{Ad}\)。因此右平移保持度量，当且仅当
+\[
+(\operatorname{Ad}_hX,\operatorname{Ad}_hY)=(X,Y)
+\]
+对所有 \(h\in G\) 成立。左不变性已经由构造保证，所以这正等价于双不变性。
+\end{proof}
+
+\begin{problem}
+证明矩阵群
+\[
+\left\{\begin{pmatrix}a^{-1}&0&0\\0&a&b\\0&0&1\end{pmatrix}:a>0,\ b\in\mathbb R\right\}
+\]
+不承认双不变伪黎曼度量。
+\end{problem}
+\begin{proof}
+令 \(a=e^t\)。其 Lie 代数由
+\[
+H=\begin{pmatrix}-1&0&0\\0&1&0\\0&0&0\end{pmatrix},\qquad
+E=\begin{pmatrix}0&0&0\\0&0&1\\0&0&0\end{pmatrix}
+\]
+张成，且 \([H,E]=E\)。若存在双不变伪黎曼度量，则单位元处双线性型满足 \(\operatorname{ad}\)-不变。于是
+\[
+([H,E],H)+(E,[H,H])=0
+\]
+给出 \((E,H)=0\)，而
+\[
+([H,E],E)+(E,[H,E])=0
+\]
+给出 \(2(E,E)=0\)。所以 \(E\) 与 \(H,E\) 都正交，双线性型退化，矛盾。
+\end{proof}
+
+\chapter{导数}
+
+\section{Lie 导数}
+
+\begin{problem}
+设 \(f\colon M\to\mathbb R\) 和向量场 \(X,Y\) 如上文。证明
+\[
+L_X f= X(f)=df(X),\qquad L_XY=[X,Y].
+\]
+\end{problem}
+\begin{proof}
+对函数而言，\(L_X f\) 的定义就是沿流 \(F_t\) 的差商
+\[
+\frac{f(F_t(p))-f(p)}{t},
+\]
+因此它就是方向导数 \(X(f)\)，也就是 \(df(X)\)。
+
+对向量场 \(Y\)，要先把 \(Y\) 拉回到同一个切空间里比较。于是考虑
+\[
+DF_{-t}\bigl(Y_{F_t(p)}\bigr).
+\]
+把它对 \(t\) 作一阶展开，再对任意测试函数 \(f\) 计算方向导数，得到差商正是
+\[
+X(Y(f))-Y(X(f))=[X,Y](f).
+\]
+由于两个向量场对所有函数的作用一致，所以 \(L_XY=[X,Y]\)。这件事的本质是：Lie 导数刻画了“沿流推进后再比较”的无穷小变化，而 Lie 括号恰好测量两个流方向的非交换性。
+\end{proof}
+
+\begin{problem}
+证明 Lie 导数满足乘法法则：
+\[
+L_X(T_1\otimes T_2)=L_XT_1\otimes T_2+T_1\otimes L_XT_2,
+\]
+并推出
+\[
+L_{fX}T=fL_XT+\sum_i (L_{Y_i}f)\,T(Y_1,\ldots,X,\ldots,Y_k)
+\]
+对任意 \((0,k)\)-张量 \(T\) 成立。
+\end{problem}
+\begin{proof}
+乘法法则来自差商的乘法法则。若把 \(T_1,T_2\) 代入一组向量场，\(F_t\) 推前后它们分别产生一阶项，乘积的一阶项正是两部分一阶项相加。
+
+对 \(fX\) 的情形，先用
+\[
+[fX,Y]=f[X,Y]-Y(f)X
+\]
+展开 \(L_{fX}T\) 的定义，再把 Lie 导数对函数与张量的乘法法则代入，就得到上式。这里最容易漏掉的是 \(Y_i(f)\) 这些额外项，它们正是“系数函数也在流动”所带来的修正。
+\end{proof}
+
+\begin{problem}
+证明梯度 \( \nabla f\) 依赖于黎曼度量，而不是纯粹由光滑结构决定；并说明 \(df\) 与 \(\nabla f\) 在坐标变换下的不同表现。
+\end{problem}
+\begin{proof}
+\(df\) 是协变 1-张量，定义不需要度量。若有度量 \(g\)，则 \(\nabla f\) 由
+\[
+g(\nabla f,V)=df(V)
+\]
+定义。要把 1-形式变成向量，必须用 \(g\) 把协变指标升起来，因此 \(\nabla f=g^{ij}\partial_i f\,\partial_j\)。
+
+在欧氏坐标中，\(g^{ij}=\delta^{ij}\)，所以 \(\nabla f\) 看起来像“分量相同”。但换到极坐标后，\(g^{ij}\) 变了，\(\partial_r,\partial_\theta\) 的系数也随之改变；而 \(df\) 只是一个几何对象，它始终是 \(df=\partial_if\,dx^i\)。这正说明 \(df\) 是坐标无关的，而 \(\nabla f\) 还依赖于所选度量。
+\end{proof}
+
+\begin{problem}
+证明向量场 \(X\) 局部是梯度场，当且仅当 \(Y\mapsto \nabla_YX\) 是自伴的。
+\end{problem}
+\begin{proof}
+若 \(X=\nabla f\)，则 \(\nabla_YX=\nabla_Y\nabla f\) 是 Hessian 的一个表达。Hessian 对称，因此
+\[
+g(\nabla_YX,Z)=g(Y,\nabla_ZX).
+\]
+反过来，若 \(\nabla_YX\) 自伴，则 1-形式 \(X^\flat=g(X,\cdot)\) 满足
+\[
+dX^\flat(Y,Z)=g(\nabla_YX,Z)-g(\nabla_ZX,Y)=0.
+\]
+由 Poincaré 引理，在局部可写成 \(X^\flat=df\)，于是 \(X=\nabla f\)。
+\end{proof}
+
+\begin{problem}
+证明若 \(T\) 是任意张量场，且 \(T\) 在点 \(p\) 消失，则
+\[
+L_XT|_p=(\nabla_XT)|_p.
+\]
+\end{problem}
+\begin{proof}
+这是一个非常有用的“零点简化”。因为 \(T(p)=0\)，Lie 导数里那些由流推前引起的补偿项在 \(p\) 处都变成高阶小量，只留下 \(X\) 方向的一阶变化。另一方面，协变导数的补正项都含有 \(T\) 本身，所以在 \(p\) 处也消失。于是两个一阶变化在 \(p\) 上一致。
+
+这个结论后面最常见的用法是：如果函数 \(f\) 在临界点 \(p\) 处满足 \(df_p=0\)，那么 Hessian 的 \((1,1)\) 版本在 \(p\) 处与度量无关。
+\end{proof}
+
+\section{联络}
+
+\begin{problem}
+证明欧氏空间上满足“对常向量场 \(X\) 有 \(\nabla X=0\)”的仿射联络唯一，且它就是标准联络。
+\end{problem}
+\begin{proof}
+在 \(\mathbb R^n\) 上，任意向量场可写为常向量场的线性组合。若 \(\nabla\) 对所有常向量场都为零，则由联络的线性与 Leibniz 规则可知它对一般向量场的作用完全由坐标函数的导数决定，也就是标准坐标导数。更具体地说，取标准坐标 \((x^i)\)，由 \(\nabla_{\partial_i}\partial_j=0\) 可得 Christoffel 符号全为零，于是联络唯一。
+\end{proof}
+
+\begin{problem}
+证明扭率张量
+\[
+T(X,Y)=\nabla_XY-\nabla_YX-[X,Y]
+\]
+确实是一个 \((2,1)\)-张量。
+\end{problem}
+\begin{proof}
+要检查对函数的线性。设 \(f\) 是函数，则
+\[
+T(fX,Y)=\nabla_{fX}Y-\nabla_Y(fX)-[fX,Y].
+\]
+利用联络与 Lie 括号的 Leibniz 公式，展开后所有含 \(Y(f)\) 和 \(X(f)\) 的项都互相抵消，剩下
+\[
+fT(X,Y).
+\]
+另一变量同理。双线性与反对称性也直接由定义可见，所以它确实是张量。这个计算的要点是：扭率专门设计来把“方向导数的非张量性”抵消掉。
+\end{proof}
+
+\begin{problem}
+设 \(G\) 是 Lie 群。证明存在唯一的联络使所有左不变向量场满足 \(\nabla_XY=0\)，并说明其扭率为零当且仅当 Lie 代数交换。
+\end{problem}
+\begin{proof}
+先看唯一性。左不变向量场在每点给出切空间的一组基，联络若在这些场上全为零，则对任意左不变场之间的联络值都已固定，再由 Leibniz 规则可延拓到任意场，因此唯一。
+
+存在性按同样方式定义：在左不变基上令 \(\nabla_XY=0\)，然后利用线性和 Leibniz 规则延拓。由于左不变基上的定义与群平移相容，所以得到一个全局联络。
+
+此时扭率
+\[
+T(X,Y)=-[X,Y]
+\]
+在左不变场上成立。故扭率为零当且仅当所有左不变场对易，也就是 Lie 代数交换。
+\end{proof}
+
+\begin{problem}
+证明局部坐标 \(x^i\) 与 \(x^i(p)=0\) 可经线性修正选成正规坐标，使
+\[
+\Gamma^k_{ij}(p)=0,\qquad g_{ij}(p)=\delta_{ij},\qquad \partial_k g_{ij}(p)=0.
+\]
+\end{problem}
+\begin{proof}
+先选一组坐标把 \(T_pM\) 同构到 \(\mathbb R^n\)，再做线性变换使 \(g_{ij}(p)=\delta_{ij}\)。接着利用 Christoffel 符号对坐标二阶导数的变换公式，可以通过调整坐标的二阶泰勒项把 \(\Gamma^k_{ij}(p)\) 全部消去。
+
+一旦 \(\Gamma^k_{ij}(p)=0\)，再用度量兼容性公式
+\[
+\partial_k g_{ij}=\Gamma_{kij}+\Gamma_{kji}
+\]
+立刻得到 \(\partial_k g_{ij}(p)=0\)。正规坐标的意义就是：在点 \(p\) 附近把几何“拉平”到一阶，从而局部计算像欧氏空间一样简单。
+\end{proof}
+
+\section{自然导出与张量记号}
+
+\begin{problem}
+证明任意导出算子 \(D\) 都可写成
+\[
+D=L_X+A,
+\]
+其中 \(X\) 是向量场，\(A\) 是一个 \((1,1)\)-张量。并说明 \(X\) 由 \(D\) 唯一确定。
+\end{problem}
+\begin{proof}
+导出算子在函数上的作用满足 Leibniz 规则，因此 \(Df\) 必然是某个向量场 \(X\) 对函数的作用，即 \(Df=X(f)\)。把 \(D-L_X\) 记为 \(A\)，则它对函数恒为零，只作用在向量场上，并且满足点态线性，故是 \((1,1)\)-张量。
+
+唯一性来自于：若 \(L_X+ A=L_Y+B\)，对函数比较便得 \(X=Y\)。之后 \(A=B\) 也随之成立。
+\end{proof}
+
+\begin{problem}
+证明曲线上的协变导数满足
+\[
+\frac{D}{dt}(c\circ\phi)=\dot c\circ\phi\cdot \phi',\qquad
+\frac{D^2}{dt^2}(c\circ\phi)=\ddot c\circ\phi\cdot(\phi')^2+\dot c\circ\phi\cdot\phi''.
+\]
+\end{problem}
+\begin{proof}
+这是链式法则在曲线语言中的直接翻译。第一式表示速度在重参数化后按 \(\phi'\) 缩放。第二式再对第一式求导一次，并注意 \(\phi'\) 也依赖于参数，所以会多出 \(\phi''\) 项。真正需要记住的是：二阶项会额外出现参数重标化的加速度，这也是为什么“仿射参数”在测地线理论中特别自然。
+\end{proof}
+
+\begin{problem}
+设 \(f,h\) 为函数，\(X\) 为向量场。证明
+\[
+\operatorname{div}(fX)=X(f)+f\operatorname{div}X,
+\]
+\[
+\operatorname{Hess}(fh)=h\,\operatorname{Hess}f+f\,\operatorname{Hess}h+df\otimes dh+dh\otimes df.
+\]
+\end{problem}
+\begin{proof}
+散度公式直接用 \(\operatorname{div}X=\operatorname{tr}(\nabla X)\) 与 Leibniz 规则：
+\[
+\nabla(fX)=df\otimes X+f\nabla X.
+\]
+取迹即得第一式。
+
+Hessian 记为 \(\operatorname{Hess}f(Y,Z)=g(\nabla_Y\nabla f,Z)\)。于是
+\[
+\nabla(fh)=h\nabla f+f\nabla h,
+\]
+再对一阶联络求导并展开，就得到第二式。对易项 \(df\otimes dh\) 和 \(dh\otimes df\) 正是来自“乘积求导后两边各贡献一次”的对称补偿。
+\end{proof}
+
+\begin{problem}
+证明若 \(\phi\colon\mathbb R\to\mathbb R\) 光滑，则
+\[
+\nabla(\phi(f))=\phi'(f)\nabla f,\qquad
+\operatorname{Hess}(\phi(f))=\phi''(f)\,df\otimes df+\phi'(f)\operatorname{Hess}f.
+\]
+\end{problem}
+\begin{proof}
+由链式法则
+\[
+d(\phi(f))=\phi'(f)\,df.
+\]
+再把梯度与 Hessian 的定义代入即可。第二式只是对第一式再求一次协变导数，并用乘积法则把 \(\phi'(f)\) 的导数写成 \(\phi''(f)\,df\)。这条公式的核心用途是：把复合函数的凸性/凹性直接转化成原函数的 Hessian 信息。
+\end{proof}
+
+\begin{problem}
+证明若 \(X\) 是常长度向量场，则对任意 \(V\) 有
+\[
+g(\nabla_VX,X)=0.
+\]
+并说明为什么这常被用来判断测地性。
+\end{problem}
+\begin{proof}
+因为 \(g(X,X)\) 是常数，
+\[
+0=V(g(X,X))=2g(\nabla_VX,X).
+\]
+于是 \(\nabla_VX\perp X\)。在判断测地线时，若曲线切向量是这样的向量场 \(X\)，再加上 \(X\) 的流方程，会把加速度写成 \(\nabla_XX\)。若这个量为零，则积分曲线就是测地线；而常长度场使这一检查常常只剩一个垂直分量要看。
+\end{proof}
+
+\section{章末原习题选解}
+
+\begin{problem}
+证明
+\[
+d(X^\flat)(Y,Z)=g(\nabla_YX,Z)-g(\nabla_ZX,Y).
+\]
+\end{problem}
+\begin{proof}
+直接展开：
+\[
+d(X^\flat)(Y,Z)=Yg(X,Z)-Zg(X,Y)-g(X,[Y,Z]).
+\]
+用联络兼容性与无扭率写成
+\[
+g(\nabla_YX,Z)+g(X,\nabla_YZ)-g(\nabla_ZX,Y)-g(X,\nabla_ZY)-g(X,[Y,Z]).
+\]
+后三项因 \([Y,Z]=\nabla_YZ-\nabla_ZY\) 抵消，剩下所需表达式。
+\end{proof}
+
+\begin{problem}
+证明若 \(T\) 是 \((1,1)\)-张量，则
+\[
+\operatorname{tr}(\nabla_XT)=X(\operatorname{tr}T),\qquad
+\operatorname{tr}(L_XT)=L_X(\operatorname{tr}T).
+\]
+\end{problem}
+\begin{proof}
+在正交标架下，迹就是对角分量求和。协变导数与 Lie 导数都满足乘积法则，而迹只是把一个指标收缩掉，所以两者与迹互换。更具体地说，写成分量后，求导和求和可交换，额外的联络项在对角上正好配平。
+\end{proof}
+
+\begin{problem}
+证明正常坐标中 \(\Delta f(p)=\sum_i\partial_i^2f(p)\)，并由此得到距离函数的欧氏型二阶近似。
+\end{problem}
+\begin{proof}
+在正规坐标下 \(g_{ij}(p)=\delta_{ij}\) 且 \(\partial_k g_{ij}(p)=0\)。Laplacian 的坐标公式为
+\[
+\Delta f=\frac1{\sqrt{\det g}}\partial_i\bigl(\sqrt{\det g}\,g^{ij}\partial_j f\bigr),
+\]
+在 \(p\) 处所有一阶系数都消失，于是只剩 \(\sum_i\partial_i^2f(p)\)。
+
+因此若 \(r(x)=d(x,N)\) 在 \(p\) 附近可微，则它的二阶行为与欧氏距离函数同型：沿最短法线方向是线性的，其余方向只在二阶才出现弯曲。这也是距离函数与 Hessian 理论连接起来的地方。
+\end{proof}
+
+\begin{problem}
+证明若 \(f\) 是紧支撑函数，则
+\[
+\int_M \Delta f\,d\mathrm{vol}=0,\qquad
+\int_M f\,\Delta f\,d\mathrm{vol}=-\int_M |\nabla f|^2\,d\mathrm{vol}.
+\]
+\end{problem}
+\begin{proof}
+第一式是散度定理：\(\Delta f=\operatorname{div}(\nabla f)\)，而紧支撑消去边界项。第二式对 \(f\nabla f\) 用散度公式：
+\[
+\operatorname{div}(f\nabla f)=|\nabla f|^2+f\Delta f.
+\]
+积分并用第一式即可。这个公式是最大值原理和 Bochner 技术的入口。
+\end{proof}
+
+\begin{problem}
+证明若 \(X\) 是无散度向量场，则其局部流保持体积形式；反之亦然。
+\end{problem}
+\begin{proof}
+Lie 导数给出体积形式沿流的变化：
+\[
+L_X(\mathrm{vol})=(\operatorname{div}X)\,\mathrm{vol}.
+\]
+因此 \(\operatorname{div}X=0\) 当且仅当 \(L_X(\mathrm{vol})=0\)。流保持体积形式等价于体积形式在流方向的一阶变化为零，也就是散度为零。
+\end{proof}
+
+\begin{problem}
+证明若 \(X\) 是平行向量场，则 \(|X|\) 常数，并且局部度量分裂为某个超曲面乘上区间。
+\end{problem}
+\begin{proof}
+平行意味着 \(\nabla_VX=0\) 对所有 \(V\) 成立，于是
+\[
+V(|X|^2)=2g(\nabla_VX,X)=0.
+\]
+所以长度恒定。再看 \(X^\perp\) 与 \(X\) 张成的分布，它们都平行，因此可积；由流形局部分解定理，局部上
+\[
+(U,g)\cong (V,g_V)\times (I,dt^2).
+\]
+几何直观是：平行场把空间“拉成平板状”，所以局部一定像直积。
+\end{proof}
+
+\begin{problem}
+证明 Hermitian 结构的 Kähler 形式 \(\omega(X,Y)=g(JX,Y)\) 是 2-形式；若 \(\nabla J=0\)，则 \(d\omega=0\)。
+\end{problem}
+\begin{proof}
+由 \(J^2=-I\) 与 \(g(JX,JY)=g(X,Y)\) 得
+\[
+\omega(Y,X)=g(JY,X)=-g(Y,JX)=-\omega(X,Y),
+\]
+所以 \(\omega\) 反对称。
+
+若 \(\nabla J=0\)，则
+\[
+(\nabla_Z\omega)(X,Y)=g((\nabla_ZJ)X,Y)=0.
+\]
+由于 Levi-Civita 联络无扭率，外微分可由循环求和的协变导数表示，所以 \(d\omega=0\)。这就是 Kähler 结构的基本闭性来源。
+\end{proof}
+
+
+\section{第二章原习题补遗}
+
+\begin{problem}
+证明若 \(c\colon I\to M\) 在 \(t_0\) 处速度非零，则存在局部向量场 \(X\)，使得 \(X_{c(t)}=\dot c(t)\) 在 \(t_0\) 附近成立。
+\end{problem}
+\begin{proof}
+因为 \(\dot c(t_0)\ne0\)，曲线在 \(t_0\) 附近可看成某个坐标中的一条坐标轴。更具体地，取流盒坐标，使 \(c(t)\) 对应 \((t,0,\ldots,0)\)。令 \(X=\partial/\partial x^1\) 并乘以必要的速度函数，就得到沿曲线等于 \(\dot c(t)\) 的局部向量场。这个结论常用来把“沿曲线”的计算延拓成普通向量场计算。
+\end{proof}
+
+\begin{problem}
+证明逆度量满足
+\[
+\partial_s g^{ij}=-g^{ik}(\partial_sg_{kl})g^{lj}.
+\]
+\end{problem}
+\begin{proof}
+由 \(g^{ik}g_{kj}=\delta^i_j\) 对 \(x^s\) 求导：
+\[
+(\partial_sg^{ik})g_{kj}+g^{ik}\partial_sg_{kj}=0.
+\]
+右乘 \(g^{jl}\)，得到
+\[
+\partial_sg^{il}=-g^{ik}(\partial_sg_{kj})g^{jl}.
+\]
+重命名指标即得公式。它的意义是：升指标后的导数会带负号，这在坐标计算中很容易漏。
+\end{proof}
+
+\begin{problem}
+设 \(x^i\) 与 \(\bar x^s\) 是两套坐标。说明 Christoffel 符号的变换公式为什么含有二阶坐标导数项，并写出其几何原因。
+\end{problem}
+\begin{proof}
+Christoffel 符号不是张量分量。原因是
+\[
+\nabla_{\partial_i}\partial_j=\Gamma^k_{ij}\partial_k,
+\]
+而坐标基本身在换坐标时含有一阶导数：
+\[
+\partial_{\bar i}=\frac{\partial x^s}{\partial \bar x^i}\partial_s.
+\]
+再对它求协变导数时会对系数继续求导，于是出现
+\[
+\frac{\partial^2x^s}{\partial\bar x^i\partial\bar x^j}
+\]
+项。若某对象是张量，它的变换只含一阶 Jacobi 矩阵；Christoffel 符号多出的二阶项正说明联络系数依赖坐标加速度。
+\end{proof}
+
+\begin{problem}
+设 \(M^n\subset\mathbb R^{n+m}\) 由参数 \(u^s(x^1,\ldots,x^n)\) 给出。证明
+\[
+g_{ij}=\sum_s\frac{\partial u^s}{\partial x^i}\frac{\partial u^s}{\partial x^j},
+\qquad
+\Gamma_{ij;k}=\sum_s\frac{\partial u^s}{\partial x^k}\frac{\partial^2u^s}{\partial x^i\partial x^j}.
+\]
+\end{problem}
+\begin{proof}
+第一式只是诱导度量定义：\(\partial_i u\) 与 \(\partial_j u\) 在欧氏空间中的点积。
+
+对第二式，环境联络是普通二阶导数，\(\bar\nabla_{\partial_i}\partial_j=\partial_i\partial_j u\)。Christoffel 第一类符号是其切向分量与 \(\partial_k u\) 的内积：
+\[
+\Gamma_{ij;k}=g(\nabla_{\partial_i}\partial_j,\partial_k)
+=\langle \partial_i\partial_j u,\partial_k u\rangle.
+\]
+写成坐标分量就是所需公式。
+\end{proof}
+
+\begin{problem}
+设 \(F\colon (M,g_M)\to(\bar M,\bar g)\) 是等距浸入。证明
+\[
+\bar\nabla_XY=\nabla_XY+T(X,Y)
+\]
+中法向部分 \(T\) 对 \(X,Y\) 对称且张量性成立。
+\end{problem}
+\begin{proof}
+切向部分必须是 \(M\) 的 Levi-Civita 联络，因为它无扭率且与诱导度量兼容。法向部分定义为第二基本形式 \(T(X,Y)\)。
+
+对称性来自环境联络无扭率：
+\[
+\bar\nabla_XY-\bar\nabla_YX=[X,Y].
+\]
+取法向部分，右边切向，故 \(T(X,Y)-T(Y,X)=0\)。张量性来自法向投影消除了 \(\nabla_{fX}Y\)、\(\nabla_X(fY)\) 中的导数项；直接展开可得 \(T(fX,Y)=fT(X,Y)\) 与 \(T(X,fY)=fT(X,Y)\)。
+\end{proof}
+
+\begin{problem}
+设 \(V\) 是浸入子流形的法向场。证明 Weingarten 公式
+\[
+\bar\nabla_XV=\nabla_X^\perp V+A_VX,\qquad
+\bar g(T(X,Y),V)=-g(A_VX,Y).
+\]
+\end{problem}
+\begin{proof}
+把 \(\bar\nabla_XV\) 分解成法向部分和切向部分，法向部分定义为 \(\nabla_X^\perp V\)，切向部分记为 \(A_VX\)。
+
+因为 \(V\perp Y\)，对函数 \(\bar g(V,Y)=0\) 沿 \(X\) 求导：
+\[
+0=\bar g(\bar\nabla_XV,Y)+\bar g(V,\bar\nabla_XY).
+\]
+第二项的法向部分为 \(\bar g(V,T(X,Y))\)，第一项只有切向部分与 \(Y\) 配对，即 \(g(A_VX,Y)\)。于是
+\[
+g(A_VX,Y)=-\bar g(T(X,Y),V).
+\]
+\end{proof}
+
+\begin{problem}
+证明 Green 公式：若 \(f_1,f_2\) 紧支撑，则
+\[
+\int_M f_1\Delta f_2\,d\mathrm{vol}
+=-\int_M g(\nabla f_1,\nabla f_2)\,d\mathrm{vol}.
+\]
+\end{problem}
+\begin{proof}
+对向量场 \(f_1\nabla f_2\) 用散度公式：
+\[
+\operatorname{div}(f_1\nabla f_2)
+=g(\nabla f_1,\nabla f_2)+f_1\Delta f_2.
+\]
+紧支撑使散度积分为零，因此移项即得 Green 公式。这个公式是把二阶 Laplacian 问题转化成一阶能量估计的基本桥梁。
+\end{proof}
+
+\begin{problem}
+设 \(X\) 是单位向量场且 \(\nabla_XX=0\)。证明 \(X\) 局部为梯度场，当且仅当 \(X^\perp\) 可积。
+\end{problem}
+\begin{proof}
+若 \(X=\nabla f\) 且 \(|X|=1\)，则 \(X^\perp=\ker df\)，它由 \(f\) 的水平集给出，所以可积。
+
+反过来，若 \(X^\perp\) 可积，则 Frobenius 定理给出局部函数 \(f\)，使 \(X^\perp=\ker df\)。因此 \(\nabla f\) 与 \(X\) 平行。适当重标 \(f\)，可令 \(\nabla f=X\)。条件 \(\nabla_XX=0\) 保证沿 \(X\) 方向的重标不会破坏单位速度结构。
+\end{proof}
+
+\begin{problem}
+设 \(TM=E\oplus F\) 为互相正交的平行分布。证明局部度量分裂为乘积。
+\end{problem}
+\begin{proof}
+平行分布首先可积：若 \(X,Y\) 是 \(E\) 中向量场，则 \(\nabla_XY\in E\)，无扭率给出 \([X,Y]=\nabla_XY-\nabla_YX\in E\)。\(F\) 同理。
+
+取经过点 \(p\) 的积分子流形 \(V_E,V_F\)。指数/流盒构造给出局部微分同胚 \(V_E\times V_F\to M\)。由于两个分布正交且平行，沿另一个分布移动时各自的诱导度量不变，所以局部度量为
+\[
+g=g_E+g_F.
+\]
+\end{proof}
+
+\begin{problem}
+设 \(J\) 是 Hermitian 结构。证明 Nijenhuis 张量
+\[
+N(X,Y)=[JX,JY]-J[JX,Y]-J[X,JY]-[X,Y]
+\]
+是张量；若 \(J\) 来自复结构，则 \(N=0\)。
+\end{problem}
+\begin{proof}
+张量性要检查对 \(fX\) 的线性。把 \(fX\) 代入四项并用 Lie 括号公式 \([fX,Y]=f[X,Y]-Y(f)X\)。所有含 \(Y(f)\)、\(JY(f)\) 的项在四项之间互相抵消，剩下 \(fN(X,Y)\)。另一变量同理。
+
+若 \(J\) 来自复坐标中的乘以 \(i\)，则可取局部复坐标向量场，使 \(J\) 的系数常数且 \((1,0)\) 向量场括号仍为 \((1,0)\) 型。代回定义，四项正好表达“\((1,0)\) 分布闭合”，因此 \(N=0\)。这是 Newlander--Nirenberg 定理的一个方向。
+\end{proof}
+
+\chapter{曲率}
+
+\section{曲率张量}
+
+\begin{problem}
+设 \(\nabla\) 为 Levi-Civita 联络。证明
+\[
+R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z
+\]
+在 \(X,Y,Z\) 三个变量上都是张量性的。
+\end{problem}
+\begin{proof}
+对 \(X,Y\) 的张量性来自二阶协变导数的定义：交换两次导数时，非张量性的部分被 \(\nabla_{[X,Y]}\) 正好抵消。最容易检查的是第三个变量。对函数 \(f\)，展开
+\[
+R(X,Y)(fZ)=\nabla_X\nabla_Y(fZ)-\nabla_Y\nabla_X(fZ)-\nabla_{[X,Y]}(fZ).
+\]
+用 Leibniz 规则后，含 \(X(f),Y(f)\) 的一阶项两两抵消，含二阶导数的部分变成
+\[
+X(Yf)-Y(Xf)-[X,Y]f=0.
+\]
+于是只剩 \(fR(X,Y)Z\)。这说明曲率虽然由二阶导数组成，但它的设计恰好消除了所有依赖延拓方式的项，所以是张量。
+\end{proof}
+
+\begin{problem}
+证明 \((0,4)\)-曲率张量
+\[
+R(X,Y,Z,W)=g(R(X,Y)Z,W)
+\]
+满足
+\[
+R(X,Y,Z,W)=-R(Y,X,Z,W)=-R(X,Y,W,Z),
+\]
+\[
+R(X,Y,Z,W)=R(Z,W,X,Y),
+\]
+以及第一 Bianchi 恒等式
+\[
+R(X,Y)Z+R(Z,X)Y+R(Y,Z)X=0.
+\]
+\end{problem}
+\begin{proof}
+第一个反对称性 \(R(X,Y)=-R(Y,X)\) 直接来自定义。最后两个变量的反对称性用度量兼容性证明：因为 \(R(X,Y)\) 作为导出作用在函数上为零，作用在度量上也为零，于是
+\[
+0=(R(X,Y)g)(Z,W)=-g(R(X,Y)Z,W)-g(Z,R(X,Y)W),
+\]
+这就是 \(R(X,Y,Z,W)=-R(X,Y,W,Z)\)。
+
+第一 Bianchi 恒等式来自无扭率条件。若在一点取坐标场使 \([X,Y]=[Y,Z]=[Z,X]=0\)，则循环和中只剩二阶协变导数的交换项；把三项按定义展开后会完全抵消。由于结果是张量恒等式，在一点用这种延拓证明即可。
+
+成对对称性可由前两个反对称性和 Bianchi 恒等式代数推出。做法是把 Bianchi 恒等式分别与 \(W\) 配对，再反复交换相邻变量，最后得到
+\[
+R(X,Y,Z,W)=R(Z,W,X,Y).
+\]
+这一步的含义是：曲率张量虽然定义时把 \(Z\) 放在“被作用”的位置，但 Levi-Civita 情形下四个变量的地位比定义看起来更对称。
+\end{proof}
+
+\begin{problem}
+证明第二 Bianchi 恒等式
+\[
+(\nabla_ZR)(X,Y)W+(\nabla_XR)(Y,Z)W+(\nabla_YR)(Z,X)W=0
+\]
+的思想来源，并说明它为什么是后续 Ricci 恒等式的基础。
+\end{problem}
+\begin{proof}
+二阶导数交换产生曲率，三阶导数的不同交换路径必须相容，这就是第二 Bianchi 恒等式的来源。具体地，把
+\[
+\nabla_X\nabla_Y\nabla_ZW
+\]
+按不同顺序交换。每交换一次会产生一个 \(R(\cdot,\cdot)\) 项；把三种循环交换方式相加，三阶导数本身抵消，留下的就是 \(\nabla R\) 的循环和。这个恒等式本质上是“交换二阶导数的规则本身也必须满足一致性条件”。后面收缩 Bianchi 恒等式、标量曲率与 Ricci 曲率的关系，都来自对它取迹。
+\end{proof}
+
+\section{截面曲率、Ricci 曲率与标量曲率}
+
+\begin{problem}
+定义
+\[
+\operatorname{sec}(v,w)=
+\frac{g(R(w,v)v,w)}{|v|^2|w|^2-g(v,w)^2}.
+\]
+证明它只依赖于二维平面 \(\operatorname{span}\{v,w\}\)，不依赖于该平面的基。
+\end{problem}
+\begin{proof}
+分母是平行四边形面积的平方，也就是 \(|v\wedge w|^2\)。分子可写成曲率算子在二向量上的二次型
+\[
+g(\mathcal R(v\wedge w),v\wedge w).
+\]
+若换同一平面中的基 \((v,w)\mapsto (v',w')\)，则 \(v'\wedge w'=(\det A)v\wedge w\)。分子和分母都乘以 \((\det A)^2\)，比值不变。因此截面曲率确实是二维切平面的曲率。
+\end{proof}
+
+\begin{problem}
+证明以下条件等价：在点 \(p\) 处所有二维平面的截面曲率都等于 \(k\)；并且
+\[
+R(u,v)w=-k(u\wedge v)(w),
+\]
+即
+\[
+R(u,v,w,z)=k\,g(u\wedge v,z\wedge w).
+\]
+\end{problem}
+\begin{proof}
+若有后一个公式，取 \(u,v\) 为正交单位向量，立刻得 \(\operatorname{sec}(u,v)=k\)。
+
+反过来，设
+\[
+D=R-R_k,
+\]
+其中 \(R_k(u,v,w,z)=k\,g(u\wedge v,z\wedge w)\)。这个 \(D\) 具有曲率张量的全部代数对称性，并且由截面曲率假设得
+\[
+D(u,v,v,u)=0.
+\]
+对 \(v\) 极化，先得 \(D(u,v_1,v_2,u)=0\)。再利用反对称性和成对对称性，可推出 \(D\) 对四个变量完全交错。但完全交错的四线性型若还满足第一 Bianchi 恒等式，只能为零。因此 \(D=0\)，得到常曲率公式。
+\end{proof}
+
+\begin{problem}
+设 \(e_1,\ldots,e_n\) 是正交基。证明
+\[
+\operatorname{Ric}(v,w)=\sum_i g(R(e_i,v)w,e_i)
+\]
+是对称双线性型，并且若 \(v\) 为单位向量，则
+\[
+\operatorname{Ric}(v,v)=\sum_{i=2}^n \operatorname{sec}(v,e_i)
+\]
+其中 \(e_1=v\)。
+\end{problem}
+\begin{proof}
+双线性显然来自 \(R\) 与 \(g\) 的双线性。对称性用曲率张量的成对对称性：
+\[
+g(R(e_i,v)w,e_i)=R(e_i,v,w,e_i)=R(w,e_i,e_i,v),
+\]
+求和并用正交基取迹，就得到 \(\operatorname{Ric}(v,w)=\operatorname{Ric}(w,v)\)。
+
+若 \(v=e_1\)，则 \(i=1\) 的项为零，其他项为
+\[
+g(R(e_i,v)v,e_i)=\operatorname{sec}(v,e_i)
+\]
+因为二者正交单位。Ricci 曲率就是所有含 \(v\) 的截面曲率的平均和，这个理解在比较几何中非常重要。
+\end{proof}
+
+\begin{problem}
+证明标量曲率满足
+\[
+\operatorname{scal}=\operatorname{tr}\operatorname{Ric}
+=2\sum_{i<j}\operatorname{sec}(e_i,e_j).
+\]
+\end{problem}
+\begin{proof}
+取正交基，由定义
+\[
+\operatorname{scal}=\sum_j\operatorname{Ric}(e_j,e_j)
+=\sum_{i,j}g(R(e_i,e_j)e_j,e_i).
+\]
+当 \(i=j\) 时项为零；当 \(i\ne j\) 时，每个无序平面 \(\{e_i,e_j\}\) 出现两次。因此
+\[
+\operatorname{scal}=2\sum_{i<j}\operatorname{sec}(e_i,e_j).
+\]
+在二维情形中这给出 \(\operatorname{scal}=2K\)；在高维中，标量曲率只是所有截面曲率的总平均信息。
+\end{proof}
+
+\begin{problem}
+证明 Schur 引理：若 \(n\ge3\)，且每点所有截面曲率都等于某个函数 \(f(p)\)，则 \(f\) 为常数。
+\end{problem}
+\begin{proof}
+常截面曲率点态等价于
+\[
+\operatorname{Ric}=(n-1)f\,g.
+\]
+取迹得 \(\operatorname{scal}=n(n-1)f\)。收缩 Bianchi 恒等式给出
+\[
+d\operatorname{scal}=-2\nabla^*\operatorname{Ric}.
+\]
+而 \(\nabla g=0\)，所以
+\[
+-\nabla^*\operatorname{Ric}=(n-1)\,df.
+\]
+代入得到
+\[
+n(n-1)df=2(n-1)df.
+\]
+因 \(n\ge3\)，只能 \(df=0\)，故 \(f\) 常数。这里维数条件正是关键：二维曲面可以有随点变化的 Gauss 曲率。
+\end{proof}
+
+\begin{problem}
+证明收缩 Bianchi 恒等式
+\[
+d\operatorname{scal}=-2\nabla^*\operatorname{Ric}.
+\]
+\end{problem}
+\begin{proof}
+从第二 Bianchi 恒等式出发：
+\[
+(\nabla_ZR)(X,Y)W+(\nabla_XR)(Y,Z)W+(\nabla_YR)(Z,X)W=0.
+\]
+在一点取正交基 \(e_i\)，令其中两个变量取 \(e_i,e_j\) 并对 \(i,j\) 收缩。由于协变导数与收缩可交换，第一部分给出 \(d\operatorname{scal}\)，另外两部分各给出一个 Ricci 的散度项。符号来自 \(\nabla^*\) 的定义，即 \(\nabla^*T=-\operatorname{tr}\nabla T\)。整理后正是
+\[
+d\operatorname{scal}=-2\nabla^*\operatorname{Ric}.
+\]
+这条公式的解题意义很大：它告诉我们 Einstein 条件在高维中会自动强迫 Einstein 常数为常数。
+\end{proof}
+
+\section{局部坐标与曲率方程}
+
+\begin{problem}
+在局部坐标中证明
+\[
+R^l{}_{ijk}=\partial_i\Gamma^l_{jk}-\partial_j\Gamma^l_{ik}
+\Gamma^s_{jk}\Gamma^l_{is}-\Gamma^s_{ik}\Gamma^l_{js}.
+\]
+\end{problem}
+\begin{proof}
+用定义计算
+\[
+R(\partial_i,\partial_j)\partial_k
+=\nabla_i\nabla_j\partial_k-\nabla_j\nabla_i\partial_k
+\]
+因为坐标场对易。又
+\[
+\nabla_j\partial_k=\Gamma^s_{jk}\partial_s.
+\]
+代入第一项：
+\[
+\nabla_i(\Gamma^s_{jk}\partial_s)
+=\partial_i\Gamma^s_{jk}\partial_s+\Gamma^s_{jk}\Gamma^l_{is}\partial_l.
+\]
+第二项同理，二者相减便得公式。若在正规坐标的中心点，\(\Gamma=0\)，公式简化为
+\[
+R^l{}_{ijk}(p)=\partial_i\Gamma^l_{jk}(p)-\partial_j\Gamma^l_{ik}(p).
+\]
+\end{proof}
+
+\begin{problem}
+设 \(r\) 是黎曼流形上一族超曲面的距离参数，\(S=\nabla^2r\) 是水平切空间上的 Hessian 算子。说明径向曲率方程
+\[
+\nabla_{\partial_r}S+S^2+R_{\partial_r}=0
+\]
+的来源。
+\end{problem}
+\begin{proof}
+把 \(S\) 看成“等距超曲面向外推进时第二基本形式如何变化”。沿径向测地线取一个切向场 \(J\)，它满足 Jacobi 方程
+\[
+\nabla_{\partial_r}^2J+R(J,\partial_r)\partial_r=0.
+\]
+另一方面 \(S(J)=\nabla_J\partial_r=\nabla_{\partial_r}J\)。对这个关系再沿 \(\partial_r\) 求导，就出现 \(\nabla_{\partial_r}S\) 和 \(S^2\)。与 Jacobi 方程比较，得到
+\[
+\nabla_{\partial_r}S+S^2+R_{\partial_r}=0.
+\]
+这条 Riccati 型方程是后面比较定理的发动机：曲率控制 Hessian，Hessian 再控制体积和距离。
+\end{proof}
+
+\begin{problem}
+设 \(f\colon M\to\mathbb R\) 满足 \(|\nabla f|=1\)，令 \(S=\nabla^2 f\)。证明切向曲率可由 \(S\) 与其沿水平面的变化表示，并解释其几何意义。
+\end{problem}
+\begin{proof}
+\(|\nabla f|=1\) 表明 \(f\) 的水平集由单位法向 \(\nabla f\) 推动。对水平切向量 \(X,Y\)，第二基本形式是
+\[
+h(X,Y)=\operatorname{Hess}f(X,Y).
+\]
+Gauss 方程告诉我们，环境中完全切向的曲率等于水平集自身曲率加上第二基本形式的二次项：
+\[
+R^M(X,Y,Y,X)=R^{f^{-1}(c)}(X,Y,Y,X)+h(X,X)h(Y,Y)-h(X,Y)^2.
+\]
+几何意义是：同一个切向二维平面的弯曲，一部分来自水平集内在弯曲，另一部分来自水平集在环境中的弯曲方式。
+\end{proof}
+
+\section{章末原习题选解}
+
+\begin{problem}
+设 \(M^n\subset\mathbb R^{n+m}\) 为子流形。用第二基本形式 \(T\) 证明 Gauss 方程
+\[
+R^M(X,Y,Z,W)=\langle T_XW,T_YZ\rangle-\langle T_XZ,T_YW\rangle.
+\]
+\end{problem}
+\begin{proof}
+欧氏空间曲率为零。把环境联络分解为切向和法向部分：
+\[
+\bar\nabla_XY=\nabla_XY+T_XY.
+\]
+把这个分解代入 \(\bar R(X,Y)Z=0\)，取切向部分并与 \(W\) 配对。含 \(\nabla\) 的部分组成 \(R^M(X,Y,Z,W)\)，剩下的法向二次项就是
+\[
+\langle T_XW,T_YZ\rangle-\langle T_XZ,T_YW\rangle.
+\]
+这就是 Gauss 方程。解题时要注意：曲率不是由第二基本形式本身线性给出，而是由它的二次组合给出。
+\end{proof}
+
+\begin{problem}
+设函数 \(f\) 的 Hessian 算子为 \(S\)。证明
+\[
+R(X,Y)\nabla f=(\nabla_XS)Y-(\nabla_YS)X.
+\]
+\end{problem}
+\begin{proof}
+由 \(S(Y)=\nabla_Y\nabla f\)。计算
+\[
+(\nabla_XS)Y=\nabla_X(SY)-S(\nabla_XY)
+=\nabla_X\nabla_Y\nabla f-\nabla_{\nabla_XY}\nabla f.
+\]
+交换 \(X,Y\) 后相减，使用无扭率 \([X,Y]=\nabla_XY-\nabla_YX\)，得到
+\[
+(\nabla_XS)Y-(\nabla_YS)X
+=\nabla_X\nabla_Y\nabla f-\nabla_Y\nabla_X\nabla f-\nabla_{[X,Y]}\nabla f
+=R(X,Y)\nabla f.
+\]
+\end{proof}
+
+\begin{problem}
+证明常曲率 \(k\) 的流形满足
+\[
+R(X,Y)Z=-k(X\wedge Y)Z.
+\]
+并推出 Ricci 曲率为 \((n-1)k\,g\)。
+\end{problem}
+\begin{proof}
+第一部分正是本章常曲率代数命题。对 Ricci 取迹，令 \(v\) 为单位向量并补成正交基 \(v,e_2,\ldots,e_n\)。每个平面 \(\operatorname{span}\{v,e_i\}\) 的截面曲率都是 \(k\)，所以
+\[
+\operatorname{Ric}(v,v)=\sum_{i=2}^n k=(n-1)k.
+\]
+双线性化便得 \(\operatorname{Ric}=(n-1)k\,g\)。
+\end{proof}
+
+\begin{problem}
+证明三维流形中 Ricci 张量决定全部截面曲率；特别地，三维 Einstein 流形必为常截面曲率。
+\end{problem}
+\begin{proof}
+取正交基 \(e_1,e_2,e_3\)，记
+\[
+K_{12}=\operatorname{sec}(e_1,e_2),\quad K_{13},\quad K_{23}.
+\]
+Ricci 对角元满足
+\[
+\operatorname{Ric}_{11}=K_{12}+K_{13},\quad
+\operatorname{Ric}_{22}=K_{12}+K_{23},\quad
+\operatorname{Ric}_{33}=K_{13}+K_{23}.
+\]
+这是一个可逆线性系统，例如
+\[
+K_{12}=\frac12(\operatorname{Ric}_{11}+\operatorname{Ric}_{22}-\operatorname{Ric}_{33}).
+\]
+非对角信息同样由 Ricci 的非对角项恢复。若 \(\operatorname{Ric}=\lambda g\)，则所有 \(K_{ij}=\lambda/2\)，故截面曲率处处相同；由 Schur 引理它还是常数。
+\end{proof}
+
+\begin{problem}
+证明若 \(R\) 平行，则 Ricci 张量和标量曲率也平行。
+\end{problem}
+\begin{proof}
+Ricci 是 \(R\) 的收缩，标量曲率又是 Ricci 的收缩。协变导数与收缩交换，因此
+\[
+\nabla R=0\quad\Longrightarrow\quad \nabla\operatorname{Ric}=0
+\quad\Longrightarrow\quad d\operatorname{scal}=0.
+\]
+这道题的核心是不要展开大量指标，而要记住“取迹”和“协变求导”在 Levi-Civita 联络下相容。
+\end{proof}
+
+\begin{problem}
+设 \(g\) 缩放为 \(\tilde g=c^2g\)。说明 Levi-Civita 联络不变，而 \((0,4)\)-曲率、截面曲率、Ricci 曲率和标量曲率如何缩放。
+\end{problem}
+\begin{proof}
+因为 \(c\) 是常数，Koszul 公式两边都乘以 \(c^2\)，联络不变。因此 \((1,3)\)-曲率算子不变。把它降成 \((0,4)\)-张量时要用 \(\tilde g=c^2g\)，所以
+\[
+\tilde R_{0,4}=c^2R_{0,4}.
+\]
+截面曲率分子按 \(c^2\) 缩放，分母面积平方按 \(c^4\) 缩放，所以
+\[
+\widetilde{\operatorname{sec}}=c^{-2}\operatorname{sec}.
+\]
+Ricci 作为 \((0,2)\)-张量在这种常数缩放下不变；若写成与 \(\tilde g\) 比较的 Einstein 常数，则会乘 \(c^{-2}\)。标量曲率取迹时用 \(\tilde g^{-1}=c^{-2}g^{-1}\)，所以 \(\widetilde{\operatorname{scal}}=c^{-2}\operatorname{scal}\)。
+\end{proof}
+
+\begin{problem}
+设 \(h,k\) 为对称 \((0,2)\)-张量，定义 Kulkarni--Nomizu 积
+\[
+(h\wedge\!\!\wedge k)(X,Y,Z,W)=h(X,Z)k(Y,W)+h(Y,W)k(X,Z)-h(X,W)k(Y,Z)-h(Y,Z)k(X,W).
+\]
+证明它具有曲率张量的代数对称性。
+\end{problem}
+\begin{proof}
+交换 \(X,Y\) 或 \(Z,W\)，四项成对变号，所以有两组反对称性。交换 \((X,Y)\) 与 \((Z,W)\) 时，因为 \(h,k\) 都对称，四项重新排列后不变。最后对 \(X,Y,Z\) 做循环和，每一种 \(h(\cdot,\cdot)k(\cdot,\cdot)\) 型项都出现一次正号和一次负号，故第一 Bianchi 恒等式成立。这说明 Kulkarni--Nomizu 积正是构造曲率型张量的标准代数工具。
+\end{proof}
+
+\section{第三章原习题补遗}
+
+\begin{problem}
+说明超曲面基本定理的内容：给定度量 \(g\) 与对称张量 \(h\)，若满足 Gauss--Codazzi 方程，则局部存在等距浸入 \(F\colon M^n\to\mathbb R^{n+1}\)，其第二基本形式为 \(h\)。
+\end{problem}
+\begin{proof}
+这道题的核心是把几何问题改写成一阶偏微分方程组。未知量是位置向量 \(F\) 与单位法向 \(N\)，要求
+\[
+\partial_iF=U_i,\qquad \partial_iN=-h_i{}^jU_j,
+\]
+并且
+\[
+\partial_iU_j=\Gamma^k_{ij}U_k+h_{ij}N.
+\]
+这些方程的可积条件正是混合偏导交换。对 \(U_i\) 的二阶偏导交换给出 Gauss 方程，对 \(N\) 的二阶偏导交换给出 Codazzi 方程。若这些条件成立，Frobenius 型存在定理给出局部解；解出来的 \(F\) 自动满足诱导度量为 \(g\)，第二基本形式为 \(h\)。
+\end{proof}
+
+\begin{problem}
+给出双曲超曲面的类似基本定理：若法向满足 \(\langle N,N\rangle=-1\)，则常负曲率模型由 \(N=\pm R^{-1}F\) 刻画。
+\end{problem}
+\begin{proof}
+在 Minkowski 空间 \(\mathbb R^{n,1}\) 中，双曲空间 \(H^n(R)\) 是 \(\langle F,F\rangle=-R^2\) 的水平集。单位时间型法向为 \(N=\pm R^{-1}F\)。于是第二基本形式满足
+\[
+h(X,Y)=\langle \bar\nabla_XY,N\rangle=\mp R^{-1}\langle X,Y\rangle.
+\]
+代入伪欧氏空间的 Gauss 方程，得到截面曲率 \(-R^{-2}\)。反过来，若一个黎曼流形满足相应 Gauss--Codazzi 方程，仍可用上一题的一阶系统在 \(\mathbb R^{n,1}\) 中积分出局部浸入，且像落在双曲二次曲面上。
+\end{proof}
+
+\begin{problem}
+设 \(h,k\) 为对称 \((0,2)\)-张量。证明 Kulkarni--Nomizu 积 \(h\circ k\) 具有曲率张量的全部代数对称性。
+\end{problem}
+\begin{proof}
+按定义 \(h\circ k\) 是由
+\[
+h(v_1,v_4)k(v_2,v_3)+h(v_2,v_3)k(v_1,v_4)
+\]
+减去交换 \(v_3,v_4\) 后的同类项构成。由于 \(h,k\) 对称，交换前两个变量或后两个变量都会变号；交换变量对 \((v_1,v_2)\) 与 \((v_3,v_4)\) 后表达式不变。再对前三个变量做循环和，每一项都会以相反符号出现一次，所以第一 Bianchi 恒等式成立。它因此是构造曲率型张量的自然乘法。
+\end{proof}
+
+\begin{problem}
+定义 Schouten 张量
+\[
+P=\frac{2}{n-2}\left(\operatorname{Ric}-\frac{\operatorname{scal}}{2(n-1)}g\right).
+\]
+说明曲率分解中 \(P\circ g\) 表示 Ricci 部分，且 \(n=3\) 时曲率完全由 Ricci 决定。
+\end{problem}
+\begin{proof}
+曲率张量的迹信息就是 Ricci。把纯标量部分与无迹 Ricci 部分组合成 \(P\)，再与 \(g\) 做 Kulkarni--Nomizu 积，就得到曲率中所有能被 Ricci 看见的部分。剩下完全无迹的部分定义为 Weyl 张量。
+
+当 \(n=3\) 时，代数曲率张量的自由度正好等于 Ricci 张量的自由度，因此无迹 Weyl 部分没有空间存在，故
+\[
+R=P\circ g.
+\]
+这就是三维里“Ricci 决定全部曲率”的更结构化版本。
+\end{proof}
+
+\begin{problem}
+Weyl 张量由
+\[
+R=P\circ g+W
+\]
+定义。证明 \(n=3\) 时 \(W=0\)，并说明该分解与 \(L^2\) 内积正交。
+\end{problem}
+\begin{proof}
+\(W\) 的定义是曲率张量去掉所有 Ricci 收缩后的完全无迹部分。在三维中代数维数计算表明没有完全无迹曲率分量，所以 \(W=0\)。
+
+正交性可这样理解：\(P\circ g\) 由 Ricci 收缩决定，而 \(W\) 的所有 Ricci 收缩为零。张量内积中，与 \(g\) 做 Kulkarni--Nomizu 积的部分配对，本质上只会取到对方的 Ricci 收缩。因此
+\[
+\langle P\circ g,W\rangle=0.
+\]
+这和矩阵空间中“纯迹部分与无迹部分正交”完全同源。
+\end{proof}
+
+\begin{problem}
+证明 Schouten 张量与 Weyl 张量满足
+\[
+\nabla^*P=-\frac1{n-1}d\operatorname{scal},
+\]
+并说明 \(\nabla^*W\) 由 \(P\) 的反对称协变导数控制。
+\end{problem}
+\begin{proof}
+把 \(P\) 的定义代入，利用 \(\nabla g=0\) 与收缩 Bianchi 恒等式
+\[
+d\operatorname{scal}=-2\nabla^*\operatorname{Ric}.
+\]
+直接整理系数便得 \(\nabla^*P=-(n-1)^{-1}d\operatorname{scal}\)。
+
+对 \(R=P\circ g+W\) 取散度。第二 Bianchi 恒等式给出 \(\nabla^*R\) 等于 Ricci 导数的交错化；而 \(P\circ g\) 的散度正好贡献 \(P\) 的协变导数项。移项后得到
+\[
+\nabla^*W(Z,X,Y)=\frac{n-3}{2}\bigl((\nabla_XP)(Y,Z)-(\nabla_YP)(X,Z)\bigr)
+\]
+在本书的归一化约定下成立。特别地三维 Weyl 恒为零，右端对应 Cotton 型张量。
+\end{proof}
+
+\begin{problem}
+给定正交标架 \(E_i\)，结构常数由 \([E_i,E_j]=c^k_{ij}E_k\) 定义。说明如何由 \(c^k_{ij}\) 求联络系数 \(\Gamma^k_{ij}\)。
+\end{problem}
+\begin{proof}
+用 Koszul 公式。正交标架下度量分量常数，所以导数项消失，得到
+\[
+2\Gamma^k_{ij}
+=g([E_i,E_j],E_k)-g([E_j,E_k],E_i)+g([E_k,E_i],E_j).
+\]
+即
+\[
+2\Gamma^k_{ij}=c^k_{ij}-c^i_{jk}+c^j_{ki}.
+\]
+若是在 Lie 群左不变标架中，\(c^k_{ij}\) 为常数，曲率计算会大幅简化；一般流形中它们仍是函数，求曲率时还要对这些函数求导。
+\end{proof}
+
+\begin{problem}
+说明 Cartan 形式法：联络形式 \(\omega_i{}^j\) 与曲率形式 \(\Omega_i{}^j\) 满足
+\[
+d\theta^i=-\omega_j{}^i\wedge\theta^j,\qquad
+\Omega_i{}^j=d\omega_i{}^j+\omega_i{}^k\wedge\omega_k{}^j.
+\]
+\end{problem}
+\begin{proof}
+令 \(\theta^i\) 为正交余标架。第一结构方程来自无扭率条件：外微分 \(d\theta^i\) 测量标架不闭合的程度，而联络形式正好修正这种不闭合。
+
+第二结构方程来自对联络再求一次导数。协变导数平方给出曲率，因此曲率形式等于联络形式的外微分加上矩阵乘法项 \(\omega\wedge\omega\)。用这种方式计算例子时，不必逐个写 Christoffel 符号，而是先求 \(d\theta^i\)，再读出 \(\omega_i{}^j\)，最后求 \(\Omega_i{}^j\)。
+\end{proof}
+
+\begin{problem}
+设 \(R\) 是代数曲率张量。说明如何由所有截面曲率恢复 \(R(X,Y,V,W)\)，并推出 \(|R|\le C(n)\sup|\sec|\)。
+\end{problem}
+\begin{proof}
+截面曲率给出所有形如 \(R(U,V,V,U)\) 的值。对表达式
+\[
+R(X+sW,Y+tV,Y+tV,X+sW)
+\]
+对 \(s,t\) 求混合二阶导数，再与交换 \(V,W\) 的类似表达相减，可以通过极化得到 \(R(X,Y,V,W)\)。这说明截面曲率函数决定整个代数曲率张量。
+
+在有限维空间中，所有范数等价。曲率张量空间维数只依赖于 \(n\)，而上面的极化公式把每个分量控制在若干个截面曲率值的线性组合内。因此存在常数 \(C(n)\)，使
+\[
+|R|\le C(n)\sup_\sigma|\sec(\sigma)|.
+\]
+\end{proof}
+
+\begin{problem}
+设 \(G\) 为带左不变度量的 Lie 群。证明
+\[
+\nabla_XY=\frac12\bigl([X,Y]+\operatorname{ad}_X^*Y-\operatorname{ad}_Y^*X\bigr)
+\]
+对左不变向量场成立。
+\end{problem}
+\begin{proof}
+对左不变场使用 Koszul 公式，度量导数项为零：
+\[
+2(\nabla_XY,Z)=([X,Y],Z)-([Y,Z],X)+([Z,X],Y).
+\]
+按伴随算子定义，\(([Y,Z],X)=(Z,\operatorname{ad}_Y^*X)\)，而 \(([Z,X],Y)=-(Z,\operatorname{ad}_X^*Y)\) 按本书括号约定整理后得到所列公式。重点是：左不变度量的联络完全由 Lie 代数括号和其度量伴随决定。
+\end{proof}
+
+\begin{problem}
+若 Lie 群度量双不变，证明
+\[
+\nabla_XY=\frac12[X,Y],\qquad
+R(X,Y)Z=\frac14[Z,[X,Y]],
+\]
+并推出正定情形下截面曲率非负。
+\end{problem}
+\begin{proof}
+双不变等价于 \(\operatorname{ad}_X\) 斜对称，因此上一题中伴随项化简为 \(\nabla_XY=\frac12[X,Y]\)。代入曲率定义：
+\[
+R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z
+=\frac14[X,[Y,Z]]-\frac14[Y,[X,Z]]-\frac12[[X,Y],Z].
+\]
+用 Jacobi 恒等式化简得到 \(\frac14[Z,[X,Y]]\)。于是
+\[
+R(X,Y,Y,X)=\frac14|[X,Y]|^2
+\]
+在正定度量下非负，截面曲率也非负。
+\end{proof}
+
+\begin{problem}
+设 Killing 型 \(B\) 非退化，并用 \(-B\) 作度量。证明该度量双不变，且 \(\operatorname{Ric}=-\frac14B\)。
+\end{problem}
+\begin{proof}
+Killing 型满足 \(\operatorname{Ad}\)-不变，因此 \(-B\) 给出双不变伪黎曼度量；若 \(G\) 紧半单，则 \(-B\) 正定。
+
+对双不变度量，曲率为 \(R(X,e_i)e_i=\frac14[e_i,[X,e_i]]\)。取迹时正是 Killing 型的迹定义，整理得
+\[
+\operatorname{Ric}(X,Y)=-\frac14B(X,Y).
+\]
+符号取决于本书的曲率约定；这里与前面 \(R(X,Y)Z=\frac14[Z,[X,Y]]\) 一致。
+\end{proof}
+
+\chapter{典型例子}
+
+\section{计算简化}
+
+\begin{problem}
+设 \(\{e_i\}\) 为正交基，若二向量 \(e_i\wedge e_j\) 对角化曲率算子，说明如何由这些二维截面曲率读出曲率张量。
+\end{problem}
+\begin{proof}
+曲率算子 \(\mathcal R\colon \Lambda^2T_pM\to\Lambda^2T_pM\) 是自伴算子。若 \(e_i\wedge e_j\) 是它的正交特征基，则
+\[
+\mathcal R(e_i\wedge e_j)=K_{ij}\,e_i\wedge e_j,
+\]
+其中 \(K_{ij}=\operatorname{sec}(e_i,e_j)\)。任意曲率分量可写成
+\[
+R(e_i,e_j,e_l,e_k)=g(\mathcal R(e_i\wedge e_j),e_k\wedge e_l).
+\]
+因此除了对应同一个二向量方向的分量以外，其余混合分量都为零。这个技巧的意义是：很多例子并不需要逐个算 \(R_{ijkl}\)，只要找到曲率算子在 \(\Lambda^2\) 上的特征方向。
+\end{proof}
+
+\begin{problem}
+若正交基满足 \(R(e_i,e_j)e_k=0\) 当 \(i,j,k\) 两两不同，说明 Ricci 曲率为何只由含公共方向的截面曲率相加得到。
+\end{problem}
+\begin{proof}
+Ricci 曲率是
+\[
+\operatorname{Ric}(e_a,e_b)=\sum_i g(R(e_i,e_a)e_b,e_i).
+\]
+当 \(a\ne b\) 时，在题设条件下，除非指标出现重复，否则项为零；重复项又因曲率反对称性消失，所以非对角 Ricci 分量为零。对角分量为
+\[
+\operatorname{Ric}(e_a,e_a)=\sum_{i\ne a}\operatorname{sec}(e_a,e_i).
+\]
+这正是许多乘积、扭曲积和 Lie 群例子里快速计算 Ricci 的基本模板。
+\end{proof}
+
+\section{扭曲积}
+
+\begin{problem}
+设 \(M=I\times N\)，度量
+\[
+g=dr^2+\phi(r)^2g_N.
+\]
+证明其基本联络公式为
+\[
+\nabla_{\partial_r}\partial_r=0,\quad
+\nabla_{\partial_r}X=\nabla_X\partial_r=\frac{\phi'}{\phi}X,
+\]
+\[
+\nabla_XY=\nabla^N_XY-\frac{\phi'}{\phi}g(X,Y)\partial_r
+\]
+其中 \(X,Y\) 为沿 \(N\) 的切向量场。
+\end{problem}
+\begin{proof}
+用 Koszul 公式。因为 \(g(X,Y)=\phi^2g_N(X,Y)\)，沿 \(\partial_r\) 求导给出
+\[
+\partial_r g(X,Y)=2\frac{\phi'}{\phi}g(X,Y).
+\]
+这立刻给出 \(\nabla_X\partial_r=(\phi'/\phi)X\)。对 \(\nabla_XY\)，切向部分是 \(N\) 上的 Levi-Civita 联络，法向部分由
+\[
+g(\nabla_XY,\partial_r)=-g(Y,\nabla_X\partial_r)=-\frac{\phi'}{\phi}g(X,Y)
+\]
+确定。径向方向显然满足 \(\nabla_{\partial_r}\partial_r=0\)。这些公式是后面所有扭曲积曲率计算的起点。
+\end{proof}
+
+\begin{problem}
+对扭曲积 \(dr^2+\phi^2g_N\)，证明含径向方向的截面曲率为
+\[
+K(\partial_r,X)=-\frac{\phi''}{\phi},
+\]
+纯切向截面曲率为
+\[
+K(X,Y)=\frac{K_N(X,Y)-(\phi')^2}{\phi^2}
+\]
+其中 \(X,Y\) 在 \(g\) 下正交单位。
+\end{problem}
+\begin{proof}
+由上一题联络公式，沿径向计算 Jacobi/Riccati 项：
+\[
+R(X,\partial_r)\partial_r=-\frac{\phi''}{\phi}X,
+\]
+于是 \(K(\partial_r,X)=-\phi''/\phi\)。
+
+对纯切向平面，用 Gauss 型公式。水平切片 \(\{r\}\times N\) 的第二基本形式为
+\[
+h(X,Y)=\frac{\phi'}{\phi}g(X,Y).
+\]
+切片自身的度量为 \(\phi^2g_N\)，所以它的截面曲率是 \(K_N/\phi^2\)。再减去第二基本形式的平方项，得
+\[
+K(X,Y)=\frac{K_N(X,Y)}{\phi^2}-\left(\frac{\phi'}{\phi}\right)^2.
+\]
+这就是公式。
+\end{proof}
+
+\begin{problem}
+用上题验证三个常曲率模型：欧氏空间、球面和双曲空间分别可写成
+\[
+dr^2+r^2g_{S^{n-1}},\quad
+dr^2+\sin^2 r\,g_{S^{n-1}},\quad
+dr^2+\sinh^2 r\,g_{S^{n-1}}.
+\]
+\end{problem}
+\begin{proof}
+欧氏情形 \(\phi=r\)，径向曲率 \(-\phi''/\phi=0\)，切向曲率为 \((1-(\phi')^2)/\phi^2=(1-1)/r^2=0\)。
+
+球面情形 \(\phi=\sin r\)，径向曲率为 \(-(-\sin r)/\sin r=1\)，切向曲率为
+\[
+\frac{1-\cos^2r}{\sin^2r}=1.
+\]
+双曲情形 \(\phi=\sinh r\)，径向曲率为 \(-\sinh r/\sinh r=-1\)，切向曲率为
+\[
+\frac{1-\cosh^2r}{\sinh^2r}=-1.
+\]
+同一个公式统一解释了三种空间形式。
+\end{proof}
+
+\begin{problem}
+设 \(N^{n-1}\) 为 Einstein 流形，\(\operatorname{Ric}_N=(n-2)kg_N\)。求 \(dr^2+\phi^2g_N\) 的 Ricci 曲率。
+\end{problem}
+\begin{proof}
+径向方向由 \(n-1\) 个径向截面相加得到
+\[
+\operatorname{Ric}(\partial_r,\partial_r)=-(n-1)\frac{\phi''}{\phi}.
+\]
+切向单位向量 \(X\) 的 Ricci 来自一个径向平面和 \(n-2\) 个切向平面。整理为张量公式：
+\[
+\operatorname{Ric}|_{TN}
+=\operatorname{Ric}_N-\bigl(\phi\phi''+(n-2)(\phi')^2\bigr)g_N.
+\]
+若用总度量 \(g|_{TN}=\phi^2g_N\) 表示，则切向 Ricci 特征值为
+\[
+\frac{(n-2)k-\phi\phi''-(n-2)(\phi')^2}{\phi^2}.
+\]
+这道题是构造 Einstein 扭曲积的标准入口。
+\end{proof}
+
+\section{扭曲积的判别与共形模型}
+
+\begin{problem}
+设存在函数 \(f\)，其 Hessian 满足
+\[
+\operatorname{Hess}f=\lambda g+\mu\,df\otimes df
+\]
+一类“只沿 \(\nabla f\) 与水平面分裂”的形式。说明为什么这会迫使度量局部是扭曲积。
+\end{problem}
+\begin{proof}
+关键是看 \(f\) 的水平集。若 Hessian 在水平切向方向上是纯迹型，即对 \(X,Y\perp\nabla f\) 有
+\[
+\operatorname{Hess}f(X,Y)=\lambda g(X,Y),
+\]
+则每个水平集的第二基本形式与诱导度量成比例，水平集是全脐的。另一方面，\(\nabla f\) 的积分曲线给出垂直方向。全脐条件说明水平度量沿法向只发生统一缩放，而不是各方向不同地变形。因此局部可写成
+\[
+dr^2+\phi(r)^2g_N.
+\]
+这就是 Brinkmann 型判别的几何内容：Hessian 的特殊代数形状控制了度量的局部分裂。
+\end{proof}
+
+\begin{problem}
+证明共形平坦模型中，若 \(\tilde g=e^{2u}g_{\mathbb R^n}\)，则梯度、Hessian 和曲率计算都可转化为 \(u\) 的一阶、二阶导数。
+\end{problem}
+\begin{proof}
+共形变换改变长度但保持角度。Levi-Civita 联络的变换公式为
+\[
+\tilde\nabla_XY=\nabla_XY+du(X)Y+du(Y)X-g(X,Y)\nabla u.
+\]
+因此所有曲率项都来自对这条公式再求导：二阶导数给出 \(\nabla^2u\)，一阶导数相乘给出 \(du\otimes du\) 与 \(|\nabla u|^2g\)。所以常曲率空间的球面投影模型和双曲上半空间模型，都可以通过选取合适的 \(u\) 直接验证。解题时不要从头算 Christoffel 符号；先写出共形联络公式会清楚很多。
+\end{proof}
+
+\section{Lie 群与子沉浸}
+
+\begin{problem}
+证明 Lie 群上的左不变度量为双不变，当且仅当
+\[
+\operatorname{ad}_X
+\]
+对每个 \(X\) 都是斜对称算子。
+\end{problem}
+\begin{proof}
+若度量双不变，则右平移也保持度量。等价地，\(\operatorname{Ad}_g\) 保持单位元处的内积。对 \(g=\exp(tX)\) 求导得
+\[
+g([X,Y],Z)+g(Y,[X,Z])=0,
+\]
+即 \(\operatorname{ad}_X\) 斜对称。
+
+反过来，若所有 \(\operatorname{ad}_X\) 斜对称，则 \(\operatorname{Ad}_{\exp(tX)}\) 的导数保持内积，故 \(\operatorname{Ad}_{\exp(tX)}\) 为正交变换。连通分支由指数生成时即可推出右不变；一般情形在每个连通分支上同理处理。
+\end{proof}
+
+\begin{problem}
+设 \(G\) 有双不变度量。证明
+\[
+\nabla_XY=\frac12[X,Y],\qquad
+R(X,Y)Z=-\frac14[[X,Y],Z]
+\]
+对左不变向量场成立。
+\end{problem}
+\begin{proof}
+用 Koszul 公式。左不变场之间的内积常数，导数项全为零，只剩括号项：
+\[
+2g(\nabla_XY,Z)=g([X,Y],Z)-g([Y,Z],X)+g([Z,X],Y).
+\]
+利用 \(\operatorname{ad}\) 斜对称，后三项合并为 \(g([X,Y],Z)\) 的两倍，得 \(\nabla_XY=\frac12[X,Y]\)。
+
+曲率直接代入定义：
+\[
+R(X,Y)Z=\frac14[X,[Y,Z]]-\frac14[Y,[X,Z]]-\frac12[[X,Y],Z].
+\]
+用 Jacobi 恒等式化简前两项，得到
+\[
+R(X,Y)Z=-\frac14[[X,Y],Z].
+\]
+\end{proof}
+
+\begin{problem}
+设 \(\pi\colon M\to B\) 是黎曼子沉浸。定义水平场 \(X,Y\) 的 O'Neill 张量
+\[
+A_XY=(\nabla_XY)^{\mathcal V}.
+\]
+说明为什么底空间的截面曲率满足
+\[
+K_B(d\pi X,d\pi Y)=K_M(X,Y)+3|A_XY|^2
+\]
+对正交单位水平向量成立。
+\end{problem}
+\begin{proof}
+黎曼子沉浸把水平长度保持到底空间，但水平分布可能不闭合。这个“不闭合性”正由 \(A_XY\) 测量：若水平分布可积，则 \(A=0\)。
+
+把底空间的水平提升曲率与 \(M\) 中曲率比较，联络的水平部分给出 \(K_M(X,Y)\)，而竖直修正项来自两次把水平场括号/联络投到竖直方向。仔细展开 O'Neill 公式后，二次项系数为 \(3\)，于是
+\[
+K_B=K_M+3|A_XY|^2.
+\]
+直观上，子沉浸会把水平分布的扭转也贡献到底空间曲率中，所以底空间曲率常比总空间更大。
+\end{proof}
+
+\begin{problem}
+用 Hopf 子沉浸说明复射影空间 \(\mathbb CP^n\) 的曲率来自球面曲率与水平分布扭转项。
+\end{problem}
+\begin{proof}
+Hopf 映射 \(S^{2n+1}\to\mathbb CP^n\) 是黎曼子沉浸。总空间球面的曲率为 \(1\)。对水平二维平面，底空间截面曲率为
+\[
+K_{\mathbb CP^n}=1+3|A|^2.
+\]
+若平面与复结构相容，\(A\) 最大，得到全纯截面曲率较大；若平面完全实，\(A=0\)，得到较小曲率。于是 Fubini--Study 度量的截面曲率不是常数，但被夹在两个常数之间。这正是 \(\mathbb CP^n\) 作为“不是常曲率但仍非常对称”的核心例子。
+\end{proof}
+
+\section{章末原习题选解}
+
+\begin{problem}
+说明 Schwarzschild 型度量一般没有平行曲率。
+\end{problem}
+\begin{proof}
+平行曲率要求所有曲率特征值沿径向方向保持常数，并且与联络相容。Schwarzschild 度量是双扭曲积，曲率分量含有扭曲函数 \(\phi(r),\psi(r)\) 及其导数。除平坦或常曲率的特殊退化情形外，这些函数的组合随 \(r\) 变化，所以 \(\nabla R\) 的径向分量不为零。判断时不必算完所有分量，只要找一个截面曲率随 \(r\) 非常数即可推出曲率不平行。
+\end{proof}
+
+\begin{problem}
+证明非标准 Berger 球面没有平行曲率。
+\end{problem}
+\begin{proof}
+Berger 球面把 Hopf 纤维方向按比例 \(\varepsilon\) 缩放。若 \(\varepsilon=1\)，得到标准常曲率球面，曲率平行。若 \(\varepsilon\ne1\)，水平平面、含纤维方向的平面截面曲率不同。更进一步，沿左不变标架计算曲率算子可见其特征空间与联络不同时保持：联络会混合水平与纤维方向，而曲率特征值已经分裂。因此 \(\nabla R\ne0\)。
+\end{proof}
+
+\begin{problem}
+设 \(M=M_1\times M_2\) 带乘积度量。求其曲率、Ricci 曲率和标量曲率。
+\end{problem}
+\begin{proof}
+乘积联络逐因子分裂：
+\[
+\nabla_{(X_1,X_2)}(Y_1,Y_2)=(\nabla^1_{X_1}Y_1,\nabla^2_{X_2}Y_2).
+\]
+因此曲率也逐因子分裂，混合平面曲率为零。Ricci 张量为
+\[
+\operatorname{Ric}_M=\operatorname{Ric}_{M_1}\oplus\operatorname{Ric}_{M_2},
+\]
+标量曲率为
+\[
+\operatorname{scal}_M=\operatorname{scal}_{M_1}+\operatorname{scal}_{M_2}.
+\]
+特别地，两个 Einstein 流形的乘积要仍为 Einstein，必须有相同 Einstein 常数。
+\end{proof}
+
+\begin{problem}
+设 \(M=I\times N\)，\(g=dr^2+\phi^2g_N\)。给出它为 Einstein 的常微分方程条件。
+\end{problem}
+\begin{proof}
+若 \(\operatorname{Ric}_N=(n-2)kg_N\)，上一节公式给出
+\[
+\operatorname{Ric}_{rr}=-(n-1)\frac{\phi''}{\phi}.
+\]
+若 \(g\) 的 Einstein 常数为 \(\lambda\)，则
+\[
+-(n-1)\frac{\phi''}{\phi}=\lambda.
+\]
+切向方向要求
+\[
+(n-2)k-\phi\phi''-(n-2)(\phi')^2=\lambda\phi^2.
+\]
+这两条 ODE 就是扭曲积 Einstein 条件。欧氏、球面、双曲空间分别对应 \(\lambda=0,n-1,-(n-1)\) 的基本解。
+\end{proof}
+
+\begin{problem}
+说明共形变换 \(\tilde g=e^{2u}g\) 下，局部共形平坦性与 Weyl 张量的关系。
+\end{problem}
+\begin{proof}
+在维数 \(n\ge4\) 时，Weyl 张量是曲率中对共形变换不变的无迹部分。若 \(g\) 局部共形于平坦度量，则平坦度量 Weyl 张量为零，而共形不变性给出 \(W_g=0\)。反过来，\(W=0\) 是局部共形平坦的主要可积条件；在三维中 Weyl 张量恒为零，需用 Cotton 张量代替。这个题提醒我们：标量曲率和 Ricci 会随共形因子大幅改变，但 Weyl 部分记录了真正的共形弯曲。
+\end{proof}
+
+\begin{problem}
+计算 Heisenberg 群左不变度量的一个基本特征：水平平面和含中心方向平面的曲率符号不同。
+\end{problem}
+\begin{proof}
+令正交基 \(X,Y,Z\) 满足唯一非零括号 \([X,Y]=Z\)。左不变度量的 Koszul 公式给出
+\[
+\nabla_XY=\frac12Z,\quad \nabla_YX=-\frac12Z,\quad
+\nabla_XZ=\nabla_ZX=-\frac12Y,
+\]
+以及循环类似公式。代入曲率定义可得
+\[
+K(X,Y)=-\frac34,\qquad K(X,Z)=K(Y,Z)=\frac14.
+\]
+所以 Nil 几何同时含负曲率与正曲率方向，这也是三维齐性几何里很典型的现象。
+\end{proof}
+
+\section{第四章原习题补遗}
+
+\begin{problem}
+设 \(M=N\times\mathbb R\)，\(g=g_N+w^2dt^2\)。证明静态 Einstein 方程中，切向 Ricci 与 \(w\) 的 Hessian 满足
+\[
+\operatorname{Ric}_M(X,Y)=\operatorname{Ric}_N(X,Y)-w^{-1}\operatorname{Hess}_Nw(X,Y).
+\]
+\end{problem}
+\begin{proof}
+这是扭曲积公式在一维纤维上的特例。对 \(X,Y\in TN\)，水平联络仍是 \(\nabla^N_XY\)，但竖直方向长度 \(w\) 随 \(N\) 上点变化。曲率取迹时，唯一新增贡献来自含 \(\partial_t\) 的平面；该项正是 \(-w^{-1}\operatorname{Hess}w(X,Y)\)。因此
+\[
+\operatorname{Ric}_M|_{TN}=\operatorname{Ric}_N-w^{-1}\operatorname{Hess}_Nw.
+\]
+若要求 \(M\) Einstein，就得到静态 Einstein 方程
+\[
+\operatorname{Hess}w=w(\operatorname{Ric}_N-\lambda g_N)
+\]
+连同迹方程。
+\end{proof}
+
+\begin{problem}
+证明空间形式 \(dr^2+\operatorname{sn}_k^2(r)ds_{n-1}^2\) 局部共形平坦。
+\end{problem}
+\begin{proof}
+空间形式具有常截面曲率，因此其曲率张量满足
+\[
+R=k\,g\circ g
+\]
+的形式。它没有 Weyl 部分，故 \(n\ge4\) 时 Weyl 张量为零；三维时 Weyl 恒为零而 Cotton 也由 Schur 型恒等式消失。等价地，在球面和双曲空间中可用立体投影或 Poincaré 模型把度量写成
+\[
+e^{2u}(dx_1^2+\cdots+dx_n^2).
+\]
+因此空间形式局部共形平坦。
+\end{proof}
+
+\begin{problem}
+证明若 \(n>2\)，Einstein 度量又局部共形平坦，则它具有常截面曲率。
+\end{problem}
+\begin{proof}
+局部共形平坦意味着 \(W=0\)。Einstein 条件给出无迹 Ricci 部分为零，因此曲率分解中只剩标量曲率部分：
+\[
+R=\frac{\operatorname{scal}}{n(n-1)}\,g\circ g.
+\]
+收缩 Bianchi 恒等式又说明 Einstein 常数在 \(n>2\) 时为常数，所以 \(\operatorname{scal}\) 常数。于是截面曲率处处等于同一个常数。
+\end{proof}
+
+\begin{problem}
+说明 Schouten 判别：若 \(W=0\) 且存在函数 \(u\) 使
+\[
+P=2\operatorname{Hess}u-2du\otimes du+|\nabla u|^2g,
+\]
+则 \(e^{-2u}g\) 局部平坦，从而 \(g\) 局部共形平坦。
+\end{problem}
+\begin{proof}
+共形变换公式告诉我们，\(\tilde g=e^{-2u}g\) 的 Schouten 张量等于原来的 \(P\) 减去
+\[
+2\operatorname{Hess}u-2du\otimes du+|\nabla u|^2g
+\]
+这一修正项。因此题设使 \(\tilde P=0\)。同时 Weyl 张量在共形变换下不变，题设 \(W=0\) 给出 \(\tilde W=0\)。曲率分解
+\[
+\tilde R=\tilde P\circ\tilde g+\tilde W
+\]
+于是为零，所以 \(\tilde g\) 局部平坦。故 \(g=e^{2u}\tilde g\) 局部共形平坦。
+\end{proof}
+
+\begin{problem}
+设 \(N^2\times\mathbb R\) 带乘积度量。证明它共形平坦当且仅当 \(N\) 的标量曲率为常数。
+\end{problem}
+\begin{proof}
+三维中 Weyl 张量恒为零，共形平坦由 Cotton 张量控制，也就是 Schouten 张量的 Codazzi 条件。乘积度量下，\(N\) 方向的 Ricci 由二维曲面的 Gauss 曲率给出，\(\mathbb R\) 方向 Ricci 为零。Schouten 张量因而只依赖于 \(N\) 的标量曲率。
+
+若 \(\operatorname{scal}_N\) 常数，Schouten 张量平行，Cotton 张量为零，所以共形平坦。反过来，Cotton 为零迫使 Schouten 的 \(N\) 方向导数对称；代入乘积分量可得 \(d\operatorname{scal}_N=0\)。因此等价。
+\end{proof}
+
+\begin{problem}
+证明 Heisenberg 群标准左不变度量满足
+\[
+K(X,Y)=-\frac34,\qquad K(X,Z)=K(Y,Z)=\frac14
+\]
+其中 \([X,Y]=Z\)。
+\end{problem}
+\begin{proof}
+取正交左不变基 \(X,Y,Z\)，唯一非零括号为 \([X,Y]=Z\)。Koszul 公式给出
+\[
+\nabla_XY=\frac12Z,\quad \nabla_YX=-\frac12Z,\quad
+\nabla_XZ=\nabla_ZX=-\frac12Y,\quad
+\nabla_YZ=\nabla_ZY=\frac12X.
+\]
+代入曲率定义：
+\[
+R(X,Y)Y=-\frac34X,
+\]
+所以 \(K(X,Y)=-3/4\)。同理
+\[
+R(X,Z)Z=\frac14X,\qquad R(Y,Z)Z=\frac14Y.
+\]
+这说明同一个齐性空间中可以同时出现正、负截面曲率。
+\end{proof}
+
+\begin{problem}
+说明为什么二维流形总有正交坐标，而高维一般没有。
+\end{problem}
+\begin{proof}
+二维中正交坐标等价于等温坐标的较弱形式。给定一个方向场，取其正交方向场；两个一维分布自动可积，于是可用两族曲线作坐标网格，得到正交坐标。
+
+高维中要让多个坐标方向两两正交，相当于要求若干高维分布同时满足 Frobenius 可积条件。这些条件是非平凡的偏微分约束，一般度量不会满足。换句话说，二维里“一维分布自动可积”是奇迹，高维没有这个免费性质。
+\end{proof}
+
+\begin{problem}
+证明 Schwarzschild 度量与 Eguchi--Hanson 度量的 Weyl 张量不为零的基本判别思路。
+\end{problem}
+\begin{proof}
+若四维 Einstein 度量的 Weyl 张量为零，则上一题型结论给出它具有常截面曲率。Schwarzschild 和 Eguchi--Hanson 都是 Ricci 平坦或 Einstein 型的重要例子，但它们的截面曲率随径向方向变化，并不常数。因此 Weyl 张量不能为零。
+
+更直接地，在双扭曲积标架下计算曲率算子，会发现不同二向量方向的无迹曲率特征值不全相等；这些无迹部分正是 Weyl 张量的分量。
+\end{proof}
+
+\begin{problem}
+在四维有向黎曼流形上，说明 Hodge 星算子把 \(\Lambda^2\) 分解为
+\[
+\Lambda^2=\Lambda^2_+\oplus\Lambda^2_-,
+\]
+并解释 Weyl 张量相应分解为 \(W=W^+\oplus W^-\)。
+\end{problem}
+\begin{proof}
+四维中 Hodge 星算子在二形式上满足 \(*^2=1\)，因此特征值为 \(\pm1\)，给出自对偶与反自对偶分解。曲率算子作用在 \(\Lambda^2\) 上，可写成分块矩阵。去掉标量曲率与无迹 Ricci 的交叉部分后，Weyl 张量保持这两个三维子空间，于是
+\[
+W=\begin{pmatrix}W^+&0\\0&W^-\end{pmatrix}.
+\]
+这就是四维几何中特有的现象：共形曲率可以分成自对偶和反自对偶两半，Eguchi--Hanson 等例子正是利用这种分解来理解的。
+\end{proof}
+
+\setcounter{chapter}{4}
+
+\chapter{测地线与距离}
+
+\section{混合偏导}
+
+\begin{problem}
+设 \(c\colon \Omega\to M\) 是到黎曼流形 \(M\) 的光滑映射。说明如果混合二阶偏导满足交换律，并且满足内积的乘积法则，那么它们至多只能有一种定义方式。
+\end{problem}
+\begin{proof}
+把二阶混合偏导理解成“沿参数方向的协变导数”之后，核心是把一个未知的 \(\dfrac{\partial^2 c}{\partial t_i\partial t_j}\) 代入
+\[
+2g\!\left(\frac{\partial^2 c}{\partial t_i\partial t_j},\frac{\partial c}{\partial t_k}\right)
+\]
+型的恒等式里。三个指标轮换后，右边只涉及一阶导数与度量的导数，因此一旦满足交换律和乘积法则，二阶项就被唯一确定了。换句话说，若有两种定义，它们在所有基向量上的内积都相同，所以差值只能为零。
+\end{proof}
+
+\begin{problem}
+设 \(M\subset N\) 是浸入子流形。证明：先在 \(N\) 中计算 \(c\) 的混合偏导，再投影到切空间 \(T M\)，得到的就是 \(M\) 内的混合偏导。
+\end{problem}
+\begin{proof}
+这道题的动机很简单：子流形内的曲率信息来自 ambient 空间的切向部分。因为法向分量最终会被投影杀掉，所以只要检查在 \(N\) 中得到的二阶项与 \(M\) 的协变导数公式相容，就会发现两者的切向分量完全一致。实际计算时把 \(\nabla\) 的定义写开，再把法向项投影掉即可。
+\end{proof}
+
+\section{测地线}
+
+\begin{problem}
+若曲线 \(c\) 的加速度处处与曲线切向，则说明它可以通过重新参数化变成测地线。
+\end{problem}
+\begin{proof}
+这件事的本质是“非零法向加速度才是真正阻碍测地线性的东西”。如果加速度总在切向方向，那么它只是在改变速度标量而不是改变轨迹。于是选取一个新的参数，使速度重新归一化到仿射参数形式，就能把切向加速度吸收掉，留下 \(\nabla_{\dot c}\dot c=0\)。
+\end{proof}
+
+\begin{problem}
+证明：若所有单位速测地线都至少存在固定时间 \(\varepsilon>0\)，则流形是测地完备的。
+\end{problem}
+\begin{proof}
+把初值问题看成沿每个初始方向的最大延拓问题。若有一个方向不能全程延拓，那么将其重新参数化成单位速后，存在时间区间长度小于 \(\varepsilon\) 的矛盾。于是每条测地线都能拼接成全局定义。
+\end{proof}
+
+\begin{problem}
+设 \(c\colon I\to M\) 和 \(\phi\colon J\to I\) 为光滑函数。证明
+\[
+\frac{d}{dt}(c\circ \phi)=\dot c\circ \phi\cdot \phi',\qquad
+\frac{d^2}{dt^2}(c\circ \phi)=\ddot c\circ \phi\cdot (\phi')^2+\dot c\circ \phi\cdot \phi''.
+\]
+\end{problem}
+\begin{proof}
+这就是一维链式法则。第一式是速度的复合，第二式再对第一式求导，并把“沿曲线求导”理解成协变导数即可。真正要记住的是第二项：它正是重新参数化带来的额外切向加速度。
+\end{proof}
+
+\section{距离结构}
+
+\begin{problem}
+设 \(c\) 是从 \(p\) 到 \(q\) 的一条长度等于距离的曲线。证明它在任意子区间上的长度仍等于端点距离。
+\end{problem}
+\begin{proof}
+因为总长度已经等于端点距离，任何一段都不可能“绕路”比端点之间更短，否则把两段拼起来会得到整条曲线比距离还短，矛盾。更直接地说，若子区间长度大于端点距离，则整个曲线长度就会大于 \(d(p,q)\)。
+\end{proof}
+
+\begin{problem}
+证明：一条从 \(p\) 到 \(q\) 的最短曲线可以写成某条测地线与一个单调参数函数的复合。
+\end{problem}
+\begin{proof}
+先把最短曲线按弧长参数化。这样它就成了单位速。再利用最短性与变分原理可知它必须满足测地线方程，因此轨迹本身就是一条测地线；原来的曲线只是这条测地线的重参数化。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 度量完备，且 \(\tilde g\le g\)。证明 \((M,\tilde g)\) 也度量完备。
+\end{problem}
+\begin{proof}
+若 \(\tilde g\le g\)，则任何曲线在 \(\tilde g\) 下的长度不超过在 \(g\) 下的长度，所以 \(\tilde g\)-Cauchy 列也是 \(g\)-Cauchy 列。由 \(g\) 的完备性得其收敛，再利用两个度量的支配关系把收敛传回 \(\tilde g\)。
+\end{proof}
+
+\section{第一变分}
+
+\begin{problem}
+证明：若 \(f\) 在流形上处处 Hessian 非负，则对任意测地线 \(c\)，函数 \(f\circ c\) 是凸的；反过来也成立。
+\end{problem}
+\begin{proof}
+沿测地线有
+\[
+\frac{d^2}{dt^2}(f\circ c)=\operatorname{Hess}f(\dot c,\dot c).
+\]
+所以 Hessian 非负就意味着二阶导非负，也就是凸性。反向则取任意点的任意切向量为测地线初速度，利用二阶导判别法即可恢复 Hessian 的符号。
+\end{proof}
+
+\begin{problem}
+设 \(N\subset M\) 是紧的或适当嵌入的子流形，\(r(x)=d(x,N)\)。说明若 \(r\) 在某点可微，则到 \(N\) 的最短向量是唯一的。
+\end{problem}
+\begin{proof}
+如果有两条不同最短段，它们在端点处会给出两个不同的“向外”方向。把点沿任意方向轻微移动后，第一变分会给出两个不同的一侧导数，从而与可微性矛盾。所以可微性强迫最短方向唯一。
+\end{proof}
+
+\section{指数映射}
+
+\begin{problem}
+证明：在指数坐标中，\(x^1\) 若满足 \(g_{1i}=\delta_{1i}\)，则 \(x^1\) 是距离函数。
+\end{problem}
+\begin{proof}
+这说明坐标线 \(x^1\) 的方向就是梯度方向，而且其余坐标方向都与之正交。于是 \(x^1\) 的梯度长度为 1，沿梯度流的曲线恰好是单位速最短段，所以 \(x^1\) 就是一个距离函数。
+\end{proof}
+
+\begin{problem}
+证明：球面与双曲空间中的测地线在射影模型下变成直线。
+\end{problem}
+\begin{proof}
+在这两个常曲率空间里，测地线本来就是与二维线性子空间的交。沿原点投影到固定超平面后，二维子空间与超平面的交仍是直线，因此测地线在模型中投影成直线。
+\end{proof}
+
+\section{等距与完备}
+
+\begin{problem}
+证明：距离保持的双射 \(F\colon M\to N\) 必为黎曼等距。
+\end{problem}
+\begin{proof}
+先用距离坐标看出 \(F\) 在局部是光滑的，因为距离函数复合后仍是距离函数。再对任意 \(v\in T_pM\) 取 \(c(t)=\exp_p(tv)\)，比较 \(c\) 和 \(F\circ c\) 的小段距离，就得到 \(\lVert DF(v)\rVert=\lVert v\rVert\)。线性代数告诉我们这就等价于保度量。
+\end{proof}
+
+\begin{problem}
+若 \(F\colon M\to N\) 是满射 submetry，证明它是 \(C^1\) 黎曼次浸入。
+\end{problem}
+\begin{proof}
+关键是把“球映到球”转化成“每个点附近都能唯一抬升短测地线”。一旦短段的抬升唯一且随端点连续变化，便可在距离坐标下逐个分量验证可微性。由此得到 \(C^1\) 次浸入。
+\end{proof}
+
+\begin{problem}
+证明：若闭子群 \(H\subset \operatorname{Iso}(M,g)\) 作用自由，则商空间 \(H\backslash M\) 具有自然黎曼流形结构，且投影是黎曼次浸入。
+\end{problem}
+\begin{proof}
+自由作用下每条轨道都是正规嵌入子流形。取法向丛后，用法向指数映射在轨道附近给出统一管状邻域；这个邻域在商空间中就是局部坐标。把法向空间的内积沿等距作用传下去，就得到商上的黎曼度量。
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+设所有单位速测地线都存在固定时间 \(\varepsilon>0\)。证明流形测地完备。
+\end{exercise}
+\begin{proof}
+见前面的题目。核心是把任意有限存在时间的测地线重新参数化成单位速后，若它不能延拓到全时域，就会与“每个单位速方向至少存在 \(\varepsilon\) 时间”矛盾。
+\end{proof}
+
+\begin{exercise}
+证明：若 \(M\) 连通、完备且 \(\sec\le 0\)，则其万有覆盖与 \(\mathbb R^n\) 微分同胚。
+\end{exercise}
+\begin{proof}
+指数映射的微分由 Jacobi 场控制。负曲率或非正曲率下，\(\frac12\lVert J\rVert^2\) 的二阶导非负，积分后可知零初值的非零 Jacobi 场不可能在后面消失，于是指数映射处处无临界点。再用“无临界点的指数映射是覆盖”即可。
+\end{proof}
+
+\begin{exercise}
+设 \(f\) 是严格凸的 proper 非负函数。证明它有唯一极小点。
+\end{exercise}
+\begin{proof}
+proper 保证极小值存在，严格凸保证极小值不可能有两个，否则沿连接它们的测地线中点会取得更小值。故极小点唯一。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 中一条曲线 \(c\) 的长度等于端点距离。证明它可以写成某条测地线的单调重参数化。
+\end{exercise}
+\begin{proof}
+先按弧长参数化，再用最短性和第一变分公式说明其轨迹必须是测地线；原参数只是在这条测地线上单调地走。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 是同质流形。证明它测地完备。
+\end{exercise}
+\begin{proof}
+同质性把任一点的局部测地延拓性质搬到全空间。若某条单位速测地线在有限时间爆炸，则平移到任意点也会发生同样爆炸，与群作用下的整体一致性矛盾。
+\end{proof}
+
+\begin{exercise}
+设 \(r(x)=d(x,N)\) 为到闭子流形 \(N\) 的距离函数。证明其一侧导数处处存在。
+\end{exercise}
+\begin{proof}
+沿任意曲线移动一点，再用到 \(N\) 的最短段作变分，第一变分公式给出一侧导数的上下界。右极限与左极限都被同一个角度控制，因此一侧导数存在。
+\end{proof}
+
+\begin{exercise}
+找出方格环面 \(\mathbb R^2/\mathbb Z^2\) 的切迹集。
+\end{exercise}
+\begin{proof}
+把环面看成单位正方形对边粘合后的空间。对基点 \(p\) 来说，切迹集对应于平面中所有到最近整数平移像不唯一的点。几何上，这正是平面格点的 Voronoi 边界再模掉 \(\mathbb Z^2\)。
+
+在基本域里，边界由两条中垂线族组成：一族平行于坐标轴，另一族平行于对角线。模掉整数平移后，切迹集就是若干条闭测地线组成的“十字”图形。它把环面分成若干个测地凸块，每个块内最短段唯一。
+\end{proof}
+
+\begin{exercise}
+找出标准球面和实射影空间的切迹集。
+\end{exercise}
+\begin{proof}
+在标准球面 \(S^n\) 上，任意点 \(p\) 的切迹集只有一个点，就是与它对跖的点。因为从 \(p\) 出发的最短测地线在长度达到 \(\pi\) 之前唯一，到了对跖点就失去唯一性。
+
+在 \(\mathbb RP^n\) 中，把 \(S^n\) 上的对跖点识别后，球面上的对跖点都变成同一个方向类，所以切迹集就是与 \(p\) 正交的超平面所对应的子射影空间 \(\mathbb RP^{n-1}\)。
+\end{proof}
+
+\begin{exercise}
+证明在黎曼流形中，当 \(|v|,|w|\le r\) 时，
+\[
+\bigl| \exp_p(v)-\exp_p(w)\bigr| = |v-w| + O(r^2).
+\]
+\end{exercise}
+\begin{proof}
+在指数正规坐标中，\(\exp_p\) 在原点的一阶导数是恒等映射，所以它对小向量的作用，首项就是欧氏意义下的平移。非线性误差来自度量的二阶项，而正规坐标里这些二阶项正好从 \(O(r^2)\) 开始。
+
+因此，把 \(v\) 与 \(w\) 连成切空间中的线段，再推回流形，长度与欧氏长度的差只会累积成二阶小量。于是距离差满足所给估计。
+\end{proof}
+
+\begin{exercise}
+在指数正规坐标中，证明坐标函数满足 \(\operatorname{Hess}x^i_{kl}=-\Gamma^i_{kl}=O(r)\)。
+\end{exercise}
+\begin{proof}
+正规坐标的定义就是原点处坐标向量场与测地线结构兼容，因此 Christoffel 符号在原点消失。又因为度量的一阶导数在原点消失，而 Christoffel 符号是度量一阶导数的线性组合，所以它在原点附近至少是一阶小量。
+
+坐标函数的 Hessian 正是这些 Christoffel 符号的负号，因此同样是 \(O(r)\)。
+\end{proof}
+
+\begin{exercise}
+证明
+\[
+\operatorname{Hess}\frac12 r^2 = g + O(r^2),\qquad
+\operatorname{Hess} r = \frac1r g_r + O(r).
+\]
+\end{exercise}
+\begin{proof}
+先写
+\[
+\frac12 r^2=\frac12\sum_i (x^i)^2.
+\]
+对它做 Hessian，主项就是 \(\sum_i dx^i\otimes dx^i\)，而坐标函数本身的 Hessian 只有 \(O(r)\) 级别的误差，再乘上 \(x^i=O(r)\) 就变成 \(O(r^2)\)。所以第一式成立。
+
+第二式由 \(r=\sqrt{r^2}\) 和链式法则得到。几何上，\(r\) 在径向方向上的二阶变化为零，真正留下来的是球面切向方向的曲率项，所以主项是 \(\frac1r g_r\)。
+\end{proof}
+
+\begin{exercise}
+设 \(N\subset M\) 为紧致或适当嵌入子流形，令 \(r(x)=d(x,N)\)。证明 \(r\) 在 \(M\setminus N\) 上具有一侧导数，并且到 \(N\) 的最短向量是唯一的当且仅当 \(r\) 可微。
+\end{exercise}
+\begin{proof}
+如果 \(r\) 在 \(x\notin N\) 可微，那么到 \(N\) 的最短段在端点处的切向量只能有一个，否则沿任意方向微扰，距离的方向导数会出现两个不同值，和可微性矛盾。
+
+一般情形下，取一条单位速度曲线 \(c(t)\) 经过 \(x\)。比较 \(f(t)=r(c(t))\) 的变化，用最短段的第一变分公式就会得到右侧和左侧的斜率极限都存在。它们都由 \(c'(t)\) 与最短方向之间的夹角控制。
+\end{proof}
+
+\begin{exercise}
+证明：若曲线 \(c\) 的长度等于端点距离，那么 \(c\) 可以写成某条测地段与单调函数的复合。
+\end{exercise}
+\begin{proof}
+先把 \(c\) 重参数化成弧长参数。由于它已经达到长度下界，所以任意子段也必须是最短的；否则局部缩短会让整条曲线更短，矛盾。
+
+于是曲线的像就是一条测地段。原来的参数只是沿这条段单调前进，所以可以写成 \(c=\gamma\circ\phi\)，其中 \(\gamma\) 是测地段，\(\phi\) 单调。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备，\(\tilde g\le g\)。证明 \((M,\tilde g)\) 也完备。
+\end{exercise}
+\begin{proof}
+若一列在 \(\tilde g\) 下是柯西列，那么它在 \(g\) 下也一定是柯西列，因为 \(\tilde g\)-长度不超过 \(g\)-长度。由 \(g\) 完备，点列收敛到某点 \(x\in M\)。
+
+由于 \(\tilde g\) 只比 \(g\) 小，收敛点附近的局部控制仍然成立，所以同一列在 \(\tilde g\) 下也收敛到 \(x\)。因此 \((M,\tilde g)\) 完备。
+\end{proof}
+
+\begin{exercise}
+证明同质流形都是测地完备的。
+\end{exercise}
+\begin{proof}
+同质性意味着等距群在流形上传递作用。若某条测地线在有限时间内失效，把它通过等距变换搬到任意点附近，失效现象也会被搬过去。
+
+但测地方程是局部存在唯一的，若在某点附近可延拓，则所有等距像也可延拓。这与“在有限时间失效”矛盾，所以每条测地线都能延拓到全时间。
+\end{proof}
+
+\begin{exercise}
+证明：若 \(f\colon M\to\mathbb R\) 是 proper 的 Lipschitz 函数，则 \(M\) 完备。
+\end{exercise}
+\begin{proof}
+设 \(C\subset M\) 闭且有界。因为 \(f\) Lipschitz，\(f(C)\) 也是有界的，所以 \(C\subset f^{-1}([a,b])\)。而 proper 性保证 \(f^{-1}([a,b])\) 紧致。
+
+于是 \(C\) 是紧集的闭子集，所以紧。由 Heine-Borel 性质，\(M\) 完备。
+\end{proof}
+
+\begin{exercise}
+证明黎曼次沉浸是 submetry。
+\end{exercise}
+\begin{proof}
+次沉浸在水平空间上保长度，垂直方向则被压缩掉。于是半径很小的球，沿水平提升后在像中仍然覆盖同样半径的球。
+
+另一方面，次沉浸又是距离不增的，所以像不可能比该球更大。两边合起来就得到球像等于球，这正是 submetry 的定义。
+\end{proof}
+
+\begin{exercise}
+设 \(F\colon(M,g_M)\to(N,g_N)\) 是完备流形之间的黎曼次沉浸。证明 \(N\) 完备，并且 \(F\) 是纤维丛。
+\end{exercise}
+\begin{proof}
+基底中的柯西列可以逐点选取水平提升；由于 \(M\) 完备，这些提升收敛。投回去以后，基底序列也收敛，所以 \(N\) 完备。
+
+接着看局部结构。次沉浸在小球上把基底球与纤维方向分开，完备性保证这种局部直积不会在有限距离处断裂，于是每个点附近都可平凡化成 \(U\times F^{-1}(p)\)。
+\end{proof}
+
+\begin{exercise}
+设一组两两交换的保向等距变换 \(S\) 作用于 \((M,g)\)。证明 \(\operatorname{Fix}(S)\) 的每个连通分支余维为偶数。
+\end{exercise}
+\begin{proof}
+在固定点处，所有微分是彼此可交换且保定向的正交线性变换。这样的线性群可以同时分解成二维旋转块和恒等块。
+
+固定点集的切空间是共同不动子空间，法向空间是非平凡旋转块之和，所以法向维数是偶数。故每个分支余维偶数。
+\end{proof}
+
+\begin{exercise}
+设局部微分同胚 \(F\) 满足 \(F_*\nabla_XY=\nabla_{F_*X}F_*Y\)。证明 \(F\) 把测地线送到测地线，并由 \(F(p)\) 与 \(DF_p\) 唯一决定。
+\end{exercise}
+\begin{proof}
+测地线满足 \(\nabla_{\dot c}\dot c=0\)。由仿射条件可知，推前后协变导数保持形式不变，因此零解仍是零解，测地线被送到测地线。
+
+而一条测地线由初值 \(c(0)\) 和 \(\dot c(0)\) 唯一决定，所以只要知道 \(F(p)\) 和 \(DF_p\)，它在所有从 \(p\) 出发的测地线上的值都被唯一确定。通过指数坐标覆盖局部，就得到唯一性。
+\end{proof}
+
+\begin{exercise}
+证明 \(\mathbb RP^n\)、\(\mathbb CP^n\) 和 \(H^n(\mathbb R)\) 的标准等距群分别是 \(PO(n+1)\)、\(PU(n+1)\) 与 \(PO(n,1)\)。
+\end{exercise}
+\begin{proof}
+这些空间都来自线性模型的商构造。实射影空间的对称性来自正交群对单位球面的作用再取商，所以是 \(PO(n+1)\)；复射影空间同理得到 \(PU(n+1)\)；双曲空间则来自洛伦兹空间中的保时样式变换群，于是是 \(PO(n,1)\)。
+
+本质上，等距群就是保持底层二次型的线性变换在模掉标量后得到的群。
+\end{proof}
+
+\begin{exercise}
+证明指数正规坐标的二阶展开中，度量项满足曲率控制的标准公式，并推出球面上的 Gauss 公式。
+\end{exercise}
+\begin{proof}
+在二维时，曲率张量只剩高斯曲率 \(K=\sec(p)\)。于是二阶项就化成
+\[
+g=dx^2+dy^2-\frac{K}{3}(x\,dy-y\,dx)^2+o(x^2+y^2).
+\]
+这正是球面附近度量的标准展开。
+
+更高维的情形只不过是把这件事按曲率张量的各个分量分解而已。
+\end{proof}
+
+\begin{exercise}
+证明一个流形若在每点都各向同性，则它也是同质的。
+\end{exercise}
+\begin{proof}
+各向同性意味着每点的单位切球都由等距群的稳定子群传递作用。于是可以先在一点处转动任意方向，再把这个方向沿等距变换搬到别点。
+
+这样就能从“切空间里方向上没有偏好”升级到“流形上点也没有偏好”，也就是同质。
+\end{proof}
+
+\begin{exercise}
+证明在完备流形上，距离函数 \(r(x)=d(x,p)\) 的一侧导数处处存在。
+\end{exercise}
+\begin{proof}
+把 \(r\) 沿任意单位速度曲线 \(c(t)\) 复合。由于距离函数的最短段在局部总是存在的，第一变分公式给出 \(r(c(t))\) 的右导数和左导数都由一个角度极值决定。
+
+关键是：哪怕 \(r\) 在某点不光滑，它仍然有方向导数，因为最短段的竞争只会让导数变成上、下极限，而不会让极限彻底消失。
+\end{proof}
+
+\begin{exercise}
+证明在完备流形中，切迹点之前的距离函数光滑，切迹点处不光滑。
+\end{exercise}
+\begin{proof}
+切迹点之前，指数映射是局部微分同胚，而且最短段唯一，所以距离函数可写成光滑函数的复合。切迹点处要么有两条最短段，要么指数映射退化，两者都会破坏光滑性。
+\end{proof}
+
+\begin{exercise}
+证明切迹集是由“指数映射失去单射性”或“指数映射失去正则性”组成的。
+\end{exercise}
+\begin{proof}
+这正是前一题的几何内容整理成一个判别：若 \(v\) 不是切迹向量，那么它附近的指数映射既单射又非奇异；反之，只要最短段不再唯一，或者指数映射在该方向上奇异，就必然落入切迹集。
+\end{proof}
+
+\begin{exercise}
+证明若 \(N\subset M\) 是闭子集且 \(M\) 完备，则任一点都能通过一条最短段连到 \(N\)。
+\end{exercise}
+\begin{proof}
+考虑距离函数 \(r(x)=d(x,N)\)。完备性保证 \(r\) 在闭子集上取得最小值。取实现这个最小值的点 \(p\in N\)，连接 \(x\) 与 \(p\) 的最短段就是从 \(x\) 到 \(N\) 的 segment。
+
+端点处的正交性来自第一变分公式：若不是垂直的，就能沿 \(N\) 的切方向把长度再缩短，和最短性矛盾。
+\end{proof}
+
+\begin{exercise}
+证明若 \(c\) 是一条测地线，且 \(\exp_{c(0)}\) 在整段上正则，则 \(c\) 是能量泛函的局部极小点。
+\end{exercise}
+\begin{proof}
+正则性意味着沿这段没有共轭点，所以指数映射在该段附近是局部微分同胚。把问题拉回切空间后，测地线变成直线段，而能量就是平方速度积分。
+
+直线段在欧氏空间里显然局部极小，因此推回流形后 \(c\) 也是局部极小。
+\end{proof}
+
+\begin{exercise}
+设 \(G\) 是带双不变伪黎曼度量的 Lie 群。证明从 \(\mathbb R\) 到 \(G\) 的群同态正是左不变向量场的积分曲线，且群测地线恰好是这些同态。
+\end{exercise}
+\begin{proof}
+左不变向量场由单位元处的向量生成，而它的积分曲线满足群乘法的微分方程，因此自动是群同态。反过来，群同态的导数也是左不变向量场，所以两者等价。
+
+双不变度量下，左平移与右平移都保联络，左不变向量场平行，于是测地方程和群同态方程一致。故测地线就是群同态。
+\end{proof}
+
+\begin{exercise}
+证明在双不变黎曼度量下，任意 \(x\in G\) 都有平方根。
+\end{exercise}
+\begin{proof}
+由上一题，测地线就是一参数子群，所以任意 \(x\) 都可写成 \(x=\exp(v)\)。取 \(y=\exp(v/2)\)，则
+\[
+y^2=\exp(v/2)\exp(v/2)=\exp(v)=x.
+\]
+这就是平方根。
+\end{proof}
+
+\begin{exercise}
+证明任意黎曼子沉浸都是 submetry。
+\end{exercise}
+\begin{proof}
+这一题与上文重复，但它值得单独记住：水平向量保长度，因而小球的像不会缩水；垂直方向被压掉，又不会让像变大。于是小球的像还是同半径球。
+\end{proof}
+
+\begin{exercise}
+设 \(F\colon(M,g_M)\to(N,g_N)\) 为黎曼子沉浸，且 \(M\) 完备。证明 \(N\) 完备，并说明 \(F\) 是纤维丛。
+\end{exercise}
+\begin{proof}
+基底上的柯西列可以逐点做水平提升，完备性保证提升收敛，因此基底收敛。局部平凡化则来自次沉浸的标准管状邻域：小邻域里总空间看成基底加上纤维方向的直积。
+\end{proof}
+
+\begin{exercise}
+设 \(F\colon(M,g)\to(M,g)\) 为固定点 \(p\) 的等距变换。证明 \(DF_p=-I\) 当且仅当 \(F^2=\mathrm{id}\) 且 \(p\) 是孤立不动点。
+\end{exercise}
+\begin{proof}
+若 \(DF_p=-I\)，那么在指数坐标里它把每条径向测地线都反向。于是 \(F^2\) 在一点附近是一阶恒等，再由等距变换的唯一延拓性，得 \(F^2=\mathrm{id}\)。
+
+反过来，若 \(F^2=\mathrm{id}\) 且 \(p\) 是孤立不动点，则 \(DF_p\) 是一个平方等于恒等的正交变换。若有 \(+1\) 特征值，就会产生局部固定方向，和孤立性矛盾，所以只能是 \(-I\)。
+\end{proof}
+
+\begin{exercise}
+证明在完备流形上，functional distance 等于通常距离。
+\end{exercise}
+\begin{proof}
+functional distance 是所有绝对连续曲线长度的下确界。通常距离则是点之间最短段的长度。完备性保证最短段存在，所以下确界不大于通常距离。
+
+另一方面，任何曲线长度都不小于端点距离，所以 functional distance 也不可能更小。故两者相等。
+\end{proof}
+
+\begin{exercise}
+设 \(N_1,N_2\subset M\) 都是全测地子流形。证明每个连通分支 \(N_1\cap N_2\) 是全测地子流形。
+\end{exercise}
+\begin{proof}
+交集点处的候选切空间自然是 \(T_pN_1\cap T_pN_2\)。只要一条测地线起始速度落在这个交空间里，它就会同时留在 \(N_1\) 与 \(N_2\) 中，因此也留在交集中。
+
+这说明交集的每个连通分支都是由共同测地线生成的嵌入子流形，而且仍然全测地。
+\end{proof}
+
+\begin{exercise}
+证明若 \((M,g)\) 完备，则其上任一点的注入半径可由切迹域中最近向量刻画。
+\end{exercise}
+\begin{proof}
+注入半径定义为指数映射保持微分同胚的最大球半径。若 \(v\) 是切迹域里离原点最近的向量，那么从原点到它的长度就是最先失去最短性的半径。
+
+因此 \(\operatorname{inj}(p)\) 恰好是切迹域中最近点的范数。这把局部正则性和全局最短性联系起来了。
+\end{proof}
+
+\begin{exercise}
+证明 Klingenberg 引理：若 \(v\) 是切迹域中最短向量，且 \(|v|=\operatorname{inj}(p)\)，则要么有另一条同长度最短段，要么 \(x=\exp_p(v)\) 是指数映射的临界值。
+\end{exercise}
+\begin{proof}
+若 \(x\) 是正则值，而从 \(p\) 到 \(x\) 的两条最短段末端方向不相反，就可以在 \(x\) 选一个同时与二者成钝角的方向 \(w\)。把 \(x\) 微微往 \(w\) 方向移动后，从 \(p\) 到新点就能找到更短路径，这与 \(v\) 已经是最近的切迹向量矛盾。
+
+所以正则值情形下，两条最短段必须在 \(x\) 处平滑拼接成一条测地闭曲线；否则只能是临界值。
+\end{proof}
+
+\begin{exercise}
+证明实/复射影空间和双曲空间的投影模型中，测地线投影成直线。
+\end{exercise}
+\begin{proof}
+这些模型都是从原点沿直线投影到超平面。二维线性子空间与投影超平面的交集在投影下就是直线，所以测地线投影以后自然还是直线。
+
+反过来，直线提升回去就是与某个二维子空间的交，所以它们正对应测地线。
+\end{proof}
+
+\begin{exercise}
+证明任意黎曼流形都可作一个共形变换使之完备。
+\end{exercise}
+\begin{proof}
+取一个 proper 函数 \(\lambda\colon M\to [1,\infty)\)，并让它增长足够快。把度量改为 \(\lambda^2 g\) 后，远处的路会被拉得越来越长。
+
+于是任何想要逃向无穷远的曲线都必须付出无限长度，无法在有限长度内逃逸。这样共形变换后的度量就完备了。
+\end{proof}
+
+\begin{exercise}
+设 \(U\subset\mathbb R^n\) 为开集。给出 \(U\) 不凸但两种距离相同的例子，以及 \(U\) 凸但两种距离不同的例子。
+\end{exercise}
+\begin{proof}
+第一类例子可以取一个带凹口的区域，只要凹口不影响欧氏最短线段穿过的路径，流形内距离仍与欧氏距离一致。第二类例子可以取一个凸开集并配上诱导度量以外的拉伸结构，使流形距离和欧氏距离不同。
+
+这说明“集合凸不凸”和“度量是不是欧氏诱导”是两回事。
+\end{proof}
+
+\begin{exercise}
+证明在完备流形中，绝对连续曲线的长度定义与黎曼流形上光滑曲线的长度定义一致。
+\end{exercise}
+\begin{proof}
+对光滑曲线，分割和弦长的上确界会收敛到速度积分，这就是经典长度公式。黎曼流形上在局部用正规坐标近似欧氏情形，再用前面的 \(O(r^2)\) 距离估计把误差控制住，就可把同样的结论搬过去。
+\end{proof}
+\section{第五章原习题补遗}
+
+\begin{problem}
+设 \(G\) 带双不变伪黎曼度量。证明从 \(\mathbb R\) 到 \(G\) 的群同态正是左不变向量场经过单位元的积分曲线；并且这些曲线正是经过单位元的测地线。
+\end{problem}
+\begin{proof}
+若 \(\gamma\colon\mathbb R\to G\) 是群同态，则 \(\gamma(t+s)=\gamma(t)\gamma(s)\)。对 \(s\) 在 \(0\) 处求导可知 \(\dot\gamma(t)\) 是左平移 \(L_{\gamma(t)}\) 推送的固定向量 \(v=\dot\gamma(0)\)，所以它是左不变向量场的积分曲线。
+
+反过来，左不变向量场的流满足同样的乘法方程，因此给出一参数子群。双不变度量下 \(\nabla_XX=\frac12[X,X]=0\)，所以左不变场的积分曲线是测地线。故 Lie 理论指数映射与黎曼指数映射在单位元处一致。
+\end{proof}
+
+\begin{problem}
+若 \(G\) 带双不变黎曼度量，证明任意 \(x\in G\) 有平方根。
+\end{problem}
+\begin{proof}
+双不变黎曼度量使 \(G\) 测地完备。取从单位元 \(e\) 到 \(x\) 的最短测地线 \(\gamma\)。上一题说明经过 \(e\) 的测地线是一参数子群，所以
+\[
+\gamma(t)=\exp(tv).
+\]
+令 \(y=\gamma(1/2)\)，则
+\[
+y^2=\exp(v/2)\exp(v/2)=\exp(v)=x.
+\]
+这里用到同一个一参数子群中元素可交换。
+\end{proof}
+
+\begin{problem}
+证明 \(SL(n,\mathbb R)\) 不承认双不变黎曼度量。
+\end{problem}
+\begin{proof}
+若存在双不变黎曼度量，则其单位元内积是正定且 \(\operatorname{Ad}\)-不变的。于是所有 \(\operatorname{ad}_X\) 都是斜对称算子，特别有纯虚特征值。
+
+但在 \(\mathfrak{sl}(n,\mathbb R)\) 中取
+\[
+X=\operatorname{diag}(1,-1,0,\ldots,0).
+\]
+对矩阵元 \(E_{12}\)，有 \([X,E_{12}]=2E_{12}\)，出现实特征值 \(2\)。这不可能是正定内积下的斜对称算子。因此不存在双不变黎曼度量。
+\end{proof}
+
+\begin{problem}
+证明黎曼子沉浸是 submetry：即 \(F(B_M(p,r))=B_N(F(p),r)\)。
+\end{problem}
+\begin{proof}
+先由速度分解知 \(F\) 距离不增，所以 \(F(B_M(p,r))\subset B_N(F(p),r)\)。反向包含：取 \(q\in B_N(F(p),r)\)，用短测地线从 \(F(p)\) 连到 \(q\)，并在 \(p\) 处水平提升。黎曼子沉浸在水平方向保长，所以提升曲线长度相同，终点 \(\tilde q\) 满足 \(F(\tilde q)=q\) 且 \(d_M(p,\tilde q)<r\)。故球像正好是球。
+\end{proof}
+
+\begin{problem}
+Hermann 定理的一部分：若 \(F\colon M\to N\) 是黎曼子沉浸且 \(M\) 完备，则 \(N\) 完备。
+\end{problem}
+\begin{proof}
+由上一题，\(F\) 是 submetry。若 \((q_i)\) 是 \(N\) 中 Cauchy 列，选 \(p_1\in F^{-1}(q_1)\)，并逐段水平提升连接 \(q_i\) 到 \(q_{i+1}\) 的短曲线，可构造 \(M\) 中 Cauchy 列 \(p_i\) 且 \(F(p_i)=q_i\)。完备性给出 \(p_i\to p\)，连续性给出 \(q_i\to F(p)\)。因此 \(N\) 完备。
+\end{proof}
+
+\begin{problem}
+设一族保向等距变换两两交换。证明其共同不动点集的每个分支具有偶余维。
+\end{problem}
+\begin{proof}
+在共同不动点 \(p\) 处，所有微分 \(dF_p\) 是 \(T_pM\) 上两两交换的保向正交变换。切于不动点分支的方向是这些线性变换共同的 \(1\)-特征空间。其正交补上没有非零共同固定向量。
+
+保向正交变换在实空间中的非平凡部分分解为二维旋转块。交换族可同时分解成这样的二维旋转表示。因此法空间维数为偶数，也就是不动点分支的余维为偶数。
+\end{proof}
+
+\begin{problem}
+定义仿射映射 \(F\) 为保持联络的局部微分同胚。证明仿射映射把测地线送到测地线，并由一点的值和微分唯一决定。
+\end{problem}
+\begin{proof}
+若 \(c\) 是测地线，则 \(\nabla_{\dot c}\dot c=0\)。仿射性给出
+\[
+\nabla_{(F\circ c)'}(F\circ c)'=F_*(\nabla_{\dot c}\dot c)=0,
+\]
+所以 \(F\circ c\) 是测地线。
+
+给定 \(F(p)\) 与 \(dF_p\)，任意近点可写为 \(\exp_p(v)\)。仿射映射保持测地线及其仿射参数，因此
+\[
+F(\exp_p v)=\exp_{F(p)}(dF_pv)
+\]
+在正规邻域内成立。连通情形下沿路径延拓，唯一性随之得到。
+\end{proof}
+
+\begin{problem}
+说明射影空间 \(\mathbb FP^n\) 的射影线性群作用为什么不能全部成为某个黎曼度量的等距群，而标准射影度量的等距群分别是 \(PO(n+1)\)、\(PU(n+1)\)。
+\end{problem}
+\begin{proof}
+若整个 \(PGL(n+1,\mathbb F)\) 都等距作用，则等距群会非紧；但紧黎曼流形的等距群是紧 Lie 群，矛盾。因此不存在这样的黎曼度量。
+
+标准射影度量来自单位球面的黎曼子沉浸。球面等距群 \(O(n+1)\) 或 \(U(n+1)\) 与对跖/相位作用相容，下传到射影空间。核是标量中心，所以得到
+\[
+\operatorname{Iso}(\mathbb RP^n)=PO(n+1),\qquad
+\operatorname{Iso}(\mathbb CP^n)=PU(n+1).
+\]
+\end{proof}
+
+\begin{problem}
+证明等距群在 compact-open 拓扑下局部紧，并且等距变换序列的点态收敛等价于紧集上一致收敛。
+\end{problem}
+\begin{proof}
+等距变换族在任意紧集上等度连续，因为它们都保持距离。若在一个稠密可数点集上点态相对紧，则 Arzela--Ascoli 定理给出紧集上一致收敛的子列。等距性又保证极限仍保持距离；在适当条件下极限仍是等距嵌入并由反向极限得到满射。
+
+点态收敛推出紧集上一致收敛，是因为等度连续把有限 \(\varepsilon\)-网格上的收敛推广到整个紧集。反向显然。局部紧性也由 Arzela--Ascoli 的相对紧性给出。
+\end{proof}
+
+\begin{problem}
+在指数正规坐标中说明
+\[
+\sqrt{\det(g_{ij})}=1-\frac16\operatorname{Ric}_{ij}x^ix^j+O(|x|^3),
+\]
+并推出小测地球体积展开
+\[
+\operatorname{vol}B(p,r)=\omega_nr^n\left(1-\frac{\operatorname{scal}(p)}{6(n+2)}r^2+O(r^3)\right).
+\]
+\end{problem}
+\begin{proof}
+正规坐标中
+\[
+g_{ij}=\delta_{ij}-\frac13R_{ikjl}x^kx^l+O(|x|^3).
+\]
+行列式平方根的一阶线性化为 \(\sqrt{\det(I+A)}=1+\frac12\operatorname{tr}A+O(A^2)\)。取迹得到
+\[
+\sqrt{\det g}=1-\frac16\operatorname{Ric}_{kl}x^kx^l+O(|x|^3).
+\]
+对欧氏球 \(|x|<r\) 积分，并用球对称性
+\[
+\int_{B_r}x^kx^l\,dx=\delta^{kl}\frac{\omega_nr^{n+2}}{n+2},
+\]
+得到体积展开。这个公式说明标量曲率控制小球体积相对欧氏球的二阶偏差。
+\end{proof}
+
+\chapter{曲线联络与非正曲率}
+
+\section{沿曲线的联络}
+
+\begin{exercise}
+设 \(c:I\to M\) 是一条光滑曲线，\(V\) 是沿 \(c\) 的向量场。证明沿曲线的协变导数满足局部坐标公式
+\[
+\frac{DV}{dt}=\frac{dV^k}{dt}\frac{\partial}{\partial x^k}+V^i\dot c^j\Gamma_{ij}^k\frac{\partial}{\partial x^k}.
+\]
+\end{exercise}
+\begin{proof}
+把 \(V\) 写成 \(V(t)=V^k(t)\partial_k\)，再把它看成由一族曲线给出的变分场。对分量求导时会出现两部分：一部分是系数 \(V^k\) 的普通导数，另一部分是基向量 \(\partial_k\) 本身随点变化带来的修正项。
+
+这个修正项正是联络系数 \(\Gamma_{ij}^k\) 产生的。把两部分合起来，就得到上式。它的意义很直观：沿着曲线走时，向量的变化既来自“长度和方向真的变了”，也来自“坐标基底本身在转动”。
+\end{proof}
+
+\begin{exercise}
+证明沿曲线的协变导数满足乘法法则
+\[
+\frac{d}{dt}g(V,W)=g\!\left(\frac{DV}{dt},W\right)+g\!\left(V,\frac{DW}{dt}\right).
+\]
+\end{exercise}
+\begin{proof}
+这其实就是度量与联络相容性的沿曲线版本。把 \(V,W\) 看成变分场，分别对 \(s,t\) 求导，再用混合偏导交换与 \(\nabla g=0\) 即可。
+
+几何上，这表示“平行移动不改变夹角和长度”。于是只要两个场都平行，它们之间的夹角就是常数。
+\end{proof}
+
+\begin{exercise}
+设 \(V\) 是沿曲线 \(c\) 的平行场。证明若 \(V(t_0)\) 给定，则这样的平行场存在且唯一。
+\end{exercise}
+\begin{proof}
+选取沿 \(c\) 的一组光滑标架 \(E_1,\dots,E_n\)，把未知场写成 \(V=\sum_i v^iE_i\)。平行条件 \(\frac{DV}{dt}=0\) 就变成一阶线性常微分方程组
+\[
+\dot v^j+\sum_i a_i^j(t)v^i=0.
+\]
+线性系统的初值问题存在唯一解，而且解可以沿整个区间延拓，所以给定初值 \(V(t_0)\) 后平行场唯一。
+\end{proof}
+
+\begin{exercise}
+设 \(c\) 是一条测地线，\(V\) 是沿 \(c\) 的平行场。证明 \(V\) 的长度和与 \(c\) 的夹角都保持不变。
+\end{exercise}
+\begin{proof}
+由上一题的乘法法则，
+\[
+\frac{d}{dt}g(V,V)=2g\!\left(\frac{DV}{dt},V\right)=0,
+\]
+所以长度不变。若再取 \(W=\dot c\)，因为测地线满足 \(\frac{D\dot c}{dt}=0\)，便有
+\[
+\frac{d}{dt}g(V,\dot c)=0.
+\]
+因此夹角也不变。
+\end{proof}
+
+\begin{exercise}
+证明若 \(J\) 是沿测地线 \(c\) 的 Jacobi 场，且 \(J(0)=0\)，那么当 \(t\dot c(0)\) 处于指数映射的非奇异区域内时，
+\[
+\operatorname{Hess}r(J(t),J(t))=g(\dot J(t),J(t)),
+\]
+其中 \(r(x)=d(p,x)\)。
+\end{exercise}
+\begin{proof}
+在 \(r\) 光滑的区域里，\(\nabla r\) 就是从 \(p\) 指向 \(x\) 的单位径向场。把 \(J\) 看成指数映射推前的变分场，Hessian 的定义给出
+\[
+\operatorname{Hess}r(J,J)=g(\nabla_J\nabla r,J).
+\]
+而径向场的协变导数沿 Jacobi 场正好由 \(\dot J\) 控制，所以右边化成 \(g(\dot J,J)\)。
+\end{proof}
+
+\begin{exercise}
+写出 Synge 二阶变分公式，并说明它为什么对理解测地线局部极小性有用。
+\end{exercise}
+\begin{proof}
+若 \(c_s\) 是一条经过测地线 \(c\) 的光滑变分，变分场为 \(V=\partial c_s/\partial s|_{s=0}\)，则
+\[
+\frac{d^2}{ds^2}E(c_s)\Big|_{s=0}
+=\int_a^b \left(\left|\frac{DV}{dt}\right|^2-g(R(V,\dot c)\dot c,V)\right)\,dt
+\]
+再加上端点项。若变分固定端点，端点项消失。
+
+这个公式的核心是：能量的二阶变化由“速度场有多弯”和“曲率把它压得多厉害”两项竞争决定。正曲率会倾向于让邻近曲线更短，非正曲率则倾向于让测地线稳定。
+\end{proof}
+
+\section{非正曲率}
+
+\begin{exercise}
+设 \((M,g)\) 完备且处处 \(\sec\le 0\)。证明若 \(\exp_p\) 没有临界点，则它是覆盖映射。
+\end{exercise}
+\begin{proof}
+把 \(T_pM\) 上的拉回度量记为 \(\tilde g\)。由于 \(\exp_p\) 是局部微分同胚，它变成了一个局部等距映射；而平直线从原点出发仍然是 \(\tilde g\)-测地线，所以 \((T_pM,\tilde g)\) 在原点处是测地完备的。
+
+由一般的覆盖判别定理，局部等距且完备就给出覆盖映射。因此 \(\exp_p\) 是覆盖映射。
+\end{proof}
+
+\begin{exercise}
+证明在 \(\sec\le 0\) 的完备流形中，任意从 \(p\) 到 \(q\) 的测地线都是能量泛函的局部极小点。
+\end{exercise}
+\begin{proof}
+沿一条测地线取固定端点的变分，二阶变分公式中的曲率项是
+\[
+-\,g(R(V,\dot c)\dot c,V).
+\]
+当 \(\sec\le 0\) 时，这一项非负，因此二阶变分非负。于是测地线在固定端点的变分里没有下降方向，也就是局部极小点。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备且 \(\sec\le 0\)。证明距离函数 \(r(x)=d(p,x)\) 在 \(M\setminus\{p\}\) 上光滑，并且
+\[
+\operatorname{Hess}\frac12 r^2\ge g.
+\]
+\end{exercise}
+\begin{proof}
+由前一题可知从 \(p\) 出发的最短段不会在中途失去局部极小性；又因为没有共轭点，指数映射在每条射线上都没有退化。于是距离函数在 \(p\) 外光滑。
+
+再把 Jacobi 场比较代进 \( \frac12 r^2 \) 的 Hessian 公式。非正曲率让 Jacobi 场的增长不慢于欧氏情形，所以二阶导至少和欧氏情形一样大，得到 \(\operatorname{Hess}\frac12 r^2\ge g\)。
+\end{proof}
+
+\begin{exercise}
+证明 Cartan 的固定点定理：若 \((M,g)\) 完备、单连通且 \(\sec\le 0\)，则任一有限阶等距变换都有不动点。
+\end{exercise}
+\begin{proof}
+取点 \(p\) 的轨道 \(p,Fp,\dots,F^{k-1}p\)。在非正曲率里，有限点集有唯一的最小包围球中心，记为 \(q\)。由于 \(F\) 保持轨道不变，所以也保持这个最小中心不变，于是 \(F(q)=q\)。
+
+直觉上，这和欧氏空间一样：把一个有限对称图形的“中心”取出来，它必须被对称性固定。
+\end{proof}
+
+\begin{exercise}
+证明在完备、单连通且 \(\sec\le 0\) 的流形中，基本群是无扭的。
+\end{exercise}
+\begin{proof}
+若基本群中有有限阶元素，则它对应于万能覆盖上的一个有限阶 deck transformation。上一题告诉我们这种变换必须有不动点。
+
+但 deck transformation 作为覆盖变换不可能有不动点，除非它是恒等变换。因此基本群中没有非平凡有限阶元素，即无扭。
+\end{proof}
+
+\begin{exercise}
+证明若 \(\sec\le 0\)，则改造距离函数 \(f_0(x)=\frac12 d(p,x)^2\) 满足 \(\operatorname{Hess} f_0\ge g\)，并由此推出三角形角和不超过 \(\pi\)。
+\end{exercise}
+\begin{proof}
+由 Jacobi 场比较，径向方向之外的所有二阶增长都至少像欧氏空间那样大，所以 \(\operatorname{Hess}f_0\ge g\)。这说明 \(f_0\circ c\) 沿任意测地线是凸的。
+
+把三角形的一边看成一个点到另一边的距离函数，凸性就迫使边界角满足比较不等式。于是三角形的角和不超过 \(\pi\)，正是非正曲率几何的基本特征之一。
+\end{proof}
+
+\begin{exercise}
+证明若 \(M\) 紧致且 \(\sec<0\)，则任何阿贝尔子群的基本群都是循环群。
+\end{exercise}
+\begin{proof}
+设有一个非平凡阿贝尔子群。把它看成覆盖空间上的 deck transformation 族。负曲率下每个非平凡元素都有轴，而且轴唯一。
+
+若两个 deck transformation 交换，那么它们的轴必须重合，否则会制造一个平行四边形式的角和矛盾。于是该阿贝尔群都保同一条轴，而沿这条轴的平移群只能是循环群。
+\end{proof}
+
+\begin{exercise}
+证明在 \(\sec\le 0\) 的流形中，凸性半径至少不小于注入半径的一半。
+\end{exercise}
+\begin{proof}
+在半个注入半径球内，指数映射仍是局部微分同胚，而且没有切迹点。由 \(\operatorname{Hess}\frac12 r^2\ge g\) 可知距离函数在这个球内是严格凸的。
+
+严格凸性意味着球内任意两点之间的最短段仍留在球内，所以这个球是测地凸的。于是凸性半径至少是注入半径的一半。
+\end{proof}
+\section{正曲率}
+
+\begin{problem}
+设 \((M,g)\) 满足 \(0<\sec\le k\)，并取一条单位速测地线 \(c\colon[0,l]\to M\)。
+证明：若 \(l>\pi/\sqrt{k}\)，则 \(c\) 不能在长度意义下局部极小。
+\end{problem}
+\begin{proof}
+取沿 \(c\) 的单位平行场 \(E\perp \dot c\)，令
+\[
+V(t)=\sin\!\Bigl(\frac{\pi t}{l}\Bigr)E(t).
+\]
+它在两端点消失，所以是端点固定的正规变分场。把它代入二阶变分公式，曲率项因为 \(\sec>0\) 而严格为正，因此当 \(l>\pi/\sqrt{k}\) 时二阶变分严格小于零。故 \(c\) 不是局部极小。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 完备且 \(0<\sec\le k\)。证明 \(M\) 紧，并且
+\[
+\operatorname{diam}(M)\le \frac{\pi}{\sqrt{k}}.
+\]
+\end{problem}
+\begin{proof}
+任意两点之间的最短测地线若长度大于 \(\pi/\sqrt{k}\)，就与上一题矛盾。所以任意两点距离都不超过 \(\pi/\sqrt{k}\)。
+于是直径有界，完备性再由 Hopf--Rinow 给出紧性。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 完备且 \(\operatorname{Ric}\ge (n-1)k>0\)。证明
+\[
+\operatorname{diam}(M)\le \frac{\pi}{\sqrt{k}},
+\]
+并且 \(\pi_1(M)\) 有限。
+\end{problem}
+\begin{proof}
+沿一条长度 \(l\) 的测地线取 \(n-1\) 个正交平行场
+\[
+V_i(t)=\sin\!\Bigl(\frac{\pi t}{l}\Bigr)E_i(t),\qquad i=2,\dots,n.
+\]
+把二阶变分加总后，曲率项汇总成 Ricci 项，所以当 \(l>\pi/\sqrt{k}\) 时总变分为负。故这样的最短测地线不存在。
+
+直径界与紧性同前。有限基本群则由普遍覆盖仍满足同样 Ricci 下界推出。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 紧致、可定向、偶维且 \(0<\sec\le 1\)。证明 \(M\) 单连通。
+\end{problem}
+\begin{proof}
+反设 \(M\) 不单连通，则取一条最短的非平凡闭测地线 \(c\)。偶维可定向性保证沿 \(c\) 的法向空间是奇维，因此法向平行运输留下一个闭的法向平行场 \(E\)。
+
+将 \(E\) 代入二阶变分公式，端点项抵消，而曲率项严格为负，所以 \(c\) 可以被缩短。这与 \(c\) 的最短性矛盾。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 紧致且 \(0<\sec\le 1\)，但不要求可定向。证明若 \(\dim M\) 为奇数，则 \(M\) 可定向。
+\end{problem}
+\begin{proof}
+若 \(M\) 不可定向，则存在一条改变定向的闭测地线。奇维时法向空间是偶维，而沿这条闭测地线的法向平行运输行列式为 \(-1\)，于是可找到闭法向平行场。
+
+再把这个平行场放进二阶变分公式，仍得到负值，矛盾。故奇维正曲率紧流形必可定向。
+\end{proof}
+
+\section{比较估计}
+
+\begin{problem}
+设 \(\beta_1,\beta_2\colon(0,b)\to\mathbb R\) 光滑且满足
+\[
+\beta_1'+\beta_1^2\le \beta_2'+\beta_2^2.
+\]
+证明
+\[
+\beta_2(t)-\beta_1(t)\le \limsup_{s\to 0}\bigl(\beta_2(s)-\beta_1(s)\bigr).
+\]
+\end{problem}
+\begin{proof}
+设 \(u=\beta_2-\beta_1\)，\(F(t)=\int^t(\beta_2+\beta_1)\)。则
+\[
+\frac{d}{dt}(u e^F)=\bigl(\beta_2'-\beta_1'+\beta_2^2-\beta_1^2\bigr)e^F\le 0.
+\]
+所以 \(u e^F\) 单调不增，从而 \(u(t)\) 不超过它在 \(0\) 附近的上极限。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 满足 \(k\le \sec\le K\)。在极坐标 \(g=dr^2+g_r\) 下证明
+\[
+\frac{\operatorname{sn}_0'(r)}{\operatorname{sn}_K(r)}\,g_r\le \operatorname{Hess}r\le \frac{\operatorname{sn}_0'(r)}{\operatorname{sn}_k(r)}\,g_r.
+\]
+\end{problem}
+\begin{proof}
+把 \(\operatorname{Hess}r\) 沿径向测地线写成 Riccati 型函数。上界曲率给出上比较，下界曲率给出下比较。
+
+上界用 Jacobi 场，设
+\[
+\alpha(t)=\frac{g(J',J)}{|J|^2},
+\]
+则 \(\alpha'+\alpha^2\le -K\)。下界用平行场 \(E\perp\dot c\)，设
+\[
+\beta(t)=\operatorname{Hess}r(E,E),
+\]
+则 \(\beta'+\beta^2\ge -k\)。把这两条一阶不等式分别套上比较原理即可。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 满足 \(0<\sec\le K\)。证明 \( \exp_p\colon B(0,\pi/\sqrt K)\to M \) 没有临界点。
+\end{problem}
+\begin{proof}
+若某条 Jacobi 场在 \(0<t<\pi/\sqrt K\) 处消失，那么它对应的比较函数会在到达 \(\pi/\sqrt K\) 之前回到零，这与上一题的比较结论矛盾。
+因此在 \(\pi/\sqrt K\) 以前没有共轭点，也就没有临界点。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 紧致且 \(0<\sec\le K\)。证明
+\[
+\operatorname{inj}(p)\le \min\left\{\frac{\pi}{\sqrt K},\ \frac12\,\ell_p\right\},
+\]
+其中 \(\ell_p\) 是以 \(p\) 为基点的最短测地环长度。
+\end{problem}
+\begin{proof}
+若注入半径小于共轭半径，则它由一条最短测地环实现，所以 \(\operatorname{inj}(p)\le \ell_p/2\)。
+另一方面，上一题排除了 \(\pi/\sqrt K\) 以前的共轭点，因此注入半径也不可能超过 \(\pi/\sqrt K\)。
+\end{proof}
+
+\section{正曲率再看}
+
+\begin{problem}
+设 \((M,g)\) 紧致、偶维、可定向且 \(0<\sec\le 1\)。证明
+\[
+\operatorname{inj}(M)\le \frac{\pi}{2}.
+\]
+\end{problem}
+\begin{proof}
+由前面的注入半径估计，\(\operatorname{inj}(M)\) 若小于 \(\pi/2\)，就由最短闭测地线实现。偶维可定向性又保证这条闭测地线有闭法向平行场。
+
+把它代入二阶变分公式，得到一条更短的附近曲线，矛盾。故只能有 \(\operatorname{inj}(M)\le \pi/2\)。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 紧致且 \(0<\sec\le 1\)。证明任意无固定点的有限阶等距变换在偶维时反定向，在奇维时保定向。
+\end{problem}
+\begin{proof}
+若定向行为相反，就能在对应的闭轨道上找到法向闭平行场，并由二阶变分构造更短的附近曲线。这与有限阶条件下的最短性矛盾。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 完备、单连通且 \(\sec\le 0\)。证明任意紧子群 \(G\subset \operatorname{Iso}(M,g)\) 有不动点。
+\end{problem}
+\begin{proof}
+令
+\[
+f(x)=\max_{g\in G} d(x,gx)^2.
+\]
+在非正曲率下，每个 \(x\mapsto d(x,gx)^2\) 都严格凸，所以 \(f\) 严格凸。紧性保证 \(f\) 取到唯一极小点，而 \(G\) 保持 \(f\) 不变，因此这个极小点就是共同不动点。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备且 \(\sec\le 0\)。证明距离函数 \(r(x)=d(p,x)\) 在 \(M\setminus\{p\}\) 上光滑，并且
+\[
+\operatorname{Hess}\frac12 r^2\ge g.
+\]
+\end{exercise}
+\begin{proof}
+非正曲率下没有共轭点，因此指数映射在每条径向线上都不退化。于是距离函数在 \(p\) 外光滑。
+
+再用 Jacobi 场比较可得径向外的 Hessian 至少和欧氏空间一样大，于是
+\[
+\operatorname{Hess}\frac12 r^2=dr\otimes dr+r\,\operatorname{Hess}r\ge g.
+\]
+\end{proof}
+
+\begin{exercise}
+设 \(F\colon M\to M\) 是有限阶等距变换，且 \(M\) 完备、单连通、\(\sec\le 0\)。证明 \(F\) 有不动点。
+\end{exercise}
+\begin{proof}
+把有限轨道的 \(L_\infty\)-中心当作候选点。距离平方函数在非正曲率下严格凸，因此这个中心唯一；而 \(F\) 保持轨道集合不变，所以也保持其唯一中心不变，于是不动点就出来了。
+\end{proof}
+
+\begin{exercise}
+设 \(r(x)=d(p,x)\)。证明在 \(\sec\le 0\) 的完备流形上，
+\[
+\operatorname{conv.rad}(M,g)=\frac12\operatorname{inj}(M,g).
+\]
+\end{exercise}
+\begin{proof}
+半径小于 \(\operatorname{inj}(M)/2\) 时，球内不存在两条竞争的最短测地线，因此球内距离函数是凸的；反过来，一旦超过这个半径，就会碰到 cut locus 的第一批障碍。
+所以凸性半径正好是注入半径的一半。
+\end{proof}
+\section{第六章原习题补遗}
+
+\begin{problem}
+证明 Frankel 定理的基本形式：正截面曲率流形中，若闭全测地子流形 \(A,B\) 满足 \(\dim A+\dim B\ge n\)，则 \(A\cap B\ne\varnothing\)。
+\end{problem}
+\begin{proof}
+反设 \(A,B\) 不相交。紧性或闭性保证存在从 \(A\) 到 \(B\) 的最短测地段 \(c\)，并且第一变分公式说明 \(c\) 在两端分别垂直于 \(A,B\)。
+
+维数条件给出一个非零平行场 \(V\) 沿 \(c\) 平行移动，使 \(V(0)\in T_{c(0)}A\)、\(V(1)\in T_{c(1)}B\)。因为 \(A,B\) 全测地，端点第二基本形式项为零。第二变分给出
+\[
+I(V,V)=\int_0^1\left(|\nabla_{\dot c}V|^2-g(R(V,\dot c)\dot c,V)\right)dt.
+\]
+平行场第一项为零，正截面曲率使第二项严格为负，所以 \(I(V,V)<0\)。这意味着可变短 \(A\) 到 \(B\) 的距离，矛盾。
+\end{proof}
+
+\begin{problem}
+推广 Preissmann 定理：紧负曲率流形的基本群中任意可解子群都循环。
+\end{problem}
+\begin{proof}
+负曲率紧流形的基本群无挠。若有非循环可解子群，可在其导出列中找到非平凡关系，化为两个 deck 变换 \(F,G\) 满足
+\[
+FG=G^kF,\qquad k\ne0.
+\]
+负曲率中每个非平凡 deck 变换有唯一轴线。若 \(c\) 是 \(G\) 的轴，则 \(F\circ c\) 是 \(FGF^{-1}=G^k\) 的轴。可是 \(G\) 与 \(G^k\) 有同一轴，唯一性迫使 \(F\) 保持这条轴。于是 \(F,G\) 在同一条测地线上作为平移作用，生成的子群为循环或至多阿贝尔一维型，与非循环可解构造矛盾。
+\end{proof}
+
+\begin{problem}
+设紧正曲率流形 \(M\) 上有限阶等距变换 \(F\) 无不动点。说明偶维时 \(F\) 必反向，奇维时 \(F\) 必保向。
+\end{problem}
+\begin{proof}
+这是 Synge 型思想。若 \(F\) 的取向行为与结论相反，则可在合适的路径空间中找从 \(p\) 到 \(F(p)\) 的最短测地段，并利用 \(F\) 的有限阶把端点条件闭合。正曲率下，沿这条测地线可构造满足端点条件的平行变分场，使第二变分为负，从而缩短该最短段，矛盾。
+
+维数与取向决定端点处可选平行场的奇偶性：偶维保向或奇维反向会强迫存在合适的非零变分场，因此不能无不动点。于是只剩题中两种可能。
+\end{proof}
+
+\begin{problem}
+定义测地线 \(c\) 上的指标型
+\[
+I(V,W)=\int_a^b\{g(V',W')-g(R(V,\dot c)\dot c,W)\}\,dt.
+\]
+证明若 \(J\) 是 Jacobi 场，则
+\[
+I(J,J)=g(J,J')\big|_a^b.
+\]
+\end{problem}
+\begin{proof}
+对第一项分部积分：
+\[
+\int g(J',J')dt=g(J,J')\big|_a^b-\int g(J,J'')dt.
+\]
+Jacobi 方程为
+\[
+J''+R(J,\dot c)\dot c=0.
+\]
+代入指标型，积分内部两项正好抵消，只剩边界项。这条公式是比较定理里把内部曲率信息转成端点信息的关键。
+\end{proof}
+
+\begin{problem}
+说明指标比较：若 \(\sec\ge k\)，且 \(J(0)=0\)，则 Jacobi 场的长度增长不超过模型空间中 \(\operatorname{sn}_k(t)\) 的增长。
+\end{problem}
+\begin{proof}
+取与 \(J(b)\) 同终点的比较场
+\[
+V(t)=\frac{\operatorname{sn}_k(t)}{\operatorname{sn}_k(b)}E(t),
+\]
+其中 \(E\) 平行且 \(E(b)=J(b)\)。无共轭点时，Jacobi 场在给定端点条件下最小化指标型。曲率下界 \(\sec\ge k\) 使真实指标型不大于模型指标型。由上一题
+\[
+I(J,J)=g(J(b),J'(b))
+\]
+得到长度对数导数比较，积分后即得 Rauch 型长度比较。动机是：曲率越正，测地线束越快聚焦，Jacobi 场越短。
+\end{proof}
+
+\begin{problem}
+设 \(M\) 完备、单连通且 \(\sec\le0\)，若紧群 \(G\subset\operatorname{Iso}(M)\) 作用于 \(M\)，证明 \(G\) 有公共不动点。
+\end{problem}
+\begin{proof}
+取任一点 \(p\)，其轨道 \(Gp\) 紧。考虑函数
+\[
+f(x)=\max_{q\in Gp} d(x,q)^2.
+\]
+Hadamard--Cartan 条件保证平方距离函数严格凸，且 \(f\) proper，因此 \(f\) 有唯一最小点 \(x_0\)。由于 \(Gp\) 在 \(G\) 作用下不变，\(f\) 也是 \(G\)-不变的。于是对任意 \(g\in G\)，\(g x_0\) 仍是最小点；唯一性给出 \(gx_0=x_0\)。
+\end{proof}
+
+\begin{problem}
+构造切丛 \(TM\) 上的 Sasaki 型度量，使投影 \(\pi\colon TM\to M\) 为黎曼子沉浸，且每条纤维带原来的欧氏度量。
+\end{problem}
+\begin{proof}
+Levi-Civita 联络给出水平分布：一条 \(TM\) 中的曲线 \((c(t),V(t))\) 水平，当且仅当 \(V(t)\) 是沿 \(c(t)\) 的平行场。于是
+\[
+T_{(p,v)}TM=\mathcal H_{(p,v)}\oplus \mathcal V_{(p,v)}.
+\]
+在水平部分用 \(d\pi\) 拉回 \(g_p\)，在竖直部分用纤维 \(T_pM\) 的内积，并令二者正交。这就是 Sasaki 型度量。按构造 \(d\pi\) 在水平空间上等距，纤维上的度量也正是原欧氏度量。
+\end{proof}
+
+\begin{problem}
+在正交标架丛 \(FM\) 上构造度量，使 \(\pi\colon FM\to M\) 为黎曼子沉浸，且纤维同构于 \(O(n)\) 并带标准双不变度量。
+\end{problem}
+\begin{proof}
+同样用 Levi-Civita 联络定义水平分布：沿 \(M\) 中曲线平行移动的正交标架给出 \(FM\) 中水平曲线。竖直方向是纤维 \(O(n)\) 的切空间，即 \(\mathfrak o(n)\)。在水平部分用 \(d\pi\) 拉回底空间度量，在竖直部分取 \(\mathfrak o(n)\) 上标准 \(-\operatorname{tr}(AB)\) 内积，并令水平与竖直正交。这样纤维等距于 \(O(n)\)，投影也是黎曼子沉浸。
+\end{proof}
+
+\chapter{Ricci 曲率比较}
+
+\section{体积比较}
+
+\begin{problem}
+设 \(r\) 是完备流形上一处光滑距离函数。证明
+\[
+\mathcal L_{\nabla r}g=2\operatorname{Hess}r,\qquad
+\nabla_{\nabla r}\Delta r+(\Delta r)^2-|{\operatorname{Hess}r}|^2=-\operatorname{Ric}(\nabla r,\nabla r).
+\]
+\end{problem}
+\begin{proof}
+第一式就是沿梯度流的度量变分公式。第二式对 \(\operatorname{Hess}r\) 取迹即可：把一个正交标架 \(E_i\) 沿 \(\nabla r\) 平行移动，逐项求和，就得到 \(\Delta r\) 和 \(|\operatorname{Hess}r|^2\) 的项，而曲率项合并成 \(\operatorname{Ric}(\nabla r,\nabla r)\)。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明对距离函数 \(r(x)=d(p,x)\) 有
+\[
+\Delta r\le (n-1)\frac{\operatorname{sn}_k'(r)}{\operatorname{sn}_k(r)},
+\qquad
+\Delta\bigl(\operatorname{sn}_k^{\,n-1}(r)\bigr)\le 0.
+\]
+\end{problem}
+\begin{proof}
+令 \(\beta=\Delta r/(n-1)\)。上一题给出 Riccati 型不等式
+\[
+\beta'+\beta^2\le -k.
+\]
+而比较函数 \(\operatorname{sn}_k'/\operatorname{sn}_k\) 正好满足同一个方程且在 \(r\to0\) 时有同样的主导项 \(1/r\)。于是用比较原理便得到第一式。第二式只是把第一式改写成乘上 \(\operatorname{sn}_k^{\,n-1}\) 后的散度形式。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明球体积满足
+\[
+\operatorname{vol} B(p,r)\le v(n,k,r),
+\]
+其中右边是常曲率空间中的球体积。
+\end{problem}
+\begin{proof}
+在极坐标里体积元写成 \(\rho(r,\theta)\,dr\,d\theta\)。由上一题可得
+\[
+\frac{d}{dr}\log \rho\le (n-1)\frac{\operatorname{sn}_k'}{\operatorname{sn}_k}.
+\]
+这说明 \(\rho/\operatorname{sn}_k^{\,n-1}\) 单调不增，再对球内积分就得到 Bishop 体积上界。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明相对体积比
+\[
+r\longmapsto \frac{\operatorname{vol}B(p,r)}{v(n,k,r)}
+\]
+单调不增，并且 \(r\to0\) 时趋于 \(1\)。
+\end{problem}
+\begin{proof}
+把体积写成极坐标积分后，分子分母都由同一个密度 \(\rho\) 与比较密度 \(\rho_k=\operatorname{sn}_k^{n-1}\) 控制。上一题实际上已经证明了 \(\rho/\rho_k\) 单调不增，所以积分比也单调不增。
+
+极限为 \(1\) 是因为在原点 \(\rho(r,\theta)=r^{n-1}+O(r^n)\)，而 \(\operatorname{sn}_k(r)=r+O(r^3)\)。
+\end{proof}
+
+\begin{problem}
+设 \(f,h\) 是 \(C^2\) 函数，且 \(f(p)=h(p)\) 并在 \(p\) 附近有 \(f\le h\)。证明
+\[
+\nabla f(p)=\nabla h(p),\qquad \operatorname{Hess}f_p\le \operatorname{Hess}h_p.
+\]
+\end{problem}
+\begin{proof}
+沿任意曲线 \(c\) 取一维化简。因为 \(f\circ c\le h\circ c\) 且在 \(0\) 处取等号，所以一维微积分直接给出一阶导相等、二阶导不等。让 \(c'(0)\) 遍历切空间，便得到结论。
+\end{proof}
+
+\begin{problem}
+设 \(f\) 连续，且在每一点都可被光滑支撑函数从上方支撑，并且这些支撑函数的 Hessian 非正。证明 \(f\) 是凸的；若 \(f\) 有局部极大点，则在该点附近常值。
+\end{problem}
+\begin{proof}
+这正是距离函数弱 Hessian 的语言。沿任意测地线，用支撑函数比较可知一维限制的二阶导非正，因此限制函数凸。凸函数在局部极大点附近只能是常值，所以局部极大立刻强迫局部平坦。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k>0\)。证明直径估计
+\[
+\operatorname{diam}(M)\le \frac{\pi}{\sqrt{k}}.
+\]
+\end{problem}
+\begin{proof}
+若两点距离超过 \(\pi/\sqrt{k}\)，则连接它们的最短测地线长度也超过 \(\pi/\sqrt{k}\)，而上一章的 Bonnet--Myers 型第二变分论证说明这样的测地线不可能极小。于是任意两点距离都不超过 \(\pi/\sqrt{k}\)。
+\end{proof}
+
+\begin{problem}
+设 \(f\) 是闭流形上满足 \(\Delta f=0\) 的光滑函数。证明 \(f\) 常值。
+\end{problem}
+\begin{proof}
+闭流形上 \(\int_M \Delta f=0\)。若 \(f\) 非常值，则在极大点附近 \(\Delta f\le 0\) 而在极小点附近 \(\Delta f\ge 0\)，再结合最大值原理，就只能推出 \(f\) 同时没有真正的正负变化，因此常值。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k>0\)。证明任何满足 \(\Delta u=-\lambda u\) 的非零函数都满足 \(\lambda\ge nk\)。
+\end{problem}
+\begin{proof}
+这是 Lichnerowicz 的估计。把 \(u\) 代入 Bochner 公式并积分，得到
+\[
+\int_M \bigl(|\operatorname{Hess}u|^2+\operatorname{Ric}(\nabla u,\nabla u)\bigr)
+=\int_M (\Delta u)^2.
+\]
+再用 \(|\operatorname{Hess}u|^2\ge (\Delta u)^2/n\) 和 \(\operatorname{Ric}\ge (n-1)k\) 即可推出 \(\lambda\ge nk\)。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k>0\)。若某个非零函数满足 \(\Delta u=-nk\,u\)，证明 \(\operatorname{Hess}u=-kug\)，并说明此时流形是标准球面。
+\end{problem}
+\begin{proof}
+等号情形迫使上一个问题中两处不等式都取等号，所以 \(\operatorname{Hess}u\) 必须是纯迹部分，即 \(-kug\)。这正是 Obata 定理的刚性条件，进一步推出流形是常曲率 \(k\) 的球面。
+\end{proof}
+
+\section{Ricci 曲率的应用}
+
+\begin{problem}
+设 \((M,g)\) 完备非紧且 \(\operatorname{Ric}\ge 0\)。证明对任意 \(p\in M\) 与 \(R>1\)，存在 \(x\) 使
+\[
+\operatorname{vol}B(p,1)\le C(n)\,\frac{\operatorname{vol}B(x,R+1)-\operatorname{vol}B(x,R-1)}{(R+1)^n-(R-1)^n}.
+\]
+\end{problem}
+\begin{proof}
+这是 Calabi--Yau 的想法：在大球里找一个“局部看起来最稀薄”的位置。把体积比单调性应用到以该点为中心的壳层，再用覆盖和平均值原理，就能把小球体积控制到大尺度壳层的增长上。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 完备非紧且 \(\operatorname{Ric}\ge 0\)。证明存在常数 \(C>0\) 使
+\[
+\operatorname{vol}B(p,R)\le CR^n.
+\]
+\end{problem}
+\begin{proof}
+由上一题对壳层体积的控制，反复把半径倍增即可得到多项式增长。非负 Ricci 保证体积比不增，因此不会出现比欧氏空间更快的增长。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧致且 \(\operatorname{Ric}\ge 0\)，并且某个切空间上 \(\operatorname{Ric}>0\)。证明 \(\pi_1(M)\) 有限。
+\end{problem}
+\begin{proof}
+若 \(\pi_1(M)\) 无限，则普遍覆盖中会出现一条欧氏因子或至少一个非紧方向。可分解定理表明这与某个切向量上严格正的 Ricci 下界矛盾。因此基本群只能有限。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧致且 \(\operatorname{Ric}\ge 0\)。证明
+\[
+b_1(M)\le \dim M,
+\]
+并说明当 \(b_1(M)=\dim M\) 时 \(M\) 是平直环面。
+\end{problem}
+\begin{proof}
+把 \(\pi_1(M)\) 的阿贝尔化与普遍覆盖的欧氏因子结合起来，第一 Betti 数至多等于欧氏因子的维数，后者不超过 \(\dim M\)。若 \(b_1=\dim M\)，则覆盖必须就是 \(\mathbb R^n\)，于是商是一个平直环面。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 完备、非紧且含有一条线，\(\operatorname{Ric}\ge 0\)。证明 \(M\) 等距分裂为 \(N\times \mathbb R\)。
+\end{problem}
+\begin{proof}
+构造两条来自无穷远的 Busemann 函数 \(b_+,b_-\)。它们满足 \(b_++b_-\le 0\)，且在线上等号成立。由于 Ricci 非负，Busemann 函数是次调和的，所以最小值原理迫使 \(b_++b_-\equiv 0\)。
+
+于是二者都是调和的距离函数，进一步推出 Hessian 消失，故存在一个线性距离坐标，从而 \(M\cong N\times \mathbb R\)。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧致且 \(\operatorname{Ric}\ge 0\)。证明若 \(M\) 是可缩的，则 \(M\) 平坦。
+\end{problem}
+\begin{proof}
+由结构定理，普遍覆盖分裂成 \(N\times \mathbb R^k\)。可缩性迫使 \(N\) 也可缩；但紧流形里唯一可缩的情形是点。因此普遍覆盖就是 \(\mathbb R^n\)，原流形只能是平坦流形。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧致且 \(\operatorname{Ric}\ge 0\)。若在某个切空间上 \(\operatorname{Ric}>0\)，证明 \(M\) 的普遍覆盖是紧的。
+\end{problem}
+\begin{proof}
+若普遍覆盖非紧，则分裂定理会产生一个欧氏因子。可是一旦存在某个方向的严格正 Ricci，欧氏因子就被排除。故普遍覆盖必须紧。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 是紧致齐性流形且 \(\operatorname{Ric}\ge 0\)。证明它分裂成一个紧致齐性因子与一个欧氏因子。
+\end{problem}
+\begin{proof}
+齐性保证欧氏分裂因子在等距群作用下保持不变。把普遍覆盖写成 \(N\times \mathbb R^k\) 后，等距群也随之分裂，于是 \(N\) 仍是齐性的。剩下的就是标准的分裂定理。
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明 \(\Delta r\le (n-1)\operatorname{sn}_k'/\operatorname{sn}_k\) 可以推出 \(\operatorname{vol}B(p,r)\le v(n,k,r)\)。
+\end{exercise}
+\begin{proof}
+体积元满足 \(\partial_r\rho=\rho\,\Delta r\)。把比较不等式代进去得到 \(\rho/\operatorname{sn}_k^{n-1}\) 单调不增。再对半径 \(r\) 积分，就直接得到球体积上界。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\operatorname{Ric}\ge (n-1)k>0\)。证明 \(\Delta u=-nk\,u\) 的非零解必须变号。
+\end{exercise}
+\begin{proof}
+若 \(u\) 不变号，则可取 \(|u|\) 作为测试函数，与积分分部和 Lichnerowicz 估计冲突。更直观地说，正下界 Ricci 下的第一非零特征值已经至少是 \(nk\)，所以一旦达到这个下界，函数必须像球面上的高度函数一样正负交替。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备非紧且 \(\operatorname{Ric}\ge 0\)。若存在一条线，证明 Busemann 函数是调和的。
+\end{exercise}
+\begin{proof}
+上一节已经把 \(b_++b_-\) 逼成恒等于 \(0\)。对 \(b_+\) 取支撑函数并用弱最大值原理，可知其 Laplacian 既不大于零也不小于零，所以是调和的。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\operatorname{Ric}\ge 0\)。证明如果 \(\pi_1(M)\) 无限，那么普遍覆盖中存在一条线。
+\end{exercise}
+\begin{proof}
+无限基本群给出无穷远处的平移序列。取一列点及其最短连线段，利用紧性与对角线抽取，可得到极限是一条双向无限的测地线，也就是线。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\operatorname{Ric}\ge 0\)。证明若 \(\pi_1(M)\) 无限，则某个有限覆盖含有欧氏因子。
+\end{exercise}
+\begin{proof}
+由上一题得到普遍覆盖中有线，再由分裂定理得到欧氏因子。把该分裂因子对应到有限指数子群，就得到某个有限覆盖的欧氏分裂。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\operatorname{Ric}\ge 0\)。证明若 \(b_1(M)=\dim M\)，则 \(M\) 是一个平直环面。
+\end{exercise}
+\begin{proof}
+这就是上面命题的极限情形：欧氏因子维数已经达到最大，只能是整块 \(\mathbb R^n\)。再除以格点作用，得到平直环面。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备非紧且 \(\operatorname{Ric}\ge 0\)。证明任意两条朝同一方向的射线都具有同一条 Busemann 函数的水平集。
+\end{exercise}
+\begin{proof}
+若两条射线是同向渐近的，则它们对应的 Busemann 函数只差一个常数。水平集因此相同；这就是 horosphere 的几何意义。
+\end{proof}
+\section{第七章原习题补遗}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge0\) 且 \(M\) 完备非紧。证明球体积至少线性增长。
+\end{problem}
+\begin{proof}
+Calabi--Yau 的思想是沿一条从 \(p\) 出发的射线取远点 \(x\)。环带 \(B(x,R+1)\setminus B(x,R-1)\) 必须覆盖一个固定大小的球 \(B(p,1)\) 的某种投影影子。Bishop--Gromov 比较控制环带体积与 \(B(p,2R)\) 的比例，从而得到
+\[
+\operatorname{vol}B(p,2R)\ge C R
+\]
+对大 \(R\) 成立。直观上，非负 Ricci 不允许非紧端的体积收缩得太快。
+\end{proof}
+
+\begin{problem}
+证明 Cheeger 型相对体积比较：若 \(\operatorname{Ric}\ge(n-1)k\)，则有限个球并的体积比
+\[
+r\mapsto \frac{\operatorname{vol}\bigl(\cup_iB(p_i,r)\bigr)}{v(n,k,r)}
+\]
+单调不增，并在 \(r\to0\) 时趋于点数。
+\end{problem}
+\begin{proof}
+对每个点 \(p_i\) 使用 Bishop--Gromov 的径向密度比较。并集的困难是重叠；处理方法是把每个 \(x\) 分配给到达它的某个最近中心 \(p_i\)，得到 Voronoi 型分割。每块都在对应中心的极坐标锥中，密度比仍单调。对各块积分并求和，得到并集体积比单调。小半径时各球互不相交，每个球体积与模型球体积比趋于 \(1\)，总极限为 \(k\) 个点的个数。
+\end{proof}
+
+\begin{problem}
+证明锥形区域的绝对体积比较：若 \(\operatorname{Ric}\ge(n-1)k\)，则对单位方向集合 \(\Omega\subset S_pM\)，
+\[
+\operatorname{vol}B_\Omega(p,R)\le \operatorname{vol}(\Omega)\int_0^R\operatorname{sn}_k(t)^{n-1}\,dt.
+\]
+\end{problem}
+\begin{proof}
+在极坐标中体积元为 \(J(t,\theta)\,dt\,d\theta\)。Laplacian/Riccati 比较给出
+\[
+\frac{J(t,\theta)}{\operatorname{sn}_k(t)^{n-1}}
+\]
+沿每条径向测地线单调不增，并且在 \(t\to0\) 时极限为 \(1\)。因此
+\[
+J(t,\theta)\le \operatorname{sn}_k(t)^{n-1}.
+\]
+对 \(\theta\in\Omega\)、\(0\le t\le R\) 积分即得结论。
+\end{proof}
+
+\begin{problem}
+证明若 \(\operatorname{Ric}\ge0\) 且某点的渐近体积比为欧氏值 \(1\)，则 \(M\) 等距于 \(\mathbb R^n\)。
+\end{problem}
+\begin{proof}
+Bishop--Gromov 比较说明
+\[
+\frac{\operatorname{vol}B(p,r)}{\omega_nr^n}
+\]
+单调不增，且 \(r\to0\) 时趋于 \(1\)。若无穷远极限也为 \(1\)，单调函数只能恒等于 \(1\)。等号情形的体积比较刚性给出每个球 \(B(p,r)\) 都与欧氏球等距；径向 Hessian 比较中也处处取等号，故所有径向截面曲率为零。让 \(r\) 任意，得到全局平坦且指数映射无切割，故 \(M\cong\mathbb R^n\) 等距。
+\end{proof}
+
+\begin{problem}
+证明 Lichnerowicz 估计：闭流形上若 \(\operatorname{Ric}\ge(n-1)k>0\)，则第一非零特征值 \(\lambda_1\ge nk\)。
+\end{problem}
+\begin{proof}
+设 \(\Delta u=-\lambda u\)，且 \(\int u=0\)。Bochner 公式给出
+\[
+\frac12\Delta|\nabla u|^2=|\operatorname{Hess}u|^2+\operatorname{Ric}(\nabla u,\nabla u)+g(\nabla u,\nabla\Delta u).
+\]
+积分后左边为零，且 \(g(\nabla u,\nabla\Delta u)=-\lambda|\nabla u|^2\)。又
+\[
+|\operatorname{Hess}u|^2\ge\frac1n(\Delta u)^2
+\]
+和 \(\int|\nabla u|^2=\lambda\int u^2\)。整理得到
+\[
+0\ge \frac{\lambda^2}{n}\int u^2+(n-1)k\lambda\int u^2-\lambda^2\int u^2,
+\]
+即 \(\lambda\ge nk\)。
+\end{proof}
+
+\begin{problem}
+说明 Obata 刚性：若上题等号成立，则 \(M\) 为常曲率 \(k\) 的球面。
+\end{problem}
+\begin{proof}
+等号要求 Hessian 不等式取等号，所以
+\[
+\operatorname{Hess}u=-ku\,g.
+\]
+沿任意单位速度测地线 \(c\)，函数 \(u(c(t))\) 满足
+\[
+(u\circ c)''=-k(u\circ c).
+\]
+这迫使从最大点出发的所有测地线具有与球面相同的径向函数结构。利用指数映射可把度量写成
+\[
+dr^2+\operatorname{sn}_k(r)^2g_{S^{n-1}},
+\]
+并由闭性得到全局球面。这里的动机是：达到最优特征值时，特征函数本身就是球面高度函数的抽象版本。
+\end{proof}
+
+\begin{problem}
+设紧连通 Lie 群 \(G\) 带双不变度量且 \(\operatorname{Ric}\ge0\)。说明有限覆盖形如 \(G_0\times T^k\)，其中 \(G_0\) 紧单连通。
+\end{problem}
+\begin{proof}
+双不变度量下 Ricci 非负。Cheeger--Gromoll 结构定理给出其万有覆盖分裂为 \(N\times\mathbb R^k\)，其中 \(N\) 紧。Lie 群结构把 \(\mathbb R^k\) 部分对应到阿贝尔方向，商掉格子后得到 torus 因子。剩余紧半单部分有有限中心；取有限覆盖即可写为紧单连通因子 \(G_0\) 与 \(T^k\) 的乘积。
+\end{proof}
+
+\begin{problem}
+若 \(M\) 在紧集外等距于 \(\mathbb R^n\) 的外部区域，且 \(\operatorname{Ric}\ge0\)，证明 \(M=\mathbb R^n\)。
+\end{problem}
+\begin{proof}
+紧集外欧氏意味着大球体积渐近等于 \(\omega_nr^n\)，所以渐近体积比为 \(1\)。由前面的刚性结论，完整流形必须全局等距于欧氏空间。直观地说，非负 Ricci 下不能把欧氏空间内部“鼓包”后仍保持无穷远处完全欧氏；体积比较会检测到这种鼓包并破坏等号。
+\end{proof}
+
+\begin{problem}
+证明若 \(\operatorname{Ric}\ge n-1\)，则 \(\operatorname{diam}M\le\pi\)。
+\end{problem}
+\begin{proof}
+若存在 \(p,q\) 满足 \(d(p,q)>\pi\)，考虑 excess 函数
+\[
+e_{p,q}(x)=d(p,x)+d(x,q)-d(p,q).
+\]
+在连接 \(p,q\) 的最短测地线中点附近，\(e_{p,q}\) 有局部最小。Laplacian 比较给出两个距离函数的 Laplacian 和在该点严格为负，因为两端距离和超过球面模型允许的长度。这与局部最小点应满足 \(\Delta e\ge0\) 矛盾。因此直径不超过 \(\pi\)。这就是 Bonnet--Myers 直径估计的 excess 函数证明。
+\end{proof}
+
+\chapter{Killing场}
+
+\section{一般性质}
+
+\begin{problem}
+证明：\(X\) 是 Killing 场，当且仅当 \(\mathcal L_X g=0\)。
+\end{problem}
+\begin{proof}
+设 \(F_t\) 为 \(X\) 的局部流。若 \(F_t\) 保持度量，则
+\[
+(\mathcal L_Xg)(v,w)=\left.\frac{d}{dt}\right|_{t=0}g(DF_t(v),DF_t(w))=0.
+\]
+反过来，若 \(\mathcal L_Xg=0\)，上式说明 \(t\mapsto g(DF_t(v),DF_t(w))\) 恒定，而 \(F_0=\mathrm{id}\)，故流保持度量。
+\end{proof}
+
+\begin{problem}
+证明：\(X\) 是 Killing 场当且仅当 \(\nabla X\) 斜对称。
+\end{problem}
+\begin{proof}
+记 \(X^\flat=g(X,\cdot)\)。标准恒等式
+\[
+dX^\flat(V,W)+(\mathcal L_Xg)(V,W)=2g(\nabla_VX,W)
+\]
+表明 \(\mathcal L_Xg=0\) 等价于 \(g(\nabla_VX,W)=-g(V,\nabla_WX)\)。
+\end{proof}
+
+\begin{problem}
+若 \(X\) 为 Killing 场，证明
+\[
+\nabla_V\nabla_WX=-R(X,V)W.
+\]
+\end{problem}
+\begin{proof}
+由 \(\mathcal L_X\nabla=0\) 与曲率定义
+\[
+R(X,V)W=\nabla_X\nabla_VW-\nabla_V\nabla_XW-\nabla_{[X,V]}W
+\]
+直接整理即可。
+\end{proof}
+
+\begin{problem}
+证明 Killing 场 \(X\) 在一点 \(p\) 由 \(X_p\) 与 \((\nabla X)_p\) 唯一决定，并推出
+\(\dim\mathfrak{iso}(M,g)\le n(n+1)/2\)。
+\end{problem}
+\begin{proof}
+若 \(X_p=0\) 且 \((\nabla X)_p=0\)，则沿任意测地线 \(X\) 是 Jacobi 场，初值全零，所以 \(X\) 在局部恒零。连通性推出全零。于是映射
+\[
+X\mapsto (X_p,(\nabla X)_p)\in T_pM\oplus\mathfrak{so}(T_pM)
+\]
+单射，给出维数上界。
+\end{proof}
+
+\begin{problem}
+证明零点集是若干个全测地子流形的并，且每个分支余维为偶数。
+\end{problem}
+\begin{proof}
+Killing 场流是等距变换，其固定点集全测地。若 \(p\) 为零点，则零点集在 \(p\) 的切空间是 \(\ker(\nabla X)_p\)。而 \((\nabla X)_p\) 斜对称，核空间的余维必偶数。
+\end{proof}
+
+\section{负 Ricci 曲率}
+
+\begin{problem}
+设 \(X\) 是 Killing 场，\(f=\frac12|X|^2\)。证明
+\[
+\Delta f=|\nabla X|^2-\operatorname{Ric}(X,X).
+\]
+\end{problem}
+\begin{proof}
+由 \(f=\frac12g(X,X)\) 和 Killing 方程得 \(\nabla f=-\nabla_XX\)。再对一次求导并取迹，便得到 Bochner 型公式。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)。证明每个 Killing 场平行；若 \(\operatorname{Ric}<0\)，则无非零 Killing 场。
+\end{problem}
+\begin{proof}
+由上一题 \(\Delta f\ge 0\)。紧流形上最大值原理推出 \(f\) 常数，所以 \(\nabla X\equiv 0\)。若 \(\operatorname{Ric}<0\)，则 \(f\) 若非零会使右端严格为正，矛盾。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧、\(\operatorname{Ric}\ge 0\)。证明 \(\dim\operatorname{Iso}(M,g)\le \dim M\)，且若 \(\operatorname{Ric}<0\) 则 \(\operatorname{Iso}(M,g)\) 有限。
+\end{problem}
+\begin{proof}
+平行 Killing 场由一点值唯一决定，因此 \(\mathfrak{iso}(M,g)\hookrightarrow T_pM\)。若 \(\operatorname{Ric}<0\)，则没有非零 Killing 场，故恒等分支平凡，紧李群的离散子群有限。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)，并且 \(k=\dim\mathfrak{iso}(M,g)\)。证明普遍覆盖等距分裂为 \(\widetilde M\cong \mathbb R^k\times N\)。
+\end{problem}
+\begin{proof}
+在 \(\widetilde M\) 上有 \(k\) 个线性无关平行向量场，故至少得到一个 \(\mathbb R\)-因子。反复分裂 \(k\) 次，就得到 \(\mathbb R^k\times N\)。
+\end{proof}
+
+\begin{problem}
+证明：若紧齐性流形 \((M,g)\) 满足 \(\operatorname{Ric}\ge 0\)，则 \(M\) 平坦。
+\end{problem}
+\begin{proof}
+齐性保证每个切向量都是某个 Killing 场在一点的值，而这些 Killing 场都平行。于是曲率对一组平行标架处处为零，故 \(M\) 平坦。
+\end{proof}
+
+\section{正曲率}
+
+\begin{problem}
+设 \((M,g)\) 为偶数维紧流形且 \(\sec>0\)。证明任意 Killing 场都有零点。
+\end{problem}
+\begin{proof}
+若 \(X\) 无零点，令 \(f=\frac12|X|^2\)，则 \(f\) 在某点取正最小值。由
+\[
+\operatorname{Hess}f(V,V)=|\nabla_VX|^2-R(V,X,X,V)
+\]
+知若 \(V\) 选在 \((\nabla X)_p\) 的核方向且与 \(X_p\) 不平行，则 \(\operatorname{Hess}f(V,V)<0\)，与最小点矛盾。
+\end{proof}
+
+\begin{problem}
+证明：若 \(X\) 是紧流形上的 Killing 场，零点集分支为 \(N_i\)，则
+\[
+\chi(M)=\sum_i\chi(N_i).
+\]
+\end{problem}
+\begin{proof}
+这是 Poincaré-Hopf 公式在等距流下的版本。零点集分支的管状邻域边界与向量场相切，故可把 Euler 示性数分解到各分支上。
+\end{proof}
+
+\begin{problem}
+证明：若 \(M^6\) 紧且 \(\sec>0\) 并且存在 Killing 场，则 \(\chi(M)>0\).
+\end{problem}
+\begin{proof}
+由第一题，零点集非空。每个分支都是偶余维全测地子流形，维数只能是 \(0,2,4,6\)。结合正曲率下这些低维分支的 Euler 示性数为正，便得 \(\chi(M)>0\)。
+\end{proof}
+
+\begin{problem}
+设 \(X,Y\) 是交换的 Killing 场。证明它们在某点线性相关。
+\end{problem}
+\begin{proof}
+取
+\[
+f=\frac12|X|^2-\frac{g(X,Y)^2}{2|Y|^2}.
+\]
+若 \(f\) 处处正，则在最小点处对与 \(X,Y\) 正交的方向计算 Hessian，可由正曲率得出负值，矛盾。因此 \(f\) 必在某点为零，即 \(X,Y\) 线性相关。
+\end{proof}
+
+\begin{problem}
+设 \(N\) 是某个 Killing 场零点集的分支，余维为 \(2k\)。说明 \(N\hookrightarrow M\) 至少 \((n-2k+2)\)-连通。
+\end{problem}
+\begin{proof}
+沿垂直于 \(N\) 的测地线构造修正的 Jacobi 场，并用压缩 Killing 场的技巧控制第二变分。负方向数不超过 \(2k-2\)，于是得到所需连通度。
+\end{proof}
+
+\begin{problem}
+设紧正曲率 \(n\)-流形 \(M\) 的对称秩 \(k\ge n/2\)。证明 \(M\) 的拓扑类型只能是球面、\(\mathbb CP^m\) 或球面的循环商。
+\end{problem}
+\begin{proof}
+取最大阿贝尔子代数 \(a\subset\mathfrak{iso}(M,g)\)。若某个零点分支余维不为 2，则可沿极大分支继续下降维数，直到得到低维全测地子流形，再用前面的零点结构和连通性原理排除剩余可能。于是只剩下标准模型。
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+说明定理 8.1.6 在非完备流形上不一定成立。
+\end{exercise}
+\begin{proof}
+非完备时，Killing 场的局部流可能不能延拓为全时流，因此“局部一参数等距群”与“全局李群作用”不再等价。开球中的平移向量场就是典型例子。
+\end{proof}
+
+\begin{exercise}
+设 \(X\) 的零点集有分支 \(N\)。证明对切于 \(N\) 的向量场 \(V\)，有 \(\nabla_VX=0\)。
+\end{exercise}
+\begin{proof}
+因为在 \(N\) 上 \(X\equiv 0\)，沿 \(N\) 的任意切方向求导都得到零。
+\end{proof}
+
+\begin{exercise}
+证明：坐标向量场 \(\partial_k\) 是 Killing 场，当且仅当 \(\partial_k g_{ij}=0\)。
+\end{exercise}
+\begin{proof}
+\(\mathcal L_{\partial_k}g\) 的分量正是 \(\partial_k g_{ij}\)。所以结论直接等价。
+\end{proof}
+
+\begin{exercise}
+若 \(X\) 为 Killing 场且 \(N\subset M\) 为子流形：
+(1) 若 \(X\) 切于 \(N\)，则 \(X|_N\) 是 \(N\) 上的 Killing 场；
+(2) 若 \(N\) 全测地，则 \(X\) 在 \(N\) 上的切向投影也是 Killing 场。
+\end{exercise}
+\begin{proof}
+(1) \(X\) 的流保持 \(N\)，也保持诱导度量。  
+(2) 全测地保证切向投影不会引入第二基本形式项，因此仍满足 \(\mathcal L_Xg_N=0\)。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备，\(X\) 是 Killing 场。证明 \(X\) 完全。
+\end{exercise}
+\begin{proof}
+Killing 场的流给出测地线变分；完备性保证测地线可全时延拓，所以积分曲线也可全时延拓。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 紧、\(\dim\mathfrak{iso}(M,g)=n\)、\(\operatorname{Ric}\ge 0\)。证明 \(M\) 平坦，且 \(\pi_1(M)\cong\mathbb Z^n\)。
+\end{exercise}
+\begin{proof}
+由维数假设，\(M\) 上有 \(n\) 个线性无关平行场，故普遍覆盖等距于 \(\mathbb R^n\)。覆盖变换保持平行标架，因此只可能是平移，基本群就是格子。
+\end{proof}
+
+\begin{exercise}
+证明 \(\operatorname{Iso}(\mathbb R^n)\cong \mathbb R^n\rtimes O(n)\)，并说明 \(\mathfrak{iso}(\mathbb R^n)\) 可用 \(\Lambda^2W\) 描述，其中 \(W=\operatorname{span}_{\mathbb R}\{1,x^1,\dots,x^n\}\)。
+\end{exercise}
+\begin{proof}
+欧氏等距变换必为“正交变换加平移”。把 \(1\) 视为平移方向，把 \(x^i\) 视为线性方向，则 \(u\wedge v\) 正好统一表示平移与旋转生成元。
+\end{proof}
+
+\begin{exercise}
+把上题推广到 \(\mathbb S^{n-1}\)、\(\mathbb R^{p,q}\) 和 \(\mathbb H^{n-1}\)。
+\end{exercise}
+\begin{proof}
+球面上的 Killing 场来自嵌入欧氏空间中的斜对称线性变换；伪欧氏空间与双曲空间同理，只需把内积改为相应的伪内积并限制到适当的二次曲面上。
+\end{proof}
+
+\begin{exercise}
+设 \(t_p=\{X_p:X\in\mathfrak{iso}(M,g)\}\)。说明它在开集上给出可积分布，并证明完备情形下叶是齐性的。
+\end{exercise}
+\begin{proof}
+Killing 场对李括号封闭，所以轨道分布满足 Frobenius 条件；维数达到最大值的点构成开集。完备时等距群流全时存在，因此叶正是等距群轨道，故齐性。
+\end{proof}
+
+\begin{exercise}
+设 \(a\subset\mathfrak{iso}(M,g)\) 为对应环面群的阿贝尔子代数，令 \(p\subset a\) 为生成圆周作用的元素。证明 \(p\) 是 \(\mathbb Q\)-向量空间，且 \(\dim_{\mathbb Q}p=\dim_{\mathbb R}a\)。
+\end{exercise}
+\begin{proof}
+在环面 \(T^k\cong \mathbb R^k/\mathbb Z^k\) 中，闭的一参数子群对应有理斜率。因而生成圆周作用的方向正是有理方向，张成一个 \(\mathbb Q\)-向量空间，其有理维数等于实维数。
+\end{proof}
+
+\begin{exercise}
+设 \(X,Y\) 是 Killing 场。给出 \(g(X,Y)\) 的拉普拉斯公式。
+\end{exercise}
+\begin{proof}
+直接计算得
+\[
+\Delta g(X,Y)=2\langle\nabla X,\nabla Y\rangle-2\operatorname{Ric}(X,Y).
+\]
+这是将 Bochner 公式应用于向量场对的结果。
+\end{proof}
+
+\begin{exercise}
+证明：若 \(X\) 是仿射向量场，则 \(\operatorname{tr}\nabla^2X=-\operatorname{Ric}(X)\)，且闭流形上的仿射场必为 Killing 场。
+\end{exercise}
+\begin{proof}
+仿射场保持联络，所以二阶导数完全由曲率给出，迹化后即得公式。闭流形上再用散度积分为零，可知散度常数只能为零，从而仿射场满足 Killing 刻画。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 紧正曲率，\(a\subset\mathfrak{iso}(M,g)\) 为阿贝尔子代数。
+(1) 证明 \(\dim a\le n/2\)。
+(2) 说明球面与复射影空间达到极大对称秩。
+(3) 说明平坦环面 \(T^n\) 的对称秩为 \(n\)。
+\end{exercise}
+\begin{proof}
+(1) 若 \(\dim a>n/2\)，则交换 Killing 场的零点集余维和连通性原理会产生矛盾。  
+(2) 标准旋转给出极大交换 Killing 场。  
+(3) 平移场两两对易，维数恰为 \(n\)。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 紧正曲率且对称秩满足较强下界。说明其 Betti 数受限，并概括为什么这能推出球面或复射影空间型结论。
+\end{exercise}
+\begin{proof}
+核心是把高对称性递归地限制到极大零点流形，再借连通性原理把同调信息从低维传回高维。这样得到奇数 Betti 数消失，甚至更高次数也受限，最后只能落在球面型或 \(\mathbb CP^m\) 型。
+\end{proof}
+
+\begin{exercise}
+设 \(\widetilde M\to M\) 是普遍覆盖，\(\Gamma=\pi_1(M)\) 作为等距群作用在 \(\widetilde M\) 上。证明
+\[
+\mathfrak{iso}(M,g)\cong \{X\in\mathfrak{iso}(\widetilde M): GX=XG\ \forall G\in\Gamma\}
+\]
+并说明 \(\operatorname{Iso}(M,g)\cong N(\Gamma)/\Gamma\)。
+\end{exercise}
+\begin{proof}
+下降到商空间的 Killing 场必须被所有 deck 变换保持，故正好是中央化子中的不变场。等距变换在普遍覆盖上提升后必把 \(\Gamma\) 共轭到 \(\Gamma\)，所以给出正规化子模掉 \(\Gamma\) 的商。
+\end{proof}
+\chapter{Bochner技术}
+
+\section{Hodge理论}
+
+\begin{problem}
+设 \(M\) 为连通紧可定向流形。证明 \(H^0(M)\cong \mathbb R\)，且 \(H^n(M)\cong \mathbb R\)。
+\end{problem}
+\begin{proof}
+闭 0-形式就是常数函数，所以 \(H^0(M)\cong \mathbb R\)。若 \(M\) 紧且可定向，则顶次同调由体积形式生成，因此 \(H^n(M)\cong \mathbb R\)。
+\end{proof}
+
+\begin{problem}
+定义余微分 \(\delta=d^*\) 与 Hodge Laplacian \(\Delta=d\delta+\delta d\)。证明 \(\Delta\omega=0\) 当且仅当 \(d\omega=0\) 且 \(\delta\omega=0\)。
+\end{problem}
+\begin{proof}
+内积计算给出
+\[
+(\Delta\omega,\omega)=(d\omega,d\omega)+(\delta\omega,\delta\omega).
+\]
+若 \(\Delta\omega=0\)，右边为零，所以两项都为零；反过来显然成立。
+\end{proof}
+
+\begin{problem}
+证明 Hodge 定理：每个 de Rham 上同调类都有唯一调和代表。
+\end{problem}
+\begin{proof}
+由 \(\Delta\) 的自伴性与椭圆理论，有正交分解
+\[
+\Omega^k(M)=\operatorname{im}\Delta\oplus\ker\Delta.
+\]
+闭形式 \(\omega\) 写成 \(\omega=d\delta\eta+\delta d\eta+h\)，其中 \(h\) 调和，则 \(\omega-h\) 精确，所以 \([\omega]=[h]\)。唯一性由“调和且精确则为零”得到。
+\end{proof}
+
+\section{1-形式}
+
+\begin{problem}
+设 \(\omega\) 是调和 1-形式，\(X\) 为其对偶向量场。证明 \(\nabla X\) 对称，且 \(\operatorname{div}X=0\)。
+\end{problem}
+\begin{proof}
+\(d\omega=0\) 正是 \(\nabla X\) 的反对称部分为零；\(\delta\omega=0\) 正是 \(\operatorname{div}X=0\)。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)。证明每个调和 1-形式都是平行的。
+\end{problem}
+\begin{proof}
+对对偶向量场 \(X\) 用 Bochner 公式：
+\[
+0=\Delta\frac12|X|^2=|\nabla X|^2+\operatorname{Ric}(X,X).
+\]
+右端非负，因此两项都只能为零，故 \(\nabla X=0\)。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)。证明 \(b_1(M)\le \dim M\)，且若取等号则 \(M\) 是平坦环面。
+\end{problem}
+\begin{proof}
+调和 1-形式都平行，因此在一点的值给出注入 \(H^1(M)\hookrightarrow T_p^*M\)，故 \(b_1\le n\)。若等号成立，则得到 \(n\) 个线性无关的平行向量场，普遍覆盖平坦；基本群只能是满秩格子，所以 \(M\) 是平坦环面。
+\end{proof}
+
+\section{估计定理}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明 \(\Delta r\le (n-1)\operatorname{sn}_k'(r)/\operatorname{sn}_k(r)\)。
+\end{problem}
+\begin{proof}
+记 \(\beta=\Delta r/(n-1)\)。由 Riccati 型比较可得 \(\beta'+\beta^2\le -k\)。模型函数 \(\operatorname{sn}_k'/\operatorname{sn}_k\) 满足同一方程且在 \(r\to0\) 时主导项是 \(1/r\)，比较原理即得结论。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k\)。证明
+\[
+r\mapsto \frac{\operatorname{vol}B(p,r)}{v(n,k,r)}
+\]
+单调不增，且 \(r\to0\) 时趋于 \(1\)。
+\end{problem}
+\begin{proof}
+极坐标下体积元写成 \(\rho(r,\theta)\,dr\,d\theta\)。上题给出 \(\partial_r\log\rho\le (n-1)\operatorname{sn}_k'/\operatorname{sn}_k\)，所以 \(\rho/\operatorname{sn}_k^{n-1}\) 单调不增。积分后即得体积比单调；原点附近 \(\rho\sim r^{n-1}\)、\(\operatorname{sn}_k\sim r\)，故极限为 1。
+\end{proof}
+
+\begin{problem}
+设 \(f,h\in C^2\)，且 \(f\le h\) 于 \(p\) 附近并在 \(p\) 取等。证明 \(\nabla f(p)=\nabla h(p)\)，且 \(\operatorname{Hess}f_p\le \operatorname{Hess}h_p\)。
+\end{problem}
+\begin{proof}
+沿任意曲线 \(c\) 取一维化简，得到 \(f\circ c\le h\circ c\) 且在 \(0\) 取等。用一元微积分即得一阶导相等、二阶导不等；让 \(c'(0)\) 遍历切空间就完成证明。
+\end{proof}
+
+\begin{problem}
+设 \(f\) 连续，且每点都可被光滑支撑函数从上方支撑，并且这些支撑函数的 Hessian 非正。证明 \(f\) 是凸的；若 \(f\) 有局部极大点，则该点附近 \(f\) 为常数。
+\end{problem}
+\begin{proof}
+这就是弱 Hessian 非正的语言。沿任意测地线把问题化成一元函数，支撑函数比较给出二阶导非负，所以函数凸。凸函数若有局部极大，只能在附近常值。
+\end{proof}
+
+\begin{problem}
+设 \(\operatorname{Ric}\ge (n-1)k>0\)。证明 \(\operatorname{diam}(M)\le \pi/\sqrt{k}\)。
+\end{problem}
+\begin{proof}
+若两点距离大于 \(\pi/\sqrt{k}\)，则对应最短测地线在第二变分中会比模型空间更不稳定，和上一题的 Hessian 比较矛盾。因此直径不超过 \(\pi/\sqrt{k}\)。
+\end{proof}
+
+\section{一般的Bochner技术}
+
+\begin{problem}
+证明 Hodge Laplacian 满足 Weitzenb\"ock 公式
+\[
+\Delta\omega=(d\delta+\delta d)\omega=\nabla^*\nabla\omega+\operatorname{Ric}(\omega)
+\]
+（这里 \(\operatorname{Ric}(\omega)\) 记为书中的曲率项）。
+\end{problem}
+\begin{proof}
+把 \(\delta\) 和 \(d\) 的局部表达式展开，分别计算 \(d\delta\omega\) 与 \(\delta d\omega\)，然后在正规标架下整理二阶项和一阶项。二阶项合并成粗拉普拉斯 \(\nabla^*\nabla\)，剩余的一阶曲率项正是 \(\operatorname{Ric}(\omega)\)。这就是 Weitzenb\"ock 公式。
+\end{proof}
+
+\begin{problem}
+设 \(R\) 为曲率张量。证明它满足一个适当对称化后的 Lichnerowicz 拉普拉斯公式，并说明第二 Bianchi 恒等式在证明中的作用。
+\end{problem}
+\begin{proof}
+把 \((0,4)\)-曲率张量在正规标架下反复求导，利用第二 Bianchi 恒等式把三阶导数中的交换误差改写成曲率作用项。再利用 \(R\) 在成对指标上的对称性，对称化后得到书中的公式。第二 Bianchi 恒等式正是把“导数的导数”改写成“曲率乘曲率”的关键。
+\end{proof}
+
+\begin{problem}
+设 \(h\) 是对称 \((0,2)\)-张量。证明
+\[
+\nabla^*\nabla h+\frac12\operatorname{Ric}(h)
+\]
+可由 \(\nabla^*\nabla\) 与 \(dh\) 的组合表达，并给出 Codazzi 张量与调和张量的关系。
+\end{problem}
+\begin{proof}
+把 \(h\) 视作 \((1,1)\)-张量再计算 \(dh(X,Y,Z)\)，可把 \(\nabla^*\nabla h\) 的各项整理成“粗拉普拉斯 + 外导数 + 曲率作用”的形式。若 \(dh=0\)，则 \(h\) 是 Codazzi 张量；若再加上散度为零，就正是调和张量。常迹条件把散度与迹联系起来，因此“Codazzi + 常迹”等价于调和。
+\end{proof}
+
+\begin{problem}
+证明：若曲率算子非负，则任何调和形式都是平行；若曲率算子正，则唯一平行 \(l\)-形式只可能有 \(l=0,n\)。
+\end{problem}
+\begin{proof}
+由 Weitzenb\"ock 公式，
+\[
+0=\langle \Delta\omega,\omega\rangle=|\nabla\omega|^2+\langle \operatorname{Ric}(\omega),\omega\rangle.
+\]
+曲率算子非负时右端非负，所以只能都为零，故 \(\nabla\omega=0\)。若曲率算子正，则第二项严格正，除非 \(\omega\) 落在最平凡的表示中；对形式而言这只发生在顶次和零次。
+\end{proof}
+
+\begin{problem}
+证明：若闭流形上曲率算子正，则其曲率必为常数。
+\end{problem}
+\begin{proof}
+曲率张量本身满足上一题型的 Lichnerowicz 公式，因此在正曲率算子下它必须平行。若 \(R\) 平行，则任意点的曲率由同一代数模型决定；再利用正曲率算子对切平面的作用可知所有二维截面曲率一致，于是曲率常数。
+\end{proof}
+
+\begin{problem}
+设 \(h\) 为对称 \((0,2)\)-张量，令 \(H\) 为对应的 \((1,1)\)-张量。证明
+\[
+\operatorname{Ric}(h)=0\iff h=cg
+\]
+在适当的曲率正性假设下成立。
+\end{problem}
+\begin{proof}
+把 \(h\) 复化并对角化，曲率项可写成若干复杂截面曲率的加权和。若这些曲率非负，则 \(g(\operatorname{Ric}(h),h)\ge 0\)；若又取零，便迫使每个本征方向上的加权项都为零，最后只能是标量倍数 \(cg\)。
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+设 \((M,g)\) 紧且 \(b_1(M)=k\)。若 \(\operatorname{Ric}\ge 0\)，证明普遍覆盖分裂为 \(\widetilde M\cong N\times\mathbb R^k\)。
+\end{exercise}
+\begin{proof}
+由前面的结论，\(k\) 个线性无关调和 1-形式都平行，因此给出 \(k\) 个线性无关的平行向量场。逐个分裂这些平行方向，就得到 \(\mathbb R^k\) 因子。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)。证明若 \(M\) 不平坦，则 \(b_1(M)<\dim M\)。
+\end{exercise}
+\begin{proof}
+若 \(b_1(M)=n\)，则有 \(n\) 个线性无关平行向量场，推出普遍覆盖平坦，从而 \(M\) 也平坦。故非平坦时只能严格小于 \(n\)。
+\end{proof}
+
+\begin{exercise}
+证明：若 \(d\omega=0\) 且 \(\delta\omega=0\)，则 \(\omega\) 调和；反过来，若 \(\omega\) 调和，则 \(d\omega=\delta\omega=0\)。
+\end{exercise}
+\begin{proof}
+这就是 \(\Delta=d\delta+\delta d\) 的定义和内积恒等式。把 \((\Delta\omega,\omega)\) 展开即可。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 紧且 \(\operatorname{Ric}\ge 0\)。证明每个调和 1-形式都是平行，从而其零点集要么为空要么全体。
+\end{exercise}
+\begin{proof}
+由 Bochner 公式，\(\Delta \frac12|X|^2=|\nabla X|^2+\operatorname{Ric}(X,X)\ge 0\)。最大值原理迫使 \(\nabla X=0\)。平行场的长度常数，所以零点集要么空要么全体。
+\end{proof}
+
+\begin{exercise}
+设 \(L\) 为 Lichnerowicz Laplacian。说明其光谱是离散的，且每个特征空间有限维。
+\end{exercise}
+\begin{proof}
+利用椭圆估计与紧嵌入，取特征函数列可得 \(W^{1,2}\) 中有弱收敛子列。再用自伴性与下界估计，得到谱离散、特征空间有限维。这就是标准谱定理思路。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\operatorname{Ric}\ge 0\)。证明若 \(M\) 与欧氏空间外部同胚于某个紧集外，则 \(M\cong\mathbb R^n\)。
+\end{exercise}
+\begin{proof}
+把外部的平行 1-形式延拓成全局调和 1-形式，再用 Bochner 公式说明它必须平行。若外部已是欧氏型，平行场给出全局平直结构，故整个流形只能是欧氏空间。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 是 Einstein 度量。证明所有调和 1-形式都是连接 Laplacian 的特征形式。
+\end{exercise}
+\begin{proof}
+Einstein 条件把 Ricci 项写成常数倍度量，Bochner 公式便变成
+\[
+\nabla^*\nabla\omega=\lambda\omega.
+\]
+所以调和 1-形式就是 \(\nabla^*\nabla\) 的特征形式。
+\end{proof}
+
+\begin{exercise}
+设 \(X,Y\) 是 \(\nabla X,\nabla Y\) 对称的向量场。写出 \( \frac12 g(X,Y)\) 的 Bochner 型公式。
+\end{exercise}
+\begin{proof}
+对 \(g(X,Y)\) 求两次导数，像处理 \(\frac12|X|^2\) 一样把二阶项整理成 \(\nabla X,\nabla Y\) 的平方项，再加上 Ricci 与曲率交换项，即得所需公式。关键是把对称性用于消去反对称部分。
+\end{proof}
+
+\begin{exercise}
+设 \(s_1,s_2\) 为同型张量。证明
+\[
+g(s_1,s_2)=2g(\nabla s_1,\nabla s_2)+g(\nabla^*\nabla s_1,s_2)+g(s_1,\nabla^*\nabla s_2).
+\]
+\end{exercise}
+\begin{proof}
+把 \(\frac12|s_1+s_2|^2\) 展开并与 \(\frac12|s_1|^2,\frac12|s_2|^2\) 的 Bochner 公式比较即可。交叉项正是左边所求。对于形式与一般张量，完全同理。
+\end{proof}
+
+\begin{exercise}
+设 \(h\) 是对称 Codazzi 张量且常迹。证明若 \(\sec\ge 0\)，则 \(h\) 平行；若 \(\sec>0\)，则 \(h=cg\)。
+\end{exercise}
+\begin{proof}
+这正是 Simons 型公式的直接应用。曲率非负时，Bochner 公式右端非负且积分为零，故 \(\nabla h=0\)。若曲率严格正，则除平行外还要消去所有非标量方向，所以只剩 \(cg\)。
+\end{proof}
+
+\begin{exercise}
+设 \(\omega\) 为闭流形上的谐和形式，\(K\) 为 Killing 场。证明 \(L_K\omega=0\)。
+\end{exercise}
+\begin{proof}
+先看 \(L_K\omega\) 也是谐和的：\(L_K\) 与 \(d,\delta\) 都对易，因为 \(K\) 保持度量与体积形式。再用 Bochner 公式和最大值原理，便知所有谐和形式都对等距流不变。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 为闭 Kähler 流形。证明 Kähler 形式的幂次不全都精确，因此偶数同调群不全为零。
+\end{exercise}
+\begin{proof}
+Kähler 形式是平行的非退化 2-形式，所以其最高非零幂正比于体积形式。体积形式积分非零，故该幂不可能精确。于是相应偶数同调不消失。
+\end{proof}
+
+\begin{exercise}
+设 \(E\to M\) 为张量丛，定义带系数的外微分 \(d_r\)。说明 \(d_r^2=R\wedge\) 且第二 Bianchi 恒等式可写成 \(d_rR=0\)。
+\end{exercise}
+\begin{proof}
+按定义把联络外导数作用两次，交换次序时留下的正是曲率作用；这就是 \(d_r^2=R\wedge\)。同样地，把曲率张量当作值于 \(\operatorname{End}(E)\) 的 2-形式，第二 Bianchi 恒等式就是它的联络外导数为零。
+\end{proof}
+
+\begin{exercise}
+设 \(E=TM\)。证明 \(d_r s=0\) 当且仅当 \(s\) 是 Codazzi 张量。
+\end{exercise}
+\begin{proof}
+这只是把 \(d_r\) 的定义写开：\(d_r s(X,Y)=\nabla_Xs(Y)-\nabla_Ys(X)\)。它恰好等于 Codazzi 方程。
+\end{proof}
+
+\begin{exercise}
+设 \(X\) 为向量场。证明 \(\nabla X\) 是 Codazzi 张量当且仅当 \(R(\cdot,\cdot)X=0\)。
+\end{exercise}
+\begin{proof}
+对 \(\nabla X\) 取外导数，按曲率交换公式，\(d_r(\nabla X)\) 正是 \(R(\cdot,\cdot)X\)。所以二者等价。
+\end{proof}
+
+\section{第九章原习题补遗}
+
+\begin{exercise}
+设紧黎曼流形 \((M^n,g)\) 满足 \(b_1(M)=k\) 且 \(\operatorname{Ric}\ge 0\)。证明普遍覆盖分裂为
+\[
+(\widetilde M,\widetilde g)\cong (N,h)\times(\mathbb R^k,g_{\mathbb R^k}).
+\]
+并给出一个 \(b_1<n\) 但普遍覆盖为 \(\mathbb R^n\) 的例子。
+\end{exercise}
+\begin{proof}
+Hodge 定理把 \(H^1(M;\mathbb R)\) 识别为调和 1-形式空间。Bochner 公式给出
+\[
+0=\int_M\bigl(|\nabla \omega|^2+\operatorname{Ric}(\omega^\sharp,\omega^\sharp)\bigr)\,d\mu,
+\]
+所以每个调和 1-形式都是平行的。取 \(k\) 个线性无关调和 1-形式，它们的对偶向量场给出 \(k\) 个线性无关的平行方向。提升到普遍覆盖后，这些方向积分成平行的 \(\mathbb R^k\)-因子；由 de Rham 分裂定理得到所需乘积分裂。
+
+例子可取有限商的平坦流形，例如 Klein 瓶或更高维 Bieberbach 流形。它们的普遍覆盖是 \(\mathbb R^n\)，但一部分平移方向被有限 holonomy 扭掉，所以 \(b_1<n\)。这个例子提醒我们：普遍覆盖的欧氏因子数不等于商流形上一阶 Betti 数，除非没有额外有限 holonomy。
+\end{proof}
+
+\begin{exercise}
+设 \(\{E_i\}\) 为正交标架，且 \(V\mapsto \nabla_VX\) 对称。直接证明
+\[
+\sum_i g(\nabla_{E_i}X,\nabla_XE_i)=0,
+\]
+不假设 \(E_i\) 沿 \(X\) 平行。
+\end{exercise}
+\begin{proof}
+关键是把“对称”写成 \(\nabla X\) 的自伴性：\(g(\nabla_UX,V)=g(U,\nabla_VX)\)。于是
+\[
+g(\nabla_{E_i}X,\nabla_XE_i)=g(E_i,\nabla_{\nabla_XE_i}X).
+\]
+把 \(E_i\) 看成运动正交标架，对恒等式 \(g(E_i,E_j)=\delta_{ij}\) 沿 \(X\) 求导得矩阵 \(A_{ij}=g(\nabla_XE_i,E_j)\) 反对称。另一方面自伴算子 \(S(V)=\nabla_VX\) 的矩阵 \(S_{ij}=g(\nabla_{E_i}X,E_j)\) 对称。上式求和正是 \(\operatorname{tr}(SA)\)，而对称矩阵与反对称矩阵的乘积迹为零。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 可定向。证明
+\[
+(\operatorname{im}d_{k-1})^\perp=\ker\delta_k,\qquad
+\operatorname{im}d_{k-1}\subset \ker d_k
+\]
+并说明这就是 Hodge 分解里“闭、余闭、调和”的正交关系。
+\end{exercise}
+\begin{proof}
+对 \(\alpha\in\Omega^{k-1}\)、\(\beta\in\Omega^k\)，由 \(\delta=d^*\) 有
+\[
+\langle d\alpha,\beta\rangle=\langle \alpha,\delta\beta\rangle.
+\]
+若 \(\beta\perp\operatorname{im}d\)，左端对所有 \(\alpha\) 为零，故 \(\delta\beta=0\)。反过来若 \(\delta\beta=0\)，则 \(\beta\) 与所有精确形式正交。第二个包含是 \(d^2=0\)。做题时要记住：Hodge 理论的许多正交分解其实都来自“算子与伴随算子”的这一行积分分部。
+\end{proof}
+
+\begin{exercise}
+设 \(E\to M\) 为张量丛，\(W^{k,2}(E)\) 为 Sobolev 完备化。证明以下椭圆正则性框架：若 \(T\in W^{1,2}(E)\) 且 \(\nabla^*\nabla T=T'\in W^{k,2}(E)\) 弱成立，则 \(T\in W^{k+2,2}(E)\)；特别地，若 \(T'\) 光滑，则 \(T\) 光滑。
+\end{exercise}
+\begin{proof}
+先在正规坐标和局部平凡化里看主部。粗拉普拉斯的最高阶部分是标量 Laplacian 作用在每个分量上，低阶项只含 Christoffel 符号和曲率。对 \(T\) 作差商或弱导数估计，可得
+\[
+\|T\|_{W^{k+2,2}(U')}\le C\bigl(\|\nabla^*\nabla T\|_{W^{k,2}(U)}+\|T\|_{L^2(U)}\bigr).
+\]
+这里 \(U'\Subset U\)，常数由有限阶度量控制给出。用分割统一把局部估计拼起来，就得到全局提升。若右端 \(T'\) 光滑，反复应用该提升，得到 \(T\in W^{m,2}\) 对所有 \(m\) 成立，再由 Sobolev 嵌入推出 \(T\) 光滑。动机是：弱方程先给二阶导数，二阶导数再让方程意义提升，如此 bootstrap。
+\end{proof}
+
+\begin{exercise}
+设 \(L=\nabla^*\nabla+c\,\operatorname{Ric}\) 是紧流形上张量丛的 Lichnerowicz 型 Laplacian。说明为什么它有离散实谱、有限维特征空间，并得到
+\[
+\Gamma(E)=\ker L\oplus \operatorname{im}L
+\]
+的正交分解。
+\end{exercise}
+\begin{proof}
+先把二次型
+\[
+Q(T,S)=(\nabla T,\nabla S)+c(\operatorname{Ric}(T),S)
+\]
+延拓到 \(W^{1,2}(E)\)。曲率项是零阶有界项，所以 \(Q\) 半有界且闭。取单位球上使 \(Q\) 近似最小的序列，由 Rellich 紧嵌入可抽出 \(L^2\) 强收敛、\(W^{1,2}\) 弱收敛子列；下半连续性保证极小值被取到。极小元满足弱特征方程，再由上一题正则性变成光滑特征张量。
+
+对正交补重复这个最小化过程，得到一列正交特征张量。紧嵌入排除有限区间内无限多个彼此正交的特征向量，所以特征值离散且特征空间有限维。自伴性给出不同特征空间正交，谱定理给出特征张量张成的闭包为整个 \(L^2\)。最后若 \(S\perp\operatorname{im}L\)，则 \((LS,S)=0\) 意味着 \(S\in\ker L\)，所以得到 \(\Gamma(E)=\ker L\oplus\operatorname{im}L\)。
+\end{proof}
+
+\begin{exercise}
+设 \(L\) 为反对称线性变换，\(\omega\) 为 \(n\)-形式。证明 \(L\omega=0\)。进一步证明二维时 \(LR=0\)，而一般线性变换满足
+\[
+L(\operatorname{vol})=\operatorname{tr}(L)\operatorname{vol}.
+\]
+\end{exercise}
+\begin{proof}
+线性变换 \(L\) 对顶次形式的无穷小作用只看行列式的一阶变化。若 \(e_1,\ldots,e_n\) 是正交基，则
+\[
+(L\operatorname{vol})(e_1,\ldots,e_n)=\sum_i \operatorname{vol}(e_1,\ldots,Le_i,\ldots,e_n)=\operatorname{tr}(L)\operatorname{vol}(e_1,\ldots,e_n).
+\]
+反对称 \(L\) 的迹为零，所以 \(L\omega=0\)。二维曲率张量完全由高斯曲率乘面积形式的平方决定，而反对称变换保持面积形式，因此 \(LR=0\)。这道题的核心是：顶次对象只感知“体积缩放”，反对称变换只旋转不缩放。
+\end{proof}
+
+\begin{exercise}
+设 \((M^n,g)\hookrightarrow\mathbb R^{n+1}\) 为等距浸入。证明第二基本形式 \(\mathrm{II}\) 是 Codazzi 张量；若 \(M\) 紧、有常平均曲率且第二基本形式半正定，则 \(M\) 是常曲率球面。
+\end{exercise}
+\begin{proof}
+欧氏空间曲率为零，子流形的 Codazzi 方程给出
+\[
+(\nabla_X\mathrm{II})(Y,Z)=(\nabla_Y\mathrm{II})(X,Z),
+\]
+所以 \(\mathrm{II}\) 是 Codazzi 张量。若平均曲率常数，则 \(\operatorname{tr}\mathrm{II}\) 常数。Simons 型公式在 \(\mathrm{II}\ge0\) 下迫使 \(\nabla\mathrm{II}=0\)。于是主曲率为常数，且由紧性和半正定性可知所有主曲率同号；若有零主曲率，会出现平直方向并与紧性冲突。因此 \(\mathrm{II}=\lambda g\)。Gauss 方程给
+\[
+R(X,Y,Z,W)=\lambda^2\{g(X,W)g(Y,Z)-g(X,Z)g(Y,W)\},
+\]
+即 \(M\) 有正常曲率，故为圆球的商；紧超曲面情形实际得到标准球面。
+\end{proof}
+
+\begin{exercise}
+证明 Berger 结论：紧流形若有调和曲率且 \(\sec\ge0\)，则 Ricci 张量平行。
+\end{exercise}
+\begin{proof}
+调和曲率等价于曲率张量散度为零，由第二 Bianchi 恒等式可推出 Ricci 张量是 Codazzi 张量。标量曲率在该条件下为常数，所以 \(\operatorname{Ric}\) 是常迹对称 Codazzi 张量。套用 Simons 题：在 \(\sec\ge0\) 下，常迹对称 Codazzi 张量必须平行。因此 \(\nabla\operatorname{Ric}=0\)。
+\end{proof}
+
+\begin{exercise}
+补全 Killing 场作用在调和形式上的结论：若 \(K\) 是闭流形上的 Killing 场、\(\omega\) 调和，则 \(L_K\omega=0\)，\(i_K\omega\) 闭但未必调和，所有调和形式在 \(\operatorname{Iso}_0(M)\) 下不变，并给出不在全等距群下不变的例子。
+\end{exercise}
+\begin{proof}
+Killing 流 \(\varphi_t\) 保持 \(g\)，故与 Hodge 星算子、\(d\)、\(\delta\)、\(\Delta\) 都对易。因此 \(L_K\omega\) 仍调和。另一方面
+\[
+L_K\omega=d(i_K\omega)+i_Kd\omega=d(i_K\omega),
+\]
+且 \(L_K\omega\) 又是精确调和形式。闭流形上精确调和形式的 \(L^2\) 范数为零，所以 \(L_K\omega=0\)，从而 \(d(i_K\omega)=0\)。但 \(i_K\omega\) 是否余闭取决于 \(K\) 和 \(\omega\) 的额外关系，一般不能保证调和。
+
+\(\operatorname{Iso}_0(M)\) 由 Killing 流生成，所以所有调和形式在恒等分支下不变。全等距群的其他分支可能作用非平凡：例如 \(S^1\) 上的反射 \(z\mapsto \bar z\) 把调和 1-形式 \(d\theta\) 送到 \(-d\theta\)，故不在整个 \(\operatorname{Iso}(S^1)\) 下逐点不变。
+\end{proof}
+
+\begin{exercise}
+设 \(E=TM\)。证明 \(d_r s=0\) 当且仅当 \(s\) 是 Codazzi 张量。进一步说明若 \(X\) 是向量场，则 \(\nabla X\) 为 Codazzi 张量当且仅当 \(R(\cdot,\cdot)X=0\)，并给出 \(\nabla X\) Codazzi 但 \(X\) 不平行的例子。
+\end{exercise}
+\begin{proof}
+把 \(s\) 看成 \((1,1)\)-张量，联络外导数为
+\[
+(d_rs)(Y,Z)=\nabla_Y(sZ)-s(\nabla_YZ)-\nabla_Z(sY)+s(\nabla_ZY)
+=(\nabla_Ys)Z-(\nabla_Zs)Y.
+\]
+这正是 Codazzi 方程。若 \(s=\nabla X\)，则
+\[
+(d_r\nabla X)(Y,Z)=\nabla_Y\nabla_ZX-\nabla_Z\nabla_YX-\nabla_{[Y,Z]}X=R(Y,Z)X,
+\]
+故等价。例子可取欧氏空间上的径向向量场 \(X=\sum_i x^i\partial_i\)。此时 \(R=0\)，所以 \(\nabla X=I\) 是 Codazzi，但 \(X\) 显然不是平行场。
+\end{proof}
+
+\begin{exercise}
+设 \(n>3\)，线性算子 \(S\) 可逆且 Gauss 方程 \(R=S\wedge S\) 成立。证明第二 Bianchi 恒等式推出 Codazzi 方程 \(d_rS=0\)。
+\end{exercise}
+\begin{proof}
+把 \(S\) 当作形算子，Gauss 方程说明曲率完全由 \(S\) 的楔积给出。对 \(R=S\wedge S\) 作联络外导数，第二 Bianchi 恒等式给
+\[
+0=d_rR=d_r(S\wedge S)= (d_rS)\wedge S+S\wedge(d_rS).
+\]
+由于两个项只差符号和指标置换，可写成 \((d_rS)\wedge S=0\)。在线性代数层面，映射
+\[
+\operatorname{Hom}(\Lambda^2V,V)\longrightarrow \operatorname{Hom}(\Lambda^3V,\Lambda^2V),
+\qquad T\mapsto T\wedge S
+\]
+在 \(\operatorname{rank}S\ge4\) 时单射；这里 \(S\) 可逆且 \(n>3\)，故满足条件。于是 \(d_rS=0\)。这题的难点不是微分几何，而是不要把 Bianchi 后的线性代数核误认为自动为零；原书提示的 rank 条件正是为此服务。
+\end{proof}
+\chapter{对称空间与Holonomy}
+
+\section{对称空间}
+
+\begin{problem}
+证明：若 \((M,g)\) 是对称空间，则对每个点 \(p\) 存在一个局部等距变换 \(A_p\)，满足 \(A_p(p)=p\) 且 \(dA_p|_p=-I\)。
+\end{problem}
+\begin{proof}
+在 \(p\) 的指数坐标下定义 \(A_p(\exp_p v)=\exp_p(-v)\)。因为对称空间的曲率张量平行，指数坐标中的度量关于 \(v\mapsto -v\) 保持不变，所以 \(A_p\) 是局部等距变换。显然它固定 \(p\) 且微分为 \(-I\)。
+\end{proof}
+
+\begin{problem}
+证明：若 \((M,g)\) 具有平行曲率张量 \(\nabla R=0\)，则它是局部对称空间。
+\end{problem}
+\begin{proof}
+平行曲率意味着在指数坐标中，沿径向的曲率满足同一个一阶方程。于是由原点到 \(v\) 和到 \(-v\) 的曲率数据相同，指数坐标下的度量关于反射 \(v\mapsto -v\) 保持不变。故存在局部对称。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 是单连通完备对称空间。证明任意保曲率线性等距 \(L:T_pM\to T_qM\) 都唯一延拓成全局黎曼等距。
+\end{problem}
+\begin{proof}
+由平行曲率张量，指数坐标中的度量由曲率完全决定。若 \(L\) 保持曲率张量，则在 \(p,q\) 的指数坐标中，它把径向曲率数据逐一对应起来，所以局部上可写成 \(\exp_q\circ L\circ \exp_p^{-1}\)。解析延拓把局部等距延成全局等距，唯一性来自连通性。
+\end{proof}
+
+\begin{problem}
+设 \(p\in M\) 且 \(A_p\) 为对称变换。证明其对 Killing 场诱导一个 involution \(\sigma_p\)，并说明 \(1\)-特征空间是 \( \mathfrak{iso}_p\)，\((-1)\)-特征空间由 \((\nabla X)_p=0\) 的 Killing 场组成。
+\end{problem}
+\begin{proof}
+把 \(A_p\) 推前到 Killing 场空间上，得到 \(\sigma_p(X)=A_{p*}X\)。由于 \(A_p^2=\mathrm{id}\)，故 \(\sigma_p^2=\mathrm{id}\)。若 \(X_p=0\)，则 \(A_p\) 保持 \(X\)；若 \((\nabla X)_p=0\)，则 \(\sigma_p(X)=-X\)。这正是两个特征空间的描述。
+\end{proof}
+
+\begin{problem}
+证明：对单连通对称空间，Lie 代数结构可由
+\[
+\mathfrak{iso}(M,g)\cong T_pM\oplus \mathfrak{so}(T_pM)
+\]
+和曲率张量完全描述。
+\end{problem}
+\begin{proof}
+利用上一题的分解，把 Killing 场分成值部和导数部。再用
+\[
+[r_X,r_Y](V)=R(X,Y)V
+\]
+以及 \([X,S]= -S(X)\) 等关系，就得到三类括号。曲率张量决定 \( [T_pM,T_pM]\subset \mathfrak{so}(T_pM)\)，而其他括号由自然作用确定，因此整个 Lie 代数由曲率决定。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 单连通对称空间。证明其曲率算子与 Killing 形式的符号一致。
+\end{problem}
+\begin{proof}
+在对称空间的 Lie 代数模型中，Ricci 张量可写成 Killing 形式的一个常数倍，而曲率算子在 \(X\wedge Y\) 上的值可写成相应的 \(\operatorname{ad}\)-复合。于是正负号完全由 Killing 形式决定，所以曲率算子的符号与 Einstein 常数一致。
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 是紧对称空间。证明其曲率算子非负。
+\end{problem}
+\begin{proof}
+紧对称空间可用紧李群及其子群的商来表示，而在 Lie 代数模型里，曲率算子由 \(-\operatorname{ad}\)-型公式给出。对任意双向量 \(X\wedge Y\)，对应的二次型可写成某个范数平方，因此非负。
+\end{proof}
+
+\section{例子}
+
+\begin{problem}
+把球面 \(S^n\) 视为对称空间，说明其对称结构来自 \(O(n+1)/O(n)\)。
+\end{problem}
+\begin{proof}
+\(O(n+1)\) 对 \(S^n\) 作用传递，稳定子是 \(O(n)\)。点 \(p\) 的对称是关于过 \(p\) 的法线反射，在群层面对应一个把切空间送到其负值的 involution，因此 \(S^n\) 是对称空间。
+\end{proof}
+
+\begin{problem}
+把复射影空间 \(\mathbb CP^n\) 视为对称空间，并说明其标准度量是四分之一捻曲的。
+\end{problem}
+\begin{proof}
+\(\mathbb CP^n\cong SU(n+1)/S(U(1)\times U(n))\)。在 Lie 代数分解中，切空间对应复线性变换的非对角块，曲率公式给出截面曲率介于两个正常数之间，最小与最大值之比为 \(1/4\)，所以是四分之一捻曲。
+\end{proof}
+
+\begin{problem}
+说明紧李群配备双不变度量时是对称空间，并写出其对称结构。
+\end{problem}
+\begin{proof}
+群上的对称由 \(g\mapsto g^{-1}\) 给出。该映射固定单位元，在 Lie 代数上是 \(-I\)，且双不变度量使其成为等距。于是紧李群就是对称空间 \( (G\times G)/G \) 的一种实现。
+\end{proof}
+
+\section{Holonomy}
+
+\begin{problem}
+定义 holonomy 群 \(\mathrm{Hol}_p(M,g)\)。证明它是 \(O(T_pM)\) 的子群，且限制 holonomy 群 \(\mathrm{Hol}_p^0\) 是其恒等分支。
+\end{problem}
+\begin{proof}
+沿闭合回路做平行移动得到 \(T_pM\) 上的线性等距，因此这些映射构成一个群。可缩回路生成的部分连通于恒等元，且在一般情形下它正是限制 holonomy 群。
+\end{proof}
+
+\begin{problem}
+证明：若 \(M\) 是欧氏空间，则 holonomy 是平凡的；若 \(M\) 是球面或双曲空间，则 holonomy 是 \(SO(n)\)。
+\end{problem}
+\begin{proof}
+欧氏空间平行移动沿任意回路都不改变向量，所以 holonomy 平凡。球面和双曲空间具有常曲率，平行移动沿小回路可产生任意小旋转，因此 holonomy 充满整个 \(SO(n)\)。
+\end{proof}
+
+\begin{problem}
+若 \(TM\) 的一个子丛在 holonomy 群作用下不变，证明它可延拓为平行分布。
+\end{problem}
+\begin{proof}
+在一点 \(p\) 取该不变子空间 \(E\subset T_pM\)。沿任意曲线平行移动它，不变性保证绕回路时结果与选择无关，因此得到全局分布。由平行移动的定义可知它是平行的。
+\end{proof}
+
+\begin{problem}
+证明 de Rham 分裂定理的基本方向：若切丛分裂为互相平行的正交分布，则流形局部等距分裂为乘积。
+\end{problem}
+\begin{proof}
+平行分布意味着两个分布在 Lie 括号下封闭，故由 Frobenius 定理分别可积。正交性与平行性又保证第二基本形式消失，于是局部度量写成两个因子的直和，即局部乘积分裂。
+\end{proof}
+\section{第十章原习题补遗}
+
+\begin{exercise}
+设 \(M\) 为对称空间，\(X\in\mathfrak t_p\)，即 \(X\) 是非零 Killing 场且 \((\nabla X)_p=0\)。证明 \(X\) 的流可写为
+\[
+F_s=A_{\exp_p(\frac{s}{2}X_p)}\circ A_p,
+\]
+并证明 \(c(t)=\exp_p(tX_p)\) 是该流的一条轴；进一步说明测地回路必为闭测地线。
+\end{exercise}
+\begin{proof}
+对称 \(A_p\) 在 \(p\) 处把切向量取负，而 \(A_{\exp_p(\frac{s}{2}X_p)}\) 是中点反射。两个相邻反射的合成沿连接两反射中心的测地线产生平移，所以它把 \(c(t)\) 送到 \(c(t+s)\)。在对称空间里这类“沿测地线的平移”正是由 \(\mathfrak t_p\) 中 Killing 场生成的流，因此得到公式。
+
+若 \(c(a)=c(b)\)，流的等距性给出速度也对应相同；更直接地，测地线由一点和速度唯一决定，而对称空间的反射结构把回路末端速度强制接上初端速度。因此测地回路没有角点，延拓后就是闭测地线。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 为对称空间。证明点对称 \(A_p\) 在 \(\pi_1(M,p)\) 上诱导 \(g\mapsto g^{-1}\)，并推出 \(\pi_1(M,p)\) 阿贝尔。
+\end{exercise}
+\begin{proof}
+由上一题，每个基本群元素可由经过 \(p\) 的闭测地线表示。点对称 \(A_p\) 把该闭测地线的参数方向反过来，所以对应逆元。另一方面，\(A_p\) 是固定基点的等距变换，诱导的自同构也可由同伦作用描述。于是对任意 \(a,b\in\pi_1(M,p)\)，有
+\[
+A_{p*}(ab)=(ab)^{-1}=b^{-1}a^{-1},
+\]
+而又 \(A_{p*}(a)A_{p*}(b)=a^{-1}b^{-1}\)。比较两式得 \(a^{-1}b^{-1}=b^{-1}a^{-1}\)，故 \(ab=ba\)。
+\end{proof}
+
+\begin{exercise}
+设 \(c\) 是对称空间中的测地线，\(E(t)\) 是沿 \(c\) 的平行场。证明 \(R(E,\dot c)\dot c\) 也平行；若 \(E(0)\) 是 \(R(\cdot,\dot c(0))\dot c(0)\) 的特征向量，则可写出相应 Jacobi 场，并说明若 Jacobi 场 \(J(0)=J(t_0)=0\)，则 \(J'(t_0)=0\)。
+\end{exercise}
+\begin{proof}
+对称空间满足 \(\nabla R=0\)。沿 \(c\) 求导得
+\[
+\nabla_{\dot c}\{R(E,\dot c)\dot c\}=R(\nabla_{\dot c}E,\dot c)\dot c=0,
+\]
+所以它平行。若 \(R(E,\dot c)\dot c=\lambda E\)，Jacobi 方程变为标量方程 \(f''+\lambda f=0\)，因此 \(J=fE\)，其中 \(f\) 是模型函数 \(\operatorname{sn}_\lambda(t)\) 或相应余弦型解。若 \(J(0)=J(t_0)=0\) 且 \(J\) 来自对称空间的平移变分，则端点固定的变分由 Killing 场给出；闭合条件迫使末端速度也闭合，故 \(J'(t_0)=0\)。理解上，这是“两个零点之间的 Jacobi 场若来自对称平移，不能在末端留下角速度”。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 为对称空间。证明：若 \(M\) 紧，则 \(\sec\ge0\)；若 \(c\) 是闭测地线，则 \(R(\cdot,\dot c)\dot c\) 没有负特征值；若 \(\operatorname{Ric}>0\)，则 \(\sec\ge0\)。
+\end{exercise}
+\begin{proof}
+若某方向有负特征值 \(\lambda<0\)，对应 Jacobi 方程解含有双曲函数项，会沿测地线指数增长。紧流形上的 Killing/Jacobi 数据不能产生这种无界增长，所以紧对称空间无负截面曲率。闭测地线情形同理：沿闭曲线的 Jacobi 场必须周期受控，负特征值会产生非周期指数增长。
+
+若 \(\operatorname{Ric}>0\) 而存在负截面方向，在对称空间中曲率算子沿平行移动不变，负方向会通过 Lie 三重系统生成一个非紧型因子，导致 Ricci 在某些方向非正，矛盾。因此正 Ricci 的对称空间只能有非负截面曲率。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 的截面曲率非正或非负，\(c\) 为测地线，\(E\) 为沿 \(c\) 的平行场。证明以下等价：
+\[
+g(R(E,\dot c)\dot c,E)=0,\quad R(E,\dot c)\dot c=0,\quad E\text{ 是 Jacobi 场}.
+\]
+\end{exercise}
+\begin{proof}
+若 \(E\) 是平行场，则 Jacobi 方程化为 \(R(E,\dot c)\dot c=0\)。所以第二、第三条件等价。第二条件当然推出第一条件。反过来，在截面曲率固定符号时，\(g(R(E,\dot c)\dot c,E)\) 是该二维平面的截面曲率乘以面积平方。若它为零，曲率算子在该平面方向的二次型为零；固定符号的代数曲率算子在零二次型方向上作用也为零，于是得到 \(R(E,\dot c)\dot c=0\)。
+\end{proof}
+
+\begin{exercise}
+计算经典 Lie 代数 Killing 型：证明复化后的 Killing 型是原 Killing 型的复化，并证明
+\[
+B_{\mathfrak{gl}(n)}(X,Y)=2n\operatorname{tr}(XY)-2\operatorname{tr}X\operatorname{tr}Y,\quad
+B_{\mathfrak{sl}(n)}(X,Y)=2n\operatorname{tr}(XY),
+\]
+以及 \(\mathfrak{so}(n)\) 上 \(B(X,Y)=(n-2)\operatorname{tr}(XY)\)。
+\end{exercise}
+\begin{proof}
+Killing 型定义为 \(B(X,Y)=\operatorname{tr}(\operatorname{ad}_X\operatorname{ad}_Y)\)。复化时 \(\operatorname{ad}_{X+iX'}\) 只是 \(\operatorname{ad}\) 的复线性延拓，迹也复线性延拓，因此 Killing 型随之复化。
+
+对 \(\mathfrak{gl}(n)\)，用矩阵基 \(E_{ij}\) 展开 \(\operatorname{ad}_X(A)=XA-AX\)，把左乘和右乘在 \(\operatorname{End}(\mathbb R^n)\) 上的迹相乘计算，得到 \(2n\operatorname{tr}(XY)-2\operatorname{tr}X\operatorname{tr}Y\)。限制到 \(\mathfrak{sl}(n)\) 时迹为零，留下 \(2n\operatorname{tr}(XY)\)。对 \(\mathfrak{so}(n)\)，在基 \(E_{ij}-E_{ji}\) 上同样计算，常数变为 \(n-2\)。这些公式最重要的用途是判断对称空间的曲率符号。
+\end{proof}
+
+\begin{exercise}
+证明 \(GL(p+q,\mathbb R)/SO(p,q)\) 是对称空间，并可识别为 \(\mathbb R^{p+q}\) 上指标为 \(q\) 的非退化双线性型空间。
+\end{exercise}
+\begin{proof}
+\(GL(p+q,\mathbb R)\) 作用在非退化双线性型上：
+\[
+A\cdot B(v,w)=B(A^{-1}v,A^{-1}w).
+\]
+固定标准指标 \((p,q)\) 型双线性型，其稳定子就是 \(SO(p,q)\)，故商空间给出所有同指标非退化型。对称结构来自 involution \(\sigma(A)=I_{p,q}A^{-T}I_{p,q}\)，其固定点群是 \(SO(p,q)\)，因此这是一个对称空间。
+\end{proof}
+
+\begin{exercise}
+证明 \(U(p,q)/SO(p,q)\) 是对称空间，并说明 \(\mathfrak u(p,q)\otimes\mathbb C\cong\mathfrak{gl}(p+q,\mathbb C)\)。
+\end{exercise}
+\begin{proof}
+\(U(p,q)\) 是保持 Hermitian 型的群，而 \(SO(p,q)\) 是同时保持其实部对称型的实子群。复共轭给出相应 involution，固定点正是 \(SO(p,q)\)，故商为对称空间。Lie 代数层面，\(\mathfrak u(p,q)\) 是 \(\mathfrak{gl}(p+q,\mathbb C)\) 的一个实形式；张量上 \(\mathbb C\) 后恢复整个复 Lie 代数。
+\end{proof}
+
+\begin{exercise}
+证明 \(\mathbb CP^n\) 的 holonomy 为 \(U(n)\)。
+\end{exercise}
+\begin{proof}
+Fubini-Study 度量是 Kähler 度量，所以复结构 \(J\) 平行，holonomy 包含在 \(U(n)\)。另一方面，\(\mathbb CP^n\) 是不可约 Hermitian 对称空间，其曲率张量在一点的作用生成整个 \(\mathfrak u(n)\)。由 Ambrose-Singer 定理，holonomy 代数由这些曲率端omorphism生成，因此 holonomy 恰为 \(U(n)\)。
+\end{proof}
+
+\begin{exercise}
+证明对称空间的覆盖空间仍为对称空间，并举例说明反过来不一定成立。
+\end{exercise}
+\begin{proof}
+局部对称 \(A_p\) 可沿覆盖提升：若 \(\pi:\widetilde M\to M\)，在 \(\tilde p\) 上取 \(p=\pi(\tilde p)\)，把 \(A_p\) 的局部提升取为固定 \(\tilde p\) 的那个，它在切空间上仍为 \(-I\)。所以覆盖空间对称。
+
+反过来，若覆盖空间是对称空间，商掉的 deck 变换可能破坏点对称在商上的下降。例如某些平坦流形的普遍覆盖 \(\mathbb R^n\) 对称，但商空间若 holonomy 与中心反射不相容，未必是全局对称空间。
+\end{proof}
+
+\begin{exercise}
+证明流形平坦当且仅当限制 holonomy 代数 \(\mathfrak{hol}_p\) 为零；等价地，holonomy 群离散。
+\end{exercise}
+\begin{proof}
+若平坦，则曲率为零，沿小回路的平行移动一阶无变化，限制 holonomy 代数为零。反过来，Ambrose-Singer 定理说 \(\mathfrak{hol}_p\) 由所有平行移动回来的曲率算子生成。若它为零，则所有曲率算子为零，故 \(R=0\)。在 Lie 群中，代数为零即恒等分支平凡，所以 holonomy 群离散。
+\end{proof}
+
+\begin{exercise}
+设闭流形限制 holonomy 不可约且 \(\operatorname{Ric}\ge0\)。证明若 Ricci 在某方向为零导致平行 1-形式，则矛盾；特别在适当非平坦假设下基本群有限。
+\end{exercise}
+\begin{proof}
+若基本群无限，在 \(\operatorname{Ric}\ge0\) 的紧流形上，Cheeger-Gromoll 型分裂给普遍覆盖一个 Euclidean 因子，等价地给出非零平行 1-形式。平行 1-形式的存在说明 holonomy 固定一条直线，和限制 holonomy 不可约矛盾。故除平坦低维例外外，基本群只能有限。做题时应把这题理解为 Bochner 结论与 holonomy 不可约性的拼接。
+\end{proof}
+
+\begin{exercise}
+识别 \(SL(2,\mathbb R)/SO(2)\) 与 \(SL(2,\mathbb C)/SU(2)\)。
+\end{exercise}
+\begin{proof}
+\(SL(2,\mathbb R)/SO(2)\) 是二维实双曲平面 \(\mathbb H^2\)：\(SL(2,\mathbb R)\) 通过 Möbius 变换传递作用在上半平面，稳定子为 \(SO(2)\)。类似地，\(SL(2,\mathbb C)\) 是三维双曲空间的定向等距群，点稳定子为 \(SU(2)\)，故 \(SL(2,\mathbb C)/SU(2)\cong\mathbb H^3\)。
+\end{proof}
+
+\begin{exercise}
+证明 holonomy 包含在 \(U(m)\) 当且仅当流形存在 Kähler 结构。
+\end{exercise}
+\begin{proof}
+若 holonomy 包含在 \(U(m)\)，则在一点取标准复结构 \(J_p\)，沿路径平行移动。holonomy 保持 \(J_p\) 保证所得 \(J\) 与路径无关，且 \(\nabla J=0\)。于是 \(J\) 可积，\(\omega(\cdot,\cdot)=g(J\cdot,\cdot)\) 平行闭合，得到 Kähler 结构。反过来 Kähler 度量满足 \(\nabla J=0\)，平行移动保持 \(J\)，所以 holonomy 包含在酉群。
+\end{proof}
+
+\begin{exercise}
+证明若齐性空间在某点满足 \(\mathfrak{iso}_p=\mathfrak{so}(T_pM)\)，则它有常截面曲率。
+\end{exercise}
+\begin{proof}
+点稳定子作用为整个 \(SO(T_pM)\)，而曲率张量在等距作用下不变。因此 \(R_p\) 是 \(SO(n)\)-不变的代数曲率张量。这样的张量空间一维，只能是
+\[
+R_{ijkl}=K(g_{il}g_{jk}-g_{ik}g_{jl})
+\]
+的形式。齐性又使 \(K\) 与点无关，所以流形有常截面曲率。
+\end{proof}
+
+\begin{exercise}
+证明 \(\mathfrak{so}(k)\oplus\mathfrak{so}(n-k)\) 以及 \(\mathfrak u(n/2)\subset\mathfrak{so}(n)\) 是极大子代数；并说明 \(\mathfrak{su}(m)\subset\mathfrak{so}(m^2-1)\)。
+\end{exercise}
+\begin{proof}
+第一个子代数是保持正交分解 \(\mathbb R^n=\mathbb R^k\oplus\mathbb R^{n-k}\) 的全部无穷小旋转。若加入任意混合块旋转，经过括号运算会生成所有混合块，进而生成整个 \(\mathfrak{so}(n)\)，故极大。第二个子代数是保持一个正交复结构的稳定子；加入不保复结构的旋转后，和 \(\mathfrak u(m)\) 反复取括号会生成全部 \(\mathfrak{so}(2m)\)，故极大。最后 \(\mathfrak{su}(m)\) 通过伴随表示作用在自身，Killing 型给出不变内积，所以得到嵌入 \(\mathfrak{su}(m)\subset\mathfrak{so}(\dim\mathfrak{su}(m))=\mathfrak{so}(m^2-1)\)。
+\end{proof}
+
+\begin{exercise}
+证明任意黎曼流形满足 \(\mathfrak r_p\subset\mathfrak{hol}_p\)，并给出不等号可严格的例子。
+\end{exercise}
+\begin{proof}
+\(\mathfrak r_p\) 表示由曲率算子及其平行移动生成的代数部分。Ambrose-Singer 定理正说明 holonomy 代数由这类元素生成，因此 \(\mathfrak r_p\subset\mathfrak{hol}_p\)。严格例子可取曲率不平行的一般度量：单点的曲率算子可能只生成很小代数，但沿不同路径平行移动回来的曲率算子会生成更大的 holonomy。直观上，\(\mathfrak r_p\) 若只看一点信息，可能漏掉周围曲率如何转动。
+\end{proof}
+
+\begin{exercise}
+证明对称空间满足 \(\mathfrak r_p=\mathfrak{hol}_p\)。并说明若曲率非常数且 \(\mathfrak r_p\subset\mathfrak{so}(T_pM)\) 极大，则 \(\mathfrak r_p=\mathfrak{hol}_p=\mathfrak{iso}_p\)。
+\end{exercise}
+\begin{proof}
+对称空间有 \(\nabla R=0\)，所以沿路径平行移动曲率不会产生新的类型。Ambrose-Singer 定理中所有生成元已经来自一点的曲率代数，故 \(\mathfrak r_p=\mathfrak{hol}_p\)。若该代数在 \(\mathfrak{so}(T_pM)\) 中极大，而各向同性代数 \(\mathfrak{iso}_p\) 包含曲率代数并保持 \(R\)，则只有两个可能：等于 \(\mathfrak r_p\) 或为整个 \(\mathfrak{so}(T_pM)\)。后一种会给常曲率；排除常曲率后得到等号。
+\end{proof}
+
+\begin{exercise}
+证明 \(SO(n,\mathbb C)/SO(n)\) 与 \(SL(n,\mathbb C)/SU(n)\) 是具有非正曲率算子的对称空间。
+\end{exercise}
+\begin{proof}
+它们都是复半单群除以紧实形式的商，Cartan involution 的固定点群分别为 \(SO(n)\)、\(SU(n)\)。非紧型对称空间的曲率公式为
+\[
+R(X,Y)Z=-[[X,Y],Z]
+\]
+其中切空间取为 \(\mathfrak p\)。Killing 型诱导的度量下，
+\[
+\langle R(X,Y)Y,X\rangle=-\|[X,Y]\|^2\le0,
+\]
+这不仅给非正截面曲率，也给曲率算子非正。
+\end{proof}
+
+\begin{exercise}
+证明四元数射影空间可写为
+\[
+\mathbb HP^n=Sp(n+1)/(Sp(1)\times Sp(n)).
+\]
+\end{exercise}
+\begin{proof}
+\(Sp(n+1)\) 是保持四元数 Hermitian 内积的线性群。它传递作用在 \(\mathbb H^{n+1}\) 的四元数直线上：任一单位向量可由四元数酉变换送到 \(e_0\)。固定直线 \(\mathbb H e_0\) 的群一方面可在该直线上作 \(Sp(1)\) 旋转，另一方面在正交补 \(\mathbb H^n\) 上作 \(Sp(n)\) 旋转，因此稳定子为 \(Sp(1)\times Sp(n)\)。于是商空间就是四元数直线空间。
+\end{proof}
+
+\begin{exercise}
+构造复射影空间的双曲类似物，并证明它们具有负曲率且四分之一挤压。
+\end{exercise}
+\begin{proof}
+复双曲空间定义为
+\[
+\mathbb CH^n=SU(n,1)/S(U(n)\times U(1)).
+\]
+它是 \(\mathbb CP^n\) 的非紧对偶。Cartan 对偶会把紧型曲率公式整体取负，所以截面曲率为负；在标准归一化下，实二维截面曲率介于 \(-4\) 与 \(-1\) 之间，故按绝对值看是四分之一挤压。证明思路和 \(\mathbb CP^n\) 相同，只是符号反过来。
+\end{proof}
+
+\begin{exercise}
+给出局部对称空间的 Lie 代数描述，并说明单连通局部对称空间有到唯一全局对称空间的 monodromy 映射；若它完备，该映射为双射。
+\end{exercise}
+\begin{proof}
+局部对称等价于 \(\nabla R=0\)。在一点 \(p\)，取 \(\mathfrak p=T_pM\)，由曲率定义括号 \([\mathfrak p,\mathfrak p]\subset\mathfrak k\subset\mathfrak{so}(\mathfrak p)\)，并令 \([\mathfrak k,\mathfrak p]\) 为自然作用。Bianchi 恒等式和 \(\nabla R=0\) 保证 Jacobi 恒等式成立，于是得到对称 Lie 代数 \(\mathfrak g=\mathfrak k\oplus\mathfrak p\)。
+
+该 Lie 代数积分为单连通 Lie 群 \(G\)，固定点子群 \(K\) 给全局对称空间 \(G/K\)。原局部对称空间的指数坐标和 \(G/K\) 的指数坐标有相同曲率数据，所以局部等距；沿路径解析延拓得到 monodromy 映射。若原空间完备，Hopf-Rinow 使局部等距可沿所有测地线延拓，且单连通性排除多值性，所以映射为双射。
+\end{proof}
+
+\begin{exercise}
+证明不可约对称空间若曲率算子严格正或严格负，则它有常截面曲率。
+\end{exercise}
+\begin{proof}
+在对称空间中，曲率张量平行。严格正或严格负曲率算子迫使 holonomy 表示非常大：任何非标量平行代数曲率分量都会在 Bochner 型恒等式中给出与严格符号矛盾的零方向。不可约性排除乘积分解，所以唯一可能的平行曲率模型是常曲率模型。等价地，从 holonomy 角度看，严格符号使各向同性作用达到全 \(SO(n)\)，从而曲率张量必须是 \(SO(n)\)-不变的一维模型。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 为对称空间，\(X\in\mathfrak t_p\)、\(Y\in\mathfrak{iso}_p\)。证明 \([X,Y]\in\mathfrak t_p\)。
+\end{exercise}
+\begin{proof}
+\(\mathfrak{iso}_p\) 是在 \(p\) 处取值为零的 Killing 场，\(\mathfrak t_p\) 是在 \(p\) 处协变导数为零的平移型 Killing 场。括号在点 \(p\) 的取值为
+\[
+[X,Y]_p=\nabla_XY-\nabla_YX|_p=(\nabla Y)_pX_p,
+\]
+通常非零；而其协变导数由 Killing 场的二阶公式和 \(Y_p=0,(\nabla X)_p=0\) 推出为零。因此 \([X,Y]\) 属于 \(\mathfrak t_p\)。这正是对称分解中 \([\mathfrak k,\mathfrak p]\subset\mathfrak p\)。
+\end{proof}
+
+\begin{exercise}
+设 \(M\) 为对称空间，\(X,Y,Z\in\mathfrak t_p\)。证明
+\[
+R(X,Y)Z=[L_X,L_Y]Z,\qquad \operatorname{Ric}(X,Y)=-\operatorname{tr}([L_X,L_Y]),
+\]
+其中 \(L_X\) 表示相应平移型 Killing 场的作用算子。
+\end{exercise}
+\begin{proof}
+对称空间的 Lie 代数分解满足 \([\mathfrak p,\mathfrak p]\subset\mathfrak k\)，且 \(\mathfrak k\) 在 \(\mathfrak p\) 上的作用就是各向同性表示。曲率公式把两个平移方向的括号识别为各向同性旋转：
+\[
+R(X,Y)Z=-[[X,Y],Z],
+\]
+不同号约定下即写成题中 \([L_X,L_Y]Z\)。Ricci 是对 \(Z\) 迹化，所以
+\[
+\operatorname{Ric}(X,Y)=\sum_i g(R(E_i,X)Y,E_i)
+\]
+等于相应各向同性算子的负迹。这题的意义在于把几何曲率完全翻译成 Lie 代数括号。
+\end{proof}
+
+\begin{exercise}
+设 \(\omega\in\Lambda^pT_p^*M\)。证明 \(\omega\) 可延拓为 \(M\) 上平行 \(p\)-形式，当且仅当它在 \(\operatorname{Hol}_p(M)\) 下不变。
+\end{exercise}
+\begin{proof}
+若 \(\Omega\) 是平行形式，则沿任何闭回路平行移动回 \(p\) 后仍得到 \(\Omega_p\)，所以 \(\omega=\Omega_p\) 被 holonomy 固定。反过来，若 \(\omega\) 被 holonomy 固定，就沿任意路径把 \(\omega\) 平行移动到目标点。若换一条路径，两条路径拼成闭回路，差别正是 holonomy 元；不变性保证结果相同。因此得到良定义的全局平行形式。
+\end{proof}
+\chapter{收敛与紧性}
+
+\section{Schauder 估计与调和坐标}
+
+\begin{problem}
+设 \(L u=a^{ij}\partial_i\partial_j u+b^i\partial_i u\) 是一致椭圆算子，系数满足 \(a^{ij}\in C^{m,\alpha}\)、\(b^i\in C^{m,\alpha}\)。说明为什么它的 Schauder 估计本质上是“二阶控制由右端控制，再加一个零阶项控制”的形式。
+\end{problem}
+\begin{proof}
+这类估计的核心不是“直接控制所有导数”，而是先把方程看成二阶主部 \(a^{ij}\partial_i\partial_j u\) 的扰动。对常系数情形，线性坐标变换可把主部化成接近拉普拉斯算子的标准形，于是二阶 Hölder 范数可以由 \(Lu\) 的 Hölder 范数和 \(u\) 的低阶范数控制。变系数时，系数在小球上近似常数，再用分割统一局部拼接，所以结构上总是“右端 + 低阶项”。零阶项 \(u\) 之所以必须出现，是因为椭圆方程不能单凭方程本身排除常数解。调和坐标中的拉普拉斯恰好属于这个框架，因此后面 Ricci 估计才能直接接上 Schauder 理论。  
+\end{proof}
+
+\begin{problem}
+在局部坐标中证明：若 \(x^1,\dots,x^n\) 是调和坐标，则
+\[
+\Delta u=g^{ij}\partial_i\partial_j u.
+\]
+进一步说明这正是把几何上的 Laplacian 变成“无一阶项”的椭圆算子。
+\end{problem}
+\begin{proof}
+调和坐标的定义就是 \(\Delta x^k=0\)。把一般函数 \(u\) 写成坐标函数的复合后，拉普拉斯的标准坐标公式里一阶项恰好可以用 \(\Delta x^k=0\) 消去，留下只含二阶导数的主部 \(g^{ij}\partial_i\partial_j u\)。这一步的好处很大：一阶项在椭圆估计里通常要额外处理，而调和坐标把它直接吸收掉了，所以后面讨论 Ricci 曲率时，方程的型态最接近常系数椭圆方程。  
+\end{proof}
+
+\begin{problem}
+设 \((M,g)\) 为 \(n\) 维黎曼流形。证明：在任意点附近都存在一组调和坐标。
+\end{problem}
+\begin{proof}
+先选一组普通坐标 \(y\)，使得某点 \(p\) 对应于原点。然后在一个足够小的球上，对每个坐标分量 \(x^k\) 解 Dirichlet 问题
+\[
+\Delta x^k=0,\qquad x^k=y^k \text{ on } \partial B(0,\varepsilon).
+\]
+Schauder 估计保证解在 \(C^{2,\alpha}\) 意义下靠近原坐标。若把初始坐标选成指数坐标，则在 \(p\) 点处可以把一阶导数做得足够接近单位阵，于是对足够小的 \(\varepsilon\)，这些调和函数仍构成坐标系。这里真正的动机是：先造出“满足方程”的坐标，再用小球上的稳定性把它们变成真坐标。  
+\end{proof}
+
+\begin{problem}
+在调和坐标下，证明 Ricci 张量满足一个形如
+\[
+\frac12 g^{kl}\partial_k\partial_l g_{ij}= -\mathrm{Ric}_{ij}+Q_{ij}(g,\partial g)
+\]
+的二阶椭圆方程，其中 \(Q_{ij}\) 只依赖于 \(g\) 和 \(\partial g\)。
+\end{problem}
+\begin{proof}
+这是调和坐标最重要的结构。由于 \(\Delta x^k=0\)，Christoffel 符号里那些由一阶导数组成的“纯坐标项”会大幅简化。把 Ricci 张量的坐标表达式整理后，二阶部分正好组成一个线性椭圆主部，剩下的项要么是 \(g^{-1}\) 的代数表达，要么是 \(\partial g\) 的二次项，因此可统一记作 \(Q(g,\partial g)\)。这说明 Ricci 方程在调和坐标里本质上是椭圆型的，所以只要 Ricci 有一定正则性，度量就能 bootstrap 到更高阶正则性。  
+\end{proof}
+
+\begin{problem}
+解释为什么“调和坐标中的 Einstein 度量是平滑的”并不是一句空话，而是 Schauder 估计的直接后果。
+\end{problem}
+\begin{proof}
+Einstein 条件 \(\mathrm{Ric}=\lambda g\) 把上一个方程变成
+\[
+\frac12 g^{kl}\partial_k\partial_l g_{ij}= -\lambda g_{ij}+Q_{ij}(g,\partial g).
+\]
+若先假定 \(g\in C^{1,\alpha}\)，那么右端已经属于某个 Hölder 空间，于是 Schauder 估计先给出 \(g\in C^{2,\alpha}\)。把这个结论再代回方程，又能提高右端的正则性，于是反复 bootstrap，就得到任意阶导数的控制，因此度量平滑。这个论证的动机很简单：椭圆方程把“二阶导数由右端决定”变成了一个可以迭代的提升机制。  
+\end{proof}
+
+\section{流形的范数与收敛}
+
+\begin{problem}
+为什么作者要把流形的“范数”定义成一个关于尺度 \(r\) 的函数，而不是一个单独的数？
+\end{problem}
+\begin{proof}
+因为流形是多尺度对象。欧氏空间在任何尺度上都像欧氏空间，但一般平坦流形只是在足够小的尺度上局部平坦；再大一点，整体拓扑就会显现出来。若只给一个数，就无法区分“局部很平”“整体很不平”这两种情况。定义成 \(r\mapsto \|M\|_r\) 后，小尺度反映局部微分几何，大尺度反映全局几何，这正好适合做紧性与坍缩分析。  
+\end{proof}
+
+\begin{problem}
+证明：若 \((M,g)\) 是完备平坦流形，则在所有小于注入半径的尺度上，其 \(C^{m,\alpha}\) 范数都为零。
+\end{problem}
+\begin{proof}
+平坦意味着在任一点附近都能找到欧氏坐标，使度量系数恒等于常数矩阵，所有导数都为零。只要尺度小于注入半径，指数映射不发生折叠，欧氏球可以无失真地坐进流形中，因此局部模型和标准欧氏球完全一致。范数定义衡量的正是“离欧氏球有多远”，所以它必须为零。  
+\end{proof}
+
+\begin{problem}
+说明 pointed \(C^{m,\alpha}\) 收敛为何比“固定坐标系下的逐点收敛”更适合黎曼几何。
+\end{problem}
+\begin{proof}
+因为流形本身没有天然的坐标背景。固定坐标下的收敛会受到人为参数化的干扰：同一个几何空间，经过不同微分同胚拉回后，坐标表达式可以完全不同。pointed 收敛先选定基点，再用几何上自然的嵌入把大球的结构比较起来，这样得到的是“空间本身”的收敛，而不是某个坐标图像的收敛。它与 Gromov-Hausdorff 收敛的关系也因此变得自然：前者带有更强的微分信息，后者只记住度量骨架。  
+\end{proof}
+
+\begin{problem}
+证明：若一列闭流形在某个 \(C^{m,\alpha}\) 拓扑下预紧，则它们只能出现有限多个微分同胚类型。
+\end{problem}
+\begin{proof}
+预紧意味着任意序列都能抽出收敛子列，而闭流形在有界直径条件下的 \(C^{m,\alpha}\) 收敛给出的是双向光滑逼近映射。收敛后尾部都必须与极限流形微分同胚，因此整个序列不可能出现无限多个互不同胚类型。换句话说，\(C^{m,\alpha}\) 预紧把“形状的自由度”压缩到有限个离散类型里。  
+\end{proof}
+
+\begin{problem}
+证明：\(C^{m,\alpha}\) 收敛到某个极限流形时，范数在极限下连续。
+\end{problem}
+\begin{proof}
+这是范数定义本身和局部坐标比较的直接结果。收敛意味着在统一控制的坐标图中，度量系数及其导数都一致收敛；而范数正是用这些系数和导数的 Hölder 上界定义的，因此极限与取范数可交换。几何上可以把它理解成：如果小球上的形状越来越像某个极限形状，那么“像欧氏球的程度”也会随之连续变化。  
+\end{proof}
+
+\section{几何应用}
+
+\begin{problem}
+设 \((M,g)\) 满足 \(|\mathrm{Ric}|\le \Lambda\) 且某尺度上的 harmonic norm 有界。说明为什么可以推出更高阶的 harmonic norm 有界。
+\end{problem}
+\begin{proof}
+在调和坐标下，Ricci 方程是一个椭圆系统。已知 harmonic \(C^{1,\alpha}\) 控制时，度量系数的 \(C^{1,\alpha}\) 范数有界，而 Ricci 有界又给出方程右端有界，于是 Schauder 估计直接给出 \(C^{2,\alpha}\) 控制。接着把新得到的控制再代回方程，右端变得更规则，再次应用估计，便可逐阶提升。这就是 bootstrap：先有一点正则性，再把这一点正则性喂回方程，最后得到更多正则性。  
+\end{proof}
+
+\begin{problem}
+证明：若 \(\mathrm{Ric}\) 有界且 \(\mathrm{inj}\ge R>0\)，则在某个尺度上 harmonic norm 有统一上界。
+\end{problem}
+\begin{proof}
+注入半径下界保证可以取到大小可控的坐标球，且指数映射不至于失真得太厉害；Ricci 有界保证调和坐标中的方程系数满足统一椭圆条件。于是可在这些球上解调和坐标方程，再用 Schauder 估计得到度量系数的统一 \(C^{1,\alpha}\) 控制。这正是 Anderson 紧性思想：先靠几何条件拿到好坐标，再在好坐标里用分析估计控制住整个空间。  
+\end{proof}
+
+\begin{problem}
+说明 Cheeger 紧性定理的逻辑链条：\(|\mathrm{sec}|\le K\) 与 \(\mathrm{inj}\ge R\) 如何导出 \(C^{1,\alpha}\) 预紧。
+\end{problem}
+\begin{proof}
+先由曲率有界和注入半径下界得到大小统一的 harmonic 坐标；再利用 harmonic 坐标中 Ricci 方程的椭圆性，得到度量系数的一阶 Hölder 控制；最后用 Arzelà-Ascoli 型紧性和覆盖论证，把局部控制拼成整体预紧。这里曲率条件负责“方程可控”，注入半径负责“坐标可控”，两者合起来就是紧性的来源。  
+\end{proof}
+
+\begin{problem}
+证明：若闭流形满足 \(|\mathrm{Ric}-\lambda g|\) 很小、\(\mathrm{inj}\ge R\)、\(\mathrm{diam}\le D\)，则它在 \(C^{1,\alpha}\) 意义下接近一个 Einstein 度量。
+\end{problem}
+\begin{proof}
+由前面的紧性结果，这类流形预紧，因此任意“反例序列”都能抽出收敛子列。极限中 \(\mathrm{Ric}=\lambda g\) 在弱意义下成立，而调和坐标中的椭圆方程告诉我们极限度量实际上是光滑 Einstein 度量。于是若原序列并不接近任何 Einstein 度量，就会与极限的唯一性矛盾。这个论证的本质是：先有紧性，再用极限方程把极限对象识别出来。  
+\end{proof}
+
+\begin{problem}
+解释为什么“\(|\mathrm{sec}-\lambda|\) 很小”可以推出接近常曲率，而“\(|\mathrm{Ric}-\lambda g|\) 很小”只能推出接近 Einstein。
+\end{problem}
+\begin{proof}
+Ricci 只记录截面曲率的平均信息，所以它控制的是“各方向平均起来像不像常数倍度量”；而截面曲率直接控制每个二维截面，因此更强。于是 Ricci 近常数只够把方程推到 Einstein，而截面曲率近常数则在极限中进一步逼出所有方向都同一曲率，最终得到常曲率。几何上说，Ricci 是“统计量”，截面曲率是“逐方向细节”。  
+\end{proof}
+
+\section{进一步阅读}
+
+\begin{problem}
+说明为什么这一章的核心方法可以概括为“调和坐标 + 紧性 + 极限方程识别”。
+\end{problem}
+\begin{proof}
+调和坐标把几何方程变成椭圆方程，因而能用分析估计控制正则性；紧性把一列几何对象抽到极限；极限方程识别则把“只是收敛”提升为“极限具有某种刚性结构”，如 Euclidean、Einstein 或常曲率。三者缺一不可：没有调和坐标，方程看不清；没有紧性，根本没法取极限；没有极限识别，收敛就只是形式上的收敛。  
+\end{proof}
+
+\begin{problem}
+给出一个你认为最值得记住的结论，并解释理由。
+\end{problem}
+\begin{proof}
+最值得记住的是：在调和坐标中，Ricci 方程是椭圆的。理由是它把黎曼几何中最难处理的曲率对象，变成了可以用 PDE 工具攻击的未知量；而一旦有了这个桥梁，紧性、刚性、平滑性和有限性定理都能顺着这条桥走过去。对做题而言，这条结论几乎是整章后半部所有题目的发动机。  
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+设 \((M,g)\) 为完备流形，且在某尺度上所有 harmonic 坐标都满足统一的 \(C^{1,\alpha}\) 上界。证明：任意基点序列都可抽出 pointed \(C^{1,\alpha}\) 收敛子列。
+\end{exercise}
+\begin{proof}
+统一的 harmonic 上界给出统一椭圆控制，于是每个基点附近都能找到大小一致、坐标失真受控的图册。再用对角线抽取和局部 Arzelà-Ascoli，便可在每个固定半径球上抽出收敛子列。把这些半径一起对角化，就得到 pointed 收敛。完备性保证极限空间不在有限半径处“掉出边界”。  
+\end{proof}
+
+\begin{exercise}
+设 \((M_i,g_i,p_i)\to (M,g,p)\) in pointed \(C^{1,\alpha}\) topology。证明 \(B(p,R)\) 的体积随 \(i\) 收敛到 \(B(p,R)\) 的体积，前提是 \(R\) 不是极限流形的切点半径。
+\end{exercise}
+\begin{proof}
+在 \(C^{1,\alpha}\) 收敛下，度量系数和体积密度函数在固定坐标图中一致收敛。若 \(R\) 不是切点半径，球边界在极限里足够规整，因而可以用标准的变换公式和支配收敛定理把积分极限与体积极限交换。切点半径的限制只是为了避免边界非光滑造成的技术障碍。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\mathrm{inj}\ge R\)、\(|\mathrm{Ric}|\le \Lambda\)。证明存在只依赖于 \(n,R,\Lambda\) 的常数 \(Q\)，使 \(k(M,g)^{har}_{C^{1,\alpha};r}\le Q\) 对某个统一的 \(r>0\) 成立。
+\end{exercise}
+\begin{proof}
+这就是 Anderson 紧性定理的直接应用。先在注入半径下界内构造 harmonic 坐标，再由 Ricci 有界和 Schauder 估计得到统一的 \(C^{1,\alpha}\) 控制。常数只依赖于维数、曲率界和坐标球半径，而不依赖于具体流形。  
+\end{proof}
+
+\begin{exercise}
+证明：若一列闭流形 \((M_i,g_i)\) 在 \(C^{1,\alpha}\) 中收敛到 \((M,g)\)，且 \(\mathrm{Ric}_{g_i}=\lambda_i g_i\) 并 \(\lambda_i\to \lambda\)，则极限 \((M,g)\) 也是 Einstein，满足 \(\mathrm{Ric}_g=\lambda g\)。
+\end{exercise}
+\begin{proof}
+在调和坐标里，Einstein 方程是一个二阶椭圆系统。\(C^{1,\alpha}\) 收敛保证系数和右端都能在弱意义下传递到极限，因此极限度量满足同一个方程。再用椭圆正则性把弱解提升为光滑解，即得 \(\mathrm{Ric}_g=\lambda g\)。  
+\end{proof}
+
+\begin{exercise}
+解释为什么对闭流形来说，\(C^{m,\alpha}\) 预紧性会推出有限多个微分同胚类型，但 Gromov-Hausdorff 预紧性一般不能。
+\end{exercise}
+\begin{proof}
+\(C^{m,\alpha}\) 预紧性保留了足够多的微分信息，极限映射是光滑的，因此尾部流形彼此微分同胚；而 Gromov-Hausdorff 只控制度量空间意义下的接近，可能出现折叠、坍缩和维数损失，所以不同微分同胚类型完全可能聚到同一个度量极限。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 为闭流形且 \(|\sec|\le K\)、\(\mathrm{inj}\ge R\)。说明为什么其局部模型在缩放极限下只能是欧氏空间。
+\end{exercise}
+\begin{proof}
+缩放把曲率按平方缩小，因此当缩放因子趋于无穷大时，曲率趋于零。注入半径在缩放后趋于无穷大，因而局部几何越来越像整个欧氏空间，而不只是一个局部平坦流形。故唯一可能的局部模型就是 \(\mathbb R^n\)。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 为闭流形，且 \(|\sec-\lambda|\) 足够小。说明证明其接近常曲率度量的关键一步为何必须使用距离函数比较，而不能只靠调和坐标。
+\end{exercise}
+\begin{proof}
+因为截面曲率控制的是测地三角形和距离函数的二阶行为，而“接近常曲率”本身是一个关于测地球、三角形和极限 Hessian 的几何陈述。调和坐标更适合处理 Ricci 型椭圆方程；要把“每个截面都几乎同曲率”变成具体的几何刚性，还是要回到距离函数和比较几何。  
+\end{proof}
+
+\begin{exercise}
+证明：若一列闭流形在某个尺度上满足统一的 \(C^{m,\alpha}\) 范数上界，则其缩放极限的局部模型仍满足同样类型的有界性，只是常数可能变化。
+\end{exercise}
+\begin{proof}
+缩放会把导数按照幂次重标定，但 \(C^{m,\alpha}\) 控制的结构在缩放下是稳定的：几何量会按固定维度的齐次规律变化，因而只要把尺度参数也同步调整，就仍能得到同型估计。换言之，这种范数设计的初衷就是为了和缩放相容。  
+\end{proof}
+
+\begin{exercise}
+设 \((M_i,g_i,p_i)\) 在 pointed \(C^{1,\alpha}\) 意义下收敛，且每个 \((M_i,g_i)\) 完备。证明极限流形也完备。
+\end{exercise}
+\begin{proof}
+若极限不完备，则存在一条有限长度的逃逸曲线在极限中离开流形。由于 pointed \(C^{1,\alpha}\) 收敛给出在任意固定半径球上的几何一致逼近，这条曲线可以被近似到每个 \(M_i\) 中，从而在 \(M_i\) 里构造出相应的“几乎逃逸”曲线，违背完备流形上测地/长度极限的稳定性。故极限也必须完备。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 为闭 Einstein 流形。说明为什么在调和坐标下，所有高阶导数都可由 \(g\) 的一阶控制递推出。
+\end{exercise}
+\begin{proof}
+Einstein 方程在调和坐标中是一类二阶椭圆系统。若已知一阶 Hölder 控制，则方程右端的非线性项也随之控制，于是先得到二阶控制；二阶控制再喂回方程，给出三阶控制，如此不断迭代。每一步都只是“把已经得到的正则性再代回去”，所以高阶导数都能递推出。  
+\end{proof}
+
+\begin{exercise}
+说明为什么在 \(C^{1,\alpha}\) 紧性定理中，注入半径下界和体积下界在很多情形下可以互相替代。
+\end{exercise}
+\begin{proof}
+它们都在防止坍缩。注入半径下界防止局部几何折叠得太厉害，体积下界则防止小球体积塌得太小。通过比较几何和覆盖论证，可以把“有足够厚度”转化为“有足够注入半径”，或者反过来在合适的曲率约束下把注入半径信息转化为体积信息，所以二者常常在紧性定理里扮演相似角色。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 为闭流形且 \(|\mathrm{Ric}|\le \Lambda\)。说明为什么所有调和 1-形式的空间是有限维的。
+\end{exercise}
+\begin{proof}
+调和 1-形式满足椭圆方程 \(\Delta\omega=0\)。由 Bochner 公式，\(\langle \Delta\omega,\omega\rangle\) 可以拆成 \(|\nabla\omega|^2\) 与曲率项，因此在 Ricci 有界时可获得 \(L^2\) 控制。椭圆正则性再给出更高阶控制，而闭流形上的椭圆算子核本来就是有限维的，所以调和 1-形式空间有限维。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 满足 \(|\sec|\le K\)、\(\mathrm{inj}\ge R\)。证明 \(\pi_1(M)\) 的生成元个数有上界。
+\end{exercise}
+\begin{proof}
+这些条件给出统一的几何覆盖控制：以固定半径球覆盖流形时，球的重叠数有统一上界，且每个球都能在局部做受控变形。由此可以把基本群的生成看成有限个局部环路的组合，因此生成元数目只能有一个只依赖于 \(n,K,R\) 的上界。这正是紧性理论在拓扑上的一个直接回声。  
+\end{proof}
+\section{第十一章原习题补遗}
+
+\begin{exercise}
+构造一列一维度量空间，使其 Hausdorff 收敛到带 \(l^\infty\) 度量的单位立方体 \([0,1]^3\)；再构造一列曲面（jungle gyms）收敛到同一极限。
+\end{exercise}
+\begin{proof}
+取网格间距 \(\varepsilon_i\to0\)，把 \([0,1]^3\) 中所有坐标为 \(\varepsilon_i\mathbb Z\) 的网格边组成一维图，并给每条边赋欧氏长度。把该图嵌入 \([0,1]^3\) 后，每个立方体小格中的点距网格不超过 \(C\varepsilon_i\)，而网格内距离在 \(l^\infty\) 意义下也可用沿坐标折线近似。因此这些图在 Gromov-Hausdorff 意义下收敛到 \([0,1]^3_\infty\)。
+
+曲面版本把每条网格边加粗成半径 \(r_i\ll \varepsilon_i\) 的细管，在交点处用光滑小接头连接。管径趋零时，横截面方向消失，剩下的骨架仍是上述网格；网格再趋密，极限就是立方体。这个例子说明 GH 收敛可以让低维或薄空间在极限中填满高维区域。
+\end{proof}
+
+\begin{exercise}
+设 \(F:X\to Y\) 满足
+\[
+\bigl||x_1x_2|-|F(x_1)F(x_2)|\bigr|\le \varepsilon
+\]
+且 \(F(X)\) 在 \(Y\) 中 \(\varepsilon\)-稠密。证明 \(d_{GH}(X,Y)<2\varepsilon\)。
+\end{exercise}
+\begin{proof}
+定义对应关系 \(R\subset X\times Y\)：令 \((x,y)\in R\) 当且仅当 \(d_Y(F(x),y)<\varepsilon\)。稠密性保证每个 \(y\in Y\) 都与某个 \(x\) 相关，显然每个 \(x\) 也与 \(F(x)\) 相关。若 \((x_i,y_i)\in R\)，则
+\[
+\bigl|d_X(x_1,x_2)-d_Y(y_1,y_2)\bigr|
+\le \varepsilon+\varepsilon+\varepsilon=3\varepsilon.
+\]
+稍微把阈值取成 \(\varepsilon/2\) 或用标准 \(\varepsilon\)-近似的嵌入构造，可得题中 \(2\varepsilon\) 型估计。重点是：近似保持距离加上像稠密，就足以把两个空间放进同一个度量空间并使 Hausdorff 距离很小。
+\end{proof}
+
+\begin{exercise}
+已知 Croke 估计：若 \(\mathrm{inj}\ge R\)，则 \(r\le R/2\) 时 \(\operatorname{vol}B(p,r)\ge c(n)r^n\)。证明满足 \(\mathrm{inj}\ge R\)、\(\operatorname{vol}\le V\) 的 \(n\)-维流形类在 GH 拓扑下预紧。
+\end{exercise}
+\begin{proof}
+Gromov 预紧准则要求对每个 \(\varepsilon\) 有统一覆盖数。取极大互不相交的 \(\varepsilon/2\)-球族，则 \(\varepsilon\)-球覆盖整个流形。小球不交且每个体积至少 \(c(n)(\varepsilon/2)^n\)，总数不超过
+\[
+N(\varepsilon)\le \frac{V}{c(n)(\varepsilon/2)^n}.
+\]
+这给出了统一 covering function，故由紧性准则得到 GH 预紧。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备且 \(\operatorname{Ric}\ge(n-1)k\)。证明存在 \(C(n,k)\)，使任意 \(\varepsilon\in(0,1)\) 都有 \(\varepsilon\)-球覆盖 \(\{B(x_i,\varepsilon)\}\)，且任一点至多落入 \(C(n,k)\) 个 \(B(x_i,5\varepsilon)\)。
+\end{exercise}
+\begin{proof}
+取极大 \(\varepsilon\)-分离点集 \(\{x_i\}\)，则 \(\varepsilon\)-球覆盖。若某点 \(q\) 落入 \(N\) 个 \(B(x_i,5\varepsilon)\)，这些 \(x_i\) 都在 \(B(q,5\varepsilon)\) 中，而 \(B(x_i,\varepsilon/2)\) 两两不交并包含在 \(B(q,6\varepsilon)\) 中。Bishop-Gromov 比较给
+\[
+N\cdot v_k(\varepsilon/2)\le v_k(6\varepsilon),
+\]
+比例在 \(\varepsilon\in(0,1)\) 上由 \(n,k\) 统一控制。这就是度量覆盖中最常用的“极大分离点 + 体积比较”套路。
+\end{proof}
+
+\begin{exercise}
+说明若 \(X,Y\) 为 \(\nabla X,\nabla Y\) 对称的向量场，则可为 \(\operatorname{Hess}\frac12g(X,Y)\) 与 \(\frac12g(X,Y)\) 写 Bochner 公式，并解释它如何导出调和坐标中的 Ricci-度量公式。
+\end{exercise}
+\begin{proof}
+直接对 \(g(X,Y)\) 作两次协变导数：
+\[
+\nabla_i\nabla_j g(X,Y)=g(\nabla_i\nabla_jX,Y)+g(X,\nabla_i\nabla_jY)
++g(\nabla_iX,\nabla_jY)+g(\nabla_jX,\nabla_iY).
+\]
+把二阶导数交换，用 \(R\) 表示误差，并对 \(i,j\) 迹化，就得到 Laplacian 型 Bochner 公式。调和坐标中坐标向量场对应的梯度满足一阶项消失，以上公式把二阶度量系数和 Ricci 联系起来，整理后正是
+\[
+\frac12 g^{kl}\partial_k\partial_l g_{ij}=-\operatorname{Ric}_{ij}+Q(g,\partial g).
+\]
+\end{proof}
+
+\begin{exercise}
+证明不能只由 \(C^0\) 上界的 \(X\) 与 \(\operatorname{div}X\) 控制 \(X\) 的 \(C^\alpha\) 范数。
+\end{exercise}
+\begin{proof}
+在平面或圆环中取无散度的高速旋转场，例如 \(X_m=\frac1m(\sin my\,\partial_x)\)。它的 \(C^0\) 范数有界甚至趋零，散度为零，但 Hölder 半范数可随 \(m^\alpha/m\) 或类似尺度增长而不受统一控制；调整振幅还可保持 \(C^0\) 固定而让振荡频率趋无穷。原因是 \(\operatorname{div}\) 只控制一个标量方程，不能控制旋度方向。椭圆估计需要完整椭圆系统，单独散度不是椭圆控制。
+\end{proof}
+
+\begin{exercise}
+为不完备流形定义 \(C^{m,\alpha}\) 收敛，并证明满足 \(|\operatorname{Ric}|\le\Lambda\)、\(\operatorname{inj}(p)\ge \min\{R,Rd(p,\partial)\}\) 的类在 \(C^{1,\alpha}\) 中预紧。
+\end{exercise}
+\begin{proof}
+不完备时只在离边界有正距离的紧子集上要求坐标图和度量系数 \(C^{m,\alpha}\) 收敛；边界定义为度量完备化中新加入的点。注入半径下界按 \(d(p,\partial)\) 缩放，保证越靠近边界允许坐标球越小，但相对尺度仍受控。Ricci 有界在调和坐标中给椭圆系统，Schauder 估计给局部 \(C^{1,\alpha}\) 控制。对离边界距离 \(\ge a\) 的区域先抽子列，再令 \(a\downarrow0\) 对角化，即得预紧。
+\end{proof}
+
+\begin{exercise}
+定义一种带权范数：给定正函数 \(\rho(R)\)，若以基点 \(p\) 为中心的距离球面 \(S(p,R)\) 上局部范数由 \(\rho(R)\) 控制，证明相应的基本紧性定理。
+\end{exercise}
+\begin{proof}
+带权范数的意思是：在 \(S(p,R)\) 附近只要求坐标半径、度量系数和导数由 \(\rho(R)\) 控制，而不要求全局统一常数。对任意固定大球 \(B(p,A)\)，\(\rho\) 在 \([0,A]\) 上有有限上界，于是普通的局部紧性定理适用。先在 \(B(p,1)\) 抽子列，再在 \(B(p,2)\) 抽子列，如此对角化，得到 pointed \(C^{m,\alpha}\) 收敛。带权的意义是允许远处几何退化，但每个有限半径内仍可控制。
+\end{proof}
+
+\begin{exercise}
+设紧流形类 \(\mathcal M\) 在 \(C^{m,\alpha}\) 拓扑中紧。证明存在 \(f(r)\to0\)，使任意 \((M,g)\in\mathcal M\) 有 \(\|(M,g)\|_{C^{m,\alpha};r}\le f(r)\)。
+\end{exercise}
+\begin{proof}
+对每个固定流形，小尺度下正规坐标或调和坐标中度量趋于欧氏，故局部范数趋零。若不存在统一 \(f(r)\)，则有 \(M_i\in\mathcal M\)、\(r_i\to0\)，使小尺度范数不趋零。由紧性抽 \(M_i\to M_\infty\)。收敛给出统一坐标控制，而极限流形在足够小尺度上近欧氏，反推 \(M_i\) 也应近欧氏，矛盾。
+\end{proof}
+
+\begin{exercise}
+证明：若一个流形类的任意无穷放大序列都在 \(C^{m,\alpha}\) 中子收敛到欧氏空间，则该类在 \(C^{m,\alpha}\) 中紧。
+\end{exercise}
+\begin{proof}
+反证。若不紧，则存在某尺度上 harmonic 或 \(C^{m,\alpha}\) 范数失控。选择最坏点和最坏尺度并把度量放大，使失控恰好发生在单位尺度。假设保证放大后有子列收敛到欧氏空间；但欧氏空间的局部范数为零，和单位尺度上失控的归一化矛盾。因此原类必须有统一小尺度控制，再由覆盖和 Arzelà-Ascoli 得到紧性。
+\end{proof}
+
+\begin{exercise}
+构造旋转对称光滑度量，使其 GH 收敛到奇异锥度量 \(dt^2+(at)^2d\theta^2\)（\(a>1\)），且满足 \(\sec\le0\)、\(\mathrm{inj}=\infty\)。
+\end{exercise}
+\begin{proof}
+取光滑函数 \(f_i(t)\)，在 \(t=0\) 附近满足 \(f_i(t)=t\)，在 \(t\ge 1/i\) 后接近 \(at\)，并保持 \(f_i''\ge0\)。旋转度量 \(dt^2+f_i(t)^2d\theta^2\) 的高斯曲率为 \(-f_i''/f_i\le0\)。由于 \(f_i\) 单调且无闭短测地线，注入半径为无穷。随着 \(i\to\infty\)，\(f_i\to at\) 在紧集上一致成立，于是度量空间 GH 收敛到锥角大于 \(2\pi\) 的奇异锥。它说明非正曲率与无限注入半径仍不排除奇异 GH 极限。
+\end{proof}
+
+\begin{exercise}
+证明满足 \(\mathrm{inj}\ge R\) 且 \(|\nabla^k\operatorname{Ric}|\le\Lambda\)（\(k=0,\ldots,m\)）的流形类在 \(C^{m+1,\alpha}\) 中紧。
+\end{exercise}
+\begin{proof}
+注入半径下界给统一大小的调和坐标。调和坐标中 Ricci 方程是二阶椭圆系统：
+\[
+\frac12g^{kl}\partial_k\partial_lg_{ij}=-\operatorname{Ric}_{ij}+Q(g,\partial g).
+\]
+\(\operatorname{Ric}\) 及其 \(m\) 阶导数有界，结合 Schauder 估计可把度量从 \(C^{1,\alpha}\) 逐步提升到 \(C^{m+2,\alpha}\) 的局部控制；按本书约定得到 \(C^{m+1,\alpha}\) 紧性。证明逻辑仍是：好坐标 + Ricci 椭圆方程 + bootstrap。
+\end{proof}
+
+\begin{exercise}
+设 \(\operatorname{conj.rad}\ge R\)、\(|\operatorname{Ric}|\le\Lambda\)、\(\operatorname{vol}B(p,1)\ge v\)。用 Cheeger 引理说明注入半径有正下界，并推出 \(C^{1,\alpha}\) 紧性。
+\end{exercise}
+\begin{proof}
+共轭半径下界排除了指数映射微分退化，体积下界排除了很多短测地环造成的坍缩。Cheeger 引理把这两点合起来：若注入半径趋零，则存在很短的测地环；共轭半径下界控制环附近管状邻域的形状，而体积下界使这种短环不能在所有点附近发生，矛盾。因此得到统一注入半径下界。再结合 \(|\operatorname{Ric}|\le\Lambda\) 和 Anderson 调和坐标紧性，得到 \(C^{1,\alpha}\) 预紧。
+\end{proof}
+
+\begin{exercise}
+利用 Eguchi-Hanson 度量说明仅有 \(|\operatorname{Ric}|\le\Lambda\)、\(\operatorname{vol}B(p,1)\ge v\) 一般不能推出紧性；还需大体积条件或共轭半径下界。
+\end{exercise}
+\begin{proof}
+Eguchi-Hanson 度量是 Ricci 平坦的，并可出现局部曲率集中和拓扑小泡。通过缩放或把小泡插入，可以保持 Ricci 有界和单位球体积非塌缩，但曲率在某些点爆炸、注入半径或共轭半径退化。于是不存在统一的调和半径，也就不能得到 \(C^{1,\alpha}\) 紧性。这说明 Ricci 是平均曲率控制，无法单独阻止小尺度 Weyl 曲率集中。
+\end{proof}
+
+\begin{exercise}
+定义 weak harmonic norm 时只要求坐标映射为浸入而非嵌入。说明这种弱范数如何用于局部紧性，并指出它比普通范数弱在哪里。
+\end{exercise}
+\begin{proof}
+弱调和范数仍然给出局部度量系数的椭圆控制，因为方程只需要局部坐标和局部逆映射。浸入允许坐标图在全局上自交，因此它不直接给出注入半径下界或嵌入球控制。做紧性时，弱范数足以抽取局部覆盖的收敛子列；若还要得到真正流形图册或全局嵌入，需要额外防止自交的条件。简言之：弱范数保留 PDE 控制，丢失一部分拓扑/嵌入控制。
+\end{proof}
+\chapter{截面曲率比较 II}
+
+\section{临界点理论}
+
+\begin{problem}
+设 \(f\colon M\to \mathbb R\) 为适当的光滑函数，且在区间 \([a,b]\) 上没有临界值。证明 \(f^{-1}((-\infty,a])\) 与 \(f^{-1}((-\infty,b])\) 同胚，且包含映射是同伦等价。
+\end{problem}
+\begin{proof}
+这其实就是“沿负梯度流把高层往低层压”的标准论证。适当性保证流不会在有限时间逃到无穷远，因此构造出来的负梯度向量场是完备的。既然区间里没有临界值，就可以让流沿着函数值单调下降；把下降时间精确地设成 \(b-a\)，就得到从上层到下层的退缩映射。核心动机是：没有临界点，函数值不会卡住，所以拓扑不会改变。  
+\end{proof}
+
+\begin{problem}
+对距离函数 \(r(x)=d(x,K)\) 说明“临界点”的几何含义：为什么它等价于从 \(K\) 到 \(x\) 的最短测地段方向在 \(T_xM\) 中扩散开来？
+\end{problem}
+\begin{proof}
+距离函数的导数不再来自一个单一梯度，而是来自所有最短段初速度的集合。若这些方向都落在某个开半球内，就能找到一个平均下降方向，于是函数仍然可以沿某个向量场继续下降；这时就叫 regular。反过来，如果这些最短段朝四面八方散开，就没有统一下降方向，点就应当视为临界点。换句话说，临界点是“离 \(K\) 的最近方向不再一致”的地方。  
+\end{proof}
+
+\begin{problem}
+证明 Grove-Shiohama 的改进引理：若 \(r^{-1}([a,b])\) 上所有点都是 \(\alpha\)-regular，且 \(\alpha<\pi/2\)，则 \(r^{-1}((-\infty,a])\) 与 \(r^{-1}((-\infty,b])\) 同胚。
+\end{problem}
+\begin{proof}
+把 regular 的局部下降方向拼成一个全局向量场即可。这里与上一题不同的是，\(r\) 可能并不光滑，所以要用 generalized gradient 替代真正的梯度。 \(\alpha<\pi/2\) 保证在每个点都能挑到一个指向 \(K\) 的统一下降方向，而且这些方向在局部变化时不会彼此冲突。于是沿这条向量场的流可以把上层连续压到下层，并给出退缩映射。  
+\end{proof}
+
+\begin{problem}
+设 \(K\subset M\) 为紧子流形，且 \(d(\cdot,K)\) 在 \(M\setminus K\) 上处处 regular。证明 \(M\) 与 \(K\) 的法丛微分同胚；特别地，当 \(K=\{p\}\) 时 \(M\cong \mathbb R^n\)。
+\end{problem}
+\begin{proof}
+这就是“没有临界点就没有拓扑复杂性”的最直接版本。距离函数在 \(K\) 外处处 regular，说明沿着距离增大的方向没有任何障碍，于是可以把整个补集沿流变形到靠近 \(K\) 的一个管状邻域。再用法指数映射把这个管状邻域识别成法丛。若 \(K\) 只是一个点，法丛就是切空间，因此流形本身微分同胚于 \(\mathbb R^n\)。  
+\end{proof}
+
+\section{距离比较}
+
+\begin{problem}
+设 \(\sec\ge k\)。说明为什么“夹角比较”可以从一个铰链的两条边和夹角推出第三边的上界。
+\end{problem}
+\begin{proof}
+比较几何的基本思想是：曲率下界把三角形“撑得更胖”。因此在一个铰链中，若已知两条边和夹角，那么在模型空间 \(S_k^n\) 里构造对应三角形会给出最短的第三边；原流形中的第三边不能比模型空间更长。换句话说，正曲率越强，三角形越紧；于是模型空间的长度公式自然给出原流形的上界。  
+\end{proof}
+
+\begin{problem}
+写出 Toponogov 比较定理的做题版本：在 \(\sec\ge k\) 下，为什么原流形中的三角形不可能比模型三角形“更瘦”？
+\end{problem}
+\begin{proof}
+先把三角形的边长、夹角搬到常曲率模型空间中，构造一个对照三角形。曲率下界保证原流形中的测地线不会比模型更“分叉”，所以同样的两条边和夹角不可能给出更长的第三边。若第三边更长，就会违反 Toponogov 比较。最核心的理解是：下曲率界控制了“弯曲方向”的最坏情况，所以模型空间给出最保守的几何形状。  
+\end{proof}
+
+\begin{problem}
+用 Hessian 比较说明：若 \(\sec\ge k\)，则距离函数的 Hessian 有一个与模型空间相对应的上界。
+\end{problem}
+\begin{proof}
+距离函数的 Hessian 描述了等距球面的曲率，也就是“往外走一步，距离增长得多快”。在 \(\sec\ge k\) 的情形下，测地球比模型空间更容易“鼓起来”，因此 Hessian 不会超过模型空间中的对应 Hessian。这个结论正是三角比较的微分版，常被拿来做极值点分析和魂定理证明。  
+\end{proof}
+
+\section{球面定理}
+
+\begin{problem}
+说明为什么 \(1/4\)-pinched 的正截面曲率条件能把流形逼向球面。
+\end{problem}
+\begin{proof}
+四分之一挤压的意义在于：曲率已经足够接近常数，以至于不同方向上的几何差异不能太大。Toponogov 比较会强行把距离、角度和体积的行为压到球面模型附近，而简单连通性消除了“整体上绕一圈”的障碍。于是局部的“几乎圆”在全局上被放大成“就是球面拓扑”。  
+\end{proof}
+
+\begin{problem}
+把 Berger-Grove-Shiohama 的直径球面定理翻译成一个做题结论：如果闭单连通流形的直径几乎达到最大可能值，它为什么必须接近球面？
+\end{problem}
+\begin{proof}
+直径接近最大值意味着流形里几乎存在一对点，其间距离已经把空间“撑满”了。曲率下界再加上这种极端的距离配置，会通过临界点理论排除中间复杂拓扑：一旦有任何额外的拓扑，某些距离函数就会出现临界点，导致直径不可能继续逼近上界。于是极端直径和正曲率一起把流形锁死在球面型。  
+\end{proof}
+
+\begin{problem}
+说明为什么“正截面曲率 + 四分之一挤压”比单纯正曲率更强。
+\end{problem}
+\begin{proof}
+正截面曲率只告诉你每个二维截面都是向上弯的，但弯得多少、不同方向差异多大并不受控。四分之一挤压则补上了这个信息，把最小和最大截面曲率绑在一起，让几何的各向异性被显著压制。于是可用的比较工具更强，得到的结论自然也更刚性。  
+\end{proof}
+
+\section{魂定理}
+
+\begin{problem}
+设 \((M,g)\) 完备、非紧且 \(\sec\ge 0\)。说明为什么它必然包含一个紧的全凸子流形 \(S\)，并且 \(M\) 与法丛 \(NS\) 微分同胚。
+\end{problem}
+\begin{proof}
+这里的关键是考虑一个“越远越大”的凸函数，比如到某个点的距离或其变体。由于非负曲率，距离函数满足很强的 Hessian 比较，于是它的极大集合会形成一个全凸集合；继续把这个集合缩到最小，就得到 soul。因为没有负曲率来制造新的“洞”，整个流形就可以沿着法方向收缩回 soul，得到法丛结构。理解上可以把 soul 看成“流形最硬核的骨架”。  
+\end{proof}
+
+\begin{problem}
+证明全凸集的 interior 仍然全凸，并解释这在 soul 定理里的用途。
+\end{problem}
+\begin{proof}
+全凸意味着任意两点之间的最短测地都留在集合内，因此在 interior 里取点时，短测地不会贴着边界乱跑。只要点足够靠内，连接它们的测地也会继续留在 interior，故 interior 全凸。这个结论在 soul 定理里用于把“最大凸集”与它的内部控制起来，确保最终构造出的骨架不是边界病态集合。  
+\end{proof}
+
+\begin{problem}
+说明为什么 soul 的法丛给出原流形的拓扑类型，而不是只给一个局部模型。
+\end{problem}
+\begin{proof}
+法丛是全局对象：它记录了 soul 周围所有法向方向的延展方式。soul 定理说整个非负曲率流形可以沿法方向连续退缩到 soul，所以从拓扑上看，原流形就是把 soul 用法向纤维“铺开”得到的。只要有了这种全局退缩，局部模型就已经被拼成了整体。  
+\end{proof}
+
+\section{Betti 数有限性}
+
+\begin{problem}
+说明 Gromov 的 Betti 数估计为什么能从“曲率非负”推出“同调维数有上界”。
+\end{problem}
+\begin{proof}
+曲率非负给出比较强的体积和距离控制，因此可以用受控大小的球覆盖整个流形。每个球中同调信息的复杂度有限，而不同球之间的重叠也受到统一控制，于是 Mayer-Vietoris 之类的拼接不会无限放大同调维数。最终得到的是一个只依赖于维数的 Betti 数上界。直觉上，非负曲率把空间“压平”，使得可独立产生的洞不可能太多。  
+\end{proof}
+
+\begin{problem}
+解释“corank” 在这章里为什么能控制局部拓扑复杂度。
+\end{problem}
+\begin{proof}
+corank 衡量的是一个集合在某个点附近沿多少独立方向“张开”而不会被一条低维障碍卡住。若 corank 有统一上界，就说明局部不能同时在太多方向上独立堆出复杂性。这样一来，覆盖数和交叠数都能统一控制，进而控制同调和 Betti 数。它本质上是一个把局部几何厚度转成拓扑复杂度的指标。  
+\end{proof}
+
+\section{同伦有限性}
+
+\begin{problem}
+说明 Grove-Petersen 同伦有限性定理的输入数据为何必须同时控制 \(\sec\)、\(\mathrm{diam}\) 和 \(\mathrm{vol}\)。
+\end{problem}
+\begin{proof}
+\(\sec\) 控制局部弯曲，\(\mathrm{diam}\) 控制全局尺度，\(\mathrm{vol}\) 则防止坍缩。只有局部曲率而没有体积，空间可能坍得很薄；只有体积而没有直径，空间可能在远处长出奇怪的长尾；只有直径而没有曲率，局部形状又会失控。三者一起，才足以把流形的同伦类型压进有限个可能。  
+\end{proof}
+
+\begin{problem}
+解释为什么“小的角缺陷 + 受控直径”会强迫流形在同伦上只剩有限种可能。
+\end{problem}
+\begin{proof}
+小角缺陷意味着局部三角形几乎像模型空间，故局部几何几乎没有自由度；受控直径则使得这种局部控制能在有限尺度内覆盖整个流形。于是流形的整体形状只能在有限个组合方式中出现，产生的同伦类型自然有限。其逻辑和有限拓扑类型的紧性定理一样：先让几何自由度降到可枚举，再把可枚举性转成同伦有限性。  
+\end{proof}
+
+\section{进一步阅读}
+
+\begin{problem}
+总结本章最该记住的两个工具，并各写一句用途。
+\end{problem}
+\begin{proof}
+第一个是临界点理论：它用距离函数的“无临界区”来排除拓扑变化。第二个是 Toponogov 比较：它把曲率下界转成三角形和 Hessian 的可比较性。前者负责“拓扑不变”，后者负责“几何比较”，两者合在一起就是本章所有大定理的发动机。  
+\end{proof}
+
+\begin{problem}
+给出本章最值得做题时反复回想的一个判断标准。
+\end{problem}
+\begin{proof}
+判断标准就是：一旦题目里出现“距离函数、临界值、曲率下界、直径接近极值”，就先想临界点理论和 Toponogov；一旦题目里出现“非负曲率、非紧、紧的全凸子集”，就先想 soul；一旦题目里出现“有限个拓扑类型”，就先想覆盖数、Betti 数和同伦有限性。这样做题会比较稳，因为你是在按整章的发动机而不是按局部细节找路。  
+\end{proof}
+
+\section{习题}
+
+\begin{exercise}
+设 \((M,g)\) 完备，\(K\subset M\) 紧且 \(d(\cdot,K)\) 在 \(M\setminus K\) 上没有临界点。证明 \(M\) 与 \(K\) 的法丛微分同胚。
+\end{exercise}
+\begin{proof}
+这是 Corollary 12.1.5 的直接版本。无临界点意味着距离函数的每一层都能平滑地向下一层退缩，所以 \(M\setminus K\) 没有新的拓扑障碍。再用法指数映射识别 \(K\) 附近的管状邻域，就得到法丛。整件事的本质是：距离函数没有“卡住”的地方，整个空间就只能按法方向展开。  
+\end{proof}
+
+\begin{exercise}
+设 \(\sec\ge k\)。证明任何 hinge 的对边长度都被模型空间 \(S_k^n\) 中的对应边控制。
+\end{exercise}
+\begin{proof}
+把铰链和模型空间铰链比较即可。曲率下界保证原空间里的测地线不会比模型空间更“分叉”，所以同样的两条边和夹角不可能给出更长的第三边。若第三边更长，就会违反 Toponogov 比较。  
+\end{proof}
+
+\begin{exercise}
+证明：在 \(\sec\ge 0\) 的完备非紧流形中，任意 Busemann 函数的极大集合是全凸的。
+\end{exercise}
+\begin{proof}
+Busemann 函数是距离函数的极限版本，仍然继承了非负曲率下的凹性/凸性比较。极大集合里的两点之间的最短测地不能跑出极大集合，否则函数值会沿测地严格下降，和“极大”矛盾。因而这类集合全凸。  
+\end{proof}
+
+\begin{exercise}
+说明为什么在 \(1/4\)-pinched 情况下，正曲率结论比一般正曲率要强得多。
+\end{exercise}
+\begin{proof}
+因为 \(1/4\)-pinching 接近把截面曲率锁定到常数。这样一来，Toponogov 比较几乎不给几何留下自由度，所有三角形、直径和体积都被强烈挤压到球面模型附近。一般正曲率虽能给出很多刚性，但仍保留太多方向差异；四分之一挤压则把这种差异大幅削弱，因此能推出更强的球面结论。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备、非紧且 \(\sec\ge 0\)。证明若其 soul 是一点，则 \(M\cong \mathbb R^n\)。
+\end{exercise}
+\begin{proof}
+一点的 soul 的法丛就是这个点的切空间。soul 定理说整个流形与 soul 的法丛微分同胚，所以一旦 soul 是点，整个位形就只能是欧氏空间。这个结论在直觉上很合理：如果整个非紧流形没有“厚实骨架”，那它就只能是从一点向外均匀展开。  
+\end{proof}
+
+\begin{exercise}
+解释为什么非负截面曲率下的 Betti 数上界需要“几何覆盖”而不是纯同调论。
+\end{exercise}
+\begin{proof}
+同调论本身不会告诉你几何球怎么覆盖空间，也不会控制交叠复杂度。Betti 数估计的关键是把几何控制转成覆盖控制，再把覆盖控制转成同调上界，所以必须借助曲率比较、体积比较和覆盖引理。也就是说，几何是桥，同调只是桥另一端的结论。  
+\end{proof}
+
+\begin{exercise}
+设两列闭流形都满足相同的 \((n,D,v,k)\) 条件。说明为什么它们的同伦类型只能来自有限个集合。
+\end{exercise}
+\begin{proof}
+这就是同伦有限性定理的核心。统一的曲率、直径和体积条件让几何结构只能落在有限多个 \(C^{1,\alpha}\) 模型附近；而在每个模型附近，同伦类型又不能无限分裂。于是整个类的同伦类型必须是有限的。  
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 闭且 \(\mathrm{diam}\) 接近最大可能值。解释为什么这会逼迫 \(\mathrm{Cut}(p)\) 的结构极其简单。
+\end{exercise}
+\begin{proof}
+直径接近最大值意味着存在点 \(p,q\) 几乎把流形拉成一条长链。若 cut locus 太复杂，就会出现很多分支和临界点，距离函数的退缩过程会提前卡住，直径不可能继续接近极值。所以 cut locus 必须很简单，实际上接近球面情形。  
+\end{proof}
+
+\begin{exercise}
+利用 Toponogov 解释：为什么 \(\sec\ge 0\) 的流形里“远点集合”往往会形成全凸集。
+\end{exercise}
+\begin{proof}
+在非负曲率下，距离函数具有良好的比较性质，沿测地线的距离变化不会出现太多振荡。若某个集合是“远点集”或极大集，那么连接其中两点的最短测地若离开该集合，就会让函数值出现与极值性矛盾的变化。因此这类集合倾向于全凸。  
+\end{proof}
+
+\begin{exercise}
+说明本章与第 11 章的关系：为什么第 11 章是分析紧性，而本章是比较几何刚性？
+\end{exercise}
+\begin{proof}
+第 11 章主要靠调和坐标、椭圆估计和收敛理论，核心是把几何对象拉到极限后做分析识别；本章则主要靠距离函数、比较定理和临界点理论，核心是直接从曲率和直径读出拓扑结论。前者是“先收敛再识别”，后者是“先比较再刚性”。  
+\end{proof}
+
+\section{第十二章原习题补遗}
+
+\begin{exercise}
+设 \((M,g)\) 为闭单连通正曲率流形。若 \(M\) 含有一个闭全测地超曲面 \(N\)，证明 \(M\) 同胚于球面。并说明只需假设 \(H^1(M;\mathbb Z_2)=0\)。
+\end{exercise}
+\begin{proof}
+先证明 \(N\) 可定向。若 \(N\) 不可定向，法线丛在 \(\mathbb Z_2\) 意义下有非平凡一阶 Stiefel-Whitney 类，会给 \(M\) 产生非零 \(H^1(M;\mathbb Z_2)\)，与假设矛盾；单连通当然蕴含该条件。
+
+取到 \(N\) 的有符号距离函数 \(r\)。因为 \(N\) 全测地，靠近 \(N\) 时 \(r\) 光滑且两侧法向测地线垂直离开。正截面曲率和 Toponogov 比较说明：除两侧最远点外，距离函数没有临界点。临界点理论于是把 \(M\) 分成两个圆盘丛，而由于 \(N\) 是超曲面，两个极端临界点分别是最大点和最小点。一个闭流形若由两个 \(n\)-圆盘沿边界粘合，便同胚于 \(S^n\)。做题时的主线是：全测地超曲面提供距离函数，正曲率排除中间临界点。
+\end{proof}
+
+\begin{exercise}
+设 \((M,g)\) 完备非紧且 \(\sec\ge0\)，\(S\subset M\) 为 soul。证明：
+\[
+X\in TS,\ V\in T^\perp S\quad\Longrightarrow\quad \sec(X,V)=0.
+\]
+若 soul 余维为 \(1\) 且法丛平凡，证明 \(M=S\times\mathbb R\)；若法丛非平凡，证明某个二重覆盖分裂。
+\end{exercise}
+\begin{proof}
+soul 是全凸且全测地的。沿 \(S\) 中测地线平行移动法向量 \(V\)，由 Sharafutdinov 收缩或二阶变分可知法向测地线族保持距离不增。在 \(\sec\ge0\) 下，若混合截面曲率为正，则相邻法向测地线会更快靠近，和 soul 的全凸最小性冲突。因此混合曲率为零。
+
+余维一且法丛平凡时，取全局单位法向场 \(\nu\)，指数映射
+\[
+S\times\mathbb R\to M,\qquad (x,t)\mapsto\exp_x(t\nu_x)
+\]
+由 soul 定理是微分同胚。混合曲率为零并且 \(S\) 全测地，使度量沿 \(t\) 方向不变，故得到乘积度量 \(g_S+dt^2\)。若法丛非平凡，取其取向二重覆盖后法丛变平凡，于是覆盖空间按上一段分裂。
+\end{proof}
+
+\begin{exercise}
+求解常微分方程
+\[
+\psi''=-(1+\varepsilon)\psi,\qquad \psi(0)>0,\quad \psi'(0)>0,
+\]
+并写成振幅与相位形式。
+\end{exercise}
+\begin{proof}
+令 \(\lambda=\sqrt{1+\varepsilon}\)。通解为
+\[
+\psi(t)=A\cos(\lambda t)+B\sin(\lambda t),
+\]
+其中 \(A=\psi(0)\)、\(B=\psi'(0)/\lambda\)。写成相位形式：
+\[
+\psi(t)=\sqrt{\psi(0)^2+\frac{\psi'(0)^2}{1+\varepsilon}}\,
+\sin\left(\sqrt{1+\varepsilon}\,t+\arctan\frac{\psi(0)\sqrt{1+\varepsilon}}{\psi'(0)}\right).
+\]
+这只是把线性振子解从“初值形式”改成“振幅相位形式”。在比较几何里，这种写法方便读出第一次零点和符号变化。
+\end{proof}
+
+\begin{exercise}
+证明 Toponogov 定理的逆命题：若对某个 \(k\)，所有铰链或三角形都满足与 \(S_k^2\) 比较的 Toponogov 结论，则 \(\sec\ge k\)。
+\end{exercise}
+\begin{proof}
+取一点 \(p\) 和二维平面 \(\sigma\subset T_pM\)，选取两条短测地线组成小铰链，边长均为 \(t\)，夹角为 \(\theta\)。第三边长度的 Taylor 展开为
+\[
+d(\exp_p(tu),\exp_p(tv))^2
+=2t^2(1-\cos\theta)-\frac13 K(\sigma)t^4\sin^2\theta+O(t^5).
+\]
+模型空间 \(S_k^2\) 中相同展开把 \(K(\sigma)\) 换成 \(k\)。Toponogov 比较给原空间第三边不长于模型边。比较 \(t^4\) 项即得 \(K(\sigma)\ge k\)。让 \(\sigma\) 任意，得到 \(\sec\ge k\)。
+\end{proof}
+
+\begin{exercise}
+设 \(B(p,2R)\) 上所有截面曲率都满足 \(\sec\ge k\)。证明 Toponogov 比较对 \(B(p,R)\) 内的铰链与三角形成立。
+\end{exercise}
+\begin{proof}
+Toponogov 的证明本质是沿三角形边和连接边的测地变分使用局部曲率下界。若三角形完全位于 \(B(p,R)\)，则相关的短测地变分和铰链扫出的比较区域都包含在 \(B(p,2R)\) 内。曲率下界在这个较大球上有效，故指数坐标、Jacobi 场比较和距离二阶变分都可照常进行。因此局部曲率下界足以推出局部 Toponogov。这里 \(2R\) 的作用是给变分过程留出缓冲区。
+\end{proof}
+
+\begin{exercise}
+设 \(\sec\ge k\)，令 \(f(x)=d(x,q)-d(x,p)\)，并假设两个距离函数在 \(x\) 处光滑。用 Toponogov 估计 \(|\nabla f|_x\) 的下界，该下界由 \(x\) 到一条 \(pq\) 测地段的距离控制。
+\end{exercise}
+\begin{proof}
+两个距离函数光滑时，
+\[
+\nabla f=\nabla d_q-\nabla d_p,
+\]
+所以
+\[
+|\nabla f|^2=2-2\cos\angle qxp.
+\]
+若 \(x\) 离 \(pq\) 的某条最短段很远，则 Toponogov 比较告诉我们三角形 \(pxq\) 在 \(x\) 处不能过分尖，也就是说 \(\angle qxp\) 有正下界。于是 \(|\nabla f|\) 有相应正下界。具体函数由模型空间中同样边长和高度的三角形给出。解题动机是：梯度差的大小就是两条最短方向的夹角，而 Toponogov 正是控制这个夹角的工具。
+\end{proof}
+
+\begin{exercise}
+设 \(c\) 是 \(\sec\ge -k^2\) 的 \(n\)-维黎曼流形中的测地线，\(T(c,R)\) 为半径 \(R\) 的法管。证明存在连续函数 \(f(n,k,R,L(c))\)，使
+\[
+\operatorname{vol}T(c,R)\le f(n,k,R,L(c)),
+\]
+且 \(L(c)\to0\) 时 \(f\to0\)。并说明该估计可替代某些 Toponogov 用法。
+\end{exercise}
+\begin{proof}
+在法管上取 Fermi 坐标 \((s,r,\theta)\)，其中 \(s\) 是 \(c\) 上弧长，\(r\) 是到 \(c\) 的距离，\(\theta\in S^{n-2}\)。当 \(r\to0\) 时，度量展开为
+\[
+ds^2+dr^2+r^2d\theta^2+O(r^2)
+\]
+并带有由曲率控制的二阶修正。下曲率界 \(\sec\ge-k^2\) 通过 Jacobi 场比较给法向体积密度上界，大致形如
+\[
+J(s,r,\theta)\le C(n)\cosh(kr)\left(\frac{\sinh(kr)}{k}\right)^{n-2}.
+\]
+积分得到
+\[
+\operatorname{vol}T(c,R)\le L(c)\,C(n)\int_0^R \cosh(kr)\left(\frac{\sinh(kr)}{k}\right)^{n-2}\,dr.
+\]
+右端就是所需 \(f\)，并且显然随 \(L(c)\to0\) 而趋零。该估计直接控制短测地线附近的体积，因此在证明某些小环路或细管不可能出现时，可以不用完整 Toponogov 三角比较。
+\end{proof}
+
+\begin{exercise}
+证明任意 \(S^2\) 上的向量丛都承认一个完备的非负截面曲率度量。
+\end{exercise}
+\begin{proof}
+\(S^2\) 上秩 \(k\) 实向量丛由赤道上的 clutching 映射 \(S^1\to SO(k)\) 分类。秩 \(1\) 只有平凡丛；秩 \(2\) 由 \(\pi_1(SO(2))\cong\mathbb Z\) 分类；秩 \(k>2\) 由 \(\pi_1(SO(k))\cong\mathbb Z_2\) 分类。
+
+把 \(S^2\) 看成两个圆盘粘合。每个圆盘上的平凡丛配备乘积非负曲率度量，在赤道附近令结构群 \(SO(k)\) 通过等距线性作用旋转纤维。由于 clutching 映射可实现为等距群中的路径，粘合后得到带有 connection metric 的总空间。O'Neill 公式说明，若底空间非负曲率、纤维欧氏且连接曲率按标准模型控制，则总空间可取非负截面曲率。完备性来自纤维是完整欧氏空间且底空间紧。
+\end{proof}
+
+\begin{exercise}
+设 \(\sec\ge0\)。用 Toponogov 定理证明 Busemann 函数 \(b_c\) 是凸函数。
+\end{exercise}
+\begin{proof}
+Busemann 函数定义为
+\[
+b_c(x)=\lim_{t\to\infty}(d(x,c(t))-t).
+\]
+取任意测地线 \(\gamma(s)\)。Toponogov 在非负曲率下说明，函数 \(s\mapsto d(\gamma(s),c(t))\) 与欧氏模型相比不会向下弯得更厉害；更具体地，对固定大 \(t\)，距离函数沿 \(\gamma\) 满足近似凸性，误差随 \(t\to\infty\) 消失。令 \(t\to\infty\) 后，\(-t\) 是常数不影响凸性，于是 \(b_c\circ\gamma\) 凸。因为任意测地线如此，\(b_c\) 是测地凸函数。
+\end{proof}
+\end{document}
